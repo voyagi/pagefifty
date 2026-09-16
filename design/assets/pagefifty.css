@@ -1170,10 +1170,6 @@ table.index .b {
 		border-right: 0;
 	}
 
-	.verdict-grid .margin-col {
-		margin: 1.5rem 0 0;
-	}
-
 	.clause-cols {
 		display: none;
 	}
@@ -1331,8 +1327,20 @@ table.index .b {
 		margin: 0 0.75rem 2rem;
 	}
 
+	/* Headers stay in the accessibility tree; stacked cells carry their own label. */
 	table.index thead {
-		display: none;
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+
+	table.index td[data-label]::before {
+		content: attr(data-label) ': ';
+		font-family: var(--font-sans);
+		color: var(--ink-2);
 	}
 
 	table.index,
