@@ -39,6 +39,7 @@ function allowed(email, allow) {
 
 function run(cwd) {
   let emails = [];
+  let commitCount = 0;
   let historyRead = true;
   try {
     // --branches --tags, not bare HEAD: a push can publish ANY local branch or tag, and the
@@ -50,7 +51,9 @@ function run(cwd) {
     const out = execFileSync('git', ['log', '--branches', '--tags', 'HEAD', '--format=%ae%n%ce'], {
       cwd, encoding: 'utf8', windowsHide: true, maxBuffer: 64 * 1024 * 1024,
     });
-    emails = [...new Set(out.split('\n').map((l) => l.trim()).filter(Boolean))];
+    const lines = out.split('\n').map((l) => l.trim()).filter(Boolean);
+    commitCount = Math.floor(lines.length / 2);
+    emails = [...new Set(lines)];
     // Zero refs to walk: --branches --tags on a commitless repo exits 0 with EMPTY output
     // (measured; bare `git log` errors instead, which the catch below still covers).
     if (emails.length === 0) historyRead = false;
@@ -77,7 +80,7 @@ function run(cwd) {
   const bad = emails.filter((e) => !allowed(e, allow));
   const configuredBad = configured != null && !allowed(configured, allow);
   if (bad.length === 0 && !configuredBad) {
-    console.log(`[git-identity] clean: ${historyRead ? `${emails.length} distinct identit${emails.length === 1 ? 'y' : 'ies'} in history` : 'no commits yet'}` +
+    console.log(`[git-identity] clean: ${historyRead ? `${emails.length} distinct identit${emails.length === 1 ? 'y' : 'ies'} across ${commitCount} commit${commitCount === 1 ? '' : 's'}` : 'no commits yet'}` +
       `${configured ? `, and the configured user.email (${configured}) is allowed` : ''}.`);
     return 0;
   }
