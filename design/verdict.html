@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Partner needed for Brink Data: AOK data management software tender - Pagefifty</title>
+		<script>
+			(function () {
+				var forced = new URLSearchParams(location.search).get('theme');
+				var stored = null;
+				try {
+					stored = localStorage.getItem('pagefifty-theme');
+				} catch (e) {}
+				var choice = forced || stored || 'device';
+				var dark =
+					choice === 'dark' ||
+					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+			})();
+		</script>
+		<link rel="stylesheet" href="assets/pagefifty.css" />
+		<script src="assets/theme.js" defer></script>
+	</head>
+	<body>
+		<header class="deskbar">
+			<a class="wordmark" href="home.html">Pagefifty</a>
+			<nav aria-label="Main">
+				<ul>
+					<li><a href="tenders.html" aria-current="page">Tenders</a></li>
+					<li><a href="profile.html">Firm profile</a></li>
+					<li><a href="home.html">Example run</a></li>
+					<li><a href="home.html">How it works</a></li>
+				</ul>
+			</nav>
+			<span class="spacer"></span>
+			<p class="firm"><strong>Brink Data (demo firm)</strong>Profile kept in this browser</p>
+			<div class="theme" role="group" aria-label="Theme">
+				<button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+				<button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+				<button type="button" data-theme-choice="device" aria-pressed="true">Device</button>
+			</div>
+		</header>
+
+		<main class="binder" style="--board: var(--yellow)">
+			<article class="leaf" id="verdict" aria-labelledby="tender-title">
+				<a class="tab hue-yellow" href="#verdict" aria-current="true">Verdict</a>
+				<div class="grid verdict-grid">
+					<div class="span-4">
+						<h1 class="title" id="tender-title">
+							<span lang="de">Software zur Datenbewirtschaftung</span>
+						</h1>
+						<p class="gloss">
+							Data management software for Germany's AOK health insurers, on-premises.
+						</p>
+
+						<div class="verdict-row">
+							<h2 class="verdict">Partner needed</h2>
+							<div class="slip" role="note" aria-label="Rule you cannot meet alone">
+								<p>At least 20 specialists. You have 14.</p>
+								<span class="ref">Notice, selection criterion 3 of 4</span>
+							</div>
+						</div>
+						<p class="verdict-line">
+							Two published rules shut Brink Data out on its own: staff and references. EU law lets
+							another firm lend both, if that firm does the work it lends them for. Find that
+							partner before the deadline, or drop the tender.
+						</p>
+						<p class="unread-strip">
+							<svg
+								viewBox="0 0 20 20"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.8"
+								aria-hidden="true"
+							>
+								<rect x="3" y="3" width="14" height="14" rx="1" />
+								<path d="M3 8h14M3 13h14" />
+							</svg>
+							<span
+								>Checked against the notice only. The document pack on DTVP is not read yet and can
+								add rules. <a href="#pack">What was not read</a></span
+							>
+						</p>
+
+						<section class="clause-card" aria-labelledby="deciding-title">
+							<div class="clause-head">
+								<h3 id="deciding-title">Staff you have today</h3>
+								<span class="mono">Criterion 3 of 4</span>
+							</div>
+							<div class="clause-body">
+								<div class="span-2">
+									<span class="label">The buyer's words</span>
+									<blockquote class="quote" lang="de">
+										(2) Mindestanforderung: Der Bewerber muss zum Zeitpunkt der Abgabe des
+										Teilnahmeantrags über <mark>mindestens 20 Fachkräfte</mark> im Bereich
+										Entwicklung und Support einer Software zur Datenbewirtschaftung verfügen. Wird
+										diese Mindestanforderung nicht erfüllt, so führt dies zum Ausschluss des
+										Teilnahmeantrags.
+									</blockquote>
+								</div>
+								<div class="span-2">
+									<span class="label">In plain English</span>
+									<p class="reading">
+										On the day you apply, you need at least 20 specialists who build and support
+										data management software. With fewer, your application is thrown out.
+									</p>
+								</div>
+								<div class="figures">
+									<div class="figure"><b>20</b><span>specialists required</span></div>
+									<div class="figure"><b>14</b><span>in your profile</span></div>
+									<div class="figure short"><b>&minus;6</b><span>short alone</span></div>
+								</div>
+								<div class="partner-note">
+									<span class="label">Why a partner can close it</span>
+									<p>
+										Directive 2014/24/EU, Article 63(1): a firm may rely on the capacities of other
+										entities for technical and professional ability, and for professional experience
+										"only ... where the latter will perform the works or services for which these
+										capacities are required". The buyer may still reserve critical tasks for you
+										(Article 63(2)). This notice names none.
+									</p>
+								</div>
+								<p class="provenance">
+									<span>Number read from the quote and compared by code, not by the model.</span>
+									<a href="https://ted.europa.eu/en/notice/-/detail/630477-2026"
+										>Open notice on TED
+										<svg
+											viewBox="0 0 16 16"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.6"
+											aria-hidden="true"
+										>
+											<path d="M6 3h7v7M13 3 5 11M11 13H3V5" /></svg
+									></a>
+								</p>
+							</div>
+						</section>
+
+						<div class="actions">
+							<button class="btn btn-primary" type="button">
+								<svg
+									viewBox="0 0 16 16"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.6"
+									aria-hidden="true"
+								>
+									<rect x="5" y="5" width="8" height="8" rx="1" />
+									<path d="M11 3H4a1 1 0 0 0-1 1v7" />
+								</svg>
+								Copy both rules with sources
+							</button>
+							<button class="btn btn-secondary" type="button">Drop this tender</button>
+						</div>
+					</div>
+
+					<aside class="margin-col" aria-label="Tender facts">
+						<p class="margin-head">AOK-Bundesverband eGbR</p>
+						<dl class="facts">
+							<div>
+								<dt>Deadline</dt>
+								<dd class="mono">13 Oct 2026, 10:00 CEST</dd>
+							</div>
+							<div>
+								<dt>Time left</dt>
+								<dd><span class="mono">27 days</span>, as of 16 Sep</dd>
+							</div>
+							<div>
+								<dt>TED notice</dt>
+								<dd class="mono">630477-2026</dd>
+							</div>
+							<div>
+								<dt>Kind</dt>
+								<dd>Software, CPV <span class="mono">48000000</span></dd>
+							</div>
+						</dl>
+					</aside>
+				</div>
+			</article>
+
+			<section class="leaf ply-2" id="clauses" aria-labelledby="clauses-title">
+				<a class="tab hue-grass" href="#clauses">Notice <span class="count">4</span></a>
+				<h2 class="leaf-head" id="clauses-title">Every other clause, hardest first</h2>
+				<div class="clause-cols" aria-hidden="true">
+					<span></span><span class="label">The buyer's words</span
+					><span class="label">In plain English</span>
+				</div>
+				<ol class="clauses">
+					<li class="clause">
+						<div class="margin-col">
+							<h3 class="state">
+								<svg
+									viewBox="0 0 20 20"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									aria-hidden="true"
+								>
+									<circle cx="10" cy="10" r="8" />
+									<path d="M10 2v16" />
+								</svg>
+								A partner could meet this
+							</h3>
+							<p class="mono">Criterion 4 of 4, references</p>
+						</div>
+						<blockquote class="quote" lang="de">
+							<p>
+								(a) Es ist <mark>mindestens eine Referenz</mark> aus dem Bereich
+								"Datenbankzentrierte Ausführung" vorzulegen
+							</p>
+							<p>
+								(b) Darüber hinaus sind <mark>mindestens zwei Referenzen</mark> aus dem Bereich
+								"komplexe Prozessketten" vorzulegen
+							</p>
+							<p>
+								(c) Darüber hinaus sind <mark>mindestens zwei Referenzen</mark> aus dem Bereich
+								"Auto-ML" vorzulegen
+							</p>
+							<p>
+								Eine Referenz kann nur durch ein eignungsverleihendes Unternehmen erbracht werden,
+								wenn dieses im Auftragsfall die Leistung erbringt
+							</p>
+						</blockquote>
+						<div class="reading hinge-leaf">
+							<p>
+								(a) Database-centred: <span class="mono">1</span> needed, you have
+								<span class="mono">1</span>.<br />(b) Complex process chains:
+								<span class="mono">2</span> needed, you have <span class="mono">1</span>.<br />(c)
+								Auto-ML: <span class="mono">2</span> needed, you have <span class="mono">0</span>.
+							</p>
+							<p>A firm that does the Auto-ML and process-chain work may lend its references.</p>
+						</div>
+						<p class="meta">
+							<span>Read by the model, every quote checked word for word by code</span
+							><span>Reference counts entered by you in the profile</span>
+						</p>
+					</li>
+
+					<li class="clause">
+						<div class="margin-col">
+							<h3 class="state">
+								<svg
+									viewBox="0 0 20 20"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									aria-hidden="true"
+								>
+									<rect x="4" y="3" width="12" height="14" rx="1" />
+									<path d="M7 7h6M7 10h6M7 13h3" />
+								</svg>
+								Met, with a task
+							</h3>
+							<p class="mono">Criterion 1 of 4, register</p>
+						</div>
+						<blockquote class="quote" lang="de">
+							<p>
+								<mark>Auf gesondertes Verlangen der Auftraggeberin</mark> ist nach Abgabe des
+								Angebotes/Teilnahmeantrags ein aktueller Handelsregisterauszug des
+								Niederlassungsstaats des Bieters/Bewerbers/der Mitglieder der
+								Bietergemeinschaft/Bewerbergemeinschaft vorzulegen.
+							</p>
+							<p>
+								Unternehmen mit Firmensitz außerhalb Deutschlands haben den Nachweis der Eintragung
+								in ein vergleichbares Register von Stellen des Herkunftslandes in
+								<mark>deutscher beglaubigter Übersetzung</mark> einzureichen.
+							</p>
+						</blockquote>
+						<p class="reading">
+							Only if the buyer asks, after you apply: a current company register extract. Your firm
+							is registered in the Netherlands, so the KvK extract needs a certified German
+							translation. Order it early.
+						</p>
+						<p class="meta"><span>Read by the model, quotes checked word for word by code</span></p>
+					</li>
+
+					<li class="clause">
+						<div class="margin-col">
+							<h3 class="state">
+								<svg
+									viewBox="0 0 20 20"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									aria-hidden="true"
+								>
+									<circle cx="10" cy="10" r="8" />
+									<path d="m6.5 10.2 2.3 2.3 4.7-4.9" />
+								</svg>
+								Met
+							</h3>
+							<p class="mono">Criterion 2 of 4, turnover</p>
+						</div>
+						<blockquote class="quote" lang="de">
+							<p>
+								Der diesbezügliche Mindestjahresumsatz muss im Durchschnitt über die drei letzten
+								Geschäftsjahre eine Höhe von <mark>1.000.000 Euro netto</mark> erreicht haben.
+							</p>
+							<p>
+								Mitglieder einer Bewerbergemeinschaft müssen ihren jeweiligen Jahresumsatz einzeln
+								ausweisen und als Bewerbergemeinschaft gemeinsam die Anforderung an den
+								Mindestjahresumsatz erfüllen.
+							</p>
+						</blockquote>
+						<p class="reading">
+							Average yearly turnover from this kind of software over the last three years, at least
+							<span class="mono">EUR 1,000,000</span> net. You average
+							<span class="mono">EUR 1,180,000</span>. A joint bid must meet it together.
+						</p>
+						<p class="meta"><span>Compared by code</span></p>
+					</li>
+				</ol>
+			</section>
+
+			<section class="facedown-leaf" id="pack" aria-labelledby="pack-title">
+				<a class="tab facedown" href="#pack">Pack</a>
+				<div class="grid">
+					<h2 class="margin-col state" id="pack-title">
+						<svg
+							viewBox="0 0 20 20"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							aria-hidden="true"
+						>
+							<rect x="3" y="3" width="14" height="14" rx="1" />
+							<path d="M3 8h14M3 13h14" />
+						</svg>
+						Documents not read yet
+					</h2>
+					<p class="span-4">
+						<strong>The document pack on DTVP has not been read.</strong> This verdict rests on the
+						notice alone. The pack can add rules a partner cannot fix, so read its selection section
+						before you commit to one.
+						<a href="https://www.dtvp.de/Satellite/notice/CXP4YDKM8TE/documents"
+							>Open the pack on DTVP</a
+						>
+					</p>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="value" aria-labelledby="value-title">
+				<a class="tab hue-violet" href="#value">Value</a>
+				<div class="grid">
+					<h2 class="margin-col margin-head" id="value-title">Turnover demand check</h2>
+					<p class="span-4 note">
+						No estimated contract value is published, so the rule that a turnover demand may not
+						exceed twice the contract value (Directive 2014/24/EU, Article 58(3)) cannot be checked
+						here.
+					</p>
+				</div>
+			</section>
+
+			<p class="leaf-foot">
+				Verdicts are read from published rules with an NVIDIA Nemotron model on Nebius and checked
+				by code. Not legal advice.
+			</p>
+		</main>
+
+		<p class="demo-note">
+			Mockup. Tender facts and every German quote are from TED notice 630477-2026 (published 14 Sep
+			2026). Brink Data is a demo firm; its figures are invented for this mockup.
+		</p>
+	</body>
+</html>

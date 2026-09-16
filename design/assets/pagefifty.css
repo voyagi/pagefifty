@@ -1,0 +1,1380 @@
+/* Pagefifty mockup system: tabbed reference binder, acetate leaves over full-strength section boards. */
+
+@import url('fonts.css');
+
+:root {
+	color-scheme: light;
+	--desk: #d9dcdf;
+	--desk-ink: #3b3f44;
+	--ink: #141414;
+	--ink-2: #464a50;
+	--ink-3: #5f646b;
+	--acetate: #f6f8fa;
+	--acetate-edge: rgb(20 20 20 / 0.16);
+	--acetate-rule: rgb(20 20 20 / 0.1);
+	--leaf-back: #c9cdd1;
+	--leaf-back-ink: #33373c;
+	--errata: #d42a24;
+	--errata-ink: #ffffff;
+	--focus: #1d3fd8;
+	--selection: rgb(242 183 5 / 0.45);
+
+	--yellow: #f2b705;
+	--grass: #3d9a3a;
+	--teal: #11808a;
+	--ultramarine: #2d3fb5;
+	--violet: #6e3fa3;
+	--slate: #3f5566;
+	--on-yellow: #141414;
+	--on-grass: #141414;
+	--on-teal: #ffffff;
+	--on-ultramarine: #ffffff;
+	--on-violet: #ffffff;
+	--on-slate: #ffffff;
+
+	--board: var(--yellow);
+	--lift: 0 1px 0 rgb(20 20 20 / 0.08), 0 6px 14px -6px rgb(20 20 20 / 0.28);
+
+	--font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+	--font-cond: 'IBM Plex Sans Condensed', 'IBM Plex Sans', 'Arial Narrow', sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+	--step--1: 0.8125rem;
+	--step-0: 1rem;
+	--step-1: 1.1875rem;
+	--step-2: 1.4375rem;
+	--step-3: 1.75rem;
+	--step-4: 2.125rem;
+	--step-5: 3rem;
+	--step-6: 6rem;
+
+	--hinge: 90ms;
+	--gutter: clamp(1rem, 3vw, 2.5rem);
+	--rail: 3.25rem;
+	--board-pad: 1.75rem;
+}
+
+/* Dark is its own palette: a night desk, smoked acetate, boards and tabs kept at full strength. */
+:root[data-theme='dark'] {
+	color-scheme: dark;
+	--desk: #0e0f11;
+	--desk-ink: #b9bdc2;
+	--ink: #ecedea;
+	--ink-2: #bfc3c7;
+	--ink-3: #9ca1a7;
+	--acetate: #16181b;
+	--acetate-edge: rgb(236 237 234 / 0.16);
+	--acetate-rule: rgb(236 237 234 / 0.1);
+	--leaf-back: #2a2d31;
+	--leaf-back-ink: #c9ccd0;
+	--errata: #ff5a4a;
+	--errata-ink: #141414;
+	--focus: #8fa6ff;
+	--selection: rgb(242 183 5 / 0.35);
+	--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scrollbar-color: var(--ink-3) var(--desk);
+}
+
+body {
+	margin: 0;
+	background: var(--desk);
+	color: var(--ink);
+	font-family: var(--font-sans);
+	font-size: var(--step-0);
+	line-height: 1.5;
+	font-variant-numeric: tabular-nums;
+}
+
+::selection {
+	background: var(--selection);
+	color: var(--ink);
+}
+
+a {
+	color: inherit;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.22em;
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+.mono {
+	font-family: var(--font-mono);
+	font-size: 0.9375em;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Desk bar: everything outside the binder. */
+.deskbar {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	padding: 0.875rem var(--gutter);
+	color: var(--desk-ink);
+}
+
+.wordmark {
+	font-family: var(--font-cond);
+	font-weight: 700;
+	font-size: var(--step-2);
+	letter-spacing: -0.01em;
+	color: var(--ink);
+	text-decoration: none;
+}
+
+.deskbar nav ul {
+	display: flex;
+	gap: 1.5rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.deskbar nav a {
+	text-decoration: none;
+	font-weight: 500;
+	padding-block: 0.5rem;
+	white-space: nowrap;
+}
+
+.deskbar nav a[aria-current='page'] {
+	color: var(--ink);
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
+
+.deskbar .spacer {
+	flex: 1;
+}
+
+.firm {
+	font-size: var(--step--1);
+	text-align: right;
+	line-height: 1.35;
+}
+
+.firm strong {
+	display: block;
+	color: var(--ink);
+	font-weight: 600;
+	font-size: var(--step-0);
+}
+
+.theme {
+	display: inline-flex;
+	border: 1px solid var(--acetate-edge);
+	border-radius: 4px;
+	background: var(--acetate);
+	padding: 2px;
+}
+
+.theme button {
+	font: 500 var(--step--1) / 1 var(--font-sans);
+	color: var(--ink-2);
+	background: transparent;
+	border: 0;
+	border-radius: 3px;
+	padding: 0.5rem 0.625rem;
+	min-height: 32px;
+	cursor: pointer;
+}
+
+.theme button[aria-pressed='true'] {
+	background: var(--ink);
+	color: var(--acetate);
+}
+
+/* The binder: board hue at the edges, punched binding on the left, tabs on the fore edge. */
+.binder {
+	position: relative;
+	margin: 0 calc(var(--gutter) + var(--rail)) 3rem var(--gutter);
+	background: var(--board);
+	border-radius: 6px 0 0 6px;
+	padding: var(--board-pad) var(--board-pad) var(--board-pad) 3.5rem;
+	box-shadow: var(--lift);
+}
+
+.binder::before {
+	content: '';
+	position: absolute;
+	left: 1.25rem;
+	top: 0;
+	bottom: 0;
+	width: 14px;
+	background:
+		radial-gradient(circle at 7px 7px, var(--desk) 6px, transparent 6.5px) 0 12% / 14px 14px
+			no-repeat,
+		radial-gradient(circle at 7px 7px, var(--desk) 6px, transparent 6.5px) 0 50% / 14px 14px
+			no-repeat,
+		radial-gradient(circle at 7px 7px, var(--desk) 6px, transparent 6.5px) 0 88% / 14px 14px
+			no-repeat;
+}
+
+/* A leaf is acetate; ply is the only rank. */
+.leaf {
+	--inset: var(--board-pad);
+	position: relative;
+	background: var(--acetate);
+	border: 1px solid var(--acetate-edge);
+	border-radius: 3px;
+	padding: 1.75rem 2rem;
+	box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--board) 14%, transparent);
+}
+
+.leaf + .leaf,
+.facedown-leaf + .leaf {
+	margin-top: 0.875rem;
+}
+
+.leaf.ply-2 {
+	--inset: calc(var(--board-pad) + 0.75rem);
+	margin-inline: 0 0.75rem;
+	margin-left: 0.75rem;
+}
+
+/* Each leaf carries its own tab, so a tab spans exactly the leaf it indexes. The open division's tab stands proud. */
+.tab {
+	position: absolute;
+	top: -1px;
+	bottom: -1px;
+	right: calc(-1 * (var(--inset) + var(--rail)) - 1px);
+	width: calc(var(--rail) - 0.625rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	writing-mode: vertical-rl;
+	text-decoration: none;
+	font: 600 var(--step-0) / 1.1 var(--font-cond);
+	letter-spacing: 0.02em;
+	border-radius: 0 8px 8px 0;
+	padding: 0.75rem 0.25rem;
+	white-space: nowrap;
+}
+
+.tab[aria-current='true'],
+.tab.open {
+	width: var(--rail);
+	right: calc(-1 * (var(--inset) + var(--rail)) - 1px - 0.625rem);
+}
+
+.tab .count {
+	font-family: var(--font-mono);
+	font-weight: 500;
+	margin-top: 0.5rem;
+}
+
+.tab.facedown {
+	background: var(--leaf-back);
+	color: var(--leaf-back-ink);
+	outline: 1px dashed var(--leaf-back-ink);
+	outline-offset: -4px;
+}
+
+.hue-yellow {
+	background: var(--yellow);
+	color: var(--on-yellow);
+}
+.hue-grass {
+	background: var(--grass);
+	color: var(--on-grass);
+}
+.hue-teal {
+	background: var(--teal);
+	color: var(--on-teal);
+}
+.hue-ultramarine {
+	background: var(--ultramarine);
+	color: var(--on-ultramarine);
+}
+.hue-violet {
+	background: var(--violet);
+	color: var(--on-violet);
+}
+.hue-slate {
+	background: var(--slate);
+	color: var(--on-slate);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
+	column-gap: 1.75rem;
+}
+
+.margin-col {
+	grid-column: 1;
+	font-size: var(--step--1);
+	color: var(--ink-2);
+	line-height: 1.45;
+	padding-right: 1.25rem;
+	border-right: 1px solid var(--acetate-rule);
+}
+
+.span-4 {
+	grid-column: 2 / span 4;
+	min-width: 0;
+}
+
+.span-2 {
+	grid-column: span 2;
+	min-width: 0;
+}
+
+.margin-head {
+	font: 600 var(--step-0) / 1.25 var(--font-cond);
+	color: var(--ink);
+	letter-spacing: 0.01em;
+}
+
+dl.facts {
+	margin: 0.75rem 0 0;
+	display: grid;
+	gap: 0.625rem;
+}
+
+dl.facts dt {
+	font-weight: 500;
+	color: var(--ink-3);
+}
+
+dl.facts dd {
+	margin: 0;
+	color: var(--ink);
+}
+
+.title {
+	font: 600 var(--step-4) / 1.1 var(--font-cond);
+	letter-spacing: -0.015em;
+	text-wrap: balance;
+}
+
+.gloss {
+	color: var(--ink-2);
+	margin-top: 0.35rem;
+}
+
+.verdict-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem 2rem;
+	margin-top: 1.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--acetate-rule);
+}
+
+.verdict {
+	font: 700 var(--step-6) / 0.85 var(--font-cond);
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
+}
+
+.verdict-line {
+	max-width: 52ch;
+	margin-top: 1rem;
+	font-size: var(--step-1);
+	line-height: 1.45;
+	text-wrap: pretty;
+}
+
+/* The errata slip: a separate strip of vermilion paper, punched, filed at its reference. The only vermilion anywhere. */
+.slip {
+	position: relative;
+	display: grid;
+	gap: 0.2rem;
+	max-width: 30rem;
+	background: var(--errata);
+	color: var(--errata-ink);
+	padding: 0.75rem 1.25rem 0.875rem 2.5rem;
+	border-radius: 2px;
+	box-shadow: var(--lift);
+}
+
+.slip::before {
+	content: '';
+	position: absolute;
+	left: 0.875rem;
+	top: 50%;
+	width: 0.75rem;
+	height: 0.75rem;
+	margin-top: -0.375rem;
+	border-radius: 50%;
+	background: var(--acetate);
+}
+
+.slip strong {
+	font: 700 var(--step--1) / 1.2 var(--font-cond);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.slip .ref {
+	font-family: var(--font-mono);
+	font-size: var(--step--1);
+}
+
+.slip p {
+	font-size: var(--step-1);
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.clause-card {
+	position: relative;
+	margin-top: 1.5rem;
+	border: 1px solid var(--acetate-edge);
+	border-radius: 3px;
+}
+
+.clause-card > .slip {
+	position: absolute;
+	top: -1.1rem;
+	left: 1.25rem;
+	max-width: calc(100% - 2.5rem);
+}
+
+.clause-card.has-slip {
+	margin-top: 2.25rem;
+}
+
+.clause-card.has-slip .clause-body {
+	padding-top: 4.25rem;
+}
+
+.clause-head {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem 1.5rem;
+	padding: 0.75rem 1.25rem;
+	border-bottom: 1px solid var(--acetate-rule);
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+.clause-head strong {
+	color: var(--ink);
+	font: 600 var(--step-0) / 1.3 var(--font-cond);
+}
+
+.clause-body {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1.25rem 1.75rem;
+	padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.quote {
+	position: relative;
+	grid-column: span 2;
+	margin: 0;
+	font-size: var(--step-0);
+	line-height: 1.55;
+	color: var(--ink);
+}
+
+/* Hanging German opening mark, so the quote's text edge stays on the grid. */
+.quote::before {
+	content: '\201E';
+	position: absolute;
+	left: -0.6em;
+	top: 0.1em;
+	color: var(--ink-3);
+}
+
+.quote p + p {
+	margin-top: 0.5rem;
+}
+
+.quote mark {
+	background: transparent;
+	color: inherit;
+	font-weight: 600;
+	text-decoration: underline;
+	text-decoration-color: var(--errata);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+.label {
+	display: block;
+	font: 600 var(--step--1) / 1.3 var(--font-cond);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+	margin-bottom: 0.4rem;
+}
+
+.reading {
+	grid-column: span 2;
+	font-size: var(--step-1);
+	line-height: 1.45;
+	text-wrap: pretty;
+}
+
+.figures {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, max-content)) 1fr;
+	gap: 0 2.5rem;
+	align-items: end;
+	padding-top: 1rem;
+	border-top: 1px solid var(--acetate-rule);
+}
+
+.figure b {
+	display: block;
+	font: 500 var(--step-5) / 1 var(--font-mono);
+	letter-spacing: -0.03em;
+}
+
+.figure.short b {
+	color: var(--errata);
+}
+
+.figure span {
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+.provenance {
+	grid-column: 1 / -1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+.provenance svg {
+	width: 0.9em;
+	height: 0.9em;
+	vertical-align: -0.1em;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 1.5rem;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 44px;
+	padding: 0 1.125rem;
+	font: 600 var(--step-0) / 1 var(--font-sans);
+	border-radius: 3px;
+	border: 1px solid var(--ink);
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform var(--hinge) steps(2, end);
+}
+
+.btn svg {
+	width: 1.05em;
+	height: 1.05em;
+}
+
+.btn-primary {
+	background: var(--ink);
+	color: var(--acetate);
+}
+
+.btn-secondary {
+	background: transparent;
+	color: var(--ink);
+}
+
+.btn:hover {
+	transform: translateY(-1px);
+}
+
+.btn:active {
+	transform: translateY(1px);
+}
+
+/* Other clauses: one row each on the lower leaf. */
+.clauses {
+	list-style: none;
+	margin: 1.5rem 0 0;
+	padding: 0;
+	border-top: 1px solid var(--acetate-edge);
+}
+
+.clause {
+	display: grid;
+	grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
+	column-gap: 1.75rem;
+	padding: 1.5rem 0;
+	border-top: 1px solid var(--acetate-rule);
+}
+
+.clause:first-child {
+	border-top: 0;
+}
+
+.state {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font: 600 var(--step-0) / 1.2 var(--font-cond);
+	letter-spacing: 0.02em;
+	color: var(--ink);
+}
+
+.state svg {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex: none;
+}
+
+.clause .quote {
+	grid-column: 2 / span 2;
+	font-size: 0.9375rem;
+	color: var(--ink);
+}
+
+h3.state,
+h2.state {
+	margin: 0;
+}
+
+.leaf-head {
+	font: 600 var(--step-2) / 1.2 var(--font-cond);
+}
+
+.clause-cols {
+	display: grid;
+	grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
+	column-gap: 1.75rem;
+	margin-top: 1.25rem;
+}
+
+.clause-cols .label:nth-child(2) {
+	grid-column: 2 / span 2;
+	margin: 0;
+}
+
+.clause-cols .label:nth-child(3) {
+	grid-column: 4 / span 2;
+	margin: 0;
+}
+
+.clause-head h3 {
+	margin: 0;
+	font: 600 var(--step-0) / 1.3 var(--font-cond);
+	color: var(--ink);
+}
+
+.verdict-grid .margin-col {
+	grid-row: 1;
+	grid-column: 1;
+}
+
+h2.verdict {
+	margin: 0;
+}
+
+.unread-strip {
+	display: flex;
+	gap: 0.625rem;
+	align-items: flex-start;
+	margin-top: 1rem;
+	padding: 0.625rem 0.875rem;
+	background: var(--leaf-back);
+	color: var(--leaf-back-ink);
+	border: 1px dashed var(--leaf-back-ink);
+	border-radius: 2px;
+	font-size: var(--step--1);
+	font-weight: 500;
+	max-width: 62ch;
+}
+
+.unread-strip svg {
+	flex: none;
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+.unread-strip a {
+	color: var(--ink);
+}
+
+.partner-note {
+	grid-column: 1 / -1;
+	padding-top: 1rem;
+	border-top: 1px solid var(--acetate-rule);
+	max-width: 78ch;
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+.leaf-foot {
+	margin: 1rem 0 0;
+	font-size: var(--step--1);
+	color: var(--on-yellow);
+	font-weight: 500;
+}
+
+.clause .reading {
+	grid-column: 4 / span 2;
+	font-size: var(--step-0);
+}
+
+.clause .meta {
+	grid-column: 2 / span 4;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.5rem;
+	margin-top: 0.875rem;
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+/* Half-hinged: the reading stays flat; only its punched edge strip is turned, still waiting for a partner's leaf. */
+.hinge-leaf {
+	position: relative;
+	align-self: start;
+	background: var(--acetate);
+	border: 1px solid var(--acetate-edge);
+	border-radius: 2px;
+	padding: 0.875rem 1rem 0.875rem 1.25rem;
+	margin-left: 1rem;
+}
+
+.hinge-leaf::before {
+	content: '';
+	position: absolute;
+	left: -1rem;
+	top: -1px;
+	bottom: -1px;
+	width: 1rem;
+	background:
+		radial-gradient(circle at 50% 50%, var(--acetate) 3px, transparent 3.5px) 0 1rem / 100% 1rem
+			no-repeat,
+		radial-gradient(circle at 50% 50%, var(--acetate) 3px, transparent 3.5px) 0 calc(100% - 1rem) /
+			100% 1rem no-repeat,
+		var(--board);
+	transform-origin: right center;
+	transform: perspective(240px) rotateY(38deg);
+	transition: transform var(--hinge) steps(2, end);
+}
+
+.clause:hover .hinge-leaf::before,
+.clause:focus-within .hinge-leaf::before {
+	transform: none;
+}
+
+/* Face-down: a document we have not read. */
+.facedown-leaf {
+	--inset: var(--board-pad);
+	position: relative;
+	margin-top: 0.875rem;
+	background: var(--leaf-back);
+	color: var(--leaf-back-ink);
+	border: 1px dashed var(--leaf-back-ink);
+	border-radius: 3px;
+	padding: 1.25rem 2rem;
+}
+
+.facedown-leaf .grid {
+	align-items: center;
+}
+
+.facedown-leaf .margin-col {
+	color: var(--leaf-back-ink);
+	border-right-color: transparent;
+}
+
+.facedown-leaf strong {
+	color: var(--ink);
+}
+
+.note {
+	font-size: var(--step--1);
+	color: var(--ink-2);
+	max-width: 70ch;
+}
+
+.demo-note {
+	margin: 0 calc(var(--gutter) + var(--rail)) 2rem var(--gutter);
+	font-size: var(--step--1);
+	color: var(--desk-ink);
+	max-width: 80ch;
+}
+
+/* Tenders index. */
+.index-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+	margin-bottom: 1.25rem;
+}
+
+.index-head p {
+	max-width: 60ch;
+	color: var(--ink-2);
+}
+
+table.index {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--step-0);
+}
+
+table.index th {
+	text-align: left;
+	font: 600 var(--step--1) / 1.3 var(--font-cond);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+	padding: 0 1rem 0.625rem 0;
+	border-bottom: 1px solid var(--acetate-edge);
+}
+
+table.index td {
+	padding: 1rem 1rem 1rem 0;
+	border-bottom: 1px solid var(--acetate-rule);
+	vertical-align: top;
+}
+
+table.index td + td,
+table.index th + th {
+	padding-left: 1rem;
+	border-left: 1px solid var(--acetate-rule);
+}
+
+table.index td.num,
+table.index th.num {
+	text-align: right;
+	white-space: nowrap;
+}
+
+td.mono {
+	white-space: nowrap;
+}
+
+table.index .t {
+	font-weight: 600;
+	display: block;
+	line-height: 1.3;
+}
+
+table.index .b {
+	font-size: var(--step--1);
+	color: var(--ink-2);
+}
+
+.vcell {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.625rem;
+	min-width: 15rem;
+}
+
+.vtag {
+	flex: none;
+	font: 700 var(--step--1) / 1 var(--font-cond);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	padding: 0.35rem 0.5rem;
+	border-radius: 2px;
+	border: 1px solid var(--ink);
+	white-space: nowrap;
+}
+
+.vtag.out {
+	background: var(--ink);
+	color: var(--acetate);
+}
+
+.vtag.ask {
+	background: transparent;
+	color: var(--ink);
+	border-style: dashed;
+}
+
+.vcell small {
+	font-size: var(--step--1);
+	color: var(--ink-2);
+	line-height: 1.35;
+}
+
+/* Profile form. */
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1rem 1.25rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.field label {
+	font-weight: 500;
+	font-size: var(--step--1);
+}
+
+.field input {
+	font: 500 var(--step-0) / 1.2 var(--font-mono);
+	color: var(--ink);
+	background: var(--acetate);
+	border: 1px solid var(--ink-3);
+	border-radius: 3px;
+	min-height: 44px;
+	padding: 0 0.75rem;
+	caret-color: var(--ink);
+}
+
+.field input:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 0;
+	border-color: var(--ink);
+}
+
+.field .hint {
+	font-size: var(--step--1);
+	color: var(--ink-3);
+}
+
+.field.error input {
+	border: 2px dashed var(--ink);
+	background: color-mix(in srgb, var(--ink) 6%, var(--acetate));
+}
+
+.field.error .hint {
+	display: flex;
+	gap: 0.4rem;
+	align-items: flex-start;
+	color: var(--ink);
+	font-weight: 600;
+}
+
+.field.error .hint svg {
+	flex: none;
+	width: 1rem;
+	height: 1rem;
+	margin-top: 0.1rem;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-height: 44px;
+	padding: 0 0.875rem;
+	border: 1px solid var(--ink-3);
+	border-radius: 3px;
+	font: 500 var(--step-0) / 1 var(--font-sans);
+	color: var(--ink);
+	background: var(--acetate);
+	cursor: pointer;
+}
+
+.chip[aria-pressed='true'] {
+	background: var(--ink);
+	color: var(--acetate);
+	border-color: var(--ink);
+}
+
+/* Addendum slip: a drafted question to the buyer. Violet board colour, never vermilion: it asks, it does not rule out. */
+.addendum {
+	position: relative;
+	margin-top: 2.25rem;
+	border: 1px solid var(--acetate-edge);
+	border-radius: 3px;
+	background: var(--acetate);
+}
+
+.addendum-tag {
+	position: absolute;
+	top: -1.1rem;
+	left: 1.25rem;
+	background: var(--violet);
+	color: var(--on-violet);
+	padding: 0.45rem 1rem 0.5rem;
+	border-radius: 2px;
+	font: 700 var(--step--1) / 1.2 var(--font-cond);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	box-shadow: var(--lift);
+}
+
+.draft {
+	grid-column: 1 / -1;
+	font-family: var(--font-mono);
+	font-size: var(--step--1);
+	line-height: 1.6;
+	white-space: pre-wrap;
+	background: color-mix(in srgb, var(--violet) 7%, var(--acetate));
+	border: 1px solid var(--acetate-rule);
+	border-radius: 2px;
+	padding: 1rem 1.25rem;
+	margin: 0;
+}
+
+/* Loading: the leaf is set in place before its words arrive. */
+.set-line {
+	display: block;
+	height: 0.875rem;
+	border-radius: 2px;
+	background: color-mix(in srgb, var(--ink) 12%, var(--acetate));
+	margin-top: 0.75rem;
+}
+
+.set-line.w-60 {
+	width: 60%;
+}
+.set-line.w-80 {
+	width: 80%;
+}
+.set-line.w-40 {
+	width: 40%;
+}
+
+/* Cover leaf (home). */
+.cover {
+	display: grid;
+	grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
+	column-gap: 1.75rem;
+	row-gap: 2rem;
+}
+
+.cover .margin-col {
+	grid-row: 1 / span 3;
+}
+
+.cover h1 {
+	grid-column: 2 / span 4;
+	font: 700 clamp(2.75rem, 5.2vw, 5.5rem) / 0.95 var(--font-cond);
+	letter-spacing: -0.025em;
+	text-wrap: balance;
+	max-width: 17ch;
+}
+
+.cover .lede {
+	grid-column: 2 / span 2;
+	font-size: var(--step-1);
+	line-height: 1.5;
+	text-wrap: pretty;
+}
+
+.cover .finding {
+	grid-column: 4 / span 2;
+	font-size: var(--step-0);
+	border-top: 2px solid var(--ink);
+	padding-top: 0.75rem;
+}
+
+.cover .finding b {
+	font-family: var(--font-mono);
+	font-weight: 600;
+}
+
+.cover .cover-actions {
+	grid-column: 2 / span 4;
+	margin-top: 0;
+}
+
+.steps {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.75rem;
+}
+
+.steps li {
+	border-top: 1px solid var(--acetate-edge);
+	padding-top: 0.875rem;
+}
+
+.steps h3 {
+	font: 600 var(--step-1) / 1.25 var(--font-cond);
+	margin-bottom: 0.35rem;
+}
+
+.steps p {
+	color: var(--ink-2);
+}
+
+@media (max-width: 1100px) {
+	.grid,
+	.clause,
+	.cover {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.margin-col,
+	.span-4,
+	.cover h1,
+	.cover .cover-actions,
+	.clause .meta {
+		grid-column: 1 / -1;
+	}
+
+	.margin-col,
+	.cover .margin-col,
+	.verdict-grid .margin-col {
+		grid-row: auto;
+		grid-column: 1 / -1;
+		margin-bottom: 1.25rem;
+		padding-right: 0;
+		border-right: 0;
+	}
+
+	.verdict-grid .margin-col {
+		margin: 1.5rem 0 0;
+	}
+
+	.clause-cols {
+		display: none;
+	}
+
+	.clause .quote {
+		grid-column: 1 / span 2;
+	}
+
+	.clause .reading {
+		grid-column: 3 / span 2;
+	}
+
+	.cover .lede {
+		grid-column: 1 / span 2;
+	}
+
+	.cover .finding {
+		grid-column: 3 / span 2;
+	}
+
+	.form-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 720px) {
+	:root {
+		--rail: 0rem;
+		--board-pad: 0.625rem;
+		--step-6: 3.5rem;
+	}
+
+	.deskbar {
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+	}
+
+	.deskbar nav {
+		order: 3;
+		width: 100%;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.deskbar nav ul {
+		flex-wrap: wrap;
+		gap: 0 1.125rem;
+	}
+
+	.firm {
+		display: none;
+	}
+
+	.binder {
+		margin: 0 0.75rem 2rem;
+		padding: 2.375rem var(--board-pad) var(--board-pad);
+		border-radius: 6px;
+	}
+
+	.binder::before {
+		display: none;
+	}
+
+	.leaf,
+	.leaf.ply-2 {
+		margin-inline: 0;
+		padding: 1.25rem 1rem;
+	}
+
+	.leaf + .leaf,
+	.facedown-leaf,
+	.leaf + .facedown-leaf,
+	.facedown-leaf + .leaf {
+		margin-top: 2.5rem;
+	}
+
+	/* On a phone the fore edge becomes the top edge: each leaf's tab stands up above it. */
+	.tab,
+	.tab[aria-current='true'],
+	.tab.open {
+		top: -1.875rem;
+		bottom: auto;
+		left: 0.75rem;
+		right: auto;
+		width: auto;
+		height: 1.875rem;
+		writing-mode: horizontal-tb;
+		border-radius: 8px 8px 0 0;
+		padding: 0 0.875rem;
+		gap: 0.5rem;
+		font-size: var(--step--1);
+	}
+
+	.tab .count {
+		margin-top: 0;
+	}
+
+	.grid,
+	.clause,
+	.cover,
+	.clause-body,
+	.form-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.quote,
+	.reading,
+	.clause .quote,
+	.clause .reading,
+	.cover .lede,
+	.cover .finding,
+	.span-2 {
+		grid-column: 1 / -1;
+	}
+
+	.title {
+		font-size: var(--step-3);
+	}
+
+	.slip {
+		max-width: none;
+	}
+
+	.clause-card.has-slip .clause-body {
+		padding-top: 1.25rem;
+	}
+
+	.clause-card > .slip {
+		position: static;
+		margin: -1.1rem 0.75rem 0;
+	}
+
+	.figures {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0 1rem;
+	}
+
+	.figure b {
+		font-size: var(--step-3);
+	}
+
+	.hinge-leaf {
+		margin-top: 0.75rem;
+	}
+
+	.clause .meta {
+		margin-top: 0.5rem;
+	}
+
+	.facedown-leaf {
+		padding: 1rem;
+	}
+
+	.demo-note {
+		margin: 0 0.75rem 2rem;
+	}
+
+	table.index thead {
+		display: none;
+	}
+
+	table.index,
+	table.index tbody,
+	table.index tr,
+	table.index td {
+		display: block;
+	}
+
+	table.index tr {
+		padding: 0.875rem 0;
+		border-bottom: 1px solid var(--acetate-edge);
+	}
+
+	table.index td,
+	table.index td + td {
+		border: 0;
+		padding: 0.125rem 0;
+	}
+
+	table.index td.num {
+		text-align: left;
+	}
+
+	.vcell {
+		min-width: 0;
+		margin-top: 0.5rem;
+	}
+
+	.cover h1 {
+		font-size: 2.5rem;
+	}
+
+	.steps {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+	}
+}

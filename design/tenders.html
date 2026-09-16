@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Open IT tenders, ruled out first - Pagefifty</title>
+		<script>
+			(function () {
+				var forced = new URLSearchParams(location.search).get('theme');
+				var stored = null;
+				try {
+					stored = localStorage.getItem('pagefifty-theme');
+				} catch (e) {}
+				var choice = forced || stored || 'device';
+				var dark =
+					choice === 'dark' ||
+					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+			})();
+		</script>
+		<link rel="stylesheet" href="assets/pagefifty.css" />
+		<script src="assets/theme.js" defer></script>
+	</head>
+	<body>
+		<header class="deskbar">
+			<a class="wordmark" href="home.html">Pagefifty</a>
+			<nav aria-label="Main">
+				<ul>
+					<li><a href="tenders.html" aria-current="page">Tenders</a></li>
+					<li><a href="profile.html">Firm profile</a></li>
+					<li><a href="home.html">Example run</a></li>
+					<li><a href="home.html">How it works</a></li>
+				</ul>
+			</nav>
+			<span class="spacer"></span>
+			<p class="firm"><strong>Brink Data (demo firm)</strong>14 specialists, EUR 1.18M average</p>
+			<div class="theme" role="group" aria-label="Theme">
+				<button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+				<button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+				<button type="button" data-theme-choice="device" aria-pressed="true">Device</button>
+			</div>
+		</header>
+
+		<main class="binder" style="--board: var(--slate)">
+			<section class="leaf" id="out" aria-labelledby="index-title">
+				<a class="tab hue-slate" href="#out" aria-current="true"
+					>Out alone <span class="count">5</span></a
+				>
+				<div class="index-head">
+					<div>
+						<h1 class="title" id="index-title">Out of reach for Brink Data alone</h1>
+						<p>
+							Five of eight open IT tenders in Germany carry a published rule your firm cannot meet on its
+							own today. Each row names that rule. EU law lets a partner firm lend turnover, staff or references, so each one needs a partner or gets dropped.
+						</p>
+					</div>
+					<p class="mono">Captured run, TED, 15 Sep 2026</p>
+				</div>
+
+				<table class="index">
+					<caption class="visually-hidden">
+						Open tenders Brink Data cannot meet alone, soonest deadline first
+					</caption>
+					<thead>
+						<tr>
+							<th scope="col">Deadline</th>
+							<th scope="col">Tender and buyer</th>
+							<th scope="col" class="num">Turnover floor</th>
+							<th scope="col">Rule you cannot meet alone</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="mono">22 Sep 2026</td>
+							<td>
+								<span class="t" lang="de"
+									>Rahmenvereinbarung über technologiespezifische IT-Betriebsunterstützung</span
+								>
+								<span class="b" lang="de">Bundesrepublik Deutschland, Beschaffungsamt des BMI</span>
+							</td>
+							<td class="num mono">EUR 4,000,000</td>
+							<td>
+								<div class="vcell">
+									<span class="vtag out">Partner needed</span
+									><small
+										>Yearly turnover of at least EUR 4,000,000 for the smallest lot. You average EUR
+										1,180,000.</small
+									>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="mono">5 Oct 2026</td>
+							<td>
+								<span class="t" lang="de"
+									>Rahmenvertrag für Dienstleistungen Systemmanagement pServer/AIX</span
+								>
+								<span class="b" lang="de">Informationstechnikzentrum Bund (ITZBund)</span>
+							</td>
+							<td class="num mono">EUR 3,000,000</td>
+							<td>
+								<div class="vcell">
+									<span class="vtag out">Partner needed</span
+									><small
+										>Yearly turnover of at least EUR 3,000,000. You average EUR 1,180,000.</small
+									>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="mono">13 Oct 2026</td>
+							<td>
+								<span class="t"
+									><a href="verdict.html" lang="de">Software zur Datenbewirtschaftung</a></span
+								>
+								<span class="b" lang="de">AOK-Bundesverband eGbR</span>
+							</td>
+							<td class="num mono">EUR 1,000,000</td>
+							<td>
+								<div class="vcell">
+									<span class="vtag out">Partner needed</span
+									><small>At least 20 specialists in data management software. You have 14.</small>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="mono">In notice</td>
+							<td>
+								<span class="t" lang="de">Bildungsmanagementsoftware</span>
+								<span class="b" lang="de">Institut der Feuerwehr NRW</span>
+							</td>
+							<td class="num mono">EUR 1,800,000</td>
+							<td>
+								<div class="vcell">
+									<span class="vtag out">Partner needed</span
+									><small
+										>Yearly turnover of at least EUR 1,800,000. You average EUR 1,180,000.</small
+									>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="mono">In notice</td>
+							<td>
+								<span class="t" lang="de">Bereitstellung eines Weitverkehrsnetzes (WAN)</span>
+								<span class="b" lang="de">Deutsche Bundesbank</span>
+							</td>
+							<td class="num mono">EUR 2,000,000</td>
+							<td>
+								<div class="vcell">
+									<span class="vtag out">Partner needed</span
+									><small
+										>Yearly turnover of at least EUR 2,000,000. You average EUR 1,180,000.</small
+									>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="leaf ply-2" id="ask" aria-labelledby="ask-title">
+				<a class="tab hue-teal" href="#ask">Ask first <span class="count">3</span></a>
+				<div class="grid">
+					<div class="margin-col">
+						<h2 class="margin-head" id="ask-title">Ask first</h2>
+						<p>Turnover met, but not every rule is read yet.</p>
+					</div>
+					<ul class="span-4 note" style="margin: 0; padding-left: 1.1rem">
+						<li lang="de">EUDI-Wallet Support Organisation, Common Codes GmbH, 28 Sep 2026</li>
+						<li lang="de">Lizenzen für SAP Business by Design, CONITAS GmbH, 5 Oct 2026</li>
+						<li lang="de">
+							Modernisierung des zentralen Firewall-Systems, Forschungsverbund Berlin e.V.
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="go" aria-labelledby="go-title">
+				<a class="tab hue-grass" href="#go">Go <span class="count">0</span></a>
+				<div class="grid">
+					<h2 class="margin-col margin-head" id="go-title">Go</h2>
+					<p class="span-4 note">
+						None yet. A tender shows go only when every clause in its notice and its document pack
+						has been read and checked, and nothing published rules your firm out.
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<p class="demo-note">
+			Mockup. Tender titles, buyers, deadlines and turnover floors are from TED notices 600017,
+			612926, 630477, 634313, 634770, 631707, 625719 and 614181 (2026). Brink Data is a demo firm
+			with invented figures. Not legal advice.
+		</p>
+	</body>
+</html>
