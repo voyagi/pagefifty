@@ -44,7 +44,9 @@ function run(cwd) {
     // ringbolt recreate was owed to identities that sat on branches beside main. Deliberately
     // not --all: that would also read refs/stash (never pushed, so a long-dead stash would
     // redden the gate forever) and remote-tracking refs (the server's already-public state).
-    const out = execFileSync('git', ['log', '--branches', '--tags', '--format=%ae%n%ce'], {
+    // HEAD as well: a CI checkout is a detached HEAD with no local branch, where --branches
+    // --tags alone walks nothing and the gate would pass having read no history at all.
+    const out = execFileSync('git', ['log', '--branches', '--tags', 'HEAD', '--format=%ae%n%ce'], {
       cwd, encoding: 'utf8', windowsHide: true, maxBuffer: 64 * 1024 * 1024,
     });
     emails = [...new Set(out.split('\n').map((l) => l.trim()).filter(Boolean))];
@@ -151,6 +153,20 @@ function selftest() {
       git(['config', 'user.email', '12345+someone@users.noreply.github.com'], r2);
       git(['checkout', '-q', '-'], r2);
       check('a leaked identity on a SIDE branch fails', runCli(r2), 1, /in HISTORY outside the allowlist/);
+    }
+    {
+      // The CI shape: a detached HEAD and no local branch or tag at all.
+      const r3 = repo('12345+someone@users.noreply.github.com');
+      roots.push(r3);
+      const branch = git(['symbolic-ref', '--short', 'HEAD'], r3);
+      git(['checkout', '-q', '--detach'], r3);
+      git(['config', 'user.email', 'person@gmail.example'], r3);
+      writeFileSync(join(r3, 'c.txt'), 'z\n');
+      git(['add', '-A'], r3);
+      git(['commit', '-m', 'detached'], r3);
+      git(['config', 'user.email', '12345+someone@users.noreply.github.com'], r3);
+      git(['branch', '-D', branch], r3);
+      check('a leaked identity on a DETACHED HEAD with no branches fails', runCli(r3), 1, /in HISTORY outside the allowlist/);
     }
     r = repo('12345+someone@users.noreply.github.com');
     roots.push(r);
