@@ -8,7 +8,8 @@
 // identity the NEXT commit would use, must all match the allowlist.
 //
 // The default allowlist is the GitHub privacy convention: any *@users.noreply.github.com
-// address. Extend it - a bot identity, a second contributor - via GIT_IDENTITY_ALLOW, a
+// address, plus noreply@github.com exactly, the committer GitHub writes on the merge commit a
+// pull request's CI checks out and on every merge made in the web UI. Extend it - a bot identity, a second contributor - via GIT_IDENTITY_ALLOW, a
 // comma-separated list where each entry is either a full email or an @suffix
 // (e.g. "GIT_IDENTITY_ALLOW=ci@invalid,@users.noreply.github.com").
 //
@@ -23,7 +24,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const DEFAULT_ALLOW = ['@users.noreply.github.com'];
+const DEFAULT_ALLOW = ['@users.noreply.github.com', 'noreply@github.com'];
 
 function allowlist() {
   const extra = String(process.env.GIT_IDENTITY_ALLOW || '')
@@ -172,6 +173,12 @@ function selftest() {
     roots.push(r);
     git(['config', 'user.email', 'person@gmail.example'], r);
     check('a bad CONFIGURED email fails before it mints a commit', runCli(r), 1, /the NEXT commit would leak it/);
+    r = repo('noreply@github.com');
+    roots.push(r);
+    check('the GitHub web-flow committer is allowed', runCli(r), 0, /clean/);
+    r = repo('someone.noreply@github.com');
+    roots.push(r);
+    check('an address merely ending in noreply@github.com still fails', runCli(r), 1, /in HISTORY outside the allowlist/);
     r = repo('bot@ci.example');
     roots.push(r);
     check('GIT_IDENTITY_ALLOW extends the allowlist with a full email',
