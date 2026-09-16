@@ -1,0 +1,10 @@
+# Opera Mini stays excluded: it is a proxy browser without fetch or Promise support, and
+# keeping it makes the compat lint reject ordinary code.
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Edge versions
+last 2 Safari major versions
+last 2 iOS major versions
+Firefox ESR
+not op_mini all
+not dead

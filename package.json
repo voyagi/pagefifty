@@ -1,0 +1,73 @@
+{
+	"name": "pagefifty",
+	"private": true,
+	"version": "0.0.1",
+	"author": "voyagi",
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "wrangler types && vite build",
+		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+		"prepare": "wrangler types && svelte-kit sync",
+		"check": "wrangler types && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"gen": "wrangler types",
+		"test": "vitest run",
+		"lint": "eslint src && prettier --check src",
+		"format": "prettier --write src",
+		"mutate": "stryker run",
+		"gate:types": "wrangler types && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+		"gate:complexity": "eslint src",
+		"gate:dup": "jscpd src",
+		"gate:deps": "depcruise src --config .dependency-cruiser.cjs",
+		"gate:size": "npm run build && size-limit",
+		"gate:dead": "node scripts/check-dead.mjs",
+		"gate:env": "node scripts/check-env-example.mjs",
+		"gate:tsconfig": "node scripts/check-tsconfig-coverage.mjs",
+		"gate:ship-artifacts": "node scripts/check-ship-artifacts.mjs && node scripts/check-judged-artifacts.mjs",
+		"gate:repo": "node scripts/check-goals.mjs && node scripts/check-tracked-gitignore.mjs && node scripts/check-hookspath.mjs && node scripts/check-license.mjs && node scripts/check-git-identity.mjs && node scripts/check-artifact-metadata.mjs && node scripts/check-privacy-accountability.mjs && node scripts/check-ai-act.mjs && node scripts/check-icon-decision.mjs && node scripts/check-human-todo.mjs",
+		"gate:precommit": "eslint src && jscpd src && npm run gate:env && npm run gate:tsconfig && npm run gate:ship-artifacts",
+		"gate": "npm run gate:tsconfig && npm run gate:types && npm run gate:complexity && npm run gate:dup && npm run gate:deps && npm run gate:env && npm run gate:ship-artifacts && npm run gate:dead && npm run gate:size",
+		"verify:ship": "node verify-ship.mjs"
+	},
+	"engines": {
+		"node": ">=24.11.0"
+	},
+	"devDependencies": {
+		"@fast-check/vitest": "^0.5.0",
+		"@size-limit/file": "^13.1.1",
+		"@stryker-mutator/core": "^10.0.0",
+		"@stryker-mutator/vitest-runner": "^10.0.0",
+		"@sveltejs/adapter-cloudflare": "^7.2.8",
+		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^24.13.4",
+		"@vitest/eslint-plugin": "^1.6.27",
+		"dependency-cruiser": "^18.2.0",
+		"eslint": "^10.10.0",
+		"eslint-plugin-compat": "^7.0.2",
+		"eslint-plugin-sonarjs": "^4.2.0",
+		"eslint-plugin-svelte": "^3.23.0",
+		"globals": "^17.12.0",
+		"jscpd": "^5.2.0",
+		"knip": "^6.35.1",
+		"prettier": "^3.9.6",
+		"prettier-plugin-svelte": "^4.1.1",
+		"size-limit": "^13.1.1",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "5.9.3",
+		"typescript-eslint": "^8.70.0",
+		"vite": "^8.0.16",
+		"vitest": "^4.1.11",
+		"wrangler": "^4.97.0"
+	},
+	"allowScripts": {
+		"esbuild@0.28.1": true,
+		"workerd@1.20260911.1": true
+	},
+	"dependencies": {
+		"zod": "^4.6.2"
+	}
+}
