@@ -11,7 +11,8 @@
 				try {
 					stored = localStorage.getItem('pagefifty-theme');
 				} catch (e) {}
-				var choice = forced || stored || 'device';
+				var known = ['light', 'dark', 'device'];
+				var choice = known.indexOf(forced) >= 0 ? forced : stored || 'device';
 				var dark =
 					choice === 'dark' ||
 					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
@@ -26,7 +27,7 @@
 			<a class="wordmark" href="home.html">Pagefifty</a>
 			<nav aria-label="Main">
 				<ul>
-					<li><a href="tenders.html" aria-current="page">Tenders</a></li>
+					<li><a href="tenders.html">Tenders</a></li>
 					<li><a href="profile.html">Firm profile</a></li>
 					<li><a href="verdict.html">Example run</a></li>
 					<li><a href="home.html#how">How it works</a></li>
@@ -55,7 +56,7 @@
 						</p>
 
 						<section class="addendum" aria-labelledby="question-title">
-							<span class="addendum-tag">Question to the buyer</span>
+							<span class="addendum-tag" id="question-title">Question to the buyer</span>
 							<div class="clause-body" style="padding-top: 2rem">
 								<div class="figures" style="border-top: 0; padding-top: 0">
 									<div class="figure"><b>3.0M</b><span>turnover demanded, EUR</span></div>
@@ -77,7 +78,7 @@
 										<span class="mono">2 Oct 2026, 12:00 CEST</span>, 16 days left.
 									</p>
 								</div>
-								<pre class="draft" lang="de" id="question-title">
+								<pre class="draft" lang="de">
 Sehr geehrte Damen und Herren,
 
 die Bekanntmachung verlangt einen Mindestjahresumsatz von 3.000.000 EUR

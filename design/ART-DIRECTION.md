@@ -53,21 +53,21 @@ Strategy: **full palette with a strict role for each hue**. Section boards are f
 
 ### Light
 
-| Token       | Hex       | Role                                  |
-| ----------- | --------- | ------------------------------------- |
-| desk        | `#d9dcdf` | page ground outside the binder        |
-| acetate     | `#f6f8fa` | every reading leaf, cool milk         |
-| ink         | `#141414` | text                                  |
-| ink-2       | `#464a50` | secondary text                        |
-| ink-3       | `#5f646b` | labels                                |
-| leaf back   | `#c9cdd1` | a face-down leaf: a document not read |
+| Token       | Hex       | Role                                        |
+| ----------- | --------- | ------------------------------------------- |
+| desk        | `#d9dcdf` | page ground outside the binder              |
+| acetate     | `#f6f8fa` | every reading leaf, cool milk               |
+| ink         | `#141414` | text                                        |
+| ink-2       | `#464a50` | secondary text                              |
+| ink-3       | `#5f646b` | labels                                      |
+| leaf back   | `#c9cdd1` | a face-down leaf: a document not read       |
 | errata      | `#d42a24` | only a rule the firm cannot meet on its own |
-| yellow      | `#f2b705` | board: verdict, example               |
-| grass       | `#3d9a3a` | board: notice, certificates           |
-| teal        | `#11808a` | board: start, ask first, people       |
-| ultramarine | `#2d3fb5` | board: firm profile                   |
-| violet      | `#6e3fa3` | board: the Article 58(3) question     |
-| slate       | `#3f5566` | board: index of tenders out of reach alone |
+| yellow      | `#f2b705` | board: verdict, example                     |
+| grass       | `#3d9a3a` | board: notice, certificates                 |
+| teal        | `#11808a` | board: start, ask first, people             |
+| ultramarine | `#2d3fb5` | board: firm profile                         |
+| violet      | `#6e3fa3` | board: the Article 58(3) question           |
+| slate       | `#3f5566` | board: index of tenders out of reach alone  |
 
 ### Dark
 
@@ -109,7 +109,7 @@ Every text pair clears 4.5:1.
   - **Clear:** read and checked.
   - **Half-hinged:** a rule a partner firm could meet, where another firm may lend capacity.
   - **Face-down:** a document not read yet, never GO.
-  - **Errata slip:** a separate punched vermilion strip filed beside the verdict word, carrying the rule the firm cannot meet on its own and its shortfall. Because Directive 2014/24/EU Article 63 lets a partner lend turnover, staff and references, such a miss usually reads Partner needed rather than a flat no-go (verified on legislation.gov.uk, 2026-09-16).
+  - **Errata slip:** a separate punched vermilion strip filed beside the verdict word, carrying the rule the firm cannot meet on its own and its shortfall. Because Directive 2014/24/EU Article 63 lets a partner lend turnover, staff and references, such a miss usually reads Partner needed rather than a flat no-go (verified on legislation.gov.uk, 2026-09-16). Partner needed means a partner is necessary, not that one is enough: it applies only when the notice reads no reserved task (Article 63(2)) or other limit on reliance for that criterion, it names the conditions (the partner performs the work it lends experience for, the firm proves access to the resources), and an unknown legal basis reads Ask first. The on-screen words for this state are still open.
 - **The addendum slip** (violet tag) holds a drafted question to the buyer under Article 58(3).
 - **The verdict page's reading order:**
   1. Buyer, deadline and notice in the margin

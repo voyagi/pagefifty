@@ -20,7 +20,7 @@ Success is a firm that drops a tender it could never win within minutes, or goes
 
 Pagefifty leads with the clause that rules the firm out. The rule that knocks a small firm out (a minimum headcount per role, a turnover floor, a certificate, three reference projects of a given size) is never on page one; it waits deep in the notice and the document pack. Pagefifty shows that exact clause, quoted and sourced, and shows the ruled-out tenders as loudly as the ones the firm can bid on.
 
-It never gives a verdict the source does not support. Tender alert tools find tenders; Pagefifty tells a firm which ones it is legally shut out of, and proves it with the buyer's own words.
+It never gives a verdict the source does not support. Tender alert tools find tenders; Pagefifty tells a firm which ones a checked, published selection criterion shuts it out of, and proves it with the buyer's own words. A verdict covers the criteria it read, never every condition for taking part.
 
 ## Operating Context
 

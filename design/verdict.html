@@ -11,7 +11,8 @@
 				try {
 					stored = localStorage.getItem('pagefifty-theme');
 				} catch (e) {}
-				var choice = forced || stored || 'device';
+				var known = ['light', 'dark', 'device'];
+				var choice = known.indexOf(forced) >= 0 ? forced : stored || 'device';
 				var dark =
 					choice === 'dark' ||
 					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
@@ -26,9 +27,9 @@
 			<a class="wordmark" href="home.html">Pagefifty</a>
 			<nav aria-label="Main">
 				<ul>
-					<li><a href="tenders.html" aria-current="page">Tenders</a></li>
+					<li><a href="tenders.html">Tenders</a></li>
 					<li><a href="profile.html">Firm profile</a></li>
-					<li><a href="verdict.html">Example run</a></li>
+					<li><a href="verdict.html" aria-current="page">Example run</a></li>
 					<li><a href="home.html#how">How it works</a></li>
 				</ul>
 			</nav>

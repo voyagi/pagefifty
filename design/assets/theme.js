@@ -31,10 +31,13 @@
 		apply(choice);
 	});
 
+	// Only a known value in ?theme= wins over the stored choice; anything else is ignored.
+	const requested = new URLSearchParams(location.search).get('theme');
+	const forced = ['light', 'dark', 'device'].includes(requested) ? requested : null;
+
 	media.addEventListener('change', () => {
-		if (read() === 'device') apply('device');
+		if ((forced || read()) === 'device') apply('device');
 	});
 
-	const forced = new URLSearchParams(location.search).get('theme');
 	document.addEventListener('DOMContentLoaded', () => apply(forced || read()));
 })();
