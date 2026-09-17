@@ -31,7 +31,8 @@
 	}
 
 	// The choice in force on this page view: a known ?theme= value first, then storage.
-	// A click replaces it, so a later OS change never undoes what the user just picked.
+	// A click, or a pick followed from another tab or page (follow below), replaces it, so a later
+	// OS change never undoes what the user picked.
 	let current = known(new URLSearchParams(location.search).get('theme')) || read();
 
 	// The stored value this page view last saw. A different one later means a pick was made in

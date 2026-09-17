@@ -284,6 +284,7 @@ describe('design mockup theme switch', () => {
 	const action = fc.oneof(
 		fc.record({ kind: fc.constant('click' as const), choice: fc.constantFrom(...CHOICES) }),
 		fc.record({ kind: fc.constant('os' as const), dark: fc.boolean() }),
+		fc.record({ kind: fc.constant('frozen' as const), dark: fc.boolean() }),
 		fc.record({
 			kind: fc.constant('tab' as const),
 			value: fc.constantFrom(null, 'light', 'dark', 'device', 'purple')
@@ -311,6 +312,12 @@ describe('design mockup theme switch', () => {
 			if (step.kind === 'os') {
 				osDark = step.dark;
 				page.setOs(step.dark);
+			}
+			// The OS changes while the page sits in the back-forward cache, then Back restores it.
+			if (step.kind === 'frozen') {
+				osDark = step.dark;
+				page.setOsWhileFrozen(step.dark);
+				page.restore();
 			}
 			if (step.kind === 'tab') page.otherTab(step.value);
 			if (step.kind === 'away' && !setup.storageThrows)
