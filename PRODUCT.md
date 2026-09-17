@@ -49,7 +49,7 @@ It never gives a verdict the source does not support. Tender alert tools find te
 
 ## Evidence on Hand
 
-- Measured on live TED data, 2026-09-15: 363 open IT notices from NL, BE and DE published since 2026-09-01; 97 publish an estimated value; 58 state a turnover floor and 28 of those shut out a firm with 1M turnover.
+- Measured on live TED data, 2026-09-15: 363 IT notices from NL, BE and DE published since 2026-09-01 and listed by TED as active, 350 of them still open by their own deadlines; 97 of the 363 publish an estimated value; 57 of the open ones state a turnover floor, and 31 of those set a floor a firm with EUR 1M yearly turnover cannot meet on its own (every floor in a lot counts, a three-year total counts as a third a year).
 - German notices carry typed selection criteria far more often than Dutch or Belgian ones (211 of 240 DE, 2 of 72 NL, 10 of 43 BE).
 - Real DTVP document packs (ZIP) and a TenderNed PDF fetched with no account.
 - No customers, testimonials, press or partner logos exist. None may be invented.

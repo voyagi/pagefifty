@@ -831,6 +831,17 @@ h2.verdict {
 	max-width: 70ch;
 }
 
+/* A listed tender's open question sits under its title at the same size, never smaller. */
+ul.note li + li {
+	margin-top: 0.5rem;
+}
+
+ul.note small {
+	display: block;
+	font-size: inherit;
+	line-height: 1.35;
+}
+
 .demo-note {
 	margin: 0 calc(var(--gutter) + var(--rail)) 2rem var(--gutter);
 	font-size: var(--step--1);

@@ -9,12 +9,16 @@
 		return CHOICES.includes(value) ? value : null;
 	}
 
-	function read() {
+	function stored() {
 		try {
-			return known(localStorage.getItem(KEY)) || 'device';
+			return localStorage.getItem(KEY);
 		} catch {
-			return 'device';
+			return null;
 		}
+	}
+
+	function read() {
+		return known(stored()) || 'device';
 	}
 
 	function apply(choice) {
@@ -29,6 +33,20 @@
 	// A click replaces it, so a later OS change never undoes what the user just picked.
 	let current = known(new URLSearchParams(location.search).get('theme')) || read();
 
+	// The stored value this page view last saw. A different one later means a pick was made in
+	// another tab, or on another page before Back restored this one from the back-forward cache.
+	let seen = stored();
+
+	function follow() {
+		const now = stored();
+		if (now === seen) return;
+		seen = now;
+		const choice = known(now);
+		if (!choice) return;
+		current = choice;
+		apply(current);
+	}
+
 	document.addEventListener('click', (event) => {
 		const button = event.target.closest('[data-theme-choice]');
 		if (!button) return;
@@ -38,11 +56,20 @@
 		} catch {
 			// Storage can be blocked; the choice still applies for this page view.
 		}
+		seen = stored();
 		apply(current);
 	});
 
 	media.addEventListener('change', () => {
 		if (current === 'device') apply('device');
+	});
+
+	window.addEventListener('storage', (event) => {
+		if (event.key === KEY) follow();
+	});
+
+	window.addEventListener('pageshow', (event) => {
+		if (event.persisted) follow();
 	});
 
 	document.addEventListener('DOMContentLoaded', () => apply(current));
