@@ -12,7 +12,8 @@
 					stored = localStorage.getItem('pagefifty-theme');
 				} catch (e) {}
 				var known = ['light', 'dark', 'device'];
-				var choice = known.indexOf(forced) >= 0 ? forced : stored || 'device';
+				var choice = known.indexOf(forced) >= 0 ? forced : stored;
+				if (known.indexOf(choice) < 0) choice = 'device';
 				var dark =
 					choice === 'dark' ||
 					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
