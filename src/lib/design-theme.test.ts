@@ -106,9 +106,17 @@ function fakeBrowser(setup: Setup) {
 		click: (choice: Choice) =>
 			fire('document', 'click', { target: buttons[CHOICES.indexOf(choice)] }),
 		clickElsewhere: () => fire('document', 'click', { target: { closest: () => null } }),
+		clickButtonValued: (value: string) =>
+			fire('document', 'click', {
+				target: { closest: () => ({ dataset: { themeChoice: value } }) }
+			}),
 		setOs: (dark: boolean) => {
 			media.matches = dark;
 			fire('media', 'change');
+		},
+		// The OS changed while the page sat frozen in the back-forward cache, so no change event came.
+		setOsWhileFrozen: (dark: boolean) => {
+			media.matches = dark;
 		},
 		otherTab: (value: string | null, key = KEY) => {
 			if (value === null) store.delete(key);
@@ -200,6 +208,24 @@ describe('design mockup theme switch', () => {
 		const late = fakeBrowser({ stored: 'dark', readyState: 'complete' });
 		late.run(THEME_SCRIPT);
 		expect([late.theme(), late.pressed()]).toEqual(['dark', ['dark']]);
+	});
+
+	it('ignores a switch button whose value is not a known choice', () => {
+		const page = loaded({ stored: 'dark' });
+		page.clickButtonValued('purple');
+		expect([page.theme(), page.stored(), page.pressed()]).toEqual(['dark', 'dark', ['dark']]);
+	});
+
+	it('resolves Device against the OS again when a frozen page is restored', () => {
+		const page = loaded({ osDark: false });
+		page.setOsWhileFrozen(true);
+		page.restore();
+		expect([page.theme(), page.pressed()]).toEqual(['dark', ['device']]);
+
+		const picked = loaded({ stored: 'light', osDark: false });
+		picked.setOsWhileFrozen(true);
+		picked.restore();
+		expect(picked.theme()).toBe('light');
 	});
 
 	it('follows the OS only while Device is picked', () => {

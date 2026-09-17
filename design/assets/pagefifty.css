@@ -1366,7 +1366,8 @@ table.index .b {
 		margin: 0 0.75rem 2rem;
 	}
 
-	/* Headers stay in the accessibility tree; stacked cells carry their own label. */
+	/* Headers stay in the accessibility tree. Stacked cells whose content does not name itself
+	   (deadline, turnover floor) carry a visible label; the tender and verdict cells read as they are. */
 	table.index thead {
 		position: absolute;
 		width: 1px;

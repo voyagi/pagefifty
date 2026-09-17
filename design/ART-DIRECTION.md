@@ -168,5 +168,5 @@ Each image is a full-page capture in headless Chromium at a 1440 by 900 or 390 b
 ## Content truth
 
 - Tender facts and German quotes come from TED notices 630477-2026, 600017, 612926, 634313, 634770, 631707, 625719 and 614181 (2026).
-- The home page figure (57 open notices with a turnover floor, 31 of them out of reach for a firm at EUR 1M on its own) comes from the 2026-09-15 capture: 363 IT notices TED listed as active, 350 still open by their deadlines. A firm must meet every floor in a lot, a three-year total counts as a third a year, and one floor the buyer states only as expected (614181-2026) is left out.
+- The home page figure (57 open notices with a turnover floor, 53 German and 4 Belgian with no Dutch one among them, 31 of them out of reach for a firm at EUR 1M on its own) comes from the 2026-09-15 capture: 363 IT notices TED listed as active, 350 still open by their deadlines. A firm must meet every floor in a lot, a three-year total counts as a third a year, and one floor the buyer states only as expected (614181-2026) is left out.
 - Brink Data is a demo firm with invented figures. The states page's Article 58(3) figures are illustrative. Both are labelled on the pages.

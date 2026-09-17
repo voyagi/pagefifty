@@ -4,7 +4,8 @@
 	const CHOICES = ['light', 'dark', 'device'];
 	const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-	// Storage and the query string are both outside input: anything but a known choice is ignored.
+	// Storage and the query string are outside input, and a button's value is checked the same way:
+	// anything but a known choice is ignored.
 	function known(value) {
 		return CHOICES.includes(value) ? value : null;
 	}
@@ -50,7 +51,10 @@
 	document.addEventListener('click', (event) => {
 		const button = event.target.closest('[data-theme-choice]');
 		if (!button) return;
-		current = button.dataset.themeChoice;
+		// The markup sets these values, but a typo there would otherwise store and paint junk.
+		const choice = known(button.dataset.themeChoice);
+		if (!choice) return;
+		current = choice;
 		try {
 			localStorage.setItem(KEY, current);
 		} catch {
@@ -68,8 +72,11 @@
 		if (event.key === KEY) follow();
 	});
 
+	// A restored page may have missed an OS change while frozen, so Device is resolved again too.
 	window.addEventListener('pageshow', (event) => {
-		if (event.persisted) follow();
+		if (!event.persisted) return;
+		follow();
+		apply(current);
 	});
 
 	// With defer the page is already parsed here. Waiting for DOMContentLoaded only when it is not
