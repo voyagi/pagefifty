@@ -163,6 +163,8 @@ Light, Dark and Device (the default, following `prefers-color-scheme` live). A v
 
 Source pages: `verdict.html`, `tenders.html`, `profile.html`, `home.html`, `states.html`, styled by `assets/pagefifty.css`.
 
+Each image is a full-page capture in headless Chromium at a 1440 by 900 or 390 by 844 viewport, with the page opened as `?theme=light` or `?theme=dark`. Capture them again after any change to a page or the stylesheet, so the images match the pages.
+
 ## Content truth
 
 - Tender facts and German quotes come from TED notices 630477-2026, 600017, 612926, 634313, 634770, 631707, 625719 and 614181 (2026).
