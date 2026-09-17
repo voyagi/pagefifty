@@ -26,7 +26,7 @@ tenderned.nl rendered client-side and exposed no stylesheet to read.
 What this says:
 
 1. **Quality signal:** software that is precise and sure of itself. Portals and bookkeeping tools they trust carry clear structure, real numbers and square-ish corners.
-2. **Warning sign:** the portal look (Bootstrap navy, Open Sans, grey forms), which is the thing that frightens them, and hype. Five of eleven readable sites lead with blue or navy, so a blue product blends into the portals and into Stotles.
+2. **Warning sign:** the portal look (Bootstrap navy, Open Sans, grey forms), which is the thing that frightens them, and hype. Five of the ten readable sites lead with blue or navy, so a blue product blends into the portals and into Stotles.
 3. **Where to differ:** no blue lead, no Inter or Geist (Geist is the closest competitor's face), no purple SaaS. **Where familiarity helps:** a dense, well-ruled working surface, one neutral sans on the interface, tabular figures.
 
 ## The anchor
