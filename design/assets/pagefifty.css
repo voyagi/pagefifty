@@ -1341,8 +1341,11 @@ table.index .b {
 		white-space: nowrap;
 	}
 
+	/* The label is for sighted readers: the empty alternative text keeps a screen reader from
+	   reading it again after the column header. Browsers without that syntax keep the first line. */
 	table.index td[data-label]::before {
 		content: attr(data-label) ': ';
+		content: attr(data-label) ': ' / '';
 		font-family: var(--font-sans);
 		color: var(--ink-2);
 	}
