@@ -37,6 +37,8 @@ interface Setup {
 	stored?: string | null;
 	storageThrows?: boolean;
 	osDark?: boolean;
+	// A deferred script runs once parsing is done, so 'interactive' is what theme.js meets.
+	readyState?: 'loading' | 'interactive' | 'complete';
 }
 
 function fakeBrowser(setup: Setup) {
@@ -83,6 +85,7 @@ function fakeBrowser(setup: Setup) {
 		matchMedia: () => media,
 		document: {
 			documentElement: root,
+			readyState: setup.readyState ?? 'interactive',
 			addEventListener: on('document'),
 			querySelectorAll: (selector: string) => (selector === '[data-theme-choice]' ? buttons : [])
 		},
@@ -185,6 +188,18 @@ describe('design mockup theme switch', () => {
 		const page = loaded({ stored: 'dark' });
 		page.clickElsewhere();
 		expect([page.theme(), page.stored(), page.pressed()]).toEqual(['dark', 'dark', ['dark']]);
+	});
+
+	it('marks the stored choice whether the script runs before or after the page finished loading', () => {
+		const early = fakeBrowser({ stored: 'dark', readyState: 'loading' });
+		early.run(THEME_SCRIPT);
+		expect(early.pressed()).toEqual([]);
+		early.ready();
+		expect([early.theme(), early.pressed()]).toEqual(['dark', ['dark']]);
+
+		const late = fakeBrowser({ stored: 'dark', readyState: 'complete' });
+		late.run(THEME_SCRIPT);
+		expect([late.theme(), late.pressed()]).toEqual(['dark', ['dark']]);
 	});
 
 	it('follows the OS only while Device is picked', () => {

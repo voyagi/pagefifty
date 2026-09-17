@@ -72,5 +72,11 @@
 		if (event.persisted) follow();
 	});
 
-	document.addEventListener('DOMContentLoaded', () => apply(current));
+	// With defer the page is already parsed here. Waiting for DOMContentLoaded only when it is not
+	// keeps the switch right if the script is ever loaded async or added after the page loaded.
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', () => apply(current));
+	} else {
+		apply(current);
+	}
 })();
