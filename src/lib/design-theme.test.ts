@@ -11,6 +11,17 @@ type Choice = (typeof CHOICES)[number];
 const KEY = 'pagefifty-theme';
 const PAGES = ['home', 'profile', 'states', 'tenders', 'verdict'];
 const THEME_SCRIPT = readFileSync('design/assets/theme.js', 'utf8');
+const STYLESHEET = readFileSync('design/assets/pagefifty.css', 'utf8');
+
+// The declarations inside the first rule whose selector line matches, one per entry.
+function declarations(selector: RegExp): string[] {
+	const match = new RegExp(`${selector.source}\\s*\\{([^}]*)\\}`).exec(STYLESHEET);
+	if (!match) throw new Error(`design/assets/pagefifty.css has no rule matching ${selector}`);
+	return match[1]
+		.split(';')
+		.map((line) => line.trim())
+		.filter(Boolean);
+}
 
 function headScript(page: string): string {
 	const html = readFileSync(`design/${page}.html`, 'utf8');
@@ -125,6 +136,15 @@ describe('design mockup theme switch', () => {
 	it('uses one head script on every page', () => {
 		const first = headScript(PAGES[0]);
 		for (const page of PAGES.slice(1)) expect(headScript(page), page).toBe(first);
+	});
+
+	it('gives a page with no theme set the same dark palette when the device is dark', () => {
+		const picked = declarations(/:root\[data-theme='dark'\]/);
+		const unscripted = declarations(
+			/@media \(prefers-color-scheme: dark\)\s*\{\s*:root:not\(\[data-theme\]\)/
+		);
+		expect(picked.length).toBeGreaterThan(10);
+		expect(unscripted).toEqual(picked);
 	});
 
 	it('paints the same theme before and after load, from a known ?theme= first, then storage, then Device', () => {

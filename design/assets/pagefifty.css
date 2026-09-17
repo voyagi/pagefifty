@@ -74,6 +74,30 @@
 	--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
 }
 
+/* If the head script cannot run (scripts off, or blocked by a content security policy), no theme
+   is set and Device, the default, still has to follow the device. src/lib/design-theme.test.ts
+   holds these values equal to the block above. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		color-scheme: dark;
+		--desk: #0e0f11;
+		--desk-ink: #b9bdc2;
+		--ink: #ecedea;
+		--ink-2: #bfc3c7;
+		--ink-3: #9ca1a7;
+		--acetate: #16181b;
+		--acetate-edge: rgb(236 237 234 / 0.16);
+		--acetate-rule: rgb(236 237 234 / 0.1);
+		--leaf-back: #2a2d31;
+		--leaf-back-ink: #c9ccd0;
+		--errata: #ff5a4a;
+		--errata-ink: #141414;
+		--focus: #8fa6ff;
+		--selection: rgb(242 183 5 / 0.35);
+		--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+	}
+}
+
 *,
 *::before,
 *::after {

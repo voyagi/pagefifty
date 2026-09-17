@@ -143,7 +143,7 @@ There is no stock photography, no abstract decoration and no flat vector illustr
 
 ## Themes
 
-Light, Dark and Device (the default, following `prefers-color-scheme` live). A visible three-way switch in the desk bar remembers the choice in `localStorage`. The theme is applied by an inline head script before first paint, so there is no flash.
+Light, Dark and Device (the default, following `prefers-color-scheme` live). A visible three-way switch in the desk bar remembers the choice in `localStorage`. The theme is applied by an inline head script before first paint, so there is no flash. If that script cannot run, the stylesheet follows `prefers-color-scheme` on its own, so Device still holds.
 
 ## References and the shared mechanics
 
@@ -163,7 +163,7 @@ Light, Dark and Device (the default, following `prefers-color-scheme` live). A v
 
 Source pages: `verdict.html`, `tenders.html`, `profile.html`, `home.html`, `states.html`, styled by `assets/pagefifty.css`.
 
-Each image is a full-page capture in headless Chromium at a 1440 by 900 or 390 by 844 viewport, with the page opened as `?theme=light` or `?theme=dark`. Capture them again after any change to a page or the stylesheet, so the images match the pages.
+Each image is a full-page capture in headless Chromium at a 1440 by 900 or 390 by 844 viewport, with the page opened as `?theme=light` or `?theme=dark`. Capture them again after any change to a page or the stylesheet, so the images match the pages. Use a fresh browser profile: a browser that already loaded the pages can serve the old stylesheet from its cache and reproduce the old images byte for byte, which looks like nothing changed.
 
 ## Content truth
 
