@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Pagefifty: the rule that shuts your firm out of a public tender, quoted</title>
+		<script>
+			(function () {
+				var forced = new URLSearchParams(location.search).get('theme');
+				var stored = null;
+				try {
+					stored = localStorage.getItem('pagefifty-theme');
+				} catch (e) {}
+				var known = ['light', 'dark', 'device'];
+				var choice = known.indexOf(forced) >= 0 ? forced : stored;
+				if (known.indexOf(choice) < 0) choice = 'device';
+				var dark =
+					choice === 'dark' ||
+					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+			})();
+		</script>
+		<link rel="stylesheet" href="assets/pagefifty.css" />
+		<script src="assets/theme.js" defer></script>
+	</head>
+	<body>
+		<header class="deskbar">
+			<a class="wordmark" href="home.html">Pagefifty</a>
+			<nav aria-label="Main">
+				<ul>
+					<li><a href="tenders.html">Tenders</a></li>
+					<li><a href="profile.html">Firm profile</a></li>
+					<li><a href="verdict.html">Example run</a></li>
+					<li><a href="#how">How it works</a></li>
+				</ul>
+			</nav>
+			<span class="spacer"></span>
+			<div class="theme" role="group" aria-label="Theme">
+				<button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+				<button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+				<button type="button" data-theme-choice="device" aria-pressed="true">Device</button>
+			</div>
+		</header>
+
+		<main class="binder" style="--board: var(--teal)">
+			<section class="leaf cover" id="start" aria-labelledby="cover-title">
+				<a class="tab hue-teal" href="#start" aria-current="true">Start</a>
+				<aside class="margin-col">
+					<p class="margin-head">For small IT firms in the Netherlands, Belgium and Germany</p>
+					<p>Before you spend two days on a public tender.</p>
+				</aside>
+				<h1 id="cover-title">The rule that shuts your firm out is on page fifty. Read it first.</h1>
+				<p class="lede">
+					Pagefifty reads an open EU tender's own selection criteria, checks each one against your
+					firm, and quotes the exact clause that rules you out, with its source and a plain English
+					reading.
+				</p>
+				<p class="finding">
+					Of <b>57</b> open IT tenders from Germany and Belgium that state a turnover floor,
+					<b>31</b> shut out a firm with <b>EUR 1M</b> yearly turnover on its own.
+					<span class="mono">Measured on TED, 15 Sep 2026.</span>
+				</p>
+				<div class="actions cover-actions">
+					<a class="btn btn-primary" href="profile.html">Set up your firm</a>
+					<a class="btn btn-secondary" href="verdict.html">See a real tender checked</a>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="sample" aria-labelledby="sample-title">
+				<a class="tab hue-yellow" href="verdict.html">Example</a>
+				<div class="grid">
+					<div class="margin-col">
+						<h2 class="margin-head" id="sample-title">From a real tender</h2>
+						<p class="mono">TED 630477-2026</p>
+					</div>
+					<div class="span-4">
+						<section class="clause-card has-slip" aria-label="Clause that rules the demo firm out">
+							<div class="slip" role="note" aria-label="Erratum">
+								<p>At least 20 specialists. The demo firm has 14.</p>
+								<span class="ref" lang="de"
+									>Software zur Datenbewirtschaftung, criterion 3 of 4</span
+								>
+							</div>
+							<div class="clause-body">
+								<blockquote class="quote" lang="de">
+									Der Bewerber muss zum Zeitpunkt der Abgabe des Teilnahmeantrags über
+									<mark>mindestens 20 Fachkräfte</mark> im Bereich Entwicklung und Support einer
+									Software zur Datenbewirtschaftung verfügen.
+								</blockquote>
+								<p class="reading">
+									On the day you apply, you need at least 20 specialists who build and support data
+									management software.
+								</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="how" aria-labelledby="how-title">
+				<a class="tab hue-violet" href="#how">Limits</a>
+				<div class="grid">
+					<div class="margin-col">
+						<h2 class="margin-head" id="how-title">How the check works</h2>
+						<p>And where it stops.</p>
+					</div>
+					<ol class="steps span-4">
+						<li>
+							<h3>Code reads the numbers</h3>
+							<p>
+								Headcounts, turnover floors and reference counts are parsed from the notice and
+								compared with your profile by code.
+							</p>
+						</li>
+						<li>
+							<h3>A model reads the language</h3>
+							<p>
+								An NVIDIA Nemotron model on Nebius reads German, Dutch and French clauses. Every
+								quote it returns is checked word for word against the source.
+							</p>
+						</li>
+						<li>
+							<h3>Unread means ask first</h3>
+							<p>
+								If a document pack could not be read, the page says so. A clean notice alone never
+								shows go.
+							</p>
+						</li>
+					</ol>
+				</div>
+			</section>
+		</main>
+
+		<p class="demo-note">
+			Mockup. The measured figure is from the 350 IT notices on TED still open on 15 Sep 2026. Not
+			legal advice.
+		</p>
+	</body>
+</html>

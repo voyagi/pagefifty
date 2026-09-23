@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Verdict page states - Pagefifty</title>
+		<script>
+			(function () {
+				var forced = new URLSearchParams(location.search).get('theme');
+				var stored = null;
+				try {
+					stored = localStorage.getItem('pagefifty-theme');
+				} catch (e) {}
+				var known = ['light', 'dark', 'device'];
+				var choice = known.indexOf(forced) >= 0 ? forced : stored;
+				if (known.indexOf(choice) < 0) choice = 'device';
+				var dark =
+					choice === 'dark' ||
+					(choice === 'device' && matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+			})();
+		</script>
+		<link rel="stylesheet" href="assets/pagefifty.css" />
+		<script src="assets/theme.js" defer></script>
+	</head>
+	<body>
+		<header class="deskbar">
+			<a class="wordmark" href="home.html">Pagefifty</a>
+			<nav aria-label="Main">
+				<ul>
+					<li><a href="tenders.html">Tenders</a></li>
+					<li><a href="profile.html">Firm profile</a></li>
+					<li><a href="verdict.html">Example run</a></li>
+					<li><a href="home.html#how">How it works</a></li>
+				</ul>
+			</nav>
+			<span class="spacer"></span>
+			<div class="theme" role="group" aria-label="Theme">
+				<button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+				<button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+				<button type="button" data-theme-choice="device" aria-pressed="true">Device</button>
+			</div>
+		</header>
+
+		<main class="binder" style="--board: var(--violet)">
+			<section class="leaf" id="unfair" aria-labelledby="unfair-title">
+				<a class="tab hue-violet" href="#unfair" aria-current="true">58(3)</a>
+				<div class="grid">
+					<div class="margin-col">
+						<h1 class="margin-head" id="unfair-title">Turnover demand check</h1>
+						<p>Shown when a notice publishes an estimated value and a turnover floor.</p>
+					</div>
+					<div class="span-4">
+						<p class="verdict-line" style="margin-top: 0">
+							This buyer asks for more than twice the contract's estimated value in yearly turnover.
+							The EU directive allows that only in duly justified cases, so ask before you drop it.
+						</p>
+
+						<section class="addendum" aria-labelledby="question-title">
+							<span class="addendum-tag" id="question-title">Question to the buyer</span>
+							<div class="clause-body" style="padding-top: 2rem">
+								<div class="figures" style="border-top: 0; padding-top: 0">
+									<div class="figure"><b>3.0M</b><span>turnover demanded, EUR</span></div>
+									<div class="figure"><b>0.9M</b><span>estimated value, EUR</span></div>
+									<div class="figure">
+										<b>3.3&times;</b><span>the value, limit is 2&times;</span>
+									</div>
+								</div>
+								<div class="span-2">
+									<span class="label">The rule</span>
+									<p class="reading">
+										Directive 2014/24/EU, Article 58(3): the minimum yearly turnover "shall not
+										exceed two times the estimated contract value, except in duly justified cases".
+									</p>
+								</div>
+								<div class="span-2">
+									<span class="label">Deadline for questions</span>
+									<p class="reading">
+										<span class="mono">2 Oct 2026, 12:00 CEST</span>, 17 days left as of 15 Sep.
+									</p>
+								</div>
+								<pre class="draft" lang="de">
+Sehr geehrte Damen und Herren,
+
+die Bekanntmachung verlangt einen Mindestjahresumsatz von 3.000.000 EUR
+bei einem geschätzten Auftragswert von 900.000 EUR. Das übersteigt das
+Zweifache des geschätzten Auftragswerts (Art. 58 Abs. 3 RL 2014/24/EU).
+Bitte teilen Sie mit, aus welchen Gründen diese Anforderung erforderlich ist,
+oder ob Sie sie auf höchstens 1.800.000 EUR anpassen.</pre>
+								<p class="provenance">
+									<span
+										>English beside it: asks the buyer why the demand exceeds twice the value, or to
+										lower it to EUR 1,800,000.</span
+									>
+								</p>
+							</div>
+						</section>
+
+						<div class="actions">
+							<button class="btn btn-primary" type="button">Copy question</button>
+							<button class="btn btn-secondary" type="button">Download reminder for 2 Oct</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="loading" aria-labelledby="loading-title" aria-busy="true">
+				<span class="tab hue-grass">Notice</span>
+				<div class="grid">
+					<div class="margin-col">
+						<h2 class="margin-head" id="loading-title">Reading the notice</h2>
+						<p>TED allows about one request a second, so a fresh notice takes a few seconds.</p>
+					</div>
+					<div class="span-4" role="status">
+						<p class="state">Criterion 2 of 4</p>
+						<span class="set-line w-80"></span>
+						<span class="set-line w-60"></span>
+						<span class="set-line w-40"></span>
+					</div>
+				</div>
+			</section>
+
+			<section class="leaf ply-2" id="empty" aria-labelledby="empty-title">
+				<a class="tab hue-ultramarine" href="profile.html">Profile</a>
+				<div class="grid">
+					<div class="margin-col">
+						<h2 class="margin-head" id="empty-title">No firm profile yet</h2>
+					</div>
+					<div class="span-4">
+						<p class="reading">
+							Every clause below is readable now. To see which ones rule your firm out, add your
+							headcount, turnover and references. It stays in this browser.
+						</p>
+						<div class="actions">
+							<a class="btn btn-primary" href="profile.html">Set up your firm</a>
+							<button class="btn btn-secondary" type="button">Import a profile file</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<p class="demo-note">
+			Mockup specimen. The turnover demand, estimated value and question deadline on this page are
+			illustrative figures, not from a real notice. The quoted rule is Directive 2014/24/EU, Article
+			58(3). Not legal advice.
+		</p>
+	</body>
+</html>
