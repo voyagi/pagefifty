@@ -11,6 +11,9 @@ const { plugins } = viteConfig({ command: 'serve', mode: 'test' });
 
 export default defineConfig({
 	plugins,
+	// Stryker's workers run in one sandbox, and Vite swaps its dependency cache folder by rename,
+	// which races between workers on Windows (EPERM), so each worker keeps a cache of its own.
+	cacheDir: `node_modules/.vite/stryker-${process.env.STRYKER_MUTATOR_WORKER ?? 'main'}`,
 	test: {
 		// A checkout where no build ran yet has no generated records, and the record tests read them.
 		globalSetup: ['src/test/build-records.global.ts'],
