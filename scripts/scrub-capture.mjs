@@ -27,7 +27,7 @@
 // (or a usage error),
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { decodeCharacterReferences, isUnreadableCaptureFile } from '../src/lib/snapshot/capture-files.ts';
 import {
@@ -102,7 +102,28 @@ function filesNotInSource(dir, sourceXmlNames) {
 	return [...xml, ...json];
 }
 
+function isLink(path) {
+	try {
+		return lstatSync(path).isSymbolicLink();
+	} catch {
+		return false;
+	}
+}
+
+// A link inside the copy (xml/ or one file pointing back into the source) would write the scrub
+// through it onto the source, which the folder check above cannot see. Every path the copy writes
+// is refused when it is a link, before anything is written.
+function linkedTargets(to, names) {
+	const targets = [join(to, 'xml'), ...JSON_FILES.map((name) => join(to, name)), ...names.map((name) => join(to, 'xml', name))];
+	return targets.filter(isLink);
+}
+
 function copyScrubbed(from, to) {
+	const linked = linkedTargets(to, xmlNames(from));
+	if (linked.length > 0) {
+		for (const path of linked) console.error(`${path}: a link, so the copy would write through it; nothing was written`);
+		return null;
+	}
 	mkdirSync(join(to, 'xml'), { recursive: true });
 	for (const name of JSON_FILES) {
 		const value = JSON.parse(readFileSync(join(from, name), 'utf8'));
@@ -284,6 +305,7 @@ function main() {
 	try {
 		if (args.check) return check(args.check, args.against);
 		const stale = copyScrubbed(args.from, args.to);
+		if (stale === null) return 1;
 		// The scrub leaves what it cannot see (an address written with a character reference), so
 		// the copy is checked before it is called clean: a copy is never trusted without its check.
 		const checked = check(args.to);

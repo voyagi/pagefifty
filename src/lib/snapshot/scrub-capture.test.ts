@@ -178,6 +178,29 @@ describe('scrub-capture.mjs', () => {
 		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 	});
 
+	it('refuses to write through a link inside the copy that leads back into the source', () => {
+		const before = readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8');
+		const beforeJson = readFileSync(join(source, 'notices.json'), 'utf8');
+		const linkedFolder = join(root, 'linked-xml');
+		mkdirSync(linkedFolder);
+		symlinkSync(
+			join(source, 'xml'),
+			join(linkedFolder, 'xml'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const throughFolder = run('--from', source, '--to', linkedFolder);
+		expect(throughFolder.stderr).toContain('a link, so the copy would write through it');
+		expect(throughFolder.status).toBe(1);
+		const linkedFile = join(root, 'linked-json');
+		mkdirSync(linkedFile);
+		symlinkSync(join(source, 'notices.json'), join(linkedFile, 'notices.json'), 'file');
+		const throughFile = run('--from', source, '--to', linkedFile);
+		expect(throughFile.stderr).toContain('a link, so the copy would write through it');
+		expect(throughFile.status).toBe(1);
+		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
+		expect(readFileSync(join(source, 'notices.json'), 'utf8')).toBe(beforeJson);
+	});
+
 	it('refuses a copy into a child folder whose name starts with two dots', () => {
 		const inside = run('--from', source, '--to', join(source, '..copy'));
 		expect(inside.stderr).toContain('one folder holds the other');
