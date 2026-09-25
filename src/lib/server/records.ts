@@ -21,6 +21,7 @@ function byMatch(urls: Record<string, string>, pattern: RegExp): ReadonlyMap<str
 }
 
 // Glob keys are file paths, so the capture and notice number are read out of them once, here.
+// Stryker disable all: Vite expands import.meta.glob only from literal arguments
 const INDEX_URLS = byMatch(
 	import.meta.glob('../snapshot/generated/*/index.json', {
 		query: '?url',
@@ -37,6 +38,7 @@ const RECORD_URLS = byMatch(
 	}),
 	RECORD_PATH
 );
+// Stryker restore all
 
 // A failed parse is a server error, never a partial list.
 export async function loadIndex(capture: string): Promise<SnapshotIndex> {
