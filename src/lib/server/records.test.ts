@@ -52,5 +52,6 @@ describe('loadRecord', () => {
 	it('checks the notice number format exactly', () => {
 		expect(NOTICE_NUMBER.test('609955-2026')).toBe(true);
 		expect(NOTICE_NUMBER.test('x609955-2026')).toBe(false);
+		expect(NOTICE_NUMBER.test('609955-2026x')).toBe(false);
 	});
 });
