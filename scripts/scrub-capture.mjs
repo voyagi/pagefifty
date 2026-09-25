@@ -9,7 +9,8 @@
 //
 // Usage:
 //   node scripts/scrub-capture.mjs --from <capture dir> --to <dir>
-//       copies notices.json, fetch-log.json and xml/*.xml through the scrub
+//       copies notices.json, fetch-log.json and xml/*.xml through the scrub, then checks the copy
+//       as --check does and exits 1 when anything is left
 //   node scripts/scrub-capture.mjs --check <dir> [--against <capture dir>]
 //       lists every file under <dir> that still holds contact data; with --against, also proves
 //       that the scrub changed nothing else and prints how many spans of each kind it replaced
@@ -27,7 +28,7 @@
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
-import { basename, dirname, isAbsolute, join, relative, resolve } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { decodeCharacterReferences, isUnreadableCaptureFile } from '../src/lib/snapshot/capture-files.ts';
 import {
 	SCRUB_PLACEHOLDER,
@@ -82,7 +83,8 @@ function overlapProblem(from, to) {
 	if (source === copy) return `--to ${to} would overwrite its source ${from}`;
 	const holds = (outer, inner) => {
 		const path = relative(outer, inner);
-		return path !== '' && !path.startsWith('..') && !isAbsolute(path);
+		// Only ".." itself or "../x" climbs out; a child folder may be named "..copy".
+		return path !== '' && path !== '..' && !path.startsWith(`..${sep}`) && !isAbsolute(path);
 	};
 	return holds(source, copy) || holds(copy, source) ? `--from ${from} and --to ${to}: one folder holds the other` : null;
 }
@@ -281,7 +283,11 @@ function main() {
 	// A folder or file that cannot be read means nothing was checked, which is never a finding.
 	try {
 		if (args.check) return check(args.check, args.against);
-		return copyScrubbed(args.from, args.to) > 0 ? 1 : 0;
+		const stale = copyScrubbed(args.from, args.to);
+		// The scrub leaves what it cannot see (an address written with a character reference), so
+		// the copy is checked before it is called clean: a copy is never trusted without its check.
+		const checked = check(args.to);
+		return stale > 0 || checked !== 0 ? 1 : 0;
 	} catch (error) {
 		console.error(`scrub-capture: ${error.message}`);
 		return 2;

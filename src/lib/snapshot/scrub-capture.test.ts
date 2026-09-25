@@ -178,6 +178,26 @@ describe('scrub-capture.mjs', () => {
 		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 	});
 
+	it('refuses a copy into a child folder whose name starts with two dots', () => {
+		const inside = run('--from', source, '--to', join(source, '..copy'));
+		expect(inside.stderr).toContain('one folder holds the other');
+		expect(inside.status).toBe(1);
+	});
+
+	// The scrub cannot see an address written with a character reference, so a copy that only
+	// scrubbed would call such a capture clean. The copy checks what it wrote.
+	it('fails a copy whose source hides an address the scrub cannot see', () => {
+		const hidden = join(root, 'hidden-source');
+		writeCapture(hidden);
+		writeFileSync(
+			join(hidden, 'xml', '000002-2026.xml'),
+			'<ContractNotice><cbc:Note>mail vergabe&#64;buyer.example</cbc:Note></ContractNotice>\n'
+		);
+		const copied = run('--from', hidden, '--to', join(root, 'hidden-copy'));
+		expect(copied.stderr).toContain('000002-2026.xml: encoded email');
+		expect(copied.status).toBe(1);
+	});
+
 	it('names a JSON file in the destination that the source does not hold', () => {
 		const reused = join(root, 'reused-json');
 		mkdirSync(reused);
