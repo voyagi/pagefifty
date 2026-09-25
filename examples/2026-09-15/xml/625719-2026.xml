@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>019f80e1-b39a-4843-8db0-6096f05d0d86-01</efbc:ChangedNoticeIdentifier>
+                  <efac:Change>
+                     <efac:ChangedSection>
+                        <efbc:ChangedSectionIdentifier>LOT-0001</efbc:ChangedSectionIdentifier>
+                     </efac:ChangedSection>
+                  </efac:Change>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Neue Angebotsabgabefrist</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>www.conitas.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">CONITAS GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Erzbergerstraße 117  </cbc:StreetName>
+                           <cbc:CityName>Karlsruhe</cbc:CityName>
+                           <cbc:PostalZone>76133</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>HRB 704599</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Durlacher Allee 100</cbc:StreetName>
+                           <cbc:CityName>Karlsruhe</cbc:CityName>
+                           <cbc:PostalZone>76137</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>www.bartsch.law</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Bartsch Rechtsanwälte PartG mbB</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Bahnhofstraße 10</cbc:StreetName>
+                           <cbc:CityName>Karlsruhe</cbc:CityName>
+                           <cbc:PostalZone>76137</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>PR700270</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00625719-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">175/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-10+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">01a0862b-c37a-414f-abb4-76f25f77f67e</cbc:ID>
+   <cbc:ContractFolderID>019f80df-4d80-4824-beca-a983c30f656a</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-09+02:00</cbc:IssueDate>
+   <cbc:IssueTime>14:39:27+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-09+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+         <cbc:DocumentDescription languageID="DEU"> Der Auftraggeber wendet aufgrund seiner Verpflichtungen aus dem EU-Vergaberecht das Gesetz gegen Wettbewerbsbeschränkungen (GWB) und die Vergabeverordnung (VgV) an. Es findet ein offenes Verfahren statt. </cbc:DocumentDescription>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>CrossBorderLaw</cbc:ID>
+         <cbc:DocumentDescription languageID="DEU">finden keine Anwendung</cbc:DocumentDescription>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Erklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. §§ 123 GWB Der Bewerber erklärt, dass ihm bekannt ist, dass ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme auszuschließen ist, wenn der Auftraggeber Kenntnis davon hat, dass eine Person, deren Verhalten nach § 123 Abs. 3 GWB dem Unternehmen zuzurechnen ist, rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 1. § 129 des Strafgesetzbuchs (Bildung krimineller Vereinigungen), § 129a des Strafgesetzbuchs (Bildung terroristischer Vereinigungen), § 129b des Strafgesetzbuchs (kriminelle und terroristische Vereinigungen im Ausland), 2. § 89c des Strafgesetzbuchs (Terrorismusfinanzierung) oder wegen der Teilnahme an einer solchen Tat oder wegen der Bereitstellung oder Sammlung finanzieller Mittel in Kenntnis dessen, dass diese finanziellen Mittel ganz oder teilweise dazu verwendet werden oder verwendet werden sollen, eine Tat nach § 89a Abs. 2 Nummer 2 des Strafgesetzbuchs zu begehen, 3. § 261 des Strafgesetzbuchs (Geldwäsche, Verschleierung unrechtmäßig erlangter Vermögenswerte), 4. § 263 des Strafgesetzbuchs (Betrug), soweit sich die Straftat gegen den Haushalt der Europäischen Gemeinschaften oder gegen Haushalte richtet, die von den Europäischen Gemeinschaften oder in deren Auftrag verwaltet werden, 5. § 264 des Strafgesetzbuchs (Subventionsbetrug), soweit sich die Straftat gegen den Haushalt der Europäischen Gemeinschaften oder gegen Haushalte richtet, die von den Europäischen Gemeinschaften299 des Strafgesetzbuchs (Bestechlichkeit und Bestechung im geschäftlichen Verkehr), §§ 299a und 299b des Strafgesetzbuchs (Bestechlichkeit und Bestechung im Gesundheitswesen), 7. § 108e des Strafgesetzbuchs (Bestechlichkeit und Bestechung von Mandatsträgern), 8. Den §§ 333 und 334 des Strafgesetzbuchs (Vorteilsgewährung und Bestechung), jeweils auch in Verbindung mit § 335a des Strafgesetzbuchs (Ausländische und internationale Bedienstete), 9. Artikel 2 § 2 des Gesetzes zur Bekämpfung internationaler Bestechung (Bestechung ausländischer Abgeordneter im Zusammenhang mit internationalem Geschäftsverkehr) oder 10. den §§ 232, 232a Absatz 1 bis 5, den §§ 232b bis 233a des Strafgesetzbuches (Menschenhandel, Zwangsprostitution, Zwangsarbeit, Ausbeutung der Arbeitskraft, Ausbeutung unter Ausnutzung einer Freiheitsberaubung). Einer Verurteilung oder der Festsetzung einer Geldbuße im oben genannten Sinne stehen eine Verurteilung oder die Festsetzung einer Geldbuße nach den vergleichbaren Vorschriften anderer Staaten gleich. Das Verhalten einer rechtskräftig verurteilten Person ist einem Unternehmen zuzurechnen, wenn diese Person als für die Leitung des Unternehmens Verantwortlicher gehandelt hat; dazu gehört auch die Überwachung der Geschäftsführung oder die sonstige Ausübung von Kontrollbefugnissen in leitender Stellung. Dem Bewerber ist zudem bekannt, dass öffentliche Auftraggeber ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn 1. das Unternehmen seinen Verpflichtungen zur Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung nicht nachgekommen ist und dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt wurde oder 2. die öffentlichen Auftraggeber auf sonstige geeignete Weise die Verletzung einer Verpflichtung nach Nummer 1 nachweisen können. Dies gilt nicht, wenn das Unternehmen seinen Verpflichtungen dadurch nachgekommen ist, dass es die Zahlung vorgenommen oder sich zur Zahlung der Steuern, Abgaben und Beiträge zur Sozialversicherung einschließlich Zinsen, Säumnis- und Strafzuschlägen verpflichtet hat. Vereinbarungen mit anderen Wirtschaftsteilnehmern zur Verzerrung des Wettbewerbs: Erklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. §§ 124 GWB Dem Bewerber ist weiterhin bekannt, dass unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausgeschlossen werden kann, wenn 1. das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende umwelt-, sozial- oder arbeitsrechtliche Verpflichtungen verstoßen hat, 2. das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen in Liquidation befindet oder seine Tätigkeit eingestellt hat, 3. das Unternehmen im Rahmen der beruflichen Tätigkeit nachweislich eine schwere Verfehlung begangen hat, durch die die Integrität des Unternehmens infrage gestellt wird; § 123 Abs. 3 GWB ist entsprechend anzuwenden, 4. der öffentliche Auftraggeber über hinreichende Anhaltspunkte dafür verfügt, dass das Unternehmen Vereinbarungen mit anderen Unternehmen getroffen hat, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken, 5. ein Interessenkonflikt bei der Durchführung des Vergabeverfahrens besteht, der die Unparteilichkeit und Unabhängigkeit einer für den öffentlichen Auftraggeber tätigen Person bei der Durchführung des Vergabeverfahrens beeinträchtigen könnte und der durch andere weniger einschneiden-e Maßnahmen nicht wirksam beseitigt werden kann, 6. eine Wettbewerbsverzerrung daraus resultiert, dass das Unternehmen bereits in die Vorbereitung des Vergabeverfahrens einbezogen war, und diese Wettbewerbsverzerrung nicht durch andere, weniger einschneidende Maßnahmen wirksam beseitigt werden kann, 7. das Unternehmen eine wesentliche Anforderung bei der Ausführung eines früheren öffentlichen Auftrags oder Konzessionsvertrags erheblich oder fortdauernd mangelhaft erfüllt hat und dies zu einer vorzeitigen Beendig</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>B50/2025</cbc:ID>
+      <cbc:Name languageID="DEU">Lizenzen für SAP Business by Design</cbc:Name>
+      <cbc:Description languageID="DEU">Lizenzen für SAP Business by Design</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>Erzbergerstraße 117  </cbc:StreetName>
+            <cbc:CityName>Karlsruhe</cbc:CityName>
+            <cbc:PostalZone>76133</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung zum Datenschutz Der Bewerber bestätigt mit der Abgabe des  Teilnahmeantrags und der Unterzeichnung dieser Eigenerklärung, dass er zur Weitergabe der in dem Angebot aufgeführten personenbezogenen Daten nach den Vorgaben der Datenschutz- Grundverordnung berechtigt ist. Er bestätigt zudem, dass er die betroffenen Personen, deren personenbezogenen Daten weitergegeben werden, entsprechend den gesetzlichen Vorgaben informiert hat und ihnen auch die beigefügten Datenschutzhinweise  zur Kenntnisnahme übermittelt hat. Der Bewerber ist zudem damit einverstanden, dass im  Falle einer Zuschlagserteilung auf das Angebot den nicht berücksichtigten Bewerbern der  Name des Unternehmens des Bewerbers mitgeteilt wird. Anhand der Kriterien werden die Bewerber ausgewählt, die </cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung zur Umsetzung von Art. 5k Abs. 1 der Verordnung (EU) Nr. 833/2014 Der Bewerber bestätigt, dass 1 er zur Kenntnis genommen hat, dass es nach Art. 5k der  Verordnung (EU) 833/2014 über restriktive Maßnahmen angesichts der Handlungen  Russlands, die die Lage in der Ukraine destabilisieren, zuletzt geändert durch Verordnung  (EU) 2022/576 vom 08.04.2022, öffentlichen Auftraggebern bis auf weiteres verboten ist, im  Anwendungsbereich der Richtlinie 2014/24/EU mit folgenden Personen, Organisationen oder  Einrichtungen einen Vertrag zu schließen oder sie in einem Umfang von mehr als 10% des  Auftragswerts als Unterauftragnehmer, Lieferant oder auf sonstige Weise am Auftrag zu  beteiligen: a) russische Staatsangehörige oder in Russland niedergelassene natürliche oder  juristische Personen, Organisationen oder Einrichtungen, b) juristische Personen,  Organisationen oder Einrichtungen, deren Anteile zu über 50 % unmittelbar oder mittelbar von  einer der unter Buchstabe a genannten Organisationen gehalten werden, oder c) natürliche  oder juristische Personen, Organisationen oder Einrichtungen, die im Namen oder auf  Anweisung einer der unter Buchstabe a) oder b) genannten Organisationen handeln. Der  Bewerber versichert hiermit, dass er bzw. sämtliche Mitglieder der von ihm vertretenen  Bewerbergemeinschaft keiner der vorgenannten Personen, Organisationen oder  Einrichtungen zuzurechnen sind und auch die Unternehmen, auf deren Kapazitäten er zum  Nachweis der geforderten technischen Leistungsfähigkeit verweisen, ebenfalls nicht diesen  Personen, Organisationen oder Einrichtungen zuzurechnen sind oder jedenfalls zu nicht mehr  als 10% des Auftragswerts an der Ausführung des Auftrags beteiligt werden sollen. Anhand der Kriterien werden die Bewerber ausgewählt, die zur zweiten Phase des Verfahrens  eingeladen werden sollen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Das Unternehmen ist nicht zahlungsunfähig oder droht zahlungsunfähig zu 
+werden, insbesondere ist über das Vermögen des Unternehmens kein Insolvenzverfahren 
+beantragt oder eröffnet bzw. die Eröffnung ist nicht mangels Masse abgelehnt worden. Ebenso 
+wenig befindet sich das Unternehmen in Liquidation oder plant, seine Tätigkeit einzustellen.
+Anhand der Kriterien werden die Bewerber ausgewählt, die zur zweiten Phase des Verfahrens 
+eingeladen werden sollen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Das Unternehmen hat eine Niederlassung in Deutschland</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung zur Einhaltung des SchwarzarbG / MiLoG / AEntG Der Bieter 
+erklärt, dass -weder unser Unternehmen noch Angehörige des Unternehmens im 
+Zusammenhang mit der Tätigkeit für das Unternehmen nach §§ 8 ff des Gesetzes zur Bekämpfung der Schwarzarbeit wegen illegaler Beschäftigung von Arbeitskräften 
+(SchwarzarbG, BGBl. I 2004 S. 1842) mit einer Freiheitsstrafe von mehr als drei Monaten oder 
+einer Geldstrafe von mehr als 90 Tagessätzen oder einer Geldbuße von wenigstens 2.500 
+Euro belegt worden sind. -die Voraussetzungen für einen Ausschluss von der Teilnahme an 
+einem Wettbewerb um einen Liefer−, Bau − oder Dienstleistungsauftrag nach § 19 Abs. 1 
+Mindestlohngesetz (MiLoG) gegen mich/uns nicht vorliegt/vorliegen. Ich bin/Wir sind 
+insbesondere in den letzten 2 Jahren nicht wegen eines Verstoßes nach § 21 MiLoG mit einer 
+Geldbuße von wenigstens zweitausendfünfhundert Euro belegt worden. Bußgeldverfahren 
+wegen Verstoßes gegen das genannte Gesetz sind gegen uns nicht anhängig. Den Einsatz 
+von Subunternehmern machen wir davon abhängig, dass diese uns gegenüber eine 
+gleichartige Erklärung abgeben. - die Voraussetzungen für einen Ausschluss von der 
+Teilnahme an einem Wettbewerb um einen Liefer−, Bau− oder Dienstleistungsauftrag nach § 
+21 Abs. 1 Arbeitnehmer-Entsendegesetz (AEntG) gegen uns nicht vorliegen. Wir sind 
+insbesondere in den letzten 2 Jahren nicht wegen eines Verstoßes nach § 23 AEntG mit einer 
+Geldbuße von wenigstens zweitausendfünfhundert Euro belegt worden. Bußgeldverfahren 
+wegen Verstoßes gegen das genannte Gesetz sind gegen mich/uns nicht anhängig. Den 
+Einsatz von Subunternehmern machen wir davon abhängig, dass diese uns gegenüber eine 
+gleichartige Erklärung abgeben. - wir in Bezug auf unsere im Inland eingesetzten 
+Beschäftigten den Verpflichtungen zur Zahlung eines Arbeitsentgeltes mindestens in Höhe 
+des Mindestlohns nach § 1 Abs. 2 MiLoG spätestens zu dem in § 2 Abs. 1 Satz 1 Nr. 2 MiLoG 
+genannten Zeitpunkt nachgekommen sind und diesen auch zukünftig nachkommen werden. 
+Für die bei uns beschäftigten ausländischen Arbeitnehmer (ohne EU#Länder) liegen gültige 
+Aufenthalts− und Arbeitserlaubnisse vor. Entsprechende Nachweise werden wir im Falle der 
+Auftragserteilung unaufgefordert vor Beginn der Leistungserbringung dem Auftraggeber 
+vorlegen. Sollten Sie keine ausländischen Mitarbeiter beschäftigen, müssen Sie an dieser 
+Stelle das Kriterium dennoch bestätigen, um nicht ausgeschlossen zu werden</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU"> Eigenerklärung Betriebshaftpflichtversicherung Der Bewerber erklärt, dass er 
+eine Betriebshaftpflichtversicherung abgeschlossen hat bzw. abschließt und für die Dauer des 
+Auftrags aufrechterhalten wird, die mindestens folgende Versicherungssummen aufweist: 
+Geforderte Versicherungssummen Personenschäden mind. 2 Mio. Euro Sachschäden mind. 2 
+Mio. Euro Vermögensschäden mind. 2 Mio. Euro, Geforderter Versicherungsumfang Für 
+mindestens jeweils 2 Schadensfälle pro Kalenderjahr (2-fache Maximierung der 
+Versicherungssumme)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Das Unternehmen hat in den vergangenen drei Jahren bezogen auf den prozentualen Anteil am Jahresumsatz, der im Tätigkeitsbereich des Auftrags erzielt wurde, einen Mindestjahresumsatz von insgeamt 1,0 Mio. Euro erzielt.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Das Unternehmen hat in den vergangen drei Jahren jeweils einen Mindestjahresumsatz von 1,0 Mio. Euro erzielt</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-auth-mbrshp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter muss SAP-Partner für den Cloud Services SAP Business ByDe-sign sein. </cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Das Unternehmen setzt bei der Auftragsdurchführung deutschsprachige Mitarbeiter (mindestens Niveau C1 nach dem gemeinsamen europäischen Referenzrahmen für Sprachen) ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>n/a</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe.de/unterlagen/019f80df-4d80-4824-beca-a983c30f656a/zustellweg-auswaehlen</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der öffentliche Auftraggeber kann den Bewerber oder Bieter unter Einhaltung der Grundsätze der Transparenz und der Gleichbehandlung auffordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagennachzureichen oder zu vervollständigen. Der öffentliche Auftraggeber ist berechtigt, in der Auftragsbekanntmachung oder den Vergabeunterlagen festzulegen, dass er keine Unterlagen nachfordern wird. Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Dies gilt nicht für Preisangaben, wenn es sich um unwesentliche Einzelpositionen handelt, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen. Die Unterlagen sind vom Bewerber oder Bieternach Aufforderung durch den öffentlichen Auftraggeber innerhalb einer von diesem festzulegenden angemessenen, nach dem Kalender bestimmten Frist vorzulegen.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">100</cbc:Name>
+                  <cbc:Description languageID="DEU">Für die Bewertung der Angebotspreise wird der im vollständig ausgefüllten  Preisblatt (Anlage 2) abgegebene Angebotsvergleichspreis (AVP) bewertet</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:DocumentProviderParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:DocumentProviderParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe.de/unterlagen/019f80df-4d80-4824-beca-a983c30f656a/zustellweg-auswaehlen</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+         <cac:SecurityClearanceTerm>
+            <cbc:Code listName="required">false</cbc:Code>
+         </cac:SecurityClearanceTerm>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+            <cbc:EndTime>08:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:ProcessJustification>
+            <cbc:Description languageID="DEU">Die Einreichung erfolgt über diese Plattform</cbc:Description>
+         </cac:ProcessJustification>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0001</cbc:ID>
+         <cbc:Name languageID="DEU">Cloud Services SAP Business ByDesign</cbc:Name>
+         <cbc:Description languageID="DEU">Gegenstand der vorliegenden Ausschreibung ist die Bereitstellung von Lizenzen zur Nutzung des Cloud Services SAP Business ByDesign der SAP Deutschland SE &amp; CO. KG durch einen SAP Partner ist. Die CONITAS nutzt den Cloud Services Business ByDesign bereits als Bestandskunde und sichert mit dieser Ausschreibung die Fortführung und Erweiterung der bestehenden Nutzung. Zu den Leistungen gehören somit insbesondere: 
+	Bereitstellung von Lizenzen für die Nutzung des Cloud Service SAP Business ByDe-sign  nach dem dieser Ausschreibung beigefügten Rahmenvertrag und den gelten-den Produktbestimmungen von SAP
+	Beratung zu SAP-Lizenzen einschließlich Optimierungsmöglichkeiten bei der Nut-zung möglicher Lizenzierungsalternativen</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="accessibility">n-inc</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>Erzbergerstraße 117  </cbc:StreetName>
+               <cbc:CityName>Karlsruhe</cbc:CityName>
+               <cbc:PostalZone>76133</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">50</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

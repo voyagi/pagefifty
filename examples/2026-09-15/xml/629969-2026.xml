@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://troisdorf.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Stadt Troisdorf</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kölner Straße 176</cbc:StreetName>
+									<cbc:CityName>Troisdorf</cbc:CityName>
+									<cbc:PostalZone>53840</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA2C</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE123103727</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen c/o Bezirksregierung Münster</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE164242157</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00629969-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">177/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">9bd013e0-dfa5-42b5-950c-e8d13a69021d</cbc:ID>
+	<cbc:ContractFolderID>22290ceb-a5ab-4c29-b189-998feb7b81d2</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-11+02:00</cbc:IssueDate>
+	<cbc:IssueTime>09:48:14+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-11+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">siehe § 123, 124 GWB; Möglichkeit der Selbstreinigung gemäß § 125 GWB; § 57 VgV; § 42 Absatz 1 VgV</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Genaue Angaben zu den Fristen für die Einlegung von Rechtsbehelfen:  Das Vergabeverfahren unterliegt den Vorschriften über das Nachprüfungsverfahren vor den Vergabekammern (§§ 155 ff. GWB). Gemäß § 160 Absatz 3 Satz 1 GWB ist ein Nachprüfungsantrag unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt. 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist der Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efbc:AccessToolName>Die Kommunikation erfolgt elektronisch über die Vergabeplattform: Vergabemarktplatz Rheinland.</efbc:AccessToolName>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.vmp-rheinland.de/VMPSatellite/notice/CXPTYY8DGE5</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">26008 e VgV</cbc:ID>
+		<cbc:Name languageID="DEU">Microsoft Software Lizenzen im Rahmen eines Enterprise Agreement (EA) Vertrages</cbc:Name>
+		<cbc:Description languageID="DEU">Die Stadt Troisdorf (Bundesland Nordrhein-Westfalen) hat einen EA-Vertrag für die Beschaffung und Nutzung von Microsoft-Lizenzen abgeschlossen, der zum 31.12.2026 ausläuft.   Um eine lückenlose Fortführung der SA für die lizensierten Produkte ab dem 01.01.2027 zu gewährleisten und zusätzliche Microsoft-Lizenzen erwerben zu können, ist der Abschluss einen neuen EA-Vertrages mit einem Microsoft-Handelspartner (LSP) erforderlich.   Die Einzelaufträge im Rahmen des neuen EA werden von der Stadt Troisdorf für ihren eigenen Bedarf vergeben. Als Kommune ist die Stadt Troisdorf berechtigt, einem EA-Vertrag zu den Konditionen des BMI beizutreten.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXPTYY8DGE5#
+
+
+Nebenangebote sind nicht zugelassen und werden ausgeschlossen.  Eine rechtzeitige Beantwortung von Bewerberfragen kann nur gewährleistet werden, sofern diese 7 Tage vor Ablauf der Angebotsfrist gestellt werden.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48219000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Kölner Straße 176</cbc:StreetName>
+				<cbc:CityName>Troisdorf</cbc:CityName>
+				<cbc:PostalZone>53840</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA2C</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Unterlagen, die mit dem Angebot abzugeben sind: - Angabe zur Eintragung in das Berufsregister oder Angabe zur Nichtverpflichtung (siehe Formular Eigenerklärung zur Eignung).  Unterlagen, die auf Verlangen der Vergabestelle vorzulegen sind:  - Nachweis der Eintragung in einem Berufs- oder Handelsregister zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung; - Gewerbeanmeldung; - Handelsregisterauszug; - Nachweis zur Eintragung in der Handwerksrolle (Handwerkskarte) bzw. bei der Industrie- und Handelskammer.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Unterlagen, die mit dem Angebot abzugeben sind: - Angabe Umsatz des Bieters in den letzten drei abgeschlossenen Geschäftsjahren (siehe Eigenerklärung zur Eignung)  Unterlagen, die auch Verlangen der Vergabestelle vorzulegen sind: - Nachweis über den Gesamtumsatz und ggfs. Umsatz in dem Tätigkeitsbereich des Auftragsgegenstandes zu den Angaben in der Eigenerklärung zur Eignung</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen:  - Angabe, welche Teile des Auftrags das Unternehmen unter Umständen als Unteraufträge zu vergeben beabsichtigt; - bei Unteraufträgen: ausgefüllte Informationen Unteraufträge Angebotsabgabe, Formular 533a EU; - bei Eignungsleihe: ausgefüllte Erklärung Eignungsleihe, Formular 534a EU.  Vom Unternehmen ist auf Verlangen der Vergabestelle vorzulegen:  - ggf. bei Unteraufträgen: ausgefüllter Nachweis Unterauftragnehmer, Formular 533b EU; - ggf. bei Eignungsleihe: ausgefüllte Erklärung Eignungsleihe Haftung, Formular 534b EU; - ggf. Erklärungen und Nachweise zur Eignung Dritter/ Nachunternehmer/ Unterauftragnehmer.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen: - Angabe zur Partnerautorisierung oder aktuelle Partnerschaftsbestätigung von Microsoft oder öffentlicher Nachweis über den Eintrag auf der Website von Microsoft auf einem zum Zeitpunkt der Angebotsabgabe gültigen Ausdruck oder Unternehmenszertifizierungen (siehe Eigenerklärung zur Eignung)  Vom Unternehmen ist auf Verlangen der Vergabestelle vorzulegen: - Nachweis zur Partnerautorisierung oder zur aktuellen Partnerschaftsbestätigung von Microsoft oder dem öffentlichen Nachweis über den Eintrag auf der Website von Microsoft auf einem zum Zeitpunkt der Angebotsabgabe gültigen Ausdruck oder der Unternehmenszertifizierungen zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Unterlagen, die mit dem Angebot abzugeben sind: - Erklärung Berufs- oder Betriebshaftpflichtversicherung nebst verbindlicher Erklärung im Auftragsfall bei nicht ausreichenden Deckungssummen diese anzupassen (siehe Eigenerklärung zur Eignung).  Unterlagen, auf Verlangen der Vergabestelle vorzulegen sind: - aktueller Nachweis der Betriebshaftpflichtversicherung zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen:  - Angabe der wesentlichen in den letzten 3 Jahren erbrachten Leistungen mit Angabe des Wertes, des Zeitraums der Leistungserbringung und des Auftraggebers (siehe Eigenerklärung zur Eignung).  Vom Unternehmen ist auf Verlangen der Vergabestelle vorzulegen:  - Nachweis zu den Referenzprojekten zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung sowie der Referenzliste.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen: - Angabe der durchschnittlichen Mitarbeiter des Bieters, sowie der Mitarbeiter, die im Zusammenhang mit der Leistungserbringung eingesetzt werden sollen (s. Eigenerklärung zur Eignung); - Angabe zu den Microsoft-Qualifizierungen / -Fortbildungen der Consultants und Specialists und der Erreichbarkeit für die Microsoft Lizenzberatung, -unterstützung und die Auftragsabwicklung zu den beauftragten Lizenzen und Software Assurances (s. Eigenerklärung zur Eignung).  Vom Unternehmen ist auf Verlangen der Vergabestelle vorzulegen:  - Nachweis zur Zahl der in den letzten drei Jahren jahresdurchschnittlich Beschäftigten nebst Nennung der Leitung vorgesehenen Personen zu der Erklärung in der Eigenerklärung zur Eignung; - Nachweis zu den Microsoft-Qualifizierungen / -Fortbildungen der Consultants und Specialists und der Erreichbarkeit für die Microsoft Lizenzberatung, -unterstützung und die Auftragsabwicklung zu den beauftragten Lizenzen und Software Assurances zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-facil-tools</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen: - Angabe der Nutzung einer Plattform für Lizenzverwaltung der Microsoft-Lizenzen (s. Formular 26008 Eigenerklärung zur Eignung).  Vom Unternehmen ist auf Verlangen der Vergabestelle vorzulegen: - Nachweis der Nutzung einer Plattform für Lizenzverwaltung der Microsoft Lizenzen zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vmp-rheinland.de/VMPSatellite/notice/CXPTYY8DGE5/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Fehlende Unterlagen, deren Vorlage mit dem Angebot, sowie auf Verlangen, gefordert waren, werden nachgefordert.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Vom Unternehmen ist mit Angebotsabgabe vorzulegen:  - das elektronische oder unterschriebene schriftliche Angebotsschreiben, Formular 324 EU; - das inhaltliche Angebot mit Angebotspreis; - bei Bietergemeinschaften: unterschriebene Bewerber-/Bietergemeinschaftserklärung; - Eigenerklärung zu Ausschlussgründen, (Formular 521 EU); - Eigenerklärung Sanktionen (Formular 523 EU); - ausgefüllte Eigenerklärung zur Eignung zur Eignung; - Eigenerklärung Subventionen (Formular 524 EU).  Unterlagen, die auf Verlangen der Vergabestelle vorzulegen sind: - ggfls. Vorlage eines rechtskräftigen Insolvenzplanes zu der Erklärung in der Eigenerklärung zur Eignung; - Nachweis zur Unbedenklichkeitsbescheinigung des Finanzamtes bzw. Bescheinigung in Steuersachen zu der Erklärung in der Eigenerklärung zur Eignung;  - aktueller Nachweis der Berufsgenossenschaft (Unbedenklichkeitsbescheinigung) zu den Angaben/der Erklärung in der Eigenerklärung zur Eignung; - ggf. Nachweis zur Eigenerklärung zur Eignung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">günstigster Preis</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vmp-rheinland.de/VMPSatellite/notice/CXPTYY8DGE5</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Genaue Angaben zu den Fristen für die Einlegung von Rechtsbehelfen:  Das Vergabeverfahren unterliegt den Vorschriften über das Nachprüfungsverfahren vor den Vergabekammern (§§ 155 ff. GWB). Gemäß § 160 Absatz 3 Satz 1 GWB ist ein Nachprüfungsantrag unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt. 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist der Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:AccessToolName>Die Kommunikation erfolgt elektronisch über die Vergabeplattform: Vergabemarktplatz Rheinland.</efbc:AccessToolName>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vmp-rheinland.de/VMPSatellite/notice/CXPTYY8DGE5</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-12+02:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-10-12+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>09:01:00+02:00</cbc:OccurrenceTime>
+				<cbc:Description languageID="DEU">Bieter oder deren Bevollmächtigte sind zum Eröffnungstermin nicht zugelassen.</cbc:Description>
+				<cac:OccurenceLocation>
+					<cbc:Description languageID="DEU">Rathaus Stadt Troisdorf, Kölner Straße 176, 53840 Troisdorf, 4. Etage, Raum 439</cbc:Description>
+				</cac:OccurenceLocation>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">26008 e VgV</cbc:ID>
+			<cbc:Name languageID="DEU">Microsoft Software Lizenzen im Rahmen eines Enterprise Agreement (EA) Vertrages</cbc:Name>
+			<cbc:Description languageID="DEU">Die Stadt Troisdorf hat Ende 2023 einen EA-Vertrag mit einer Laufzeit von drei Jahren, sowie einer vom Hersteller eingeräumten Verlängerungsoption um ein weiteres Jahr für die Nutzung von Microsoft-Produkten abgeschlossen.  Da beabsichtigt ist, die Verlängerungsoption nicht in Anspruch zu nehmen, endet der Vertrag zum 31.12.2026.  Im Vorfeld der Ausschreibung wurden die vorhandenen Microsoft-Lizenzen und die IT-Infrastruktur der Stadt Troisdorf überprüft und der bestehende sowie zukünftige Bedarf ermittelt.   Es ist notwendig, die bestehenden Software Assurance-Leistungen für die einzelnen Microsoft-Produkte des bisherigen EA-Vertrages fortzusetzen und zudem Lizenzen mit Software Assurance mit Beginn der Laufzeit des neuen Vertrages zu erwerben.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48219000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Kölner Straße 176</cbc:StreetName>
+					<cbc:CityName>Troisdorf</cbc:CityName>
+					<cbc:PostalZone>53840</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA2C</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-01+01:00</cbc:StartDate>
+				<cbc:EndDate>2029-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Es besteht die Option der einmaligen Verlängerung des Auftrags um ein weiteres Jahr, somit längstens bis zum 31.12.2030. Bei beabsichtigter Verlängerung wird der Auftraggeber spätestens drei Monate vor Vertragsende ein Angebot für die Verlängerung beim Auftragnehmer erfragen.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

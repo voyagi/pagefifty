@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://vergabe.hessen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Land Hessen, vertreten durch die Hessische Zentrale für Datenverarbeitung</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Mainzer Straße 29</cbc:StreetName>
+                           <cbc:CityName>Wiesbaden</cbc:CityName>
+                           <cbc:PostalZone>65185</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE714</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>06-25153000-14</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.rp-darmstadt.hessen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Landes Hessen beim Regierungspräsidium Darmstadt</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Wilhelminenstraße 1 - 3</cbc:StreetName>
+                           <cbc:CityName>Darmstadt</cbc:CityName>
+                           <cbc:PostalZone>64283</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE711</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE 812 056 745</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00633195-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">178/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-15+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">61dc5505-2063-4caa-93f2-177d9cef2560</cbc:ID>
+   <cbc:ContractFolderID>19a3d92f-4f8b-4746-b3b8-7f1c83de347e</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-14+02:00</cbc:IssueDate>
+   <cbc:IssueTime>11:19:51+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-14+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Eigenerklärungen nach §§ 123, 124 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:LotDistribution>
+         <cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+         <cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+      </cac:LotDistribution>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>VG-3000-2026-0062</cbc:ID>
+      <cbc:Name languageID="DEU">Beratungsleistungen für das Format Digi-Expert-kommunal für das Hessische Ministerium für Digitalisierung und Innovation in zwei Losen</cbc:Name>
+      <cbc:Description languageID="DEU">Beratungsleistungen für das Format "Digi-Expert-kommunal" für das Hessische Ministerium für Digitalisierung und Innovation in zwei Losen</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Ein Bieter kann den Nachweis seiner Eignung und des Nichtvorliegens von Ausschlussgründen ganz oder teilweise durch die Teilnahme an Präqualifikationssystemen erbringen.
+
+Neben den in Ziffer 5.1.9 dieser EU-Bekanntmachung geforderten Unterlagen zu Beleg der Eignung haben die Bieter zusätzlich die nachfolgenden Erklärungen und Nachweise mit dem Angebot einzureichen:
+
+(1) Eigenerklärungen zu Ausschlussgründen §§ 123, 124 GWB (Dateien "A 05 Eigenerklaerung_Par_123_GWB" und "A 06 Eigenerklaerung_Par_124_GWB"). Bei Bietergemeinschaften hat jedes Mitglied der Bietergemeinschaft die Erklärungen in der entsprechenden Form einzureichen. Bei Einsatz von (eignungsrelevanten) Unterauftragnehmern hat jeder Unterauftragnehmer die Erklärungen in der entsprechenden Form einzureichen.
+
+(2) Eigenerklärung Artikel 5k EU-Verordnung 833/2014
+Der Bieter hat die Eigenerklärung zum Artikel 5k der EU-Verordnung 833/2014 (Datei "A 09 Eigenerklaerung Artikel 5k EU-Verordnung 833-2014") ausgefüllt mit seinem Angebot einzureichen.
+Bei Bietergemeinschaften hat jedes Mitglied der Bietergemeinschaft die Erklärung in der entsprechenden Form einzureichen.
+
+(3) Erklärung Unternehmensdaten (Datei "A 04 Erklaerung_Unternehmensdaten"). Diese Erklärung dient lediglich statistischen Zwecken. Sie stellt kein Eignungskriterium dar.
+
+(4) Verpflichtungserklärung nach dem Hessischen Vergabe- und Tariftreuegesetz (HVTG): Bieter, jedes Mitglied einer Bietergemeinschaft sowie (eignungsrelevante) Unterauftragnehmer (§§ 4, 5 HVTG) haben die erforderliche Verpflichtungserklärung zu Tariftreue und Mindestlohn nach § 10 HVTG abzugeben (Datei "A 02 Verpflichtungserklaerung_Tariftreue_Mindestlohn").
+
+Wirtschaftlichkeitsprüfung/Zuschlagskriterien
+Der Zuschlag wird nach Maßgabe des § 127 GWB auf das wirtschaftlichste Angebot erteilt. Die Ermittlung des wirtschaftlichsten Angebots erfolgt auf der Grundlage des besten Preis Leistungs Verhältnisses (§ 58 Abs. 1, 2 VgV).
+Es ist vorgesehen, in jedem Los mehrere Angebote zu bezuschlagen, um den Kreis der zur Verfügung stehenden Berater/innen zu vergrößern. Der Zuschlag erfolgt bei Los 1 auf die ersten drei wirtschaftlichsten Angebote und bei Los 2 auf die ersten vier wirtschaftlichsten Angebote. 
+Die Gesamtwertung setzt sich aus den Zuschlagskriterien "Preis" und "Erfahrung und Qualifikation des Beratungsteams" in folgender Gewichtung zusammen:
+
+Preis: 30 %
+Erfahrung: 70 %
+
+Die erreichten Punkte für Preis und Leistung pro Los werden unter Berücksichtigung der Gewichtungsfaktoren ermittelt und die gewichteten Punktzahlen für den jeweiligen Bieter addiert. Es können in der Gesamtwertung max. 100 Punkte pro Los erreicht werden.
+
+Die Bewertung in den einzelnen Kriterien ist den Ausschreibungsbestimmungen zu entnehmen.</cbc:Note>
+      <cac:RequestedTenderTotal>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efbc:FrameworkMaximumAmount currencyID="EUR">2258000.00</efbc:FrameworkMaximumAmount>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:EstimatedOverallContractAmount currencyID="EUR">2258000.00</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cbc:Description languageID="DEU">Leistungsort für die vor Ort zu erbringenden Leistungen sind alle Kommunen des Landes Hessen.</cbc:Description>
+         <cac:Address>
+            <cbc:StreetName>Taunusstraße 3</cbc:StreetName>
+            <cbc:CityName>Wiesbaden</cbc:CityName>
+            <cbc:PostalZone>65183</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE714</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mindestanforderungen:
+Darstellung von mindestens 3 geeigneten Referenzen pro Los (Dateien "A 08 Referenzen Los 1", "A 08 Referenzen Los 2") aus den letzten drei Jahren (Stichtag "Ablauf der Angebotsfrist"), die nach Art und Umfang den nachfolgend aufgeführten Anforderungen entsprechen. Maßgeblich ist, dass die wesentlichen Leistungen in den letzten drei Jahren vor dem Stichtag erbracht wurden.
+Für die Wertungsfähigkeit der Referenzen gelten folgende Mindestanforderungen:
+• Jede Referenz muss eine Beratungsleistung für einen öffentlichen Auftraggeber im Sinne des § 98 GWB beinhalten
+• Zu folgenden Themen muss in der Gesamtschau aller eingereichten Referenzen des jeweiligen Loses jeweils in mindestens einer Referenz beraten worden sein (Eine Referenz kann auch mehrere oder alle Themen umfassen).
+o Los 1: 
+ Digitalstrategie, 
+ Projektmanagement, 
+ Changemanagement, 
+ Digitale Daseinsvorsorge, 
+ Bürgerbeteiligung, 
+
+o Los 2: 
+ Open Source, 
+ Bewertung von Fachverfahren, 
+ Cloud-Lösungen, 
+ Datenplattformen, 
+ KI in der Verwaltung, 
+ KI in der Daseinsvorsorge
+ Smarte Bewässerung, 
+ Smart Lighting, 
+ Smart Traffic,
+ Digitales Abfallmanagement, 
+ Digitaler Zwilling
+
+Die Referenztabellen sind für jede Referenz lückenlos auszufüllen. Für jede Referenz ist ein Ansprechpartner beim Referenzauftraggeber mit Kontaktdaten (Telefonnummer und E-Mail) zu benennen. 
+Die Vergabestelle behält sich die Überprüfung der Referenzen bei dem Referenzauftraggeber vor. 
+Soweit das Unternehmen noch keine oder nicht ausreichend eigene Referenzen hat, weil es erst vor kurzem gegründet wurde, besteht die Möglichkeit, anstatt Unternehmensreferenzen persönliche Referenzen der für die Ausführung konkret vorgesehenen Teammitglieder aus früheren Tätigkeiten einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz des Unternehmens in den letzten drei abgeschlossenen Geschäftsjahren. Bieter, die noch keine drei abgeschlossenen Geschäftsjahre vorweisen können, machen Angaben zu den Geschäftsjahren seit der Gründung bzw. Tätigkeitsaufnahme. Besteht das Unternehmen noch kein volles Geschäftsjahr, ist anstelle eines abgeschlossenen Geschäftsjahres der voraussichtliche Umsatz (Prognose) für das laufende Geschäftsjahr anzugeben.
+Kann der Bieter aus einem berechtigten Grund (z. B. bei einem jungen Unternehmen) auch diese Angaben oder die geforderten Umsatzzahlen nicht beibringen, kann er seine wirtschaftliche und finanzielle Leistungsfähigkeit durch die Vorlage anderer, von der Vergabestelle als geeignet angesehener Unterlagen (z. B. Bankauskunft, Finanzierungsnachweise) belegen (Datei "A 08 Umsatzzahlen Lose 1-2").</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.hessen.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a05b7e4ea4-db4b01198de1e31</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen bzw. fehlende oder unvollständige leistungsbezogene Unterlagen können zum Ausschluss des Bieters vom Vergabeverfahren führen.
+Die Vergabestelle behält sich daher vor, Bieter gemäß § 56 Abs. 2 VgV aufzufordern, innerhalb einer von der Vergabestelle gesetzten angemessenen Nachfrist fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen nachzureichen, zu vervollständigen oder zu korrigieren oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Wenn die nachzureichenden, zu vervollständigenden und/oder zu korrigierenden Unterlagen daraufhin nicht oder nicht formgerecht innerhalb der Nachfrist bei der Vergabestelle eingehen, führt dies zum Ausschluss des Angebots vom weiteren Vergabeverfahren, § 57 Abs. 1 Nr. 2 VgV. Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Dies gilt nicht für Preisangaben, wenn es sich um unwesentliche Einzelpositionen handelt, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen (vgl. § 56 Abs. 3 VgV).</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Verpflichtungserklärung nach dem Hessischen Vergabe- und Tariftreuegesetz (HVTG): Bieter, jedes Mitglied einer Bietergemeinschaft sowie (eignungsrelevante) Unterauftragnehmer (§§ 4, 5 HVTG) haben die erforderliche Verpflichtungserklärung zu Tariftreue und Mindestlohn nach § 10 HVTG abzugeben (Datei "Verpflichtungserklaerung_oeff_AG").</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Leistung</cbc:Name>
+                  <cbc:Description languageID="DEU">Erfahrung</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Preis</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.hessen.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">4</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">§ 160
+Einleitung, Antrag
+
+(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+
+(3) Der Antrag ist unzulässig, soweit
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-15+02:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-10-15+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>3</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0001</cbc:ID>
+         <cbc:Name languageID="DEU">Grundlagen der digitalen Transformation</cbc:Name>
+         <cbc:Description languageID="DEU">Die hessischen Kommunen befinden sich aktuell in sehr unterschiedlichen Phasen der digitalen Transformation. Für Kommunen ergeben sich im Zuge der digitalen Transformation und bei der Planung und Umsetzung von Digitalisierungsvorhaben sehr unterschiedliche Beratungsbedarfe. Gerade Projekte mit hohem Innovationsgrad bringen vielfältige Fragestellungen mit sich, die für eine erfolgreiche Umsetzung zeitnah und individuell beantwortet werden müssen. Bei den über die Förderung smarter Kommunen und Regionen im Programm "Starke Heimat Hessen" geförderten Digitalisierungsvorhaben lässt sich dies ebenfalls deutlich beobachten. 
+
+Die im Hessischen Ministerium für Digitalisierung und Innovation (HMD) verankerte Geschäftsstelle Smarte Region wird daher ihr Beratungsangebot für die Kommunen erweitern. Das neue Beratungsformat "Digi-Expert-kommunal" soll hessischen Kommunen individuelle, anbieter- und produktneutrale ad hoc-Beratungen zu verschiedenen Themen anbieten: von Digitalstrategie, Changemanagement, Projektmanagement bis zu fachspezifischen Themen wie Datenplattformen, Open Source, Künstliche Intelligenz (KI), Digitaler Zwilling, Digitalisierung der Daseinsvorsorge (Smart City-/Smart-Region). Das HMD wird über die Geschäftsstelle Smarte Region einen Pool an Expertinnen und Experten zur Verfügung stellen, aus dem Kommunen je nach Bedarf wählen können. Sie können diese für unterschiedliche Anlässe/Settings über die Geschäftsstelle Smarte Region buchen. Damit soll ein Impuls für die digitale Transformation der Kommunen gegeben und Hemmnisse bei der Digitalisierung abgebaut werden.
+
+Von Oktober bis Dezember 2025 wurde das Format "Digi-Expert-kommunal" mit ausgewählten Themen sowie einem begrenzten Kontingent pilotiert. In der dreimonatigen Pilotphase wurden insgesamt 52 Beratungsgespräche vermittelt. Diese entfielen auf 40 Kommunen. 26 Kommunen wurde je ein Beratungsgespräch vermittelt, 14 Kommunen wurden zwei oder drei Beratungsgespräche vermittelt. Der Beratungsaufwand (= Gesprächsdauer + Vor- und Nachbereitung) je Kommune war auf zehn Stunden begrenzt. Jede der beratenen Kommune nahm in der kurzen Pilotphase im Durchschnitt 5,7 Stunden Beratungsaufwand aus den folgenden Themen in Anspruch: KI in der Verwaltung/KI in der Daseinsvorsorge, Vergabeberatung (kein Beratungsgegenstand dieser Ausschreibung), Digitalstrategie, Digitale Daseinsvorsorge/Smart Region allgemein, Change-Management/Digital Mindset, Digitaler Zwilling, Projektmanagement/Projektsteuerung, Open Source/proprietäre Lösungen.
+
+Das Format wurde innerhalb kürzester Zeit und mit minimalem Kommunikationsaufwand sehr gut angenommen. Das Feedback der Kommunen war durchweg positiv und hat den Bedarf nach passgenauer und kurzfristiger Beratung nochmals bestätigt. Der Beratungsbedarf konnte innerhalb der Pilotierung nicht annähernd abgedeckt werden. Die Kommunen wünschten sich im Rahmen der Evaluation eine Verstetigung und Ausweitung des Angebots.
+
+Das Los 1 umfasst allgemeine Beratungsthemen rund um die digitale Transformation und schafft damit Grundlage für die Kommunen, um sich später mit der technischen Umsetzung (Los 2) zu befassen.
+
+Insbesondere Beratung: 
+• Digitalstrategie, 
+• Projektmanagement, 
+• Changemanagement, 
+• Digitale Daseinsvorsorge, 
+• Bürgerbeteiligung. 
+
+Für dieses Los wird auf Basis der Zahlen aus der Pilotphase und einer angenommenen Zahl von 270 interessierten Kommunen ein Bedarf von 810 Stunden pro Jahr geschätzt. Diese Schätzmenge dient nur der Kalkulation. Ein Anspruch auf Abruf dieser Menge besteht nicht. 
+
+Weitere Details sind der Leistungsbeschreibung zu entnehmen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#Die Leistungen aus der Rahmenvereinbarung können bis zu einem Höchstwert von
+983.200,00 EUR (netto) bei einer maximalen Laufzeit von 48 Monaten abgerufen werden. Ist dieser Höchstwert erreicht, endet diese Rahmenvereinbarung, ohne dass es einer gesonderten Kündigung bedarf.</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efbc:FrameworkMaximumAmount currencyID="EUR">983200.00</efbc:FrameworkMaximumAmount>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">983200.00</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cbc:Description languageID="DEU">Leistungsort für die vor Ort zu erbringenden Leistungen sind alle Kommunen des Landes Hessen.</cbc:Description>
+            <cac:Address>
+               <cbc:StreetName>Taunusstraße 3</cbc:StreetName>
+               <cbc:CityName>Wiesbaden</cbc:CityName>
+               <cbc:PostalZone>65183</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE714</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2026-12-11+01:00</cbc:StartDate>
+            <cbc:EndDate>2028-12-10+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+            <cac:Renewal>
+               <cac:Period>
+                  <cbc:Description languageID="DEU">Zweimalige Verlängerung um jeweils ein Jahr.</cbc:Description>
+               </cac:Period>
+            </cac:Renewal>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mindestanforderungen:
+Darstellung von mindestens 3 geeigneten Referenzen pro Los (Dateien "A 08 Referenzen Los 1", "A 08 Referenzen Los 2") aus den letzten drei Jahren (Stichtag "Ablauf der Angebotsfrist"), die nach Art und Umfang den nachfolgend aufgeführten Anforderungen entsprechen. Maßgeblich ist, dass die wesentlichen Leistungen in den letzten drei Jahren vor dem Stichtag erbracht wurden.
+Für die Wertungsfähigkeit der Referenzen gelten folgende Mindestanforderungen:
+• Jede Referenz muss eine Beratungsleistung für einen öffentlichen Auftraggeber im Sinne des § 98 GWB beinhalten
+• Zu folgenden Themen muss in der Gesamtschau aller eingereichten Referenzen des jeweiligen Loses jeweils in mindestens einer Referenz beraten worden sein (Eine Referenz kann auch mehrere oder alle Themen umfassen).
+o Los 1: 
+ Digitalstrategie, 
+ Projektmanagement, 
+ Changemanagement, 
+ Digitale Daseinsvorsorge, 
+ Bürgerbeteiligung, 
+
+o Los 2: 
+ Open Source, 
+ Bewertung von Fachverfahren, 
+ Cloud-Lösungen, 
+ Datenplattformen, 
+ KI in der Verwaltung, 
+ KI in der Daseinsvorsorge
+ Smarte Bewässerung, 
+ Smart Lighting, 
+ Smart Traffic,
+ Digitales Abfallmanagement, 
+ Digitaler Zwilling
+
+Die Referenztabellen sind für jede Referenz lückenlos auszufüllen. Für jede Referenz ist ein Ansprechpartner beim Referenzauftraggeber mit Kontaktdaten (Telefonnummer und E-Mail) zu benennen. 
+Die Vergabestelle behält sich die Überprüfung der Referenzen bei dem Referenzauftraggeber vor. 
+Soweit das Unternehmen noch keine oder nicht ausreichend eigene Referenzen hat, weil es erst vor kurzem gegründet wurde, besteht die Möglichkeit, anstatt Unternehmensreferenzen persönliche Referenzen der für die Ausführung konkret vorgesehenen Teammitglieder aus früheren Tätigkeiten einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz des Unternehmens in den letzten drei abgeschlossenen Geschäftsjahren. Bieter, die noch keine drei abgeschlossenen Geschäftsjahre vorweisen können, machen Angaben zu den Geschäftsjahren seit der Gründung bzw. Tätigkeitsaufnahme. Besteht das Unternehmen noch kein volles Geschäftsjahr, ist anstelle eines abgeschlossenen Geschäftsjahres der voraussichtliche Umsatz (Prognose) für das laufende Geschäftsjahr anzugeben.
+Kann der Bieter aus einem berechtigten Grund (z. B. bei einem jungen Unternehmen) auch diese Angaben oder die geforderten Umsatzzahlen nicht beibringen, kann er seine wirtschaftliche und finanzielle Leistungsfähigkeit durch die Vorlage anderer, von der Vergabestelle als geeignet angesehener Unterlagen (z. B. Bankauskunft, Finanzierungsnachweise) belegen (Datei "A 08 Umsatzzahlen Lose 1-2").</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.hessen.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a05b7e4ea4-db4b01198de1e31</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen bzw. fehlende oder unvollständige leistungsbezogene Unterlagen können zum Ausschluss des Bieters vom Vergabeverfahren führen.
+Die Vergabestelle behält sich daher vor, Bieter gemäß § 56 Abs. 2 VgV aufzufordern, innerhalb einer von der Vergabestelle gesetzten angemessenen Nachfrist fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen nachzureichen, zu vervollständigen oder zu korrigieren oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Wenn die nachzureichenden, zu vervollständigenden und/oder zu korrigierenden Unterlagen daraufhin nicht oder nicht formgerecht innerhalb der Nachfrist bei der Vergabestelle eingehen, führt dies zum Ausschluss des Angebots vom weiteren Vergabeverfahren, § 57 Abs. 1 Nr. 2 VgV. Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Dies gilt nicht für Preisangaben, wenn es sich um unwesentliche Einzelpositionen handelt, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen (vgl. § 56 Abs. 3 VgV).</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Verpflichtungserklärung nach dem Hessischen Vergabe- und Tariftreuegesetz (HVTG): Bieter, jedes Mitglied einer Bietergemeinschaft sowie (eignungsrelevante) Unterauftragnehmer (§§ 4, 5 HVTG) haben die erforderliche Verpflichtungserklärung zu Tariftreue und Mindestlohn nach § 10 HVTG abzugeben (Datei "Verpflichtungserklaerung_oeff_AG").</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Leistung</cbc:Name>
+                  <cbc:Description languageID="DEU">Erfahrung</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Preis</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.hessen.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">4</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">§ 160
+Einleitung, Antrag
+
+(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+
+(3) Der Antrag ist unzulässig, soweit
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-15+02:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-10-15+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>4</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0002</cbc:ID>
+         <cbc:Name languageID="DEU">Technische Umsetzung/konkrete Anwendungen</cbc:Name>
+         <cbc:Description languageID="DEU">Die hessischen Kommunen befinden sich aktuell in sehr unterschiedlichen Phasen der digitalen Transformation. Für Kommunen ergeben sich im Zuge der digitalen Transformation und bei der Planung und Umsetzung von Digitalisierungsvorhaben sehr unterschiedliche Beratungsbedarfe. Gerade Projekte mit hohem Innovationsgrad bringen vielfältige Fragestellungen mit sich, die für eine erfolgreiche Umsetzung zeitnah und individuell beantwortet werden müssen. Bei den über die Förderung smarter Kommunen und Regionen im Programm "Starke Heimat Hessen" geförderten Digitalisierungsvorhaben lässt sich dies ebenfalls deutlich beobachten. 
+
+Die im Hessischen Ministerium für Digitalisierung und Innovation (HMD) verankerte Geschäftsstelle Smarte Region wird daher ihr Beratungsangebot für die Kommunen erweitern. Das neue Beratungsformat "Digi-Expert-kommunal" soll hessischen Kommunen individuelle, anbieter- und produktneutrale ad hoc-Beratungen zu verschiedenen Themen anbieten: von Digitalstrategie, Changemanagement, Projektmanagement bis zu fachspezifischen Themen wie Datenplattformen, Open Source, Künstliche Intelligenz (KI), Digitaler Zwilling, Digitalisierung der Daseinsvorsorge (Smart City-/Smart-Region). Das HMD wird über die Geschäftsstelle Smarte Region einen Pool an Expertinnen und Experten zur Verfügung stellen, aus dem Kommunen je nach Bedarf wählen können. Sie können diese für unterschiedliche Anlässe/Settings über die Geschäftsstelle Smarte Region buchen. Damit soll ein Impuls für die digitale Transformation der Kommunen gegeben und Hemmnisse bei der Digitalisierung abgebaut werden.
+
+Von Oktober bis Dezember 2025 wurde das Format "Digi-Expert-kommunal" mit ausgewählten Themen sowie einem begrenzten Kontingent pilotiert. In der dreimonatigen Pilotphase wurden insgesamt 52 Beratungsgespräche vermittelt. Diese entfielen auf 40 Kommunen. 26 Kommunen wurde je ein Beratungsgespräch vermittelt, 14 Kommunen wurden zwei oder drei Beratungsgespräche vermittelt. Der Beratungsaufwand (= Gesprächsdauer + Vor- und Nachbereitung) je Kommune war auf zehn Stunden begrenzt. Jede der beratenen Kommune nahm in der kurzen Pilotphase im Durchschnitt 5,7 Stunden Beratungsaufwand aus den folgenden Themen in Anspruch: KI in der Verwaltung/KI in der Daseinsvorsorge, Vergabeberatung (kein Beratungsgegenstand dieser Ausschreibung), Digitalstrategie, Digitale Daseinsvorsorge/Smart Region allgemein, Change-Management/Digital Mindset, Digitaler Zwilling, Projektmanagement/Projektsteuerung, Open Source/proprietäre Lösungen.
+
+Das Format wurde innerhalb kürzester Zeit und mit minimalem Kommunikationsaufwand sehr gut angenommen. Das Feedback der Kommunen war durchweg positiv und hat den Bedarf nach passgenauer und kurzfristiger Beratung nochmals bestätigt. Der Beratungsbedarf konnte innerhalb der Pilotierung nicht annähernd abgedeckt werden. Die Kommunen wünschten sich im Rahmen der Evaluation eine Verstetigung und Ausweitung des Angebots.
+
+Das Los 2 umfasst die verschiedenen Aspekte der technischen Umsetzung der digitalen Transformation.
+
+Insbesondere Beratung zu: 
+• Open Source, 
+• Bewertung von Fachverfahren, 
+• Cloud-Lösungen, 
+• Datenplattformen, 
+• KI in der Verwaltung, 
+• KI in der Daseinsvorsorge
+• Smarte Bewässerung, 
+• Smart Lightning, 
+• Smart Traffic,
+• Digitales Abfallmanagement, 
+• Digitaler Zwilling
+
+Für dieses Los wird auf Basis der Zahlen aus der Pilotphase und einer angenommenen Zahl von 270 interessierten Kommunen ein Bedarf von 1.215 Stunden pro Jahr geschätzt. Diese Schätzmenge dient nur der Kalkulation. Ein Anspruch auf Abruf dieser Menge besteht nicht. 
+
+Weitere Details sind der Leistungsbeschreibung zu entnehmen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">Die Leistungen aus der Rahmenvereinbarung können bis zu einem Höchstwert von
+1.274.800,00 EUR (netto) bei einer maximalen Laufzeit von 48 Monaten abgerufen werden. Ist dieser Höchstwert erreicht, endet diese Rahmenvereinbarung, ohne dass es einer gesonderten Kündigung bedarf.</cbc:Note>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efbc:FrameworkMaximumAmount currencyID="EUR">1274800.00</efbc:FrameworkMaximumAmount>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">1274800.00</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cbc:Description languageID="DEU">Leistungsort für die vor Ort zu erbringenden Leistungen sind alle Kommunen des Landes Hessen.</cbc:Description>
+            <cac:Address>
+               <cbc:StreetName>Taunusstraße 3</cbc:StreetName>
+               <cbc:CityName>Wiesbaden</cbc:CityName>
+               <cbc:PostalZone>65183</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE714</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2026-12-11+01:00</cbc:StartDate>
+            <cbc:EndDate>2028-12-10+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+            <cac:Renewal>
+               <cac:Period>
+                  <cbc:Description languageID="DEU">Zweimalige Verlängerung um jeweils ein Jahr.</cbc:Description>
+               </cac:Period>
+            </cac:Renewal>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

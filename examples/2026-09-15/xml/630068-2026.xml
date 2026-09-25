@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>1986c799-cee6-4369-8b39-07dfdd33309f-01</efbc:ChangedNoticeIdentifier>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">cor-buy</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Text in falschen Bereich, wurde korrigiert</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.sid.sachsen.de/</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Staatsbetrieb Sächsische Informatik Dienste</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Dresdner Straße 78 A</cbc:StreetName>
+                           <cbc:CityName>Radebeul</cbc:CityName>
+                           <cbc:PostalZone>01445</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED2E</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>keine</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.lds.sachsen.de/index.asp?ID=4421&amp;art_param=363</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">1. Vergabekammer des Freistaates Sachsen bei der Landesdirektion Sachsen</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Braustraße 2</cbc:StreetName>
+                           <cbc:CityName>Leipzig</cbc:CityName>
+                           <cbc:PostalZone>04107</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>entfällt</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00630068-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">177/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">0f9008f9-a71d-4d33-9885-2a83fda413f9</cbc:ID>
+   <cbc:ContractFolderID>58ce5124-bafd-4f64-b48a-14a243d23a81</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-11+02:00</cbc:IssueDate>
+   <cbc:IssueTime>06:18:24+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-11+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://www.sid.sachsen.de/</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis
+126 GWB</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>SID 2026-17 DR</cbc:ID>
+      <cbc:Name languageID="DEU">Rahmenvertrag über Testdienstleistungen 2026</cbc:Name>
+      <cbc:Description languageID="DEU">Mit Hilfe dieser Ausschreibung soll ein externer Dienstleister gefunden werden, mit dem ein Rahmenvertrag über die Erbringung von Testdienstleistungen geschlossen werden kann. </cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:RequestedTenderTotal>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efbc:FrameworkMaximumAmount currencyID="EUR">16000000.00</efbc:FrameworkMaximumAmount>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Radebeul</cbc:CityName>
+            <cbc:PostalZone>01445</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DED2E</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Beschreiben Sie kurz das Qualitätsmanagementsystem Ihres Unternehmens. Gehen Sie insbesondere auf die Prozesse der Qualitätssicherung ein. Welche Zertifizierungen können Sie im Bereich des Qualitätsmanagements nachweisen?
+
+Mindestanforderung - A-Kriterium
+ Qualitätsmanagementsystem im Unter-nehmen erkennbar
+ Prozesse der Qualitätssicherung sind auch bei der Abwicklung von Projekten integriert
+ Zertifizierung im Bereich des Qualitätsmanagements nachweislich vorhanden oder nachweislich momentan in Vorbereitung
+
+Welche Methoden der Qualitätssicherung verwenden Sie regelmäßig bei der Konzeption und Durchführung von Test komplexer IT-Systeme? Wie sichern Sie konkret die Ergebnisse des Projektes?
+
+Mindestanforderung - A-Kriterium
+ mindestens zwei qualifizierte Methoden werden beschrieben
+ die beschriebenen Methoden der Qualitätssicherung sind dem Projekt angemessen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Weisen Sie mindestens vier geeignete Referenzprojekte über früher ausgeführte Testdienstleistungen mit vergleichbarer Aufgabenstellung und Zielsetzung nach, die in den Geschäftsjahren 2023, 2024 und 2025 erbracht wurden.
+Referenzprojekte sind geeignet, wenn diese ein Volumen von mindestens 60.000 Euro im angegebenen Testbereich (s. u.) aufweisen. Ausgenommen ist der Bereich Testautomatisierung, hier genügt ein Volumen von mindestens 20.000 Euro.
+Bitte beschreiben Sie die Referenzprojekte mit folgender Gliederung und den entsprechenden Inhalten:
+• Bezeichnung des Referenzprojektes,
+• Zuordnung des Referenzprojektes zu einem der Testbereiche Funktionaler Test, Sicherheitstest, Last- und Performancetest, Testautomatisierung
+• Beschreibung des Referenzprojektes,
+• Inhalt und Art Ihrer Leistungen,
+• Eingesetzte Technologien,
+• Erbringungszeitpunkt (Anfangsdatum und Enddatum),
+• Auftragswert,
+• Name des Auftraggebers.
+
+Bei Bildung einer Bietergemeinschaft oder der Inanspruchnahme eines Eignungsverleihers i. S. § 47 VgV, der gleichzeitig als späterer Unterauftragnehmer i. S. § 36 VgV vorgesehen ist, muss ersichtlich sein, durch welches Unternehmen das jeweilige Referenzprojekt erbracht wurde.
+
+Mindestanforderung - A-Kriterium
+ Mindestens vier geeignete Referenzprojekte werden mit den geforderten Inhalten vorgestellt.
+ Es wird mindestens je 1 Referenzprojekt aus dem Testbereich
+  o Funktionaler Test
+  o Sicherheitstest
+  o Last- und Performancetest
+  o Testautomatisierung
+vorgestellt.
+
+Bei der Bildung einer Bietergemeinschaft genügt es, wenn ihre Mitglieder insgesamt vier geeignete Referenzprojekte mit den geforderten Inhalten vorstellen.
+
+Werden mehr als 4 Referenzprojekte aufgeführt, werden nur die in der Reihenfolge des Angebots aufgeführten ersten 4 Referenzprojekte gewertet.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Wie stellen Sie eine regelmäßige Weiterbildung Ihrer Mitarbeiter im Bereich der Konzeption und Durchführung von Test komplexer IT-Systeme sicher?
+
+Mindestanforderung - A-Kriterium
+ mindestens zwei Personalentwicklungsmaßnahmen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es sind mindestens sieben Profile von Mitarbeitern, die zur Leistungserbringung vorgesehenen sind, einzureichen. Eine namentliche Benennung der Mitarbeiter ist nicht erforderlich.
+Die eingereichten Profile müssen die folgenden Aufgabenbereiche des Rahmenvertrags abdecken:
+• Testmanagement und Testkoordination,
+• Testanalyse, Testdesign und Testkonzeption,
+• funktionale Tests und fachliche Testdurchführung,
+• Last- und Performancetests,
+• Sicherheitstests,
+• Benutzbarkeitstests, Barrierefreiheit und Usability-Tests,
+• Testautomatisierung.
+Ein einzelnes Profil kann mehrere Aufgabenbereiche abdecken.
+
+Werden mehr als sieben Profile eingereicht, erfolgt die Prüfung der Mindestanforderungen ausschließlich anhand der in der Reihenfolge der Darstellung im Angebot zuerst aufgeführten sieben Profile.
+
+Für jedes Profil sind die abgedeckten Aufgabenbereiche (s. o.) explizit zu nennen. 
+Werden für ein Profil mehrere Aufgabenbereiche genannt, werden nur die ersten 2 Aufgabenbereiche in der Reihenfolge ihrer Nennung im Profil gewertet. 
+
+Mindestanforderung - A-Kriterium
+ Es werden mindestens sieben Profi-le eingereicht.
+ Die Profile enthalten mindestens Angaben zu Qualifikation, Zertifizierungen, beruflicher Erfahrung, relevanten Projekterfahrungen, einge-setzten Testarten und Werkzeugen sowie zur vorgesehenen Rolle.
+ Die eingereichten Profile decken zusammen alle genannten Erfahrungsbereiche ab.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl in den letzten drei Geschäftsjahren (2023, 2024 und 2025) 
+
+Mindestanforderung - A-Kriterium
+ Durchschnittliche Beschäftigtenzahl im Jahr 2025 beträgt mindestens 100</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Nachweis einer aktuell gültigen Berufs- oder Betriebshaftpflichtversicherung über mind. 500.000 EUR je Schadensfall und Versicherungsjahr oder Erklärung, dass diese bis Vertragsschluss beigebracht wird. Neben Sach- und Personenschäden müssen auch Vermögensschäden mit umfasst sein. Bitte beachten Sie, dass die Angaben der EEE hier nicht ausreichend sind. 
+Im Falle der Bildung einer Bietergemeinschaft ist dieser Nachweis von allen beteiligten Unternehmen einzureichen.
+
+Mindestanforderung - A-Kriterium
+Nachweis oder Eigenerklärung liegt für den Bieter/ alle Mitglieder der Bietergemeinschaft vor</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Welches Leistungsspektrum bieten Sie am Markt an? Skizzieren Sie kurz Ihr Leistungsspektrum bzw. das Ihrer Bietergemeinschaft.
+
+Mindestanforderung - A-Kriterium
+Leistungsspektrum deckt die im Rahmen dieses Projektes zu leistenden Aufgaben (Konzeption und Durchführung von Tests komplexer IT-Systeme) ab.
+
+Welche Kooperationen und Partnerschaften pflegen Sie im ausgeschriebenen Leistungsbereich?
+
+Mindestanforderung - A-Kriterium
+Ausführungen liegen vor</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung über den Gesamtumsatz des Unternehmens in EUR, bezogen auf die letzten drei Geschäftsjahre (2023, 2024 und 2025)
+
+Mindestanforderung - A-Kriterium
+ Umsatz in allen Jahren des geforderten Zeitraums vorhanden
+ Umsatz im Jahr 2025 beträgt mindestens 10 Mio. EUR
+
+Bei Bietergemeinschaften genügt es, wenn ihre Mitglieder insgesamt den geforderten Mindestumsatz erreichen. Entsprechendes gilt bei der Einschaltung von anderen Unternehmen, auf deren Eignung sich der Bieter oder die Bietergemeinschaft beruft</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung über den Umsatz im Tätigkeits-bereich des Auftrags (Testdienstleistungen) in EUR, bezogen auf die letzten drei Geschäftsjahre (2023, 2024 und 2025).
+
+Mindestanforderung - A-Kriterium
+ Umsatz im Tätigkeitsbereich des Auftrags ist in allen Jahren des geforderten Zeitraums vorhanden
+ Umsatz im Tätigkeitsbereich des Auftrags im Jahr 2025 beträgt mindestens 10 Mio. EUR 
+
+Bei Bietergemeinschaften genügt es, wenn ihre Mitglieder insgesamt den geforderten Mindestumsatz erreichen. Entsprechendes gilt bei der Einschaltung von anderen Unternehmen, auf deren Eignung sich der Bieter oder die Bietergemeinschaft beruft.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung über die Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes, in dem der Bieter niedergelassen ist. Zur Nachweisführung soll die Anlage 6a (Erklärung Befähigung und Erlaubnis zur Berufsausübung) verwendet werden.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">nyk</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe.sachsen.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a04190b8d8-74029493154ff964</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Die Nachforderung von Unterlagen richtet sich nach § 56 Abs. 2
+bis 5 der Vergabeverordnung.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Nachfolgende Bedingungen gelten für die Ausführung des vorliegenden Auftrags:
+
+•für den Rahmenvertrag:
+  - vollständig ausgefüllte Vertraulichkeitsvereinbarung (vgl. Anlage 9)
+
+• für Einzelabrufe im Bereich aufwandsbezogene Testdienstleistungen (vgl. Kapitel 7.2.1 ), in deren Rahmen eine Auftragsverarbeitung stattfindet:
+  - Abgabe der "Verpflichtungserklärung Datenschutzrecht" (vgl. Anlage 8) durch alle für die Leistungserbringung eingesetzten Mitarbeiter zum Zeitpunkt der Leistungserbringung,
+  - Abgabe der "Vertraulichkeitsverpflichtung" (vgl. Anlage 11) durch alle für die Leistungserbringung eingesetzten Mitarbeiter zum Zeitpunkt der Leistungserbringung,
+
+• für Einzelabrufe für Penetrationstests und Webchecks für IT-Systeme des Freistaats Sachsen (vgl. Kapitel 7.1.6 der Vergabeunterlage):
+  - Die entsprechenden Tests sind konform der Verordnung zur Gewährleistung der IT-Sicherheit der im Portalverbund und zur Anbindung an den Port</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://evergabe.sachsen.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">94</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Unternehmen haben einen Anspruch auf Einhaltung der bieter- und bewerberschützenden Bestimmungen über das Vergabeverfahren gegenüber dem öffentlichen Auftraggeber.
+Sieht sich ein am Auftrag interessiertes Unternehmen durch die Nichtbeachtung von Vergabevorschriften in seinen Rechten verletzt, ist der Verstoß innerhalb von 10 Kalendertagen gegenüber dem Auftraggeber zu rügen (§ 160 Abs. 3 S. 1 Nr. 1
+Gesetz gegen Wettbewerbsbeschränkungen - GWB). Teilt der Auftraggeber dem Unternehmen mit, der Rüge nichtabhelfen zu wollen, kann von dem Unternehmen ein Antrag auf Nachprüfung gestellt werden. Ein Antrag auf Nachprüfung ist gem. § 160 Abs. 3 GWB unzulässig, soweit:
+- der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+- Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur
+Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+- Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+- mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt. § 135 Abs. 2 GWB
+Die Unwirksamkeit nach Absatz 1 kann nur festgestellt werden, wenn sie im Nachprüfungsverfahren innerhalb von 30 Kalendertagen nach der Information der betroffenen Bieter und Bewerber durch den öffentlichen Auftraggeber über den
+Abschluss des Vertrags, jedoch nicht später als sechs Monate nach Vertragsschluss geltend gemacht worden ist. Hat der Auftraggeber die Auftragsvergabe im Amtsblatt der Europäischen Union bekannt gemacht, endet die Frist zur Geltendmachung der Unwirksamkeit 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-09-28+02:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Rahmenvertrag über Testdienstleistungen 2026</cbc:Name>
+         <cbc:Description languageID="DEU">Mit Hilfe dieser Ausschreibung soll ein externer Dienstleister gefunden werden, mit dem ein Rahmenvertrag über die Erbringung von Testdienstleistungen geschlossen werden kann. 
+
+Aus dem Rahmenvertrag sollen nach Bedarf flexibel verschiedene Testdienstleistungen (Planung, Vorbereitung, Steuerung, Durchführung, Dokumentation, Testautomatisierung) insbesondere für funktionale Tests, Lasttests, Sicherheitstests sowie Usability- und Barrierefreiheitstests einzeln abgerufen werden können. Die Einzelabrufe erfolgen durch eine abrufberechtigte Behörde oder Einrichtung des Freistaates Sachsen in Form von Einzelbeauftragungen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Radebeul</cbc:CityName>
+               <cbc:PostalZone>01445</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DED2E</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2026-12-01+01:00</cbc:StartDate>
+            <cbc:EndDate>2029-11-30+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Die Laufzeit des Rahmenvertrags beträgt drei Jahre mit der Option der einmaligen Verlängerung um ein weiteres Jahr. Der Auftragnehmer hat keinen Anspruch auf die Ausübung der Option. Der Auftraggeber informiert den Auftragnehmer bis spätestens drei Monate vor Vertragsende in Textform über die Inanspruchnahme der Option.
+Die Vertragslaufzeit beginnt am 1. des Monats, der auf den Monat der Zuschlagserteilung folgt, frühestens jedoch am 1. Dezember 2026.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

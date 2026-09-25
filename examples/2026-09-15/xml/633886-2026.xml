@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">PD - Berater der öffentlichen Hand GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Friedrichstr. 149</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10117</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>98005_10000361</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Bundes beim Bundeskartellamt</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Bundeskanzlerplatz 2–10</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>98137_10006156</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">PD - Berater der öffentlichen Hand GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Friedrichstr. 149</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10117</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>98005_10000361</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00633886-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">178/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-15+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ID schemeName="notice-id">6e0ba1a6-ca9f-4d6c-bea3-527188bb9acc</cbc:ID>
+	<cbc:ContractFolderID>d2994bab-b59e-44bd-b3e6-183982561eb3</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-11+02:00</cbc:IssueDate>
+	<cbc:IssueTime>16:19:56+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-13+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode languageID="DEU">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://www.ausschreibungen.pd-g.de/</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID>2026-E-070</cbc:ID>
+		<cbc:Name languageID="DEU">Webhosting und fachliche Unterstützung (Expertisepool) für das „Qualitätssiegel Nachhaltiges Gebäude“ (QNG)</cbc:Name>
+		<cbc:Description languageID="DEU">Auftraggeberin ist die PD Berater der Öffentlichen Hand GmbH. Eine Kundin der Auftraggeberin hat 2021 mit dem „Qualitätssiegel Nachhaltiges Gebäude“ (QNG) eine Dachmarke des nachhaltigen Bauens in Deutschland gegründet. Mit dem „Qualitätssiegel Nachhaltiges Gebäude“ (QNG) soll das nachhaltige Bauen in Deutschland in die Breite getragen werden und eine Mindestqualität für „nachhaltige Gebäude“ sichergestellt werden. Außerdem soll eine rechtssichere Grundlage für die Vergabe von Fördermitteln geschaffen werden, die Zuwendungen im Baubereich in Übereinstimmung mit gesellschaftlichen Zielen (Nachhaltigkeitszielen) ermöglicht. 
+Seit 2022 unterstützt die Auftraggeberin die Kundin mit dem Aufbau und der Etablierung einer QNG Geschäftsstelle mit allen dazugehörigen Tätigkeiten, wie z.B. Hotline, Betrieb einer Website und Weiterentwicklung der QNG-Anforderungen mit den dazugehörigen Veröffentlichungen. Um aktuelle Informationen über das Siegel und den einzuhaltenden Prozessen zur Verfügung zu stellen, wurde im Jahr 2022 die QNG Website https://www.qng.info/ mit einem externen Dienstleister entwickelt und aufgebaut. Die QNG Website stellt eine Wissensplattform dar, die laufende Entwicklungen und Veränderungen aufarbeitet, grundsätzliche Abläufe, Schnittstellen sowie Hilfestelllungen den Nutzern bereit-stellt. 
+Die Vergabe erfolgt in zwei Losen:
+-	Los 1: Hosting, Weiterentwicklung und Betreuung der bestehenden Website 
+-	Los 2: Fachliche Unterstützung (Expertisepool) für das „Qualitätssiegel Nachhaltiges Gebäude“ (QNG).
+Die losspezifischen Aufgaben werden im Folgenden näher beschreiben. Geboten werden kann für ein oder für beide Lose.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">71315200</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1: 1 bis 4 Referenzen über vergleichbare Leistungen. Vergleichbare Leistungen sind Hosting- und Supportprojekte für öffentliche Auftraggeber. Wesentlich ist, dass bei allen Referenzen angeben wird, dass die gehosteten Seiten auf Servern in Europa betrieben werden.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärungen bezüglich des Bestehens oder des Abschlusses einer Betriebs-/ Berufshaftpflichtversicherung in marktüblichem Rahmen. Mindeststandard: Diese Versicherung muss folgende Mindestdeckungssummen je Schadensereignis aufweisen:
+100.000,00 Euro (je Schadensfall). Die Deckungssummen müssen in jedem Versicherungsjahr zumindest zweimal zur Verfügung stehen. Das Bestehen des Versicherungsschutzes ist  innerhalb von zwei Wochen nach Zuschlagserteilung durch Vorlage der Kopie des Versicherungsscheins gegenüber dem Auftraggeber nachzuweisen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>2026-E-070</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.ausschreibungen.pd-g.de/?tid=7787c23836f8454974eb730e16a12c8c</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es gelten die gesetzlich gewährten Möglichkeiten.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterium „Preis“ wird losweise mit 60% gewichtet. 
+Für das Zuschlagskriterium „Preis“ haben die Bieter losweise den jeweiligen Preis für die zu beauftragenden Leistungsbausteine unter Verwendung des jeweiligen Preisblatts (Los 1: Anlage 4a, Los 2: Anlage 4b) anzugeben. Liegen bei einem Los mehrere bewertbare Angebote verschiedener Bieter mit abweichenden Preisen vor, erfolgt eine vergleichende Wertung für das Kriterium mittels linearer Interpolation.
+Je Los gilt: Das bewertbare Angebot mit dem niedrigsten Angebotspreis erhält 60 Bewertungsunkte. „0“ Bewertungspunkte erhält ein fiktives Angebot mit dem 2-fachen des niedrigsten Angebotspreises. Liegt ein Angebot über dem 2-fachen des niedrigsten Bewertungspreises, erhält dieses ebenfalls „0“ Bewertungspunkte. Die Punkteermittlung für die dazwischenliegenden Bewertungspreise erfolgt über eine lineare Interpolation anhand folgender Formel:
+
+PB = MaxP – ((MaxP*Faktor*(Ao-Amin))/Amin)
+PB	Punktzahl des Angebots für das Kriterium Bewertungspreis
+MaxP	Maximale Wertungspunkte
+Faktor	Berechnungsfaktor = 1 (d.h. doppelter Bewertungspreis = 0 Punkte)
+Ao	Zu bewertendes Angebot
+Amin	Mindestangebot
+40	erreichbare Höchstpunktzahl für das Kriterium
+
+Je Los erhält das Angebot mit dem niedrigsten Angebotspreis somit 60 Bewertungspunkte.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzept</cbc:Name>
+						<cbc:Description languageID="DEU">Für das Zuschlagskriterium „Qualität“ haben die Bieter in Los 1 ein Konzept einzureichen.
+
+•	Der Bieter hat darzustellen, wie die Anforderungen an die Performance der Webseite erfüllt wird. Der Bieter hat die Qualität, Flexibilität und Erreichbarkeit des Anbieters aufzuführen. Dabei ist auf die Personalplanung, die Supportstrukturen und die technische Betreuung der Website inklusive Backup- und Sicherheitsmaßnah-men einzugehen.
+•	Der Bieter hat in einem Übergabekonzept Übernahmekonzept die Maßnahmen zur technischen Überführung und Sicherung der Website darzustellen. Dabei ist auf die Dokumentation, Datenmigration und Go-Live einzu-gehen. Hierbei steht ein nahtloser und sicherer Übergang im Vordergrund.
+•	Beschreibung des eingesetzten Systems und Erläuterung dass die Lösung ist in einer DSGVO- und dem BSI-Standard 200-1 (IT-Grundschutz)" bzw. „BSI C5“.konformen Hostingumgebung betrieben wird.
+
+Für das Konzept können maximal 40 Punkte erreicht werden. Zur Bewertung wird ein festgelegtes Schema verwendet. Das Schema wird in den Vergabeunterlagen veröffentlicht.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+				<cac:Prize>
+					<cbc:RankCode>1</cbc:RankCode>
+				</cac:Prize>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.ausschreibungen.pd-g.de/?tid=7787c23836f8454974eb730e16a12c8c</cbc:EndpointID>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">44</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Ein Nachprüfungsantrag ist unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat (§ 160 Abs. 3 Satz 1 Nr. 1 GWB). Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 2 GWB). Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, müssen spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 3 GWB). Ein Nachprüfungsantrag ist zudem unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind (§ 160 Abs. 3 Satz 1 Nr. 4 GWB). Die Zersprengung einer Rahmenvereinbarung durch die Vergabe von Einzelaufträgen ohne erneuten Aufruf zum Wettbewerb muss innerhalb von 30 Kalendertagen ab Kenntnis des Verstoßes, spätestens jedoch innerhalb von 6 Monaten nach Vertragsschluss gerügt und geltend gemacht werden (§ 135 Abs. 2 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID>ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-16+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-10-16+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>12:01:00+02:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cac:SubsequentProcessTenderRequirement>
+					<cbc:Name>buyer-categories</cbc:Name>
+				</cac:SubsequentProcessTenderRequirement>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="InternalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Los 1: Hosting, Weiterentwicklung und Betreuung der bestehenden Website</cbc:Name>
+			<cbc:Description languageID="DEU">Der Auftragnehmer übernimmt das die kontinuierliche Betreuung, Betrieb, Hosting, Bereitstellung der Server-Infrastruktur für den Betrieb der bereits bestehenden Webseite. Zu den Leistungen gehören:
+
+1.	Website-Betreuung, Bereitstellung von Lizenzen
+2.	Website-Hosting und -Optimierung
+3.	Hosting und Weiterentwicklung eines KI-basierten, selbstlernenden Chatbots
+
+Der Auftragnehmer sorgt für einen nahtlosen Übergang ab dem 01. Januar 2027. Der Vertrag hat eine Laufzeit von 4 Jahren. Basis der Beauftragung in Los 1 ist ein EVB-IT Cloudvertrag.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance##Besonders auch geeignet für:selbst##Besonders auch geeignet für:startup#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Berlin</cbc:Description>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2: 1 bis 4 Referenzen über vergleichbare Leistungen. Vergleichbare Leistungen sind Referenzen über die fachliche Begleitung  von Projekten, welche nach Fertigstellung mit einem DGNB Siegel, einem QNG Siegel oder vergleichbaren Siegeln über nachhaltiges Bauen ausgezeichnet wurden. Als fachliche Begleitung wird Anerkannt: Beratung Nachhaltigkeit, Auditor zur Nachhaltigkeit.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärungen bezüglich des Bestehens oder des Abschlusses einer Betriebs-/ Berufshaftpflichtversicherung in marktüblichem Rahmen. Mindeststandard: Diese Versicherung muss folgende Mindestdeckungssummen je Schadensereignis aufweisen:
+100.000,00 Euro (je Schadensfall). Die Deckungssummen müssen in jedem Versicherungsjahr zumindest zweimal zur Verfügung stehen. Das Bestehen des Versicherungsschutzes ist  innerhalb von zwei Wochen nach Zuschlagserteilung durch Vorlage der Kopie des Versicherungsscheins gegenüber dem Auftraggeber nachzuweisen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>2026-E-070</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.ausschreibungen.pd-g.de/?tid=7787c23836f8454974eb730e16a12c8c</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es gelten die gesetzlich gewährten Möglichkeiten.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterium „Preis“ wird losweise mit 60% gewichtet. 
+Für das Zuschlagskriterium „Preis“ haben die Bieter losweise den jeweiligen Preis für die zu beauftragenden Leistungsbausteine unter Verwendung des jeweiligen Preisblatts (Los 1: Anlage 4a, Los 2: Anlage 4b) anzugeben. Liegen bei einem Los mehrere bewertbare Angebote verschiedener Bieter mit ab-weichenden Preisen vor, erfolgt eine vergleichende Wertung für das Kriterium mittels linearer Interpolation.
+Je Los gilt: Das bewertbare Angebot mit dem niedrigsten Angebotspreis erhält 60 Bewertungsunkte. „0“ Bewertungspunkte erhält ein fiktives Angebot mit dem 2-fachen des niedrigsten Angebotspreises. Liegt ein Angebot über dem 2-fachen des niedrigsten Bewertungspreises, erhält dieses ebenfalls „0“ Bewertungspunkte. Die Punkteermittlung für die dazwischenliegenden Bewertungspreise erfolgt über eine lineare Interpolation anhand folgender Formel:
+
+PB = MaxP – ((MaxP*Faktor*(Ao-Amin))/Amin)
+PB	Punktzahl des Angebots für das Kriterium Bewertungspreis
+MaxP	Maximale Wertungspunkte
+Faktor	Berechnungsfaktor = 1 (d.h. doppelter Bewertungspreis = 0 Punkte)
+Ao	Zu bewertendes Angebot
+Amin	Mindestangebot
+40	erreichbare Höchstpunktzahl für das Kriterium
+
+Je Los erhält das Angebot mit dem niedrigsten Angebotspreis somit 60 Bewertungspunkte.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Lösung</cbc:Name>
+						<cbc:Description languageID="DEU">Für das Zuschlagskriterium „Qualität“ haben die Bieter in Los 2 ein eine Fragestellung/Problem zu bearbeiten und die Lösung einzureichen, welche Grundlage der Wertung beim Zuschlagskriterium Qualität sind.
+
+Mit der Lösung können maximal 20 Punkte erreicht werden. Zur Bewertung wird ein festgelegtes Schema verwendet. Das Schema wird in den Vergabeunterlagen veröffentlicht.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+				<cac:Prize>
+					<cbc:RankCode>1</cbc:RankCode>
+				</cac:Prize>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.ausschreibungen.pd-g.de/?tid=7787c23836f8454974eb730e16a12c8c</cbc:EndpointID>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">44</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Ein Nachprüfungsantrag ist unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat (§ 160 Abs. 3 Satz 1 Nr. 1 GWB). Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 2 GWB). Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, müssen spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 3 GWB). Ein Nachprüfungsantrag ist zudem unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind (§ 160 Abs. 3 Satz 1 Nr. 4 GWB). Die Zersprengung einer Rahmenvereinbarung durch die Vergabe von Einzelaufträgen ohne erneuten Aufruf zum Wettbewerb muss innerhalb von 30 Kalendertagen ab Kenntnis des Verstoßes, spätestens jedoch innerhalb von 6 Monaten nach Vertragsschluss gerügt und geltend gemacht werden (§ 135 Abs. 2 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID>ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-16+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-10-16+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>12:01:00+02:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+				<cac:SubsequentProcessTenderRequirement>
+					<cbc:Name>buyer-categories</cbc:Name>
+				</cac:SubsequentProcessTenderRequirement>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="InternalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Los 2: Fachliche Unterstützung (Expertisepool) für das „Qualitätssiegel Nachhaltiges Gebäude“ (QNG)</cbc:Name>
+			<cbc:Description languageID="DEU">Der Expertisepool soll bei der Beratung zu Anfragen, die aus der Anwendung des QNG in der Praxis resultieren, unterstützen sowie bei der Weiterentwicklung der QNG-Anforderungen und der Einführungs- und Implementierungsphase der überarbeiteten Anforderungen. Zu den Leistungen gehören: 
+•	Unterstützung bei der inhaltlichen Weiterentwicklung des Qualitätssiegels 
+•	Unterstützung bei der Überarbeitung und Qualitätssicherung der zugehörigen Dokumente hinsichtl. Verständlichkeit und fachlicher Richtigkeit 
+•	Unterstützung bei der Erstellung bzw. Überarbeitung begleitender Materialien wie FAQ und Schnellantworten 
+•	Erstellung von Schulungsunterlagen für die Zertifizierungsstellen und Auditor:innen im Rahmen der Einführung der überarbeiteten Anforderungen 
+•	Unterstützung bei der Bearbeitung komplexer oder fachlich anspruchs- voller Anfragen, ggf. Unterstützung bei der fortlaufenden Qualitätssicherung von neuen FAQs und Schnellantworten
+
+Leistungsbeginn ist der 01.01.2027. Der Vertrag hat eine Laufzeit von 4 Jahren. Basis der Beauftragung in Los 2 ist ein Dienstvertrag. Es besteht keine feste Abnahmemenge. Das geschätzte Volumen ergibt sich aus der im Preisblatt angegebenen Schätzmenge. Der Vertrag ist begrenzt auf 280.000 Euro.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance##Besonders auch geeignet für:selbst##Besonders auch geeignet für:startup#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">71315200</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Berlin</cbc:Description>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

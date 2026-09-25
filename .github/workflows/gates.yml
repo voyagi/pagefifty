@@ -23,7 +23,8 @@ jobs:
           node-version-file: '.nvmrc'
           cache: npm
       - run: npm ci
-      - run: npm test
+      # The coverage run is the full test run, so the floors bind every pull request.
+      - run: npm run test:coverage
       - run: npm run lint
       # gate ends with gate:size, which builds, so the client bundle exists for the step after it.
       - run: npm run gate

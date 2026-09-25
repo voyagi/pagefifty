@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.bensheim.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Magistrat der Stadt Bensheim</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kirchbergstraße 18</cbc:StreetName>
+                           <cbc:CityName>Bensheim</cbc:CityName>
+                           <cbc:PostalZone>64625</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE715</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 36428287</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Offizielle Vergabekammer des Landes Hessen beim Regierungspräsidium Darmstadt</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Fristenbriefkasten: Luisenplatz 2</cbc:StreetName>
+                           <cbc:CityName>Darmstadt</cbc:CityName>
+                           <cbc:PostalZone>64283</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE711</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE812056745</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00632552-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">177/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">37c21e6b-76c8-49e9-bf49-6b94270f239d</cbc:ID>
+   <cbc:ContractFolderID>cefe7f4f-e860-48ee-b1a4-0c9501f809f4</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-10+02:00</cbc:IssueDate>
+   <cbc:IssueTime>08:57:28+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-12+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">Verlängerung VMware Cloud Foundation für 3 Jahre und VxRail Prosupport Plus für 1 Jahr</cbc:Name>
+      <cbc:Description languageID="DEU">Der Magistrat der Stadt Bensheim betreibt bereits eine auf VMware Cloud Foundation basierende Virtualisierungsinfrastruktur.
+Im Jahr 2023 wurden hierfür die entsprechenden VMware-Lizenzen sowie die zugehörige Dell VxRail P675F Hardware beschafft.
+Im Dezember 2026 endet die derzeitige Lizenzlaufzeit. Gegenstand dieser Ausschreibung ist daher die Verlängerung der VMware Cloud Foundation-Lizenzierung für weitere drei Jahre.
+
+Die vorhandene Dell VxRail P675F Server Hardware erfüllt weiterhin die bestehenden Leistungsanforderungen und soll unverändert weiterbetrieben werden. Für die Hardware ist daher keine Neubeschaffung vorgesehen.
+
+Ergänzend soll der bestehende Dell ProSupport Plus and 4Hr Mission Critical VSAN ELA für einen Zeitraum von einem Jahr verlängert werden.
+
+Informationen zum Broadcom VMware Cloud Foundation Account:
+End User Name: Stadt Bensheim
+End User Address: Kirchbergstraße 18; 64625 Bensheim – Germany – Hessen
+End User E-Mail: [removed]
+Site ID: 15657064
+Customer Number: 6346316
+License Numbers: VO-4173952223, VO-4173529855, VO-4151528742, VO-40045805</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48700000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Bensheim</cbc:CityName>
+            <cbc:CountrySubentityCode listName="nuts">DE715</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft gewählt:
+Art: Technische und berufliche Leistungsfähigkeit
+Beschreibung: Formblatt "Nachweis Eignung" - Angaben zum Namen des Bieters / zum bevollmächtigten Vertreter / Ansprechpartner, Adresse und Kontaktdaten, Präqualifikationsnummer und dazugehöriges Register/PQ-Stelle</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft gewählt:
+Art: Technische und berufliche Leistungsfähigkeit
+Beschreibung: Formblatt "Nachweis Eignung" - Angaben zur Bietergemeinschaft mit Ansprechpartner,
+Adresse und Kontaktdaten, Leistungsanteil innerhalb der Bietergemeinschaft, Präqualifikationsnummer und dazugehöriges Register/PQ-Stelle</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Technische und berufliche Leistungsfähigkeit
+Beschreibung: Formblatt Nachweis Eignung – Eigenerklärung zu §§ 123 / 124 GWB (von jedem Einzelbieter, Mitglieder der Bietergemeinschaft und Nachunternehmern auszufüllen)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Technische und berufliche Leistungsfähigkeit
+Beschreibung: Formblatt "Verpflichtungserklärung zu Tariftreue und Mindestentgelt HVTG" (von jedem Einzelbieter, Mitglieder der Bietergemeinschaft und Nachunternehmern auszufüllen)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Technische und berufliche Leistungsfähigkeit
+Beschreibung: Formblatt "Eigenerklärung zur Umsetzung der EU-Sanktionen
+gegen Russland" (von jedem Einzelbieter, Mitglieder der Bietergemeinschaft und Nachunternehmern auszufüllen)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Eignung zur Berufsausübung
+Beschreibung: Formblatt Nachweis Eignung - Eintrag in das Berufs- oder Handelsregister (von jedem Einzelbieter und Mitgliedern der
+Bietergemeinschaft einzureichen)
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert, einen entsprechenden Nachweis nach den Rechtsvorschriften, in dem er niedergelassen ist, über die Eintragung in einem Berufs- oder Handelsregister dieses Staats oder auf andere Weise die erlaubte
+Berufsausübung nachweisen (bei Bietergemeinschaften vorzulegen für jedes Mitglied) einzureichen. Die Nachweise können als Scan der Originalurkunden vorgelegt werden. Das Abrufdatum vorgelegter Handelsregisterauszüge darf nicht älter als 12 Monate ab
+Auftragsbekanntmachung sein. Die gesonderte Aufforderung entfällt, insofern der jeweilige Bieter einen Präqualifikationsnachweis mit dem Angebot abgegeben hat.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Wirtschaftliche und finanzielle Leistungsfähigkeit
+Beschreibung: Formblatt Nachweis Eignung - Eigenerklärung über das Vorliegen einer Betriebshaftpflichtversicherung 
+
+Bei Bietergemeinschaften sind diese Eigenerklärungen für jedes Mitglied getrennt zu erbringen.
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert eine entsprechende Versicherungspolice einzureichen. Die gesonderte Aufforderung entfällt, insofern der jeweilige Bieter einen Präqualifikationsnachweis mit dem Angebot abgegeben hat.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Wirtschaftliche und finanzielle Leistungsfähigkeit
+Beschreibung: Formblatt Nachweis Eignung - Erklärung über den Gesamtumsatz der letzten
+drei Geschäftsjahre (auch von Bietergemeinschaftsmitgliedern). Der Anbieter muss einen durchschnittlichen Umsatz von mindestens 1. Mrd. Euro
+innerhalb der letzten drei Jahren nachweisen (Geschäftsjahre 2023 - 2025</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Maßnahmen zur Sicherstellung der Qualität
+Beschreibung: Formblatt Nachweis Eignung - Erklärungen/Nachweise zu ausgeschriebener Leistung
+Eigenerklärung, dass der Bieter den VMware by Broadcom Pinnacle Partner Status besitzt.
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert die o. g. entsprechenden Nachweise einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Maßnahmen zur Sicherstellung der Qualität
+Beschreibung: Formblatt Nachweis Eignung - Erklärungen/Nachweise zu ausgeschriebener Leistung
+Eigenerklärung, dass der Bieter den Dell Titanium Partner Status besitzt.
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert die o. g. entsprechenden Nachweise einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Zertifikate von Qualitätskontrollinstituten
+Beschreibung: Formblatt Nachweis Eignung - Erklärungen/Nachweise zu ausgeschriebener Leistung
+Eigenerklärung, dass der Bieter ISO/IEC 9001 zertifiziert ist.
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert die o. g. entsprechenden Nachweise einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Zertifikate von Qualitätskontrollinstituten
+Beschreibung: Formblatt Nachweis Eignung - Erklärungen/Nachweise zu ausgeschriebener Leistung
+Eigenerklärung, dass der Bieter ISO/IEC 27001 zertifiziert ist.
+
+Nach der Angebotsprüfung wird der Bestbietende dazu aufgefordert die o. g. entsprechenden Nachweise einzureichen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aus technischen Gründen wurde vorgehendes Kriterium beispielhaft ausgewählt:
+Art: Durchschnittliche jährliche Belegschaft
+Beschreibung: Formblatt Nachweis Eignung - Erklärung, aus der die durchschnittliche Beschäftigtenanzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich ist. Der Anbieter muss eine durchschnittlich jährliche Anzahl von mind. 1.500 Beschäftigte in den letzten drei Jahren nachweisen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E86136116</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E86136116</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Mit dem zuvorstehenden Satz "Die Nachforderungen von Unterlagen ist teilweise ausgeschlossen" ist gemeint: 
+Die Auftraggeberin kann den Bewerber oder Bieter unter Einhaltung der Grundsätze der Transparenz und der Gleichbehandlung auffordern,
+fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene
+Unterlagen nachzureichen oder zu vervollständigen. Zusätzliche Informationen: fehlende Unterlagen
+werden nach § 56 Absatz 2 VgV nachgefordert. Werden die von der Vergabestelle nachgeforderten Unterlagen zu dem von der Vergabestelle bestimmten Zeitpunkt nicht oder nicht vollständig vorgelegt, kann das Angebot ausgeschlossen werden.
+
+Die nachfolgenden Unterlagen sind mit Angebotsabgabe einzureichen:
+- Leistungsverzeichnis
+- Angebotsschreiben (633)
+- Formblatt Nachweis Eignung
+- Eigenerklärung BMWK Russland
+- Verpflichtungserklärung Tariftreue und Mindestlohn
+- Nachunternehmer (233)
+- Eignungsleihe (235)
+
+
+Die nachfolgenden Nachweise unterliegen dem Bestbieterprinzip und werden auf gesondertes Verlangen durch die Vergabestelle beim Bestbietenden angefordert:
+
+- Befähigung und Erlaubnis zur Berufsausübung gem. §§ 44. 75 Abs. 1 VgV (Berufs- oder Handelsregister dieses Staats, in dem er zugelassen ist,  oder auf andere Weise die erlaubter Nachweis der Berufsausübung). Der Nachweis darf nicht älter als 12 Monate ab Auftragsbekanntmachung sein. Die gesonderte Aufforderung entfällt, insofern der jeweilige Bieter einen Präqualifikationsnachweis mit dem Angebot abgegeben hat.
+- Berufshaftpflichtversicherungsnachweis. Die gesonderte Aufforderung entfällt, insofern der jeweilige Bieter einen Präqualifikationsnachweis mit dem Angebot abgegeben hat.
+- Nachweis über das Bestehen des VMware by Broadcom Pinnacle Partner Status.
+- Nachweis über das Bestehen des Dell Titanium Partner Status.
+- Nachweis einer ISO/IEC 9001 Zertifizierung.
+- Nachweis einer ISO/IEC 27001 Zertifizierung.
+- Verpflichtungserklärung Eignungsleihe (236)</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Preis = Gewichtung 100 %</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E86136116</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">62</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Informationen über die
+Überprüfungsfristen: 
+(1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Tagen nach Kenntnisnahme
+rügen.
+(2)Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach § 160 Abs. 3 Nr. 2GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber
+zu rügen.
+(3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen.
+(4) Ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+            <cac:MediationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:MediationParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-13+02:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-10-13+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 E86136116</cbc:ID>
+         <cbc:Name languageID="DEU">Verlängerung VMware Cloud Foundation für 3 Jahre und VxRail Prosupport Plus für 1 Jahr</cbc:Name>
+         <cbc:Description languageID="DEU">Der Magistrat der Stadt Bensheim betreibt bereits eine auf VMware Cloud Foundation basierende Virtualisierungsinfrastruktur.
+Im Jahr 2023 wurden hierfür die entsprechenden VMware-Lizenzen sowie die zugehörige Dell VxRail P675F Hardware beschafft.
+Im Dezember 2026 endet die derzeitige Lizenzlaufzeit. Gegenstand dieser Ausschreibung ist daher die Verlängerung der VMware Cloud Foundation-Lizenzierung für weitere drei Jahre.
+
+Die vorhandene Dell VxRail P675F Server Hardware erfüllt weiterhin die bestehenden Leistungsanforderungen und soll unverändert weiterbetrieben werden. Für die Hardware ist daher keine Neubeschaffung vorgesehen.
+
+Ergänzend soll der bestehende Dell ProSupport Plus and 4Hr Mission Critical VSAN ELA für einen Zeitraum von einem Jahr verlängert werden.
+
+Informationen zum Broadcom VMware Cloud Foundation Account:
+End User Name: Stadt Bensheim
+End User Address: Kirchbergstraße 18; 64625 Bensheim – Germany – Hessen
+End User E-Mail: [removed]
+Site ID: 15657064
+Customer Number: 6346316
+License Numbers: VO-4173952223, VO-4173529855, VO-4151528742, VO-40045805</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48700000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48218000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DE715</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.bitbw.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Land Baden-Württemberg vertreten durch die IT Baden-Württemberg</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Burgenlandstr. 33</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70469</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A8017-58</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://rp.baden-wuerttemberg.de/rpk/abt1/ref15/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kapellenstraße 17</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76137</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00627137-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">176/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-11+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">eecb9734-bc4a-4ee7-bc94-50af978830b7</cbc:ID>
+	<cbc:ContractFolderID>d9c293ff-f6aa-4e7b-848a-2b72e94be249</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-10+02:00</cbc:IssueDate>
+	<cbc:IssueTime>09:30:49+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-10+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Genaue Angaben zu den Fristen für die Einlegung von Rechtsbehelfen:
+
+1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Kalendertagen nach Kenntnisnahme rügen.
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach §160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen.
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen.
+
+4) Ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYYLDYDMPWNY8</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">BIT14-0230-1165</cbc:ID>
+		<cbc:Name languageID="DEU">Rahmenvereinbarung Cisco</cbc:Name>
+		<cbc:Description languageID="DEU">Rahmenvereinbarung über die Beschaffung von Cisco-Komponenten zur Erweiterung und den Weiterbetrieb der Netzwerkinfrastruktur. Zudem sollen Dienstleistungen beschafft werden.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXUEYYLDYDMPWNY8#
+
+
+- Wir erklären, dass es sich bei dem Bieter nicht um a) russische Staatsangehörige oder in Russland niedergelassene natürliche oder juristische Personen, Organisationen oder Einrichtungen, b) juristische Personen, Organisationen oder Einrichtungen, deren Anteile zu über 50 % unmittelbar oder mittelbar von einer der unter Buchstabe a genannten Organisationen gehalten werden, oder c) natürliche oder juristische Personen, Organisationen oder Einrichtungen, die im Namen oder auf Anweisung einer der unter Buchstabe a oder b genannten Organisationen handelt. Des Weiteren wird bestätigt, dass das Vorgenannte auch nicht auf Unterauftragnehmer/Nachunternehmer, Lieferanten oder Unternehmen deren Leistung zur Vertragserfüllung in Anspruch genommen wird, zutrifft. Dies gilt, soweit mehr als 10 % des Auftragswertes auf betroffene Unterauftragnehmer/Nachunternehmer, Lieferanten oder Unternehmen deren Leistung zur Vertragserfüllung in Anspruch genommen wird, entfallen. (A) 
+- Angabe einer verantwortliche deutschsprachige Ansprechperson für die anschließende Auftragsabwicklung, die für koordinierende Fragen hinsichtlich der Leistungserbringung zur Verfügung steht. (A)
+- Eigenerklärung, dass der Bieter die Tariftreue- und Mindestentgeltbestimmungen nach dem Landestariftreue- und Mindestentgeltgesetz einhält.(A) - Eigenerklärung, dass der Bieter die Anforderungen aus Anlage 2 zum Vertrag - Leistungsbeschreibung vollständig erbringen kann und für die erbrachten Dienstleistungen das Muster Leistungsnachweise verwenden wird. (A) - Eigenerklärung, dass der Bieter bzw. die von ihm angebotenen Personen im Falle einer Zuschlagserteilung mit der Anlage 11 zum Vertrag - Einwilligung Zuverlässigkeitsüberprüfung einverstanden sind, die Anlage ausfüllen und zeitnah vor der Leistungserbringung der BITBW übergeben wird. (A) 
+
+- Angabe der Kontaktdaten des/der, Service-Managers/-Managerin über welchen die Kommunikation bei Störungen stattfindet. (A)
+- Eigenerklärung, dass der Bieter die Versicherung bei Angebotsabgabe nicht gekündigt ist und für den Leistungszeitraum ein Versicherungsschutz bestehen bleibt. (A)
+- Eigenerklärung, dass der Bieter über unser Vermögen nicht das Insolvenzverfahren oder ein vergleichbares gesetzliches Verfahren eröffnet oder die Eröffnung beantragt oder dieser Antrag mangels Masse abgelehnt wurde. (A)
+- Eigenerklärung, dass der Bieter nicht in Liquidation befinden. (A)
+- Eigenerklärung, dass der Bieter der Verpflichtung zur Zahlung von Steuern, Abgaben und Beiträgen zur gesetzlichen Sozialversicherung (u. a. auch zur Berufsgenossenschaft) ordnungsgemäß nachgekommen sind. (A)
+- Eigenerklärung, dass der Bieter keine Verstöße im Sinne des § 5 des Gesetzes zur Bekämpfung der Schwarzarbeit begangen haben, bzw. keine Eintragungen im Wettbewerbsregister wegen illegaler Beschäftigung bestehen. (A)
+- Angabe der Kontaktdaten des/der Sabotageschutz-beauftragten oder Sicherheits-bevollmächtigten (m/w/d), über welchen die Kommunikation der Sicherheitsüberprüfung stattfindet. (A)
+- Nachweis einer Projektreferenz aus dem Zeitraum 07/2023 bis 07/2026 mit einem Auftragsvolumen von mindestens 5 Millionen EUR in der Öffentlichen Verwaltung (Bundes- oder Landesebene), die der Bieter als verantwortliches Unternehmen mit Beschaffung von Produkten des Herstellers Cisco Systems, Inc. erbracht hat. 
+- Die Referenz muss in Art, Umfang und Schwierigkeit mit der zu vergebende Leistung vergleichbar sein. Die nebenstehenden Inhalte über die Referenz müssen angegeben werden: (A)
+- Eigenerklärung, dass der Bieter die nachfolgend aufgelisteten Gesetze, Richtlinien und Standards im Rahmen unserer Leistungserbringung berücksichtigen werden: (A)
+- Datenschutzgesetz des Bundes (BDSG), des Landes (LDSG BW) und DS-GVO
+- Eigenerklärung, dass der Bieter damit einverstanden, dass mit Zuschlag im Bedarfsfall die Vereinbarung zur Auftragsverarbeitung bezüglich im Auftrag verarbeiteter personenbezogener Daten mit der Auftraggeberin geschlossen wird. (A)
+- Eigenerklärung, dass der Bieter (inklusive etwaiger Unterauftragsnehmer) keine personenbezogenen Daten (inkl. Diagnose- oder Telemetriedaten) für eigene Zwecke im Rahmen der Auftragsverarbeitung verarbeiten. (A)
+- Wird eine Drittlandübermittlung von personenbezogenen Daten im Rahmen der Auftragsverarbeitung durch den Bieter nicht ausgeschlossen, sind die Anforderungen des Kapitels V der DS-GVO zu berücksichtigten und nachfolgendes mit Angebotsabgabe zur Verfügung zu stellen: (A)
+- Angabe unter welchen Bedingungen des Kapitels V der DS-GVO die Drittlandübermittlung erfolgen soll. Falls sich der Bieter auf die neuen Standarddatenschutzklauseln* stützt, Übermittlung des Musters der Kommission, welches für den Abschluss verwendet werden soll, inklusive: 
+- Angabe, welche personenbezogenen Daten inkl. Diagnose-/Telemetrie-/Metadaten in welches Drittland übermittelt werden sollen (Kategorien personenbezogener Daten nebst Arten der personenbezogenen Daten, Zweck).  
+- Angabe der eingesetzten Unterauftragsverarbeiter nebst Sitz, Funktion und welche personenbezogene Daten diese verarbeiten. 
+- Angabe der vertraglichen, technischen und organisatorischen Maßnahmen, die ergriffen werden, um eine datenschutzkonforme Drittlandübermittlung und Verarbeitung zu gewährleisten (z. B. Pseudonymisierung, ausreichende Verschlüsselung).
+- Die durch den Bieter durchgeführte Drittlandübermittlungs-Folgenabschätzung (Transfer Impact Assessment). 
+- Angabe, wie die Auftraggeberin bei Zugriffen oder Anträgen auf Offenlegung an den Auftragsverarbeiter (oder einen seiner Unterauftragsverarbeiter), durch Behörden eines Drittlandes auf personenbezogene Daten, unterrichtet wird (Informationskanal, z. B. per E-Mail).
+- Eigenerklärung, dass der Bieter die nachfolgend aufgelisteten Gesetze, Richtlinien und Standards im Rahmen unserer Leistungserbringung berücksichtigen werden: (A)
+- Standards und Kompendium des Bundesamts für Sicherheit in der Informationstechnik, insbesondere der Standards 200-2 und 200-3 im Rahmen der Erstellung eines Info-Sicherheitskonzepts
+- Eigenerklärung, dass der Bieter zu sichert, dass in der Logistik- und Lieferkette wirksame Kontrollen durchgeführt werden, die sicherstellen, dass:
+- Systeme keine manipulierten oder gefälschten Komponenten beinhalten.
+- Systeme der Spezifikation entsprechen und keine verdeckten Funktionen bei der Herstellung implementiert wurden. (A)
+
+- Weitere Anforderungen ergeben sich aus den Allgemeinen Angaben und dem Angebotsblatt Unternehmen. (A)</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32424000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32413100</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32422000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32428000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48219500</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die Leistungen sind in der Regel an den Standorten der Auftraggeberin (BITBW) zu 
+erbringen. 
+Die Auftraggeberin kann bestimmen, dass im Einzelfall Leistungen durch den 
+Auftragnehmer auch bei anderen Dienststellen und Einrichtungen des Landes Baden
+Württemberg erbracht werden. 
+Weitere Kosten (z. B. Reise-, Nebenkosten) wie in der Anlage 3 zum Vertrag - Preisblatt 
+angegeben, können nicht geltend gemacht werden. 
+Im Falle einer remoten Leistungserbringung erfolgt diese grundsätzlich von Deutschland 
+aus. Sofern die Leistungserbringung innerhalb der EU erfolgen soll, muss dies vor der 
+Leistungserbringung der AG angezeigt und von dieser vorab genehmigt werden.</cbc:Description>
+			<cac:Address>
+				<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Allgemeine Angaben (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Haftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Handelsregister (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-proc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz der Cisco Autorisierung für das Buying Model "Enterprise Agreement" (EA / EA 3.0) für alle angebotenen Architekturen) (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz des Partnerstatus "Cisco Preferred Networking Partner") (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz des Partnerstatus "Cisco Preferred Security Partner") (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz des Partnerstatus "Cisco Preferred Collaboration Partner") (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz des Partnerstatus "Cisco Preferred Cloud &amp; AI Infrastructure Partner") (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gemäß Angebotsblatt Unternehmen (Besitz des Partnerstatus "Cisco Preferred Services Partner") (Mit dem Angebot; Mittels Dritterklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYYLDYDMPWNY8/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es wird darauf hingewiesen, dass die Aufklärung innerhalb der gesetzten Frist vorzunehmen ist und der Teilnahmeantrag / das Angebot gemäß § 57 VgV ausgeschlossen wird, wenn die Nachlieferung nicht innerhalb der Frist erfolgt, verweigert wird oder unzureichend ist.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Eigenerklärung, dass keine rechtskräftigen Verurteilungen der in § 123 GWB aufgezählten Straftaten vorliegen. (A) - Eigenerklärung, dass keine Verstöße der in § 124 GWB aufgezählten fakultativen Ausschlussgründe vorliegen. (A) - Eigenerklärung, dass keine fakultativen Ausschlussgründe nach § 42 Abs. 1 VgV i. V. m. § 124 GWB vorliegen. (A) - Angabe, von Name und Hauptsitz seines Unternehmens. (A) - Angabe, ob der Bieter gemäß der KMU-Definition der Europäischen Kommission (EU-Empfehlung 2003/361) zur Gruppe der Kleinstunternehmen, kleinen oder mittleren Unternehmen (KMU) gehört. (A) - Angabe der nationale Identifikationsnummer an. (A) - Angabe, ob das Unternehmen börsennotiert ist. (A) - Angabe der Staatsangehörigkeit(en) des/der Eigentümer*in bzw. der Eigentümer*innen an. (A) 
+- Eigenerklärung, ob beabsichtigt wird Unterauftragnehmer einzusetzen. (A) 
+
+siehe Bewerbungsbedingungen und Anlage 1 zum Vertrag - Ergänzende Vereinbarungen</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYYLDYDMPWNY8</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">130</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Genaue Angaben zu den Fristen für die Einlegung von Rechtsbehelfen:
+
+1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Kalendertagen nach Kenntnisnahme rügen.
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach §160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen.
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen.
+
+4) Ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYYLDYDMPWNY8</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-20+02:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-02+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">BIT14-0230-1165</cbc:ID>
+			<cbc:Name languageID="DEU">Rahmenvereinbarung Cisco</cbc:Name>
+			<cbc:Description languageID="DEU">Rahmenvereinbarung über die Beschaffung von Cisco-Komponenten zur Erweiterung und den Weiterbetrieb der Netzwerkinfrastruktur. Die Produktgruppen sowie die geschätzte Abnahmemenge für die maximale Gesamtlaufzeit von vier Jahren ergeben sich aus der Anlage 3 zum Vertrag - Preisblatt. 
+Die dort aufgeführten exemplarischen Produkt- und Servicepreise sowie die Dienstleistungskosten dienen in Kombination mit den geschätzten Mengenangaben der Ermittlung des Bewertungspreises der Angebote. Es werden die Rabatte für Hardware, Subscription und Services zu verschiedenen Laufzeiten (1 Jahr, 3 Jahre und 5 Jahre)  zu den Produktgruppen in Tabellenblatt A und zu den Produkten im Tabellenblatt B abgefragt. Im Einzelnen:
+Produktgruppe:
+
+Cisco Catalyst Switching Produkte:
+6 Stück C9500-DNA-48Y4C-A 
+6 Stück C9500-48Y4C-A
+4 Stück C9500-24Y4C-A
+4 Stück C9500-DNA-24Y4C-A
+10 Stück C9K-PWR-650WAC-R/2
+10 Stück C9300-24P-A
+10 Stück PWR-C1-715WAC-P/2
+50 Stück C9200L-24P-4X-E
+50 Stück C9200L-DNA-E-24-3Y
+200 Stück C9200L-48PL-4X-E
+200 Stück C9200L-DNA-E-48-3Y
+250 Stück PWR-C5-600WAC/2
+100 Stück C9200L-STACK-KIT
+1 Stück DN3-HW-APL-L
+120 Stück C9300 -24T-E
+20 Stück C9300 -48T-E
+16 Stück C9300-NM-8X
+6 Stück C9300-NM-4G
+
+Cisco Nexus &amp; Data Center Networking Produkte:
+300 Stück N9K-C93180YC-FX3
+55 Stück NXK-MEM-16GB
+50 Stück C1E1TN9300XF-3Y
+30 Stück N9K-C93600CD-GX
+30 Stück C1E1TN9300XF2-3Y
+20 Stück N9K-C9348GC-FX3
+20 Stück NXK-MEM-32GB
+20 Stück C1E1TN9300GF-3Y
+20 Stück N9K-C9336C-FX2-B2
+20 Stück C1E1TN9300XF-3Y
+
+Cisco Router Produkte:
+280 Stück C8200-1N-4T 
+85 Stück DNA-P-T2-A-3Y
+200 Stück ROUT-P-C8200-E-7Y
+6 Stück C8475-G2
+3 Stück C8500-20X6C
+6  Stück Cisco Routing Advantage On-Premise Lic 
+               for C8500 - 7Y
+
+Cisco Wireless Produkte:
+1000 Stück CW9174I-CFG
+1000 Stück LIC-CW-A
+4 Stück CW9800H1
+4 Stück CW9800L
+
+Cisco Meraki Produkte:
+1 Stück Cisco Meraki Hardware
+1 Stück Cisco Meraki Software Subscition
+
+Cisco Security Produkte:
+4 Stück SNS-3855-K9
+100 Stück ISE-A-LIC
+9000 Stück ISE-E-LIC
+100000 Stück EMAIL-SEC-SUB
+
+Cisco Collaboration Produkte:
+1 Stück Cisco Collaboration Produkte Hardware
+1 Stück Cisco Collaboration Software Subscription
+
+Cisco Observability &amp; Cloud Produkte:
+1 Stück Cisco Observability &amp; Cloud Produkte
+
+alle anderen Cisco Produkte:
+1 Stück Alle anderen Cisco Produkte Hardware
+1 Stück Alle anderen Cisco Produkte Software 
+             Subscription
+
+Cisco Support Services Produkte:
+2 Stück CON-SSSNT-SNS3655K
+2 Stück CON-SSSNT-C98008KC
+2 Stück CON-SSSNT-C9800LCL
+
+Cisco Professional Services (CX) Produkte:
+1 Stück Cisco Professional Services (CX)
+
+Zusätzlich sind Im Tabellenblatt C die Preise für
+7.096 Dienstleistungsstunden einzutragen.
+
+Der Bedarf kann nicht verbindlich und abschließend festgelegt werden, da er von verschiedenen Faktoren abhängt. Diese Angaben geben lediglich die geschätzte Auftragsmenge sowie den voraussichtlichen Zeitraum der Leistungserbringung wieder. Daher können die tatsächlichen Abrufe von den prognostizierten Mengen und Zeiträumen abweichen. Ein Rechtsanspruch auf Abnahme der geschätzten Auftragsmengen besteht nicht.
+
+Die Vertragslaufzeit beginnt mit Zuschlagserteilung frühestens aber zum 12.12.2026 und beträgt, sofern vorher keine Kündigung erfolgt, zunächst 24 Monate (Mindestvertragslaufzeit). Die Auftraggeberin behält sich vor, den Vertrag zweimal um jeweils ein Jahr zu verlängern (optionale Vertragszeiträume). 
+Die Mindestvertragslaufzeit verlängert sich automatisch um ein weiteres Jahr, sofern nicht drei Monate vor Ablauf der Vertragslaufzeit eine Kündigung durch die Auftraggeberin erfolgt. Für den zweiten optionalen Verlängerungszeitraum gilt selbiges.
+
+Der Vertrag endet in jedem Fall mit dem Erreichen der maximalen Gesamtauftragsgrenze von 17.647.059,66 EUR netto; 21.000.001,00 EUR brutto (inkl. optionaler Leistungen). 
+Wird der Auftragswert durch eine Auftragsänderung während der Vertragslaufzeit gem. § 132 GWB erhöht, so endet der Vertrag mit dem Erreichen dieses neuen Auftragswertes. 
+Vom Vertragsende unberührt bleibt die Verpflichtung des Auftragnehmers zur vertragskonformen Leistungserbringung der im Vertragszeitraum erfolgten Beauftragungen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32424000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32413100</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32422000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32428000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48219500</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Leistungen sind in der Regel an den Standorten der Auftraggeberin (BITBW) zu 
+erbringen. 
+Die Auftraggeberin kann bestimmen, dass im Einzelfall Leistungen durch den 
+Auftragnehmer auch bei anderen Dienststellen und Einrichtungen des Landes Baden
+Württemberg erbracht werden. 
+Weitere Kosten (z. B. Reise-, Nebenkosten) wie in der Anlage 3 zum Vertrag - Preisblatt 
+angegeben, können nicht geltend gemacht werden. 
+Im Falle einer remoten Leistungserbringung erfolgt diese grundsätzlich von Deutschland 
+aus. Sofern die Leistungserbringung innerhalb der EU erfolgen soll, muss dies vor der 
+Leistungserbringung der AG angezeigt und von dieser vorab genehmigt werden.</cbc:Description>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Die Auftraggeberin behält sich vor, den Vertrag zweimal um jeweils ein Jahr zu verlängern (optionale Vertragszeiträume). 
+Die Mindestvertragslaufzeit verlängert sich automatisch um ein weiteres Jahr, sofern nicht drei Monate vor Ablauf der Vertragslaufzeit eine Kündigung durch die Auftraggeberin erfolgt. Für den zweiten optionalen Verlängerungszeitraum gilt selbiges.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
