@@ -1,6 +1,14 @@
 // scripts/scrub-capture.mjs run as a person runs it, on a throwaway capture in the temp folder.
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import {
+	linkSync,
+	mkdirSync,
+	mkdtempSync,
+	readFileSync,
+	rmSync,
+	symlinkSync,
+	writeFileSync
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -199,6 +207,19 @@ describe('scrub-capture.mjs', () => {
 		expect(throughFile.status).toBe(1);
 		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 		expect(readFileSync(join(source, 'notices.json'), 'utf8')).toBe(beforeJson);
+	});
+
+	// A hard link is an ordinary file entry, so no link check sees it: the copy must never write into
+	// an existing file, only replace the entry.
+	it('leaves the source alone when a copy file is a hard link to it', () => {
+		const before = readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8');
+		const hard = join(root, 'hard-linked');
+		mkdirSync(join(hard, 'xml'), { recursive: true });
+		linkSync(join(source, 'xml', '000001-2026.xml'), join(hard, 'xml', '000001-2026.xml'));
+		const copied = run('--from', source, '--to', hard);
+		expect(copied.status).toBe(0);
+		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
+		expect(readFileSync(join(hard, 'xml', '000001-2026.xml'), 'utf8')).toContain(SCRUB_PLACEHOLDER);
 	});
 
 	it('refuses a copy into a child folder whose name starts with two dots', () => {

@@ -27,7 +27,7 @@
 // (or a usage error),
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
-import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { decodeCharacterReferences, isUnreadableCaptureFile } from '../src/lib/snapshot/capture-files.ts';
 import {
@@ -118,6 +118,14 @@ function linkedTargets(to, names) {
 	return targets.filter(isLink);
 }
 
+// A file already in the copy may share its content with the source (a hard link looks like any
+// other file), so it is never written into: its entry is removed, which leaves the source's content
+// alone whatever kind of link the entry was, and a new file is created that refuses to overwrite.
+function writeFresh(path, text) {
+	rmSync(path, { force: true });
+	writeFileSync(path, text, { flag: 'wx' });
+}
+
 function copyScrubbed(from, to) {
 	const linked = linkedTargets(to, xmlNames(from));
 	if (linked.length > 0) {
@@ -127,11 +135,11 @@ function copyScrubbed(from, to) {
 	mkdirSync(join(to, 'xml'), { recursive: true });
 	for (const name of JSON_FILES) {
 		const value = JSON.parse(readFileSync(join(from, name), 'utf8'));
-		writeFileSync(join(to, name), `${JSON.stringify(scrubJsonValue(value), null, 2)}\n`);
+		writeFresh(join(to, name), `${JSON.stringify(scrubJsonValue(value), null, 2)}\n`);
 	}
 	const names = xmlNames(from);
 	for (const name of names) {
-		writeFileSync(join(to, 'xml', name), scrubNoticeXml(readFileSync(join(from, 'xml', name), 'utf8')));
+		writeFresh(join(to, 'xml', name), scrubNoticeXml(readFileSync(join(from, 'xml', name), 'utf8')));
 	}
 	console.log(`scrubbed ${names.length} notices and ${JSON_FILES.length} JSON files into ${to}`);
 	const extras = filesNotInSource(to, names);
