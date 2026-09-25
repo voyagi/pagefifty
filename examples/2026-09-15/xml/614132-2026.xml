@@ -1,0 +1,1975 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Landesmedienzentrum Baden-Württemberg</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Rotenbergstraße 111</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70190</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A1951-20</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.menoldbezler.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Menold Bezler Rechtsanwälte Steuerberater Wirtschaftsprüfer Partnerschaft mbB</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stresemannstr. 79</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70191</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>PR 155 (Registergericht Stuttgart)</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg beim Regierungspräsidium Karlsruhe</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kapellenstr. 17</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76131</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00614132-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">172/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">44ad4b96-2ad2-47fa-bc84-edc2837e0310</cbc:ID>
+	<cbc:ContractFolderID>b3ab7f61-a544-4613-bb54-809508711e14</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+	<cbc:IssueTime>14:22:58+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-04+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:ServiceProviderParty>
+				<cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+				<cac:Party>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:Party>
+			</cac:ServiceProviderParty>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026/2316</cbc:ID>
+		<cbc:Name languageID="DEU">Landesmedienzentrum Baden-Württemberg (LMZ) - Vergabe zur Beschaffung von IT-Leistungen zum Weiterbetrieb der pädagogischen Musterlösung "paed.ML"</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YMZM8G6#
+
+
+Aus technischen Gründen werden die losspezifischen Referenzanforderungen vollständig für jedes einzelne Los angezeigt. Die jeweilige losspezifische Referenzanforderung gilt jedoch nur für das jeweils betreffende Los.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält.  Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Betriebs-, Migrations- und Supportkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Betriebs-, Migrations- und Supportkonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Leistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass ein sicherer, stabiler und möglichst aufwandsarmer Betrieb der paed.ML auf Basis von UCS und UCS@school gewährleistet wird.  Hierbei sind insbesondere folgende Aspekte darzustellen: - Wie erfolgt die automatisierte Bereitstellung, Aktualisierung und Pflege der paed.ML-Komponenten (UCS, UCS@school, Updates, Bugfixes, Konfigurationsanpassungen und Skripte) auf bestehenden Schulservern, und welche manuellen Eingriffe sind gegebenenfalls erforderlich? - Wie werden Patchlevel-, Errata-, Minor- und Major-Updates bereitgestellt, welche Bereitstellungszeiten werden zugesichert und wie ist der Abstimmungs- und Rollout-Prozess mit dem LMZ bei Minor- und Major-Updates ausgestaltet? - Neuinstallation - Wie können Neuinstallationen der paed.ML auf VMware-vSphere- und Proxmox-Umgebungen weitestgehend automatisiert durchgeführt werden, und welche Aufwände entstehen dabei für Schulen und Schulträger? - Welche Umstellungen auf Kundensystemen sind für die vorgeschlagenen Lösungen erforderlich, welche Schritte können automatisiert durchgeführt werden und welcher Aufwand (in Personentagen) entsteht für notwendige Vor- und Nacharbeiten? - Wie wird die Qualitätssicherung der paed.ML als Gesamtsystem sichergestellt, insbesondere hinsichtlich Testumgebung, Testverfahren, Testinhalten sowie der Prüfung des Zusammenspiels aller relevanten paed.ML-Komponenten? - Welche Ansprechpartner, Support- und Entwicklungsprozesse, Eskalationswege und Reaktionsmechanismen sind für den Betrieb der paed.ML vorgesehen und wie werden Störungen, kritische Sicherheitslücken, Entwicklungsaufgaben sowie die Mitwirkungspflichten des Auftraggebers geregelt?  Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 15 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Subskription für UCS und UCS@school inklusive Maintenance, Support  und dazu gehörige Dienstleistungen für die paed.ML</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungs-relevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Betriebs-, Migrations- und Supportkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Betriebs-, Migrations- und Supportkonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Leistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass die Bereitstellung, Aktualisierung und Nutzung der OPSI-Komponenten innerhalb der paed.ML sicher, wartbar und mit möglichst geringem Betriebsaufwand gewährleistet wird. Hierbei sind insbesondere folgende Aspekte darzustellen: - Wie ist das grundlegende Betriebsmodell für die Bereitstellung und Betreuung der OPSI-Komponenten in der paed.ML ausgestaltet? - Welche Leistungen werden durch den Bieter erbracht und welche Aufgaben verbleiben beim Auftraggeber? - Welche technischen und organisatorischen Voraussetzungen werden für den Betrieb der Lösung vorausgesetzt? - Wie wird sichergestellt, dass die Bereitstellung der OPSI-Komponenten langfristig wartbar und skalierbar bleibt? - Welche Ansprechpartner, Support- und Entwicklungsprozesse, Eskalationswege und Reaktionsmechanismen sind für den Betrieb der paed.ML vorgesehen und wie werden Störungen, kritische Sicherheitslücken, Entwicklungsaufgaben sowie die Mitwirkungspflichten des Auftraggebers geregelt?  Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 10 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">OPSI Lizenzen, Standard OPSI Pakete und Windows-Client Boot Image</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Lizenzbereitstellungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Lizenzbereitstellungskonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Leistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass die für den Betrieb der paed.ML erforderlichen Nextcloud-Subskriptionslizenzen zuverlässig, kompatibel mit den bestehenden Systemen und mit möglichst geringem Verwaltungsaufwand bereitgestellt werden können. Hierbei sind insbesondere folgende Aspekte darzustellen: - Zu welchem Zeitpunkt und auf welche Weise wird der Subskriptions-Lizenzkey für paed.ML-Schulen bereitgestellt? - Wie wird sichergestellt, dass die Bereitstellung sowie die laufende Aktualisierung des Subskriptions-Lizenzkeys automatisiert für bestehende und neu eingerichte-te Schulinstanzen erfolgt?  - Sind manuelle Aufwände erforderlich? Wenn ja, bei welchen Szenarien und in welcher Form?   Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 2 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Subskriptions-Lizenzen für Nextcloud</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Entwicklungs- und Wartungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Entwicklungs- und Wartungskonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Entwicklungs-, Wartungs- und Wissenstransferleistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass die Weiterentwicklung und Pflege des Frontends der paed.ML-Schulkonsole nachhaltig, sicher und im engen Zusammenwirken mit dem Auftraggeber erfolgt. Hierbei sind insbesondere folgende Aspekte darzustellen:  - Wie stellen Sie sich die partnerschaftliche Zusammenarbeit vor?  - Wie erfüllen Sie das technische Konzept in Bezug auf die nachfolgenden Anforderungen:  o Architektur  o Barrierefreiheit nach WCAG 2.1/2.2  o Einbettung des MVC-Patterns,   o State-Management,   o Theming  o Sicherheitsgrundlagen (Authentifizierung/Autorisierung, Eingabevalidierung)    o EU-Verordnung zum CRA( Cyber Resilience Act, AZ 2024/2847) - Welche Vorteile bietet ihr Konzept für die paed.ML und ihre Kunden?  - Gibt es einen technischen zentralen Ansprechpartner? Wie ist seine Verfügbarkeit?  Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 7 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">Dienstleistung für die Weiterentwicklung und Wartung der paed.ML Schulkonsole im Bereich Frontend</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0005</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Entwicklungs- und Wartungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Entwicklungs- und Wartungskonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Entwicklungs-, Wartungs- und Wissenstransferleistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass die Weiterentwicklung und Pflege des Backends der paed.ML-Schulkonsole sicher, zukunftsfähig und mit hoher Softwarequalität gewährleistet wird.  Hierbei sind insbesondere folgende Aspekte darzustellen:  - Wie stellt sich der Bieter die partnerschaftliche Zusammenarbeit vor?  - Wie erfüllen Sie das technische Konzept in Bezug auf die nachfolgenden Anforderungen:  o Architektur  o Konformität zur vorgegebenen Schnittstellenspezifikation und Qualität der API-Dokumentation?  o Sicherheitsgrundlagen (Authentifizierung/Autorisierung, Eingabevalidierung)   o Code-Qualität, Teststrategie und Testabdeckung  o EU-Verordnung zum CRA (Cyber Resilience Act, AZ 2024/2847) - Welche Vorteile bietet ihr Konzept für die paed.ML und ihre Kunden?  - Gibt es einen technischen zentralen Ansprechpartner? Wie ist seine Verfügbarkeit?   Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 7 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">5</cbc:ID>
+			<cbc:Name languageID="DEU">Dienstleistung im Bereich Backend-Weiterentwicklung paed.ML Windows Schulkonsole</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0006</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Support- und Qualitätssicherungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Support- und Qualitätssicherungskonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Support-, Qualitätssicherungs- und Fehlerbehebungsleistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass eine kontinuierliche Qualitätssicherung der paed.ML sowie eine effiziente Unterstützung bei Störungen und Fehlern gewährleistet werden.  Hierbei sind insbesondere folgende Aspekte darzustellen:  - Wie stellt sich der Bieter die partnerschaftliche Zusammenarbeit vor? - Wie erfüllen Sie das technische Konzept in Bezug auf die nachfolgenden Anforderungen:  o Fallszenarios zur Nachvollziehbarkeit der Bearbeitung und zur Qualitätsbeurteilung   o Support-Konzept: Welche Reaktions-/Lösungszeiten sichern Sie zu?  o QA-Konzept: Testarten, Werkzeuge, Einbindung in CI-/CD-Pipeline, Zusammenarbeit   o Onboarding-, Wissenstransfer- und Kooperationskonzept mit den Hotlines des LMZ und den Entwicklern - Welche Vorteile bietet ihr Konzept für die paed.ML und ihre Kunden?  - Gibt es einen technischen zentralen Ansprechpartner? Wie ist seine Verfügbarkeit?  Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 6 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">6</cbc:ID>
+			<cbc:Name languageID="DEU">Dienstleistung im Aufbau und Maintenance eines QA-Kreislaufs sowie im Bereich 3rd-Level-Support in der paed.ML Windows</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0007</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Gesamtumsatz und den Umsatz mit vergleichbaren losspezifischen IT-Leistungen in den vergangenen drei abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über die Eintragung des Unternehmens in das Berufs- oder Handelsregister.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer Haftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 5 Mio. EUR für Personen- und Sachschäden sowie 500.000 EUR für Vermögensschäden bzw. Eigenerklärung, dass im Auftragsfalle eine entsprechende Versicherung abgeschlossen wird.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens hervorgeht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 1: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Verzeichnisdienst-, Identitätsmanagement- oder Schul-/Bildungsplattformen einschließlich Update-, Migrations- oder Automatisierungsleistungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über UCS und UCS@school sowie über die paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 1.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 2: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Bereitstellung, Wartung, Weiterentwicklung oder des Supports von Softwareverteilungs-, Clientmanagement- oder Endpoint-Management-Lösungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die OPSI-Systemarchitektur, das Softwaremanagement und das Paketformat OPSI sowie über die  paed.ML Systemarchitektur und ihre Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 2.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 4: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von webbasierten Softwareanwendungen aus den letzten drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über moderne Frontend-Entwicklung, die Bereitstellung containerisierter Anwendungen (Docker/K8s) so wie über den Aufbau neuer CI-/CD-Pipelines oder die Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 4.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 5: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich der Entwicklung, Weiterentwicklung oder Wartung von Backend-Systemen oder Servicearchitekturen aus den letzten  drei Jahren vor Angebotsabgabe.  Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über die paed.ML  Systemarchitektur und ihre Netzwerke, die Backend Architektur mit den in der Schulkonsole eingesetzten Technologien, mit Containertechnologien sowie mit dem Aufbau  neuer CI-/CD-Pipelines bzw. der Erweiterung bestehender Pipelines besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 5.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 6: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich Qualitätssicherung, Softwaretests, Fehleranalyse oder 3rd-Level-Support für komplexe IT-Systeme aus den letzten  drei Jahren vor Angebotsabgabe. Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über paed.ML Windows, über OPSI, Software-Paketierung, Active Directory Service und Gruppenrichtlinien, über Programmierung in PowerShell und NixOS sowie über Design, Aufbau und Durchführung von Testplänen besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 6.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestreferenzen Los 7: Nachweis von mindestens einem geeigneten Referenzprojekt über erbrachte vergleichbare Leistungen des Unternehmens im Bereich des Betriebs, der Wartung, Weiterentwicklung oder des Supports von Firewall-, Netzwerk- oder IT-Sicherheitslösungen aus den letzten drei Jahren vor Angebotsabgabe.   Die Referenz muss erkennen lassen, dass der Bieter Kenntnisse über Octogate sowie über die paed.ML Systemarchitektur und ihrer Netzwerke besitzt. Es dürfen auch mehrere Referenzen vorgelegt werden, die in Summe die geforderten Kenntnisse belegen.  Die Erklärungen über die Referenzprojekte müssen darüber hinaus jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags - Kurze Beschreibung des Leistungsumfangs - Name des Auftraggebers inkl. Ansprechpartner u. Kontaktdaten - Zeitraum der Leistungserbringung - Volumen der Leistungserbringung in EUR netto für den gesamten Leistungszeitraum  Die vorstehend genannten Mindestanforderungen gelten nur im betreffenden Los 7.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässi-gen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Im Rahmen der Bewertung des Zuschlagskriteriums "Preis" erhält der Bieter mit dem günstigsten Angebot im jeweiligen Los die höchste Punktzahl. Das günstigste Angebot im jeweiligen Los ist dasjenige, welches den günstigen Gesamtangebotspreis gemäß dem mit dem Angebot eingereichten Preisblatt ("Gesamtpreis brutto (EUR) - wertungsrelevant)" enthält. Die Preise der übrigen Angebote im jeweiligen Los werden im Verhältnis zu der Punktzahl des günstigsten Bieters linear schlechter bewertet. Dabei erhält ein Angebot, das mindestens doppelt so teuer ist wie das günstigste, Null (0) Punkte. Es erfolgt eine kaufmännische Rundung auf zwei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Support- und Wartungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat unter Berücksichtigung der Besonderheiten im betreffenden Los (siehe hierzu die Ausführungen in der Leistungsbeschreibung), ein Support- und Wartungskonzept einzureichen. In dem Konzept hat der Bieter darzustellen, wie die vertragsgegenständlichen Support-, Wartungs- und Fehlerbehebungsleistungen während der gesamten Vertragslaufzeit so erbracht werden sollen, dass ein sicherer, stabiler und hochverfügbarer Betrieb der in der paed.ML eingesetzten Octogate-Komponenten gewährleistet wird.  Hierbei sind insbesondere folgende Aspekte darzustellen: - Wie stellt sich der Bieter die partnerschaftliche Zusammenarbeit vor?  - Erfüllt das Technische Konzept die beschriebenen Anforderungen mit der Hinsicht auf:  o Wie stellt der Bieter sicher, dass Ausfälle präventiv vermieden werden?  o Präventive Wartung: Häufigkeit der Wartungen, Monitoringkonzept, Predictive Maintenance, automatisierte Fehlererkennung   o Wie sind die Reaktionszeiten, Entstörungszeiten und Service-Level-Agreements?  o Wie gestaltet sich das Update- und Patchmanagement sowie das Lifecycle-Management? - Welche Vorteile bietet ihr Konzept für die paed.ML und ihre Kunden? - Gibt es einen technischen zentralen Ansprechpartner? Wie ist seine Verfügbarkeit?  Die gesamte schriftliche Darstellung soll möglichst einen Umfang von 10 Seiten DIN A4 einschließlich Deckblatt (Schriftart: Arial; Schriftgröße: 11 Punkt; Zeilenabstand: 1,5; Seitenränder: 2,5 cm. Auch Bilder und Grafiken zählen zum Umfang hinzu) nicht über-schreiten.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">86</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>7</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>7</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZM8G6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-24+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">7</cbc:ID>
+			<cbc:Name languageID="DEU">Octogate-L1-L3-Support und Maintenance</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist die Beschaffung von IT-Leistungen für den Weiterbetrieb der pädagogischen Musterlösung "paed.ML" des Landesmedienzentrums Baden-Württemberg. Die ausgeschriebenen Leistungen umfassen insbesondere Lizenzen, Subskriptionen sowie Entwicklungs-, Wartungs- und Supportleistungen für die einzelnen Komponenten der paed.ML. Die vergabegegenständlichen Leistungen werden in sieben Losen vergeben. Vertragsbeginn ist jeweils der 01.01.2027.   Hinsichtlich der Details wird auf die Leistungsbeschreibungen verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestvertragsdauer hat der Auftraggeber im  jeweiligen Los das Recht, den Vertrag zwei mal um je weitere 12 Monate zu verlängern ("Verlängerungsoptionen")</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

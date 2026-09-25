@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>fd880024-3e1a-46bb-8c35-a6b345ab3dce-01</efbc:ChangedNoticeIdentifier>
+                  <efac:Change>
+                     <efac:ChangedSection>
+                        <efbc:ChangedSectionIdentifier>LOT-0000</efbc:ChangedSectionIdentifier>
+                     </efac:ChangedSection>
+                  </efac:Change>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Anpassung Terminplan</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.bescha.bund.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Bundesrepublik Deutschland, vertreten durch das Bundesministerium des Innern, vertreten durch das Beschaffungsamt des BMI</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Brühler Straße 3</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53119</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>t:[removed]</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.bundeskartellamt.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Bundes</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kaiser-Friedrich-Str. 16</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53113</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>t:[removed]</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00601099-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">168/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-01+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">cdab27c0-4a1d-4a64-946e-126326c54a3a</cbc:ID>
+   <cbc:ContractFolderID>957820a7-c324-4e58-a9ed-b3401630f217</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-08-28+02:00</cbc:IssueDate>
+   <cbc:IssueTime>15:06:15+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-08-28+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Nachweise gemäß Vergabeunterlagen</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>ZIB 13.03 - 99113/25/VV : 5</cbc:ID>
+      <cbc:Name languageID="DEU">Rahmenvereinbarung über Technologiespezifische IT-Betriebsunterstützung - Leistungsbereich 2: IT-Infrastruktursicherheit und Netzwerksicherheit Services - Los 5 (Ressorts BMF und BMV)</cbc:Name>
+      <cbc:Description languageID="DEU">Rahmenvereinbarung über Technologiespezifische IT-Betriebsunterstützung - Leistungsbereich 2: IT-Infrastruktursicherheit und Netzwerksicherheit Services - Los 5 (Ressorts BMF und BMV)</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen
+gemäß §§ 123, 124 GWB sind folgende Dokumente 
+einzureichen:
+- "Eigenerklärung_Ausschlussgründe"
+- "Eigenerklärung Sanktionen Russland"
+
+Gemäß der EU-Verordnung 2022/2560 über den Binnenmarkt verzerrende drittstaatliche Subventionen besteht im Rahmen dieses Vergabeverfahrens eine Melde- bzw. Erklärungspflicht. Das Beschaffungsamt des BMI ist verpflichtet, die eingereichten Meldungen bzw. Erklärungen an die EU-Kommission weiterzuleiten und Bewerber/Bieter bei Nichtbeachtung bestimmter Vorgaben aus dem Verfahren auszuschließen. Nähere Informationen finden Sie im Dokument "Hinweise für 
+dieses Verfahren und besondere Bewerbungsbedingungen" sowie im Dokument "Hinweise für Bewerber und Bieter zum Formular FS-PP für die Meldung finanzieller Zuwendungen im Rahmen öffentlicher Vergabeverfahren gemäß der Verordnung (EU) 2022/2560 .
+
+
+Der jeweilige Ort der Leistungserbringung wird in Absprache mit 
+dem jeweiligen Bedarfsträger festgelegt. Grundsätzlich kann die 
+Leistungserbringung deutschlandweit an allen Dienstsitzen der
+jeweiligen Bedarfsträger erforderlich werden.
+
+Abrufberechtigt sind neben den im Dokument "Liste der Bedarfsträger" aufgeführten Behörden, Einrichtungen und Organen auch alle weiteren Behörden der unmittelbaren Bundesverwaltung, insofern diese zum Zeitpunkt der Aufnahme in die Liste den Ressorts Bundesministerium für Finanzen (BMF) oder Bundesministerium für Verkehr (BMV) zugeordnet sind.
+
+Bundesamt für Logistik und Mobilität
+Bundesamt für Seeschifffahrt und Hydrographie
+Bundesanstalt für Finanzdienstleistungsaufsicht
+Bundesanstalt für Immobilienaufgaben; BIMA_SRM; BIMASRM_3; BIMASRM_5
+Bundeseisenbahnvermögen
+Bundesministerium für Verkehr
+Bundesstelle für Flugunfalluntersuchung
+Deutsche Rentenversicherung Knappschaft Bahn-See
+Deutscher Wetterdienst
+Deutsches Maritimes Zentrum e.V.
+Die Autobahn GmbH des Bundes
+Eisenbahn-Bundesamt
+Generaldirektion Wasserstraßen und Schifffahrt (alle Standorte)
+Informationstechnikzentrum Bund
+Kraftfahrt-Bundesamt
+Versorgungsanstalt des Bundes und der Länder</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72222300</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72700000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:Region>anyw</cbc:Region>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Beschäftigtenanzahl
+
+Bitte geben Sie die aktuelle, Ihnen zur Verfügung stehende Anzahl an Mitarbeitern (Vollzeitäquivalente) an, welche die in Kapitel 3 der Leistungsbeschreibung gestellten Anforderungen erfüllen und zur Erbringung der gegenständlichen Leistungen innerhalb dieser Rahmenvereinbarung eingesetzt werden können. Die Angaben sind im Dokument "Unternehmenszahlen" einzutragen. Es werden die folgenden Anforderungen in Bezug auf die Mindestanzahl an Mitarbeitern gestellt. 
+
+ZIB 13.03 - 99113/25/VV : 5
+Network &amp; Security Engineer 11
+IAM Specialist 16
+IT-Security Architect 8
+
+ZIB 13.03 - 99113/25/VV : 6
+Network &amp; Security Engineer 12
+IAM Specialist 7
+IT-Security Architect 5
+
+ZIB 13.03 - 99113/25/VV : 7
+Network &amp; Security Engineer 9
+IAM Specialist 3
+IT-Security Architect 4
+
+Im Falle von Bietergemeinschaften bzw. der Einbindung anderer Unternehmen im Rahmen einer Eignungsleihe gemäß § 47 VgV, sind die Angaben für jedes Mitglied der Bietergemeinschaft bzw. für jedes eignungsverleihende Unternehmen im Dokument "Unternehmenszahlen" einzutragen. Die Summe muss die geforderte Mindestanzahl an Mitarbeitern erreichen.
+Wenn Sie Angebote in mehr als einem Leistungsbereich abgeben (vgl. Kapitel 3.3 des Dokuments "Besondere Bewerbungsbedingungen"), beachten Sie bitte, dass die Mindestanforderungen entsprechend summiert erfüllt sein müssen. Bitte beachten Sie in diesem Zusammenhang zudem die Regelungen in Bezug auf die Zuschlagslimitierung gemäß Kapitel 3.4 des Dokuments "Besondere Bewerbungsbedingungen". 
+
+Qualitätsmanagementsystem
+
+Bestätigen Sie mittels eines geeigneten Nachweises, dass Ihr Unternehmen die Anforderungen an das Qualitätsmanagement DIN EN ISO 9001: 2015 (oder gleichwertig) erfüllt und auf Nachfrage der Vergabestelle eine Beschreibung liefert.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte eine Liste mit mindestens drei (3) geeigneten Referenzen mit Bezug zur gegenständlichen Leistung ("IT-Betriebsunterstützung im Bereich IT-Infrastruktursicherheit und Netzwerksicherheit") ein. 
+Es werden die folgenden Anforderungen an die Referenzen in Bezug auf Inhalt und Umfang gestellt:
+
+- Zwei (2) Referenzen, welche Leistungen zur Unterstützung des laufenden Betriebes von IT-Infrastruktursicherheits- und Netzwerksicherheitslösungen umfassen. Der Schwerpunkt muss auf wiederkehrenden betrieblichen Tätigkeiten im produktiven IT-Betrieb liegen. Referenzen, bei denen der Schwerpunkt auf projektbezogenen Einmalleistungen, wie z.B. der Einführung, Migration oder Implementierung von IT-Infrastruktursicherheits- und Netzwerksicherheitslösungen, liegt, sind unzureichend. Die Referenzen müssen einen Umfang von jeweils mindestens 100 Personentagen (PT) umfassen.
+
+- Eine (1) Referenz, die Leistungen im Bereich der Analyse, Bewertung und Weiterentwicklung bestehender IT-Infrastruktursicherheits- und Netzwerksicherheitslösungen oder deren Integration in bestehende IT-Systeme umfasst. Die Leistungen müssen im Kontext des laufenden IT-Betriebs erbracht worden sein. Die Referenz muss einen Umfang von mindestens 50 PT umfassen.
+
+Zu den Referenzen sind folgende Angaben zu machen:
+• Beschreibung der ausgeführten Leistungen,
+• Umfang der erbrachten Leistung in Personentagen, 
+• Zeitraum der Leistungserbringung,
+• Angabe der zuständigen Kontaktstelle beim Auftraggeber der Referenz mit Anschrift und Kontaktdaten. 
+
+Darüber hinaus gelten die folgenden Anforderungen an die benannten Referenzen:
+• Die angegebenen Personentage müssen sich auf den in den inhaltlichen Referenzanforderungen genannten Tätigkeitsbereich beziehen. Maßgeblich ist nicht der Gesamtumfang des Auftrags, sondern der auf die gegenständlichen Leistungen entfallende Leistungsanteil.
+• Die Referenzen dürfen nicht älter als drei (3) Jahre sein (maßgeblich ist das Datum der letzten Leistungserbringung - gerechnet bis zum Datum der Auftragsbekanntmachung). 
+• Sofern es sich um Referenzen handelt, die noch nicht abgeschlossen wurden, ist der bisher erreichte Leistungsstand anzugeben. Das Beschaffungsamt des BMI entscheidet sodann nach pflichtgemäßem Ermessen über die Anerkennung dieser Referenz. Noch nicht realisierte Leistungsstände können nicht berücksichtigt werden.
+• Für die Referenzen kann die Vorlage "Vordruck Referenzen" verwendet werden. Nutzen Sie die Vorlage sofern erforderlich bitte mehrfach. Alternativ können Sie eine selbst erstellte Referenzliste einreichen, wenn die in dem Vordruck geforderten Angaben enthalten und übersichtlich dargestellt sind.
+• Es ist unerheblich, ob es sich bei den Referenzen um Einzelabrufe aus einer Rahmenvereinbarung oder um Einzelverträge handelt. Bei Rahmenvereinbarungen ist nicht der Gesamtumfang der Rahmenvereinbarung, sondern der Umfang des entsprechenden Einzelabruf maßgeblich.
+
+Es steht Ihnen frei, über die geforderte Mindestanzahl hinaus weitere Referenzen einzureichen. Da das Austauschen einer fehlerhaften Referenz durch eine nach Ende der Angebotsfrist nachgereichte bedingungsgemäße Referenz nicht möglich ist und in den entsprechenden Fällen den Ausschluss des Bieters nach sich zieht, empfiehlt das Beschaffungsamt des BMI, eine Liste von weiteren als bedingungsgemäß betrachteten Referenzen einzureichen.
+
+Das Beschaffungsamt des BMI behält sich vor, die angegebenen Referenzen zu verifizieren. Angaben, die einer Nachprüfung nicht standhalten, können zum Ausschluss vom Vergabeverfahren führen.
+Sofern Sie aus berechtigten Geheimhaltungsgründen geforderte Angaben nicht machen können, teilen Sie diese Gründe mit dem Angebot dem Beschaffungsamt des BMI mit und legen Sie einen anderen geeigneten Nachweis der technischen und beruflichen Leistungsfähigkeit vor. Das Beschaffungsamt des BMI entscheidet sodann nach pflichtgemäßem Ermessen über die Anerkennung des Alternativnachweises. Ein Nachfordern und Beibringen eines anderen (geeigneteren) Nachweises ist nach dem Ende der Angebotsfrist aus vergaberechtlichen Gründen nicht mehr möglich. Bitte berücksichtigen Sie in jedem Fall, dass Sie bei einer Mindestanforderung an den Wert des Auftrags auch Margen angeben können (bspw. &gt; 100.000 € oder zwischen 100.000 und 200.000 €).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit ist der Umsatz im Tätigkeitsbereich "IT-Betriebsunterstützung" für die letzten drei (3) abgeschlossenen Geschäftsjahre anzugeben. Zur Angabe der Umsätze nutzen Sie bitte das Dokument "Unternehmenszahlen".
+
+Der Umsatz muss mindestens EUR pro Jahr betragen:
+
+ZIB 13.03 - 99113/25/VV : 5:  8.000.000 Euro
+ZIB 13.03 - 99113/25/VV : 6:  5.000.000 Euro
+ZIB 13.03 - 99113/25/VV : 7:  3.000.000 Euro
+
+Bitte reichen Sie das Formular "Unternehmenszahlen" für Ihr Unternehmen, Mitglieder von Bietergemeinschaften sowie eignungsverleihende Unternehmen jeweils separat ein. Sofern Sie für die wirtschaftliche und finanzielle Leistungsfähigkeit Kapazitäten von Drittunternehmen in Anspruch nehmen, werden konzernangehörige Unternehmen ebenfalls als Drittunternehmen angesehen.
+
+Der Mindestumsatz ergibt sich aus der Summe des jeweiligen Umsatzes Ihres Unternehmens und sofern zutreffend, Mitgliedern der Bietergemeinschaft und/oder eignungsverleihenden Unternehmen. Bei Bewerber-/ Bietergemeinschaften und eignungsverleihenden Unternehmen werden die Umsätze aller Unternehmen addiert. Die Mindestanforderungen beziehen sich auf die addierten Zahlen. 
+Sollten Sie Kapazitäten von Dritten (anderen Unternehmen oder freien Mitarbeitern) zur Leistungsfähigkeit in Anspruch nehmen wollen, füllen Sie bitte diesbezüglich zusätzlich das Formular "Anlage Unteraufträge" aus und fügen Sie es Ihrem Angebot bei. 
+
+Der Bieter kann auch im Hinblick auf die für den zu vergebenden Auftrag erforderliche wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten von Drittunternehmen in Anspruch nehmen (sog. Eignungsleihe). Im Fall, dass Sie Eignungsleihe in Anspruch nehmen, ist zusätzlich das Formular "Verpflichtungserklärung Eignungsleihe Unteraufträge" auszufüllen. Weitere Einzelheiten zur Eignungsleihe entnehmen Sie bitte Ziffer 3.2 des Dokumentes "Allgemeine Bewerbungsbedingungen".
+
+Wenn Sie als Bietergemeinschaft am Verfahren teilnehmen wollen, füllen Sie bitte diesbezüglich das Formular "Bewerber Bietergemeinschaftserklärung" aus und fügen Sie es Ihrem Angebot bei.
+Wenn Sie Angebote für mehr als ein Los (auch Leistungsbereichsübergreifend) abgeben (vgl. Kapitel 3.3 des Dokuments "Besondere Bewerbungsbedingungen), beachten Sie bitte, dass die Mindestanforderungen entsprechend summiert erfüllt sein müssen um den Zuschlag auf ein weiteres bzw. weitere Lose erhalten zu können. Bitte beachten Sie in diesem Zusammenhang zudem die Regelungen in Bezug auf die Zuschlagslimitierung gemäß Kapitel 3.4 des Dokuments "Besondere Bewerbungsbedingungen". 
+
+Sofern Sie aus berechtigten Gründen die Unterlagen nicht beibringen können, teilen Sie diese Gründe im Angebot dem Beschaffungsamt des BMI mit und legen Sie einen anderen geeigneten Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit vor. Das Beschaffungsamt des BMI entscheidet sodann nach pflichtgemäßem Ermessen über die Anerkennung des Alternativnachweises. Ein Nachfordern und Beibringen eines anderen (geeigneteren) Nachweises ist nach dem Angebotsschluss aus vergaberechtlichen Gründen nicht mehr möglich.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mit dem Angebot ist ein aktueller, höchstens drei (3) Monate alter, Auszug aus dem Handelsregister oder einem vergleichbaren in- oder ausländischen Register vorzulegen. Aus dem im Register eingetragenen "Gegenstand des Unternehmens" muss erkennbar sein, dass der Leistungsgegenstand dieses Vergabeverfahrens von der Art der Geschäftstätigkeit des Bieters umfasst ist.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe-online.de/tenderdocuments.html?id=875628</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">siehe Vergabeunterlagen</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe-online.de/tenderdetails.html?id=875628</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Unternehmen haben einen Anspruch auf Einhaltung der bieter- und bewerberschützenden Bestimmungen über das Vergabeverfahren gegenüber dem öffentlichen Auftraggeber, Bundesrepublik Deutschland, vertreten durch das Beschaffungsamt des BMI (BeschA). 
+
+Sieht sich ein am Auftrag interessiertes Unternehmen durch Nichtbeachtung von Vergabevorschriften in seinen Rechten verletzt, ist der Verstoß innerhalb einer Frist von zehn Kalendertagen gegenüber dem BeschA zu rügen (§ 160 Abs. 3 S. 1 Nr. 1 Gesetz gegen Wettbewerbsbeschränkungen (GWB)). Verstöße, die aufgrund der Bekanntmachung oder der Vergabeunterlagen erkennbar sind, müssen spätestens bis zu der in der Bekanntmachung benannten Frist zur Bewerbung oder Angebotsabgabe gegenüber dem BeschA gerügt werden (§ 160 Abs. 3 S. 1 Nr. 2 und 3 GWB). 
+
+Teilt das BeschA dem Unternehmen mit, seiner Rüge nicht abhelfen zu wollen, so besteht die Möglichkeit, innerhalb von 15 Tagen nach Eingang der Mitteilung einen Antrag auf Nachprüfung bei der Vergabekammer zu stellen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). 
+
+Bieter, deren Angebote für den Zuschlag nicht berücksichtigt werden sollen, werden vor dem Zuschlag gemäß § 134 Abs. 1 GWB darüber informiert. Ein Vertrag darf erst 15 Kalendertage nach Absendung dieser Information durch das BeschA geschlossen werden; bei Übermittlung per Fax oder auf elektronischem Wege beträgt diese Frist zehn Kalendertage. Sie beginnt am Tag nach Absendung der Information durch das BeschA. 
+
+Ein Antrag auf Nachprüfung ist schriftlich oder elektronisch bei der Vergabekammer des Bundes beim Bundeskartellamt, Kaiser-Friedrich-Straße 16, 53113 Bonn, einzureichen und zu begründen.
+
+Hinweis: Das BeschA ist im Falle eines Nachprüfungsantrags verpflichtet, die Vergabeakten, die auch die abgegebenen Angebote enthalten, an die Vergabekammer weiterzuleiten. Die Beteiligten haben ein Recht auf Akteneinsicht. Um Betriebs- und Geschäftsgeheimnisse zu wahren, teilen Sie uns konkret mit Bezug auf die entsprechenden Dokumente des Angebotes mit, welche Informationen als Betriebs- und Geschäftsgeheimnisse zu behandeln sind.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-09-22+02:00</cbc:EndDate>
+            <cbc:EndTime>11:30:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-09-22+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>11:31:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Rahmenvereinbarung über Technologiespezifische IT-Betriebsunterstützung - Leistungsbereich 2: IT-Infrastruktursicherheit und Netzwerksicherheit Services - Los 5 (Ressorts BMF und BMV)</cbc:Name>
+         <cbc:Description languageID="DEU">Die der Rahmenvereinbarung - Los 5 (dieses Los) zugrundeliegende Schätzmenge beträgt 30.901 Personentage. Die Schätzmenge entspricht der Höchstmenge.
+Es handelt sich um ein Verfahren mit insgesamt vier Leistungsbereichen, welche wiederum in insgesamt 12 Mengenlose unterteilt sind:
+
+Leistungsbereich 1: IT-Infrastruktur Services
+ZIB 13.02 - 99113/25/VV : 1 (ITZBund)
+ZIB 13.02 - 99113/25/VV : 2 (Ressorts BMV und AA) 
+ZIB 13.02 - 99113/25/VV : 3 (Ressort BMI) 
+ZIB 13.02 - 99113/25/VV : 4 (Restliche Bundesverwaltung)
+
+Leistungsbereich 2: IT-Infrastruktursicherheit und Netzwerksicherheit Services
+ZIB 13.03 - 99113/25/VV : 5 (Ressorts BMF und BMV)  
+ZIB 13.03 - 99113/25/VV : 6 (Ressort BMI)
+ZIB 13.03 - 99113/25/VV : 7 (Restliche Bundesverwaltung)
+
+Leistungsbereich 3: Integrations- und Middleware Services
+ZIB 13.02 - 99113/25/VV : 8 (Ressort BMF)
+ZIB 13.02 - 99113/25/VV : 9 (Restliche Bundesverwaltung)
+
+Leistungsbereich 4: Anwendungsbetriebsunterstützung
+ZIB 13.03 - 99113/25/VV : 10 (ITZBund)
+ZIB 13.03 - 99113/25/VV : 11 (Ressorts BMI, BMZ und AA)
+ZIB 13.03 - 99113/25/VV : 12 (Restliche Bundesverwaltung)
+
+Die insgesamt 12 Lose werden aus systemtechnischen Gründen in zwölf Vergabeverfahren (VV) ausgeschrieben.
+
+Der Zuschlag wird bei jedem Los jeweils auf das wirtschaftlichste Angebot erteilt. Dieses wird im ersten Schritt für jedes Los nach den in den Vergabeunterlagen angegebenen Kriterien ermittelt. 
+
+Es besteht die Möglichkeit, auf alle Lose zu bieten, jedoch kann der Bieter je Leistungsbereich nur für insgesamt ein (Leistungsbereich 3) bzw. zwei Lose (Leistungsbereiche 1,2 und 4) den Zuschlag (Zuschlagslimitierung gem. § 30 Abs. 1 S.2 VgV) erhalten. Details hierzu entnehmen Sie bitte dem Dokument "Besondere Bewerbungsbedingungen".</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">soc-obj</cbc:ProcurementTypeCode>
+            <cbc:ProcurementType languageID="DEU">Erklärung zur sozialen Nachhaltigkeit von IT</cbc:ProcurementType>
+         </cac:ProcurementAdditionalType>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="social-objective">other</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72222300</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72700000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:Region>anyw</cbc:Region>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">12</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Die Laufzeit verlängert sich zu gleichbleibenden Konditionen 
+automatisch bis zu dreimal um jeweils ein weiteres Jahr, sofern
+der Auftraggeber der Vertragsverlängerung nicht spätestens 
+drei Monate vor Vertragsende widerspricht. Die maximale 
+Laufzeit der Rahmenvereinbarung beträgt somit vier Jahre.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

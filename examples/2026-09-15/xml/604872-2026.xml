@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NLD">Stichting Vonk</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Alkmaar</cbc:CityName>
+                  <cbc:PostalZone>1824EX</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NL328</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>241957482</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>[removed]</cbc:Name>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NLD">Rechtbank Noord Holland</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Alkmaar</cbc:CityName>
+                  <cbc:PostalZone>1817BC</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NL328</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>82941742</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00604872-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">169/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">26d411bd-8978-4fc2-b13a-99b4d21f6b75</cbc:ID>
+  <cbc:ContractFolderID>bd926734-ddd4-4470-8e9f-0de2acf5adac</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-09-01Z</cbc:IssueDate>
+  <cbc:IssueTime>06:19:33Z</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NLD</cbc:NoticeLanguageCode>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">body-pl</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens corruptie veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 3 van de Overeenkomst ter bestrijding van corruptie waarbij ambtenaren van de Europese Gemeenschappen of van de lidstaten van de Europese Unie betrokken zijn (PB C 195 van 25.6.1997, blz. 1) en artikel 2, lid 1, van Kaderbesluit 2003/568/JBZ van de Raad van 22 juli 2003 inzake de bestrijding van corruptie in de privésector (PB L 192 van 31.7.2003, blz. 54). Deze uitsluitingsgrond omvat ook corruptie in de zin van de nationale wetgeving van de aanbestedende dienst (aanbestedende entiteit) of de ondernemer.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens deelneming aan een criminele organisatie veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 2 van Kaderbesluit 2008/841/JBZ van de Raad van 24 oktober 2008 ter bestrijding van georganiseerde criminaliteit (PB L 300 van 11.11.2008, blz. 42).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens witwassen van geld of financiering van terrorisme veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 1 van Richtlijn 2005/60/EG van het Europees Parlement en de Raad van 26 oktober 2005 tot voorkoming van het gebruik van het financiële stelsel voor het witwassen van geld en de financiering van terrorisme (PB L 309 van 25.11.2005, blz. 15).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens fraude veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 1 van de Overeenkomst aangaande de bescherming van de financiële belangen van de Europese Gemeenschappen (PB C 316 van 27.11.1995, blz. 48).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens kinderarbeid en andere vormen van mensenhandel veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 2 van Richtlijn 2011/36/EU van het Europees Parlement en de Raad van 5 april 2011 inzake de voorkoming en bestrijding van mensenhandel en de bescherming van slachtoffers daarvan, en ter vervanging van Kaderbesluit 2002/629/JBZ van de Raad (PB L 101 van 15.4.2011, blz. 1).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Heeft de ondernemer zijn verplichtingen geschonden met betrekking tot de betaling van sociale premies, zowel in het land waar hij is gevestigd als in de lidstaat van de aanbestedende dienst of aanbestedende entiteit indien dit een ander land is dan het land van vestiging?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Heeft de ondernemer zijn verplichtingen geschonden met betrekking tot de betaling van belastingen, zowel in het land waar hij is gevestigd als in de lidstaat van de aanbestedende dienst of aanbestedende entiteit indien dit een ander land is dan het land van vestiging?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens terroristische misdrijven of strafbare feiten in verband met terroristische activiteiten veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van de artikelen 1 en 3 van Kaderbesluit 2002/475/JBZ van de Raad van 13 juni 2002 inzake terrorismebestrijding (PB L 164 van 22.6.2002, blz. 3). Deze uitsluitingsgrond omvat ook aanzetten tot, deelneming en medeplichtigheid aan of poging tot het plegen van een strafbaar feit als bedoeld in artikel 4 van genoemd kaderbesluit.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:Name languageID="NLD">Glasvezeldienstverlening</cbc:Name>
+    <cbc:Description languageID="NLD">Dit aanbestedingsdocument heeft betrekking op de openbare Europese aanbesteding die Stichting Vonk houdt ten behoeve van glasvezelverbindingen. 
+
+Stichting Vonk boogt een een toekomstbestendige, betrouwbare en uniforme glasvezelinfrastructuur voor alle locaties van Vonk te realiseren.
+
+De scope van de opdracht omvat het realiseren, leveren, beheren en onderhouden van een volledig beheerde glasvezelinfrastructuur voor alle huidige en toekomstige locaties van Vonk en omvat tenminste:
+
+·       Alle activiteiten benodigd voor de aanleg van glasvezelverbindingen, migratie van bestaande verbindingen, testen en oplevering.
+
+·       Levering van een beheerde glasvezelverbinding met minimaal 1-10 Gbit/s capaciteit, monitoring, storingsafhandeling en service.
+
+·       Op alle 13 huidige locaties van Vonk, met mogelijkheid tot uitbreiding of inkrimping zonder consequenties voor tarieven.
+
+·       Optionele uitbreidingen: aanvullende bandbreedte, extra locaties, aanvullende netwerkdiensten.
+
+
+
+</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cac:RequestedTenderTotal>
+      <cbc:EstimatedOverallContractAmount currencyID="EUR">2800000</cbc:EstimatedOverallContractAmount>
+    </cac:RequestedTenderTotal>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">32561000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72315000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:StreetName>Drechterwaard 10A</cbc:StreetName>
+        <cbc:CityName>Alkmaar</cbc:CityName>
+        <cbc:PostalZone>1824EX</cbc:PostalZone>
+        <cbc:CountrySubentityCode listName="nuts">NL328</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-env</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NLD">Geboden oplossing
+
+Inschrijver wordt gevraagd een integrale beschrijving te geven van de aangeboden glasvezeloplossing en toe te lichten op welke wijze deze invulling geeft aan de doelstellingen en behoeften van Vonk.
+
+
+
+In de uitwerking dient Inschrijver minimaal in te gaan op de volgende aspecten:
+
+·       Opbouw en werking van de oplossing: een beschrijving van de aangeboden oplossing, de architectuur en de belangrijkste technische en functionele kenmerken;
+
+·       Beschikbaarheid en continuïteit: de wijze waarop de oplossing technisch is ingericht om de gevraagde beschikbaarheid en continuïteit te realiseren, waaronder de toegepaste redundantie en het voorkomen van single points of failure;
+
+·       Betrouwbaarheid: de maatregelen en ontwerpkeuzes die bijdragen aan een stabiele en betrouwbare werking van de oplossing;
+
+·       Schaalbaarheid en toekomstvastheid: de mogelijkheden om de oplossing gedurende de looptijd aan te passen aan wijzigingen in capaciteit, locaties, gebruik of andere behoeften van Vonk;
+
+·       Beheerbaarheid en inzicht: de mogelijkheden die de oplossing biedt voor beheer, monitoring, rapportage en inzicht in de beschikbaarheid en prestaties van de dienstverlening.
+
+ 
+
+Beoordeling
+
+Er wordt een integrale score toegekend aan de uitwerking. De hiervoor genoemde aspecten zijn geen afzonderlijke subgunningscriteria, maar geven de onderwerpen weer waarop Inschrijver in zijn uitwerking minimaal dient in te gaan.
+
+De uitwerking wordt beoordeeld op de mate waarin de aangeboden oplossing aansluit op de doelstellingen en behoeften van Vonk en waarin Inschrijver aannemelijk maakt dat de oplossing beschikbaar, betrouwbaar, beheersbaar, schaalbaar en toekomstvast is.
+
+De uitwerking dient zo SMART (Specifiek, Meetbaar, Acceptabel, Realistisch en Tijdgebonden) mogelijk te zijn. Een uitwerking wordt hoger gewaardeerd naarmate deze concreter en beter onderbouwd is, meer inzicht geeft in de daadwerkelijk aangeboden oplossing en de relevante aspecten zowel in breedte als diepte overtuigender zijn uitgewerkt.
+
+
+
+Beantwoording
+
+Het door Inschrijver op te stellen antwoord is maximaal drie (3) A4 in een leesbaar lettertype, lettergrootte 10, regelafstand 1 en met een leesbare opmaak. Naast de drie pagina’s mag de beantwoording worden voorzien van voorblad (informatie op het voorblad wordt niet meegenomen in de inhoudelijke beoordeling) en een planning als bijlage (maximaal één (1) A3). Langere motivaties komen slechts tot de maximaal toegestane lengte voor beoordeling in aanmerking.</cbc:Description>
+              </efac:SelectionCriteria>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>NLD</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>1</cbc:ID>
+        <cbc:DocumentType>restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://app.tenpu.eu/public/tender/open_procedure/1101</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://app.tenpu.eu/public/tender/open_procedure/1101</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">90</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NLD</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-10-27+01:00</cbc:EndDate>
+        <cbc:EndTime>13:00:00+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID schemeName="InternalID">707</cbc:ID>
+      <cbc:Name languageID="NLD">Glasvezeldienstverlening</cbc:Name>
+      <cbc:Description languageID="NLD">Dit aanbestedingsdocument heeft betrekking op de openbare Europese aanbesteding die Stichting Vonk houdt ten behoeve van glasvezelverbindingen. 
+
+Stichting Vonk boogt een een toekomstbestendige, betrouwbare en uniforme glasvezelinfrastructuur voor alle locaties van Vonk te realiseren.
+
+De scope van de opdracht omvat het realiseren, leveren, beheren en onderhouden van een volledig beheerde glasvezelinfrastructuur voor alle huidige en toekomstige locaties van Vonk en omvat tenminste:
+
+·       Alle activiteiten benodigd voor de aanleg van glasvezelverbindingen, migratie van bestaande verbindingen, testen en oplevering.
+
+·       Levering van een beheerde glasvezelverbinding met minimaal 1-10 Gbit/s capaciteit, monitoring, storingsafhandeling en service.
+
+·       Op alle 13 huidige locaties van Vonk, met mogelijkheid tot uitbreiding of inkrimping zonder consequenties voor tarieven.
+
+·       Optionele uitbreidingen: aanvullende bandbreedte, extra locaties, aanvullende netwerkdiensten.
+
+
+
+</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:RequestedTenderTotal>
+        <cbc:EstimatedOverallContractAmount currencyID="EUR">2800000</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32561000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72315000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Drechterwaard 10A</cbc:StreetName>
+          <cbc:CityName>Alkmaar</cbc:CityName>
+          <cbc:PostalZone>1824EX</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">NL328</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2026-09-01Z</cbc:StartDate>
+        <cbc:EndDate>2027-09-01Z</cbc:EndDate>
+      </cac:PlannedPeriod>
+      <cac:ContractExtension>
+        <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+      </cac:ContractExtension>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

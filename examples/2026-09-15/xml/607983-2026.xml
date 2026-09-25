@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>a5a8fdd3-54f0-4920-8e42-830eb4a9b0f3-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Die Frist zur Einreichung von Aufklärungsfragen wurde auf den 23.09.2026 und die Teilnahmefrist auf den 05.10.2026, 12:00 Uhr berichtigt.</efbc:ChangeDescription>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">cor-buy</cbc:ReasonCode>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.landesverband-lippe.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Landesverband Lippe</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Schlossstraße 18</cbc:StreetName>
+									<cbc:CityName>Lemgo</cbc:CityName>
+									<cbc:PostalZone>32657</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA45</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>UNBEKANNT</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.brms.nrw.de/themen/wirtschaft-kultur-und-kommunales/vergabekammer-westfalen</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen bei der Bezirksregierung Münster</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00607983-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">170/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-03+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">24c9b679-1ca7-4ee5-89e5-c1bb2a3bed1c</cbc:ID>
+	<cbc:ContractFolderID>824f68cc-b95d-4bc5-926a-15ae1821f86c</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-02+02:00</cbc:IssueDate>
+	<cbc:IssueTime>13:36:13+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-02+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">rcr</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Das Verfahren für Verstöße gegen das Vergaberecht richtet sich im vorliegenden Fall nach den Vorschriften der §§ 155 ff. des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Zur Wahrung der Fristen wird auf die §§ 160 ff. GWB verwiesen. Insbesondere weisen wir darauf hin, dass ein zulässiger Nachprüfungsantrag bei der unter 8.1 genannten Vergabekammer allenfalls bis zur wirksamen Zuschlagserteilung gestellt werden kann. Eine wirksame Zuschlagserteilung ist erst möglich, wenn der Auftraggeber die unterlegenen Bieter über den Grund der vorgesehenen Nichtberücksichtigung ihres Angebotes, den Namen des Bieters, dessen Angebot angenommen werden soll, und über den frühesten Zeitpunkt des Vertragsabschlusses in Textform informiert hat und seit der Absendung der Information 15 Kalendertage (bei Versand per Telefax oder auf elektronischem Weg: 10 Kalendertage) vergangen sind. Wir weisen ferner darauf hin, dass der Nachprüfungsantrag gemäß § 160 Abs. 3 Satz 1 Nr. 4 GWB spätestens 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, zu stellen ist. Vergaberechtsverstöße sind innerhalb einer Frist von 10 Kalendertagen, nachdem der Antragsteller den Verstoß erkannt hat, beim Auftraggeber zu rügen, § 160 Abs. 3 Satz 1 GWB. Vergabeverstöße, die aufgrund der Bekanntmachung erkennbar sind, sind gemäß § 160 Abs. 3 Satz 1 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung genannten Frist zur Bewerbung oder zur Angebotsabgabe beim Auftraggeber zu rügen. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind spätestens bis zum Ablauf der Frist zur Bewerbung oder Angebotsabgabe beim Auftraggeber zur rügen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Der Ablauf und die Merkmale des Verhandllungsverfahrens mit vorgeschaltetem Teilnahmewettbewerb sind in § 17 VgV und ergänzend in der Vergabeunterlage "Bewerbungsbedingungen (Anlage A.02) beschrieben.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4Y0WM7JL</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">LVL Externsteine</cbc:ID>
+		<cbc:Name languageID="DEU">LVL Externsteine</cbc:Name>
+		<cbc:Description languageID="DEU">Der Landesverband Lippe, eine Körperschaft des öffentlichen Rechts, beabsichtigt die Modernisierung des Infozentrums Externsteine und die digitale Inszenierung des umgebenden Areals in Horn-Bad Meinberg als ganzheitliche "Erlebniswelt Externsteine". Die Externsteine mit jährlich rund 600.000 Besuchern sollen zu einem zukunftsfähigen, interaktiven und barrierearmen Erlebnisort weiterentwickelt werden. Das bislang nicht barrierefreie und technisch veraltete Besucherzentrum bildet dabei den zentralen Start- und Erlebnispunkt.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4Y0WM7JL#
+
+
+Bei ausreichender Anzahl geeigneter Bewerber werden max. 5 Bewerber/Bewerbergemeinschaften zur Teilnahme an der folgenden Phase des Verfahrens, dem Angebotswettbewerb, aufgefordert. Die Bewerberauswahl erfolgt in einem dreistufigen Verfahren: 1. Stufe: Es wird geprüft, ob der Teilnahmeantrag alle geforderten Angaben und Unterlagen enthält. Fehlende Angaben und Unterlagen sind auf Verlangen des Auftraggebers innerhalb einer angemessenen Frist nachzureichen. Teilnahmeanträge, die auch bei Ablauf der Nachfrist noch unvollständig sind, werden nicht berücksichtigt. 2. Stufe: Es wird geprüft, ob der Bewerber/die Bewerbergemeinschaft nach den von ihm/ihr eingereichten Angaben und Unterlagen geeignet erscheint, die zu vergebenden Leistungen vertragsgerecht auszuführen, insbesondere die festgelegten Mindestanforderungen erfüllt. 3. Stufe: Bei einer größeren Anzahl geeigneter Bewerber, welche die Mindestanforderungen erfüllen, erfolgt die Auswahl der Bewerber, welche zur Abgabe eines Angebotes aufgefordert werden, auf Basis der Angaben zu den Referenzen und der Zahl der qualifizierten Berufsträger. Es werden diejenigen Bewerber / Bewerbergemeinschaften zur Teilnahme am Verhandlungsverfahren mit vorgeschaltetem Teilnahmewettbewerb eingeladen, die nach den Angaben zu den Referenzen sowie zur Zahl der qualifizierten Berufsträger im Vergleich zu ihren Mitbewerbern in besonderer Weise geeignet erscheinen, die zu vergebenden Leistungen vertragsgerecht zu erbringen. 1. Zur Bewertung der Referenzen Die vorgelegten Referenzen werden durch den Auftraggeber qualitativ dahingehend bewertet, in welchem Umfang sie mit den Anforderungen des Projektes vergleichbar sind. Die Bewertung erfolgt anhand des bekannten Schulnotensystems. Dabei entspricht: - 5 Punkte = sehr gut  - 4 Punkte = gut  - 3 Punkte = befriedigend  - 2 Punkte = ausreichend  - 1 Punkt = mangelhaft  - 0 Punkte = ungenügend.  Die Punktzahl der Referenzbewertung wird mit dem Faktor 10 multipliziert. Die geforderten zwei Referenzen werden mit jeweils 50 Punkten maximal bewertet, insgesamt können 100 Punkte erreicht werden.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">79950000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32322000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">92521100</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">79930000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Bauleistungen und ortsbezogene übrige Leistungen: Infozentrum Externsteine und Areal Externsteine Planungsleistungen und konzeptionelle Leistungen: Unternehmenssitz des Auftragnehmers</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Externsteiner Str. 35</cbc:StreetName>
+				<cbc:CityName>Horn-Bad Meinberg</cbc:CityName>
+				<cbc:PostalZone>32805</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA45</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Auszug aus dem Handelsregister oder aus einem vergleichbaren Register, in dem der Rechtsträger des Bieterunternehmens erfasst ist, im Zeitpunkt der Einreichung des Teilnahmeantrags nicht älter als drei Monate (kein Vordruck, als Anlage A2 zum Teilnahmeantrag)</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber muss in das Berufs- und Handelsregister eingetragen sein. Bewerber, die keinen Sitz in Deutschland haben, müssen eine Eintragung in einem vergleichbaren Register des Mitgliedsstaates ihres Sitzes vorweisen. Der Nachweis erfolgt durch Eigenerklärung des Bewerbers im Formular für den Teilnahmeantrag (Anlage A00).</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>100.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber hat zum Nachweis seiner beruflichen Leistungsfähigkeit geeignete Referenzen zu vergleichbaren Leistungen aus den letzten drei Jahren zu benennen. Hierzu ist das mit den Vergabeunterlagen bereitgestellte Formular B00-1 Bewerber-Referenzliste auszufüllen und mit dem Angebot über die Vergabeplattform hochzuladen. Folgende (kumulative) Mindestanforderungen an die Referenzleistungen gelten: a) Gefordert werden mindestens zwei Referenzen über Konzeptionierungen und vollumfängliche Umsetzungen einer digital immersiven Ausstellung und/oder Erlebniswelt mit AR-Elementen in historischem oder touristischem Kontext. b) Der mit den Referenzen nachgewiesene Support und die Wartung der jeweilig genutzten Softwares muss mindestens über ein Jahr erfolgt sein. c) In den Referenzleistungen muss erfolgreich eingebundene Hardware beschafft und angeschlossen worden sein. d) Die Projektumsetzung den Referenzleistungen muss unter strengen Datenschutzauflagen (DSGVO) und mit der Integration von Verschlüsselungstechnologien (z.B. Enterprise-Cloud-Lösungen) stattgefunden haben. e) Das Ende der Leistungserbringung in den Referenzleistungen darf nicht vor dem 01.01.2023 liegen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungsvoraussetzung ist das Bestehen einer Betriebshaftpflichtversicherung für die von der Leistungsbeschreibung umfassten Tätigkeiten mit folgenden Mindestdeckungssummen (siehe Vordruck 3 in Anlage A00): - Personenschäden: 3.000.000 EUR - Sach- und Vermögensschäden:  5.000.000 EUR Die Mindestdeckungssummen gelten jeweils pro Schadensfall, maximiert auf 2 Schadensfälle pro Jahr. Die genannten Mindestdeckungssummen müssen spätestens bei Leistungsbeginn vorliegen. Ein Nachweis der bestehenden Versicherung ist nur auf Verlangen des Auftraggebers nachzureichen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber hat für die letzten drei abgeschlossenen Geschäftsjahre den jeweiligen Jahresgesamtumsatz aus vergleichbaren Leistungen anzugeben (Vordruck 2 in Anlage A00). Bewerbergemeinschaften haben entsprechende Umsatzangaben für alle Mitglieder zu machen; es genügt die entsprechende Summenangabe für alle Mitglieder zusammen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über das Nichtvorliegen von Ausschlussgründen gemäß § 123, 124 GWB bzw. die Voraussetzungen einer Selbstreinigung gemäß § 125 GWB, als Eigenerklärung (Formblatt B00-2). Hinweise: Bei Bewerbergemeinschaften ist die Eigenerklärung Ausschlussgründe (Formblatt B00-2) von jedem Mitglied einzureichen. Macht der Bewerber bzw. die Bewerbergemeinschaft von der Möglichkeit der Eignungsleihe Gebrauch, ist die Eigenerklärung zu Ausschlussgründen nach §§ 123, 124 GWB (Formblatt B00-2) auch von allen Drittunternehmen einzureichen, auf deren Kapazitäten sich der Bewerber bzw. die Bewerbergemeinschaft beruft.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zum Russland-Sanktionspaket nach Art. 5k VO (EU) Nr. 833/2014 (Formblatt B00-3) Hinweis: Bei Bewerbergemeinschaften ist die Eigenerklärung zum Russland-Sanktionspaket nur einmal für die Bewerbergemeinschaft einzureichen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Jahresabschlüsse der letzten 3 abgeschlossenen Geschäftsjahre (kein Vordruck, als Anlage A3)</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4Y0WM7JL/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber entscheidet über die Nachforderung von Unterlagen auf der Grundlage von § 56 VgV nach pflichtgemäßem Ermessen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-unit</efbc:ParameterCode>
+											<efbc:ParameterNumeric>35.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Kriterium 1: Angebotspreis Bewertet wird die im Preisblatt ausgewiesene Gesamtwertungssumme für alle Lieferungen und Leistungen gemäß Leistungsbeschreibung. Die Berechnung der Punkte erfolgt nach der in den Vergabeunterlagen/Bewerbungsbedingungen festgelegten Formel, bei der das preisgünstigste, gemäß Preisblatt und Berechnungslogik max: 35 Punkte</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-unit</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Projektkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Kriterium 2: Projektkonzepte (max. 40 Punkte) Konzept 1: Didaktisches und szenographisches Konzept Beschreiben Sie Ihr didaktisches und szenographisches Konzept zur modernen und interaktiven Informationsvermittlung rund um das Naturdenkmal Externsteine und seine Entstehungsgeschichte. Erläutern Sie, wie Sie historische Dokumente und Daten didaktisch und szenographisch aufbereiten und in das Gesamterlebnis integrieren. max: 16 Punkte Konzept 2: Konzept der digitalen Medien Stellen Sie Ihr Konzept der digitalen Medien dar. Gehen Sie dabei insbesondere auf die Konzeption und Programmierung der mobilen App (iOS/Android), die Integration von Augmented Reality (AR)-Erlebnissen, die Social Wall, die WhatsApp-Schnitzeljagd sowie die Erweiterung der Kinonutzung ein. Beschreiben Sie zudem, wie digitale Inhalte offline (z.B. auf physischen Datenträgern) bereitgestellt werden. max: 12 Punkte Konzept 3: Konzept zur Hardwareintegration Legen Sie Ihr detailliertes Konzept zur Hardwareintegration dar. Zeigen Sie auf, mit welchen innovativen und nachhaltigen Ansätzen Sie veraltete Hardware unter strikter Einhaltung der Vorgabe, vorhandene Bildschirmöffnungen ohne bauliche Veränderungen zu nutzen, austauschen. Begründen Sie Ihre Hardwareauswahl im Hinblick auf Systemkompatibilität, Langlebigkeit und die nahtlose Einbindung zu erhaltender analoger Stationen, um ein ganzheitliches Nutzererlebnis zu gewährleisten. max: 5 Punkte Konzept 4: Pädagogischer Mehrwert &amp; Besucherinteraktion (UX) Beschreiben Sie, wie Ihr Konzept den pädagogischen Mehrwert für verschiedene Zielgruppen (insbesondere die junge Generation) sicherstellt und das Bewusstsein für Natur-, Denkmal- und Umweltschutz stärkt. Erläutern Sie, durch welche interaktiven Elemente (z.B. AR-Erlebnisse, WhatsApp-Schnitzeljagd) und barrierefreien Zugänge Sie eine hohe Nutzerfreundlichkeit (UX) und Inklusion gewährleisten. max. 7 Punkte</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-unit</efbc:ParameterCode>
+											<efbc:ParameterNumeric>20.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Umsetzungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Kriterium 3: Umsetzungskonzepte (max. 20 Punkte) Konzepte 1: Fachliche Herangehensweise und Lösungsarchitektur Beschreiben Sie Ihre fachliche Herangehensweise und die Lösungsarchitektur für die ganzheitliche Entwicklung und Umsetzung der Erlebniswelt. Erläutern Sie die technische Architektur der IT-Infrastruktur (inkl. Gäste-WLAN, satellitengestützte Breitbandanbindung) und wie die verschiedenen Hard- und Softwarekomponenten (App, AR, Social Wall, Displays) ineinandergreifen. max: 7 Punkte Konzept 2: Zeitplanung und Projektmanagement  Stellen Sie Ihre Zeitplanung und Ihr Projektmanagement dar. Beschreiben Sie die geplanten Projektphasen, Meilensteine und die Methoden zur Projektsteuerung, um eine termingerechte und erfolgreiche Umsetzung des Projekts sicherzustellen. max: 5 Punkte Konzept 3: Organisation der Leistungserbringung  Wie stellen Sie organisatorisch sicher, dass der Auftrag ordnungsgemäß erfüllt wird? Machen Sie detaillierte Angaben zu den für die Auftragserfüllung vorgesehenen und verfügbaren Ressourcen, insbesondere zum Projektteam (Projektleiter, Techniker) unter Nennung von Qualifikationen, relevanter Erfahrung und Zertifizierungen für die angebotene Software. Erläutern Sie die Organisation Ihres Serviceteams und die Regelungen für Vertretung bei Ausfällen. max: 4 Punkte Konzept 4: Konzept für Datenschutz und Datensicherheit  Beschreiben Sie detailliert, durch welche technischen und organisatorischen Maßnahmen Sie den Schutz personenbezogener Daten und die Einhaltung geltender Datenschutzgesetze (insbesondere DSGVO) während der Implementierung und im späteren Betrieb der Lösung sicherstellen. Gehen Sie auf Aspekte wie Datenerfassung, -speicherung, -zugriff, -löschung und die allgemeine Datensicherheit der Gesamtlösung ein. Beachten Sie dabei stets die Vorgaben aus der Leistungsbeschreibung zu diesem Thema. max: 2 Punkte Konzept 5: Schulungskonzept  Präsentieren Sie Ihr Schulungskonzept. Beschreiben Sie die Inhalte und Durchführung der Administrator-Schulungen (mind. 8 Stunden) sowie der Anwender-Schulungen (mind. 6 Stunden), gehen Sie dabei auf die Themen Einrichtung, Troubleshooting und Bedienung der Software ein. max: 2 Punkte</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-unit</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Service und Support</cbc:Name>
+						<cbc:Description languageID="DEU">Kriterium 4: Erreichbarkeit von Support und Service (max. 5 Punkte) Kriterium 1 (Frage): An welchen Tagen und innerhalb welcher Zeiten ist der technische Support zu erreichen, sofern es über die in der Leistungsbeschreibung geforderten Mindestzeiten während der Sommersaison hinaus geht? Mindestanforderung Supportzeiten: Der technische Support muss in der Sommersaison jeden Jahres von Montag bis Freitag zwischen 10 Uhr und 17 Uhr (35 Std./Woche) erreichbar sein. Die Sommersaison beginnt mit den Osterferien in NRW, spätestens jedoch am 01.04. und endet mit dem 31.10. jeden Jahres. max: 3 Punkte Kriterium 2: Wartungsarmut, Langlebigkeit &amp; Hardware-Resilienz Legen Sie dar, wie die angebotenen Hardware-Komponenten (z.B. Displays im 24/7-Betrieb, Outdoor-WLAN-Komponenten) auf Langlebigkeit und Wartungsarmut ausgelegt sind. Beschreiben Sie Ihre Maßnahmen zur Hardware-Resilienz (z.B. Belüftungskonzepte, Wetterfestigkeit) und wie ein schneller, unkomplizierter Austausch im Defektfall (etwa bei den geforderten Chromeboxen) gewährleistet wird. max: 2 Punkte</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4Y0WM7JL</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Das Verfahren für Verstöße gegen das Vergaberecht richtet sich im vorliegenden Fall nach den Vorschriften der §§ 155 ff. des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Zur Wahrung der Fristen wird auf die §§ 160 ff. GWB verwiesen. Insbesondere weisen wir darauf hin, dass ein zulässiger Nachprüfungsantrag bei der unter 8.1 genannten Vergabekammer allenfalls bis zur wirksamen Zuschlagserteilung gestellt werden kann. Eine wirksame Zuschlagserteilung ist erst möglich, wenn der Auftraggeber die unterlegenen Bieter über den Grund der vorgesehenen Nichtberücksichtigung ihres Angebotes, den Namen des Bieters, dessen Angebot angenommen werden soll, und über den frühesten Zeitpunkt des Vertragsabschlusses in Textform informiert hat und seit der Absendung der Information 15 Kalendertage (bei Versand per Telefax oder auf elektronischem Weg: 10 Kalendertage) vergangen sind. Wir weisen ferner darauf hin, dass der Nachprüfungsantrag gemäß § 160 Abs. 3 Satz 1 Nr. 4 GWB spätestens 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, zu stellen ist. Vergaberechtsverstöße sind innerhalb einer Frist von 10 Kalendertagen, nachdem der Antragsteller den Verstoß erkannt hat, beim Auftraggeber zu rügen, § 160 Abs. 3 Satz 1 GWB. Vergabeverstöße, die aufgrund der Bekanntmachung erkennbar sind, sind gemäß § 160 Abs. 3 Satz 1 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung genannten Frist zur Bewerbung oder zur Angebotsabgabe beim Auftraggeber zu rügen. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind spätestens bis zum Ablauf der Frist zur Bewerbung oder Angebotsabgabe beim Auftraggeber zur rügen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4Y0WM7JL</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-23+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">LVL Externsteine</cbc:ID>
+			<cbc:Name languageID="DEU">LVL Externsteine</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist die Modernisierung des Infozentrums Externsteine und die digitale Inszenierung des umgebenden Areals zu einer ganzheitlichen "Erlebniswelt Externsteine". Beschafft wird ein Konzept samt dessen Umsetzung, das heißt zum einen die Konzeptionierung einschließlich aller Planungsleistungen und behördlichen Genehmigungs- und Erlaubnisverfahren, zum anderen die komplette Umsetzung inklusive etwaiger Bauleistungen, IT-Dienstleistungen sowie weiterer Dienstleistungen (wie z.B. Support und Schulungen).   Die Vergabe erfolgt als Stufenvertrag: Mit dem Zuschlag wird allein Stufe 1 (Erstellung der Konzepte) beauftragt, während die Umsetzungsleistungen (Stufe 2) sowie Lizenzeinräumung, technischer Support und Schulungen (Stufe 3) als Optionen ausgeschrieben sind, über deren Abruf der Auftraggeber binnen fünf Monaten nach Abnahme der Stufe 1 entscheidet.  Das Konzept, die Planung der Umsetzung und die Umsetzung selbst sind vom Auftragnehmer frei zu gestalten, müssen jedoch aufgrund der Ist-Situation gepaart mit dem zur Verfügung stehenden Budget und den gesetzlichen Vorgaben bestimmte Mindestanforderungen erfüllen  Anforderungen allgemein: - Die Externsteine und das gesamte umgebende Areal unterliegen dem Naturschutz, alle zu konzipierenden Leistungen müssen mit den Vorgaben, die sich daraus ergeben, in Einklang stehen. Der Auftragnehmer hat dafür Sorge zu tragen, dass sowohl bereits das Konzept als auch die komplette Umsetzung alle naturschutzrechtlichen Vorgaben einhält. Das umfasst auch alle nötigen Maßnahmen, die zur Konzeptumsetzung getroffen werden. - Die historischen Dokumente und Daten zu den Externsteinen werden vom Landesverband Lippe und der Schutzgemeinschaft Externsteine zur Verfügung gestellt und sollen nicht vom Auftragnehmer zusammengetragen werden, wohl aber didaktisch und szenographisch aufbereitet, je nach Einsatzart digitalisiert und zusammengestellt werden. - Dieses Projekt wird zum Teil durch eine Förderung des Landes NRW finanziert und ist und ist deshalb so zu konzipieren und umzusetzen, dass alle förderrechtlichen Bestimmungen vollumfänglich eingehalten werden. - Es soll eine Progressive Web App, bzw. eine mobile App für iOS und Android konzipiert, programmiert und in den gängigen App-Stores zum Download bereitgestellt werden, welche naturkundliche, geologische und historische Informationen zu den Externsteinen enthalten und das Areal samt Wegen und Sehenswürdigkeiten darstellt, außerdem soll in der App der Link zur Homepage enthalten sein, so dass direkt auf aktuelle Informationen zugegriffen werden kann. Weitere Inhalte sind vom Auftragnehmer zu konzipieren und umzusetzen. Weitere Funktionen, die den Besucher das Gelände aktiv erleben lassen, müssen vorhanden sein - eine Whats App Schnitzeljagd soll mit konzipiert werden - Jede Software muss mindestens mit ChromeOS und Windows 11 oder höher, falls zum Zeitpunkt der Erbringung vorhanden, kompatibel sein - jede Hardware muss mindestens mit ChromeOS kompatibel sein, eine zusätzliche Kompatibilität mit Microsoft Windows 11 oder höher, falls zum Zeitpunkt der Erbringung vorhanden, ist wünschenswert  Anforderungen Infozentrum: - Einlassen von Revisionsöffnungen überall dort, wo Informationstechnik verbaut ist und/oder wird - Austausch der veralteten Hardware - Nutzung der vorhandenen Bildschirmöffnungen in den Wänden und dem zentralen, aus lackiertem Holz bestehenden X - keine baulichen Veränderungen der Grundstruktur der Räume - Erhalt der analogen Stationen in den Vitrinen - Installation (indoor) samt Einrichtung mit Software, Lizenzen und Moderationsdashboard einer Social Wall; die Moderation wird vom Landesverband Lippe übernommen - mindestens Herstellung und Installation eines Tastreliefs der Externsteinformation und des Kreuzabnahmereliefs als 3D-Druck - Überarbeitung und Modernisierung sowie Neuerstellung digitaler Inhalte inklusive didaktischer Aspekte - Erweiterung der Nutzung des Kinos - digitale Inhalte müssen auf physischen Datenträgern bereitgestellt werden (USB-Sticks, lokal auf einem PC), um einen einfachen Austausch zu ermöglichen und auch bei Internetausfall ein ganzheitliches Besuchererlebnis bieten zu können, die Dateiformate müssen sich betriebssystemunabhängig abspielen lassen - Ausgenommen hiervon sind Inhalte, deren Bestehen rein online gegeben ist (SocialWall, App) - Schaffen von barrierefreien Zugängen zu Inhalten - zuverlässiger und leicht auswertbarer Besucherzähler - Schild, dass die Maßnahme gefördert ist laut Vorgabe aus dem Bewilligungsbescheid  Die weiteren konkreten Anforderungen sind Ziffer V und VI. der Leistungsbeschreibung (Anlage B01) zu entnehmen.  Das Projekt wird anteilig aus öffentlichen Fördermitteln finanziert. Förderrechtlich verbindlich sind ein Gesamtbudget von 620.000 EUR (davon 372.000 EUR gefördert, verteilt auf die Haushaltsjahre 2026 und 2027) sowie eine Kostenaufteilung von 255.000 EUR Einrichtung/Szenografie, 25.000 EUR Baukosten und 340.000 EUR Technikkosten. Alle Leistungen sind bis zum Ablauf des Kalenderjahres 2027 zu erbringen.  Vertragsgrundlage sind ein EVB-IT-Cloudvertrag und ein EVB-IT-Systemvertrag.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">1. Hinweis zur Vertragslaufzeit Die angegebene Laufzeit bis zum 31.12.2027 gilt für die vertraglichen Hauptleistungen der Vertragsstufen 1 und 2 (Erstellung des Konzeptes für die Modernisierung des Infozentrums Externsteine und die digitale Inszenierung des umgebenden Areals zu einer ganzheitlichen "Erlebniswelt Externsteine" sowie die Konzeptumsetzung). Die Vertragsleistungen der Stufe 3 (Support und Schulungen) haben eine längere Laufzeit.   2. Erläuterungen zur Bewertungsmethodik: Die Aussagen des Bewerbers in den eingereichten Konzepttexten werden für jedes Unterkriterium unter Berücksichtigung der dort jeweils angegebenen Höchstpunktzahl für dieses Unterkriterium wie folgt bewertet:  Maximale Punktzahl: Die Aussagen des Bewerbers zur jeweiligen Fragestellung überzeugen uneingeschränkt.  80 % der maximalen Punktzahl: Die Aussagen des Bewerbers zur jeweiligen Fragestellung überzeugen ganz überwiegend, weisen aber vereinzelt geringfügige Schwächen bzw. Kritikpunkte auf.  60 % der maximalen Punktzahl: Die Aussagen des Bewerbers zur jeweiligen Fragestellung überzeugen überwiegend. Sie weisen aber Schwächen bzw. Kritikpunkte auf, die zwar für sich genommen nicht schwerwiegend sind, aber zumindest in Summe auch nicht mehr nur als vereinzelt und geringfügig angesehen werden können.  40 % der maximalen Punktzahl: Die Aussagen des Bewerbers zur jeweiligen Fragestellung sind alles in allem noch überzeugend, weisen aber einzelne deutliche Schwächen bzw. Kritikpunkte auf.  20 % der maximalen Punktzahl: Die Aussagen des Bewerbers zur jeweiligen Fragestellung überzeugen nur teilweise bzw. eingeschränkt. Sie weisen entweder einzelne besonders schwerwiegende Schwächen bzw. Kritikpunkte auf oder mehrere deutliche Schwächen bzw. Kritikpunkte.  0 Punkte: Die Aussagen des Bewerbers zur jeweiligen Fragestellung überzeugen in Gänze nicht oder entsprechende Aussagen fehlen gänzlich.  2. Die Bewerber / Bieter im Vergabeverfahren werden darauf hingewiesen, dass die Zuschlagsentscheidung auf der Grundlage der angebotenen Vergütung und der Bewertung von "Vor-Konzepten" der drei vorgenannten Konzepte (Medien- und Hardware-Integrationskonzept, Umsetzungskonzept, Konzept zu Service und Support) durchgeführt wird. Diese Vor-Konzepte sind möglichst mit dem Erstangebot, spätestens eine Woche vor dem mitzuteilenden Termin für das Bietergespräch einzureichen und im Bietergespräch vorzustellen. Mit dem abschließenden bindenden Angebot können überarbeitete Fassungen eingereicht werden.  3. Erläuterung zu "Angaben zu KMU" Da der Auftrag ohne eine Bildung von Fachlosen erfolgt, ist die Erbringung der ausgeschriebenen Leistungen insgesamt aus Sicht des Auftraggebers nicht für KMU geeignet. Allerdings besteht die Möglichkeit, eine Bietergemeinschaft zu bilden und Nachunternehmer zu beauftragen (in Verbindung mit einer Eignungsleihe). In diesen Konstellationen kann der Auftrag für KMU geeignet sein.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79950000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32322000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">92521100</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79930000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Bauleistungen und ortsbezogene übrige Leistungen: Infozentrum Externsteine und Areal Externsteine Planungsleistungen und konzeptionelle Leistungen: Unternehmenssitz des Auftragnehmers</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Externsteiner Str. 35</cbc:StreetName>
+					<cbc:CityName>Horn-Bad Meinberg</cbc:CityName>
+					<cbc:PostalZone>32805</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA45</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-01+01:00</cbc:StartDate>
+				<cbc:EndDate>2027-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Der Auftraggeber erteilt den Zuschlag für die Leistungen der Stufe 1 mit dem Zuschlag im Vergabeverfahren. Die Leistungen der Stufen 2 und 3 werden als optionale Leistungen ausgeschrieben. Der Auftraggeber wird binnen fünf Monaten nach Erbringung und Abnahme der Leistungen der Stufe 1 entscheiden, ob die Leistungen der Stufen 2 und 3 beauftragt werden. Die Optionen sind schriftlich auszuüben; die Textform gemäß § 126b BGB reicht hierzu aus.  Die Bewerber / Bieter im Vergabeverfahren werden darauf hingewiesen, dass die Zuschlagsentscheidung auf der Grundlage der angebotenen Vergütung und der Bewertung von "Vor-Konzepten" der drei vorgenannten Konzepte (Medien- und Hardware-Integrationskonzept, Umsetzungskonzept, Konzept zu Service und Support) durchgeführt wird. Diese Vor-Konzepte sind möglichst mit dem Erstangebot, spätestens eine Woche vor dem mitzuteilenden Termin für das Bietergespräch einzureichen und im Bietergespräch vorzustellen. Mit dem abschließenden bindenden Angebot können überarbeitete Fassungen eingereicht werden.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

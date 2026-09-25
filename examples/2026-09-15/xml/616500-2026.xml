@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.gkvi.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">gkv informatik eGbR</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Luisenstr. 64</cbc:StreetName>
+									<cbc:CityName>Wuppertal</cbc:CityName>
+									<cbc:PostalZone>42103</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA1A</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 249321415</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Bundes</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kaiser-Friedrich-Straße 16</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>keine Angabe</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00616500-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">173/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-08+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">5ce11263-ce2b-44e4-825d-9541d844f543</cbc:ID>
+	<cbc:ContractFolderID>4ff444bc-474b-4fee-ba15-4348f576766a</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+	<cbc:IssueTime>23:58:21+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-04+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Erkennt ein am Auftrag interessiertes Unternehmen einen Verstoß gegen Vergabevorschriften im vorliegenden Vergabeverfahren, hat er dies gegenüber dem Auftraggeber innerhalb einer Frist von 10 Kalendertagen zu rügen. Verstöße gegen Vergabevorschriften, die bereits aufgrund der Bekanntmachung erkennbar sind, müssen bis zum Ablauf der in der Bekanntmachung genannten Frist zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden. Außerdem müssen Verstöße gegen Vergabevorschriften, die erst aus den Vergabeunterlagen erkennbar sind, ebenfalls bis zum Ablauf der Frist zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden. Verstößt ein Unternehmen gegen diese Obliegenheiten, ist ein Antrag auf Nachprüfung gemäß § 160 Abs.3 GWB unzulässig. Teilt die Vergabestelle auf eine Rüge eines interessierten Unternehmers mit, der Rüge nicht abhelfen zu wollen, kann der Rügeführer hiergegen einen Antrag auf Nachprüfung bei der zuständigen Vergabekammer stellen. Die für den Auftraggeber zuständige Vergabekammer ist unter 12. benannt. Der Antrag ist unzulässig, wenn mehr als 15 Kalendertage nach dem Eingang der Mitteilung der Auftraggeberin, einer Rüge nicht abhelfen zu wollen, vergangen sind (§ 160 Abs.3 S.1 Nr.4. GWB). § 134 Abs.2 GWB bleibt unberührt. Dies bedeutet, dass der Auftraggeber den Zuschlag nach Ablauf der Wartefrist gemäß § 134 Abs.2 GWB auch dann erteilen wird, wenn noch keine 15 Kalendertage nach einer eventuellen Mitteilung, einer Rüge nicht abhelfen zu wollen, abgelaufen sind. Es obliegt den Bietern, in jedem Fall vor Ablauf der Wartefrist gemäß § 134 Abs.2 GWB Rechtsschutz zu suchen. Für ein vergaberechtliches Nachprüfungsverfahren nach Maßgabe der §§ 155 ff. GWB lautet die Adresse der zuständigen Vergabekammer des Bundes, Kaiser-Friedrich-Straße 16, 53113 Bonn. Für Amtshandlungen der Vergabekammern werden Kosten (Gebühren und Auslagen) zur Deckung des Verwaltungsaufwandes erhoben (§ 182 GWB). Bei der Durchführung eines Nachprüfungsverfahrens gemäß §§ 160 ff. GWB haben alle Verfahrensbeteiligten grundsätzlich ein Akteneinsichtsrecht (§ 165 Abs. 1 GWB). Jeder Bieter hat daher mit der konkreten Möglichkeit zu rechnen, dass sein Angebot mit allen Bestandteilen, soweit es sich in den Vergabeakten des Auftraggebers befindet, von den Verfahrensbeteiligten bei der Vergabekammer eingesehen wird. Der Auftraggeber ist bei Einleitung eines Nachprüfungsverfahrens verpflichtet, die Vergabeakten sofort der Vergabekammer zur Verfügung zu stellen (§ 163 Abs.2 S.4 GWB). Es liegt somit im eigenen Interesse eines jeden Bieters, schon in seinem Angebot auf wichtige Gründe, die nach § 165 Abs.2 GWB die Vergabekammer veranlassen können, die Einsicht in die Akten zu versagen, insbesondere auf Betriebs- oder Geschäftsgeheimnisse, hinzuweisen, dies durch eine Eigenerklärung zu erklären und die vertraulichen Teile des Angebots entsprechend zu markieren.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMPMPDU</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">04-2026</cbc:ID>
+		<cbc:Name languageID="DEU">Sicherheitstechnische und arbeitsmedizinische - Betreuung</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand dieser Ausschreibung ist die arbeitsmedizinische und -sicherheitstechnische Betreuung der Mitarbeitenden des Auftraggebers durch ein externes Unternehmen.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YMPMPDU#</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">563531.00</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:Region>anyw-cou</cbc:Region>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Gesamtumsatz.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Gesamtumsatz bezogen auf den Auftragsgegenstand.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">- Erklärung, dass innerhalb von 4 Wochen nach Zuschlag eine Berufs- oder Betriebshaftpflichtversicherung mit einer Deckungshöhe für Sachschäden in Höhe von 500.000 EUR je Schadensfall und für Vermögensschäden in Höhe 500.000,00 EUR je Schadensfall, jeweils begrenzt auf insgesamt 1 Mio. EUR durch Bescheinigung des Versicherers nachgewiesen wird (Kopie nicht älter als 6 Monate; die Laufzeit muss erkennbar sein und darf zum Zeitpunkt der Auftragsvergabe noch nicht abgelaufen sein; s. Angebotsblatt). Wird die Berufs- oder Betriebshaftpflichtversicherung nicht rechtzeitig nachgewiesen, steht dem Auftraggeber ein außerordentliches Kündigungsrecht zu.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMPMPDU/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Das Angebot muss alle geforderten Angaben, Erklärungen und geforderten Nachweise enthalten. Unternehmensbezogene Nachweise und geforderte Unterlagen bzw. Erklärungen, die bei Angebotsabgabe nicht beigefügt werden, müssen auf Anfrage fristgerecht nachgereicht bzw. vervollständigt werden (§56 Abs. 2 VgV). Fehlende oder unvollständige leistungsbezogene Unterlagen können nachgereicht oder vervollständigt werden, sofern sie nicht die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen. Eine solche Nachforderung ist ausgeschlossen (§ 56 Abs. 3 VgV).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-tot</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Angebotspreis mit einer Wertung von 60% (zusammengesetzt aus 55% Stundensatz Arbeitssicherheit (Grundbetreuung) + 35% Stundensatz Arbeitsmedizin (Grundbetreuung) + 10% Summe Angebotspreise für die bedarfsspezifische Betreuung (Arbeitsmedizinische und Arbeitssicherheits-Untersuchungen, Psychologische Betreuung, Impfungen; Impfdosis, Angebotsvorsorge Bildschirmarbeit, Physiologische Untersuchungen (in Anlehnung an eine G 20 "Lärm I") und Angebote zu verschiedenen "Gesundheitstagen" (z.B. Rückengesundheit) sowie Beratungsleistungen (z.B.  mpfberatung))</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-tot</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Fachliche Qualifikation</cbc:Name>
+						<cbc:Description languageID="DEU">Fachliche Qualifikation, welche anhand der Bewertungskriterien im Fragenkatalog ermittelt wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMPMPDU</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Erkennt ein am Auftrag interessiertes Unternehmen einen Verstoß gegen Vergabevorschriften im vorliegenden Vergabeverfahren, hat er dies gegenüber dem Auftraggeber innerhalb einer Frist von 10 Kalendertagen zu rügen. Verstöße gegen Vergabevorschriften, die bereits aufgrund der Bekanntmachung erkennbar sind, müssen bis zum Ablauf der in der Bekanntmachung genannten Frist zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden. Außerdem müssen Verstöße gegen Vergabevorschriften, die erst aus den Vergabeunterlagen erkennbar sind, ebenfalls bis zum Ablauf der Frist zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden. Verstößt ein Unternehmen gegen diese Obliegenheiten, ist ein Antrag auf Nachprüfung gemäß § 160 Abs.3 GWB unzulässig. Teilt die Vergabestelle auf eine Rüge eines interessierten Unternehmers mit, der Rüge nicht abhelfen zu wollen, kann der Rügeführer hiergegen einen Antrag auf Nachprüfung bei der zuständigen Vergabekammer stellen. Die für den Auftraggeber zuständige Vergabekammer ist unter 12. benannt. Der Antrag ist unzulässig, wenn mehr als 15 Kalendertage nach dem Eingang der Mitteilung der Auftraggeberin, einer Rüge nicht abhelfen zu wollen, vergangen sind (§ 160 Abs.3 S.1 Nr.4. GWB). § 134 Abs.2 GWB bleibt unberührt. Dies bedeutet, dass der Auftraggeber den Zuschlag nach Ablauf der Wartefrist gemäß § 134 Abs.2 GWB auch dann erteilen wird, wenn noch keine 15 Kalendertage nach einer eventuellen Mitteilung, einer Rüge nicht abhelfen zu wollen, abgelaufen sind. Es obliegt den Bietern, in jedem Fall vor Ablauf der Wartefrist gemäß § 134 Abs.2 GWB Rechtsschutz zu suchen. Für ein vergaberechtliches Nachprüfungsverfahren nach Maßgabe der §§ 155 ff. GWB lautet die Adresse der zuständigen Vergabekammer des Bundes, Kaiser-Friedrich-Straße 16, 53113 Bonn. Für Amtshandlungen der Vergabekammern werden Kosten (Gebühren und Auslagen) zur Deckung des Verwaltungsaufwandes erhoben (§ 182 GWB). Bei der Durchführung eines Nachprüfungsverfahrens gemäß §§ 160 ff. GWB haben alle Verfahrensbeteiligten grundsätzlich ein Akteneinsichtsrecht (§ 165 Abs. 1 GWB). Jeder Bieter hat daher mit der konkreten Möglichkeit zu rechnen, dass sein Angebot mit allen Bestandteilen, soweit es sich in den Vergabeakten des Auftraggebers befindet, von den Verfahrensbeteiligten bei der Vergabekammer eingesehen wird. Der Auftraggeber ist bei Einleitung eines Nachprüfungsverfahrens verpflichtet, die Vergabeakten sofort der Vergabekammer zur Verfügung zu stellen (§ 163 Abs.2 S.4 GWB). Es liegt somit im eigenen Interesse eines jeden Bieters, schon in seinem Angebot auf wichtige Gründe, die nach § 165 Abs.2 GWB die Vergabekammer veranlassen können, die Einsicht in die Akten zu versagen, insbesondere auf Betriebs- oder Geschäftsgeheimnisse, hinzuweisen, dies durch eine Eigenerklärung zu erklären und die vertraulichen Teile des Angebots entsprechend zu markieren.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMPMPDU</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-10-05+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>12:01:00+02:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">04-2026</cbc:ID>
+			<cbc:Name languageID="DEU">Sicherheitstechnische und arbeitsmedizinische - Betreuung</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieser Ausschreibung ist die arbeitsmedizinische und -sicherheitstechnische Betreuung der Mitarbeitenden des Auftraggebers durch ein externes Unternehmen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:Region>anyw-cou</cbc:Region>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">1</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Maximal 3 Verlängerungen um jeweils 12 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

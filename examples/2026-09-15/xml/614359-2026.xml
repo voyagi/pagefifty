@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://vergabe.hessen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Land Hessen, vertreten durch die Hessische Zentrale für Datenverarbeitung</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Mainzer Straße 29</cbc:StreetName>
+                           <cbc:CityName>Wiesbaden</cbc:CityName>
+                           <cbc:PostalZone>65185</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE714</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>06-25153000-14</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.rp-darmstadt.hessen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Landes Hessen beim Regierungspräsidium Darmstadt</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Wilhelminenstraße 1 - 3</cbc:StreetName>
+                           <cbc:CityName>Darmstadt</cbc:CityName>
+                           <cbc:PostalZone>64283</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE711</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE 812 056 745</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00614359-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">172/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">2023985f-f276-4ca3-bd43-84eaebfd6e5d</cbc:ID>
+   <cbc:ContractFolderID>d3b4e9ac-cbef-46dc-bbf0-13005cca95c0</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+   <cbc:IssueTime>08:57:02+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-04+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB" "</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>VG-3000-2026-0057</cbc:ID>
+      <cbc:Name languageID="DEU">Secure-Web-Gateway-Systeme</cbc:Name>
+      <cbc:Description languageID="DEU">Beschaffung von Secure-Web-Gateway-Systemen sowie Consulting- und Unterstützungsleistungen für die Sicherheitsinfrastruktur des Landes Hessen</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Ein Bieter kann den Nachweis seiner Eignung und des Nichtvorliegens von Ausschlussgründen ganz oder teilweise durch die Teilnahme an Präqualifikationssystemen erbringen.
+
+Neben den in Ziffer 5.1.9 dieser EU-Bekanntmachung geforderten Unterlagen zu Beleg der Eignung haben die Bieter zusätzlich die nachfolgenden Erklärungen und Nachweise mit dem Angebot einzureichen:
+
+(1) Eigenerklärungen zu Ausschlussgründen §§ 123, 124 GWB (Dateien "Eigenerklaerung_Par_123_GWB" und "Eigenerklaerung_Par_124_GWB"). Bei Bietergemeinschaften hat jedes Mitglied der Bietergemeinschaft die Erklärungen in der entsprechenden Form einzureichen. Bei Einsatz von (eignungsrelevanten) Unterauftragnehmern hat jeder Unterauftragnehmer die Erklärungen in der entsprechenden Form einzureichen.
+
+(2) Eigenerklärung Artikel 5k EU-Verordnung 833/2014
+Der Bieter hat die Eigenerklärung zum Artikel 5k der EU-Verordnung 833/2014 (Datei "Eigenerklaerung Artikel 5k EU-Verordnung 833-2014") ausgefüllt mit seinem Angebot einzureichen.
+Bei Bietergemeinschaften hat jedes Mitglied der Bietergemeinschaft die Erklärung in der entsprechenden Form einzureichen.
+
+(3) Erklärung Unternehmensdaten (Datei "Erklaerung_Unternehmensdaten"). Diese Erklärung dient lediglich statistischen Zwecken. Sie stellt kein Eignungskriterium dar.
+
+(4) Verpflichtungserklärung nach dem Hessischen Vergabe- und Tariftreuegesetz (HVTG): Bieter, jedes Mitglied einer Bietergemeinschaft sowie (eignungsrelevante) Unterauftragnehmer (§§ 4, 5 HVTG) haben die erforderliche Verpflichtungserklärung zu Tariftreue und Mindestlohn nach § 10 HVTG abzugeben (Datei "Verpflichtungserklaerung_oeff_AG").
+
+(5) Der Auftragnehmer wird personenbezogene Daten im Auftrag verarbeiten. Hierzu wird eine Vereinbarung über die Auftragsverarbeitung geschlossen (Datei "Vereinbarung_Auftragsverarbeitung "). Der Bieter füllt die mit den Vergabeunterlagen veröffentlichte Vereinbarung über die Auftragsverarbeitung an den vorgesehenen Stellen aus (gelb markiert); insbesondere fügt der Bieter die erforderlichen technisch-organisatorischen Maßnahmen seinem Angebot bei. Die Vergabestelle weist darauf hin, dass für diesen Auftrag keine besonderen Anforderungen an die technisch-organisatorischen Maßnahmen gestellt werden.
+
+Die Vergabestelle weist an dieser Stelle bereits darauf hin, dass für den für den Zuschlag in Aussicht genommenen Bieter gemäß § 19 Abs. 4 MiLoG i.V.m. § 6 Abs. 1 WRegG vor Zuschlagserteilung eine Auskunft aus dem Wettbewerbsregister angefordert wird.
+
+Den Zuschlag erhält der Bieter mit der höchsten Gesamtpreispunktzahl. Sofern mehrere Bieter exakt die gleiche Gesamtpreispunktzahl erreichen, entscheidet das Los.
+Die Gesamtpreispunktzahl errechnet sich aus der Addition der erreichten Punktzahlen der einzelnen Preispositionen.</cbc:Note>
+      <cac:RequestedTenderTotal>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efbc:FrameworkMaximumAmount currencyID="EUR">9240000.00</efbc:FrameworkMaximumAmount>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:EstimatedOverallContractAmount currencyID="EUR">7700000.00</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:Region>anyw-cou</cbc:Region>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter hat die Eigenerklärung über die Zertifizierung durch das PartnerProgramm des Herstellers Cisco mit der Einstufung "Gold" (Datei "Eigenerklaerung_Zertifizierung") ausgefüllt mit seinem Angebot einzureichen.
+Bei Bietergemeinschaften hat jedes Mitglied der Bietergemeinschaft die Erklärung in der entsprechenden Form einzureichen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Die Darstellung von mindestens einer (1) geeigneten Referenz aus den letzten drei Jahren (Stichtag "Ablauf der Angebotsfrist"), für die unten beschriebene Anforderung (A), Darstellung von mindestens einer (1) geeigneten Referenz aus den letzten drei Jahren (Stichtag "Ablauf der Angebotsfrist"), für die unten beschriebene Anforderung 
+(B) und Darstellung von mindestens einer (1) geeigneten Referenz aus den letzten drei Jahren (Stichtag "Ablauf der Angebotsfrist"), für die unten beschriebene Anforderung (C).
+
+(A) Lieferung und Bereitstellung von Secure-Web-Gateway-/HTTP-VirenscannerSystemen des Herstellers Cisco inkl. Hersteller-Subskription in einem Umfeld mit einer Anzahl von mindestens 70.000 Nutzern,
+
+(B) Wartung von Secure-Web-Gateway-/HTTP-Virenscanner-Systemen des Herstellers Cisco mit den Leistungen Service-Hotline, Unterstützungsleistungen bei produktspezifischen Problemen und dem Austausch defekter Secure-Web-Gateway-/HTTPVirenscanner-Systeme,
+
+(C) Dienstleistung für Integrationsberatung, Installation, Konfiguration und Inbetriebnahme von Web-Gateway-Lösungen in einem Umfeld mit einer Anzahl von mindestens 70.000 Nutzern in komplexen Datacenter-Netzwerkinfrastrukturen.
+
+Die Anforderungen (A), (B) und (C) können jeweils mit einem separaten Referenzprojekt je Anforderung nachgewiesen werden (Beispiel: Ein Referenzprojekt des Bieters erfüllt Anforderung (A), nicht jedoch die Anforderungen (B) und (C). Ein weiteres 
+Referenzprojekt des Bieters erfüllt die Anforderung (B), nicht jedoch die Anforderungen (A) und (C). Und ein weiteres Referenzprojekt des Bieters erfüllt die Anforderung (C), nicht jedoch die Anforderungen (A) und (B). Dann sind insgesamt drei Referenzvordrucke einzureichen. 
+
+Die Anforderungen (A), (B) und (C) können jeweils auch mit einem Referenzprojekt nachgewiesen werden (Beispiel: Ein Referenzprojekt des Bieters erfüllt bereits die Anforderungen (A), (B) und (C)). Dann ist nur ein Referenzvordruck einzureichen. 
+
+Die Anforderungen (A), (B) und (C) können jeweils mit separaten Referenzprojekten zu mehreren Anforderungen nachgewiesen werden 
+
+(Beispiel: Ein Referenzprojekt des Bieters erfüllt die Anforderung (A), ein weiteres erfüllt die Anforderungen (B) und (C)). Dann sind insgesamt zwei Referenzvordrucke einzureichen. 
+
+Die aufgestellte Mindestanforderung an die technische und berufliche Leistungsfähigkeit ist zwingend zu erfüllen. Unternehmen, die diese Mindestanforderung nicht erfüllen, sind zur Auftragsausführung nicht geeignet und werden aus dem Vergabeverfahren ausgeschlossen.
+
+(Datei "Referenzen")
+
+In der Referenzvorlage ist abschließend die Person des Erklärenden namentlich anzugeben.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mindestanforderung: Gesamtumsatzes des Unternehmens mit einem Mindestumsatz von 5.000.000,00 Euro (netto) pro Jahr in den letzten drei abgeschlossenen Geschäftsjahren entsprechend dem Gründungsdatum oder dem Datum der Tätigkeitsaufnahme des Unternehmens 
+(Datei "Erklärung Umsatzzahlen").
+
+Die aufgestellte Mindestanforderung an die wirtschaftliche und finanzielle Leistungsfähigkeit ist zwingend zu erfüllen. Unternehmen, die diese Mindestanforderung nicht erfüllen, sind zur Auftragsausführung nicht geeignet und werden aus dem Vergabeverfahren ausgeschlossen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.hessen.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-19fb2f339f6-4c87aba65554bd1e</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Die Nachforderung von Unterlagen erfolgt nach den Regeln des § 56 Abs. 2 S. 1, Abs. 3 VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Es wird darauf hingewiesen, dass die Bieter sowie deren Nachunternehmen und Verleihunternehmen, soweit diese bereits bei Angebotsabgabe bekannt sind, die erforderlichen Pflichtverletzungserklärungen
+(Datei:"Verpflichtungserklärung_oeff_AG") zur Tariftreue und zum Mindestentgelt nach dem Hessischen Vergabe- und Tariftreuegesetz (HVTG) vom 17. Juni 2026 (GVBl. 2026 Nr. 40) mit dem Angebot abzugeben haben. Die Verpflichtungserklärung bezieht sich nicht auf Beschäftigte, die bei einem Bieter, Nachunternehmer und Verleihunternehmen in EU-Ausland beschäftigt sind und die Leistung in EU-Ausland erbringen.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.hessen.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">4</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">§ 160
+Einleitung, Antrag
+(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+
+(3) Der Antrag ist unzulässig, soweit
+
+1.der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2.Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3.Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4.mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind,
+5.ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.
+Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-10-05+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Secure-Web-Gateway-Systeme</cbc:Name>
+         <cbc:Description languageID="DEU">Die zu beschaffenden Leistungen beziehen sich auf den Kauf neuer Systeme für 
+Secure-Web-Gateway-Umgebungen, die Sicherstellung von Hersteller-Subskription 
+und die Wartung für jene Systeme. Weiterhin beinhalten die zu beschaffenden Leistungen die Unterstützung bei der Planung und Integration von Secure-Web-GatewayUmgebungen in komplexe Netz-Infrastrukturen sowie bei der Lösung schwerwiegender Probleme. 
+Aufgrund der Notwendigkeit von Ersatzbeschaffungen für bestehende Lösungen ist für die Vertragszeit von 4 Jahren von einer Beschaffung von ca. 12 Secure-Web-Gateway-Systemen mit HTTP-Malware-/Virenscanner sowie entsprechenden Management- und Reporting-Systemen auszugehen. Zusätzlich werden Neubeschaffungen von ca. 8 zusätzlichen Secure-Web-Gateway-Systemen erwartet. Zur Abwicklung von Projekten zur Integration der Secure-Web-Gateway-Systeme in komplexe Netz- und Verfahrenslandschaften wird mit einem Dienstleistungsvolumen von 2.160 Stunden (270 Personentagen) über die Vertragslaufzeit von 4 Jahren ausgegangen, die sich wie folgt aufteilen: 
+- 2.000 Stunden Consulting-Leistungen 
+- 160 Stunden Advanced Services des Herstellers Cisco.
+
+Nähere Informationen sind der Datei " Leistungsbeschreibung" auf der Vergabeplattform zu entnehmen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#Die Leistungen aus der Rahmenvereinbarung können bis zu einem Höchstwert von 9.240.000,00 Euro (netto) bei einer maximalen Laufzeit von vier Jahren abgerufen werden.</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efbc:FrameworkMaximumAmount currencyID="EUR">9240000.00</efbc:FrameworkMaximumAmount>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">7700000.00</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:Region>anyw-cou</cbc:Region>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Der Rahmenvertrag hat eine Mindestlaufzeit von zwei Jahren und eine zweimalige
+automatische Verlängerung um jeweils ein weiteres Jahr bis zu maximal 4 Jahren.</cbc:OptionsDescription>
+            <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

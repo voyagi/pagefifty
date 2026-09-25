@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">17</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.evakon.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">EVAKON GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Königstr. 77</cbc:StreetName>
+                           <cbc:CityName>Lübeck</cbc:CityName>
+                           <cbc:PostalZone>23552</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEF03</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 00012432</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Verkehrsgesellschaft Landkreis Gifhorn mbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Wolfsburger Straße 1</cbc:StreetName>
+                           <cbc:CityName>Gifhorn</cbc:CityName>
+                           <cbc:PostalZone>38518</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE914</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE 115 239 693</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer Niedersachsen beim Nds. Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Auf der Hude 2</cbc:StreetName>
+                           <cbc:CityName>Lüneburg</cbc:CityName>
+                           <cbc:PostalZone>21339</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE935</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>[removed]</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00612755-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">172/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">838cebb1-cecb-43b4-bf75-9bc7fd73ce78</cbc:ID>
+   <cbc:ContractFolderID>f694843f-999f-4fca-9f98-08ebf77e33c7</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+   <cbc:IssueTime>10:07:41+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-06+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0025</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="entity-activity">urttb</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+         </cac:PartyIdentification>
+         <cac:ServiceProviderParty>
+            <cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+            <cac:Party>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:Party>
+         </cac:ServiceProviderParty>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>sektvo</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Der Nachweis über das Nichtvorliegen von Ausschlussgründen nach den §§ 123 und 124 GWB erfolgt durch eine Erklärung des Bieters, dass zum Zeitpunkt der Angebotsabgabe 
+1. keine Person, deren Verhalten ihm als für die Leitung des Unternehmens verantwortlich Handelnder nach § 123 Abs. 3 GWB zuzurechnen ist, wegen einer Straftat nach den in § 123 Abs. 1 GWB genannten strafrechtlichen Vorschriften oder vergleichbaren Vorschriften anderer Staaten in den letzten fünf Jahren vor Angebotsabgabe rechtskräftig verurteilt worden ist und dass gegen ihn in diesem Zeitraum auch keine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten wegen einer derartigen Straftat festgesetzt worden ist; 
+2. der Bieter seiner Verpflichtung zur Zahlung von Steuern, Abgaben und Beiträgen zur Sozialversicherung stets ordnungsgemäß nachgekommen ist und Gegenteiliges in den letzten fünf Jahren vor Angebotsabgabe weder durch eine rechtskräftige Gerichts noch durch eine bestandskräftige Verwaltungsentscheidung festgestellt wurde; 
+3. der Bieter bei der Ausführung öffentlicher Aufträge die geltenden umwelt-, sozial- oder arbeitsrechtlichen Verpflichtungen beachtet und in den letzten drei Jahren vor Angebotsabgabe keinerlei diesbezüglichen Verstöße begangen hat; 
+4. der Bieter nicht zahlungsunfähig ist und über das Vermögen des Bieters weder ein Insolvenzverfahren noch ein vergleichbares gesetzliches Verfahren beantragt oder eröffnet wurde oder die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist sowie dass derartige Umstände auch in den letzten drei Jahren vor Angebotsabgabe nicht vorgelegen haben; 
+5. der Bieter sich nicht im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat sowie dass derartige Umstände auch in den letzten drei Jahren vor Angebotsabgabe nicht vorgelegen haben; 
+6. weder der Bieter noch eine Person, deren Verhalten ihm als für die Leitung des Unternehmens verantwortlich Handelnder nach § 123 Abs. 3 GWB zuzurechnen ist, im Rahmen der beruflichen Tätigkeit in den letzten drei Jahren vor Angebotsabgabe eine schwere und die Integrität des Bieters infrage stellende Verfehlung begangen hat; 
+7. der Bieter in den letzten drei Jahren vor Angebotsabgabe keine Vereinbarungen mit anderen Unternehmen getroffen oder Verhaltensweisen aufeinander abgestimmt hat, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken, 
+8. dass nach Kenntnis des Bieters kein Interessenkonflikt bei der Durchführung des Vergabeverfahrens besteht, der die Unparteilichkeit und Unabhängigkeit einer für den öffentlichen Auftraggeber tätigen Person bei der Durchführung des Vergabeverfahrens beeinträchtigen könnte, 
+9. dass der Bieter in den letzten drei Jahren vor Angebotsabgabe bei der Ausführung eines früheren öffentlichen Auftrags oder Konzessionsvertrags keine wesentlichen Anforderungen erheblich oder fortdauernd mangelhaft erfüllt hat und/oder dass dies nicht zu einer vorzeitigen Beendigung, zu Schadensersatz oder zu einer vergleichbaren Rechtsfolge geführt hat; 
+10. der Bieter nicht wegen eines Verstoßes nach § 21 Mindestlohngesetz (MiLoG) oder § 23 Arbeitnehmer Entsendegesetz (AEntG) mit einer Geldbuße von wenigstens zweitausendfünfhundert Euro belegt worden ist; 
+11. weder der Bieter noch eine Person, deren Verhalten ihm als für die Leitung des Unternehmens verantwortlich Handelnder nach § 123 Abs. 3 GWB oder als nach Satzung oder Gesetz Vertretungsberechtigter zuzurechnen ist, in den letzten fünf Jahren vor Angebotsabgabe nach § 404 Abs. 2 Nr. 3 Drittes Buch Sozialgesetzbuch mit einer Geldbuße von wenigstens zweitausendfünfhundert Euro belegt oder nach den §§ 10, 10a oder 11 des Schwarzarbeitsbekämpfungsgesetzes zu einer Freiheitsstrafe von mehr als drei Monaten oder einer Geldstrafe von mehr als 90 Tagessätzen rechtskräftig verurteilt worden ist. 
+12. der Bieter keinen der in § 1 Abs. 2 Sätze 1 bis 3 PBZugV aufgezählten Verstöße begangen hat; 
+13. der Bieter über wirtschaftliche Mittel in einem solchen Umfang verfügt, dass diese zur Erfüllung seiner laufenden finanziellen Verpflichtungen unter Einschluss derjenigen aus dem hiesigen Auftrag ausreichen werden und dass der Bieter dies im Falle einer eventuell in der Phase der Prüfung und Wertung der Angebote erfolgenden entsprechenden Anforderung des Auftraggebers durch Einreichung entsprechender Unterlagen im Sinne der Absätze 4 und 5 des § 45 VgV unverzüglich nachweisen kann; 
+14. der Bieter in den letzten drei Jahren vor Angebotsabgabe nicht wegen eines rechtskräftig festgestellten Verstoßes nach § 24 Abs. 1 LkSG mit einer Geldbuße nach Maßgabe von § 22 Absatz 2 LkSG belegt worden ist. 
+Der Bieter hat zudem eine Eigenerklärung in Hinblick auf Artikel 5 k) Absatz 1 der Verordnung (EU) Nr. 833/2014 in der zum Zeitpunkt des Endes der Angebotsfrist geltenden Fassung über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren abzugeben. Bei Angeboten von Bietergemeinschaften müssen die genannten Eigenerklärungen von jedem Mitglied der Bietergemeinschaft abgegeben werden. Bieter oder Mitglieder einer Bietergemeinschaft, bei denen Ausschlussgründe nach den §§ 123, 124 GWB vorliegen, haben außerdem eine Erklärung darüber abzugeben, ob – und wenn ja, welche – Maßnahmen zur Selbstreinigung nach § 125 GWB der jeweilige Bieter bzw. das jeweilige Mitglied der Bietergemeinschaft ergriffen hat.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">Beschaffung und Einführung eines Lademanagement-Systems für die VLG</cbc:Name>
+      <cbc:Description languageID="DEU">Die Verkehrsgesellschaft Landkreis Gifhorn mbH (VLG) beabsichtigt, ihre Busflotte im Rahmen der Anforderungen des Saubere-Fahrzeuge-Beschaffungs-Gesetzes schrittweise auf Elektromobilität umzustellen. Hierzu sollen Elektrobusse sowie die für deren Betrieb erforderliche Ladeinfrastruktur beschafft und in die betrieblichen Abläufe integriert werden. 
+
+Die VLG plant, bis zum Jahr 2027 zunächst Ladeinfrastruktur für zunächst 11 Fahrzeuge bereitzustellen. Zur zentralen Steuerung und Überwachung der Ladevorgänge, zur Begrenzung der Netzlast sowie zur Unterstützung der betrieblichen Fahrzeugdisposition und Fahrzeugaufstellung soll ein Lade- und Lastmanagementsystem eingeführt werden. 
+
+Mit der Einführung der Elektromobilität entstehen zusätzliche Anforderungen an die Planung und Steuerung des Fahrzeugeinsatzes, der Ladevorgänge und der verfügbaren elektrischen Leistung. Fahrzeugverfügbarkeit, Batterieladezustand, Energiebedarf, geplante Abfahrtszeiten, Ladepunktbelegung und verfügbare Netzleistung müssen zukünftig systemgestützt zusammengeführt und berücksichtigt werden. 
+
+Das initiale Ausbaustadium umfasst die Ladeinfrastruktur für 11 Fahrzeuge. Die genaue Anzahl und Ausprägung der Ladepunkte, deren technische Eigenschaften sowie die einzubindenden betrieblichen Systeme und Datenquellen werden im Mengengerüst, in den Schnittstellenbeschreibungen und in den Anlagen zu diesem Lastenheft verbindlich beschrieben. 
+
+Die steigenden Anforderungen im Zuge der fortschreitenden Elektrifizierung der Busflotte sowie der Ausbau der Ladeinfrastruktur erfordern ein leistungsfähiges Lade-, Last- und Energiemanagement. 
+Mit der Einführung eines LMS sollen die Ladeprozesse unter Berücksichtigung der Randbedingungen aus Ladeinfrastruktur, Fahrzeugdaten, Batterieladezuständen und Reichweitenanforderungen gesteuert werden. Das LMS muss die Ladevorgänge so steuern, dass die für den geplanten Fahrzeugeinsatz erforderlichen Ladezustände rechtzeitig erreicht werden. 
+Die Ladeinfrastruktur ist in das LMS zu integrieren, sodass der Status der Ladeeinheiten zentral überwacht und gesteuert werden kann.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Soweit sich im Teilnahmewettbewerb mehr als 5 geeignete Bewerber bewerben, wird der Auftraggeber die Zahl der Teilnehmer am Wettbewerb gemäß § 45 Abs. 3 SektVO, § 51 VgV auf 5 Teilnehmer begrenzen. Falls eine Begrenzung der Zahl der Bewerber erfolgt, wird die Auswahl der Bewerber nach der Anzahl und Qualität der vorgelegten Referenzen vorgenommen. Die Einzelheiten ergeben sich aus der Aufforderung zur Abgabe von Teilnahmeanträgen. 
+Der Bewerber hat die Vorschriften des NTVergG zum Mindestlohn einzuhalten, § 4 Abs. 1 NTVergG. Zu diesem Zweck hat er die beigefügten Anlage A.11 auszufüllen. Auch jedes Bewerbergemeinschaftsmitglied und jeder Subunternehmer hat diesen Vordruck ausgefüllt einzureichen.
+Ein Bewerber/ eine Bewerbergemeinschaft kann die Erledigung von Teilen des Auftrags durch Unterauftragnehmer i.S. des § 34 SektVO vorsehen. In diesem Fall hat der Bewerber/die Bewerbergemeinschaft die Teile des Auftrags, die er/sie im Wege der Unterauftragsvergabe an andere Unternehmen (Dritte) zu vergeben beabsichtigen, zu benennen. Darüber hinaus hat der Bewerber/die Bewerbergemeinschaft die vorgesehenen Unterauftragnehmer im Teilnahmeantrag mit Name und Anschrift zu benennen (gemäß Anlage A.10) und die nachfolgend bezeichneten Unterlagen für den jeweiligen Unterauftragnehmer vorzulegen: 
+-	Anlage A.11 Erklärung Tariftreue § 4 NTvergG
+-	Anlage A.12 Eigenerklärung § 123 GWB
+-	Anlage A.13 Eigenerklärung § 124 GWB
+-	Anlage A.14 Eigenerklärung zum fehlenden Russland-Bezug
+ Die nachträgliche Einschaltung oder der Wechsel eines Unterauftragnehmers für diese Leistungen bedarf der Zustimmung des Auftraggebers. Vertragspartner und Ansprechpartner für den Auftraggeber ist immer der Auftragnehmer, der den Zuschlag erhalten hat.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CountrySubentityCode listName="nuts">DE914</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mit dem Teilnahmeantrag legt der Bewerber nachfolgende Unterlagen zur persönlichen Lage zwingend vor: Einen aktuellen Auszug aus dem Handelsregister, der zum Ende der Bewerbungsfrist nicht älter als sechs Monate sein darf. Von Bewerbern aus einem anderen Mitgliedsstaat ist eine gleichwertige, aktuelle Bescheinigung des Herkunftslandes des Bewerbers mit beglaubigter Übersetzung ins Deutsche, oder falls keine Eintragungspflicht im Handelsregister besteht, eine formlose Erklärung, weshalb für den Bewerber keine Eintragungspflicht besteht und darüber, wer die vertretungsberechtigten Personen sind, einzureichen. Hierfür ausreichend ist ein Ausdruck aus dem elektronischen Informations- und Kommunikationssystem, über das die Daten aus den Handelsregistern abrufbar sind. Bei einer Bewerbergemeinschaft hat jedes Mitglied der Bewerbergemeinschaft einen entsprechenden Handelsregisterauszug einzureichen.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eine Eigenerklärung (Anlage A.7) über den Gesamtumsatz in letzten drei abgeschlossenen Geschäftsjahren sowie den Umsatz des Bewerbers in den letzten drei abgeschlossenen Geschäftsjahren hinsichtlich der Leistung, die Gegenstand dieser Ausschreibung ist. Bei Bewerbergemeinschaften ist der Einzelumsatz jedes Mitglieds der Bewerbergemeinschaft anzugeben.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eine Eigenerklärung (Anlage A.7) über den Gesamtumsatz in letzten drei abgeschlossenen Geschäftsjahren sowie den Umsatz des Bewerbers in den letzten drei abgeschlossenen Geschäftsjahren hinsichtlich der Leistung, die Gegenstand dieser Ausschreibung ist. Bei Bewerbergemeinschaften ist der Einzelumsatz jedes Mitglieds der Bewerbergemeinschaft anzugeben.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mit dem Teilnahmeantrag legt der Bewerber nachfolgende Unterlagen zum Nachweis seiner wirtschaftlichen und finanziellen Leistungsfähigkeit zwingend vor:
+Eine unterschriebene Eigenerklärung (Anlage A.6), aus der hervorgeht, dass:
+o	über das Vermögen des Bewerbers weder das Insolvenzverfahren, noch ein vergleichbares gesetzliches Verfahren eröffnet, oder die Eröffnung beantragt, oder dieser Antrag mangels Masse abgelehnt worden ist und er sich nicht in Liquidation befindet.
+o	der Bewerber eine bestehende Berufshaftpflichtversicherung nachweisen kann, oder diese im Falle der Mitteilung über die beabsichtigte Zuschlagserteilung durch den Auftraggeber bis zur Auftragserteilung nachgewiesen wird. Die Mindestversicherungssummen je Schadensfall betragen:
+1 Mio. Euro bei Personenschäden
+1 Mio. Euro bei Sachschäden
+5 Mio. Euro bei Vermögensschäden
+Bei Bewerbergemeinschaften ist diese Erklärung von jedem Mitglied der Bewerbergemeinschaft einzureichen.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mit dem Teilnahmeantrag legt der Bewerber nachfolgende Unterlagen zum Nachweis seiner technischen Leistungsfähigkeit/ Fachkunde zwingend vor:
+•	Angaben vergleichbaren Referenzprojekten aus den Jahren 2023 bis zum Zeitpunkt der Abgabe des Teilnahmeantrages; maßgeblich für die Wertbarkeit der Referenz ist hier das Datum des Projektstartes, sowie Angaben zum durchschnittlichen Auftragsvolumen der benannten Referenzen (Anlagen 8.1 und 8.2). Vergleichbar ist eine Referenz, wenn der Bewerber ein Lademanagement- und/oder Depotmanagementsystem in einem Verkehrsunternehmen des ÖPNV geliefert und implementiert hat.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Benennung der Anzahl der, in den letzten drei abgeschlossenen Geschäftsjahren, durchschnittlich beschäftigten Arbeitskräfte in den Fachbereichen zur Bearbeitung vergleichbarer Projekte (Anlage A.9). Bei Bewerbergemeinschaften ist diese Erklärung von jedem Mitglied der Bewerbergemeinschaft abzugeben. Soweit nicht für alle Mitglieder der Bewerbergemeinschaft die nachzuweisenden Referenzen vorgelegt werden, hat die Bewerbergemeinschaft bei der Erbringung der hiesigen Leistung das Personal der diese Referenzen vorlegenden Mitglieder der Bewerbergemeinschaft einzusetzen, das über die mit den vorgelegten Referenzen erlangte Erfahrung verfügt.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Bescheinigung einer gültigen DIN-EN ISO-9001 Zertifizierung oder eines gleichwertigen Nachweises. Im Falle einer Bewerbergemeinschaft muss der Nachweis für alle Mitglieder der Bewerbergemeinschaft nachgewiesen werden.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Bewerbergemeinschaften sind zur Abgabe eines Teilnahmeantrages zugelassen, soweit ihr Zusammenschluss keine unzulässige wettbewerbsbeschränkende Abrede im Sinne des § 124 Abs. 1 Nr. 4 GWB darstellt. Bewerbergemeinschaften haben mit dem Teilnahmeantrag eine Bewerbergemeinschaftserklärung (Anlage A.1) abzugeben und einen bevollmächtigten Vertreter zu benennen. Dieser ist zugleich Ansprechpartner für die Vergabestelle. Eine Beteiligung von Unternehmen/Bewerbern an mehreren Bewerbergemeinschaften ist nicht zulässig. Mitglieder von Bewerbergemeinschaften sind von der eigenen Teilnahme ausgeschlossen. Die Auftraggeberin behält sich vor, ergänzend einen Nachweis der wettbewerbsrechtlichen Zulässigkeit der Bildung der Bewerbergemeinschaft zu verlangen.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+         </cac:RequiredFinancialGuarantee>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E48379475</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E48379475</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:PaymentTerms>
+            <cbc:Note languageID="DEU">keine</cbc:Note>
+         </cac:PaymentTerms>
+         <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende, fehlerhafte oder unvollständige Unterlagen von den Bewerbern nachzufordern oder korrigieren zu lassen, soweit eine Gleichbehandlung der Bewerber gewahrt bleibt. Zur Nachforderung von Unterlagen ist der Auftraggeber nicht verpflichtet. Bewerber, deren Teilnahmeantrag auch nach gegebenenfalls erfolgter Nachforderung die formellen Anforderungen nicht erfüllt, werden ausgeschlossen.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">siehe Anlagen A.4 bis A.14</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Den Zuschlag erhält das wirtschaftlichste Angebot. Neben dem Preis wird auch die Qualität bewertet. Einzelheiten werden den Bietern zu Beginn der Angebotsphase mitgeteilt</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E48379475</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderEvaluationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderEvaluationParty>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Einleitung von Nachprüfverfahren gem. § 160 GWB:
+
+(1) Die zuständigen Vergabekammern leiten ein Nachprüfungsverfahren nur auf Antrag ein.
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+(3) Der Antrag ist unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht gerügt hat,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.
+
+Formvorschrift gem. §161 GWB:
+(1) Der Antrag ist schriftlich bei der Vergabekammer einzureichen und unverzüglich zu begründen. Er soll ein bestimmtes Begehren enthalten. Ein Antragsteller ohne Wohnsitz oder gewöhnlichen Aufenthalt, Sitz oder Geschäftsleitung im Geltungsbereich dieses Gesetzes hat einen Empfangsbevollmächtigten im Geltungsbereich des Gesetzes (BRD) zu benennen.
+(2) Die Begründung muss die Bezeichnung des Antragsgegners, eine Beschreibung der behaupteten Rechtsverletzung mit Sachverhaltsdarstellung und die Bezeichnung der verfügbaren Beweismittel enthalten sowie darlegen, dass die Rüge gegenüber dem Auftraggeber erfolgt ist; sie soll, soweit bekannt, die sonstigen Beteiligten benennen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0003</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0003</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+         <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:ParticipationRequestReceptionPeriod>
+            <cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:ParticipationRequestReceptionPeriod>
+         <cac:AdditionalInformationRequestPeriod>
+            <cbc:EndDate>2026-09-23+02:00</cbc:EndDate>
+            <cbc:EndTime>00:00:00+02:00</cbc:EndTime>
+         </cac:AdditionalInformationRequestPeriod>
+         <cac:EconomicOperatorShortList>
+            <cbc:LimitationDescription>true</cbc:LimitationDescription>
+            <cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+            <cbc:MinimumQuantity>1</cbc:MinimumQuantity>
+         </cac:EconomicOperatorShortList>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 E48379475</cbc:ID>
+         <cbc:Name languageID="DEU">Beschaffung und Einführung eines Lade-Management-Systems</cbc:Name>
+         <cbc:Description languageID="DEU">Die Verkehrsgesellschaft Landkreis Gifhorn mbH (VLG) beabsichtigt, ihre Busflotte im Rahmen der Anforderungen des Saubere-Fahrzeuge-Beschaffungs-Gesetzes schrittweise auf Elektromobilität umzustellen. Hierzu sollen Elektrobusse sowie die für deren Betrieb erforderliche Ladeinfrastruktur beschafft und in die betrieblichen Abläufe integriert werden. 
+
+Die VLG plant, bis zum Jahr 2027 zunächst Ladeinfrastruktur für zunächst 11 Fahrzeuge bereitzustellen. Zur zentralen Steuerung und Überwachung der Ladevorgänge, zur Begrenzung der Netzlast sowie zur Unterstützung der betrieblichen Fahrzeugdisposition und Fahrzeugaufstellung soll ein Lade- und Lastmanagementsystem eingeführt werden. 
+
+Mit der Einführung der Elektromobilität entstehen zusätzliche Anforderungen an die Planung und Steuerung des Fahrzeugeinsatzes, der Ladevorgänge und der verfügbaren elektrischen Leistung. Fahrzeugverfügbarkeit, Batterieladezustand, Energiebedarf, geplante Abfahrtszeiten, Ladepunktbelegung und verfügbare Netzleistung müssen zukünftig systemgestützt zusammengeführt und berücksichtigt werden. 
+
+Das initiale Ausbaustadium umfasst die Ladeinfrastruktur für 11 Fahrzeuge. Die genaue Anzahl und Ausprägung der Ladepunkte, deren technische Eigenschaften sowie die einzubindenden betrieblichen Systeme und Datenquellen werden im Mengengerüst, in den Schnittstellenbeschreibungen und in den Anlagen zu diesem Lastenheft verbindlich beschrieben. 
+
+Die steigenden Anforderungen im Zuge der fortschreitenden Elektrifizierung der Busflotte sowie der Ausbau der Ladeinfrastruktur erfordern ein leistungsfähiges Lade-, Last- und Energiemanagement. 
+Mit der Einführung eines LMS sollen die Ladeprozesse unter Berücksichtigung der Randbedingungen aus Ladeinfrastruktur, Fahrzeugdaten, Batterieladezuständen und Reichweitenanforderungen gesteuert werden. Das LMS muss die Ladevorgänge so steuern, dass die für den geplanten Fahrzeugeinsatz erforderlichen Ladezustände rechtzeitig erreicht werden. 
+Die Ladeinfrastruktur ist in das LMS zu integrieren, sodass der Status der Ladeeinheiten zentral überwacht und gesteuert werden kann.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:EstimatedOverallContractQuantity unitCode="H87">1</cbc:EstimatedOverallContractQuantity>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">100000.00</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DE914</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

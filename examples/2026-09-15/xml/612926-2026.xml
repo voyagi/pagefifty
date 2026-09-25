@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>6457eb13-4539-4201-b96c-834b59bfde52-01</efbc:ChangedNoticeIdentifier>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Anpassung der Vergabeunterlagen und Auftragsbekanntmachung.</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.itzbund.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Informationstechnikzentrum Bund (ITZBund)</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Bernkasteler Straße 8</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53175</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>991-18202-59</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.bundeskartellamt.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Bundes</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kaiser-Friedrich-Str. 16</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53113</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>t:[removed]</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00612926-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">172/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">ccc3314d-3c05-4d68-8d5f-0f511f5bca11</cbc:ID>
+   <cbc:ContractFolderID>f2f41788-23d3-4ee9-afa6-45e9ec345f3d</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+   <cbc:IssueTime>10:47:31+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-04+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Vorstehender Ausschlussgrund wurde nur beispielhaft ausgewählt. Es gelten alle zwingenden Ausschlussgründe nach § 123 GWB und alle fakultativen Ausschlussgründe nach § 124 GWB.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>Z42-2026-0028</cbc:ID>
+      <cbc:Name languageID="DEU">Rahmenvertrag für Dienstleistungen Systemmanagement pServer/AIX </cbc:Name>
+      <cbc:Description languageID="DEU">Das ITZBund möchte einen Rahmenvertrag schließen und benötigt externe Unterstützung im Bereich Systemmanagement der IBM Power/AIX/RHEL Umgebung.
+Die geforderte Personalunterstützung soll durch externe Fachkräfte erfolgen. Sie beinhaltet die Installation, Konfiguration und Administration folgender Komponenten:
+1. Hardware (dreizehn IBM Powersysteme, davon vier Enterprise-Server)
+2. Systemsoftware (Hypervisor, PowerVM)
+3. Betriebssysteme der LPARs (Schwerpunkt AIX 7.2 - 7.3 / RHEL 9.x - 10.x)
+4. Cluster-Software PowerHA 7.2, Spectrum Scale 5.x, Pacemaker
+5. SAPHANA on Power RHEL
+6. HMC-Management</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72220000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72514000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:Region>anyw-cou</cbc:Region>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungskriterium 3.1.1-  Partnerschaft mit IBM als Hersteller von Power Hard- und Software
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte einen Nachweis über eine gültige Partnerschaft "Platinum Business Partner" der IBM im Bereich Powersystems den Status "IBM Partner plus platinum" ein. 
+
+Eignungskriterium 3.1.2 - Nachweis einer Premier Business Partnerschaft (RHEL)
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte einen Nachweis über eine gültige Partnerschaft der Klassifizierung "Premier Business Partner (RHEL)" ein. 
+
+Eignungskriterium 3.1.3 - Nachweis einer Public Sector Specialized Partnerschaft (RHEL)
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte einen Nachweis über eine gültige Partnerschaft der Klassifizierung "Public Sector Specialized Partner (RHEL)"ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungskriterium 2.1 - Referenz
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte mittels der Vorlage Referenzen eine geeignete Referenz in Bezug zur gegenständlichen Leistung ein. Die Leistungsbereiche umfassen dabei folgende technische Schwerpunkte: Betriebssystemkenntnisse (sowohl für AIX, als auch RHEL) und die damit verbundenen Kenntnisse in Clustertechnologien und Netzwerkaufbau. Stellen Sie Ihre Leistungsfähigkeit für den Auftragsgegenstand und Ihre hierfür relevanten Erfahrungen anhand der Referenzen dar.
+Bei Bietergemeinschaften und/oder bei der Beteiligung von Nachunternehmen muss die vorgesehene Aufgabenteilung der beteiligten Unternehmen beschrieben werden und für jedes sich beteiligende Unternehmen eine Unternehmensdarstellung eingereicht werden.
+Die Unternehmensdarstellung muss es dem Auftraggeber ermöglichen, ein umfassendes Bild des Bieters bzw. der Bietergemeinschaft zu gewinnen und ist eine der Grundlagen zur Feststellung der Eignung. Aus der Unternehmensdarstellung muss hervorgehen, dass der Bieter im Hinblick auf die ausgeführten Aspekte bzgl. der technischen und beruflichen Leistungsfähigkeit zur Leistungserbringung geeignet ist.
+Im Falle von Bietergemeinschaften und Bietern, die andere Unternehmen im Rahmen der Eignungsleihe einbinden ist im Vordruck Referenzen im Feld "Referenz des Bewerbers / Bieters" der Leistungserbringer der Referenz, d.h. das betroffene Mitglied der Bietergemeinschaft bzw. das eignungsverleihende Unternehmen, anzugeben.
+Nutzen Sie die Vorlage Referenzen, soweit erforderlich, bitte mehrfach. 
+Zu den Referenzen sind insbesondere folgende Angaben zu machen: 
+ Beschreibung der ausgeführten Leistungen, 
+ Wert des Auftrages in Euro, bezogen auf den maßgeblichen Referenzeitraum,
+ Zeitraum der Leistungserbringung, 
+ Angabe der zuständigen Kontaktstelle bei der Auftraggeberin der Referenz mit Anschrift und Kontaktdaten. 
+ Darüber hinaus gelten die folgenden Mindestanforderungen an die benannten Referenzen: 
+a) Die Referenz muss einen Auftrag eines öffentlichen Auftraggebers im Sinne von § 99 GWB umfassen;
+b) Der Auftragsgegenstand umfasst Entwicklungs- und Unterstützungsleistungen;
+c) Der Auftragsgegenstand umfasst folgende technische Schwerpunkte: Betriebssystemkenntnisse (sowohl für AIX, als auch RHEL on IBM Power) und die damit verbundenen Kenntnisse in Clustertechnologien und Netzwerkaufbau;
+d) Die Referenz darf nicht älter als drei Jahre sein (maßgeblich ist das Datum der letzten Leistungserbringung - gerechnet bis zum Datum der Auftragsbekanntmachung);
+e) Die Referenz hat eine Mindestlaufzeit von 12 Monaten, etwaige Unterbrechungen der Leistungserbringung zählen nicht zur Mindestlaufzeit (maßgeblich ist die bis zum bis zum Datum der Auftragsbekanntmachung erreichte Laufzeit);
+f) Der innerhalb der Referenz vom Unternehmen geleistete Umfangumfasst jeweils mindestens 1.150 PT/Jahr 
+oder
+der Wert des Auftrags der jeweiligen Referenz entspricht mindestens 1.400.000,00 EUR/Jahr (netto). 
+
+Sofern es sich um eine Referenz handelt, die noch nicht abgeschlossen wurde, ist der bisher erreichte Leistungsstand anzugeben. Noch nicht realisierte Leistungsstände können nicht berücksichtigt werden.
+Es ist hier nur eine Referenz gefordert. Es ist Ihnen unbenommen, weitere Referenzen zu benennen. Da das Austauschen einer fehlerhaften Referenz durch eine nach Fristende nachgereichte bedingungsgemäße Referenz nicht möglich ist und in den entsprechenden Fällen den Ausschluss des Bieters nach sich zieht, empfiehlt die Vergabestelle des ITZBund, eine Liste von weiteren als bedingungsgemäß betrachteten Referenzen einzureichen.
+Das ITZBund behält sich vor, die angegebenen Referenzen zu verifizieren. Angaben, die einer Nachprüfung nicht standhalten, können zum Ausschluss vom Vergabeverfahren führen. 
+Sofern Sie aus berechtigten Geheimhaltungsgründen geforderte Angaben nicht machen können, teilen Sie diese Gründe der Vergabestelle des ITZBund mit und legen Sie einen anderen geeigneten Nachweis der technischen und beruflichen Leistungsfähigkeit vor. Die Vergabestelle entscheidet sodann nach pflichtgemäßem Ermessen über die Anerkennung des Alternativnachweises. Sofern Sie diesbezüglich unsicher sind, kontaktieren Sie die Vergabestelle unbedingt rechtzeitig vor Ablauf der Angebotsfrist in Form einer Bieterfrage. Ein Nachfordern und Beibringen eines anderen (geeigneteren) Nachweises ist nach dem Angebotsausschluss aus vergaberechtlichen Gründen nicht mehr möglich. Bitte berücksichtigen Sie in jedem Fall, dass Sie bei einer Mindestanforderung an den Wert des Auftrags auch Margen angeben können (bspw. &gt; 100.000 EUR oder zwischen 100.000 und 200.000 EUR).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungskriterium 2.2.1 - Anzahl der technischen Fachkräfte
+Zum Nachweis der personellen Leistungsfähigkeit geben Sie bitte die in der Anlage "Eigenerklärung Fachkräfte" die Anzahl der nachfolgenden technischen Fachkräfte an, die im Zusammenhang mit der Leistungserbringung eingesetzt werden sollen.
+Die Fachkräfte müssen die Mindestanforderungen gemäß der Abschnitte 2.2.1.1 und 2.2.1.2 erfüllen. Zudem müssen die folgenden Zertifizierungen für jeweils mindestens einer dieser Fachkräfte vorliegen:
+• IBM Certified Administrator - Cloud Pak for Security V1.10 PLUS Red Hat Certified
+• IBM Champion 2025   
+• IBM Champion 2026
+Innerhalb des Fachkräftepools müssen diese Zertifizierung jeweils mindestens einmal vorliegen. Die Anforderung gilt auch als erfüllt, wenn eine Fachkraft alle Zertifizierungen vorweisen kann (Personalunion). Die Erfüllung dieser Anforderung erfordert insofern mindestens eine oder maximal drei entsprechend zertifizierte Fachkräfte gemäß der Abschnitte 2.2.1.1 und/oder 2.2.1.2. 
+Die Zertifizierungen müssen zum Zeitpunkt des Ablaufes der Angebotsabgabefrist gültig sein und dürfen nicht älter als drei Jahre sein, ausgehend vom Datum der Veröffentlichung des gegenständlichen Verfahrens.
+
+Eignungskriterium 2.2.1.1 - Rolle 1 - AIX Systemprogrammierer*in
+Zum Nachweis der personellen Leistungsfähigkeit geben Sie bitte in der Anlage "Eigenerklärung Fachkräfte" die Anzahl der technischen Fachkräfte an, die im Zusammenhang mit der Leistungserbringung eingesetzt werden sollen.
+Im Bereich der Dienstleistungen AIX Systemprogrammierer*in wird folgende Mindestzahl pro Vertragsjahr gefordert:
+ AIX Systemprogrammierer*in: 4 technische Fachkräfte (VZÄ).
+Reichen Sie dazu bitte einen Nachweis in Form der ausgefüllten Anlage "Eigenerklärung Fachkräfte" ein. 
+Im Falle von Bietergemeinschaften werden die Zahlen der Mitarbeitenden der jeweiligen Bieterkonstellation addiert. Im Falle von Bietern, die andere Unternehmen im Rahmen der Eignungsleihe einbinden, reicht jedes eignungsverleihende Unternehmen die ausgefüllte Anlage "Eigenerklärung Fachkräfte" ein. Es gelten daher die Mitarbeiterzahlen des jeweiligen eignungsverleihenden Unternehmens.  
+Die Fachkraft AIX Systemprogrammierer*in muss die allgemeinen Anforderungen an das externe Unterstützungspersonal gemäß Kapitel 4.2 der Leistungsbeschreibung erfüllen.
+Die Personen, die in der Rolle AIX Systemprogrammierer*in eingesetzt werden, müssen ein hohes Maß an fachlichem Wissen in den Leistungsbereichen des Systemmanagements des IBM Power Systems im Bereich AIX sowie Grundlagenkenntnisse im Bereich RHEL on IBM Power aufweisen. Es muss jeweils eine Berufserfahrung auf dem Gebiet des Systemmanagements des IBM Power Systems/AIX von mindestens fünf Jahren vorliegen.
+Die eingesetzten Personen müssen zudem Kenntnisse und Erfahrungen hinsichtlich nachfolgend aufgeführter IT-Komponenten bzw. Unterstützungsleistungen zum Betrieb dieser IT-Komponenten aufweisen:
+• AIX Betriebssystem (Expert)
+• PowerHA (Fortgeschritten)
+• PowerVM/VIOS (Virtual I/O Server) (Fortgeschritten)
+• LAN/SAN (Fortgeschritten)
+• AIX-Logging (Fortgeschritten)
+• AIX-Auditing (Fortgeschritten)
+• AIX-Security (Fortgeschritten)
+• Patchmanagement (Fortgeschritten)
+• SpectrumScale (Grundkenntnisse)
+• Userverwaltung (Fortgeschritten)
+• LPM (Live Partition Mobility) (Grundkenntnisse)
+• DLPAR (Dynamic Logical Partitioning) (Fortgeschritten)
+• Tivoli Monitoring (Grundkenntnisse)
+• HMC (Hardware Management Console) (Grundkenntnisse)
+• NIM (Network Installation Manager) (Fortgeschritten)
+• Erstellen von Dokumentationen und Testszenarien (Fortgeschritten)
+• Erstellen von Konzepten für die Weiterentwicklung sowohl im Hardware-, als auch im Softwarebereich (Grundkenntnisse)
+• Hardware-Kenntnisse hinsichtlich des IBM Power Systems (Grundkenntnisse)
+• Aufbau und Struktur hinsichtlich des Betriebes eines Rechenzentrums (Grundkenntnisse)
+Zudem muss der Auftragnehmer seine Fachkompetenz und Qualifikation zu den aufgeführten Komponenten der IT-Umgebung des ITZBund nachweisen. Für mindestens zwei technische Fachkräfte "AIX Systemprogrammierer*in" müssen die folgenden offiziellen technischen Badges des Herstellers IBM vorliegen: 
+• IBM AIX v7.3 Administrator Specialty
+• IBM Power Infrastructure as a Service Solutions Sales Foundation
+• IBM Power Solutions Sales Foundation
+• IBM Power Virtual Server Intermediate
+Die Zertifizierungen müssen zum Zeitpunkt des Ablaufes der Angebotsabgabefrist gültig sein und dürfen nicht älter als drei Jahre sein, ausgehend vom Datum der Veröffentlichung des gegenständlichen Verfahrens.
+Reichen Sie als Beleg für das Vorliegen der Anforderungen der technischen Leistungsfähigkeit die Eigenerklärung zur Anzahl der Fachkräfte mit der Anlage "Eigenerklärung Fachkräfte" ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-ctrl</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aufgrund Zeichenanzahlbegrenzung wird das Feld zur 
+"Techniker oder technische Stellen für die Qualitätskontrolle" für
+die Kriterien der "Relevante Bildungs- und Berufsqualifikationen" mitgenutzt:
+
+Eignungskriterium 2.2.1.2 - Rolle 2 - RHEL on IBM Power Systemprogrammierer*in
+Zum Nachweis der personellen Leistungsfähigkeit geben Sie bitte in der Anlage "Eigenerklärung Fachkräfte" die Anzahl der technischen Fachkräfte an, die im Zusammenhang mit der Leistungserbringung eingesetzt werden sollen.
+Im Bereich der Dienstleistungen RHEL on IBM Power Systemprogrammierer*in wird folgende Mindestzahl pro Vertragsjahr gefordert:
+ RHEL on IBM Power Systemprogrammierer*in : 5 technische Fachkräfte (VZÄ).
+Reichen Sie dazu bitte einen Nachweis in Form der ausgefüllten Anlage "Eigenerklärung Fachkräfte" ein. 
+Im Falle von Bietergemeinschaften werden die Zahlen der Mitarbeitenden der jeweiligen Bieterkonstellation addiert. Im Falle von Bietern, die andere Unternehmen im Rahmen der Eignungsleihe einbinden, reicht jedes eignungsverleihende Unternehmen die ausgefüllte Anlage "Eigenerklärung Fachkräfte" ein. Es gelten daher die Mitarbeiterzahlen des jeweiligen eignungsverleihenden Unternehmens.  
+Die Fachkraft RHEL on IBM Power Systemprogrammierer*in muss die allgemeinen Anforderungen an das externe Unterstützungspersonal gemäß Kapitel 4.2 der Leistungsbeschreibung sowie die folgenden Anforderungen zu Berufs- /Projekterfahrung, Kenntnis und Qualifikation erfüllen:
+Die Personen, die in der Rolle "RHEL on IBM Power Systemprogrammierer" eingesetzt werden, müssen ein hohes Maß an fachlichem Wissen in den Leistungsbereichen des Systemmanagements des IBM Power Systems im Bereich RHEL sowie Grundlagenkenntnisse im Bereich AIX aufweisen. Es muss jeweils eine Berufserfahrung auf dem Gebiet des Systemmanagements des IBM Power Systems/RHEL von mindestens fünf Jahren vorliegen.
+Die eingesetzten Personen müssen zudem folgende ausgeprägte Kenntnisse und Erfahrungen aufweisen:
+• RHEL on IBM Power Systemadministration, Systemprogrammierung (Expert)
+• Ansible Administration (Fortgeschritten)
+• RHEL on IBM Power Satellite Administration (Fortgeschritten)
+• LAN/SAN (Fortgeschritten)
+• Userverwaltung mit IDM (Grundkenntnisse)
+• LPM (Live Partition Mobility) (Grundkenntnisse)
+• DLPAR (Dynamic Logical Partitioning) (Fortgeschritten)
+• HMC (Grundkenntnisse)
+• PowerVM/VIOS (Virtual I/O Server) (Fortgeschritten)
+• Netzwerkkenntnisse (virtuelle Netze / Routing / DHCP)
+• Erstellung von Clustersystemen mittels Pacemaker (Fortgeschritten)
+• Kenntnisse in SAP HANA on Power / RHEL on IBM Power (Grundkenntnisse)
+• Kenntnisse / Funktionalität von SAP-Systemen auf 
+RHEL on IBM Power (Grundkenntnisse)
+• Erstellen von Dokumentationen und Testszenarien (Fortgeschritten)
+• Erstellen von Konzepten für die Weiterentwicklung sowohl im Hardware-, als auch im Softwarebereich (Grundkenntnisse)
+• Hardware-Kenntnisse hinsichtlich des IBM Power Systems (Grundkenntnisse)
+• Aufbau und Struktur hinsichtlich des Betriebes eines Rechenzentrums (Grundkenntnisse)
+Zudem muss der Auftragnehmer seine Fachkompetenz und Qualifikation zu den aufgeführten Komponenten der IT-Umgebung des ITZBund nachweisen. Für mindestens fünf technische Fachkräfte "RHEL on IBM Power Systemprogrammierer*in" muss das folgende offizielle technische Badge des Herstellers IBM vorliegen:
+• Red Hat Certified System Administrator (RHCSA) 
+
+Die Zertifizierungen müssen zum Zeitpunkt des Ablaufes der Angebotsabgabefrist gültig sein und dürfen nicht älter als drei Jahre sein, ausgehend vom Datum der Veröffentlichung des gegenständlichen Verfahrens.
+Reichen Sie als Beleg für das Vorliegen der Anforderungen der technischen Leistungsfähigkeit die Eigenerklärung zur Anzahl der Fachkräfte mit der Anlage "Eigenerklärung Fachkräfte" ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-qu-cert-indep</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungkriterium 3.1.5 - Nachweis der technischen und beruflichen Leistungsfähigkeit (Qualitätsmanagementsystem)
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte einen Nachweis über eine gültige Zertifizierung über einen beim Bieter bestehendes Qualitätsmanagementsystem gemäß ISO 9001 oder ein gleichwertiges Qualitätssicherungssystem ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungskriterium 3.1.4 - Nachweis der technischen und beruflichen Leistungsfähigkeit (Informationssicherheitsmanagementsystem gemäß ISO 27001)
+Zum Nachweis der technischen und beruflichen Leistungsfähigkeit reichen Sie bitte einen Nachweis über eine gültige Zertifizierung über einen beim Bieter bestehendes Informationssicherheitsmanagementsystem gemäß ISO 27001 oder ein gleichwertiges Informationssicherheitssystem ein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eignungskriterium 1.1
+Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit ist der Gesamtumsatz/ Umsatz im Tätigkeitsbereich des Auftrags für die letzten drei Geschäftsjahre (2023-2025) anzugeben. 
+Der geforderte bereichsspezifische Netto-Mindestumsatz für jedes Geschäftsjahr beträgt 3.000.000 EUR (netto). 
+Der Netto-Jahresumsatz ist dann bereichsspezifisch, wenn er sich auf die dargestellten Leistungsinhalte der Anlage "Leistungsbeschreibung" bezieht.
+Übersenden Sie bitte die ausgefüllte Anlage Eigenerklärung Umsatz, welche die jeweiligen Jahreswerte der letzten drei Geschäftsjahre vor Auftragsbekanntmachung belegt.
+Im Falle von Bietergemeinschaften werden die Umsätze der jeweiligen Bieterkonstellation addiert. Bei Vorliegen einer Bietergemeinschaft ist die Anlage Eigenerklärung Umsatz von dem bevollmächtigten Mitglied der Bietergemeinschaft für die jeweiligen Mitglieder der Bietergemeinschaft auszufüllen. Im Falle von Bietern, die andere Unternehmen im Rahmen der Eignungsleihe einbinden, ist der o.g. Mindestumsatz für die letzten drei Geschäftsjahre vom eignungsverleihenden Unternehmen anzugeben. Übersenden Sie bitte für jedes eignungsverleihendes Unternehmen die ausgefüllte Anlage Eigenerklärung Umsatz. 
+Sofern Sie aus berechtigten Gründen die Unterlagen nicht beibringen können, teilen Sie diese Gründe der Vergabestelle des ITZBund mit und legen Sie einen anderen geeigneten Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit vor. Die Vergabestelle entscheidet sodann nach pflichtgemäßem Ermessen über die Anerkennung des Alternativnachweises. Sofern Sie diesbezüglich unsicher sind, kontaktieren Sie die Vergabestelle unbedingt rechtzeitig vor Ablauf der Angebotsfrist in Form einer Bewerber-/Bieterfrage. Ein Nachfordern und Beibringen eines anderen (geeigneteren) Nachweises ist nach dem Angebotsschluss aus vergaberechtlichen Gründen nicht mehr möglich.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe-online.de/tenderdocuments.html?id=880113</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der AG behält sich vor, die fehlenden Erklärungen und  Nachweise soweit gesetzlich zulässig bis zum Ablauf einer zu bestimmenden Nachfrist nachzufordern, ist hierzu jedoch nicht  verpflichtet.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Die Ermittlung des wirtschaftlichsten Angebots erfolgt gemäß dem vorgegebenen Wertungsschema im Leistungsverzeichnis des E-Vergabe-Portals. Diesem Wertungsschema liegt die reine Preiswertung nach UfAB 2018 zugrunde. Dabei ist einziges Zuschlagskriterium der Gesamtangebotspreis.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe-online.de/tenderdetails.html?id=880113</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+
+Antragsbefugt ist jedes Unternehmen, das ein Interesse am Auftrag hat und eine Verletzung in seinen Rechten nach § 97 Abs. 6 GWB durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+
+Der Antrag ist unzulässig, soweit 
+1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden, 
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden, 
+
+4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Der Antrag ist schriftlich bei der Vergabekammer einzureichen und unverzüglich zu begründen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-10-05+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>12:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Rahmenvertrag für Dienstleistungen Systemmanagement pServer/AIX </cbc:Name>
+         <cbc:Description languageID="DEU">Der Rahmenvertrag wird für eine Laufzeit von 4 Jahren/ 48 Monaten geschlossen.
+Das geschätzte Abrufvolumen für die o.g. Unterstützungsleistungen beträgt bezogen auf die maximal mögliche Vertragslaufzeit des Rahmenvertrags von vier Jahren  insgesamt rund 12.400 Personentage.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72220000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72514000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:Region>anyw-cou</cbc:Region>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

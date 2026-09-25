@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">17</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.stadtwerke-bielefeld.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Stadtwerke Bielefeld GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Schildescher Str. 16</cbc:StreetName>
+                           <cbc:CityName>Bielefeld</cbc:CityName>
+                           <cbc:PostalZone>33611</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA41</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 00001255</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer Westfalen bei der Bezirksregierung Münster</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:CityName>Münster</cbc:CityName>
+                           <cbc:PostalZone>48147</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA33</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00614801-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">172/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">ff9545a7-071b-41e5-9c2c-7b69bf1eb277</cbc:ID>
+   <cbc:ContractFolderID>5b6ccf75-fc7a-4034-9df0-02d181c16df0</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-04+02:00</cbc:IssueDate>
+   <cbc:IssueTime>09:34:04+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-06+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0025</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="entity-activity">electricity</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>sektvo</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">Beschaffung einer Beratungsdienstleistung zur Fachberatung im Rahmen eines Identity and Access Management (IAM) Projektes für die Stadtwerke Bielefeld (SWB)</cbc:Name>
+      <cbc:Description languageID="DEU">Gegenstand der Ausschreibung ist der Abschluss einer Rahmenvereinbarung über die Bereitstellung einer Fachberatung für ein Identity and Access Management Projekt der Stadtwerke Bielefeld. Ziel des Projektes ist die Weiterentwicklung von IAM-Prozessen, die Ausgestaltung von Rollen- und Berechtigungsmodellen sowie die Einführung einer zentralen technischen IAM-Lösung.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">1. Die Beantwortung von Fragen zum Verfahren sowie sämtliche Kommunikation zwischen den Beteiligten und der Vergabestelle erfolgt ausschließlich über die Vergabeplattform“subreport”;
+Die kostenfreie Registrierung wird empfohlen;
+2. Der Teilnahmeantrag/das Angebot mit den geforderten Angaben und Unterlagen zur Beurteilung der Eignung ist ausschließlich elektronisch in Textform über die genannte Vergabeplattform einzureichen;
+Angebote, die verspätet oder nicht formgerecht (d. h. nicht elektronisch über das Bewerbertool der Vergabeplattform) eingehen, können nicht berücksichtigt werden;
+3. Etwaige Fragen von interessierten Unternehmen sind bitte bis zur in den Vergabeunterlagen genannten Frist vor Ablauf der Angebotsfrist über die Vergabeplattform einzureichen;
+4.Mehrfachbeteiligungen, als Einzelbieter sowie als Mitglied einer/mehrerer Bietergemeinschaften sind nicht zulässig; Ein Austausch von Mitgliedern einer Bietergemeinschaft nach Aufforderung zur Angebotsabgabe bedarf der Zustimmung des Auftraggebers, die grds.
+nur bei gleicher fachlicher Qualifikation erteilt wird. Entsprechendes gilt für einen Austausch von vorgesehenen Nachunternehmern, auf die sich ein Bieter/eine Bietergemeinschaft im Angebot zum Nachweis seiner/ihrer Eignung im Auftragsfall berufen hat;
+5. Bei Widersprüchen zwischen verschiedenen Bekanntmachungstexten ist allein der im EU-Amtsblatt veröffentlichte Text maßgeblich;
+Sofern mehr als fünf geeignete Bewerber die Mindestanforderungen erfüllen, erfolgt die Auswahl der zur Angebotsabgabe aufzufordernden Bewerber anhand einer vergleichenden Bewertung der mit dem Teilnahmeantrag eingereichten Unternehmens- und Projektreferenzen. Maßgeblich sind ausschließlich die bis zum Ablauf der Teilnahmefrist eingereichten Unterlagen. 
+Ziel der Bewertung ist die Ermittlung derjenigen Bewerber, deren nachgewiesene Referenzprojekte die größte fachliche und inhaltliche Vergleichbarkeit mit dem ausgeschriebenen Leistungsgegenstand aufweisen.
+Für die Bewertung werden die eingereichten Referenzprojekte insbesondere anhand folgender Kriterien vergleichend betrachtet:
+•	fachliche Nähe der Referenzprojekte zu Identity-and-Access-Management-(IAM)-Projekten,
+•	Vergleichbarkeit der erbrachten Beratungsleistungen mit den ausgeschriebenen Leistungen der IAM-Managementberatung und IAM-Prozessberatung,
+•	Umfang und Komplexität der Referenzprojekte,
+•	Umfang der durch den Bewerber erbrachten Leistungen und Verantwortlichkeiten,
+•	Erfahrungen in Unternehmen oder Organisationen mit vergleichbaren organisatorischen, regulatorischen oder technischen Rahmenbedingungen.
+Die Referenzprojekte werden anhand der vorgenannten Kriterien vergleichend bewertet und in eine Rangfolge gebracht. Die fünf Bewerber mit der höchsten Gesamtbewertung werden zur Angebotsabgabe aufgefordert.
+Die Bewertung dient ausschließlich der Bewerberauswahl im Teilnahmewettbewerb. Eine qualitative Bewertung der vorgesehenen Schlüsselpersonen, der methodischen Vorgehensweise, des Projektverständnisses oder sonstiger leistungsbezogener Aspekte erfolgt erst im anschließenden Verhandlungsverfahren.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72224000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cbc:Description languageID="DEU">Bielefeld, Kreisfreie Stadt (DEA41)</cbc:Description>
+         <cac:Address>
+            <cbc:CityName>Bielefeld</cbc:CityName>
+            <cbc:CountrySubentityCode listName="nuts">DEA41</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Auszug aus dem Handelsregister (bei ausländischen Bewerbern Auszug aus vergleichbarem Register, bei Ablauf der Bewerbungsfrist nicht älter als 6 Monate);</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 1: Unternehmensdarstellung / Firmenprofil</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 2: Eigenerklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. §§ 123 Abs. 1 und 4, 124 GWB</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 3: Erklärung nach § 19 Abs. 3 MiLoG</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 4: Angaben zu Haftpflichtversicherungsschutz und Umsatz</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 5: Erklärung Steuern und Abgaben
+-Aktuelle Bescheinigung in Steuersachen (Unbedenklichkeitsbescheinigung) des zuständigen Finanzamtes</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 6: Der Bewerber muss mindestens drei Referenzprojekte über die Mitwirkung in Identity-and-Access-Management-(IAM)-Projekten in verantwortungsvoller Position einreichen.
+Davon muss mindestens ein Referenzprojekt aus dem öffentlichen oder regulierten Umfeld stammen, insbesondere von kommunalen Unternehmen, Stadtwerken, öffentlichen Verwaltungen, KRITIS-nahen Organisationen oder vergleichbaren regulierten Auftraggeberstrukturen.
+Die Referenzprojekte müssen folgende Mindestanforderungen erfüllen:
+•	Das Referenzprojekt wurde innerhalb der Europäischen Union oder des Europäischen Wirtschaftsraums durchgeführt.
+•	Der Projektbeginn darf zum Ablauf der Teilnahmefrist nicht länger als fünf Jahre zurückliegen.
+•	Das Referenzprojekt muss zum Ablauf der Teilnahmefrist vollständig abgeschlossen sein.
+•	Die Projektlaufzeit betrug mindestens ein Jahr.
+•	Der Auftragswert betrug mindestens 150.000 EUR netto.
+•	Mindestens zwei Referenzprojekte müssen die Einführung, den Aufbau oder die wesentliche Weiterentwicklung einer technischen IAM- oder Identity-Governance-and-Administration-(IGA)-Lösung umfasst haben.
+•	Die vom Bewerber erbrachten Leistungen müssen eine verantwortliche Projektrolle umfasst haben, insbesondere als Projektleiter, Teilprojektleiter, Lead Consultant, verantwortlicher IAM-Berater oder vergleichbare Schlüsselrolle.
+•	Anzugeben sind:
+•	Auftraggeber bzw. Referenzkunde,
+•	Ansprechpartner mit Kontaktdaten,
+o	Leistungszeitraum,
+o	Auftragswert,
+o	Anzahl der Beschäftigten des Auftraggebers,
+o	Beschreibung des Referenzprojekts,
+o	Darstellung der Vergleichbarkeit mit dem ausgeschriebenen Leistungsgegenstand,
+o	Beschreibung der konkret durch den Bewerber erbrachten Leistungen,
+o	Beschreibung der übernommenen Projektverantwortung und Rolle.
+o	Der Auftraggeber behält sich vor, die angegebenen Referenzen beim Referenzkunden zu verifizieren. Der Bewerber hat sicherzustellen, dass die benannten Ansprechpartner hierzu auskunftsfähig sind</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 7: Nachunternehmen/ Eignungsleihe (soweit zutreffend für den Teilnahmeantrag)</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 8: Bewerbergemeinschaftserklärung (soweit zutreffend für den Teilnahmeantrag)</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck 9: Eigenerklärung zur Berufserfahrung
+Die vorgesehenen Schlüsselpersonen für die IAM-Managementberatung verfügen zum Ablauf der Teilnahmefrist über mindestens fünf Jahre einschlägige Berufserfahrung in der strategischen, organisatorischen oder fachlichen Beratung von IAM-Projekten. Als einschlägige Berufserfahrung gelten insbesondere Tätigkeiten in den Bereichen IAM-Governance, Rollen- und Berechtigungskonzepte, Organisationsentwicklung, Betriebsmodelle, regulatorische Anforderungen sowie die Planung, Steuerung oder Begleitung von IAM-Einführungsprojekten.
+Die vorgesehenen Schlüsselpersonen für die IAM-Prozessberatung verfügen zum Ablauf der Teilnahmefrist über mindestens fünf Jahre einschlägige Berufserfahrung in IAM-Projekten. Als einschlägige Berufserfahrung gelten insbesondere Tätigkeiten in den Bereichen Berechtigungsmanagement, Identity Governance &amp; Administration (IGA), Joiner-Mover-Leaver-Prozesse, Rollen- und Berechtigungsmodelle, Rezertifizierungsprozesse sowie die Konzeption, Einführung oder Weiterentwicklung von IAM-Lösungen.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vordruck: 10 Eigenerklärung –NRW-Sanktionspaket 5-EU (Formular 523)</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktuelle Lebensläufe der aktuell vorgesehenen Hauptansprechpartner für IAM-Managementberatung &amp; Prozessberatung soweit diese bereits benannt werden können;
+Der Auftragnehmer stellt sicher, dass eine deutschsprachige (in Wort und Schrift, C2 gemäß dem Gemeinsamen Europäischen Referenzrahmen für Sprachen) Leistungserbringung und Serviceabwicklung während der Vertragslaufzeit &amp; des Verfahrens sichergestellt ist. 
+Mit Abgabe des Teilnahmeantrags bestätigt der Bewerber, dass er in der Lage ist, regelmäßige Vor-Ort-Termine am Standort des Auftraggebers entsprechend den Anforderungen des Projekts und den Vorgaben des Auftraggebers wahrzunehmen und die hierfür erforderlichen Ressourcen bereitzustellen.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">par-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listName="tender-guarantee-required">true</cbc:GuaranteeTypeCode>
+            <cbc:Description languageID="DEU">Vertragserfüllungsbürgschaft</cbc:Description>
+         </cac:RequiredFinancialGuarantee>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E92238524</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E92238524</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:PaymentTerms>
+            <cbc:Note languageID="DEU">Vertragserfüllungsbürgschaft</cbc:Note>
+         </cac:PaymentTerms>
+         <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Sofern Nachforderungen oder Aufklärungen
+erforderlich und zulässig sind, werden diese
+für alle Angaben durchgeführt.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Erbringung der ausgeschriebenen Leistung</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Der Preis wird mit 50 % gewichtet</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Die Qualität wird mit 50 % gewichtet</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E92238524</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Ein Nachprüfungsantrag ist
+unzulässig, soweit ein Verstoß gegen Vergabebestimmungen
+nicht rechtzeitig gegenüber dem Auftraggeber gerügt wurde oder mehr als 15
+Kalendertage
+nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu
+wollen,
+vergangen sind (vgl. zur Rüge- und Antragsfrist im Einzelnen § 160 Abs. 3
+GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:ParticipationRequestReceptionPeriod>
+            <cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+         </cac:ParticipationRequestReceptionPeriod>
+         <cac:EconomicOperatorShortList>
+            <cbc:LimitationDescription>true</cbc:LimitationDescription>
+            <cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+            <cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+         </cac:EconomicOperatorShortList>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 E92238524</cbc:ID>
+         <cbc:Name languageID="DEU">Beschaffung einer Beratungsdienstleistung zur Fachberatung im Rahmen eines Identity and Access Management (IAM) Projektes für die Stadtwerke Bielefeld (SWB)</cbc:Name>
+         <cbc:Description languageID="DEU">Die Stadtwerke Bielefeld betreiben eine heterogene IT-Landschaft mit einer Vielzahl von Anwendungen und Systemen. Die Verwaltung von Benutzeridentitäten und Zugriffsrechten erfolgt derzeit teilweise dezentral und systembezogen. Zur Verbesserung der Steuerung von Identitäten und Berechtigungen wird im Rahmen eines IAM-Projektes eine zentrale Struktur zur Verwaltung digitaler Identitäten aufgebaut.
+Ziel des IAM-Projektes ist die Einführung eines zentralen IAM-Services zur Verwaltung digitaler Identitäten sowie zur strukturierten und rollenbasierten Vergabe von Berechtigungen auf Anwendungen und Systeme. Dazu soll eine IAM-Governance Struktur aufgebaut sowie eine technische IAM-Lösung eingeführt und ausgerollt werden
+Konkret bedeutet dies die Weiterentwicklung von IAM-Prozessen, die Ausgestaltung eines Rollen- und Berechtigungsmodells, die Einführung einer zentralen IAM-Lösung sowie Integration von Anwendungen (ab Q3 2027) und die Vorbereitung organisatorischer Strukturen für den zukünftigen Betrieb des IAM-Services. Das Projekt wird von einer externen Projektleitung in enger Zusammenarbeit mit dem Geschäftsbereich IP der Stadtwerke Bielefeld geleitet. 
+Im Laufe des Projektes ist grundsätzlich die Erreichung folgender Meilensteine vorgesehen:
+•	Erarbeitung und Abstimmung einer IAM Governance-Struktur
+•	Erarbeitung einer Rolle-Rechte Struktur für die SWB
+•	Einführung einer technischen IAM-Lösung inkl. Durchführung eines Piloten
+•	Sukzessiver Rollout der technischen IAM-Lösung auf die gesamte SWB
+Gegenstand der Ausschreibung ist die Bereitstellung externer Fachberatung zur Unterstützung des IAM Projektes der Stadtwerke Bielefeld.
+Die Beratungsleistung umfasst die Unterstützung der Umsetzungsphase des IAM-Projektes durch zwei Rollen.
+1.	IAM Managementberatung
+2.	IAM Prozessberatung
+Für jede Rolle ist jeweils eine Person vorgesehen.
+Die IAM-Managementberatung unterstützt den Geschäftsbereich IP bei organisatorischen und strategischen Fragestellungen im Zusammenhang mit der Einführung des IAM Services.
+Kernaufgaben der IAM-Managementberatung sind:
+•	Unterstützung bei der organisatorischen Einordnung des IAM innerhalb der IT-Organisation
+•	Weiterentwicklung von Governance Strukturen im IAM-Umfeld
+•	Unterstützung bei der Definition und Besetzung von Rollen und Verantwortlichkeiten
+•	Bewertung organisatorischer Auswirkungen von IAM-Strukturen und Prozessen
+•	Unterstützung bei der Einbindung des IAM in bestehende Sicherheits- und Governance Strukturen
+•	Erarbeitung von Entscheidungsgrundlagen für Management und Projektsteuerung
+•	Unterstützung bei der Abstimmung mit relevanten Stakeholdern
+•	Unterstützung bei der Weiterentwicklung des organisatorischen Betriebsmodells für den IAM-Service
+•	Beratung zur Abdeckung von relevanten regulatorischen Anforderungen 
+•	Entwickeln einer Einführungsstrategie zu Richtlinien, Prozessen und der Werkzeuglösung
+•	Abstimmen von inhaltlichen Abhängigkeiten zu anderen Projekten und Linienvorhaben
+•	Unterstützung bei der herstellerunabhängigen Auswahl einer IAM-Werkzeuglösung
+Die IAM-Prozessberatung unterstützt die fachliche Ausgestaltung der Prozesse zur Verwaltung digitaler Identitäten und Berechtigungen.
+Kernaufgaben der IAM-Prozessberatung sind:
+•	Analyse bestehender Prozesse zur Verwaltung von Identitäten und Berechtigungen
+•	Ausarbeitung von Prozessen für den Lebenszyklus digitaler Identitäten
+•	Unterstützung bei der Gestaltung von Joiner Mover Leaver Prozessen
+•	Entwicklung und Strukturierung eines Rollen und Berechtigungsmodells
+•	Strukturierung von Prozessen zur Vergabe und Änderung von Zugriffsrechten
+•	Unterstützung bei der Integration von Anwendungen in IAM-Prozesse
+•	Ausgestaltung von Prozessen zur Rezertifizierung von Berechtigungen
+•	Analyse bestehender Berechtigungsstrukturen in Anwendungen
+•	Erstellung fachlicher Konzepte und Prozessdokumentationen im IAM-Umfeld
+•	Unterstützung bei der Einführung der Prozesse und der Werkzeuglösung
+•	Fachliche Unterstützung bei erforderlichen Beistellleistungen und Mitwirkungspflichten für die Implementierung der Werkzeuglösung
+•	Ausarbeiten von Testfällen auf Basis der Prozessbeschreibungen und Anforderungen an die Werkzeuglösung
+Für die IAM-Managementberatung besteht eine Höchstmenge von 440 Personentagen bzw. 3.520 Stunden. Für die IAM-Prozessberatung besteht eine Höchstmenge von insgesamt 385 Personentagen bzw. 3.080 Stunden 
+Eine hybride Leistungserbringung ist grundsätzlich zulässig. Ein verbindliches Verhältnis zwischen Remote- und Vor-Ort-Einsätzen kann aktuell nicht vorgegeben werden. Der Auftraggeber legt den projektbezogen erforderlichen Präsenzbedarf fest. Vor-Ort-Einsätze in Bielefeld können insbesondere für Projektauftakt, Workshops, Lenkungsausschüsse, Abstimmungen mit zentralen Stakeholdern sowie sonstige Termine mit Präsenzbedarf erforderlich werden. Der Auftragnehmer hat sicherzustellen, dass entsprechende Vor-Ort-Termine auch mit angemessen kurzer Vorlaufzeit wahrgenommen werden können. Der konkrete Umfang der Präsenzleistungen wird durch den Auftraggeber entsprechend den Erfordernissen des Projektverlaufs festgelegt
+Die Rahmenvereinbarung begründet keine Mindestabnahmeverpflichtung des Auftraggebers. Die in den Vergabeunterlagen angegebenen Mengen, Stundenansätze, Referenzmengen, Bedarfswerte und Höchstmengen dienen ausschließlich der Ermittlung des Auftragswertes, der Vergleichbarkeit der Angebote sowie der Zuschlagswertung. Ein Anspruch auf tatsächliche Beauftragung oder Inanspruchnahme dieser Mengen oder Leistungen besteht nicht. Abrufe im Sinne dieser Vergabeunterlagen verstehen sich ausschließlich als durch den Auftraggeber ausgelöste Einzelbeauftragungen von Leistungen im Rahmen der Rahmenvereinbarung.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:startup#, #Besonders auch geeignet für:other-sme#, #Besonders auch geeignet für:selbst# Der Auftragnehmer dieses Verfahrens sowie mit ihm verbundene Unternehmen dürfen weder unmittelbar noch mittelbar als Auftragnehmer, Mitglied einer Bewerber- oder Bietergemeinschaft, Nachunternehmer oder eignungsverleihendes Unternehmen an Vergabeverfahren zur Implementierung der im Rahmen des IAM-Projektes ausgewählten IAM-Lösung teilnehmen. Darüber hinaus sind Unternehmen von der Teilnahme an diesem Vergabeverfahren ausgeschlossen bzw. Ihnen kann nicht der Zuschlag erteilt werden, sofern sie bereits den Zuschlag für die IAM-Projektleitung erhalten haben oder mit dem Auftragnehmer der IAM-Projektleitung verbundene Unternehmen sind. Dies dient zur Vermeidung von Interessenskonflikten.</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72224100</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cbc:Description languageID="DEU">Bielefeld, Kreisfreie Stadt (DEA41)</cbc:Description>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DEA41</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2026-12-07+01:00</cbc:StartDate>
+            <cbc:EndDate>2029-12-31+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>
