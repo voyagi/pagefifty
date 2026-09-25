@@ -95,10 +95,10 @@ export function combineAny(states: readonly CriterionState[]): CriterionState {
 	return pick(states, (candidate, kept) => severityOf(candidate) > severityOf(kept));
 }
 
-const KNOWN_STATES: ReadonlySet<string> = new Set(CRITERION_STATES);
+const KNOWN_STATES: ReadonlySet<unknown> = new Set(CRITERION_STATES);
 
 export function isCriterionState(value: unknown): value is CriterionState {
-	return typeof value === 'string' && KNOWN_STATES.has(value);
+	return KNOWN_STATES.has(value);
 }
 
 // Display words only; the internal names above never change. They describe what was read and never
