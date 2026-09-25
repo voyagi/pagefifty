@@ -12,6 +12,8 @@ const { plugins } = viteConfig({ command: 'serve', mode: 'test' });
 export default defineConfig({
 	plugins,
 	test: {
+		// A checkout where no build ran yet has no generated records, and the record tests read them.
+		globalSetup: ['src/test/build-records.global.ts'],
 		name: 'node',
 		environment: 'node',
 		include: [...include],

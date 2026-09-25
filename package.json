@@ -6,7 +6,9 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"predev": "node scripts/build-records.mjs",
 		"dev": "vite dev",
+		"prebuild": "node scripts/build-records.mjs",
 		"build": "wrangler types && vite build",
 		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
 		"prepare": "wrangler types && svelte-kit sync",

@@ -4,6 +4,8 @@ import { cloudflareTest } from '@cloudflare/vitest-plugin';
 import { defineConfig } from 'vitest/config';
 import { PROJECTS } from './src/test/projects.ts';
 
+const GENERATED_RECORDS = '/src/lib/snapshot/generated/';
+
 function projectTest(name: keyof typeof PROJECTS) {
 	const { include, exclude, setupFiles } = PROJECTS[name];
 	return {
@@ -34,7 +36,17 @@ export default defineConfig(({ mode }) => {
 				adapter: adapter()
 			})
 		],
+		build: {
+			// A record under 4 KiB would otherwise be inlined into the server bundle as a data: URI.
+			// Records are served as static assets through ASSETS, so the Worker script stays small.
+			assetsInlineLimit: (filePath: string) =>
+				filePath.replaceAll('\\', '/').includes(GENERATED_RECORDS) ? false : undefined
+		},
 		test: {
+			// Vitest 4.1 also runs this for each project that extends the root, and an empty list in a
+			// project does not replace it (the configs merge by concatenation), so the setup itself
+			// builds once per vitest process.
+			globalSetup: ['src/test/build-records.global.ts'],
 			// summary: false keeps one line per test file, tagged with its project, when not on a TTY.
 			reporters: [
 				['default', { summary: false }],
