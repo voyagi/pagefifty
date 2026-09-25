@@ -1,5 +1,12 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema.json",
-	"entry": ["scripts/*.mutants.mjs", "depcruise.resolve.cjs"],
-	"ignore": ["design/**"]
+	"entry": [
+		"scripts/*.mutants.mjs",
+		"depcruise.resolve.cjs",
+		"vitest.stryker.config.mjs",
+		"scripts/*.mjs",
+		"scripts/**/*.devbrowser.js"
+	],
+	"ignore": ["design/**"],
+	"ignoreDependencies": ["fast-xml-parser", "@testing-library/user-event", "cloudflare"]
 }
