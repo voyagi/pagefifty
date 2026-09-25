@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Deutsches Institut für Urbanistik gGmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Zimmerstraße 13-15</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10969</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>Ust-ID: DE261590461</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.berlin.de/vergabekammer</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Landes Berlin</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Martin-Luther-Straße 105</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10825</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>11-1300000V00-74</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00629087-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">176/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-11+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">831ac10d-8554-47f7-bb54-ddcb5310c26a</cbc:ID>
+	<cbc:ContractFolderID>53c2ce5b-4385-4966-89ec-b02308fe175a</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-10+02:00</cbc:IssueDate>
+	<cbc:IssueTime>12:42:29+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-10+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">org-sub</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cbc:RecurringProcurementIndicator>true</cbc:RecurringProcurementIndicator>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Es gelten die gesetzlichen Ausschlussvoraussetzungen nach §§ 123 bis 126 GWB. Der Bieter hat anzugeben, ob Ausschlussgründe vorliegen. Weitere verfahrens- und angebotsbezogene Ausschlussgründe (wie z. B. unzulässige Änderungen oder Ergänzungen an den Vergabeunterlagen) sind detailliert in den Auftragsunterlagen / Bewerbungsbedingungen (Vergabeunterlagen) geregelt.  EU-Sanktionsregelung mit Bezug zu Russland Ausschlussgründe nach Artikel 5k der Verordnung (EU) Nr. 833/2014 in der Fassung des Art. 1 Ziff. 23 der Verordnung (EU) 2022/576 des Rates vom 8. April 2022. Der Text der Verordnung ist abrufbar unter: https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022R0576   Hierzu wird die Eigenerklärung zu Artikel 5k der Verordnung (EU) Nr. 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren in der jeweils konolidierten Fassung (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingender Ausschlussgrund gemäß § 123 Abs. 1 Nr. 1 i.V.m. den Abs. 2, 3 und Abs. 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html  Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingender Ausschlussgrund gemäß § 123 Abs. 1 Nr. 1 i.V.m. den Abs. 2, 3 und Abs. 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingende Ausschlussgründe gemäß § 123 Abs. 1 Nr. 2 und 3 i.V.m. den Abs.2, 3 und Abs. 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingende Ausschlussgründe gemäß § 123 Abs. 1 Nr. 4 und 5 i.V.m. den Abs.2, 3 und Abs. 5 GWB: Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html  Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingende Ausschlussgründe gemäß § 123 Abs. 1 Nr. 6, 7, 8 und 9 i.V.m. Abs. 2, 3 und Abs. 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingender Ausschlussgrund gemäß § 123 Abs. 1 Nr. 10 i.V.m. den Abs.2, 3 und Abs. 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingender Ausschlussgrund gemäß § 123 Abs. 4 i.V.m. Absatz 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zwingender Ausschlussgrund gemäß § 123 Abs. 4 i.V.m. Absatz 5 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__123.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 1 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 1 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 2 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 2 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 2 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 2 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Mit Insolvenz vergleichbares Verfahren: Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 2 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 6 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 4 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 5 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 6 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultativer Ausschlussgrund gemäß § 124 Abs. 1 Nr. 7 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Fakultative Ausschlussgründe gemäß § 124 Abs. 1 Nr. 8 und 9 i.V.m. Abs. 2 GWB. Der Gesetzestext ist abrufbar unter: https://www.gesetze-im-internet.de/gwb/__124.html   Hierzu wird die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Bestandteil der Anlage_04 Vom Unternehmen einzureichende Erklärungen EU) gefordert.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Gemäß § 160 Absatz 1 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) leitet die Vergabekammer ein Nachprüfungsverfahren nur auf Antrag ein. Antragsbefugt ist nach § 160 Absatz 2 GWB jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 GWB durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. Der Antrag ist nach § 160 Absatz 3 Satz 1 GWB unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung genannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efbc:AccessToolName>Für die komplette Kommunikation zwischen Bieter:innen und der Vergabestelle wird auf den Bereich "Kommunikation" im Projektraum des Vergabemarktplatzes des Deutschen Vergabeportals verwiesen.  Nähere Angaben hierzu sind den Vergabeunterlagen - hier Dokument 00_Angebotsaufforderung zu entnehmen.</efbc:AccessToolName>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:Description languageID="DEU">§ 15 Abs. 1 VgV: Bei einem offenen Verfahren fordert der öffentliche Auftraggeber eine unbeschränkte Anzahl von Unternehmen öffentlich zur Abgabe von Angeboten auf. Jedes interessierte Unternehmen kann ein Angebot abgeben.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4DCTM7QV</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">OV-014-2026</cbc:ID>
+		<cbc:Name languageID="DEU">Überlassung, Pflege und Wartung von Sage Lizenzen</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand dieses Vergabeverfahrens ist der Abschluss einer EVB-IT Rahmenvereinbarung über die Überlassung, Pflege und Wartung von diversen Sage-Lizenzen (Anlage 07 der Vergabeunterlagen).</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4DCTM7QV#
+
+
+Die Vergabestelle ist im Falle von Nachprüfungsverfahren verpflichtet die Vergabeakten, die auch die abgegebenen Angebote enthalten, an die Prüfinstanzen weiterzuleiten. Die Beteiligten haben ein Recht auf Akteneinsicht. Um Betriebs- und Geschäftsgeheimnisse zu wahren, teilen Sie uns bitte ggf. mit Angebotsabgabe konkret mit, welche Informationen als Betriebs- und Geschäftsgeheimnisse zu behandeln sind.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die ausgeschriebenen Leistungen werden online erbracht. Es gelten die Vorgaben in den Vergabeunterlagen - insbesondere EVB-IT Vertrag.</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Zimmerstraße 13-15</cbc:StreetName>
+				<cbc:CityName>Berlin</cbc:CityName>
+				<cbc:PostalZone>10969</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen einer gültigen Betriebs- oder Berufshaftpflichtversicherung für Vermögensschäden mit einer Deckungssumme von mindestens 5 Mio EUR je Haftungsfall, die mindestens zweimal jährlich in voller Höhe zur Verfügung steht, bzw. Eigenerklärung des Versicherers zum Abschluss einer entsprechenden Versicherung spätestens zum Zeitpunkt des Vertragsschlusses. Der Nachweis mittels ULV-Nr. oder AVPQ-Eintrag (Angabe von Zertifikatsnummer und Zugangscode erforderlich) ist zulässig.  Die Auftraggeberin fordert die der Eigenerklärung zugrunde liegenden Nachweise bzw. Belege von den für den Zuschlag in Betracht kommenden Bieter:innen nach vorläufiger Prüfung an.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Bietergemeinschaften oder die Vergabe von Teilaufgaben an Unterauftragnehmer:innen sind zulässig, müssen jedoch mit Angebotsabgabe im Angebot angegeben werden. Zudem ist die im folgenden benannte Teilleistung vom/von der Auftragnehmer:in oder - im Fall einer Bietergemeinschaft - von einem Teilnehmer der Bietergemeinschaft auszuführen: - Schulungs- und Beratungsleistungen  Im Angebot müssen alle für die Leistungserbringung eingeplanten Partner:innen-/Unterauftragnehmer:innen-Leistungen, d.h. Art und Umfang der durch sie auszuführenden Tätigkeiten, angegeben werden.  Nähere Details sind den Vergabeunterlagen - hier: Dokument 00_Angebotsaufforderung zu entnehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der/die Bieter:in muss über die für die ordnungsgemäße Ausführung des Auftrags erforderliche technische und berufliche Leistungsfähigkeit verfügen. Hierzu muss das für die Auftragsausführung vorgesehene Projektpersonal in seiner Gesamtheit über nachweisbare Fachkenntnisse in den für den Auftragsgegenstand maßgeblichen Bereichen Sage HR und Sage 100 verfügen.  Mindestanforderung - Sage HR - Sage 100 Für jeden der beiden Bereiche muss mindestens eine dem Projektteam zugeordnete Fachkraft über entsprechende nachweisbare Fachkenntnisse verfügen. Es ist nicht erforderlich, dass eine einzelne Fachkraft über Fachkenntnisse in beiden Bereichen verfügt. Die erforderliche Fachkunde kann durch mehrere dem Projektteam angehörende Fachkräfte abgedeckt werden.  Vorläufiger Eignungsnachweis Mit dem Angebot ist zunächst eine Eigenerklärung abzugeben, aus der hervorgeht,  - welche Fachkräfte für die Auftragsausführung vorgesehen sind und welche Rolle diese Fachkraft im Projektteam einnimmt (z.B. Projektleitung, Consultant),  - welche der benannten Fachkräfte über Fachkenntnisse im Bereich Sage HR verfügen,  - welche der benannten Fachkräfte über Fachkenntnisse im Bereich Sage 100 verfügen und  - durch welche Zertifikate, Schulungs-, oder Fortbildungsnachweise die jeweiligen Fachkenntnisse belegt werden können. Die Eigenerklärung muss eine eindeutige Zuordnung der benannten Fachkräfte zu den beiden Fachbereichen ermöglichen.  Nähere Details sind den Vergabeunterlagen - hier: Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:RecurringProcurementIndicator>true</cbc:RecurringProcurementIndicator>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4DCTM7QV/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Vorstehende Angabe gilt im Rahmen der gesetzlich vorgesehenen Möglichkeiten zur Nachforderung.  Nachgefordert werden nur Unterlagen, die die Eignung betreffen. Preisangaben gehören zu den Zuschlagskriterien und dürfen, sofern sie den Gesamtpreis beeinflussen, nicht nachgefordert werden. Angaben die konkret als Zuschlagskriterien definiert wurden dürfen nicht nachgefordert werden.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Der Auftragnehmer verpflichtet sich zur Einhaltung der datenschutzrechtlichen Vorgaben gemäß dem beigefügten Anhang AVV Difu. Die Erklärung ist mit dem Angebot einzureichen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Summe monatlicher Angebotsnettopreis für die Überlassung der Lizenzen</cbc:Name>
+						<cbc:Description languageID="DEU">Die  Bewertung des Preises erfolgt ausschließlich auf Basis des vollständig ausgefüllten Preisblattes im Dateiformat .xlsx. Änderungen an der Struktur des Preisblattes sind unzulässig und führen zum Ausschluss des Angebots.   Gewertet wird der monatliche Gesamtangebotsnettopreis gemäß Preisblatt für die Überlassung der Lizenzen (Pos. 1.1 - 1.14 des Preisblattes).  Nähere Details sind den Vergabeunterlagen - Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>10.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Summe monatlicher Angebotsnettopreis für die Pflege der Lizenzen</cbc:Name>
+						<cbc:Description languageID="DEU">Die  Bewertung des Preises erfolgt ausschließlich auf Basis des vollständig ausgefüllten Preisblattes im Dateiformat .xlsx. Änderungen an der Struktur des Preisblattes sind unzulässig und führen zum Ausschluss des Angebots.   Gewertet wird der monatliche Gesamtangebotsnettopreis gemäß Preisblatt für die Pflege der Lizenzen (Pos. 2.1 - 2.14 des Preisblattes).  Nähere Details sind den Vergabeunterlagen - Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>10.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Summe Angebotsnettopreis für Leistungen gemäß EVB-IT Dienstleistung auf Abruf</cbc:Name>
+						<cbc:Description languageID="DEU">Die  Bewertung des Preises erfolgt ausschließlich auf Basis des vollständig ausgefüllten Preisblattes im Dateiformat .xlsx. Änderungen an der Struktur des Preisblattes sind unzulässig und führen zum Ausschluss des Angebots.   Gewertet wird der Gesamtangebotsnettopreis gemäß Preisblatt für Leistungen gemäß EVB-IT Dienstleistung auf Abruf (Pos. 3.1 - 3.5 des Preisblattes).  Nähere Details sind den Vergabeunterlagen - Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Auftragsbezogene Erfahrung des vorgesehenen Projektteams - Sage-Prozessoptimierung</cbc:Name>
+						<cbc:Description languageID="DEU">Die Qualität des mit der Auftragsausführung betrauten Personals kann aufgrund des Umfangs und der fachlichen Komplexität der Leistung erheblichen Einfluss auf die Qualität der Auftragsausführung haben. Dies gilt insbesondere für die Beratung, Unterstützung und Umsetzung von Anforderungen in den Bereichen Personalwirtschaft, Rechnungswesen und Warenwirtschaft sowie für die Optimierung von Geschäftsprozessen unter Nutzung der vorhandenen Sage-Standardfunktionalitäten.  Im Rahmen dieses Zuschlagskriteriums wird über die Mindestanforderungen hinaus die konkrete praktische Erfahrung des vorgesehenen Personals mit vergleichbaren Sage-Prozessoptimierungen, mit den für den Auftrag relevanten Sage-Modulen sowie mit den besonderen organisatorischen und fachlichen Rahmenbedingungen des öffentlichen bzw. öffentlich geprägten Bereichs bewertet.   Nähere Details sind den Vergabeunterlagen - Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzept zur Leistungserbringung</cbc:Name>
+						<cbc:Description languageID="DEU">Der/die Bieter:in hat ein schriftliches Durchführungskonzept einzureichen. Bewertet wird hierbei die konkrete prozessuale Begleitung und methodische Umsetzung bei der Auftraggeberin, nicht die bloße technische Bereitstellung des Updates durch den Softwarehersteller.  Nähere Details sind den Vergabeunterlagen - Dokument 05_Eignungsanforderungen und Zuschlagskriterien zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4DCTM7QV</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">49</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Gemäß § 160 Absatz 1 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) leitet die Vergabekammer ein Nachprüfungsverfahren nur auf Antrag ein. Antragsbefugt ist nach § 160 Absatz 2 GWB jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 GWB durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. Der Antrag ist nach § 160 Absatz 3 Satz 1 GWB unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung genannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:AccessToolName>Für die komplette Kommunikation zwischen Bieter:innen und der Vergabestelle wird auf den Bereich "Kommunikation" im Projektraum des Vergabemarktplatzes des Deutschen Vergabeportals verwiesen.  Nähere Angaben hierzu sind den Vergabeunterlagen - hier Dokument 00_Angebotsaufforderung zu entnehmen.</efbc:AccessToolName>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4DCTM7QV</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-13+02:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-10-13+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>10:00:00+02:00</cbc:OccurrenceTime>
+				<cbc:Description languageID="DEU">Die Öffnung der Angebote wird von mindestens zwei Vertreter:innen der Auftraggeberin durchgeführt. Bietende sind nicht zugelassen.</cbc:Description>
+				<cac:OccurenceLocation>
+					<cbc:Description languageID="DEU">Berlin</cbc:Description>
+				</cac:OccurenceLocation>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">OV-014-2026</cbc:ID>
+			<cbc:Name languageID="DEU">Überlassung, Pflege und Wartung von Sage Lizenzen</cbc:Name>
+			<cbc:Description languageID="DEU">Die Auftraggeberin arbeitet derzeit mit den in der Leistungsbeschreibung unter Punkt 2.2 benannten Software des Herstellers Sage.   Die Leistung beinhaltet die Überlassung der dort benannten Lizenzen entsprechend der EVB-IT-Rahmenvereinbarung, Modul Überlassung Typ B, die Pflege entsprechend des Moduls EVB-IT- Pflege S sowie die Dienstleistungen (Schulungen, Beratungen, Programmierung und Implementierung) entsprechend des Moduls Dienstleistung.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Die Vergabeplattform wird regelmäßig gewartet. Während der Wartungsfenster ist das System unter Umständen nur eingeschränkt verfügbar. Dies kann sowohl den Zugriff auf Vergabeunterlagen betreffen als auch die Angebotsabgabe selbst.  Da die Nutzungseinschränkungen in der Regel nur einen kurzen Zeitraum betreffen, versendet die Vergabestelle keine Angebotsunterlagen auf anderem Wege, z. B. per E-Mail.   Bei der Planung Ihrer elektronischen Abgaben achten Sie bitte auf diese Wartungsfenster.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die ausgeschriebenen Leistungen werden online erbracht. Es gelten die Vorgaben in den Vergabeunterlagen - insbesondere EVB-IT Vertrag.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Zimmerstraße 13-15</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>10969</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">2</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Die Rahmenvereinbarung wird mit einer festen Laufzeit von 2 Jahren geschlossen. Die Auftraggeberin ist berechtigt, die Laufzeit einseitig zweimal um jeweils ein weiteres Jahr zu verlängern. Die maximale Vertragslaufzeit beträgt somit 4 Jahre. Der Vertrag wird ausschließlich auf Grundlage der EVB-IT Rahmenvereinbarung geschlossen.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

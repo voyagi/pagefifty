@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>013a1f67-adb9-4184-b53c-d891716e11ff-01</efbc:ChangedNoticeIdentifier>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Verlängerung der Bindefrist. Neue Bindefrist: 15.12.2026</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.arbeitsagentur.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Bundesagentur für Arbeit (BA), vertreten durch den Vorstand, hier vertreten durch die Leitung des Geschäftsbereiches Einkauf im BA-Service-Haus</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Regensburger Str. 104</cbc:StreetName>
+                           <cbc:CityName>Nürnberg</cbc:CityName>
+                           <cbc:PostalZone>90478</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE254</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE811458858</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.bundeskartellamt.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Bundeskartellamt, Vergabekammern des Bundes</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kaiser-Friedrich-Str. 16</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53113</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>---</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00622876-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">175/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-10+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">02f3a707-5cd7-479d-8b15-90bb075a88f9</cbc:ID>
+   <cbc:ContractFolderID>cfb86d87-a0eb-43b3-b8e1-eedeece9c28d</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-09-09+02:00</cbc:IssueDate>
+   <cbc:IssueTime>09:59:49+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-09-09+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">soc-pro</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Vordrucke D.7 und D.8 (Erklärung zwingende und fakultative Ausschlussgründe): Eigenerklärungen des Bieters/des bevollmächtigten Mitglieds der Bietergemeinschaft (BG) zum Nichtvorliegen von Ausschlussgründen gemäß §§ 123, 124 GWB im Zusammenhang mit einer strafrechtlichen Verurteilung, Zahlung von Steuern oder Sozialversicherungsbeiträgen, sozial- und arbeitsrechtlichen Verpflichtungen, Insolvenz, anderen schweren beruflichen Verfehlungen, wettbewerbsverzerrenden Verhaltensweisen, Interessenkonflikt aus Beratungstätigkeiten, Auskünften und Informationen. Bei Bildung von Bieter- bzw. Bewerbergemeinschaften ist hinsichtlich des Nichtvorliegens von zwingenden bzw. fakultativen Ausschlussgründen (§§ 123, 124 GWB) auf alle Teilnehmer der Bieter- bzw. Bewerbergemeinschaft abzustellen. Bei Bildung von Bewerber- bzw. Bietergemeinschaften müssen die Erklärungen für alle Teilnehmer der Bewerber- bzw. Bietergemeinschaft abgegeben werden. Sollte bei einem Teilnehmer oder mehreren Teilnehmern der Bewerber- bzw. Bietergemein-schaft ein einschlägiger Ausschlusstatbestand vorliegen, ist dessen Name bzw. sind deren Namen auf der gesondert beizufügenden Anlage zu vermerken und zu erläutern, warum dennoch eine Teilnahme an dem gegenständlichen Vergabeverfahren möglich sein soll.
+
+Vordruck D.6 (Erklärung Eignungsleihe) und Vordruck D.2 (Erklärung Unterauftrag): Angabe der Teile des Auftrags mit Absicht der Unterbeauftragung/Eignungsleihe und Benennung der bereits feststehenden Unterauftragnehmer. Bestätigung, dass im Hinblick auf die angegebenen Unternehmen keine Ausschlusstatbestände im Sinne der in den Vordrucken D.7 und D.8 angegebenen Tatbestände vorliegen bzw. dass die Vergabestelle entsprechend informiert wird, wenn derartige Ausschlussgründe vorliegen und die entsprechenden Nachweise (z.B. Verpflichtungserklärungen) beigefügt sind oder spätestens nach entsprechender Aufforderung vor Zuschlagserteilung ein-gereicht werden.
+
+Vordruck D.0 (Angebotsschreiben): Bei Aufträgen ab einer Höhe von 50.000 € ohne Mwst. fordert die Vergabestelle für den Bieter/jedes Mitglied einer BG, der/die den Zuschlag erhalten soll, vor Zuschlagserteilung eine Auskunft aus dem Wettbewerbsregister nach § 6 des Wettbewerbsregistergesetzes (WRegG) an. Dafür sind mit dem Vordruck D.0 die benötigten Angaben zu übermitteln.
+
+Vordruck Eigenerklärung Russland (Erklärung bzgl. Artikel 5 k) Absatz 1 der Verordnung (EU) Nr. 833/2014 in der jeweils gültigen Fassung): Es ist gemäß Artikel 5 k) Absatz 1 der Verordnung (EU) Nr. 833/2014 in der jeweils gültigen Fassung verboten, öffentliche Aufträge oder Konzessionen an folgende Personen, Organisationen oder Einrichtungen zu vergeben bzw. Verträge mit solchen Personen, Organisationen oder Einrichtungen weiterhin zu erfüllen: a) russische Staatsangehörige oder in Russland niedergelassene natürliche oder juristische Personen, Organisationen oder Einrichtungen, b) juristische Personen, Organisationen oder Einrichtungen, deren Anteile zu über 50 % unmittelbar oder mittelbar von einer der unter Buchstabe a genannten Organisationen gehalten werden, oder c) natürliche oder juristische Personen, Organisationen oder Einrichtungen, die im Namen oder auf Anweisung einer der unter Buchstabe a oder b genannten Organisationen handeln, auch solche, auf die mehr als 10 % des Auftragswerts entfällt, Unterauftragnehmer, Liefe-ranten oder Unternehmen, deren Kapazitäten im Sinne der Richtlinien über die öffent-liche Auftragsvergabe in Anspruch genommen werden.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>13-26-00188</cbc:ID>
+      <cbc:Name languageID="DEU">IT_TeTraoBe_2026</cbc:Name>
+      <cbc:Description languageID="DEU">Auftragsgegenstand sind operative IT-Beratungsleistungen diese umfassen insbesondere Beratung, Bewertung, Untersuchung und Unterstützung bei der Konzeption zu nachfolgenden Themenblöcken:
+• Automatisierung in der Bundesagentur für Arbeit
+• Human Friendly Automation in der Bundesagentur für Arbeit
+• Befähigung der Organisation zu Automatisierungsthemen
+• Die IT der BA in der Hybriden Multicloud
+• Umorganisation
+• Agile Zusammenarbeit
+• HR Digitalisierung und Transformation von HR-IT-Systemen und Prozessen</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Nürnberg/Fürth</cbc:CityName>
+            <cbc:PostalZone>90478</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE254</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vorhandensein ausreichender Berufserfahrung, nachgewiesen
+durch Eigenerklärung zur technischen und beruflichen
+Leistungsfähigkeit (Vordruck D.5) sowie Vorlage von zwei
+(Kriterien B 1.1, B 1.2 und B 2.1, B 2.2 ) mit dem Beschaffungsgegenstand vergleichbaren Unternehmensreferenzen, die sowohl fachlich als auch vom Auftragsvolumen vergleichbar sind. Bitte benutzen Sie hierzu die angefügte Tabelle im Vordruck E.2 Eignungsanforderungen.
+
+Beachten Sie, dass bei den Referenzen mindestens eine Laufzeit von 6 Zeitmonaten gegeben sein muss. Es wird darauf hingewiesen, dass das Ende der genannten Referenzen bzw. das Ende Ihrer Beteiligung an diesen Referenzen nicht länger als 3 Jahre (bis einschließlich zum Veröffentlichungsdatum dieses Vergabeverfahrens auf der e-Vergabe-Plattform des Bundes) zurückliegen darf. 
+Die Referenzen müssen noch nicht beendet sein, jedoch bereits mindestens seit 6 Monaten laufen.
+Beschreiben Sie ausführlich und detailliert Ihre eigene Beteiligung an der Referenz, welche Rollen Sie konkret abgedeckt haben, die erbrachten Personenmonate (PM), sowie die eingesetzten Methoden und Werkzeuge. 
+Mit den angegebenen Referenzen sollen möglichst viele Punkte des geforderten Leistungsspektrums abgedeckt werden.
+
+Die Referenzen dürfen ausschließlich als Beratungsleistungen im Rahmen eines Beratungsvertrages erbracht worden sein. Die Nennung eines
+Beratungsvertrages als Referenz an sich ist nicht ausreichend.
+Es darf maximal eine Referenz von der Bundesagentur für Arbeit angegeben werden.
+
+Maximal können 2.100 gewichtete Punkte erreicht werden. Es müssen insgesamt mindestens 1.400 gewichtete Punkte erreicht werden. 
+Bei den Kriterien B1.1 und B2.1 müssen mindestens jeweils 100 gewichtete Punkte erreicht werden und bei den Kriterien B1.2 und B2.2 müssen jeweils mindestens 600 gewichtete Punkte erreicht werden (vgl. Vordruck E.3 Bewertungsmatrix Eignung).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe-online.de/tenderdocuments.html?id=883981</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Die Nachforderung von Unterlagen erfolgt gemäß § 56 VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">C.1: Erklärung zur Einhaltung rechtlicher Verpflichtungen
+C.2: Erklärung bei der Vergabe von Beratungs-/ Schulungsleistungen
+C.4: Erklärung Sicherheitsüberprüfungsgesetz (SÜG)</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Leistung</cbc:Name>
+                  <cbc:Description languageID="DEU">einfache Richtwertmethode (UfAB-Wertung)</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">UfAB-Wertung (einfach)</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe-online.de/tenderdetails.html?id=883981</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">77</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Ein Antrag auf Nachprüfung ist innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, schriftlich bei der zuvor genannten Vergabekammer zu stellen (§ 160 Abs. 3 Nr. 4 GWB)</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cbc:AccessToolsURI>http://www.evergabe-online.de</cbc:AccessToolsURI>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-09-28+02:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-09-28+02:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>12:00:00+02:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>3</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-w-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">IT_TeTraoBe_2026</cbc:Name>
+         <cbc:Description languageID="DEU">Beschaffungsgegenstand ist ein Kontingent an Beratungsunterstützung, ohne
+Abnahmeverpflichtung, im Rahmen für Projekte und Linientätigkeiten mit IT Bezug.
+Die zu erbringenden operativen Beratungsleistungen sollen dabei unterstützen, schnell und effektiv auf kurzfristige Anforderungen mit IT-Bezug reagieren zu können, die durch neue oder veränderte Geschäftsprozesse entstehen. Strategische Beratungsleistungen sind nicht im Rahmen dieses Vertrags zu erbringen. Strategische Beratungsleistungen können jedoch die Grundlage für die hier zu erbringenden operativen Beratungsleistungen sein.
+
+Der Auftragsgegenstand umfasst dabei insbesondere Beratung, Bewertung, Untersuchung und Unterstützung bei der Konzeption zu nachfolgenden Themenblöcken:
+1. Automatisierung in der Bundesagentur für Arbeit
+2. Human Friendly Automation in der Bundesagentur für Arbeit
+3. Befähigung der Organisation zu Automatisierungsthemen
+4. Die IT der BA in der Hybriden Multicloud
+5. Umorganisation
+6. Agile Zusammenarbeit
+7. HR Digitalisierung und Transformation von HR-IT-Systemen und Prozessen
+
+Die Beratungsleistung wird in die Themenbereiche HR Transformation, Automatisierung und Cloud unterteilt. Dabei ist der HR-Transformationsberater vornehmlich für die Themenblöcke 5, 6 und 7, der Automatisierungsberater vornehmlich für die Themenblöcke 1, 2 und 3 und der Cloudberater vornehmlich für den Themenblock 4 zuständig.
+
+Ziel der Ausschreibung ist ein Rahmenvertrag mit den drei wirtschaftlichsten Bietern. Die drei Bieter mit dem besten Leistungs-/Preisverhältnis erhalten den Zuschlag
+
+Die Vertragslaufzeit beginnt mit Zuschlagserteilung. Der Leistungszeitraum beginnt ebenfalls mit Zuschlagserteilung, frühestens jedoch zum 08.12.2026, und endet nach Ablauf von 36 Kalendermonaten, gleichzeitig mit der Vertragslaufzeit, ohne dass es einer Kündigung bedarf.
+
+Die geschätzte Abrufmenge über den gesamten Leistungszeitraum hinweg beläuft sich auf ca. 39.000 Personenstunden (PS) das sind 3.900 (Personentage- PT). Ein PT entspricht dabei 10 PS.
+
+Die geschätzte Abrufmenge kann, abhängig von den fachlichen Notwendigkeiten und den haushaltsmäßigen Gegebenheiten, über- oder unterschritten werden und im Jahresverlauf schwanken. Eine Abrufverpflichtung seitens der BA besteht nicht. Die Abrechnung erfolgt nach tatsächlichem Aufwand.
+
+Die Höchstmenge für diese Beschaffung beläuft sich auf 4680 PT. Dieser Wert stellt die vergaberechtliche Obergrenze zur Nutzung der Rahmenvereinbarung dar und hat keinen Zusammenhang mit von der BA zugrunde gelegten Schätzmengen oder von der BA vorgesehenen Haushaltsmitteln.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">env-imp</cbc:ProcurementTypeCode>
+            <cbc:ProcurementType languageID="DEU">Die teilweise Erbringung der Dienstleistung mittels Remote-Zugriff bzw. Telearbeit ist zugelassen. Damit sollen CO 2 Emissionen verringert werden.</cbc:ProcurementType>
+         </cac:ProcurementAdditionalType>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="environmental-impact">clim-mitig</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Nürnberg/Fürth</cbc:CityName>
+               <cbc:PostalZone>90478</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE254</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

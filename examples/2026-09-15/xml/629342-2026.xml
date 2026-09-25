@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://fwu.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">FWU Institut für Film und Bild in Wissenschaft und Unterricht gGmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Bavariafilmplatz 3</cbc:StreetName>
+									<cbc:CityName>Grünwald</cbc:CityName>
+									<cbc:PostalZone>82031</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE21H</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE129521719</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/index.html</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Südbayern</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Maximilianstraße 39</cbc:StreetName>
+									<cbc:CityName>München</cbc:CityName>
+									<cbc:PostalZone>80538</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE212</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>09-0318006-60</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00629342-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">177/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">457a284c-df15-4cb9-bf08-3515669e3b9e</cbc:ID>
+	<cbc:ContractFolderID>63bad895-4d5d-4d79-a639-e5b5a25fa296</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-11+02:00</cbc:IssueDate>
+	<cbc:IssueTime>13:17:13+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-11+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Nachprüfungsbehörde   Für die Nachprüfung dieses Vergabeverfahrens ist gemäß § 159 Abs. 1 Nr. 1 GWB die   Vergabekammer Südbayern   Maximilianstr. 39   80538 München   Telefon: [removed]   [removed]   https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/index.html   zuständig.    Rügepflichten bzw. Rechtsbehelfsbelehrung   1. Die Vergabeunterlagen, insbesondere dieser Verfahrensleitfaden, die Leistungsbeschreibung und Vordrucke sowie die Bekanntmachung müssen nach Erhalt/Download durch die Bieter auf Vollständigkeit und Lesbarkeit geprüft werden. Enthalten die Vergabeunterlagen oder die den Bietern mitgeteilten, übergebenen und zugänglich gemachten Unterlagen oder sonstigen Informationen Unklarheiten oder verstoßen diese gegen geltendes Recht, so weist der Bieter die Vergabestelle unverzüglich - spätestens jedoch mit der Angebotsabgabe - schriftlich darauf hin. Anderenfalls kann er sich auf die Unklarheiten oder die Rechtsverstöße nicht berufen. Nicht aufgeklärte Unklarheiten hat der Bieter als von ihm zu tragende Risiken in sein Angebot einzukalkulieren.   2. Etwaige Verfahrensrügen sind eindeutig als solche zu kennzeichnen. Auf die Rügepflichten des Bieters nach § 160 Abs. 3 GWB wird ausdrücklich hingewiesen. Außerdem weist die Vergabestelle ausdrücklich auf die Rechtsbehelfsfrist des § 160 Abs. 3 Satz 1 Nr. 4 GWB hin. Danach ist ein Antrag auf Nachprüfung unzulässig, soweit nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, mehr als 15 Kalendertage vergangen sind.   § 160 GWB lautet:   "(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.   (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.   (3) Der Antrag ist unzulässig, soweit   1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,    2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.   Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt."</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Die Einzelheiten zum Verfahren sind dem Verfahrensleitfaden zu entnehmen, der den Vergabeunterlagen beigefügt ist.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">restricted</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">026/2026</cbc:ID>
+		<cbc:Name languageID="DEU">AIS Abnahmeprozess</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand der Ausschreibung sind Leistungen der unabhängigen Qualitätssicherung für die Softwarelösung AIS (Adaptives Intelligentes System). Die Leistungen dienen der objektiven und nachvollziehbaren Bewertung der bereitgestellten Software hinsichtlich der in den jeweiligen Losen definierten fachlichen, technischen und sicherheitsrelevanten Anforderungen.   Ziel der Leistungen ist die Ermittlung und Dokumentation des Qualitätsstands der Software sowie die Identifikation von Abweichungen, Mängeln, Risiken und Verbesserungspotenzialen. Die im Rahmen der Qualitätssicherung erstellten Ergebnisse bilden eine wesentliche Grundlage für die Entscheidung des Auftraggebers über die Abnahme der Software. Die Verantwortung für die Abnahmeentscheidung verbleibt ausschließlich beim Auftraggeber.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YTSMPEE#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Bavariafilmplatz 3</cbc:StreetName>
+				<cbc:CityName>Grünwald</cbc:CityName>
+				<cbc:PostalZone>82031</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE21H</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">- Darstellung des Unternehmens (möglichst unter Angabe von Name, Sitz, Postanschrift, Rechtsform, Gegenstand des Unternehmens, Nummer der Eintragung in einem öffentlichen Register, gesetzlicher Vertreter, Ansprechpartner, Telefon, Telefax, E-Mail-Adresse, ggf. zuständige Niederlassung bzw. Standort, Leistungsspektrum und Kerngeschäft des Unternehmens) sowie - falls zutreffend - ausführliche Darstellung der Konzernverbundenheit/-angehörigkeit zu anderen Unternehmen. - Eigenerklärung über das Nichtvorliegen von Ausschlussgründen nach §§ 123, 124 GWB. - Aktueller Auszug aus dem Handelsregister oder vergleichbarer Registerauszug (zum Zeitpunkt der Abgabe des Teilnahmeantrags nicht älter als 6 Monate, Kopie ausreichend). Ausländische Bieter haben gleichwertige Bescheinigungen nach den Vorschriften ihres Herkunftslandes vorzulegen. Diese sind zwingend ins Deutsche zu übersetzen. - Eigenerklärung zu Artikel 5 k) der Verordnung (EU) 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren - Scientology-Schutzerklärung - Verpflichtungserklärung zu Tariftreue und ILO-Kernarbeitsnormen - Neutralitätsklausel</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Diese Versicherung muss folgende Mindestdeckungssummen je Schadensereignis aufweisen:  - Personenschäden: 2.000.000,00 Euro (je Schadensfall) - Vermögens-, Sach- und sonstige Schäden: 2.000.000,00 Euro (je Schadensfall)  Die Deckungssummen müssen in jedem Versicherungsjahr zumindest zweimal zur Verfügung (2-fache Maximierung) stehen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindeststandard: Gesamtumsatz des Bewerbers/Bieters in den letzten drei Jahren im Durchschnitt von mindestens 1.000.000,00 Euro netto p.a.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe des Umsatzes des Bewerbers/Bieters im Tätigkeitsbereich des Auftrags mit vergleichbaren Leistungen aus den letzten drei Jahren.   Mindeststandard für alle Lose: Umsatz durchschnittlich mind. 500.000,00 EUR netto p.a.   Los 1 - Abnahmetests:    Als vergleichbare Leistungen gelten Leistungen zur Planung, Erstellung, Durchführung und Dokumentation von Softwaretests in KI-Projekten, insbesondere Abnahmetests, funktionale und nichtfunktionale Tests, API- und E2E-Tests, Usability- und Accessibility-Tests, Performance- und Lasttests, Recovery- sowie Regressionstests.   Hierzu zählen insbesondere Tests von KI-basierten Anwendungen, Webanwendungen und komplexen Softwaresystemen einschließlich Schnittstellen, Datenverarbeitung sowie Rollen- und Berechtigungsfunktionen. Vergleichbar sind auch Leistungen zur Erfassung und Bewertung von Defects sowie zur Durchführung von Retests.   Los 2 - Security-Tests:    Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung der Sicherheit von Softwareanwendungen und IT-Systemen im Rahmen von KI-Projekten, insbesondere Security-Assessments, Penetrationstests und Schwachstellenanalysen.   Hierzu zählen insbesondere die Prüfung von KI-basierten Anwendungen, APIs, Authentifizierungs- und Autorisierungsmechanismen, Rollen und Berechtigungen, Datenverarbeitung und Schnittstellen. Vergleichbar sind insbesondere auch Security-Tests von KI-Funktionalitäten und Agentic Harnesses bzw. agentischen Systemen, einschließlich Adversarial Testing und Red-Team-Tests zur Prüfung von Manipulations-, Missbrauchs-, Prompt-Injection-, Tool- und Berechtigungsrisiken.    Ebenfalls vergleichbar sind Leistungen zur Bewertung, Dokumentation und Nachprüfung identifizierter Schwachstellen sowie zur Bewertung der Wirksamkeit implementierter Sicherheitsmaßnahmen.   Los 3 - Code Review:   Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung und Bewertung von Softwarequellcode im Rahmen von KI-Projekten.   Hierzu zählen insbesondere die Bewertung von Codequalität, Architektur, Wartbarkeit, Erweiterbarkeit, Fehlerbehandlung, technischen Risiken, Code Smells und Technical Debt sowie die Prüfung der Einhaltung von Coding Guidelines. Vergleichbar sind auch Code Reviews von KI-/LLM-basierten Anwendungen, Agent Harnesses bzw. agentischen Systemen und deren technischen Komponenten sowie die Dokumentation, Priorisierung und Bewertung der festgestellten Mängel und Risiken.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe der Beschäftigtenzahlen (Vollzeitäquivalente) des Bewerbers/Bieters in den letzten drei Jahren:   Mindestanforderung:    Los 1: 20 VZÄ im Bereich Softwareabnahmetests   Los 2: 15 VZÄ im Bereich Softwaresecuritytests   Los 3: 15 VZÄ im Bereich Code Review</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1 Abnahmetests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 9 Punkte Vergleichbarkeit der Unternehmensreferenzen   Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Abnahmetests (funktional, API, E2E) für ein System mit mindestens 100.000 Nutzenden.    Das Referenzprojekt erfolgte unter Einsatz anerkannter Testmanagement-Standards (z. B. ISTQB, ISO/IEC/IEEE 29119);   Das Referenzprojekt wurde unter Einsatz von Testautomatisierungswerkzeugen für E2E-/API-Tests (z. B. Cucumber, Playwright, Selenium) erbracht;    Das Referenzprojekt umfasste eine WCAG-2.1-konforme Barrierefreiheitsprüfung einer öffentlich zugänglichen Anwendung.    Das Referenzprojekt umfasste Performance-/Last- und Recovery-/Failover-Tests für ein System mit einer Lastskalierung von mindestens 500.000 Nutzenden.    Das Referenzprojekt umfasste die parallele Durchführung mehrerer Testarten (funktional, API, E2E, Usability, Performance) innerhalb eines abgegrenzten Zeitraums durch ein Testteam.     Das Referenzprojekt umfasste die Testung von KI-/LLM-gestützten Anwendungsfunktionen (z. B. Tutor-/Assistenzfunktionen) auf funktionale Korrektheit und Antwortqualität.    Das Referenzprojekt erfolgte im schulischen/öffentlichen Bildungskontext oder öffentlichen/behördlichen Kontext.    Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Funktionen im Rahmen der Abnahmetests (z. B. Berichtigung, Löschung, Einschränkung der Verarbeitung personenbezogener Daten) auf Konformität mit den einschlägigen Datenschutzanforderungen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>27.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2 Security-Tests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 11 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Security-Tests/Penetrationstests für ein System mit mindestens 100.000 aktiven Nutzenden.    Das Referenzprojekt erfüllt Informationssicherheitsstandards nach ISO 27001   Das Referenzprojekt wurde von einem nach CREST oder vergleichbar akkreditiertes Penetrationstest-Unternehmen getestet    Das Referenzprojekt wurde unter Einsatz anerkannter Testmethoden und -standards (OWASP Testing Guide, OWASP Top 10, OWASP API Security Top 10) getestet.    Das Referenzprojekt wurde unter Einsatz moderner Testinfrastruktur (z. B. automatisierte Scanning-Pipelines, CI/CD-integrierte Sicherheitsprüfungen) erbracht.    Das Referenzprojekt umfasste die Prüfung offener und dokumentierter Schnittstellen (APIs) im Hinblick auf deren sichere Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Schnittstellen oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Testteam.    Das Referenzprojekt umfasste Security-Tests von KI-/LLM-basierten Komponenten und Agentic Harnesses bzw. agentischen Systemen, insbesondere hinsichtlich Prompt Injection, unzulässiger Tool- oder Funktionsaufrufe, Berechtigungseskalation, Datenabfluss und Manipulation des Agentenverhaltens.    Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Aspekte der Verarbeitung personenbezogener Daten (z. B. Zugriffsschutz, Sitzungsmanagement, Datenübertragung) im Rahmen der Security-Tests.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>33.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3 Code-Review  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 8 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste umfasste das Review einer Codebasis mit hoher Komplexität (z. B. Microservice-Architektur, mehrere Programmiersprachen/Frameworks, oder Beteiligung mehrerer Entwicklungsteams).    Das Referenzprojekt erfolgte unter Einhaltung anerkannter Grundsätze der Softwareentwicklung sowie projektspezifischer Coding Guidelines und Clean-Code-Prinzipien, nachweisbar durch dokumentierte Review-Ergebnisse   Das Referenzprojekt wurde unter Einsatz automatisierter statischer Codeanalysewerkzeuge (z. B. SonarQube, Checkmarx, ESLint, Codacy) in Kombination mit fachlicher Bewertung durch die Reviewer erbracht   Das Referenzprojekt umfasste das Review offener und dokumentierter Schnittstellen (APIs) im Hinblick auf Struktur, Wartbarkeit und Konsistenz bei der Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Module oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Reviewteam.    Das Referenzprojekt erfolgte im Rahmen eines etablierten DevOps-Ansatzes mit Integration von Code-Review-Aktivitäten in automatisierte Build-, Test- und Deployment-Prozesse (Continuous Code Quality).   Das Referenzprojekt umfasste das Review von KI-/ML-spezifischen Komponenten (Datenpipelines, Modellintegration, Prompt-Engineering) und Agentic Harnesses hinsichtlich Codequalität, Architektur und technischer Risiken.    Das Referenzprojekt umfasste das Review von Open-Source-lizenzierten Komponenten oder Anwendungen im Hinblick auf Lizenzkonformität und Codequalität.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>24.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der öffentliche Auftraggeber weist darauf hin, dass er sich das Recht vorbehält, Aufklärungen nach § 16 Abs. 9 VgV in Verbindung mit § 15 Abs. 5 VgV sowie Nachforderungen bezüglich fehlender, fehlerhafter oder unvollständiger leistungsbezogener und unternehmensbezogener Unterlagen, die nicht die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, nach § 56 Abs. 2 VgV vorzunehmen. Die Bewerber/Bieter haben ausdrücklich kein Recht auf die Durchführung einer Aufklärung oder Nachforderung im oben genannten Sinne. Der öffentliche Auftraggeber wird die vergaberechtlichen Grundsätze - insbesondere Gleichbehandlung und Transparenz - stets angemessen berücksichtigen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Es wird auf die den Vergabeunterlagen zu entnehmenden Bedingungen verwiesen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals</cbc:Name>
+						<cbc:Description languageID="DEU">Die Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals wird anhand des beigefügten Profilbogens bewertet. Nähere Informationen entnehmen Sie bitte dem Verfahrensleitfaden (4.1).</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Eingereichter Angebotspreis</cbc:Name>
+						<cbc:Description languageID="DEU">Der eingereichte Preis wird mithilfe der linearen Interpolationsmethode ins Verhältnis zu anderen eingereichten Angebotspreisen gesetzt. Die genaue Bewertungsmethode können Sie dem Verfahrensleitfaden (4.1) entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nachprüfungsbehörde   Für die Nachprüfung dieses Vergabeverfahrens ist gemäß § 159 Abs. 1 Nr. 1 GWB die   Vergabekammer Südbayern   Maximilianstr. 39   80538 München   Telefon: [removed]   [removed]   https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/index.html   zuständig.    Rügepflichten bzw. Rechtsbehelfsbelehrung   1. Die Vergabeunterlagen, insbesondere dieser Verfahrensleitfaden, die Leistungsbeschreibung und Vordrucke sowie die Bekanntmachung müssen nach Erhalt/Download durch die Bieter auf Vollständigkeit und Lesbarkeit geprüft werden. Enthalten die Vergabeunterlagen oder die den Bietern mitgeteilten, übergebenen und zugänglich gemachten Unterlagen oder sonstigen Informationen Unklarheiten oder verstoßen diese gegen geltendes Recht, so weist der Bieter die Vergabestelle unverzüglich - spätestens jedoch mit der Angebotsabgabe - schriftlich darauf hin. Anderenfalls kann er sich auf die Unklarheiten oder die Rechtsverstöße nicht berufen. Nicht aufgeklärte Unklarheiten hat der Bieter als von ihm zu tragende Risiken in sein Angebot einzukalkulieren.   2. Etwaige Verfahrensrügen sind eindeutig als solche zu kennzeichnen. Auf die Rügepflichten des Bieters nach § 160 Abs. 3 GWB wird ausdrücklich hingewiesen. Außerdem weist die Vergabestelle ausdrücklich auf die Rechtsbehelfsfrist des § 160 Abs. 3 Satz 1 Nr. 4 GWB hin. Danach ist ein Antrag auf Nachprüfung unzulässig, soweit nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, mehr als 15 Kalendertage vergangen sind.   § 160 GWB lautet:   "(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.   (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.   (3) Der Antrag ist unzulässig, soweit   1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,    2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.   Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-13+02:00</cbc:EndDate>
+				<cbc:EndTime>17:00:00+02:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>5</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Abnahmetests</cbc:Name>
+			<cbc:Description languageID="DEU">Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden.    Die Ausschreibung umfasst folgende Lose:   Los 1: Abnahmetests   Los 2: Security-Tests   Los 3: Code Reviews     Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse.  Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Bavariafilmplatz 3</cbc:StreetName>
+					<cbc:CityName>Grünwald</cbc:CityName>
+					<cbc:PostalZone>82031</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE21H</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="DAY">40</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Der Auftraggeber behält sich vor, innerhalb von drei Jahren nach Abschluss des im Rahmen dieses Vergabeverfahrens vergebenen Auftrags (Grundprojekt) eine erneute Prüfung einer erweiterten Softwareversion durchzuführen. Die erneute Prüfung erfolgt voraussichtlich ab Mitte 2027. Dabei wird es auch erforderlich sein, die im Rahmen dieses Grundprojekts bereits geprüfte Softwareversion erneut zu prüfen, insbesondere in Bezug auf die Ergänzung eines Schulfachs, das ebenfalls über die bereits geprüfte Softwareversion angeboten werden soll. Die Methodik, der Prüfumfang sowie die Leistungsbeschreibung bleiben hierfür im Kern identisch. Es handelt sich bei der erneuten Prüfung somit um die Wiederholung gleichartige Leistungen. Dieser zu vergebende Auftrag kann gemäß § 14 Abs. 4 Nr. 9 VgV durch Anwendung des Verhandlungsverfahrens ohne Teilnahmewettbewerb an das bzw. die Unternehmen vergeben werden, das/die den Zuschlag für das Grundprojekt erhalten hat bzw. die den Zuschlag für das Grundprojekt erhalten haben. Die jeweiligen Unternehmen werden im Falle der Umsetzung auf Grundlage der diesem Vergabeverfahren zugrunde gelegten Leistungsbeschreibung unter Berücksichtigung erforderlicher Anpassungen aufgefordert, ein Angebot für die Bereitstellung eines Prüf-/ bzw. Reviewteams für die jeweiligen Lose abzugeben. Die Vergabe des Grundprojekts wurde im Rahmen eines Nichtoffenen Verfahrens mit Teilnahmewettbewerb (§ 119 Abs. 4 GWB iVm. § 16 VgV) durchgeführt.    Gemäß § 14 Abs. 4 Nr. 9 VgV kann der öffentliche Auftraggeber Aufträge im Verhandlungsverfahren ohne Teilnahmewettbewerb vergeben, wenn eine Dienstleistung beschafft werden soll, die in der Wiederholung gleichartiger Leistungen besteht, die durch denselben öffentlichen Auftraggeber an das Unternehmen vergeben werden, das den ersten Auftrag erhalten hat, sofern sie einem Grundprojekt entsprechen und dieses Projekt Gegenstand des ersten Auftrags war, das im Rahmen eines Vergabeverfahrens mit Ausnahme eines Verhandlungsverfahrens ohne Teilnahmewettbewerb vergeben wurde.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Es steht fest, dass im Rahmen von Los 1 und Los 2 nach der initialen Testung mindestens eine Nachtestung erforderlich wird. Hinsichtlich der Anzahl weiterer Nachtestungen behält sich der Auftraggeber vor, diese nach objektivem Bedarf und unter Berücksichtigung der Einschätzung des Auftragnehmers nachträglich festzulegen. Der Auftraggeber kann maximal aus einem Kontingent von 30 Tagen Leistungen abzurufen.   Daher werden die Bieter aufgefordert, im Angebot für Los 1 und Los 2 Tagessätze für das gesamte  Team des jeweiligen Loses für Nachtestungen anzubieten. Im Gegensatz zur intialen Leistung wird  die optionale Leistung nach tatsächlich erbrachten Tagen bezahlt; sie ist nicht als Pauschalpreis ausgestaltet.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">- Darstellung des Unternehmens (möglichst unter Angabe von Name, Sitz, Postanschrift, Rechtsform, Gegenstand des Unternehmens, Nummer der Eintragung in einem öffentlichen Register, gesetzlicher Vertreter, Ansprechpartner, Telefon, Telefax, E-Mail-Adresse, ggf. zuständige Niederlassung bzw. Standort, Leistungsspektrum und Kerngeschäft des Unternehmens) sowie - falls zutreffend - ausführliche Darstellung der Konzernverbundenheit/-angehörigkeit zu anderen Unternehmen. - Eigenerklärung über das Nichtvorliegen von Ausschlussgründen nach §§ 123, 124 GWB. - Aktueller Auszug aus dem Handelsregister oder vergleichbarer Registerauszug (zum Zeitpunkt der Abgabe des Teilnahmeantrags nicht älter als 6 Monate, Kopie ausreichend). Ausländische Bieter haben gleichwertige Bescheinigungen nach den Vorschriften ihres Herkunftslandes vorzulegen. Diese sind zwingend ins Deutsche zu übersetzen. - Eigenerklärung zu Artikel 5 k) der Verordnung (EU) 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren - Scientology-Schutzerklärung - Verpflichtungserklärung zu Tariftreue und ILO-Kernarbeitsnormen - Neutralitätsklausel</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Diese Versicherung muss folgende Mindestdeckungssummen je Schadensereignis aufweisen:  - Personenschäden: 2.000.000,00 Euro (je Schadensfall) - Vermögens-, Sach- und sonstige Schäden: 2.000.000,00 Euro (je Schadensfall)  Die Deckungssummen müssen in jedem Versicherungsjahr zumindest zweimal zur Verfügung (2-fache Maximierung) stehen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindeststandard: Gesamtumsatz des Bewerbers/Bieters in den letzten drei Jahren im Durchschnitt von mindestens 1.000.000,00 Euro netto p.a.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe des Umsatzes des Bewerbers/Bieters im Tätigkeitsbereich des Auftrags mit vergleichbaren Leistungen aus den letzten drei Jahren.   Mindeststandard für alle Lose: Umsatz durchschnittlich mind. 500.000,00 EUR netto p.a.   Los 1 - Abnahmetests:    Als vergleichbare Leistungen gelten Leistungen zur Planung, Erstellung, Durchführung und Dokumentation von Softwaretests in KI-Projekten, insbesondere Abnahmetests, funktionale und nichtfunktionale Tests, API- und E2E-Tests, Usability- und Accessibility-Tests, Performance- und Lasttests, Recovery- sowie Regressionstests.   Hierzu zählen insbesondere Tests von KI-basierten Anwendungen, Webanwendungen und komplexen Softwaresystemen einschließlich Schnittstellen, Datenverarbeitung sowie Rollen- und Berechtigungsfunktionen. Vergleichbar sind auch Leistungen zur Erfassung und Bewertung von Defects sowie zur Durchführung von Retests.   Los 2 - Security-Tests:    Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung der Sicherheit von Softwareanwendungen und IT-Systemen im Rahmen von KI-Projekten, insbesondere Security-Assessments, Penetrationstests und Schwachstellenanalysen.   Hierzu zählen insbesondere die Prüfung von KI-basierten Anwendungen, APIs, Authentifizierungs- und Autorisierungsmechanismen, Rollen und Berechtigungen, Datenverarbeitung und Schnittstellen. Vergleichbar sind insbesondere auch Security-Tests von KI-Funktionalitäten und Agentic Harnesses bzw. agentischen Systemen, einschließlich Adversarial Testing und Red-Team-Tests zur Prüfung von Manipulations-, Missbrauchs-, Prompt-Injection-, Tool- und Berechtigungsrisiken.    Ebenfalls vergleichbar sind Leistungen zur Bewertung, Dokumentation und Nachprüfung identifizierter Schwachstellen sowie zur Bewertung der Wirksamkeit implementierter Sicherheitsmaßnahmen.   Los 3 - Code Review:   Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung und Bewertung von Softwarequellcode im Rahmen von KI-Projekten.   Hierzu zählen insbesondere die Bewertung von Codequalität, Architektur, Wartbarkeit, Erweiterbarkeit, Fehlerbehandlung, technischen Risiken, Code Smells und Technical Debt sowie die Prüfung der Einhaltung von Coding Guidelines. Vergleichbar sind auch Code Reviews von KI-/LLM-basierten Anwendungen, Agent Harnesses bzw. agentischen Systemen und deren technischen Komponenten sowie die Dokumentation, Priorisierung und Bewertung der festgestellten Mängel und Risiken.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe der Beschäftigtenzahlen (Vollzeitäquivalente) des Bewerbers/Bieters in den letzten drei Jahren:   Mindestanforderung:    Los 1: 20 VZÄ im Bereich Softwareabnahmetests   Los 2: 15 VZÄ im Bereich Softwaresecuritytests   Los 3: 15 VZÄ im Bereich Code Review</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1 Abnahmetests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 9 Punkte Vergleichbarkeit der Unternehmensreferenzen   Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Abnahmetests (funktional, API, E2E) für ein System mit mindestens 100.000 Nutzenden.    Das Referenzprojekt erfolgte unter Einsatz anerkannter Testmanagement-Standards (z. B. ISTQB, ISO/IEC/IEEE 29119);   Das Referenzprojekt wurde unter Einsatz von Testautomatisierungswerkzeugen für E2E-/API-Tests (z. B. Cucumber, Playwright, Selenium) erbracht;    Das Referenzprojekt umfasste eine WCAG-2.1-konforme Barrierefreiheitsprüfung einer öffentlich zugänglichen Anwendung.    Das Referenzprojekt umfasste Performance-/Last- und Recovery-/Failover-Tests für ein System mit einer Lastskalierung von mindestens 500.000 Nutzenden.    Das Referenzprojekt umfasste die parallele Durchführung mehrerer Testarten (funktional, API, E2E, Usability, Performance) innerhalb eines abgegrenzten Zeitraums durch ein Testteam.     Das Referenzprojekt umfasste die Testung von KI-/LLM-gestützten Anwendungsfunktionen (z. B. Tutor-/Assistenzfunktionen) auf funktionale Korrektheit und Antwortqualität.    Das Referenzprojekt erfolgte im schulischen/öffentlichen Bildungskontext oder öffentlichen/behördlichen Kontext.    Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Funktionen im Rahmen der Abnahmetests (z. B. Berichtigung, Löschung, Einschränkung der Verarbeitung personenbezogener Daten) auf Konformität mit den einschlägigen Datenschutzanforderungen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>27.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2 Security-Tests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 11 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Security-Tests/Penetrationstests für ein System mit mindestens 100.000 aktiven Nutzenden.    Das Referenzprojekt erfüllt Informationssicherheitsstandards nach ISO 27001   Das Referenzprojekt wurde von einem nach CREST oder vergleichbar akkreditiertes Penetrationstest-Unternehmen getestet    Das Referenzprojekt wurde unter Einsatz anerkannter Testmethoden und -standards (OWASP Testing Guide, OWASP Top 10, OWASP API Security Top 10) getestet.    Das Referenzprojekt wurde unter Einsatz moderner Testinfrastruktur (z. B. automatisierte Scanning-Pipelines, CI/CD-integrierte Sicherheitsprüfungen) erbracht.    Das Referenzprojekt umfasste die Prüfung offener und dokumentierter Schnittstellen (APIs) im Hinblick auf deren sichere Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Schnittstellen oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Testteam.    Das Referenzprojekt umfasste Security-Tests von KI-/LLM-basierten Komponenten und Agentic Harnesses bzw. agentischen Systemen, insbesondere hinsichtlich Prompt Injection, unzulässiger Tool- oder Funktionsaufrufe, Berechtigungseskalation, Datenabfluss und Manipulation des Agentenverhaltens.    Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Aspekte der Verarbeitung personenbezogener Daten (z. B. Zugriffsschutz, Sitzungsmanagement, Datenübertragung) im Rahmen der Security-Tests.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>33.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3 Code-Review  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 8 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste umfasste das Review einer Codebasis mit hoher Komplexität (z. B. Microservice-Architektur, mehrere Programmiersprachen/Frameworks, oder Beteiligung mehrerer Entwicklungsteams).    Das Referenzprojekt erfolgte unter Einhaltung anerkannter Grundsätze der Softwareentwicklung sowie projektspezifischer Coding Guidelines und Clean-Code-Prinzipien, nachweisbar durch dokumentierte Review-Ergebnisse   Das Referenzprojekt wurde unter Einsatz automatisierter statischer Codeanalysewerkzeuge (z. B. SonarQube, Checkmarx, ESLint, Codacy) in Kombination mit fachlicher Bewertung durch die Reviewer erbracht   Das Referenzprojekt umfasste das Review offener und dokumentierter Schnittstellen (APIs) im Hinblick auf Struktur, Wartbarkeit und Konsistenz bei der Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Module oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Reviewteam.    Das Referenzprojekt erfolgte im Rahmen eines etablierten DevOps-Ansatzes mit Integration von Code-Review-Aktivitäten in automatisierte Build-, Test- und Deployment-Prozesse (Continuous Code Quality).   Das Referenzprojekt umfasste das Review von KI-/ML-spezifischen Komponenten (Datenpipelines, Modellintegration, Prompt-Engineering) und Agentic Harnesses hinsichtlich Codequalität, Architektur und technischer Risiken.    Das Referenzprojekt umfasste das Review von Open-Source-lizenzierten Komponenten oder Anwendungen im Hinblick auf Lizenzkonformität und Codequalität.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>24.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der öffentliche Auftraggeber weist darauf hin, dass er sich das Recht vorbehält, Aufklärungen nach § 16 Abs. 9 VgV in Verbindung mit § 15 Abs. 5 VgV sowie Nachforderungen bezüglich fehlender, fehlerhafter oder unvollständiger leistungsbezogener und unternehmensbezogener Unterlagen, die nicht die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, nach § 56 Abs. 2 VgV vorzunehmen. Die Bewerber/Bieter haben ausdrücklich kein Recht auf die Durchführung einer Aufklärung oder Nachforderung im oben genannten Sinne. Der öffentliche Auftraggeber wird die vergaberechtlichen Grundsätze - insbesondere Gleichbehandlung und Transparenz - stets angemessen berücksichtigen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Es wird auf die den Vergabeunterlagen zu entnehmenden Bedingungen verwiesen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals</cbc:Name>
+						<cbc:Description languageID="DEU">Die Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals wird anhand des beigefügten Profilbogens bewertet. Nähere Informationen entnehmen Sie bitte dem Verfahrensleitfaden (4.2).</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Testkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Die Anforderungen an das Testkonzept können Sie dem Verfahrensleitfaden (4.2 und 4.4.1) entnehmen. Hinsichtlich des Bewertungsmaßstabs wird auf Anlage 7 verwiesen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Eingereichter Angebotspreis</cbc:Name>
+						<cbc:Description languageID="DEU">Der eingereichte Preis wird mithilfe der linearen Interpolationsmethode ins Verhältnis zu anderen eingereichten Angebotspreisen gesetzt. Die genaue Bewertungsmethode können Sie dem Verfahrensleitfaden (4.2) entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nachprüfungsbehörde   Für die Nachprüfung dieses Vergabeverfahrens ist gemäß § 159 Abs. 1 Nr. 1 GWB die   Vergabekammer Südbayern   Maximilianstr. 39   80538 München   Telefon: [removed]   [removed]   https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/index.html   zuständig.    Rügepflichten bzw. Rechtsbehelfsbelehrung   1. Die Vergabeunterlagen, insbesondere dieser Verfahrensleitfaden, die Leistungsbeschreibung und Vordrucke sowie die Bekanntmachung müssen nach Erhalt/Download durch die Bieter auf Vollständigkeit und Lesbarkeit geprüft werden. Enthalten die Vergabeunterlagen oder die den Bietern mitgeteilten, übergebenen und zugänglich gemachten Unterlagen oder sonstigen Informationen Unklarheiten oder verstoßen diese gegen geltendes Recht, so weist der Bieter die Vergabestelle unverzüglich - spätestens jedoch mit der Angebotsabgabe - schriftlich darauf hin. Anderenfalls kann er sich auf die Unklarheiten oder die Rechtsverstöße nicht berufen. Nicht aufgeklärte Unklarheiten hat der Bieter als von ihm zu tragende Risiken in sein Angebot einzukalkulieren.   2. Etwaige Verfahrensrügen sind eindeutig als solche zu kennzeichnen. Auf die Rügepflichten des Bieters nach § 160 Abs. 3 GWB wird ausdrücklich hingewiesen. Außerdem weist die Vergabestelle ausdrücklich auf die Rechtsbehelfsfrist des § 160 Abs. 3 Satz 1 Nr. 4 GWB hin. Danach ist ein Antrag auf Nachprüfung unzulässig, soweit nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, mehr als 15 Kalendertage vergangen sind.   § 160 GWB lautet:   "(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.   (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.   (3) Der Antrag ist unzulässig, soweit   1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,    2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.   Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-13+02:00</cbc:EndDate>
+				<cbc:EndTime>17:00:00+02:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>5</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Security-Tests</cbc:Name>
+			<cbc:Description languageID="DEU">Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden.    Die Ausschreibung umfasst folgende Lose:   Los 1: Abnahmetests   Los 2: Security-Tests   Los 3: Code Reviews     Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse.  Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Bavariafilmplatz 3</cbc:StreetName>
+					<cbc:CityName>Grünwald</cbc:CityName>
+					<cbc:PostalZone>82031</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE21H</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="DAY">40</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Der Auftraggeber behält sich vor, innerhalb von drei Jahren nach Abschluss des im Rahmen dieses Vergabeverfahrens vergebenen Auftrags (Grundprojekt) eine erneute Prüfung einer erweiterten Softwareversion durchzuführen. Die erneute Prüfung erfolgt voraussichtlich ab Mitte 2027. Dabei wird es auch erforderlich sein, die im Rahmen dieses Grundprojekts bereits geprüfte Softwareversion erneut zu prüfen, insbesondere in Bezug auf die Ergänzung eines Schulfachs, das ebenfalls über die bereits geprüfte Softwareversion angeboten werden soll. Die Methodik, der Prüfumfang sowie die Leistungsbeschreibung bleiben hierfür im Kern identisch. Es handelt sich bei der erneuten Prüfung somit um die Wiederholung gleichartige Leistungen. Dieser zu vergebende Auftrag kann gemäß § 14 Abs. 4 Nr. 9 VgV durch Anwendung des Verhandlungsverfahrens ohne Teilnahmewettbewerb an das bzw. die Unternehmen vergeben werden, das/die den Zuschlag für das Grundprojekt erhalten hat bzw. die den Zuschlag für das Grundprojekt erhalten haben. Die jeweiligen Unternehmen werden im Falle der Umsetzung auf Grundlage der diesem Vergabeverfahren zugrunde gelegten Leistungsbeschreibung unter Berücksichtigung erforderlicher Anpassungen aufgefordert, ein Angebot für die Bereitstellung eines Prüf-/ bzw. Reviewteams für die jeweiligen Lose abzugeben. Die Vergabe des Grundprojekts wurde im Rahmen eines Nichtoffenen Verfahrens mit Teilnahmewettbewerb (§ 119 Abs. 4 GWB iVm. § 16 VgV) durchgeführt.    Gemäß § 14 Abs. 4 Nr. 9 VgV kann der öffentliche Auftraggeber Aufträge im Verhandlungsverfahren ohne Teilnahmewettbewerb vergeben, wenn eine Dienstleistung beschafft werden soll, die in der Wiederholung gleichartiger Leistungen besteht, die durch denselben öffentlichen Auftraggeber an das Unternehmen vergeben werden, das den ersten Auftrag erhalten hat, sofern sie einem Grundprojekt entsprechen und dieses Projekt Gegenstand des ersten Auftrags war, das im Rahmen eines Vergabeverfahrens mit Ausnahme eines Verhandlungsverfahrens ohne Teilnahmewettbewerb vergeben wurde.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Es steht fest, dass im Rahmen von Los 1 und Los 2 nach der initialen Testung mindestens eine Nachtestung erforderlich wird. Hinsichtlich der Anzahl weiterer Nachtestungen behält sich der Auftraggeber vor, diese nach objektivem Bedarf und unter Berücksichtigung der Einschätzung des Auftragnehmers nachträglich festzulegen. Der Auftraggeber kann maximal aus einem Kontingent von 30 Tagen Leistungen abzurufen.   Daher werden die Bieter aufgefordert, im Angebot für Los 1 und Los 2 Tagessätze für das gesamte  Team des jeweiligen Loses für Nachtestungen anzubieten. Im Gegensatz zur intialen Leistung wird  die optionale Leistung nach tatsächlich erbrachten Tagen bezahlt; sie ist nicht als Pauschalpreis ausgestaltet.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">- Darstellung des Unternehmens (möglichst unter Angabe von Name, Sitz, Postanschrift, Rechtsform, Gegenstand des Unternehmens, Nummer der Eintragung in einem öffentlichen Register, gesetzlicher Vertreter, Ansprechpartner, Telefon, Telefax, E-Mail-Adresse, ggf. zuständige Niederlassung bzw. Standort, Leistungsspektrum und Kerngeschäft des Unternehmens) sowie - falls zutreffend - ausführliche Darstellung der Konzernverbundenheit/-angehörigkeit zu anderen Unternehmen. - Eigenerklärung über das Nichtvorliegen von Ausschlussgründen nach §§ 123, 124 GWB. - Aktueller Auszug aus dem Handelsregister oder vergleichbarer Registerauszug (zum Zeitpunkt der Abgabe des Teilnahmeantrags nicht älter als 6 Monate, Kopie ausreichend). Ausländische Bieter haben gleichwertige Bescheinigungen nach den Vorschriften ihres Herkunftslandes vorzulegen. Diese sind zwingend ins Deutsche zu übersetzen. - Eigenerklärung zu Artikel 5 k) der Verordnung (EU) 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren - Scientology-Schutzerklärung - Verpflichtungserklärung zu Tariftreue und ILO-Kernarbeitsnormen - Neutralitätsklausel</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Diese Versicherung muss folgende Mindestdeckungssummen je Schadensereignis aufweisen:  - Personenschäden: 2.000.000,00 Euro (je Schadensfall) - Vermögens-, Sach- und sonstige Schäden: 2.000.000,00 Euro (je Schadensfall)  Die Deckungssummen müssen in jedem Versicherungsjahr zumindest zweimal zur Verfügung (2-fache Maximierung) stehen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindeststandard: Gesamtumsatz des Bewerbers/Bieters in den letzten drei Jahren im Durchschnitt von mindestens 1.000.000,00 Euro netto p.a.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe des Umsatzes des Bewerbers/Bieters im Tätigkeitsbereich des Auftrags mit vergleichbaren Leistungen aus den letzten drei Jahren.   Mindeststandard für alle Lose: Umsatz durchschnittlich mind. 500.000,00 EUR netto p.a.   Los 1 - Abnahmetests:    Als vergleichbare Leistungen gelten Leistungen zur Planung, Erstellung, Durchführung und Dokumentation von Softwaretests in KI-Projekten, insbesondere Abnahmetests, funktionale und nichtfunktionale Tests, API- und E2E-Tests, Usability- und Accessibility-Tests, Performance- und Lasttests, Recovery- sowie Regressionstests.   Hierzu zählen insbesondere Tests von KI-basierten Anwendungen, Webanwendungen und komplexen Softwaresystemen einschließlich Schnittstellen, Datenverarbeitung sowie Rollen- und Berechtigungsfunktionen. Vergleichbar sind auch Leistungen zur Erfassung und Bewertung von Defects sowie zur Durchführung von Retests.   Los 2 - Security-Tests:    Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung der Sicherheit von Softwareanwendungen und IT-Systemen im Rahmen von KI-Projekten, insbesondere Security-Assessments, Penetrationstests und Schwachstellenanalysen.   Hierzu zählen insbesondere die Prüfung von KI-basierten Anwendungen, APIs, Authentifizierungs- und Autorisierungsmechanismen, Rollen und Berechtigungen, Datenverarbeitung und Schnittstellen. Vergleichbar sind insbesondere auch Security-Tests von KI-Funktionalitäten und Agentic Harnesses bzw. agentischen Systemen, einschließlich Adversarial Testing und Red-Team-Tests zur Prüfung von Manipulations-, Missbrauchs-, Prompt-Injection-, Tool- und Berechtigungsrisiken.    Ebenfalls vergleichbar sind Leistungen zur Bewertung, Dokumentation und Nachprüfung identifizierter Schwachstellen sowie zur Bewertung der Wirksamkeit implementierter Sicherheitsmaßnahmen.   Los 3 - Code Review:   Als vergleichbare Leistungen gelten Leistungen zur unabhängigen Prüfung und Bewertung von Softwarequellcode im Rahmen von KI-Projekten.   Hierzu zählen insbesondere die Bewertung von Codequalität, Architektur, Wartbarkeit, Erweiterbarkeit, Fehlerbehandlung, technischen Risiken, Code Smells und Technical Debt sowie die Prüfung der Einhaltung von Coding Guidelines. Vergleichbar sind auch Code Reviews von KI-/LLM-basierten Anwendungen, Agent Harnesses bzw. agentischen Systemen und deren technischen Komponenten sowie die Dokumentation, Priorisierung und Bewertung der festgestellten Mängel und Risiken.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe der Beschäftigtenzahlen (Vollzeitäquivalente) des Bewerbers/Bieters in den letzten drei Jahren:   Mindestanforderung:    Los 1: 20 VZÄ im Bereich Softwareabnahmetests   Los 2: 15 VZÄ im Bereich Softwaresecuritytests   Los 3: 15 VZÄ im Bereich Code Review</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1 Abnahmetests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 9 Punkte Vergleichbarkeit der Unternehmensreferenzen   Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Abnahmetests (funktional, API, E2E) für ein System mit mindestens 100.000 Nutzenden.    Das Referenzprojekt erfolgte unter Einsatz anerkannter Testmanagement-Standards (z. B. ISTQB, ISO/IEC/IEEE 29119);   Das Referenzprojekt wurde unter Einsatz von Testautomatisierungswerkzeugen für E2E-/API-Tests (z. B. Cucumber, Playwright, Selenium) erbracht;    Das Referenzprojekt umfasste eine WCAG-2.1-konforme Barrierefreiheitsprüfung einer öffentlich zugänglichen Anwendung.    Das Referenzprojekt umfasste Performance-/Last- und Recovery-/Failover-Tests für ein System mit einer Lastskalierung von mindestens 500.000 Nutzenden.    Das Referenzprojekt umfasste die parallele Durchführung mehrerer Testarten (funktional, API, E2E, Usability, Performance) innerhalb eines abgegrenzten Zeitraums durch ein Testteam.     Das Referenzprojekt umfasste die Testung von KI-/LLM-gestützten Anwendungsfunktionen (z. B. Tutor-/Assistenzfunktionen) auf funktionale Korrektheit und Antwortqualität.    Das Referenzprojekt erfolgte im schulischen/öffentlichen Bildungskontext oder öffentlichen/behördlichen Kontext.    Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Funktionen im Rahmen der Abnahmetests (z. B. Berichtigung, Löschung, Einschränkung der Verarbeitung personenbezogener Daten) auf Konformität mit den einschlägigen Datenschutzanforderungen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>27.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2 Security-Tests  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 11 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste die Durchführung von Security-Tests/Penetrationstests für ein System mit mindestens 100.000 aktiven Nutzenden.    Das Referenzprojekt erfüllt Informationssicherheitsstandards nach ISO 27001   Das Referenzprojekt wurde von einem nach CREST oder vergleichbar akkreditiertes Penetrationstest-Unternehmen getestet    Das Referenzprojekt wurde unter Einsatz anerkannter Testmethoden und -standards (OWASP Testing Guide, OWASP Top 10, OWASP API Security Top 10) getestet.    Das Referenzprojekt wurde unter Einsatz moderner Testinfrastruktur (z. B. automatisierte Scanning-Pipelines, CI/CD-integrierte Sicherheitsprüfungen) erbracht.    Das Referenzprojekt umfasste die Prüfung offener und dokumentierter Schnittstellen (APIs) im Hinblick auf deren sichere Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Schnittstellen oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Testteam.    Das Referenzprojekt umfasste Security-Tests von KI-/LLM-basierten Komponenten und Agentic Harnesses bzw. agentischen Systemen, insbesondere hinsichtlich Prompt Injection, unzulässiger Tool- oder Funktionsaufrufe, Berechtigungseskalation, Datenabfluss und Manipulation des Agentenverhaltens.    Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste Das Referenzprojekt umfasste Security-Tests im öffentlichen/behördlichen oder schulischen Bildungskontext.   Das Referenzprojekt umfasste die Prüfung datenschutzrelevanter Aspekte der Verarbeitung personenbezogener Daten (z. B. Zugriffsschutz, Sitzungsmanagement, Datenübertragung) im Rahmen der Security-Tests.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>33.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3 Code-Review  Es sind je Los drei inhaltlich vergleichbare Referenzen aufzuzeigen. Je Referenz max. 8 Punkte Vergleichbarkeit der Unternehmensreferenzen  Bewertung mit je 1 Punkt bei Erfüllen des jeweiligen Kriteriums:   Das Referenzprojekt umfasste umfasste das Review einer Codebasis mit hoher Komplexität (z. B. Microservice-Architektur, mehrere Programmiersprachen/Frameworks, oder Beteiligung mehrerer Entwicklungsteams).    Das Referenzprojekt erfolgte unter Einhaltung anerkannter Grundsätze der Softwareentwicklung sowie projektspezifischer Coding Guidelines und Clean-Code-Prinzipien, nachweisbar durch dokumentierte Review-Ergebnisse   Das Referenzprojekt wurde unter Einsatz automatisierter statischer Codeanalysewerkzeuge (z. B. SonarQube, Checkmarx, ESLint, Codacy) in Kombination mit fachlicher Bewertung durch die Reviewer erbracht   Das Referenzprojekt umfasste das Review offener und dokumentierter Schnittstellen (APIs) im Hinblick auf Struktur, Wartbarkeit und Konsistenz bei der Integration in bestehende Systemlandschaften (z. B. ERP-, Identity-, Cloud-Systeme).    Das Referenzprojekt umfasste die parallele Prüfung mehrerer Komponenten, Module oder Systembereiche innerhalb eines abgegrenzten Zeitraums durch ein Reviewteam.    Das Referenzprojekt erfolgte im Rahmen eines etablierten DevOps-Ansatzes mit Integration von Code-Review-Aktivitäten in automatisierte Build-, Test- und Deployment-Prozesse (Continuous Code Quality).   Das Referenzprojekt umfasste das Review von KI-/ML-spezifischen Komponenten (Datenpipelines, Modellintegration, Prompt-Engineering) und Agentic Harnesses hinsichtlich Codequalität, Architektur und technischer Risiken.    Das Referenzprojekt umfasste das Review von Open-Source-lizenzierten Komponenten oder Anwendungen im Hinblick auf Lizenzkonformität und Codequalität.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>24.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der öffentliche Auftraggeber weist darauf hin, dass er sich das Recht vorbehält, Aufklärungen nach § 16 Abs. 9 VgV in Verbindung mit § 15 Abs. 5 VgV sowie Nachforderungen bezüglich fehlender, fehlerhafter oder unvollständiger leistungsbezogener und unternehmensbezogener Unterlagen, die nicht die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, nach § 56 Abs. 2 VgV vorzunehmen. Die Bewerber/Bieter haben ausdrücklich kein Recht auf die Durchführung einer Aufklärung oder Nachforderung im oben genannten Sinne. Der öffentliche Auftraggeber wird die vergaberechtlichen Grundsätze - insbesondere Gleichbehandlung und Transparenz - stets angemessen berücksichtigen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Es wird auf die den Vergabeunterlagen zu entnehmenden Bedingungen verwiesen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals</cbc:Name>
+						<cbc:Description languageID="DEU">Die Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals wird anhand des beigefügten Profilbogens bewertet. Nähere Informationen entnehmen Sie bitte dem Verfahrensleitfaden (4.3).</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Reviewkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Die Anforderungen an das Reviewkonzept können Sie dem Verfahrensleitfaden (4.3 und 4.4.2) entnehmen. Hinsichtlich des Bewertungsmaßstabs wird auf Anlage 7 verwiesen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Eingereichter Angebotspreis</cbc:Name>
+						<cbc:Description languageID="DEU">Der eingereichte Preis wird mithilfe der linearen Interpolationsmethode ins Verhältnis zu anderen eingereichten Angebotspreisen gesetzt. Die genaue Bewertungsmethode können Sie dem Verfahrensleitfaden (4.3) entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nachprüfungsbehörde   Für die Nachprüfung dieses Vergabeverfahrens ist gemäß § 159 Abs. 1 Nr. 1 GWB die   Vergabekammer Südbayern   Maximilianstr. 39   80538 München   Telefon: [removed]   [removed]   https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/index.html   zuständig.    Rügepflichten bzw. Rechtsbehelfsbelehrung   1. Die Vergabeunterlagen, insbesondere dieser Verfahrensleitfaden, die Leistungsbeschreibung und Vordrucke sowie die Bekanntmachung müssen nach Erhalt/Download durch die Bieter auf Vollständigkeit und Lesbarkeit geprüft werden. Enthalten die Vergabeunterlagen oder die den Bietern mitgeteilten, übergebenen und zugänglich gemachten Unterlagen oder sonstigen Informationen Unklarheiten oder verstoßen diese gegen geltendes Recht, so weist der Bieter die Vergabestelle unverzüglich - spätestens jedoch mit der Angebotsabgabe - schriftlich darauf hin. Anderenfalls kann er sich auf die Unklarheiten oder die Rechtsverstöße nicht berufen. Nicht aufgeklärte Unklarheiten hat der Bieter als von ihm zu tragende Risiken in sein Angebot einzukalkulieren.   2. Etwaige Verfahrensrügen sind eindeutig als solche zu kennzeichnen. Auf die Rügepflichten des Bieters nach § 160 Abs. 3 GWB wird ausdrücklich hingewiesen. Außerdem weist die Vergabestelle ausdrücklich auf die Rechtsbehelfsfrist des § 160 Abs. 3 Satz 1 Nr. 4 GWB hin. Danach ist ein Antrag auf Nachprüfung unzulässig, soweit nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, mehr als 15 Kalendertage vergangen sind.   § 160 GWB lautet:   "(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.   (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen, dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.   (3) Der Antrag ist unzulässig, soweit   1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,    2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,   4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.   Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YTSMPEE</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-13+02:00</cbc:EndDate>
+				<cbc:EndTime>17:00:00+02:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-05+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>5</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Code Reviews</cbc:Name>
+			<cbc:Description languageID="DEU">Die ausgeschriebenen Leistungen sind in drei Fachlose unterteilt. Eine Angebotsabgabe ist für ein Los, für mehrere Lose oder für alle Lose möglich. Eine Verpflichtung zur Angebotsabgabe für sämtliche Lose besteht demnach nicht. Die Lose werden unabhängig voneinander bewertet. Der Zuschlag kann je Los an unterschiedliche Auftragnehmer erteilt werden.    Die Ausschreibung umfasst folgende Lose:   Los 1: Abnahmetests   Los 2: Security-Tests   Los 3: Code Reviews     Der Auftragnehmer erbringt seine Leistungen fachlich unabhängig und weisungsfrei hinsichtlich der Bewertung der Prüfungsergebnisse.  Die Leistungen erfolgen auf Grundlage der vom Auftraggeber bereitgestellten Unterlagen, Informationen, Softwarestände, Quellcodes, Testumgebungen, Testdaten, Zugänge und sonstigen für die jeweilige Leistung erforderlichen Ressourcen. Der Umfang der vom Auftraggeber bereitzustellenden Unterlagen und Ressourcen richtet sich nach den Anforderungen der jeweiligen Lose.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Bavariafilmplatz 3</cbc:StreetName>
+					<cbc:CityName>Grünwald</cbc:CityName>
+					<cbc:PostalZone>82031</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE21H</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DescriptionCode listName="duration">UNKNOWN</cbc:DescriptionCode>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Der Auftraggeber behält sich vor, innerhalb von drei Jahren nach Abschluss des im Rahmen dieses Vergabeverfahrens vergebenen Auftrags (Grundprojekt) eine erneute Prüfung einer erweiterten Softwareversion durchzuführen. Die erneute Prüfung erfolgt voraussichtlich ab Mitte 2027. Dabei wird es auch erforderlich sein, die im Rahmen dieses Grundprojekts bereits geprüfte Softwareversion erneut zu prüfen, insbesondere in Bezug auf die Ergänzung eines Schulfachs, das ebenfalls über die bereits geprüfte Softwareversion angeboten werden soll. Die Methodik, der Prüfumfang sowie die Leistungsbeschreibung bleiben hierfür im Kern identisch. Es handelt sich bei der erneuten Prüfung somit um die Wiederholung gleichartige Leistungen. Dieser zu vergebende Auftrag kann gemäß § 14 Abs. 4 Nr. 9 VgV durch Anwendung des Verhandlungsverfahrens ohne Teilnahmewettbewerb an das bzw. die Unternehmen vergeben werden, das/die den Zuschlag für das Grundprojekt erhalten hat bzw. die den Zuschlag für das Grundprojekt erhalten haben. Die jeweiligen Unternehmen werden im Falle der Umsetzung auf Grundlage der diesem Vergabeverfahren zugrunde gelegten Leistungsbeschreibung unter Berücksichtigung erforderlicher Anpassungen aufgefordert, ein Angebot für die Bereitstellung eines Prüf-/ bzw. Reviewteams für die jeweiligen Lose abzugeben. Die Vergabe des Grundprojekts wurde im Rahmen eines Nichtoffenen Verfahrens mit Teilnahmewettbewerb (§ 119 Abs. 4 GWB iVm. § 16 VgV) durchgeführt.    Gemäß § 14 Abs. 4 Nr. 9 VgV kann der öffentliche Auftraggeber Aufträge im Verhandlungsverfahren ohne Teilnahmewettbewerb vergeben, wenn eine Dienstleistung beschafft werden soll, die in der Wiederholung gleichartiger Leistungen besteht, die durch denselben öffentlichen Auftraggeber an das Unternehmen vergeben werden, das den ersten Auftrag erhalten hat, sofern sie einem Grundprojekt entsprechen und dieses Projekt Gegenstand des ersten Auftrags war, das im Rahmen eines Vergabeverfahrens mit Ausnahme eines Verhandlungsverfahrens ohne Teilnahmewettbewerb vergeben wurde.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

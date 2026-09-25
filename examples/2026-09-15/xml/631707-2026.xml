@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Common Codes GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Zionskirchstraße 73a</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10119</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>HRB 288219 B (AG Charlottenburg)</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Bundes</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kaiser-Friedrich-Straße 16</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>022894990</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00631707-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">177/2026</efbc:GazetteID><efbc:PublicationDate>2026-09-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">4fab19bc-3d2a-40db-bdb2-5c4ae3e12f73</cbc:ID>
+	<cbc:ContractFolderID>4d4948c7-1e89-492b-b5cb-6b96ec46a604</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-10+02:00</cbc:IssueDate>
+	<cbc:IssueTime>16:10:22+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-10+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">econ-aff</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschluss vom Vergabeverfahren kommt aufgrund der Regelungen gem. §§ 123, 124 GWB (Gesetz gegen Wettbewerbsbeschränkungen), § 21 AEntG (Entsendegesetz), § 98c AufenthG (Aufenthaltsgesetz), § 19 MiLoG (Mindestlohngesetz), § 21 SchwarzArbG (Gesetz zur Bekämpfung der Schwarzarbeit) und § 22 LkSG (Gesetz zur Sorgfaltspflicht in der Lieferkette) in Betracht.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Tagen nach Kenntnisnahme rügen, 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach § 160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen, 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen, 4) ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D9LM8G0</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">true</cbc:ProcessReasonCode>
+			<cbc:ProcessReason languageID="DEU">Diesem Vergabeverfahren ist ein Vergabeverfahren (Vergabenummer: 103468/2026-2) vorangegangen, welches aufgehoben werden musste, da kein Angebot eingegangen ist, das den Bedingungen des vorangegangen Vergabeverfahrens entsprechen haben, 63 Abs. 1 S. 1 Nr. 1 VgV. Vor diesem Hintergrund wird die hiesige Leistung erneut im offenen Verfahren (§§ 14 Abs. 2, 15 VgV) ausgeschrieben. Dieses Verfahren wird gemäß § 15 Abs. 3 VgV aufgrund hinreichend begründeter Dringlichkeit (insbesondere der im Januar 2027 bevorstehende Go-live-Termin sowie der Aufhebung der vorangegangenen Erstausschreibung) beschleunigt.</cbc:ProcessReason>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">103468/2026-2-2</cbc:ID>
+		<cbc:Name languageID="DEU">EUDI-Wallet Support Organisation Technische Infrastruktur der EUDI Wallet Support Organisation (EWSO) - "Tooling"</cbc:Name>
+		<cbc:Description languageID="DEU">Bereitstellung, Implementierung, Betrieb und Wartung der vollständigen technischen Infrastruktur für die EUDI Wallet Support Organisation. Umfasst alle Systeme vom Self-Service-Portal über das Ticketmanagement bis hin zu Telefonie, Knowledge Base und Identity Management.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4D9LM8G0#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72253000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Zionskirchstraße 73a</cbc:StreetName>
+				<cbc:CityName>Berlin</cbc:CityName>
+				<cbc:PostalZone>10119</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bieter hat eine Eigenerklärung vorzulegen, nach der er im Falle des Zuschlags eine Berufs- oder Betriebshaftpflichtversicherung mit Geltung für mindestens die Grundlaufzeit des Vertrages abschließen werde, welche mindestens die nachstehenden Schäden mit folgenden Versicherungssummen abdeckt: - für Personen- und Sachschäden mindestens EUR 5.000.000,00 je Schadensfall, einfach maximiert pro Jahr, - für Vermögensschäden mindestens EUR 5.000.000 je Schadensfall, einfach maximiert pro Jahr. Alternativ darf der Bieter erklären, dass er bereits über eine Versicherung verfügt, die mindestens den o.g. Anforderungen entspricht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis seiner technischen und beruflichen Leistungsfähigkeit hat der Bieter eine Liste mit mindestens drei Referenzen vorzulegen, die mit den zu beschaffenden Leistungen vergleichbar sind. Diese Referenzen dürfen nur Projekte umfassen, die der Bieter für Dritte erbracht hat. Keine der Referenzen darf älter als drei Jahre sein, muss also vor weniger als drei Jahren abgeschlossen worden sein. Bieter dürfen auch laufende Projekte als Referenzen angeben, solange sie seit mindestens einem halben Jahr Leistungen im jeweiligen Vertragsverhältnis erbringen.  Referenzen sind vergleichbar, wenn der Bieter bei mindestens einer Referenz für öffentliche oder Sektorenauftraggeber i.S.v. §§ 99, 100 GWB eigenständig und federführend Leistungen zur Implementierung und Inbetriebnahme von IT-Systemen (CRM, Ticketsysteme, IAM, Kommunikationsplattformen oder vergleichbare Systeme) in EU-konformer Infrastruktur mit ISO-27001-Anforderungen erbracht hat. Bei den weiteren zwei Referenzen können die Referenzgeber auch private Auftraggeber sein. In allen Fällen müssen die inhaltlichen Mindestanforderungen vollständig erfüllt werden. Dabei muss der Bieter auch Erfahrung mit API-Integration sowie WCAG-konformen Web-Frontends und Barrierefreiheits-Audits gemacht haben</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-qu-cert-indep</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bieter verfügt über eine gültige ISO-27001-Zertifizierung oder eine gleichwertige Zertifizierung.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bieter hat im Tätigkeitsbereich des zu vergebenden Auftrags - Implementierung und Betrieb von CRM-/Ticketsystemen in EU-konformer Umgebung mit API-Integration sowie WCAG-konformen Web-Frontends - in den vergangenen drei abgeschlossenen Kalenderjahren, also 2023, 2024 und 2025, in jedem Jahr einen Mindestumsatz von 1.000.000,00 EUR erzielt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4D9LM8G0/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich eine Nachforderung nach § 56 VgV vor.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">kalkulatorischer Gesamtpreis</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet werden die Preisangaben des Bieters auf dem Preisblatt entsprechend den Angaben in den Vergabeunterlagen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Lösungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet wird das Lösungskonzept des Bieters entsprechend den Vorgaben in den Vergabeunterlagen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>20.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Teamzusammensetzung</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet wird die Teamzusammensetzung des Bieters entsprechend den Vorgaben in den Vergabeunterlagen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4D9LM8G0</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Tagen nach Kenntnisnahme rügen, 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach § 160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen, 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen, 4) ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D9LM8G0</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-09-28+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-21+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-09-28+02:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>12:15:00+02:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">103468/2026-2-2</cbc:ID>
+			<cbc:Name languageID="DEU">EUDI-Wallet Support Organisation Technische Infrastruktur der EUDI Wallet Support Organisation (EWSO) - "Tooling"</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieser Ausschreibung ist die Vergabe von Leistungen für die Technische Infrastruktur der EUDI Wallet Support Organisation (EWSO), das sog. Tooling. Der Auftragnehmer implementiert, konfiguriert und nimmt in Betrieb: das Ticket- und CRM-System, die Knowledge Base und das FAQ-Portal, den In-App-Bot (oder die Kompatibilität zur Auftraggeber-internen App-Bot Lösung), die Telefonie- und IVR-Infrastruktur, die Anbindung und Kompatibilität zu dem B2B Portal: EUDI Hub, das IAM-System, das zentrale Event-Log-System und das Schwärzungssystem.  Der Auftragnehmer begleitet die Closed-Beta-Phase (Q4 2026) und die Go-Live-Phase (Q1 2027) mit Hypercare-Support und übergibt nach geordnetem Wissenstransfer die operative Systemhoheit an das interne Team des Auftraggebers. Die Leistungen umfassen insbesondere die EU-konforme Infrastruktur ((ISO 27001), kein US-CLOUD-Act-Exposure), WCAG 21-Konformität aller Nutzer-Frontends, einen obligatorischen externen Penetrationstest vor Go-live sowie vollständige Systemdokumentation und Schulung des internen Teams.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72253000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72254000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Zionskirchstraße 73a</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>10119</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Der Auftraggeber ist berechtigt, den Vertrag einmal um 12 Monate einseitig zu verlängern. Die Ausübung der Verlängerungsoption erfolgt durch schriftliche Mitteilung an den Auftragnehmer spätestens sechs Monate vor Ablauf der jeweiligen Vertragslaufzeit.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
