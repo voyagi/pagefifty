@@ -61,7 +61,7 @@
 
 	td {
 		padding-block: 0.75rem;
-		border-top: 1px solid rgb(20 20 20 / 0.1);
+		border-top: 1px solid var(--acetate-rule);
 		vertical-align: top;
 	}
 

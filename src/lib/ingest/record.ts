@@ -69,9 +69,9 @@ export interface LotRecord {
 	deadlines: LotDeadlines;
 	criteria: Criterion[];
 	criteriaSources: string[];
-	// The reserved-procurement code (BT-71) as published, "none" included. Absent means the lot
-	// declares no code at all (635218-2026 in the capture), which is unknown: never read it as
-	// "none", and never let it count toward GO.
+	// The reserved-procurement code (BT-71) as published, "none" included; of several, a reservation
+	// wins over "none". Absent means the lot declares no code at all (635218-2026 in the capture),
+	// which is unknown: never read it as "none", and never let it count toward GO.
 	reserved?: string;
 	notes: LangText[];
 	groupLegalForm?: GroupLegalForm;
@@ -356,7 +356,10 @@ function toLot(lot: unknown, noticeLanguage: string | undefined): LotRecord {
 	const terms = walk(lot, ['cac:TenderingTerms']);
 	const requests = walk(terms, ['cac:TendererQualificationRequest']);
 	const title = pickName(walk(project, ['cbc:Name']), noticeLanguage);
-	const [reserved] = codesIn(requests, 'reserved-procurement');
+	// A lot can publish several codes. A real reservation is what keeps a firm out, so it wins over
+	// "none" in whatever order the two are published; otherwise the first code stands.
+	const reservedCodes = codesIn(requests, 'reserved-procurement');
+	const reserved = reservedCodes.find((code) => code !== 'none') ?? reservedCodes[0];
 	const groupLegalForm = toGroupLegalForm(requests, where);
 	const estimatedValue = toAmount(project, `${where}/cac:ProcurementProject`);
 	const documents = toDocuments(terms);

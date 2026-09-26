@@ -181,6 +181,31 @@ describe('importProfileFile', () => {
 		]);
 	});
 
+	it('refuses a file with two figures for one year, naming each repeated year', async () => {
+		const text = envelopeText(
+			{},
+			{
+				turnover: [
+					{ year: 2024, generalNet: 100000, specific: [] },
+					{ year: 2024, generalNet: 5000000, specific: [] }
+				],
+				staff: {
+					byRole: [],
+					yearlyAverages: [
+						{ year: 2025, average: 17.5 },
+						{ year: 2025, average: 3 }
+					]
+				}
+			}
+		);
+		const result = refusal(await importProfileFile(fileOf('twice.json', text)));
+		expect(result.reason).toBe('invalid');
+		expect(result.fields).toEqual([
+			{ path: ['profile', 'turnover', 1, 'year'], problem: 'custom', found: 2024 },
+			{ path: ['profile', 'staff', 'yearlyAverages', 1, 'year'], problem: 'custom', found: 2025 }
+		]);
+	});
+
 	it('refuses a file carrying a __proto__ key, naming it, and pollutes nothing', async () => {
 		const text = `{"__proto__":{"polluted":"yes"},${envelopeText({}).slice(1)}`;
 		const result = refusal(await importProfileFile(fileOf('proto.json', text)));
@@ -253,6 +278,12 @@ describe('createImportQueue', () => {
 		expect(refusal(resultB).reason).toBe('invalid');
 		expect(apply).toHaveBeenCalledTimes(1);
 		expect(current()).toEqual(sampleStored());
+	});
+
+	it('carries what apply answered, so a file the store refused is never reported as stored', async () => {
+		const enqueue = createImportQueue(() => 'failed' as const);
+		const result = await enqueue(fileOf('a.json', exportProfileJson(sampleStored())));
+		expect(result).toMatchObject({ ok: true, applied: 'failed' });
 	});
 
 	it('keeps applying later files after an earlier import fails to run', async () => {

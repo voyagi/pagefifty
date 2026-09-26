@@ -316,6 +316,19 @@ describe('reserved participation and the group legal form', () => {
 		expect(readRole('reserved-participation').lots[0].reserved).toBe('res-ws');
 	});
 
+	it.each(['before', 'after'] as const)(
+		'keeps a reservation published %s a none on the same lot',
+		(where) => {
+			const none =
+				'<cac:SpecificTendererRequirement><cbc:TendererRequirementTypeCode listName="reserved-procurement">' +
+				'none</cbc:TendererRequirementTypeCode></cac:SpecificTendererRequirement>';
+			const reservation = none.replace('>none<', '>res-ws<');
+			const both = where === 'before' ? `${reservation}${none}` : `${none}${reservation}`;
+			const text = inLot(readFixture('one-lot'), 0, none, both);
+			expect(readText(text, '609955-2026').lots[0].reserved).toBe('res-ws');
+		}
+	);
+
 	it('reads the legal form 605918-2026 requires on its lot', () => {
 		const [lot] = readRole('group-legal-form').lots;
 		expect(lot.groupLegalForm?.required).toBe('true');

@@ -129,7 +129,7 @@
 		font-variant-numeric: tabular-nums;
 		min-height: 44px;
 		padding: 0 0.75rem;
-		border: 1px solid #5f646b;
+		border: 1px solid var(--ink-3);
 		border-radius: 3px;
 	}
 
@@ -157,7 +157,7 @@
 		display: block;
 		height: 0.875rem;
 		border-radius: 2px;
-		background: rgb(20 20 20 / 0.12);
+		background: var(--acetate-edge);
 	}
 
 	.loading span:nth-of-type(1) {

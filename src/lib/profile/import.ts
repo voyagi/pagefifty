@@ -101,19 +101,22 @@ export async function importProfileFile(file: ProfileFile): Promise<ImportResult
 	return { ok: true, stored: parsed.data };
 }
 
+// A file that passed every step, with what apply answered for it: the store can still refuse the
+// write (storage full, a newer version stored), and a refused write is never an import.
+type QueuedImport<T> = { ok: true; stored: StoredProfile; applied: T } | ImportRefusal;
+
 // Every read starts at once, but results are applied in the order the imports were started: each
 // waits for the one before it. Of two files picked back to back, the second is what stays stored
 // even when the first takes longer to read, and a refused file never touches what is stored.
-export function createImportQueue(apply: (stored: StoredProfile) => void) {
+export function createImportQueue<T>(apply: (stored: StoredProfile) => T) {
 	let previous: Promise<unknown> = Promise.resolve();
-	return (file: ProfileFile): Promise<ImportResult> => {
+	return (file: ProfileFile): Promise<QueuedImport<T>> => {
 		const reading = importProfileFile(file);
 		const applied = previous
 			.then(() => reading)
-			.then((result) => {
-				if (result.ok) apply(result.stored);
-				return result;
-			});
+			.then((result): QueuedImport<T> =>
+				result.ok ? { ...result, applied: apply(result.stored) } : result
+			);
 		previous = applied.catch(() => undefined);
 		return applied;
 	};
