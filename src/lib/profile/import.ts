@@ -17,16 +17,16 @@ export interface ProfileFile {
 	text(): Promise<string>;
 }
 
-export type FieldPath = (string | number)[];
+type FieldPath = (string | number)[];
 
-export interface FieldIssue {
+interface FieldIssue {
 	path: FieldPath;
 	// The zod issue code, for example too_small or unrecognized_keys; the page words it.
 	problem: string;
 	found: unknown;
 }
 
-export type ImportRefusalReason =
+type ImportRefusalReason =
 	'too-large' | 'unreadable' | 'not-json' | 'no-version' | 'newer-version' | 'invalid';
 
 export interface ImportRefusal {

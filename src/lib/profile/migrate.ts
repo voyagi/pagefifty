@@ -4,7 +4,7 @@
 import { PROFILE_SCHEMA_VERSION } from './schema';
 
 export type VersionedDocument = { schemaVersion: number } & Record<string, unknown>;
-export type MigrationStep = (doc: VersionedDocument) => VersionedDocument;
+type MigrationStep = (doc: VersionedDocument) => VersionedDocument;
 export type MigrationTable = Readonly<Record<number, MigrationStep>>;
 
 export const MIGRATIONS: MigrationTable = {};
