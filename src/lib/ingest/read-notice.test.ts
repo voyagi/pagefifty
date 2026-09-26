@@ -182,6 +182,17 @@ describe('readNotice record details', () => {
 		expect(readOk(text).lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
 	});
 
+	it('reads Z and +00:00 as one offset and keeps the time offset as written', () => {
+		const text = ONE_LOT.replace(
+			'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
+			'<cbc:EndDate>2026-10-06Z</cbc:EndDate>'
+		).replace(
+			'<cbc:EndTime>10:30:00+02:00</cbc:EndTime>',
+			'<cbc:EndTime>10:30:00+00:00</cbc:EndTime>'
+		);
+		expect(readOk(text).lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+00:00');
+	});
+
 	it('reads a deadline on 29 February of a leap year', () => {
 		const text = ONE_LOT.replace(
 			'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
@@ -315,6 +326,15 @@ describe('readNotice refusals of incomplete records', () => {
 				text.replace(
 					'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
 					'<cbc:EndDate>6 Oct 2026</cbc:EndDate>'
+				),
+			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
+		],
+		[
+			'one offset for the tender deadline date and time',
+			(text: string) =>
+				text.replace(
+					'<cbc:EndTime>10:30:00+02:00</cbc:EndTime>',
+					'<cbc:EndTime>10:30:00Z</cbc:EndTime>'
 				),
 			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
 		],

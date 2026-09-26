@@ -156,13 +156,24 @@ function isCalendarDay(year: string, month: string, day: string): boolean {
 	);
 }
 
+const asNumericOffset = (offset: string) => (offset === 'Z' ? '+00:00' : offset);
+
+// EndTime's offset, or EndDate's when EndTime has none. Two different offsets would put the day
+// and the time in different zones and could move the deadline by a day, so neither is guessed.
+function deadlineOffset(dateOffset?: string, timeOffset?: string): string | undefined {
+	if (dateOffset && timeOffset && asNumericOffset(dateOffset) !== asNumericOffset(timeOffset)) {
+		return undefined;
+	}
+	return timeOffset ?? dateOffset;
+}
+
 // EndDate carries the day and EndTime the time, each with an offset; together they are one instant
 // in the buyer's own offset, which the deadline display later reads.
 function deadline(period: unknown, where: string): string | undefined {
 	if (period === undefined) return undefined;
 	const date = DATE.exec(requiredText(period, ['cbc:EndDate'], where));
 	const time = TIME.exec(requiredText(period, ['cbc:EndTime'], where));
-	const offset = time?.[2] ?? date?.[4];
+	const offset = deadlineOffset(date?.[4], time?.[2]);
 	const valid = date && time && offset && isCalendarDay(date[1], date[2], date[3]);
 	const instant = valid ? `${date[1]}-${date[2]}-${date[3]}T${time[1]}${offset}` : '';
 	if (Number.isNaN(Date.parse(instant))) {
