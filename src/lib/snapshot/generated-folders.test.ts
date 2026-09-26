@@ -156,6 +156,15 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(readdirSync(out).filter((name) => name.startsWith('.'))).toEqual([]);
 	});
 
+	it('removes an old set-aside folder an earlier run could not delete', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		mkdirSync(join(out, '.old-2026-01-02-999', 'records'), { recursive: true });
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(readdirSync(out).filter((name) => name.startsWith('.'))).toEqual([]);
+	});
+
 	it('names the notice when reading its recorded response fails', () => {
 		writeCapture(['609955-2026', '600003-2026']);
 		mkdirSync(join(capture, 'xml', '600003-2026.xml'));

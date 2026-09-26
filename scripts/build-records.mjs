@@ -179,6 +179,8 @@ function writeCapture(out, capture) {
 	let setAside = false;
 	try {
 		rmSync(temp, { recursive: true, force: true, maxRetries: 5 });
+		// A reused process id could meet an old set-aside folder of the same name.
+		rmSync(aside, { recursive: true, force: true, maxRetries: 5 });
 		mkdirSync(join(temp, 'records'), { recursive: true });
 		step = 'write index.json';
 		writeFileSync(join(temp, 'index.json'), JSON.stringify(capture.index));
@@ -220,11 +222,18 @@ function restoreAside(aside, target) {
 	}
 }
 
-// A folder left from a capture that is gone from examples/ would still be served, so it goes too.
+// A folder left from a capture that is gone from examples/ would still be served, so it goes too,
+// and so does an old set-aside folder an earlier run could not delete (each is a full copy of the
+// records). Best effort for the set-aside ones: a file still held open keeps one until next time.
 function pruneStale(out, ids) {
 	if (!existsSync(out)) return;
 	for (const entry of readdirSync(out, { withFileTypes: true })) {
-		if (!entry.isDirectory() || !CAPTURE_ID.test(entry.name) || ids.includes(entry.name)) continue;
+		if (!entry.isDirectory()) continue;
+		if (entry.name.startsWith(OLD_PREFIX)) {
+			removeTemp(join(out, entry.name));
+			continue;
+		}
+		if (!CAPTURE_ID.test(entry.name) || ids.includes(entry.name)) continue;
 		rmSync(join(out, entry.name), { recursive: true, force: true, maxRetries: 5 });
 	}
 }
