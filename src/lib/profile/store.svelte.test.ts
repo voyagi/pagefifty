@@ -169,6 +169,18 @@ describe('createProfileStore', () => {
 		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
 	});
 
+	it('saves again once the newer profile is gone from storage', () => {
+		const storage = new CountingStorage();
+		storage.values.set(PROFILE_KEY, JSON.stringify({ schemaVersion: 2, profile: {} }));
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.saveProfile(withStaff(19), FIRST)).toBe('newer-version');
+		storage.values.delete(PROFILE_KEY);
+		expect(store.saveProfile(withStaff(19), LATER)).toBe('saved');
+		expect(store.newerVersion).toBeNull();
+		expect(JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile.staff.total).toBe(19);
+	});
+
 	it.each([
 		['not JSON', '{'],
 		['JSON null', 'null'],

@@ -68,7 +68,7 @@ export function createProfileStore(storage: Storage) {
 	// is read again first and the save is compared with what storage holds now.
 	function saveProfile(profile: Profile, now: Date): SaveResult {
 		const current = parseStored(readRaw(storage));
-		if (current.kind === 'newer') newerVersion = current.version;
+		newerVersion = current.kind === 'newer' ? current.version : null;
 		if (newerVersion !== null) return 'newer-version';
 		stored = current.kind === 'read' ? current.stored : null;
 		const parsed = ProfileSchema.safeParse(profile);
