@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { emptyProfile, type Profile } from './schema';
+import { describe, expect, it, vi } from 'vitest';
+import { canonicalStoredJson } from './canonical';
+import { emptyProfile, type Profile, type StoredProfile } from './schema';
 import {
 	ACTIVE_FIRM_KEY,
 	PROFILE_KEY,
@@ -224,6 +225,336 @@ describe('createProfileStore', () => {
 		expect(store.load()).toBeNull();
 		expect(store.saveProfile(withStaff(19), FIRST)).toBe('failed');
 		expect(store.stored).toBeNull();
+	});
+});
+
+class KeyLoggingStorage extends CountingStorage {
+	readonly writtenKeys: string[] = [];
+	setItem(key: string, value: string) {
+		this.writtenKeys.push(key);
+		super.setItem(key, value);
+	}
+}
+
+class WriteBlockedStorage extends CountingStorage {
+	setItem(): void {
+		throw new DOMException('full', 'QuotaExceededError');
+	}
+}
+
+const storedOf = (profile: Profile, savedAt = FIRST): StoredProfile => ({
+	schemaVersion: 1,
+	savedAt: savedAt.toISOString(),
+	lastExportedAt: null,
+	profile
+});
+
+function savedStore() {
+	const storage = new KeyLoggingStorage();
+	const store = createProfileStore(storage);
+	store.load();
+	store.saveProfile(withStaff(19), FIRST);
+	return { storage, store };
+}
+
+function storageEvent(key: string | null, newValue: string | null) {
+	return new StorageEvent('storage', { key, newValue });
+}
+
+describe('the demo firm slot', () => {
+	it('starts on the own firm with nothing stored', () => {
+		const store = createProfileStore(new CountingStorage());
+		store.load();
+		expect(store.activeFirm).toBe('own');
+	});
+
+	it('reads the stored active firm on load', () => {
+		const storage = new CountingStorage();
+		storage.values.set(ACTIVE_FIRM_KEY, 'demo');
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.activeFirm).toBe('demo');
+	});
+
+	it('reads an unknown active firm value as own', () => {
+		const storage = new CountingStorage();
+		storage.values.set(ACTIVE_FIRM_KEY, 'Demo');
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.activeFirm).toBe('own');
+	});
+
+	it('writes only the active-firm key, and the own profile keeps its bytes through a demo and back', () => {
+		const { storage, store } = savedStore();
+		const before = storage.getItem(PROFILE_KEY);
+		storage.writtenKeys.length = 0;
+		store.useDemo();
+		expect(store.activeFirm).toBe('demo');
+		expect(storage.getItem(ACTIVE_FIRM_KEY)).toBe('demo');
+		store.backToOwn();
+		expect(store.activeFirm).toBe('own');
+		expect(storage.getItem(ACTIVE_FIRM_KEY)).toBe('own');
+		expect(storage.writtenKeys).toEqual([ACTIVE_FIRM_KEY, ACTIVE_FIRM_KEY]);
+		expect(storage.getItem(PROFILE_KEY)).toBe(before);
+	});
+
+	it('switches in memory, without throwing, when storage refuses the write', () => {
+		const store = createProfileStore(new BlockedStorage());
+		store.load();
+		expect(() => store.useDemo()).not.toThrow();
+		expect(store.activeFirm).toBe('demo');
+		expect(() => store.backToOwn()).not.toThrow();
+		expect(store.activeFirm).toBe('own');
+	});
+
+	it('never writes the own profile from a save made while the demo firm is active', () => {
+		const { storage, store } = savedStore();
+		const before = storage.getItem(PROFILE_KEY);
+		store.useDemo();
+		expect(store.saveProfile(withStaff(99), LATER)).toBe('unchanged');
+		expect(storage.getItem(PROFILE_KEY)).toBe(before);
+	});
+});
+
+describe('markExported', () => {
+	it('stamps lastExportedAt with one write', () => {
+		const { storage, store } = savedStore();
+		const writes = storage.setCalls;
+		expect(store.markExported(LATER)).toBe('saved');
+		expect(storage.setCalls).toBe(writes + 1);
+		expect(store.stored?.lastExportedAt).toBe(LATER.toISOString());
+		expect(JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').lastExportedAt).toBe(
+			LATER.toISOString()
+		);
+		expect(store.stored?.savedAt).toBe(FIRST.toISOString());
+	});
+
+	it('does nothing while the demo firm is active', () => {
+		const { storage, store } = savedStore();
+		store.useDemo();
+		const writes = storage.setCalls;
+		expect(store.markExported(LATER)).toBe('unchanged');
+		expect(storage.setCalls).toBe(writes);
+		expect(store.stored?.lastExportedAt).toBeNull();
+	});
+
+	it('does nothing when no profile is saved', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.markExported(LATER)).toBe('unchanged');
+		expect(storage.setCalls).toBe(0);
+	});
+
+	it('never stamps a profile saved by a newer schema version', () => {
+		const storage = new CountingStorage();
+		const newer = JSON.stringify({ schemaVersion: 2, profile: {} });
+		storage.values.set(PROFILE_KEY, newer);
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.markExported(LATER)).toBe('newer-version');
+		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
+	});
+
+	it('reports a refused write as failed, without throwing', () => {
+		const storage = new WriteBlockedStorage();
+		storage.values.set(PROFILE_KEY, JSON.stringify(storedOf(withStaff(19))));
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.markExported(LATER)).toBe('failed');
+		expect(store.stored?.lastExportedAt).toBeNull();
+	});
+});
+
+describe('replaceFromImport', () => {
+	it('replaces the stored profile whole with one write of the canonical bytes', () => {
+		const { storage, store } = savedStore();
+		const writes = storage.setCalls;
+		const imported = storedOf(
+			{ ...emptyProfile(), certificates: [{ standard: 'ISO 9001' }], languages: ['de'] },
+			LATER
+		);
+		expect(store.replaceFromImport(imported)).toBe('saved');
+		expect(storage.setCalls).toBe(writes + 1);
+		expect(storage.getItem(PROFILE_KEY)).toBe(canonicalStoredJson(imported));
+		expect(store.stored).toEqual(imported);
+		expect(store.stored?.profile.staff.total).toBeUndefined();
+	});
+
+	it('refuses a value that is not a valid stored profile and writes nothing', () => {
+		const { storage, store } = savedStore();
+		const before = storage.getItem(PROFILE_KEY);
+		const broken = { ...storedOf(withStaff(19)), extra: true } as unknown as StoredProfile;
+		expect(store.replaceFromImport(broken)).toBe('failed');
+		expect(storage.getItem(PROFILE_KEY)).toBe(before);
+	});
+
+	it('never writes over a profile saved by a newer schema version', () => {
+		const storage = new CountingStorage();
+		const newer = JSON.stringify({ schemaVersion: 2, profile: {} });
+		storage.values.set(PROFILE_KEY, newer);
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.replaceFromImport(storedOf(withStaff(19)))).toBe('newer-version');
+		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
+	});
+
+	it('reports a refused write as failed, without throwing', () => {
+		const store = createProfileStore(new BlockedStorage());
+		store.load();
+		expect(store.replaceFromImport(storedOf(withStaff(19)))).toBe('failed');
+		expect(store.stored).toBeNull();
+	});
+});
+
+describe('listen', () => {
+	it('takes a valid profile another tab stored', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		const other = storedOf(withStaff(42), LATER);
+		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(other)));
+		expect(store.stored).toEqual(other);
+	});
+
+	it.each([
+		['junk', '{'],
+		['an invalid envelope', JSON.stringify(storedOf(withStaff(-1)))],
+		['a removed profile', null]
+	])('ignores %s for the profile key', (_what, newValue) => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		const before = store.stored;
+		target.dispatchEvent(storageEvent(PROFILE_KEY, newValue));
+		expect(store.stored).toBe(before);
+	});
+
+	it('ignores an event for another key, and a cleared storage', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		const before = store.stored;
+		const other = canonicalStoredJson(storedOf(withStaff(42), LATER));
+		target.dispatchEvent(storageEvent('pagefifty-profile-copy', other));
+		target.dispatchEvent(storageEvent(null, null));
+		expect(store.stored).toBe(before);
+		expect(store.activeFirm).toBe('own');
+	});
+
+	it('notes a newer schema version another tab stored, keeping the profile it has', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		const before = store.stored;
+		target.dispatchEvent(storageEvent(PROFILE_KEY, JSON.stringify({ schemaVersion: 3 })));
+		expect(store.newerVersion).toBe(3);
+		expect(store.stored).toBe(before);
+	});
+
+	it('follows the active firm another tab picked, unknown values reading as own', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		target.dispatchEvent(storageEvent(ACTIVE_FIRM_KEY, 'demo'));
+		expect(store.activeFirm).toBe('demo');
+		target.dispatchEvent(storageEvent(ACTIVE_FIRM_KEY, 'junk'));
+		expect(store.activeFirm).toBe('own');
+	});
+
+	it('stops following once the returned function is called', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		const stop = store.listen(target);
+		stop();
+		const before = store.stored;
+		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(storedOf(withStaff(42)))));
+		expect(store.stored).toBe(before);
+	});
+});
+
+describe('two tabs and the order of saves', () => {
+	it('shows the later of two saves to a fresh load', () => {
+		const storage = new CountingStorage();
+		const first = createProfileStore(storage);
+		const second = createProfileStore(storage);
+		first.load();
+		second.load();
+		first.saveProfile(withStaff(19), FIRST);
+		second.saveProfile(withStaff(23), LATER);
+		expect(createProfileStore(storage).load()?.profile.staff.total).toBe(23);
+	});
+
+	it('keeps certificate and language entry order through save and load', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		store.saveProfile(
+			{
+				...emptyProfile(),
+				certificates: [{ standard: 'NEN 7510' }, { standard: 'BSI C5' }, { standard: 'ISO 9001' }],
+				languages: ['fr', 'nl', 'de']
+			},
+			FIRST
+		);
+		const loaded = createProfileStore(storage).load();
+		expect(loaded?.profile.certificates.map((entry) => entry.standard)).toEqual([
+			'NEN 7510',
+			'BSI C5',
+			'ISO 9001'
+		]);
+		expect(loaded?.profile.languages).toEqual(['fr', 'nl', 'de']);
+	});
+});
+
+describe('requestPersistOnce', () => {
+	const persistingNavigator = () => ({ storage: { persist: vi.fn(async () => true) } });
+
+	it('asks for persistent storage exactly once, after the first successful save', () => {
+		const nav = persistingNavigator();
+		const store = createProfileStore(new CountingStorage());
+		store.load();
+		store.requestPersistOnce(nav);
+		expect(nav.storage.persist).not.toHaveBeenCalled();
+		expect(store.saveProfile(withStaff(19), FIRST)).toBe('saved');
+		store.requestPersistOnce(nav);
+		expect(store.saveProfile(withStaff(20), LATER)).toBe('saved');
+		store.requestPersistOnce(nav);
+		expect(nav.storage.persist).toHaveBeenCalledTimes(1);
+	});
+
+	it('does not ask after a save that failed', () => {
+		const nav = persistingNavigator();
+		const store = createProfileStore(new BlockedStorage());
+		store.load();
+		expect(store.saveProfile(withStaff(19), FIRST)).toBe('failed');
+		store.requestPersistOnce(nav);
+		expect(nav.storage.persist).not.toHaveBeenCalled();
+	});
+
+	it.each([
+		['no navigator', undefined],
+		['no storage manager', {}],
+		['a storage manager without persist', { storage: {} }]
+	])('does nothing and does not throw with %s', (_what, nav) => {
+		const { store } = savedStore();
+		expect(() => store.requestPersistOnce(nav)).not.toThrow();
+	});
+
+	it('swallows a refused persist request', async () => {
+		const persist = vi.fn(() => Promise.reject(new Error('denied')));
+		const { store } = savedStore();
+		store.requestPersistOnce({ storage: { persist } });
+		await Promise.resolve();
+		expect(persist).toHaveBeenCalledTimes(1);
+	});
+
+	it('survives a persist that throws instead of returning a promise', () => {
+		const persist = vi.fn(() => {
+			throw new TypeError('Illegal invocation');
+		});
+		const { store } = savedStore();
+		expect(() => store.requestPersistOnce({ storage: { persist } })).not.toThrow();
 	});
 });
 
