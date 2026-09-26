@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { parseCount, type FieldProblem } from '$lib/profile/fields';
-	import { emptyProfile } from '$lib/profile/schema';
+	import { PROFILE_SCHEMA_VERSION, emptyProfile } from '$lib/profile/schema';
 	import { browserStorage, createProfileStore, type SaveResult } from '$lib/profile/store.svelte';
 
 	// Storage is read only here, after mount, so the server never renders or receives a profile.
@@ -45,6 +45,10 @@
 		}).format(new Date(iso));
 
 	const status = $derived.by(() => {
+		const newer = store?.newerVersion;
+		if (newer != null) {
+			return `This browser holds a profile saved by a newer version of Pagefifty (schemaVersion ${newer}). This page reads schemaVersion ${PROFILE_SCHEMA_VERSION}. Nothing was changed.`;
+		}
 		if (problem) return 'Not saved: Total staff needs a valid value. The rest is saved.';
 		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
 		const savedAt = store?.stored?.savedAt;

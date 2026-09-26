@@ -55,6 +55,17 @@ describe('firm profile page', () => {
 		expect(stored().profile.staff.total).toBe(19);
 	});
 
+	it('keeps a profile a newer version saved, and says nothing was changed', async () => {
+		const newer = JSON.stringify({ schemaVersion: 2, savedAt: '2027-01-01T00:00:00.000Z' });
+		localStorage.setItem(PROFILE_KEY, newer);
+		render(Page);
+		await userEvent.type(await staffField(), '19');
+		expect(screen.getByRole('status').textContent).toBe(
+			'This browser holds a profile saved by a newer version of Pagefifty (schemaVersion 2). This page reads schemaVersion 1. Nothing was changed.'
+		);
+		expect(localStorage.getItem(PROFILE_KEY)).toBe(newer);
+	});
+
 	it('says so when the browser refuses to store the profile', async () => {
 		vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
 			throw new DOMException('full', 'QuotaExceededError');

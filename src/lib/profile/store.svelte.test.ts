@@ -124,6 +124,35 @@ describe('createProfileStore', () => {
 		expect(createProfileStore(storage).load()).toBeNull();
 	});
 
+	it('never writes over a profile saved by a newer schema version', () => {
+		const storage = new CountingStorage();
+		const newer = JSON.stringify({ schemaVersion: 2, savedAt: FIRST.toISOString(), profile: {} });
+		storage.values.set(PROFILE_KEY, newer);
+		const store = createProfileStore(storage);
+		expect(store.load()).toBeNull();
+		expect(store.newerVersion).toBe(2);
+		expect(store.saveProfile(withStaff(19), LATER)).toBe('newer-version');
+		expect(storage.setCalls).toBe(0);
+		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
+	});
+
+	it.each([
+		['not JSON', '{'],
+		['JSON null', 'null'],
+		['a list', '[2]'],
+		['a version that is not a whole number', '{"schemaVersion":1.5,"profile":{}}'],
+		['a version written as text', '{"schemaVersion":"2","profile":{}}'],
+		['an invalid version 1 profile', '{"schemaVersion":1,"profile":{"staff":{"total":-1}}}']
+	])('replaces %s on the first save, which no version can read', (_what, raw) => {
+		const storage = new CountingStorage();
+		storage.values.set(PROFILE_KEY, raw);
+		const store = createProfileStore(storage);
+		expect(store.load()).toBeNull();
+		expect(store.newerVersion).toBeNull();
+		expect(store.saveProfile(withStaff(19), FIRST)).toBe('saved');
+		expect(JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile.staff.total).toBe(19);
+	});
+
 	it('refuses to save an invalid profile and writes nothing', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);

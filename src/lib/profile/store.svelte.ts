@@ -13,17 +13,34 @@ import {
 export const PROFILE_KEY = 'pagefifty-profile';
 export const ACTIVE_FIRM_KEY = 'pagefifty-active-firm';
 
-export type SaveResult = 'saved' | 'unchanged' | 'failed';
+export type SaveResult = 'saved' | 'unchanged' | 'failed' | 'newer-version';
+
+type StoredRead =
+	{ kind: 'none' } | { kind: 'read'; stored: StoredProfile } | { kind: 'newer'; version: number };
 
 // A missing, unreadable or invalid stored value reads as nothing saved, never a partial profile.
-function parseStored(raw: string | null): StoredProfile | null {
-	if (raw === null) return null;
+// One written by a newer schema version is set apart: this page cannot read it, and a save would
+// destroy a profile a newer Pagefifty can, so the store refuses to write over it.
+function parseStored(raw: string | null): StoredRead {
+	if (raw === null) return { kind: 'none' };
+	let value: unknown;
 	try {
-		const parsed = StoredProfileSchema.safeParse(JSON.parse(raw));
-		return parsed.success ? parsed.data : null;
+		value = JSON.parse(raw);
 	} catch {
-		return null;
+		return { kind: 'none' };
 	}
+	const parsed = StoredProfileSchema.safeParse(value);
+	if (parsed.success) return { kind: 'read', stored: parsed.data };
+	const version = isNode(value) ? value.schemaVersion : undefined;
+	return typeof version === 'number' &&
+		Number.isInteger(version) &&
+		version > PROFILE_SCHEMA_VERSION
+		? { kind: 'newer', version }
+		: { kind: 'none' };
+}
+
+function isNode(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function readRaw(storage: Storage): string | null {
@@ -36,15 +53,19 @@ function readRaw(storage: Storage): string | null {
 
 export function createProfileStore(storage: Storage) {
 	let stored = $state<StoredProfile | null>(null);
+	let newerVersion = $state<number | null>(null);
 
 	function load(): StoredProfile | null {
-		stored = parseStored(readRaw(storage));
+		const read = parseStored(readRaw(storage));
+		stored = read.kind === 'read' ? read.stored : null;
+		newerVersion = read.kind === 'newer' ? read.version : null;
 		return stored;
 	}
 
 	// Writes only when the profile itself changed, so savedAt means the last real change and an
 	// unchanged save leaves the stored bytes alone.
 	function saveProfile(profile: Profile, now: Date): SaveResult {
+		if (newerVersion !== null) return 'newer-version';
 		const parsed = ProfileSchema.safeParse(profile);
 		if (!parsed.success) return 'failed';
 		if (
@@ -71,6 +92,10 @@ export function createProfileStore(storage: Storage) {
 	return {
 		get stored() {
 			return stored;
+		},
+		// The schema version of a stored profile this page cannot read, or null.
+		get newerVersion() {
+			return newerVersion;
 		},
 		load,
 		saveProfile
