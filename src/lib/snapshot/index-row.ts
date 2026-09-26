@@ -7,13 +7,13 @@ import type {
 	Buyer,
 	Criterion,
 	CriterionParameter,
+	DocumentsLink,
 	GroupLegalForm,
 	LangText,
 	LegislationReference,
 	LotDeadlines,
 	LotRecord,
-	NoticeRecord,
-	SafeLink
+	NoticeRecord
 } from '../ingest/record.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
@@ -39,9 +39,10 @@ const AmountSchema: z.ZodType<Amount> = z.strictObject({
 	currency: z.string()
 });
 
-const SafeLinkSchema: z.ZodType<SafeLink> = z.strictObject({
+const DocumentsLinkSchema: z.ZodType<DocumentsLink> = z.strictObject({
 	published: z.string(),
-	href: z.string().optional()
+	href: z.string().optional(),
+	restricted: z.literal(true).optional()
 });
 
 const ParameterSchema: z.ZodType<CriterionParameter> = z.strictObject({
@@ -99,7 +100,7 @@ const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
 	notes: z.array(LangTextSchema),
 	groupLegalForm: GroupLegalFormSchema.optional(),
 	estimatedValue: AmountSchema.optional(),
-	documents: SafeLinkSchema.optional()
+	documents: DocumentsLinkSchema.optional()
 });
 
 export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
@@ -113,7 +114,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	procedureNotes: z.array(LangTextSchema),
 	estimatedValue: AmountSchema.optional(),
 	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
-	documents: SafeLinkSchema.optional(),
+	documents: DocumentsLinkSchema.optional(),
 	changeReasons: z.array(z.string()),
 	lots: z.array(LotRecordSchema)
 });

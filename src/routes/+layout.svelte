@@ -13,7 +13,7 @@
 		rel="preload"
 		as="font"
 		type="font/woff2"
-		href="/fonts/plex-sans-400.woff2"
+		href="/fonts/plex-sans.woff2"
 		crossorigin="anonymous"
 	/>
 	<link

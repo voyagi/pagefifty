@@ -2,6 +2,7 @@
 // theme.ts, so the two are held together here: the script runs in a stand-in browser over every
 // combination of inputs and must land on the theme decideTheme picks.
 import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { createContext, runInContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
 import {
@@ -131,6 +132,31 @@ describe('src/app.html', () => {
 	});
 });
 
+// style-src-attr 'unsafe-inline' is there for SvelteKit's route announcer alone, and the browser
+// lets every other style attribute through with it, so only this test keeps the markup clean.
+const STYLE_IN_MARKUP = /\sstyle(?:=|:[a-z-]+)/;
+
+describe('the components', () => {
+	it('recognises a style attribute and a style directive', () => {
+		expect('<div style="color: red">').toMatch(STYLE_IN_MARKUP);
+		expect('<p style:color={ink}>').toMatch(STYLE_IN_MARKUP);
+		expect('<style>\n\tp { color: red; }\n</style>').not.toMatch(STYLE_IN_MARKUP);
+	});
+
+	it('carry no style attribute or style directive in their markup', () => {
+		const files = readdirSync('src', { recursive: true, encoding: 'utf8' })
+			.filter((name) => name.endsWith('.svelte'))
+			.map((name) => join('src', name));
+		expect(files.length).toBeGreaterThan(5);
+		const offenders = files.filter((file) =>
+			STYLE_IN_MARKUP.test(
+				readFileSync(file, 'utf8').replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/g, '')
+			)
+		);
+		expect(offenders).toEqual([]);
+	});
+});
+
 describe('src/app.css', () => {
 	it('gives a page with no theme set the same dark palette when the device is dark', () => {
 		const picked = declarations(/:root\[data-theme='dark'\]/);
@@ -142,15 +168,27 @@ describe('src/app.css', () => {
 	});
 });
 
+// The design keeps one file per Plex Sans weight, and the three are the same variable font, so the
+// app serves them as one file that the browser fetches once.
+const servedName = (designName: string) =>
+	/^plex-sans-\d{3}\.woff2$/.test(designName) ? 'plex-sans.woff2' : designName;
+
+const servedFonts = () => readdirSync('static/fonts').filter((name) => name.endsWith('.woff2'));
+
 describe('static/fonts', () => {
-	it('serves the nine Plex files byte for byte as design/assets/fonts holds them', () => {
+	it('serves every design font byte for byte, Plex Sans once for its three weights', () => {
 		const source = readdirSync('design/assets/fonts').filter((name) => name.endsWith('.woff2'));
-		const served = readdirSync('static/fonts').filter((name) => name.endsWith('.woff2'));
 		expect(source).toHaveLength(9);
-		expect(served.sort()).toEqual(source.sort());
+		expect(servedFonts().sort()).toEqual([...new Set(source.map(servedName))].sort());
+		expect(servedFonts()).toHaveLength(7);
 		for (const name of source) {
 			const original = readFileSync(`design/assets/fonts/${name}`);
-			expect(readFileSync(`static/fonts/${name}`).equals(original), name).toBe(true);
+			expect(readFileSync(`static/fonts/${servedName(name)}`).equals(original), name).toBe(true);
 		}
+	});
+
+	it('names every served font in the stylesheet, and no font that is not served', () => {
+		const named = [...APP_CSS.matchAll(/url\('\/fonts\/([^']+)'\)/g)].map((match) => match[1]);
+		expect(named.sort()).toEqual(servedFonts().sort());
 	});
 });

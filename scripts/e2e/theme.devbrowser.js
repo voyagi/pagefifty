@@ -151,8 +151,18 @@ try {
 	);
 	await page.evaluate(() => localStorage.clear());
 
+	// Every route is loaded and hydrated once under the policy, so a violation only one page causes
+	// (its serialised server data, a component's own style) reaches the listener too. The pressed
+	// theme button appears only once the page has hydrated.
+	const hydrated = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
+	await page.goto('http://127.0.0.1:8788/tenders');
+	await page.waitForSelector(hydrated, { timeout: 10000 });
+	await page.goto('http://127.0.0.1:8788/profile');
+	await page.waitForSelector(hydrated, { timeout: 10000 });
+	await page.waitForSelector('#total-staff', { timeout: 10000 });
+
 	check(
-		'no page logged a Content Security Policy violation',
+		'no page logged a Content Security Policy violation on /, /tenders or /profile',
 		cspMessages.length === 0,
 		cspMessages.length ? cspMessages.join(' | ') : 'none'
 	);

@@ -37,6 +37,7 @@ const REQUIRED_ROLES = [
 	'oversize',
 	'request-deadline-only',
 	'reserved-participation',
+	'restricted-documents',
 	'same-code-in-two-lots',
 	'sdk-1.13',
 	'sdk-1.14',

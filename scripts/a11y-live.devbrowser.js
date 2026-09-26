@@ -5,10 +5,15 @@
 // dev-browser-nav-guard: dynamic-ok the loop below only visits the literal URLs listed in AUDITS
 
 // One entry per route and theme. The theme is forced through ?theme=, so every entry's data-theme
-// check applies: a page that did not paint the theme it was asked for is not audited.
+// check applies: a page that did not paint the theme it was asked for is not audited. A new route
+// adds its two entries here, since both palettes reach every page through the desk bar.
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
-	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' }
+	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
+	{ slug: 'tenders', theme: 'light', url: 'http://127.0.0.1:8788/tenders?theme=light' },
+	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
+	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
+	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' }
 ];
 
 // axe "incomplete" means it could not decide, which is not clean. An entry here accepts one

@@ -381,6 +381,16 @@ describe('replaceFromImport', () => {
 		expect(store.stored?.profile.staff.total).toBeUndefined();
 	});
 
+	it('still replaces the own profile when the read ends after a switch to the demo, keeping the demo shown', () => {
+		const { storage, store } = savedStore();
+		store.useDemo();
+		const imported = storedOf(withStaff(42), LATER);
+		expect(store.replaceFromImport(imported)).toBe('saved');
+		expect(storage.getItem(PROFILE_KEY)).toBe(canonicalStoredJson(imported));
+		expect(store.stored).toEqual(imported);
+		expect([store.activeFirm, storage.getItem(ACTIVE_FIRM_KEY)]).toEqual(['demo', 'demo']);
+	});
+
 	it('refuses a value that is not a valid stored profile and writes nothing', () => {
 		const { storage, store } = savedStore();
 		const before = storage.getItem(PROFILE_KEY);
@@ -450,6 +460,16 @@ describe('listen', () => {
 		target.dispatchEvent(storageEvent(PROFILE_KEY, JSON.stringify({ schemaVersion: 3 })));
 		expect(store.newerVersion).toBe(3);
 		expect(store.stored).toBe(before);
+	});
+
+	it('drops the newer-version note once another tab stores a profile this page reads', () => {
+		const { store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		target.dispatchEvent(storageEvent(PROFILE_KEY, JSON.stringify({ schemaVersion: 3 })));
+		const other = storedOf(withStaff(42), LATER);
+		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(other)));
+		expect([store.newerVersion, store.stored]).toEqual([null, other]);
 	});
 
 	it('follows the active firm another tab picked, unknown values reading as own', () => {

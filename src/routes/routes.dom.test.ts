@@ -50,7 +50,7 @@ describe('root layout', () => {
 			(link) => link.getAttribute('href')
 		);
 		expect(preloads).toEqual(
-			expect.arrayContaining(['/fonts/plex-sans-400.woff2', '/fonts/plex-sans-condensed-600.woff2'])
+			expect.arrayContaining(['/fonts/plex-sans.woff2', '/fonts/plex-sans-condensed-600.woff2'])
 		);
 	});
 });

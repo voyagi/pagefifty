@@ -38,6 +38,21 @@ function inLot(text: string, lot: number, anchor: string, replacement: string): 
 }
 
 const ONE_LOT_URI = 'https://www.evergabe-online.de/tenderdocuments.html?id=887787';
+const OPEN_REFERENCE = '<cac:CallForTendersDocumentReference>';
+const CLOSE_REFERENCE = '</cac:CallForTendersDocumentReference>';
+
+const documentsReference = (type: string, uri: string) =>
+	`${OPEN_REFERENCE}<cbc:ID>added</cbc:ID><cbc:DocumentType>${type}</cbc:DocumentType>` +
+	`<cac:Attachment><cac:ExternalReference><cbc:URI>${uri}</cbc:URI></cac:ExternalReference>` +
+	`</cac:Attachment>${CLOSE_REFERENCE}`;
+
+// The one-lot notice with a documents reference added before or after its own open one.
+function withAddedReference(where: 'before' | 'after', type: string, uri: string): string {
+	const added = documentsReference(type, uri);
+	return where === 'before'
+		? inLot(readFixture('one-lot'), 0, OPEN_REFERENCE, `${added}${OPEN_REFERENCE}`)
+		: inLot(readFixture('one-lot'), 0, CLOSE_REFERENCE, `${CLOSE_REFERENCE}${added}`);
+}
 
 describe('the one-lot notice 609955-2026', () => {
 	const record = readRole('one-lot');
@@ -83,6 +98,35 @@ describe('the one-lot notice 609955-2026', () => {
 
 	it('reads the main and additional CPV codes once each', () => {
 		expect(record.cpv).toEqual({ main: ['45315700'], additional: ['48921000'] });
+	});
+
+	it('adds CPV codes a lot names but the procedure does not, after the procedure ones', () => {
+		const cpv = (code: string) =>
+			`<cbc:ItemClassificationCode listName="cpv">${code}</cbc:ItemClassificationCode>`;
+		const mainOnLot = inLot(readFixture('one-lot'), 0, cpv('45315700'), cpv('72000000'));
+		const text = inLot(
+			mainOnLot,
+			0,
+			'<cac:AdditionalCommodityClassification>',
+			`<cac:AdditionalCommodityClassification>${cpv('72212000')}</cac:AdditionalCommodityClassification>` +
+				'<cac:AdditionalCommodityClassification>'
+		);
+		expect(readText(text, '609955-2026').cpv).toEqual({
+			main: ['45315700', '72000000'],
+			additional: ['48921000', '72212000']
+		});
+	});
+
+	it('reads a procedure note apart from the lot notes', () => {
+		const text = readFixture('one-lot').replace(
+			'<cac:RequestedTenderTotal>',
+			'<cbc:Note languageID="DEU">Hinweis zum Verfahren</cbc:Note><cac:RequestedTenderTotal>'
+		);
+		const read = readText(text, '609955-2026');
+		expect(read.procedureNotes).toEqual([
+			{ text: 'Hinweis zum Verfahren', lang: 'de', rawLang: 'DEU' }
+		]);
+		expect(read.lots[0].notes).toHaveLength(1);
 	});
 
 	it('reads the documents link on the lot, with an https target', () => {
@@ -337,6 +381,12 @@ describe('refusals of incomplete fields, each naming its element', () => {
 			'ContractNotice/cac:ProcurementProject/cac:RequestedTenderTotal/cbc:EstimatedOverallContractAmount with its currencyID'
 		],
 		[
+			"the currency of a lot's estimated value",
+			'one-lot',
+			(text: string) => inLot(text, 0, ' currencyID="EUR">834550.06', '>834550.06'),
+			'ProcurementProjectLot[LOT-0000]/cac:ProcurementProject/cac:RequestedTenderTotal/cbc:EstimatedOverallContractAmount with its currencyID'
+		],
+		[
 			'the id of a legislation reference',
 			'one-lot',
 			(text: string) => text.replace('<cbc:ID>vgv</cbc:ID>', ''),
@@ -450,6 +500,39 @@ describe('documents links and references', () => {
 			href: 'http://example.org/procedure'
 		});
 		expect(record.lots[0].documents?.published).toBe(ONE_LOT_URI);
+	});
+
+	it('marks a lot whose only documents link is restricted, keeping its target', () => {
+		const uri = 'https://app.tenpu.eu/public/tender/dps/1167';
+		expect(readRole('restricted-documents').lots[0].documents).toEqual({
+			published: uri,
+			href: uri,
+			restricted: true
+		});
+	});
+
+	it.each(['before', 'after'] as const)(
+		'prefers the open documents link to a restricted one published %s it',
+		(where) => {
+			const text = withAddedReference(where, 'restricted-document', 'https://example.org/closed');
+			expect(readText(text, '609955-2026').lots[0].documents).toEqual({
+				published: ONE_LOT_URI,
+				href: ONE_LOT_URI
+			});
+		}
+	);
+
+	it('prefers a later open link that can be followed to an earlier one that cannot', () => {
+		const text = withAddedReference('before', 'non-restricted-document', 'javascript:alert(1)');
+		expect(readText(text, '609955-2026').lots[0].documents).toEqual({
+			published: ONE_LOT_URI,
+			href: ONE_LOT_URI
+		});
+	});
+
+	it('keeps the first of two open links that can both be followed', () => {
+		const text = withAddedReference('after', 'non-restricted-document', 'https://example.org/b');
+		expect(readText(text, '609955-2026').lots[0].documents?.href).toBe(ONE_LOT_URI);
 	});
 });
 

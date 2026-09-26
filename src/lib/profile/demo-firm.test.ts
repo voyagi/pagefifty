@@ -24,6 +24,33 @@ describe('the demo firm', () => {
 		expect(averageTurnover(DEMO_PROFILE, turnoverYears(new Date(2026, 8, 26)))).toBe(1180000);
 	});
 
+	it('earns every euro from data management software, as the design note says', () => {
+		for (const row of DEMO_PROFILE.turnover) {
+			expect(row.specific, String(row.year)).toEqual([
+				{ businessLine: 'Data management software', net: row.generalNet }
+			]);
+		}
+	});
+
+	it("holds the note's 16 roles, its two references and the invented registration and reach", () => {
+		const counted = DEMO_PROFILE.staff.byRole.reduce((sum, role) => sum + (role.count ?? 0), 0);
+		expect(counted).toBe(16);
+		expect(
+			DEMO_PROFILE.references.map(({ categories, performedByFirm }) => [
+				categories,
+				performedByFirm
+			])
+		).toEqual([
+			[['Database'], true],
+			[['Complex process chains'], true]
+		]);
+		expect(DEMO_PROFILE.registration).toEqual({ country: 'NL', register: 'Kamer van Koophandel' });
+		expect([DEMO_PROFILE.countries, DEMO_PROFILE.languages]).toEqual([
+			['NL', 'BE', 'DE'],
+			['nl', 'en', 'de']
+		]);
+	});
+
 	it('has 19 staff and holds ISO 27001 and ISO 9001', () => {
 		expect(DEMO_PROFILE.staff.total).toBe(19);
 		expect(DEMO_PROFILE.certificates.map((entry) => entry.standard)).toEqual([

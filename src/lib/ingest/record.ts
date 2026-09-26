@@ -33,6 +33,13 @@ export interface SafeLink {
 	href?: string;
 }
 
+// The procurement documents a notice names. BT-15 (document type non-restricted-document) is the
+// open address the law asks for; BT-615 (restricted-document) needs an access request, so a
+// restricted link is marked and can never be shown as the open documents.
+export interface DocumentsLink extends SafeLink {
+	restricted?: true;
+}
+
 export interface LegislationReference {
 	id: string;
 	description?: LangText;
@@ -62,11 +69,14 @@ export interface LotRecord {
 	deadlines: LotDeadlines;
 	criteria: Criterion[];
 	criteriaSources: string[];
+	// The reserved-procurement code (BT-71) as published, "none" included. Absent means the lot
+	// declares no code at all (635218-2026 in the capture), which is unknown: never read it as
+	// "none", and never let it count toward GO.
 	reserved?: string;
 	notes: LangText[];
 	groupLegalForm?: GroupLegalForm;
 	estimatedValue?: Amount;
-	documents?: SafeLink;
+	documents?: DocumentsLink;
 }
 
 export interface NoticeRecord {
@@ -80,7 +90,7 @@ export interface NoticeRecord {
 	procedureNotes: LangText[];
 	estimatedValue?: Amount;
 	cpv: { main: string[]; additional: string[] };
-	documents?: SafeLink;
+	documents?: DocumentsLink;
 	changeReasons: string[];
 	lots: LotRecord[];
 }
@@ -279,14 +289,23 @@ function toAmount(projects: unknown[], where: string): Amount | undefined {
 	return { amount, currency };
 }
 
-function toDocuments(terms: unknown[]): SafeLink | undefined {
-	const uri = firstText(terms, [
-		'cac:CallForTendersDocumentReference',
-		'cac:Attachment',
-		'cac:ExternalReference',
-		'cbc:URI'
-	]);
-	return uri === undefined ? undefined : safeLink(uri);
+// An open link beats a restricted one, and within one kind a link that can be followed beats one
+// that cannot; otherwise the first published wins. In the capture 451 lots name one open link,
+// seven only a restricted one, and one the same open link twice.
+function toDocuments(terms: unknown[]): DocumentsLink | undefined {
+	const links = walk(terms, ['cac:CallForTendersDocumentReference']).flatMap(
+		(reference): DocumentsLink[] => {
+			const uri = firstText(reference, ['cac:Attachment', 'cac:ExternalReference', 'cbc:URI']);
+			if (uri === undefined) return [];
+			const restricted = firstText(reference, ['cbc:DocumentType']) === 'restricted-document';
+			return [{ ...safeLink(uri), ...(restricted && { restricted }) }];
+		}
+	);
+	const rank = (link: DocumentsLink) => (link.restricted ? 2 : 0) + (link.href ? 0 : 1);
+	return links.reduce<DocumentsLink | undefined>(
+		(best, link) => (best === undefined || rank(link) < rank(best) ? link : best),
+		undefined
+	);
 }
 
 function toParameter(parameter: unknown, where: string): CriterionParameter {

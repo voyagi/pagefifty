@@ -187,6 +187,12 @@ export const FIXTURE_ROLES = {
 		evidence: 'Westdeutscher Rundfunk',
 		lots: 1
 	}),
+	'restricted-documents': capture({
+		notice: '600954-2026',
+		note: 'its one lot names only a restricted documents link (BT-615), no open one',
+		evidence: '<cbc:DocumentType>restricted-document</cbc:DocumentType>',
+		lots: 1
+	}),
 	'german-classifier': capture(
 		{
 			notice: '609955-2026',

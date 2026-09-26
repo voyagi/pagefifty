@@ -172,6 +172,20 @@ describe('toIndexRow and the index schema', () => {
 		expect(NoticeRecordSchema.safeParse({ ...RECORD, lots: [lot] }).success).toBe(false);
 	});
 
+	it('takes a documents link marked restricted, and refuses the mark written as false', () => {
+		const withDocuments = (documents: object) => ({
+			...RECORD,
+			lots: [{ ...RECORD.lots[0], documents }]
+		});
+		const link = { published: 'https://example.org/closed', href: 'https://example.org/closed' };
+		expect(NoticeRecordSchema.safeParse(withDocuments({ ...link, restricted: true })).success).toBe(
+			true
+		);
+		expect(
+			NoticeRecordSchema.safeParse(withDocuments({ ...link, restricted: false })).success
+		).toBe(false);
+	});
+
 	it('refuses a row whose notice number the loader could not serve', () => {
 		const row = { ...toIndexRow(RECORD), noticeNumber: '../index' };
 		const result = SnapshotIndexSchema.safeParse(index([row]));
