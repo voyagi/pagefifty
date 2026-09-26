@@ -170,6 +170,21 @@ describe('createProfileStore', () => {
 		expect([kept.completedFinancialYears, kept.staff.total]).toEqual([6, 19]);
 	});
 
+	it('refuses a one-field change that breaks the schema, writing nothing', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		const repeatYear = (current: Profile) => ({
+			...current,
+			turnover: [
+				{ year: 2024, generalNet: 1, specific: [] },
+				{ year: 2024, generalNet: 2, specific: [] }
+			]
+		});
+		expect(store.updateProfile(repeatYear, FIRST)).toBe('failed');
+		expect(storage.setCalls).toBe(0);
+	});
+
 	it('answers unchanged to a one-field change while the demo firm is shown', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);

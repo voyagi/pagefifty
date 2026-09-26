@@ -316,18 +316,26 @@ describe('reserved participation and the group legal form', () => {
 		expect(readRole('reserved-participation').lots[0].reserved).toBe('res-ws');
 	});
 
+	const reservedCode = (code: string) =>
+		'<cac:SpecificTendererRequirement><cbc:TendererRequirementTypeCode listName="reserved-procurement">' +
+		`${code}</cbc:TendererRequirementTypeCode></cac:SpecificTendererRequirement>`;
+	const withReservedCodes = (codes: string[]) =>
+		inLot(readFixture('one-lot'), 0, reservedCode('none'), codes.map(reservedCode).join(''));
+
 	it.each(['before', 'after'] as const)(
 		'keeps a reservation published %s a none on the same lot',
 		(where) => {
-			const none =
-				'<cac:SpecificTendererRequirement><cbc:TendererRequirementTypeCode listName="reserved-procurement">' +
-				'none</cbc:TendererRequirementTypeCode></cac:SpecificTendererRequirement>';
-			const reservation = none.replace('>none<', '>res-ws<');
-			const both = where === 'before' ? `${reservation}${none}` : `${none}${reservation}`;
-			const text = inLot(readFixture('one-lot'), 0, none, both);
-			expect(readText(text, '609955-2026').lots[0].reserved).toBe('res-ws');
+			const codes = where === 'before' ? ['res-ws', 'none'] : ['none', 'res-ws'];
+			expect(readText(withReservedCodes(codes), '609955-2026').lots[0].reserved).toBe('res-ws');
 		}
 	);
+
+	it.each([
+		[['res-pub-ser', 'res-ws'], 'res-pub-ser'],
+		[['none', 'none'], 'none']
+	])('reads the codes %j on one lot as %s', (codes, expected) => {
+		expect(readText(withReservedCodes(codes), '609955-2026').lots[0].reserved).toBe(expected);
+	});
 
 	it('reads the legal form 605918-2026 requires on its lot', () => {
 		const [lot] = readRole('group-legal-form').lots;
@@ -498,6 +506,13 @@ describe('documents links and references', () => {
 		});
 	});
 
+	it('decodes a documents URI before judging it, so an escaped colon gives no link target', () => {
+		const text = readFixture('one-lot').replace(ONE_LOT_URI, 'javascript&#58;alert(1)');
+		expect(readText(text, '609955-2026').lots[0].documents).toEqual({
+			published: 'javascript:alert(1)'
+		});
+	});
+
 	it('reads a procedure-level documents link beside the lot one', () => {
 		const reference =
 			'<cac:CallForTendersDocumentReference><cbc:ID>proc</cbc:ID><cac:Attachment><cac:ExternalReference>' +
@@ -543,6 +558,22 @@ describe('documents links and references', () => {
 		});
 	});
 
+	it('ranks an open link that can be followed first, then an open one that cannot, then a restricted one', () => {
+		const restricted = documentsReference('restricted-document', 'https://example.org/closed');
+		const unfollowable = documentsReference('non-restricted-document', 'javascript:alert(1)');
+		const all = inLot(
+			readFixture('one-lot'),
+			0,
+			OPEN_REFERENCE,
+			`${restricted}${unfollowable}${OPEN_REFERENCE}`
+		);
+		expect(readText(all, '609955-2026').lots[0].documents?.href).toBe(ONE_LOT_URI);
+		const withoutOpen = all.replace(ONE_LOT_URI, 'www.example.org/documents');
+		expect(readText(withoutOpen, '609955-2026').lots[0].documents).toEqual({
+			published: 'javascript:alert(1)'
+		});
+	});
+
 	it('keeps the first of two open links that can both be followed', () => {
 		const text = withAddedReference('after', 'non-restricted-document', 'https://example.org/b');
 		expect(readText(text, '609955-2026').lots[0].documents?.href).toBe(ONE_LOT_URI);
@@ -563,6 +594,10 @@ describe('safeLink', () => {
 		'JavaScript:alert(1)',
 		'data:text/html,<b>x</b>',
 		'vbscript:msgbox(1)',
+		'java\tscript:alert(1)',
+		'java\nscript:alert(1)',
+		' javascript:alert(1)',
+		'\u0000javascript:alert(1)',
 		'ftp://example.org/documents',
 		'//example.org/documents',
 		'www.example.org/documents',

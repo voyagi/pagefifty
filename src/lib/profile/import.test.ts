@@ -1,3 +1,4 @@
+import { fc, test } from '@fast-check/vitest';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { downloadProfile, exportFileName, exportProfileJson } from './export';
 import {
@@ -8,7 +9,7 @@ import {
 	type ImportResult,
 	type ProfileFile
 } from './import';
-import { emptyProfile, type StoredProfile } from './schema';
+import { StoredProfileSchema, emptyProfile, type StoredProfile } from './schema';
 
 const SAVED_AT = '2026-09-20T09:00:00.000Z';
 const EXPORTED_AT = '2026-09-21T16:45:00.000Z';
@@ -240,7 +241,51 @@ describe('importProfileFile', () => {
 	});
 });
 
+describe('importProfileFile on hostile text', () => {
+	const profileKeys = [...Object.keys(emptyProfile()), 'completedFinancialYears', 'nickname'];
+	const hostile = fc.oneof(
+		fc.string(),
+		fc.json(),
+		fc
+			.dictionary(fc.constantFrom(...profileKeys), fc.jsonValue())
+			.map((patch) => envelopeText({}, patch))
+	);
+
+	test.prop([hostile])(
+		'never rejects, and passes only what the stored schema accepts',
+		async (text) => {
+			const result = await importProfileFile(fileOf('any.json', text));
+			if (result.ok) {
+				expect(StoredProfileSchema.safeParse(result.stored).success).toBe(true);
+			} else {
+				for (const field of result.fields ?? []) expect(Array.isArray(field.path)).toBe(true);
+			}
+		}
+	);
+
+	it('refuses a deeply nested file inside the size cap without throwing', async () => {
+		const depth = 120_000;
+		const text = '['.repeat(depth) + ']'.repeat(depth);
+		expect(new TextEncoder().encode(text).length).toBeLessThanOrEqual(IMPORT_MAX_BYTES);
+		const result = refusal(await importProfileFile(fileOf('deep.json', text)));
+		expect(['not-json', 'no-version']).toContain(result.reason);
+	});
+});
+
 describe('createImportQueue', () => {
+	it('rejects only the import whose apply threw, and still applies the next file', async () => {
+		let calls = 0;
+		const enqueue = createImportQueue(() => {
+			calls += 1;
+			if (calls === 1) throw new Error('store broke');
+			return 'saved' as const;
+		});
+		const first = enqueue(fileOf('a.json', exportProfileJson(sampleStored())));
+		const second = enqueue(fileOf('b.json', exportProfileJson(sampleStored())));
+		await expect(first).rejects.toThrow('store broke');
+		await expect(second).resolves.toMatchObject({ ok: true, applied: 'saved' });
+	});
+
 	function queueOverStorage() {
 		let stored: StoredProfile | null = null;
 		const apply = vi.fn((next: StoredProfile) => {
