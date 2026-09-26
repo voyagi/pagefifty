@@ -6,6 +6,7 @@ import {
 	PROFILE_SCHEMA_VERSION,
 	ProfileSchema,
 	StoredProfileSchema,
+	emptyProfile,
 	type Profile,
 	type StoredProfile
 } from './schema';
@@ -100,13 +101,15 @@ export function createProfileStore(storage: Storage) {
 
 	// Writes only when the profile itself changed, so savedAt means the last real change and an
 	// unchanged save leaves the stored bytes alone. While the demo firm is shown nothing the page
-	// saves may reach the own profile, whatever called it.
-	function saveProfile(profile: Profile, now: Date): SaveResult {
+	// saves may reach the own profile, whatever called it. The change is applied to the profile
+	// storage holds now, never to this page's copy of it.
+	function saveChange(change: (current: Profile) => Profile, now: Date): SaveResult {
 		if (activeFirm === 'demo') return 'unchanged';
 		const current = readCurrent();
 		if (current.kind === 'newer') return 'newer-version';
+		const base = current.kind === 'read' ? current.stored.profile : emptyProfile();
 		stored = current.kind === 'read' ? current.stored : null;
-		const parsed = ProfileSchema.safeParse(profile);
+		const parsed = ProfileSchema.safeParse(change(base));
 		if (!parsed.success) return 'failed';
 		if (
 			stored &&
@@ -120,6 +123,17 @@ export function createProfileStore(storage: Storage) {
 			lastExportedAt: stored?.lastExportedAt ?? null,
 			profile: parsed.data
 		});
+	}
+
+	// The whole profile as given, whatever storage holds.
+	function saveProfile(profile: Profile, now: Date): SaveResult {
+		return saveChange(() => profile, now);
+	}
+
+	// One field's change: an edit here never overwrites a newer write another tab made to a
+	// different field, even before that tab's storage event arrives.
+	function updateProfile(change: (current: Profile) => Profile, now: Date): SaveResult {
+		return saveChange(change, now);
 	}
 
 	function markExported(now: Date): SaveResult {
@@ -203,6 +217,7 @@ export function createProfileStore(storage: Storage) {
 		},
 		load,
 		saveProfile,
+		updateProfile,
 		markExported,
 		replaceFromImport,
 		useDemo: () => setActiveFirm('demo'),

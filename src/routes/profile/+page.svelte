@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { parseCount, type FieldProblem } from '$lib/profile/fields';
-	import { PROFILE_SCHEMA_VERSION, emptyProfile } from '$lib/profile/schema';
+	import { PROFILE_SCHEMA_VERSION } from '$lib/profile/schema';
 	import {
 		browserStorage,
 		createProfileStore,
@@ -38,9 +38,8 @@
 			return;
 		}
 		problem = null;
-		const profile = store.stored?.profile ?? emptyProfile();
-		lastSave = store.saveProfile(
-			{ ...profile, staff: { ...profile.staff, total: parsed.value } },
+		lastSave = store.updateProfile(
+			(current) => ({ ...current, staff: { ...current.staff, total: parsed.value } }),
 			new Date()
 		);
 	}

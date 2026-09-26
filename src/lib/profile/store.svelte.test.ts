@@ -156,6 +156,30 @@ describe('createProfileStore', () => {
 		expect(first.stored?.savedAt).toBe(LATER.toISOString());
 	});
 
+	it("applies a one-field change to what storage holds now, keeping another tab's newer field", () => {
+		const storage = new CountingStorage();
+		const here = createProfileStore(storage);
+		const there = createProfileStore(storage);
+		here.load();
+		there.load();
+		const withYears = { ...emptyProfile(), completedFinancialYears: 6 };
+		expect(there.saveProfile(withYears, FIRST)).toBe('saved');
+		const setStaff = (current: Profile) => ({ ...current, staff: { ...current.staff, total: 19 } });
+		expect(here.updateProfile(setStaff, LATER)).toBe('saved');
+		const kept = JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile;
+		expect([kept.completedFinancialYears, kept.staff.total]).toEqual([6, 19]);
+	});
+
+	it('answers unchanged to a one-field change while the demo firm is shown', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		store.useDemo();
+		const change = (current: Profile) => ({ ...current, completedFinancialYears: 3 });
+		expect(store.updateProfile(change, FIRST)).toBe('unchanged');
+		expect(storage.getItem(PROFILE_KEY)).toBeNull();
+	});
+
 	it('never writes over a newer profile another tab saved after this page loaded', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);
