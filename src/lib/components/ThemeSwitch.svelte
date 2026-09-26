@@ -7,7 +7,8 @@
 
 	const LABELS: Record<ThemeChoice, string> = { light: 'Light', dark: 'Dark', device: 'Device' };
 
-	// Raw, because a deep $state proxy would wrap the controller's own getter and signal.
+	// Raw: only the reference changes, from null to the controller, and its choice is already
+	// reactive through the controller's own $state, so a deep proxy would add nothing.
 	let controller = $state.raw<ThemeController | null>(null);
 
 	onMount(() => {
