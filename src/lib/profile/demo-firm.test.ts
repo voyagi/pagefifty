@@ -24,6 +24,12 @@ describe('the demo firm', () => {
 		expect(averageTurnover(DEMO_PROFILE, turnoverYears(new Date(2026, 8, 26)))).toBe(1180000);
 	});
 
+	it('keeps that average over its own years in 2027, when the form asks for a year it lacks', () => {
+		const ownYears = DEMO_PROFILE.turnover.map((row) => row.year);
+		expect(averageTurnover(DEMO_PROFILE, ownYears)).toBe(1180000);
+		expect(averageTurnover(DEMO_PROFILE, turnoverYears(new Date(2027, 0, 1)))).toBeUndefined();
+	});
+
 	it('earns every euro from data management software, as the design note says', () => {
 		for (const row of DEMO_PROFILE.turnover) {
 			expect(row.specific, String(row.year)).toEqual([

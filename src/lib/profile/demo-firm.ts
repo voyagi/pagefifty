@@ -19,6 +19,9 @@ const DATA_MANAGEMENT = 'Data management software';
 // 2025 EUR 1,240,000, all of it from data management software (EUR 1,180,000 a year on average),
 // 19 staff, ISO 27001 and ISO 9001, one database-centred reference and one for complex process
 // chains. The roles are the mockup's People leaf, which counts 16 of the 19.
+// The three turnover years are fixed, and turnoverYears(today) asks for the same three only while
+// the device's year is 2026: a read-only view of the demo shows the years the demo holds, never
+// the years the form would ask for, or from 2027 it shows an empty year and no average.
 // Invented here, because the design gives none of them: the registration country and register,
 // the six completed financial years, both certificate valid-until dates, every reference's client,
 // client type, dates and value, the countries (NL, BE, DE) and the languages (nl, en, de).

@@ -133,7 +133,9 @@ export function createProfileStore(storage: Storage) {
 	// The whole stored profile is replaced in one write, never merged with what was there. Unlike a
 	// save, it is not refused while the demo firm is shown: the file is the user's own profile, never
 	// demo figures, and a read that finishes after a switch to the demo must not drop the file they
-	// picked. The view stays on the demo until they go back.
+	// picked. The view stays on the demo until they go back. The file's savedAt is kept as it is (the
+	// profile's last change, wherever that was), so a status built from savedAt after an import must
+	// never call that time a save in this browser.
 	function replaceFromImport(next: StoredProfile): SaveResult {
 		const valid = StoredProfileSchema.safeParse(next);
 		if (!valid.success) return 'failed';
