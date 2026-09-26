@@ -104,6 +104,17 @@ describe('vitest projects', () => {
 		expect(scripts.premutate).toBe('node scripts/build-records.mjs');
 	});
 
+	// Stryker copies the checkout into its sandbox, ignored files included, and a crashed run keeps
+	// the sandbox, so a copy of the real keys would stay behind.
+	it('keeps real env files out of the Stryker sandbox', () => {
+		const { ignorePatterns } = JSON.parse(readFileSync('stryker.config.json', 'utf8')) as {
+			ignorePatterns?: string[];
+		};
+		expect(ignorePatterns).toEqual(
+			expect.arrayContaining(['.env', '.env.*', '!.env.example', '.dev.vars', '.dev.vars.*'])
+		);
+	});
+
 	it('names a module whose only test runs in workerd or jsdom, once each', () => {
 		expect(
 			modulesTestedOnlyOutsideNode([

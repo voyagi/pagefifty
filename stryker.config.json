@@ -13,6 +13,7 @@
 		"!src/test/**",
 		"!src/lib/**/*.svelte.ts"
 	],
+	"ignorePatterns": [".env", ".env.*", "!.env.example", ".dev.vars", ".dev.vars.*"],
 	"incremental": true,
 	"incrementalFile": ".stryker-tmp/incremental.json",
 	"concurrency": 4,
