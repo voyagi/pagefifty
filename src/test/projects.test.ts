@@ -115,6 +115,18 @@ describe('vitest projects', () => {
 		);
 	});
 
+	// verdict.ts is pinned by its mutants harness only while something runs it. CI and the ship gate
+	// both run the gate chain, which must still end with gate:size: the step after it needs the build.
+	it('runs the verdict mutants harness in the gate chain, before the build that ends it', () => {
+		const { scripts } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+			scripts: Record<string, string>;
+		};
+		expect(scripts['gate:mutants']).toBe('node scripts/verdict.mutants.mjs');
+		const chain = scripts.gate.split(' && ');
+		expect(chain).toContain('npm run gate:mutants');
+		expect(chain.at(-1)).toBe('npm run gate:size');
+	});
+
 	it('names a module whose only test runs in workerd or jsdom, once each', () => {
 		expect(
 			modulesTestedOnlyOutsideNode([

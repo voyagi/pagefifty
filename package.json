@@ -29,12 +29,13 @@
 		"gate:deps": "depcruise src --config .dependency-cruiser.cjs",
 		"gate:size": "npm run build && size-limit",
 		"gate:dead": "node scripts/check-dead.mjs",
+		"gate:mutants": "node scripts/verdict.mutants.mjs",
 		"gate:env": "node scripts/check-env-example.mjs",
 		"gate:tsconfig": "node scripts/check-tsconfig-coverage.mjs",
 		"gate:ship-artifacts": "node scripts/check-ship-artifacts.mjs && node scripts/check-judged-artifacts.mjs",
 		"gate:repo": "node scripts/check-goals.mjs && node scripts/check-tracked-gitignore.mjs && node scripts/check-hookspath.mjs && node scripts/check-license.mjs && node scripts/check-git-identity.mjs && node scripts/check-artifact-metadata.mjs && node scripts/check-privacy-accountability.mjs && node scripts/check-ai-act.mjs && node scripts/check-icon-decision.mjs && node scripts/check-human-todo.mjs",
 		"gate:precommit": "eslint src && jscpd src && npm run gate:env && npm run gate:tsconfig && npm run gate:ship-artifacts",
-		"gate": "npm run gate:tsconfig && npm run gate:types && npm run gate:complexity && npm run gate:dup && npm run gate:deps && npm run gate:env && npm run gate:ship-artifacts && npm run gate:dead && npm run gate:size",
+		"gate": "npm run gate:tsconfig && npm run gate:types && npm run gate:complexity && npm run gate:dup && npm run gate:deps && npm run gate:env && npm run gate:ship-artifacts && npm run gate:dead && npm run gate:mutants && npm run gate:size",
 		"verify:ship": "node verify-ship.mjs"
 	},
 	"engines": {

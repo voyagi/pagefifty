@@ -129,11 +129,12 @@ class MemoryStorage implements Storage {
 	}
 }
 
-// Some browsers throw on the mere read of window.localStorage when storage is blocked. The page
-// then keeps the profile in memory for this view rather than failing.
+// Some browsers throw on the mere read of window.localStorage when storage is blocked, and Firefox
+// answers null when storage is switched off. The page then keeps the profile in memory for this
+// view rather than failing.
 export function browserStorage(source: { readonly localStorage: Storage } = window): Storage {
 	try {
-		return source.localStorage;
+		return (source.localStorage as Storage | null) ?? new MemoryStorage();
 	} catch {
 		return new MemoryStorage();
 	}

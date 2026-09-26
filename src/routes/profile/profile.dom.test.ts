@@ -77,6 +77,15 @@ describe('firm profile page', () => {
 		);
 	});
 
+	it('never calls a profile saved when storage switched off reads as null', async () => {
+		vi.spyOn(window, 'localStorage', 'get').mockReturnValue(null as unknown as Storage);
+		render(Page);
+		await userEvent.type(await staffField(), '19');
+		expect(screen.getByRole('status').textContent).toBe(
+			'Not saved: this browser blocks storage, so the profile lasts only while this page is open.'
+		);
+	});
+
 	it('says so when the browser refuses to store the profile', async () => {
 		vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
 			throw new DOMException('full', 'QuotaExceededError');

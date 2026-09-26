@@ -240,4 +240,11 @@ describe('browserStorage', () => {
 		storage.clear();
 		expect(storage.length).toBe(0);
 	});
+
+	// Firefox answers null rather than throwing when storage is switched off (dom.storage.enabled).
+	it('returns the in-memory stand-in when localStorage reads as null', () => {
+		const storage = browserStorage({ localStorage: null as unknown as Storage });
+		expect(storage).not.toBeNull();
+		expect(isKeptInMemory(storage)).toBe(true);
+	});
 });
