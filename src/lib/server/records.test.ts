@@ -56,9 +56,12 @@ describe('loadIndex', () => {
 
 	it('names the index and the cause when the Worker cannot fetch its file', async () => {
 		read.mockImplementationOnce(fetchFailed);
-		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow(
-			'the 2026-09-15 index could not be read: Error: read(...) failed: could not fetch'
-		);
+		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toMatchObject({
+			message: expect.stringContaining(
+				'the 2026-09-15 index could not be read: Error: read(...) failed: could not fetch'
+			),
+			cause: expect.objectContaining({ message: expect.stringContaining('read(...) failed') })
+		});
 	});
 
 	it('names the index when read() refuses its path outright', async () => {
@@ -68,9 +71,12 @@ describe('loadIndex', () => {
 		);
 	});
 
-	it('names the index when its file is not JSON', async () => {
+	it('names the index when its file is not JSON, keeping the parse error as the cause', async () => {
 		read.mockImplementationOnce(() => new Response('<!doctype html>'));
-		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow('the 2026-09-15 index is not JSON');
+		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toMatchObject({
+			message: expect.stringContaining('the 2026-09-15 index is not JSON'),
+			cause: expect.any(SyntaxError)
+		});
 	});
 });
 
