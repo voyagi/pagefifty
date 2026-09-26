@@ -32,6 +32,23 @@ describe('loadIndex', () => {
 		read.mockImplementationOnce(() => Response.json({ capture: {}, rows: [] }));
 		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow('does not match its schema');
 	});
+
+	it('names the step that writes the records when a capture was never built', async () => {
+		await expect(loadIndex('2000-01-01')).rejects.toThrow('scripts/build-records.mjs writes them');
+	});
+
+	// On the Worker, ASSETS answers a file that is not there with a 404 and a body that is no JSON.
+	it('names the index and the status when the file cannot be read', async () => {
+		read.mockImplementationOnce(() => new Response('Not Found', { status: 404 }));
+		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow(
+			'the 2026-09-15 index could not be read: HTTP 404'
+		);
+	});
+
+	it('names the index when its file is not JSON', async () => {
+		read.mockImplementationOnce(() => new Response('<!doctype html>'));
+		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow('the 2026-09-15 index is not JSON');
+	});
 });
 
 describe('loadRecord', () => {
@@ -45,6 +62,13 @@ describe('loadRecord', () => {
 		read.mockImplementationOnce(() => Response.json({ noticeNumber: '609955-2026', lots: 'x' }));
 		await expect(loadRecord(DEFAULT_CAPTURE, '609955-2026')).rejects.toThrow(
 			'the 2026-09-15 record 609955-2026 does not match its schema'
+		);
+	});
+
+	it('names the record and the status when its file cannot be read', async () => {
+		read.mockImplementationOnce(() => new Response('Not Found', { status: 404 }));
+		await expect(loadRecord(DEFAULT_CAPTURE, '609955-2026')).rejects.toThrow(
+			'the 2026-09-15 record 609955-2026 could not be read: HTTP 404'
 		);
 	});
 

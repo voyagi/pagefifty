@@ -46,11 +46,27 @@ const RECORD_URLS = byMatch(
 );
 // Stryker restore all
 
+// read() answers a Response. On the Worker a file that is not there comes back from ASSETS as a
+// 404 whose body is no JSON, so the status is checked first and a parse failure names the file.
+async function readJson(url: string, what: string): Promise<unknown> {
+	const response = read(url);
+	if (!response.ok) throw new Error(`${what} could not be read: HTTP ${response.status}`);
+	try {
+		return await response.json();
+	} catch (error) {
+		throw new Error(`${what} is not JSON: ${String(error)}`, { cause: error });
+	}
+}
+
 // A failed parse is a server error, never a partial list.
 export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 	const url = INDEX_URLS.get(capture);
-	if (url === undefined) throw new Error(`no built records for capture ${capture}`);
-	const parsed = SnapshotIndexSchema.safeParse(await read(url).json());
+	if (url === undefined) {
+		throw new Error(
+			`no built records for capture ${capture}: scripts/build-records.mjs writes them, and npm run dev, npm run build and the test run each call it first`
+		);
+	}
+	const parsed = SnapshotIndexSchema.safeParse(await readJson(url, `the ${capture} index`));
 	if (!parsed.success) {
 		throw new Error(`the ${capture} index does not match its schema: ${parsed.error.message}`);
 	}
@@ -66,7 +82,9 @@ export async function loadRecord(
 	if (!NOTICE_NUMBER.test(notice)) return undefined;
 	const url = RECORD_URLS.get(`${capture}/${notice}`);
 	if (url === undefined) return undefined;
-	const parsed = NoticeRecordSchema.safeParse(await read(url).json());
+	const parsed = NoticeRecordSchema.safeParse(
+		await readJson(url, `the ${capture} record ${notice}`)
+	);
 	if (!parsed.success) {
 		throw new Error(
 			`the ${capture} record ${notice} does not match its schema: ${parsed.error.message}`
