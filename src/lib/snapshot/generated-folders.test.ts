@@ -108,6 +108,16 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(readdirSync(out).filter((name) => name.startsWith('.tmp-'))).toEqual([]);
 	});
 
+	it('refuses a listed notice number the pages could not serve, and writes nothing', () => {
+		writeCapture(['0609955-2026']);
+		copyFileSync(capturePath('609955-2026'), join(capture, 'xml', '0609955-2026.xml'));
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain('records: 2026-01-02: (index): index:');
+		expect(run.stderr).toContain('noticeNumber');
+		expect(existsSync(join(out, '2026-01-02', 'records', '0609955-2026.json'))).toBe(false);
+	});
+
 	it('exits 2 when no capture folder holds a notices.json', () => {
 		const run = spawnSync(
 			process.execPath,

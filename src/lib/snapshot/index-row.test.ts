@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { NoticeRecord } from '../ingest/record';
-import { SnapshotIndexSchema, captureDay, toIndexRow } from './index-row';
+import { NOTICE_NUMBER, SnapshotIndexSchema, captureDay, toIndexRow } from './index-row';
 
 const RECORD: NoticeRecord = {
 	noticeNumber: '609955-2026',
@@ -38,6 +38,27 @@ describe('captureDay', () => {
 	});
 });
 
+describe('NOTICE_NUMBER', () => {
+	// 12345-2025 is a real notice, published by TED on 9 January 2025.
+	it.each(['1-2027', '12345-2025', '609955-2026', '12345678-2026'])('accepts %j', (notice) => {
+		expect(NOTICE_NUMBER.test(notice)).toBe(true);
+	});
+
+	it.each([
+		'00609955-2026',
+		'0-2026',
+		'123456789-2026',
+		'609955-26',
+		'609955-20266',
+		'x609955-2026',
+		'609955-2026x',
+		'609955_2026',
+		''
+	])('refuses %j', (notice) => {
+		expect(NOTICE_NUMBER.test(notice)).toBe(false);
+	});
+});
+
 describe('toIndexRow and the index schema', () => {
 	it('projects number, title, buyers and lot deadlines, and drops lot titles', () => {
 		expect(toIndexRow(RECORD)).toEqual({
@@ -57,6 +78,13 @@ describe('toIndexRow and the index schema', () => {
 		const result = SnapshotIndexSchema.safeParse(index([row]));
 		expect(result.success).toBe(false);
 		expect(result.error?.issues[0].path).toEqual(['rows', 0]);
+	});
+
+	it('refuses a row whose notice number the loader could not serve', () => {
+		const row = { ...toIndexRow(RECORD), noticeNumber: '../index' };
+		const result = SnapshotIndexSchema.safeParse(index([row]));
+		expect(result.success).toBe(false);
+		expect(result.error?.issues[0].path).toEqual(['rows', 0, 'noticeNumber']);
 	});
 
 	it('refuses a deadline without its offset', () => {

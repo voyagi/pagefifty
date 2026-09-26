@@ -3,13 +3,14 @@
 // binding on the Worker, so no notice XML is parsed while a page is served.
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
-import { SnapshotIndexSchema, type SnapshotIndex } from '../snapshot/index-row';
+import { NOTICE_NUMBER, SnapshotIndexSchema, type SnapshotIndex } from '../snapshot/index-row';
 
 export const DEFAULT_CAPTURE = '2026-09-15';
-export const NOTICE_NUMBER = /^\d{6}-\d{4}$/;
 
+// The build names each record file after a notice number the index schema accepted, so the file
+// name is read back as written and loadRecord checks the number itself before any lookup.
 const INDEX_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/index\.json$/;
-const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/(\d{6}-\d{4})\.json$/;
+const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 
 function byMatch(urls: Record<string, string>, pattern: RegExp): ReadonlyMap<string, string> {
 	const found = new Map<string, string>();

@@ -8,7 +8,7 @@ const read = vi.hoisted(() =>
 );
 vi.mock('$app/server', () => ({ read }));
 
-const { DEFAULT_CAPTURE, NOTICE_NUMBER, loadIndex, loadRecord } = await import('./records');
+const { DEFAULT_CAPTURE, loadIndex, loadRecord } = await import('./records');
 
 beforeEach(() => {
 	read.mockClear();
@@ -41,17 +41,16 @@ describe('loadRecord', () => {
 		expect(record?.lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
 	});
 
-	it.each(['000000-0000', '609955-2026 ', ' ', '../index', '6099552026'])(
-		'answers %j with nothing and never reads',
-		async (notice) => {
-			expect(await loadRecord(DEFAULT_CAPTURE, notice)).toBeUndefined();
-			expect(read).not.toHaveBeenCalled();
-		}
-	);
-
-	it('checks the notice number format exactly', () => {
-		expect(NOTICE_NUMBER.test('609955-2026')).toBe(true);
-		expect(NOTICE_NUMBER.test('x609955-2026')).toBe(false);
-		expect(NOTICE_NUMBER.test('609955-2026x')).toBe(false);
+	it.each([
+		'000000-0000',
+		'00609955-2026',
+		'609955-2026 ',
+		' ',
+		'../index',
+		'6099552026',
+		'12345-2025'
+	])('answers %j with nothing and never reads', async (notice) => {
+		expect(await loadRecord(DEFAULT_CAPTURE, notice)).toBeUndefined();
+		expect(read).not.toHaveBeenCalled();
 	});
 });

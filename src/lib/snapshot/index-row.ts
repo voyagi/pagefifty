@@ -25,10 +25,16 @@ const LotRowSchema: z.ZodType<Pick<LotRecord, 'id' | 'deadlines'>> = z.strictObj
 	deadlines: DeadlinesSchema
 });
 
+// A notice number as TED's site and search API write it: the running number of the year without
+// the zero padding its XML carries, then the year. It has five digits in January ("12345-2025"
+// was published on 9 January 2025) and six by September ("609955-2026"); the XML pads it to eight.
+// The build refuses a listing number of any other shape, so every record it writes can be served.
+export const NOTICE_NUMBER = /^[1-9]\d{0,7}-\d{4}$/;
+
 // Strict objects: a field the build writes and this schema does not name fails the load loudly
 // instead of being dropped from the page.
 const IndexRowSchema = z.strictObject({
-	noticeNumber: z.string().min(1),
+	noticeNumber: z.string().regex(NOTICE_NUMBER),
 	title: LangTextSchema,
 	buyers: z.array(BuyerSchema),
 	lots: z.array(LotRowSchema)
