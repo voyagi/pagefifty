@@ -40,11 +40,6 @@
 </main>
 
 <style>
-	.mono {
-		font-family: 'IBM Plex Mono', ui-monospace, monospace;
-		font-variant-numeric: tabular-nums;
-	}
-
 	.caveat,
 	.b {
 		font-size: 0.8125rem;
@@ -73,17 +68,5 @@
 
 	.t {
 		font-weight: 600;
-	}
-
-	.visually-hidden {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		margin: -1px;
-		padding: 0;
-		overflow: hidden;
-		clip-path: inset(50%);
-		white-space: nowrap;
-		border: 0;
 	}
 </style>
