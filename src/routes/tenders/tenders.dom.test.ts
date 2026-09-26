@@ -10,12 +10,16 @@ const data = {
 			noticeNumber: '609955-2026',
 			title: { text: 'Gebäudeautomation <b>Los 4</b>', lang: 'de', rawLang: 'DEU' },
 			buyers: [{ name: { text: 'Burgenlandkreis', lang: 'de', rawLang: 'DEU' }, country: 'DEU' }],
+			country: ['DEU'],
+			cpvCodes: ['45315700', '48921000'],
 			lots: []
 		},
 		{
 			noticeNumber: '600367-2026',
 			title: { text: 'Aanbesteding', lang: 'nl', rawLang: 'NLD' },
 			buyers: [],
+			country: [],
+			cpvCodes: [],
 			lots: []
 		}
 	]

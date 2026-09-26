@@ -165,6 +165,28 @@ export const FIXTURE_ROLES = {
 			evidence: '>other</cbc:RegulatoryDomain>'
 		}
 	),
+	'escaped-link': capture({
+		notice: '601374-2026',
+		note: 'documents URI whose query parameters are joined by an escaped ampersand',
+		evidence: '&amp;TenderOID='
+	}),
+	'escaped-text': capture({
+		notice: '600017-2026',
+		note: 'criterion text with an escaped greater-than sign',
+		evidence: '(bspw. &gt; 100.000'
+	}),
+	'group-legal-form': capture({
+		notice: '605918-2026',
+		note: 'its one lot requires a legal form for a group of tenderers and describes it',
+		evidence: 'listName="required">true</cbc:CompanyLegalFormCode>',
+		lots: 1
+	}),
+	'joint-buyers': capture({
+		notice: '611918-2026',
+		note: 'joint procurement by nine buyers',
+		evidence: 'Westdeutscher Rundfunk',
+		lots: 1
+	}),
 	'german-classifier': capture(
 		{
 			notice: '609955-2026',
