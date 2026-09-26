@@ -10,6 +10,23 @@ vi.mock('$app/server', () => ({ read }));
 
 const { DEFAULT_CAPTURE, loadIndex, loadRecord } = await import('./records');
 
+// The shapes SvelteKit's read() really produces on the Worker. Its answer is always status 200: the
+// adapter fetches the file through ASSETS inside the body stream and throws there when ASSETS
+// answers 404, and a path the manifest does not hold throws before any response exists.
+const fetchFailed = () =>
+	new Response(
+		new ReadableStream({
+			start(controller) {
+				controller.error(
+					new Error('read(...) failed: could not fetch http://127.0.0.1/x.json (404 Not Found)')
+				);
+			}
+		})
+	);
+const notInManifest = (): Response => {
+	throw new Error('Asset does not exist: x.json');
+};
+
 beforeEach(() => {
 	read.mockClear();
 });
@@ -37,11 +54,17 @@ describe('loadIndex', () => {
 		await expect(loadIndex('2000-01-01')).rejects.toThrow('scripts/build-records.mjs writes them');
 	});
 
-	// On the Worker, ASSETS answers a file that is not there with a 404 and a body that is no JSON.
-	it('names the index and the status when the file cannot be read', async () => {
-		read.mockImplementationOnce(() => new Response('Not Found', { status: 404 }));
+	it('names the index and the cause when the Worker cannot fetch its file', async () => {
+		read.mockImplementationOnce(fetchFailed);
 		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow(
-			'the 2026-09-15 index could not be read: HTTP 404'
+			'the 2026-09-15 index could not be read: Error: read(...) failed: could not fetch'
+		);
+	});
+
+	it('names the index when read() refuses its path outright', async () => {
+		read.mockImplementationOnce(notInManifest);
+		await expect(loadIndex(DEFAULT_CAPTURE)).rejects.toThrow(
+			'the 2026-09-15 index could not be read: Error: Asset does not exist'
 		);
 	});
 
@@ -65,10 +88,10 @@ describe('loadRecord', () => {
 		);
 	});
 
-	it('names the record and the status when its file cannot be read', async () => {
-		read.mockImplementationOnce(() => new Response('Not Found', { status: 404 }));
+	it('names the record and the cause when the Worker cannot fetch its file', async () => {
+		read.mockImplementationOnce(fetchFailed);
 		await expect(loadRecord(DEFAULT_CAPTURE, '609955-2026')).rejects.toThrow(
-			'the 2026-09-15 record 609955-2026 could not be read: HTTP 404'
+			'the 2026-09-15 record 609955-2026 could not be read: Error: read(...) failed'
 		);
 	});
 

@@ -46,13 +46,19 @@ const RECORD_URLS = byMatch(
 );
 // Stryker restore all
 
-// read() answers a Response. On the Worker a file that is not there comes back from ASSETS as a
-// 404 whose body is no JSON, so the status is checked first and a parse failure names the file.
+// SvelteKit's read() always answers status 200. On the Worker the adapter fetches the file through
+// ASSETS while the body is read and throws there when ASSETS answers 404, and a path the manifest
+// does not hold throws at once. So reading the body and parsing it are separate steps, and each
+// failure names the file and the step.
 async function readJson(url: string, what: string): Promise<unknown> {
-	const response = read(url);
-	if (!response.ok) throw new Error(`${what} could not be read: HTTP ${response.status}`);
+	let text: string;
 	try {
-		return await response.json();
+		text = await read(url).text();
+	} catch (error) {
+		throw new Error(`${what} could not be read: ${String(error)}`, { cause: error });
+	}
+	try {
+		return JSON.parse(text);
 	} catch (error) {
 		throw new Error(`${what} is not JSON: ${String(error)}`, { cause: error });
 	}
