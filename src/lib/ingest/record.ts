@@ -142,8 +142,19 @@ function pickName(names: unknown[], noticeLanguage: string | undefined): LangTex
 	return chosen === undefined ? undefined : langText(chosen);
 }
 
-const DATE = /^(\d{4}-\d{2}-\d{2})(Z|[+-]\d{2}:\d{2})?$/;
+const DATE = /^(\d{4})-(\d{2})-(\d{2})(Z|[+-]\d{2}:\d{2})?$/;
 const TIME = /^(\d{2}:\d{2}:\d{2}(?:\.\d+)?)(Z|[+-]\d{2}:\d{2})?$/;
+
+// Date.parse accepts 30 February (V8 answers a number for it), so the day is also checked against
+// the calendar before it becomes part of a deadline.
+function isCalendarDay(year: string, month: string, day: string): boolean {
+	const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+	return (
+		date.getUTCFullYear() === Number(year) &&
+		date.getUTCMonth() === Number(month) - 1 &&
+		date.getUTCDate() === Number(day)
+	);
+}
 
 // EndDate carries the day and EndTime the time, each with an offset; together they are one instant
 // in the buyer's own offset, which the deadline display later reads.
@@ -151,8 +162,9 @@ function deadline(period: unknown, where: string): string | undefined {
 	if (period === undefined) return undefined;
 	const date = DATE.exec(requiredText(period, ['cbc:EndDate'], where));
 	const time = TIME.exec(requiredText(period, ['cbc:EndTime'], where));
-	const offset = time?.[2] ?? date?.[2];
-	const instant = date && time && offset ? `${date[1]}T${time[1]}${offset}` : '';
+	const offset = time?.[2] ?? date?.[4];
+	const valid = date && time && offset && isCalendarDay(date[1], date[2], date[3]);
+	const instant = valid ? `${date[1]}-${date[2]}-${date[3]}T${time[1]}${offset}` : '';
 	if (Number.isNaN(Date.parse(instant))) {
 		throw new RecordFault(`${where} is not a date and time with an offset`);
 	}

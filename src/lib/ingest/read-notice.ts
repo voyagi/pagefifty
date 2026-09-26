@@ -30,7 +30,8 @@ const NAMESPACES: ReadonlyMap<string, string> = new Map([
 	['efext', 'http://data.europa.eu/p27/eforms-ubl-extensions/1'],
 	['ext', 'urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2']
 ]);
-const DECLARATION = /xmlns(?::([A-Za-z_][\w.-]*))?\s*=\s*(["'])(.*?)\2/g;
+const DEFAULT_DECLARATION = '@_xmlns';
+const PREFIX_DECLARATION = '@_xmlns:';
 
 // Each of these repeats wherever it occurs, so a one-lot notice has the same shape as a ten-lot one.
 const REPEATING: ReadonlySet<string> = new Set([
@@ -79,11 +80,31 @@ function decode(bytes: Uint8Array): string | undefined {
 	}
 }
 
-function namespaceFault(text: string): string | undefined {
-	for (const [, prefix = '', , uri] of text.matchAll(DECLARATION)) {
-		const expected = NAMESPACES.get(prefix);
-		if (expected !== undefined && expected !== uri) {
-			return `namespace prefix ${prefix || '(default)'} is bound to ${uri}, expected ${expected}`;
+function declaredPrefix(key: string): string | undefined {
+	if (key === DEFAULT_DECLARATION) return '';
+	return key.startsWith(PREFIX_DECLARATION) ? key.slice(PREFIX_DECLARATION.length) : undefined;
+}
+
+function declarationFault(key: string, uri: unknown): string | undefined {
+	const prefix = declaredPrefix(key);
+	const expected = prefix === undefined ? undefined : NAMESPACES.get(prefix);
+	if (expected === undefined || expected === uri) return undefined;
+	return `namespace prefix ${prefix || '(default)'} is bound to ${String(uri)}, expected ${expected}`;
+}
+
+// Every declaration on every element of the parsed tree. Text, comments and attribute values that
+// only quote a declaration bind nothing, so they never refuse a notice. The walk keeps its own
+// list instead of recursing or spreading, so a notice of many thousand elements cannot overflow
+// the stack.
+function namespaceFault(tree: unknown): string | undefined {
+	const pending: unknown[] = [tree];
+	while (pending.length > 0) {
+		const node = pending.pop();
+		if (typeof node !== 'object' || node === null) continue;
+		for (const [key, value] of Object.entries(node)) {
+			const fault = declarationFault(key, value);
+			if (fault) return fault;
+			pending.push(value);
 		}
 	}
 	return undefined;
@@ -121,10 +142,10 @@ export function readNoticeXml(bytes: Uint8Array): TreeResult {
 	if (valid !== true) {
 		return fail('malformed', `${valid.err.code} at line ${valid.err.line}: ${valid.err.msg}`);
 	}
-	const badNamespace = namespaceFault(text);
-	if (badNamespace) return fail('malformed', badNamespace);
 	const parsed = parse(text);
 	if (!parsed.ok) return parsed;
+	const badNamespace = namespaceFault(parsed.tree);
+	if (badNamespace) return fail('malformed', badNamespace);
 	const badRoot = rootFault(parsed.tree);
 	return badRoot ? fail('malformed', badRoot) : parsed;
 }

@@ -182,6 +182,43 @@ describe('readNotice record details', () => {
 		expect(readOk(text).lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
 	});
 
+	it('reads a deadline on 29 February of a leap year', () => {
+		const text = ONE_LOT.replace(
+			'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
+			'<cbc:EndDate>2028-02-29+02:00</cbc:EndDate>'
+		);
+		expect(readOk(text).lots[0].deadlines.tender).toBe('2028-02-29T10:30:00+02:00');
+	});
+
+	// Quotes need no escaping in XML text, so an IT tender can describe an interface in words that
+	// look like a declaration. Only a real declaration on an element binds a prefix.
+	it('reads a notice whose text or comments quote a namespace declaration', () => {
+		const quoted =
+			'Schnittstelle mit xmlns="urn:example:other" und xmlns:cbc="urn:example:not-ubl"';
+		const text = ONE_LOT.replace(
+			PROCEDURE_TITLE,
+			`<cbc:Name languageID="DEU">${quoted}</cbc:Name>`
+		).replace('<cbc:UBLVersionID>', '<!-- xmlns:efbc="urn:example:not-ubl" --><cbc:UBLVersionID>');
+		expect(readOk(text).title.text).toBe(quoted);
+	});
+
+	it.each([
+		['an element with content', '<cbc:UBLVersionID xmlns:cbc="urn:example:not-ubl">'],
+		['an empty element', '<efbc:Probe xmlns:efbc="urn:example:not-ubl"/><cbc:UBLVersionID>'],
+		[
+			'a default namespace on a nested element',
+			'<Probe xmlns="urn:example:other"/><cbc:UBLVersionID>'
+		]
+	])('refuses a known prefix bound to another namespace on %s', (_where, replacement) => {
+		const text = ONE_LOT.replace('<cbc:UBLVersionID>', replacement);
+		expect(text).not.toBe(ONE_LOT);
+		const result = refused(text);
+		expect(result.kind).toBe('malformed');
+		expect(result.detail).toMatch(
+			/^namespace prefix (cbc|efbc|\(default\)) is bound to urn:example:/
+		);
+	});
+
 	it('reads a notice with no publication id of its own', () => {
 		const text = ONE_LOT.replace(
 			/<efbc:NoticePublicationID[^>]*>[^<]*<\/efbc:NoticePublicationID>/,
@@ -252,6 +289,15 @@ describe('readNotice refusals of incomplete records', () => {
 				text.replace(
 					'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
 					'<cbc:EndDate>6 Oct 2026</cbc:EndDate>'
+				),
+			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
+		],
+		[
+			'a tender deadline on a day the calendar holds',
+			(text: string) =>
+				text.replace(
+					'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
+					'<cbc:EndDate>2026-02-30+02:00</cbc:EndDate>'
 				),
 			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
 		]
