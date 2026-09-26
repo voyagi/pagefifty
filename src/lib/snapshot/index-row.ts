@@ -2,7 +2,19 @@
 // built index and records with.
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
-import type { Buyer, LangText, LotDeadlines, LotRecord, NoticeRecord } from '../ingest/record.ts';
+import type {
+	Amount,
+	Buyer,
+	Criterion,
+	CriterionParameter,
+	GroupLegalForm,
+	LangText,
+	LegislationReference,
+	LotDeadlines,
+	LotRecord,
+	NoticeRecord,
+	SafeLink
+} from '../ingest/record.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
 // writes cannot drift apart without a type error.
@@ -21,6 +33,39 @@ const DeadlinesSchema: z.ZodType<LotDeadlines> = z.strictObject({
 
 const BuyerSchema: z.ZodType<Buyer> = z.strictObject({ name: LangTextSchema, country: z.string() });
 
+// Values are strings as published; a number here means something parsed a notice value.
+const AmountSchema: z.ZodType<Amount> = z.strictObject({
+	amount: z.string(),
+	currency: z.string()
+});
+
+const SafeLinkSchema: z.ZodType<SafeLink> = z.strictObject({
+	published: z.string(),
+	href: z.string().optional()
+});
+
+const ParameterSchema: z.ZodType<CriterionParameter> = z.strictObject({
+	listName: z.string().optional(),
+	code: z.string(),
+	value: z.string()
+});
+
+const CriterionSchema: z.ZodType<Criterion> = z.strictObject({
+	code: z.string(),
+	descriptions: z.array(LangTextSchema),
+	parameters: z.array(ParameterSchema)
+});
+
+const GroupLegalFormSchema: z.ZodType<GroupLegalForm> = z.strictObject({
+	required: z.string(),
+	description: LangTextSchema.optional()
+});
+
+const LegislationSchema: z.ZodType<LegislationReference> = z.strictObject({
+	id: z.string(),
+	description: LangTextSchema.optional()
+});
+
 const LotRowSchema: z.ZodType<Pick<LotRecord, 'id' | 'deadlines'>> = z.strictObject({
 	id: z.string(),
 	deadlines: DeadlinesSchema
@@ -38,20 +83,38 @@ const IndexRowSchema = z.strictObject({
 	noticeNumber: z.string().regex(NOTICE_NUMBER),
 	title: LangTextSchema,
 	buyers: z.array(BuyerSchema),
+	country: z.array(z.string()),
+	cpvCodes: z.array(z.string()),
+	estimatedValue: AmountSchema.optional(),
 	lots: z.array(LotRowSchema)
 });
 
 const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
 	id: z.string(),
 	title: LangTextSchema.optional(),
-	deadlines: DeadlinesSchema
+	deadlines: DeadlinesSchema,
+	criteria: z.array(CriterionSchema),
+	criteriaSources: z.array(z.string()),
+	reserved: z.string().optional(),
+	notes: z.array(LangTextSchema),
+	groupLegalForm: GroupLegalFormSchema.optional(),
+	estimatedValue: AmountSchema.optional(),
+	documents: SafeLinkSchema.optional()
 });
 
 export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	noticeNumber: z.string().regex(NOTICE_NUMBER),
 	sdkVersion: z.string(),
+	noticeSubtype: z.string(),
+	legalBasis: z.string(),
+	nationalLegislation: z.array(LegislationSchema),
 	title: LangTextSchema,
 	buyers: z.array(BuyerSchema),
+	procedureNotes: z.array(LangTextSchema),
+	estimatedValue: AmountSchema.optional(),
+	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
+	documents: SafeLinkSchema.optional(),
+	changeReasons: z.array(z.string()),
 	lots: z.array(LotRecordSchema)
 });
 
@@ -68,11 +131,19 @@ export const SnapshotIndexSchema = z.strictObject({
 export type IndexRow = z.infer<typeof IndexRowSchema>;
 export type SnapshotIndex = z.infer<typeof SnapshotIndexSchema>;
 
+const unique = (values: string[]) => [...new Set(values)];
+
+// The list filters on country and CPV group from any main or additional code (research Pitfall 4:
+// a main CPV can sit outside the IT groups while an additional one is inside).
 export function toIndexRow(record: NoticeRecord): IndexRow {
+	const { estimatedValue } = record;
 	return {
 		noticeNumber: record.noticeNumber,
 		title: record.title,
 		buyers: record.buyers,
+		country: unique(record.buyers.map((buyer) => buyer.country)),
+		cpvCodes: unique([...record.cpv.main, ...record.cpv.additional]),
+		...(estimatedValue && { estimatedValue }),
 		lots: record.lots.map(({ id, deadlines }) => ({ id, deadlines }))
 	};
 }

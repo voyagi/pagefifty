@@ -20,17 +20,68 @@ export interface LotDeadlines {
 	tender?: string;
 }
 
+// The amount is the decimal string as published ("834550.06", "0"); the list applies its own floor.
+export interface Amount {
+	amount: string;
+	currency: string;
+}
+
+// A notice's link text as published, and a link target only for http and https: the text comes
+// from a third party and becomes an href on the tender page.
+export interface SafeLink {
+	published: string;
+	href?: string;
+}
+
+export interface LegislationReference {
+	id: string;
+	description?: LangText;
+}
+
+// listName tells a score weight (number-weight) from a threshold (number-threshold); both stay text.
+export interface CriterionParameter {
+	listName?: string;
+	code: string;
+	value: string;
+}
+
+export interface Criterion {
+	code: string;
+	descriptions: LangText[];
+	parameters: CriterionParameter[];
+}
+
+export interface GroupLegalForm {
+	required: string;
+	description?: LangText;
+}
+
 export interface LotRecord {
 	id: string;
 	title?: LangText;
 	deadlines: LotDeadlines;
+	criteria: Criterion[];
+	criteriaSources: string[];
+	reserved?: string;
+	notes: LangText[];
+	groupLegalForm?: GroupLegalForm;
+	estimatedValue?: Amount;
+	documents?: SafeLink;
 }
 
 export interface NoticeRecord {
 	noticeNumber: string;
 	sdkVersion: string;
+	noticeSubtype: string;
+	legalBasis: string;
+	nationalLegislation: LegislationReference[];
 	title: LangText;
 	buyers: Buyer[];
+	procedureNotes: LangText[];
+	estimatedValue?: Amount;
+	cpv: { main: string[]; additional: string[] };
+	documents?: SafeLink;
+	changeReasons: string[];
 	lots: LotRecord[];
 }
 
@@ -147,15 +198,13 @@ const DATE = /^(\d{4})-(\d{2})-(\d{2})(Z|[+-]\d{2}:\d{2})?$/;
 // record schema does not, and no notice in the capture uses it, so it is refused here by name.
 const TIME = /^((?:[01]\d|2[0-3]):\d{2}:\d{2}(?:\.\d+)?)(Z|[+-]\d{2}:\d{2})?$/;
 
-// Date.parse accepts 30 February (V8 answers a number for it), so the day is also checked against
-// the calendar before it becomes part of a deadline.
+// Date.parse accepts 30 February (V8 rolls it over to 2 March), so the day is also checked against
+// the calendar: a real day survives the round trip through Date unchanged. The notice's digits are
+// compared as text and never turned into numbers here.
 function isCalendarDay(year: string, month: string, day: string): boolean {
-	const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
-	return (
-		date.getUTCFullYear() === Number(year) &&
-		date.getUTCMonth() === Number(month) - 1 &&
-		date.getUTCDate() === Number(day)
-	);
+	const written = `${year}-${month}-${day}`;
+	const date = new Date(`${written}T00:00:00Z`);
+	return !Number.isNaN(date.getTime()) && date.toISOString().startsWith(`${written}T`);
 }
 
 const asNumericOffset = (offset: string) => (offset === 'Z' ? '+00:00' : offset);
@@ -197,11 +246,115 @@ function lotDeadlines(lot: unknown, where: string): LotDeadlines {
 	return { ...(request && { request }), ...(tender && { tender }) };
 }
 
+const unique = (values: string[]) => [...new Set(values)];
+
+function texts(start: unknown, path: readonly string[]): string[] {
+	return walk(start, path)
+		.map(textOf)
+		.filter((text) => text !== '');
+}
+
+// Every element with text, in publication order, each with its own language.
+function langTexts(start: unknown, path: readonly string[]): LangText[] {
+	return walk(start, path)
+		.filter((value) => textOf(value))
+		.map(langText);
+}
+
+// One element can hold codes from several code lists, told apart only by listName.
+function codesIn(requests: unknown[], listName: string): string[] {
+	return walk(requests, ['cac:SpecificTendererRequirement', 'cbc:TendererRequirementTypeCode'])
+		.filter((code) => attribute(code, 'listName') === listName)
+		.map(textOf)
+		.filter((text) => text !== '');
+}
+
+function toAmount(projects: unknown[], where: string): Amount | undefined {
+	const path = ['cac:RequestedTenderTotal', 'cbc:EstimatedOverallContractAmount'];
+	const [element] = walk(projects, path);
+	if (element === undefined) return undefined;
+	const amount = textOf(element);
+	const currency = attribute(element, 'currencyID');
+	if (!amount || !currency) throw missing(`${where}/${path.join('/')} with its currencyID`);
+	return { amount, currency };
+}
+
+function toDocuments(terms: unknown[]): SafeLink | undefined {
+	const uri = firstText(terms, [
+		'cac:CallForTendersDocumentReference',
+		'cac:Attachment',
+		'cac:ExternalReference',
+		'cbc:URI'
+	]);
+	return uri === undefined ? undefined : safeLink(uri);
+}
+
+function toParameter(parameter: unknown, where: string): CriterionParameter {
+	const path = `${where}/efac:CriterionParameter`;
+	const [codeElement] = walk(parameter, ['efbc:ParameterCode']);
+	const code = textOf(codeElement);
+	if (!code) throw missing(`${path}/efbc:ParameterCode`);
+	const value = requiredText(parameter, ['efbc:ParameterNumeric'], path);
+	const listName = attribute(codeElement, 'listName');
+	return { ...(listName && { listName }), code, value };
+}
+
+function toCriterion(criterion: unknown, lotWhere: string): Criterion {
+	const where = `${lotWhere}/efac:SelectionCriteria`;
+	const code = walk(criterion, ['cbc:TendererRequirementTypeCode']).find(
+		(each) => attribute(each, 'listName') === 'selection-criterion' && textOf(each)
+	);
+	if (code === undefined) throw missing(`${where}/cbc:TendererRequirementTypeCode`);
+	return {
+		code: textOf(code),
+		descriptions: langTexts(criterion, ['cbc:Description']),
+		parameters: walk(criterion, ['efac:CriterionParameter']).map((each) => toParameter(each, where))
+	};
+}
+
+// The legal form a group of tenderers must take sits in the lot's own qualification request.
+function toGroupLegalForm(requests: unknown[], where: string): GroupLegalForm | undefined {
+	const request = requests.find(
+		(each) =>
+			walk(each, ['cbc:CompanyLegalFormCode']).length +
+				walk(each, ['cbc:CompanyLegalForm']).length >
+			0
+	);
+	if (request === undefined) return undefined;
+	const required = requiredText(
+		request,
+		['cbc:CompanyLegalFormCode'],
+		`${where}/cac:TendererQualificationRequest`
+	);
+	const [description] = langTexts(request, ['cbc:CompanyLegalForm']);
+	return { required, ...(description && { description }) };
+}
+
 function toLot(lot: unknown, noticeLanguage: string | undefined): LotRecord {
 	const id = requiredText(lot, ['cbc:ID'], `${ROOT}/cac:ProcurementProjectLot`);
 	const where = `${ROOT}/cac:ProcurementProjectLot[${id}]`;
-	const title = pickName(walk(lot, ['cac:ProcurementProject', 'cbc:Name']), noticeLanguage);
-	return { id, ...(title && { title }), deadlines: lotDeadlines(lot, where) };
+	const project = walk(lot, ['cac:ProcurementProject']);
+	const terms = walk(lot, ['cac:TenderingTerms']);
+	const requests = walk(terms, ['cac:TendererQualificationRequest']);
+	const title = pickName(walk(project, ['cbc:Name']), noticeLanguage);
+	const [reserved] = codesIn(requests, 'reserved-procurement');
+	const groupLegalForm = toGroupLegalForm(requests, where);
+	const estimatedValue = toAmount(project, `${where}/cac:ProcurementProject`);
+	const documents = toDocuments(terms);
+	return {
+		id,
+		...(title && { title }),
+		deadlines: lotDeadlines(lot, where),
+		criteria: walk(terms, [...EFORMS_EXTENSION, 'efac:SelectionCriteria']).map((criterion) =>
+			toCriterion(criterion, where)
+		),
+		criteriaSources: codesIn(requests, 'selection-criteria-source'),
+		...(reserved && { reserved }),
+		notes: langTexts(project, ['cbc:Note']),
+		...(groupLegalForm && { groupLegalForm }),
+		...(estimatedValue && { estimatedValue }),
+		...(documents && { documents })
+	};
 }
 
 function companiesById(root: unknown): Map<string, unknown> {
@@ -239,18 +392,58 @@ function toBuyers(root: unknown): Buyer[] {
 	});
 }
 
+function toLegislation(root: XmlNode): LegislationReference[] {
+	const path = ['cac:TenderingTerms', 'cac:ProcurementLegislationDocumentReference'];
+	return walk(root, path).map((reference) => {
+		const id = requiredText(reference, ['cbc:ID'], `${ROOT}/${path.join('/')}`);
+		const [description] = langTexts(reference, ['cbc:DocumentDescription']);
+		return { id, ...(description && { description }) };
+	});
+}
+
+// CPV codes from the procedure and from every lot, each code once, in publication order.
+function cpvCodes(projects: unknown[], classification: string): string[] {
+	const codes = walk(projects, [classification, 'cbc:ItemClassificationCode']).filter(
+		(code) => attribute(code, 'listName') === 'cpv'
+	);
+	return unique(codes.map(textOf).filter((text) => text !== ''));
+}
+
 function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
 	const sdkVersion = requiredText(root, ['cbc:CustomizationID'], ROOT);
+	const extension = [...EFORMS_EXTENSION, 'efac:NoticeSubType', 'cbc:SubTypeCode'];
+	const noticeSubtype = requiredText(root, extension, ROOT);
+	const legalBasis = requiredText(root, ['cbc:RegulatoryDomain'], ROOT);
 	const noticeLanguage = firstText(root, ['cbc:NoticeLanguageCode']);
-	const title = pickName(walk(root, ['cac:ProcurementProject', 'cbc:Name']), noticeLanguage);
+	const procedure = walk(root, ['cac:ProcurementProject']);
+	const title = pickName(walk(procedure, ['cbc:Name']), noticeLanguage);
 	if (title === undefined) throw missing(`${ROOT}/cac:ProcurementProject/cbc:Name`);
 	const lots = walk(root, ['cac:ProcurementProjectLot']);
 	if (lots.length === 0) throw missing(`${ROOT}/cac:ProcurementProjectLot`);
+	const projects = [...procedure, ...walk(lots, ['cac:ProcurementProject'])];
+	const estimatedValue = toAmount(procedure, `${ROOT}/cac:ProcurementProject`);
+	const documents = toDocuments(walk(root, ['cac:TenderingTerms']));
 	return {
 		noticeNumber,
 		sdkVersion,
+		noticeSubtype,
+		legalBasis,
+		nationalLegislation: toLegislation(root),
 		title,
 		buyers: toBuyers(root),
+		procedureNotes: langTexts(procedure, ['cbc:Note']),
+		...(estimatedValue && { estimatedValue }),
+		cpv: {
+			main: cpvCodes(projects, 'cac:MainCommodityClassification'),
+			additional: cpvCodes(projects, 'cac:AdditionalCommodityClassification')
+		},
+		...(documents && { documents }),
+		changeReasons: texts(root, [
+			...EFORMS_EXTENSION,
+			'efac:Changes',
+			'efac:ChangeReason',
+			'cbc:ReasonCode'
+		]),
 		lots: lots.map((lot) => toLot(lot, noticeLanguage))
 	};
 }
@@ -264,6 +457,20 @@ export function toNoticeRecord(tree: unknown, noticeNumber: string): RecordResul
 		if (error instanceof RecordFault) return { ok: false, detail: error.message };
 		throw error;
 	}
+}
+
+const LINK_SCHEMES: ReadonlySet<string> = new Set(['http:', 'https:']);
+
+// Only an absolute http or https URL becomes a link target; javascript:, data:, a relative or an
+// unparseable URI keeps its published text and no href.
+export function safeLink(published: string): SafeLink {
+	let url: URL;
+	try {
+		url = new URL(published);
+	} catch {
+		return { published };
+	}
+	return LINK_SCHEMES.has(url.protocol) ? { published, href: url.href } : { published };
 }
 
 // TED's own id for the notice, zero-padded as published ("00609955-2026"), when the notice has one.
