@@ -14,6 +14,18 @@ export const PROFILE_KEY = 'pagefifty-profile';
 export const ACTIVE_FIRM_KEY = 'pagefifty-active-firm';
 
 export type SaveResult = 'saved' | 'unchanged' | 'failed' | 'newer-version';
+export type ActiveFirm = 'own' | 'demo';
+
+// The part of navigator this store uses; absent where the browser has no Storage API manager.
+export interface PersistCapableNavigator {
+	readonly storage?: { persist?: () => Promise<boolean> };
+}
+
+// window in the page; any EventTarget in tests.
+export interface StorageEventSource {
+	addEventListener(type: 'storage', listener: (event: Event) => void): void;
+	removeEventListener(type: 'storage', listener: (event: Event) => void): void;
+}
 
 type StoredRead =
 	{ kind: 'none' } | { kind: 'read'; stored: StoredProfile } | { kind: 'newer'; version: number };
@@ -43,9 +55,11 @@ function isNode(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function readRaw(storage: Storage): string | null {
+const readFirm = (raw: string | null): ActiveFirm => (raw === 'demo' ? 'demo' : 'own');
+
+function readKey(storage: Storage, key: string): string | null {
 	try {
-		return storage.getItem(PROFILE_KEY);
+		return storage.getItem(key);
 	} catch {
 		return null;
 	}
@@ -54,22 +68,43 @@ function readRaw(storage: Storage): string | null {
 export function createProfileStore(storage: Storage) {
 	let stored = $state<StoredProfile | null>(null);
 	let newerVersion = $state<number | null>(null);
+	let activeFirm = $state<ActiveFirm>('own');
+	let hasSaved = false;
+	let persistRequested = false;
+
+	// Another tab can write after this page loaded (a newer Pagefifty left open across a release, or
+	// the same page open twice), so every write first reads what storage holds now.
+	function readCurrent(): StoredRead {
+		const current = parseStored(readKey(storage, PROFILE_KEY));
+		newerVersion = current.kind === 'newer' ? current.version : null;
+		return current;
+	}
+
+	function write(next: StoredProfile): SaveResult {
+		try {
+			storage.setItem(PROFILE_KEY, canonicalStoredJson(next));
+		} catch {
+			return 'failed';
+		}
+		stored = next;
+		hasSaved = true;
+		return 'saved';
+	}
 
 	function load(): StoredProfile | null {
-		const read = parseStored(readRaw(storage));
+		const read = readCurrent();
 		stored = read.kind === 'read' ? read.stored : null;
-		newerVersion = read.kind === 'newer' ? read.version : null;
+		activeFirm = readFirm(readKey(storage, ACTIVE_FIRM_KEY));
 		return stored;
 	}
 
 	// Writes only when the profile itself changed, so savedAt means the last real change and an
-	// unchanged save leaves the stored bytes alone. Another tab can write after this page loaded (a
-	// newer Pagefifty left open across a release, or the same page open twice), so the stored value
-	// is read again first and the save is compared with what storage holds now.
+	// unchanged save leaves the stored bytes alone. While the demo firm is shown nothing the page
+	// saves may reach the own profile, whatever called it.
 	function saveProfile(profile: Profile, now: Date): SaveResult {
-		const current = parseStored(readRaw(storage));
-		newerVersion = current.kind === 'newer' ? current.version : null;
-		if (newerVersion !== null) return 'newer-version';
+		if (activeFirm === 'demo') return 'unchanged';
+		const current = readCurrent();
+		if (current.kind === 'newer') return 'newer-version';
 		stored = current.kind === 'read' ? current.stored : null;
 		const parsed = ProfileSchema.safeParse(profile);
 		if (!parsed.success) return 'failed';
@@ -79,19 +114,75 @@ export function createProfileStore(storage: Storage) {
 		) {
 			return 'unchanged';
 		}
-		const next: StoredProfile = {
+		return write({
 			schemaVersion: PROFILE_SCHEMA_VERSION,
 			savedAt: now.toISOString(),
 			lastExportedAt: stored?.lastExportedAt ?? null,
 			profile: parsed.data
-		};
+		});
+	}
+
+	function markExported(now: Date): SaveResult {
+		if (activeFirm === 'demo') return 'unchanged';
+		const current = readCurrent();
+		if (current.kind === 'newer') return 'newer-version';
+		if (current.kind === 'none') return 'unchanged';
+		return write({ ...current.stored, lastExportedAt: now.toISOString() });
+	}
+
+	// The whole stored profile is replaced in one write, never merged with what was there.
+	function replaceFromImport(next: StoredProfile): SaveResult {
+		const valid = StoredProfileSchema.safeParse(next);
+		if (!valid.success) return 'failed';
+		if (readCurrent().kind === 'newer') return 'newer-version';
+		return write(valid.data);
+	}
+
+	// The active firm is written only under its own key, so showing the demo firm can never touch
+	// the stored own profile; with storage blocked the switch still holds for this page view.
+	function setActiveFirm(firm: ActiveFirm) {
+		activeFirm = firm;
 		try {
-			storage.setItem(PROFILE_KEY, canonicalStoredJson(next));
+			storage.setItem(ACTIVE_FIRM_KEY, firm);
 		} catch {
-			return 'failed';
+			// Kept in memory only.
 		}
-		stored = next;
-		return 'saved';
+	}
+
+	// A storage event carries whatever another page wrote, so it is filtered by exact key and the
+	// profile is validated again before it replaces anything; junk and removals are ignored.
+	function onStorage(event: Event) {
+		const { key, newValue } = event as StorageEvent;
+		if (key === ACTIVE_FIRM_KEY) {
+			activeFirm = readFirm(newValue);
+			return;
+		}
+		if (key !== PROFILE_KEY) return;
+		const read = parseStored(newValue);
+		if (read.kind === 'read') {
+			stored = read.stored;
+			newerVersion = null;
+		} else if (read.kind === 'newer') {
+			newerVersion = read.version;
+		}
+	}
+
+	function listen(target: StorageEventSource): () => void {
+		target.addEventListener('storage', onStorage);
+		return () => target.removeEventListener('storage', onStorage);
+	}
+
+	// Asked once per page and only once something is really stored: a browser that grants it keeps
+	// the profile out of eviction. The page says the browser may delete it whatever this resolves to.
+	function requestPersistOnce(nav: PersistCapableNavigator | undefined) {
+		const manager = nav?.storage;
+		if (persistRequested || !hasSaved || typeof manager?.persist !== 'function') return;
+		persistRequested = true;
+		try {
+			manager.persist().catch(() => undefined);
+		} catch {
+			// A browser that throws here simply keeps its default eviction.
+		}
 	}
 
 	return {
@@ -102,8 +193,17 @@ export function createProfileStore(storage: Storage) {
 		get newerVersion() {
 			return newerVersion;
 		},
+		get activeFirm() {
+			return activeFirm;
+		},
 		load,
-		saveProfile
+		saveProfile,
+		markExported,
+		replaceFromImport,
+		useDemo: () => setActiveFirm('demo'),
+		backToOwn: () => setActiveFirm('own'),
+		listen,
+		requestPersistOnce
 	};
 }
 
