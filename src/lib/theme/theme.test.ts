@@ -4,7 +4,14 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { createContext, runInContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
-import { THEME_CHOICES, THEME_KEY, decideTheme, knownChoice, resolveTheme } from './theme';
+import {
+	THEME_CHOICES,
+	THEME_KEY,
+	decideTheme,
+	knownChoice,
+	queryTheme,
+	resolveTheme
+} from './theme';
 
 const APP_HTML = readFileSync('src/app.html', 'utf8');
 const APP_CSS = readFileSync('src/app.css', 'utf8');
@@ -63,6 +70,13 @@ describe('theme decision', () => {
 		for (const junk of [null, undefined, '', 'DARK', ' dark', 'purple', 1, {}]) {
 			expect(knownChoice(junk)).toBeNull();
 		}
+	});
+
+	it('reads the raw ?theme= value, leaving the judging to knownChoice', () => {
+		expect(queryTheme('?theme=dark')).toBe('dark');
+		expect(queryTheme('?q=x&theme=DARK')).toBe('DARK');
+		expect(queryTheme('')).toBeNull();
+		expect(queryTheme('?theme=')).toBe('');
 	});
 
 	it('resolves Device against the OS and leaves a picked theme alone', () => {
