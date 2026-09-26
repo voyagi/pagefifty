@@ -63,8 +63,11 @@ export function createProfileStore(storage: Storage) {
 	}
 
 	// Writes only when the profile itself changed, so savedAt means the last real change and an
-	// unchanged save leaves the stored bytes alone.
+	// unchanged save leaves the stored bytes alone. A tab of a newer Pagefifty can write after this
+	// page loaded (a tab left open across a release), so the stored value is read again first.
 	function saveProfile(profile: Profile, now: Date): SaveResult {
+		const current = parseStored(readRaw(storage));
+		if (current.kind === 'newer') newerVersion = current.version;
 		if (newerVersion !== null) return 'newer-version';
 		const parsed = ProfileSchema.safeParse(profile);
 		if (!parsed.success) return 'failed';

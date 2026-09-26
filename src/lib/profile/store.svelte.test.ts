@@ -142,6 +142,20 @@ describe('createProfileStore', () => {
 		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
 	});
 
+	it('never writes over a newer profile another tab saved after this page loaded', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.saveProfile(withStaff(19), FIRST)).toBe('saved');
+		const newer = JSON.stringify({ schemaVersion: 2, savedAt: LATER.toISOString(), profile: {} });
+		storage.values.set(PROFILE_KEY, newer);
+		expect(store.saveProfile(withStaff(19), LATER)).toBe('newer-version');
+		expect(store.saveProfile(withStaff(20), LATER)).toBe('newer-version');
+		expect(store.newerVersion).toBe(2);
+		expect(storage.setCalls).toBe(1);
+		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
+	});
+
 	it.each([
 		['not JSON', '{'],
 		['JSON null', 'null'],
