@@ -93,6 +93,40 @@ describe('vitest projects', () => {
 		).toEqual([]);
 	});
 
+	// Each Stryker worker is its own vitest, so a global setup would build the records once per
+	// worker into the one sandbox, where concurrent builds fail on Windows.
+	it('builds the records once before a mutation run, never in each Stryker worker', async () => {
+		const { default: strykerConfig } = await import('../../vitest.stryker.config.mjs');
+		expect(strykerConfig.test?.globalSetup).toBeUndefined();
+		const { scripts } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+			scripts: Record<string, string>;
+		};
+		expect(scripts.premutate).toBe('node scripts/build-records.mjs');
+	});
+
+	// Stryker copies the checkout into its sandbox, ignored files included, and a crashed run keeps
+	// the sandbox, so a copy of the real keys would stay behind.
+	it('keeps real env files out of the Stryker sandbox', () => {
+		const { ignorePatterns } = JSON.parse(readFileSync('stryker.config.json', 'utf8')) as {
+			ignorePatterns?: string[];
+		};
+		expect(ignorePatterns).toEqual(
+			expect.arrayContaining(['.env', '.env.*', '!.env.example', '.dev.vars', '.dev.vars.*'])
+		);
+	});
+
+	// verdict.ts is pinned by its mutants harness only while something runs it. CI and the ship gate
+	// both run the gate chain, which must still end with gate:size: the step after it needs the build.
+	it('runs the verdict mutants harness in the gate chain, before the build that ends it', () => {
+		const { scripts } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+			scripts: Record<string, string>;
+		};
+		expect(scripts['gate:mutants']).toBe('node scripts/verdict.mutants.mjs');
+		const chain = scripts.gate.split(' && ');
+		expect(chain).toContain('npm run gate:mutants');
+		expect(chain.at(-1)).toBe('npm run gate:size');
+	});
+
 	it('names a module whose only test runs in workerd or jsdom, once each', () => {
 		expect(
 			modulesTestedOnlyOutsideNode([
