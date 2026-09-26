@@ -119,7 +119,13 @@ async function runCopy(folder, source, tests) {
   if (!existsSync(reportFile)) {
     return { code, report: null, why: `no JSON report written (exit ${code}): ${output.trim().split('\n').slice(-3).join(' | ')}` };
   }
-  return { code, report: JSON.parse(readFileSync(reportFile, 'utf8')), why: null };
+  // A report cut short by a killed run is no answer either, never a crash that exits 1 and so
+  // reads as an escaped mutation.
+  try {
+    return { code, report: JSON.parse(readFileSync(reportFile, 'utf8')), why: null };
+  } catch (error) {
+    return { code, report: null, why: `the JSON report could not be read (exit ${code}): ${error.message}` };
+  }
 }
 
 function statusesByTitle(report) {
@@ -219,7 +225,13 @@ async function main() {
     console.log(`[verdict-mutants] all ${selected.length} mutation(s) caught, each by the test it names.`);
     return 0;
   } finally {
-    rmSync(runDir, { recursive: true, force: true });
+    // A vitest child can still hold a file for a moment on Windows. A folder that cannot be removed
+    // is reported, and the verdict above keeps its exit code.
+    try {
+      rmSync(runDir, { recursive: true, force: true, maxRetries: 5 });
+    } catch (error) {
+      console.error(`[verdict-mutants] could not remove ${runDir}: ${error.message}`);
+    }
   }
 }
 
