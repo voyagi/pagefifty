@@ -186,6 +186,18 @@ describe('createProfileStore', () => {
 		expect(JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile.staff.total).toBe(19);
 	});
 
+	it('reads a stored value carrying a __proto__ key as nothing saved, and pollutes nothing', () => {
+		const storage = new CountingStorage();
+		storage.values.set(
+			PROFILE_KEY,
+			`{"__proto__":{"polluted":"yes"},"schemaVersion":1,"savedAt":"${FIRST.toISOString()}","lastExportedAt":null,"profile":${JSON.stringify(emptyProfile())}}`
+		);
+		const store = createProfileStore(storage);
+		expect(store.load()).toBeNull();
+		expect(store.newerVersion).toBeNull();
+		expect(({} as { polluted?: unknown }).polluted).toBeUndefined();
+	});
+
 	it('refuses to save an invalid profile and writes nothing', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);
