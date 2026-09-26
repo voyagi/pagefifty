@@ -3,7 +3,12 @@
 // binding on the Worker, so no notice XML is parsed while a page is served.
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
-import { NOTICE_NUMBER, SnapshotIndexSchema, type SnapshotIndex } from '../snapshot/index-row';
+import {
+	NOTICE_NUMBER,
+	NoticeRecordSchema,
+	SnapshotIndexSchema,
+	type SnapshotIndex
+} from '../snapshot/index-row';
 
 export const DEFAULT_CAPTURE = '2026-09-15';
 
@@ -53,6 +58,7 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 }
 
 // An unknown or malformed notice number is answered before any read, so the tender page can 404.
+// A record that does not match its schema is a server error, like an index that does not.
 export async function loadRecord(
 	capture: string,
 	notice: string
@@ -60,5 +66,11 @@ export async function loadRecord(
 	if (!NOTICE_NUMBER.test(notice)) return undefined;
 	const url = RECORD_URLS.get(`${capture}/${notice}`);
 	if (url === undefined) return undefined;
-	return (await read(url).json()) as NoticeRecord;
+	const parsed = NoticeRecordSchema.safeParse(await read(url).json());
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} record ${notice} does not match its schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
 }

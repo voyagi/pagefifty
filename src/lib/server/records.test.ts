@@ -41,6 +41,13 @@ describe('loadRecord', () => {
 		expect(record?.lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
 	});
 
+	it('fails the load when a record does not match its schema', async () => {
+		read.mockImplementationOnce(() => Response.json({ noticeNumber: '609955-2026', lots: 'x' }));
+		await expect(loadRecord(DEFAULT_CAPTURE, '609955-2026')).rejects.toThrow(
+			'the 2026-09-15 record 609955-2026 does not match its schema'
+		);
+	});
+
 	it.each([
 		'000000-0000',
 		'00609955-2026',

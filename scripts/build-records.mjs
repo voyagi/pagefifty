@@ -25,7 +25,11 @@ import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readNotice } from '../src/lib/ingest/read-notice.ts';
-import { SnapshotIndexSchema, toIndexRow } from '../src/lib/snapshot/index-row.ts';
+import {
+	NoticeRecordSchema,
+	SnapshotIndexSchema,
+	toIndexRow
+} from '../src/lib/snapshot/index-row.ts';
 import {
 	createSnapshotTransport,
 	requestKey,
@@ -97,8 +101,14 @@ async function buildCapture(examples, id) {
 	const failures = [];
 	for (const number of numbers) {
 		const result = await readOne(transport, number);
-		if (result.ok) records.push(result.record);
-		else failures.push({ number: number ?? '(none)', kind: result.kind, detail: result.detail });
+		if (!result.ok) {
+			failures.push({ number: number ?? '(none)', kind: result.kind, detail: result.detail });
+			continue;
+		}
+		// The loader parses each record with this schema, so one it would refuse is never written.
+		const checked = NoticeRecordSchema.safeParse(result.record);
+		if (checked.success) records.push(checked.data);
+		else failures.push({ number, kind: 'record', detail: checked.error.message });
 	}
 	const duplicates = numbers.filter((number, index) => numbers.indexOf(number) !== index);
 	for (const number of new Set(duplicates)) {

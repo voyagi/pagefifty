@@ -1,4 +1,5 @@
-// One row per notice for the list, and the schema the server parses the built index with.
+// One row per notice for the list, and the schemas the build checks and the server parses the
+// built index and records with.
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
 import type { Buyer, LangText, LotDeadlines, LotRecord, NoticeRecord } from '../ingest/record.ts';
@@ -38,6 +39,20 @@ const IndexRowSchema = z.strictObject({
 	title: LangTextSchema,
 	buyers: z.array(BuyerSchema),
 	lots: z.array(LotRowSchema)
+});
+
+const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
+	id: z.string(),
+	title: LangTextSchema.optional(),
+	deadlines: DeadlinesSchema
+});
+
+export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
+	noticeNumber: z.string().regex(NOTICE_NUMBER),
+	sdkVersion: z.string(),
+	title: LangTextSchema,
+	buyers: z.array(BuyerSchema),
+	lots: z.array(LotRecordSchema)
 });
 
 export const SnapshotIndexSchema = z.strictObject({

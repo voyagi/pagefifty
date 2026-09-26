@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import type { NoticeRecord } from '../ingest/record';
-import { NOTICE_NUMBER, SnapshotIndexSchema, captureDay, toIndexRow } from './index-row';
+import {
+	NOTICE_NUMBER,
+	NoticeRecordSchema,
+	SnapshotIndexSchema,
+	captureDay,
+	toIndexRow
+} from './index-row';
 
 const RECORD: NoticeRecord = {
 	noticeNumber: '609955-2026',
@@ -78,6 +84,14 @@ describe('toIndexRow and the index schema', () => {
 		const result = SnapshotIndexSchema.safeParse(index([row]));
 		expect(result.success).toBe(false);
 		expect(result.error?.issues[0].path).toEqual(['rows', 0]);
+	});
+
+	it('parses a whole record, lot titles included, and refuses a field it does not name', () => {
+		expect(NoticeRecordSchema.parse(RECORD)).toEqual(RECORD);
+		const extra = NoticeRecordSchema.safeParse({ ...RECORD, value: '834550.06' });
+		expect(extra.success).toBe(false);
+		const lotWithout = { ...RECORD, lots: [{ id: 'LOT-0000', deadlines: {} }] };
+		expect(NoticeRecordSchema.parse(lotWithout)).toEqual(lotWithout);
 	});
 
 	it('refuses a row whose notice number the loader could not serve', () => {

@@ -113,7 +113,7 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		copyFileSync(capturePath('609955-2026'), join(capture, 'xml', '0609955-2026.xml'));
 		const run = build();
 		expect(run.status).toBe(1);
-		expect(run.stderr).toContain('records: 2026-01-02: (index): index:');
+		expect(run.stderr).toContain('records: 2026-01-02: 0609955-2026: record:');
 		expect(run.stderr).toContain('noticeNumber');
 		expect(existsSync(join(out, '2026-01-02', 'records', '0609955-2026.json'))).toBe(false);
 	});
