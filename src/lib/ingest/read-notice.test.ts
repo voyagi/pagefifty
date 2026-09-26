@@ -103,9 +103,40 @@ describe('readNotice across the capture', () => {
 	it('decodes each entity and character reference exactly once', () => {
 		const text = ONE_LOT.replace(
 			PROCEDURE_TITLE,
-			'<cbc:Name languageID="DEU">A &amp;lt; B &#252;&#x00FC; &quot;C&apos;s&quot; &gt; D &#x110000;</cbc:Name>'
+			'<cbc:Name languageID="DEU">A &amp;lt; B &#252;&#x00FC; &quot;C&apos;s&quot; &gt; D &#x110000; &lt;E</cbc:Name>'
 		);
-		expect(readOk(text).title.text).toBe('A &lt; B üü "C\'s" > D &#x110000;');
+		expect(readOk(text).title.text).toBe('A &lt; B üü "C\'s" > D &#x110000; <E');
+	});
+
+	// XML 1.0 Char: #x9, #xA, #xD, #x20 to #xD7FF, #xE000 to #xFFFD, #x10000 to #x10FFFF.
+	it.each([
+		['#x8', false],
+		['#x9', true],
+		['#xA', true],
+		['#xB', false],
+		['#xC', false],
+		['#xD', true],
+		['#0', false],
+		['#x1F', false],
+		['#x20', true],
+		['#xD7FF', true],
+		['#xD800', false],
+		['#xDFFF', false],
+		['#xE000', true],
+		['#xFFFD', true],
+		['#xFFFE', false],
+		['#xFFFF', false],
+		['#x10000', true],
+		['#x10FFFF', true]
+	] as const)('decodes &%s; only when XML allows that character: %s', (reference, legal) => {
+		const text = ONE_LOT.replace(
+			PROCEDURE_TITLE,
+			`<cbc:Name languageID="DEU">A&${reference};B</cbc:Name>`
+		);
+		const hex = reference.startsWith('#x');
+		const code = Number.parseInt(reference.slice(hex ? 2 : 1), hex ? 16 : 10);
+		const expected = legal ? `A${String.fromCodePoint(code)}B` : `A&${reference};B`;
+		expect(readOk(text).title.text).toBe(expected);
 	});
 
 	it('reads a byte order mark and CRLF line ends to the same record', () => {

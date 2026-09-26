@@ -62,12 +62,25 @@ const NAMED: Readonly<Record<string, string>> = {
 	apos: "'"
 };
 
+// XML 1.0's Char production. A reference to anything else (NUL, a control character, half of a
+// surrogate pair, U+FFFE) names no character a notice may hold, so it stays as written.
+function isXmlChar(code: number): boolean {
+	return (
+		code === 0x9 ||
+		code === 0xa ||
+		code === 0xd ||
+		(code >= 0x20 && code <= 0xd7ff) ||
+		(code >= 0xe000 && code <= 0xfffd) ||
+		(code >= 0x10000 && code <= 0x10ffff)
+	);
+}
+
 function decodeReferences(text: string): string {
 	return text.replace(REFERENCE, (reference: string, name: string | undefined, number: string) => {
 		if (name) return NAMED[name];
 		const hex = /^x/i.test(number);
 		const code = Number.parseInt(hex ? number.slice(1) : number, hex ? 16 : 10);
-		return code <= 0x10ffff ? String.fromCodePoint(code) : reference;
+		return isXmlChar(code) ? String.fromCodePoint(code) : reference;
 	});
 }
 
