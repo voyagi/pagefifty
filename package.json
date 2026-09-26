@@ -21,6 +21,7 @@
 		"a11y:live": "node scripts/a11y-live.mjs && node scripts/a11y-prove.mjs --no-build",
 		"lint": "eslint src && prettier --check src",
 		"format": "prettier --write src",
+		"premutate": "node scripts/build-records.mjs",
 		"mutate": "stryker run",
 		"gate:types": "wrangler types && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
 		"gate:complexity": "eslint src",

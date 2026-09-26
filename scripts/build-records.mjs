@@ -10,8 +10,9 @@
 // when every notice of every capture was read. This script is a thin caller: the reading rules
 // live in src, where the import rules and tests see them.
 //
-// Runs as predev, prebuild and vitest globalSetup, so the gitignored output never drifts from the
-// tracked capture.
+// Runs as predev, prebuild, premutate and vitest globalSetup, so the gitignored output never drifts
+// from the tracked capture. Two runs writing one folder at the same moment can collide on Windows
+// (the second rename meets the first one's folder), so nothing should start two at once.
 //
 // Usage:  node scripts/build-records.mjs [--examples <dir>] [--out <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository)
@@ -135,7 +136,10 @@ function writeCapture(out, capture) {
 		renameSync(temp, target);
 	} catch (error) {
 		rmSync(temp, { recursive: true, force: true, maxRetries: 5 });
-		throw new Error(`records: ${capture.id}: could not ${step}: ${error.message}`);
+		const concurrent = step.startsWith('move')
+			? '; another records build may have written the same folder at the same moment, so run this one again once it ends'
+			: '';
+		throw new Error(`records: ${capture.id}: could not ${step}: ${error.message}${concurrent}`);
 	}
 }
 

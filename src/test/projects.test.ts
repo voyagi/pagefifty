@@ -93,6 +93,17 @@ describe('vitest projects', () => {
 		).toEqual([]);
 	});
 
+	// Each Stryker worker is its own vitest, so a global setup would build the records once per
+	// worker into the one sandbox, where concurrent builds fail on Windows.
+	it('builds the records once before a mutation run, never in each Stryker worker', async () => {
+		const { default: strykerConfig } = await import('../../vitest.stryker.config.mjs');
+		expect(strykerConfig.test?.globalSetup).toBeUndefined();
+		const { scripts } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+			scripts: Record<string, string>;
+		};
+		expect(scripts.premutate).toBe('node scripts/build-records.mjs');
+	});
+
 	it('names a module whose only test runs in workerd or jsdom, once each', () => {
 		expect(
 			modulesTestedOnlyOutsideNode([
