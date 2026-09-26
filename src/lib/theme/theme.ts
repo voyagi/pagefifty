@@ -25,6 +25,10 @@ export function knownChoice(value: unknown): ThemeChoice | null {
 	return THEME_CHOICES.find((choice) => choice === value) ?? null;
 }
 
+export function queryTheme(search: string): string | null {
+	return new URLSearchParams(search).get('theme');
+}
+
 export function resolveTheme(choice: ThemeChoice, osDark: boolean): ResolvedTheme {
 	if (choice !== 'device') return choice;
 	return osDark ? 'dark' : 'light';

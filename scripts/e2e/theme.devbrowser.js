@@ -110,6 +110,47 @@ try {
 		`data-theme "${forced}"`
 	);
 
+	// The live follow needs the runtime controller, so the switch has to have hydrated first: its
+	// pressed button only appears once the controller is mounted.
+	await page.emulateMedia({ colorScheme: 'dark' });
+	await page.goto('http://127.0.0.1:8788/');
+	await page.waitForSelector('[role="group"][aria-label="Theme"] [aria-pressed="true"]', {
+		timeout: 10000
+	});
+	const pressed = await page.evaluate(() =>
+		document.querySelector('[aria-label="Theme"] [aria-pressed="true"]').textContent.trim()
+	);
+	await page.evaluate(() => {
+		window.__pagefiftySameView = true;
+	});
+	const beforeFlip = await rootTheme();
+	await page.emulateMedia({ colorScheme: 'light' });
+	await page.waitForFunction(
+		() => document.documentElement.getAttribute('data-theme') === 'light',
+		null,
+		{ timeout: 5000 }
+	);
+	const afterFlip = await rootTheme();
+	const sameView = await page.evaluate(() => window.__pagefiftySameView === true);
+	check(
+		'with Device active, flipping the emulated scheme flips the theme without a reload',
+		pressed === 'Device' && beforeFlip === 'dark' && afterFlip === 'light' && sameView,
+		`pressed "${pressed}", dark scheme "${beforeFlip}", light scheme "${afterFlip}", same page view ${sameView}`
+	);
+
+	await page.getByRole('button', { name: 'Dark', exact: true }).click();
+	await page.emulateMedia({ colorScheme: 'light' });
+	const picked = await rootTheme();
+	const stored = await page.evaluate(() => localStorage.getItem('pagefifty-theme'));
+	await page.goto('http://127.0.0.1:8788/');
+	const afterReload = await rootTheme();
+	check(
+		'a click on Dark is stored and survives a reload under a light scheme',
+		picked === 'dark' && stored === 'dark' && afterReload === 'dark',
+		`after click "${picked}", stored "${stored}", after reload "${afterReload}"`
+	);
+	await page.evaluate(() => localStorage.clear());
+
 	check(
 		'no page logged a Content Security Policy violation',
 		cspMessages.length === 0,
