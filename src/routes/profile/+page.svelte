@@ -57,9 +57,16 @@
 		if (newer != null) {
 			return `This browser holds a profile saved by a newer version of Pagefifty (schemaVersion ${newer}). This page reads schemaVersion ${PROFILE_SCHEMA_VERSION}. Nothing was changed.`;
 		}
-		if (problem) return 'Not saved: Total staff needs a valid value. The rest is saved.';
-		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
 		const savedAt = store?.stored?.savedAt;
+		// "The rest is saved" only when something really is kept in this browser.
+		if (problem) {
+			const invalid = 'Not saved: Total staff needs a valid value.';
+			if (inMemoryOnly) {
+				return `${invalid} This browser blocks storage, so the profile lasts only while this page is open.`;
+			}
+			return savedAt ? `${invalid} The rest is saved.` : invalid;
+		}
+		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
 		if (!savedAt) return 'Nothing saved yet.';
 		if (inMemoryOnly) {
 			return 'Not saved: this browser blocks storage, so the profile lasts only while this page is open.';

@@ -55,6 +55,27 @@ describe('firm profile page', () => {
 		expect(stored().profile.staff.total).toBe(19);
 	});
 
+	it('never says the rest is saved when nothing was saved yet', async () => {
+		render(Page);
+		await userEvent.type(await staffField(), 'abc');
+		expect(screen.getByRole('status').textContent).toBe(
+			'Not saved: Total staff needs a valid value.'
+		);
+	});
+
+	it('never says the rest is saved when blocked storage keeps it on this page only', async () => {
+		vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		render(Page);
+		const field = await staffField();
+		await userEvent.type(field, '19');
+		await userEvent.type(field, '.5');
+		expect(screen.getByRole('status').textContent).toBe(
+			'Not saved: Total staff needs a valid value. This browser blocks storage, so the profile lasts only while this page is open.'
+		);
+	});
+
 	it('keeps a profile a newer version saved, and says nothing was changed', async () => {
 		const newer = JSON.stringify({ schemaVersion: 2, savedAt: '2027-01-01T00:00:00.000Z' });
 		localStorage.setItem(PROFILE_KEY, newer);

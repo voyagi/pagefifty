@@ -133,6 +133,29 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(kept.rows).toHaveLength(1);
 	});
 
+	it('refuses a listing whose total disagrees with the notices it lists, keeping the old records', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const listing = readJson(join(capture, 'notices.json')) as Record<string, unknown>;
+		writeFileSync(join(capture, 'notices.json'), JSON.stringify({ ...listing, total: 5 }));
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain(
+			'records: 2026-01-02: (listing): listing: total is 5 but 1 notices are listed'
+		);
+		const kept = readJson(join(out, '2026-01-02', 'index.json')) as { capture: { total: number } };
+		expect(kept.capture.total).toBe(1);
+	});
+
+	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'records', '609955-2026.json'))).toBe(true);
+		expect(readdirSync(out).filter((name) => name.startsWith('.'))).toEqual([]);
+	});
+
 	it('names the notice when reading its recorded response fails', () => {
 		writeCapture(['609955-2026', '600003-2026']);
 		mkdirSync(join(capture, 'xml', '600003-2026.xml'));

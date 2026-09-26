@@ -40,6 +40,7 @@ import {
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const CAPTURE_ID = /^\d{4}-\d{2}-\d{2}$/;
 const TEMP_PREFIX = '.tmp-';
+const OLD_PREFIX = '.old-';
 
 class UsageError extends Error {}
 
@@ -131,6 +132,15 @@ async function buildCapture(examples, id) {
 		if (checked.success) records.push(checked.data);
 		else failures.push({ number, kind: 'record', detail: checked.error.message });
 	}
+	// A listing cut short (a paginated fetch that stopped early) would otherwise build fewer rows
+	// than the total it states, with no error.
+	if (listing.total !== numbers.length) {
+		failures.push({
+			number: '(listing)',
+			kind: 'listing',
+			detail: `total is ${listing.total} but ${numbers.length} notices are listed`
+		});
+	}
 	const duplicates = numbers.filter((number, index) => numbers.indexOf(number) !== index);
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
@@ -157,12 +167,16 @@ function removeTemp(temp) {
 	}
 }
 
-// Windows refuses to rename a folder onto an existing one, so the old folder goes first and the
-// complete new one follows; a failure at any step removes the temp folder.
+// Windows refuses to rename a folder onto an existing one, so the old folder is renamed aside,
+// the complete new one moves in, and only then is the old one deleted. A rename either happens
+// whole or not at all, so a complete folder is in place at every step: a failed move puts the old
+// folder back, and a failure at any step removes the temp folder.
 function writeCapture(out, capture) {
 	const temp = join(out, `${TEMP_PREFIX}${capture.id}-${process.pid}`);
+	const aside = join(out, `${OLD_PREFIX}${capture.id}-${process.pid}`);
 	const target = join(out, capture.id);
 	let step = 'create the temp folder';
+	let setAside = false;
 	try {
 		rmSync(temp, { recursive: true, force: true, maxRetries: 5 });
 		mkdirSync(join(temp, 'records'), { recursive: true });
@@ -172,19 +186,37 @@ function writeCapture(out, capture) {
 		for (const record of capture.records) {
 			writeFileSync(join(temp, 'records', `${record.noticeNumber}.json`), JSON.stringify(record));
 		}
-		step = `remove the old ${capture.id} folder`;
-		rmSync(target, { recursive: true, force: true, maxRetries: 5 });
+		if (existsSync(target)) {
+			step = `set the old ${capture.id} folder aside`;
+			renameSync(target, aside);
+			setAside = true;
+		}
 		step = `move the new ${capture.id} folder into place`;
 		renameSync(temp, target);
 	} catch (error) {
+		const restored = setAside ? restoreAside(aside, target) : '';
 		const leftover = removeTemp(temp);
 		const concurrent = step.startsWith('move')
 			? '; another records build may have written the same folder at the same moment, so run this one again once it ends'
 			: '';
 		throw new Error(
-			`records: ${capture.id}: could not ${step}: ${error.message}${concurrent}${leftover}`,
+			`records: ${capture.id}: could not ${step}: ${error.message}${concurrent}${restored}${leftover}`,
 			{ cause: error }
 		);
+	}
+	// The new records are in place. An old folder that cannot be deleted now (a file held open) is
+	// dot-named, so nothing reads it, and it is named rather than failing a build that succeeded.
+	const oldLeft = setAside ? removeTemp(aside) : '';
+	if (oldLeft) console.error(`records: ${capture.id}: the new records are in place${oldLeft}`);
+}
+
+// Puts the old folder back after the new one failed to move in, and says whether that worked.
+function restoreAside(aside, target) {
+	try {
+		renameSync(aside, target);
+		return '; the old records were put back';
+	} catch (error) {
+		return `; the old records could not be put back and are in ${aside} (${error.message})`;
 	}
 }
 
