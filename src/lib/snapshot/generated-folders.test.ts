@@ -118,6 +118,29 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(existsSync(join(out, '2026-01-02', 'records', '0609955-2026.json'))).toBe(false);
 	});
 
+	it.each([
+		['is not JSON', '{"notices": [', 'could not be read as JSON'],
+		['has no notices list', '{"fetchedAt": "2026-01-02T10:00:00.000Z"}', 'holds no notices list']
+	])('fails naming the capture when its notices.json %s', (_what, listing, named) => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		writeFileSync(join(capture, 'notices.json'), listing);
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain('records: 2026-01-02:');
+		expect(run.stderr).toContain(named);
+		const kept = readJson(join(out, '2026-01-02', 'index.json')) as { rows: unknown[] };
+		expect(kept.rows).toHaveLength(1);
+	});
+
+	it('names the notice when reading its recorded response fails', () => {
+		writeCapture(['609955-2026', '600003-2026']);
+		mkdirSync(join(capture, 'xml', '600003-2026.xml'));
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain('records: 2026-01-02: 600003-2026: reading stopped:');
+	});
+
 	it('exits 2 when no capture folder holds a notices.json', () => {
 		const run = spawnSync(
 			process.execPath,

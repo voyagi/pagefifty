@@ -17,7 +17,8 @@
 // Usage:  node scripts/build-records.mjs [--examples <dir>] [--out <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository)
 // Exit codes: 0 records written,
-//             1 a notice could not be read or a write step failed (nothing half-written is left),
+//             1 a listing or a notice could not be read, or a write step failed (nothing
+//               half-written is served; a temp folder that could not be removed is named),
 //             2 bad usage or no capture folder found.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
@@ -66,9 +67,22 @@ function captureIds(examples) {
 		.sort();
 }
 
-function readListing(folder) {
-	const listing = JSON.parse(readFileSync(join(folder, 'notices.json'), 'utf8'));
-	const numbers = (listing.notices ?? []).map((notice) => notice?.['publication-number']);
+// A listing that cannot be read stops the build naming the capture. One without a notices list is
+// refused rather than read as zero notices, which would write an empty index.
+function readListing(folder, id) {
+	const file = join(folder, 'notices.json');
+	let listing;
+	try {
+		listing = JSON.parse(readFileSync(file, 'utf8'));
+	} catch (error) {
+		throw new Error(`records: ${id}: ${file} could not be read as JSON: ${error.message}`, {
+			cause: error
+		});
+	}
+	if (!Array.isArray(listing?.notices)) {
+		throw new Error(`records: ${id}: ${file} holds no notices list`);
+	}
+	const numbers = listing.notices.map((notice) => notice?.['publication-number']);
 	return { listing, numbers };
 }
 
@@ -95,12 +109,19 @@ async function readOne(transport, number) {
 async function buildCapture(examples, id) {
 	const started = performance.now();
 	const folder = join(examples, id);
-	const { listing, numbers } = readListing(folder);
+	const { listing, numbers } = readListing(folder, id);
 	const transport = await snapshotTransport(folder);
 	const records = [];
 	const failures = [];
 	for (const number of numbers) {
-		const result = await readOne(transport, number);
+		let result;
+		try {
+			result = await readOne(transport, number);
+		} catch (error) {
+			throw new Error(`records: ${id}: ${number}: reading stopped: ${error.message}`, {
+				cause: error
+			});
+		}
 		if (!result.ok) {
 			failures.push({ number: number ?? '(none)', kind: result.kind, detail: result.detail });
 			continue;
@@ -125,6 +146,17 @@ async function buildCapture(examples, id) {
 	return { id, index: index.data, records, failures, listed: numbers.length, ms };
 }
 
+// Cleanup after a failed write must not replace the error that says which step failed, so a temp
+// folder that cannot be removed is named in that error instead.
+function removeTemp(temp) {
+	try {
+		rmSync(temp, { recursive: true, force: true, maxRetries: 5 });
+		return '';
+	} catch (error) {
+		return `; the temp folder ${temp} is left behind (${error.message})`;
+	}
+}
+
 // Windows refuses to rename a folder onto an existing one, so the old folder goes first and the
 // complete new one follows; a failure at any step removes the temp folder.
 function writeCapture(out, capture) {
@@ -145,11 +177,14 @@ function writeCapture(out, capture) {
 		step = `move the new ${capture.id} folder into place`;
 		renameSync(temp, target);
 	} catch (error) {
-		rmSync(temp, { recursive: true, force: true, maxRetries: 5 });
+		const leftover = removeTemp(temp);
 		const concurrent = step.startsWith('move')
 			? '; another records build may have written the same folder at the same moment, so run this one again once it ends'
 			: '';
-		throw new Error(`records: ${capture.id}: could not ${step}: ${error.message}${concurrent}`);
+		throw new Error(
+			`records: ${capture.id}: could not ${step}: ${error.message}${concurrent}${leftover}`,
+			{ cause: error }
+		);
 	}
 }
 
