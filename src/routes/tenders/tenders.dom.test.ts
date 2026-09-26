@@ -52,4 +52,9 @@ describe('tenders list', () => {
 		expect(container.querySelector('tr b')).toBeNull();
 		expect(screen.getByText('Gebäudeautomation <b>Los 4</b>')).toBeTruthy();
 	});
+
+	it('is the skip link target', () => {
+		render(Page, { props: { data } });
+		expect(document.getElementById('main')?.tagName).toBe('MAIN');
+	});
 });

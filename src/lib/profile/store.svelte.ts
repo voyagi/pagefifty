@@ -14,7 +14,9 @@ import {
 export const PROFILE_KEY = 'pagefifty-profile';
 export const ACTIVE_FIRM_KEY = 'pagefifty-active-firm';
 
-export type SaveResult = 'saved' | 'unchanged' | 'failed' | 'newer-version';
+// failed: the browser refused the write. invalid: the profile schema refused the change, so nothing
+// was written; a page must never word it as the browser refusing.
+export type SaveResult = 'saved' | 'unchanged' | 'failed' | 'invalid' | 'newer-version';
 export type ActiveFirm = 'own' | 'demo';
 
 // The part of navigator this store uses; absent where the browser has no Storage API manager.
@@ -110,7 +112,7 @@ export function createProfileStore(storage: Storage) {
 		const base = current.kind === 'read' ? current.stored.profile : emptyProfile();
 		stored = current.kind === 'read' ? current.stored : null;
 		const parsed = ProfileSchema.safeParse(change(base));
-		if (!parsed.success) return 'failed';
+		if (!parsed.success) return 'invalid';
 		if (
 			stored &&
 			canonicalStoredJson({ ...stored, profile: parsed.data }) === canonicalStoredJson(stored)
@@ -152,7 +154,7 @@ export function createProfileStore(storage: Storage) {
 	// never call that time a save in this browser.
 	function replaceFromImport(next: StoredProfile): SaveResult {
 		const valid = StoredProfileSchema.safeParse(next);
-		if (!valid.success) return 'failed';
+		if (!valid.success) return 'invalid';
 		if (readCurrent().kind === 'newer') return 'newer-version';
 		return write(valid.data);
 	}

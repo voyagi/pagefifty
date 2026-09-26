@@ -66,6 +66,9 @@
 			return savedAt ? `${invalid} The rest is saved.` : invalid;
 		}
 		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
+		if (lastSave === 'invalid') {
+			return 'Not saved: that change does not fit the profile, so nothing was changed.';
+		}
 		if (!savedAt) return 'Nothing saved yet.';
 		if (inMemoryOnly) {
 			return 'Not saved: this browser blocks storage, so the profile lasts only while this page is open.';

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { ProfileSchema } from '$lib/profile/schema';
 import { PROFILE_KEY } from '$lib/profile/store.svelte';
 import Page from './+page.svelte';
 
@@ -116,5 +117,23 @@ describe('firm profile page', () => {
 		expect(screen.getByRole('status').textContent).toBe(
 			'Not saved: this browser refused to store the profile.'
 		);
+	});
+
+	// No value typed into this page's one field can break the schema; the forms plan 01-14 adds can.
+	it('never blames the browser for a change the profile schema refuses', async () => {
+		const refused = ProfileSchema.safeParse({});
+		vi.spyOn(ProfileSchema, 'safeParse').mockReturnValue(refused);
+		render(Page);
+		await userEvent.type(await staffField(), '3');
+		expect(screen.getByRole('status').textContent).toBe(
+			'Not saved: that change does not fit the profile, so nothing was changed.'
+		);
+		expect(localStorage.getItem(PROFILE_KEY)).toBeNull();
+	});
+
+	it('is the skip link target', async () => {
+		render(Page);
+		await staffField();
+		expect(document.getElementById('main')?.tagName).toBe('MAIN');
 	});
 });

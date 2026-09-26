@@ -34,6 +34,7 @@ export interface ImportRefusal {
 	reason: ImportRefusalReason;
 	fileName: string;
 	version?: number;
+	// Every schema problem; absent for an invalid file a migration step could not read.
 	fields?: FieldIssue[];
 }
 
@@ -74,7 +75,10 @@ function refuse(
 	return { ok: false, reason, fileName: file.name, ...detail };
 }
 
-export async function importProfileFile(file: ProfileFile): Promise<ImportResult> {
+export async function importProfileFile(
+	file: ProfileFile,
+	migrate: (doc: VersionedDocument) => VersionedDocument = migrateToCurrent
+): Promise<ImportResult> {
 	if (file.size > IMPORT_MAX_BYTES) return refuse(file, 'too-large');
 	let text: string;
 	try {
@@ -93,7 +97,14 @@ export async function importProfileFile(file: ProfileFile): Promise<ImportResult
 		return refuse(file, 'no-version');
 	}
 	if (version > PROFILE_SCHEMA_VERSION) return refuse(file, 'newer-version', { version });
-	const migrated = migrateToCurrent(value as VersionedDocument);
+	// A step reads an older file before the strict schema has checked it, so a step that throws on a
+	// malformed file refuses that file (with no field list) instead of rejecting the import.
+	let migrated: VersionedDocument;
+	try {
+		migrated = migrate(value as VersionedDocument);
+	} catch {
+		return refuse(file, 'invalid');
+	}
 	const parsed = StoredProfileSchema.safeParse(migrated);
 	if (!parsed.success) {
 		return refuse(file, 'invalid', { fields: fieldIssues(parsed.error.issues, migrated) });

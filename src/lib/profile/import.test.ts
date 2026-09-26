@@ -239,6 +239,15 @@ describe('importProfileFile', () => {
 		};
 		expect(refusal(await importProfileFile(file)).reason).toBe('unreadable');
 	});
+
+	it('refuses a file a migration step cannot read as invalid, and never rejects', async () => {
+		const throwing = vi.fn(() => {
+			throw new TypeError('turnover is not a list');
+		});
+		const result = refusal(await importProfileFile(fileOf('old.json', envelopeText({})), throwing));
+		expect(throwing).toHaveBeenCalledTimes(1);
+		expect(result).toEqual({ ok: false, reason: 'invalid', fileName: 'old.json' });
+	});
 });
 
 describe('importProfileFile on hostile text', () => {

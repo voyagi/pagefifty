@@ -181,7 +181,7 @@ describe('createProfileStore', () => {
 				{ year: 2024, generalNet: 2, specific: [] }
 			]
 		});
-		expect(store.updateProfile(repeatYear, FIRST)).toBe('failed');
+		expect(store.updateProfile(repeatYear, FIRST)).toBe('invalid');
 		expect(storage.setCalls).toBe(0);
 	});
 
@@ -254,7 +254,7 @@ describe('createProfileStore', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);
 		store.load();
-		expect(store.saveProfile(withStaff(-1), FIRST)).toBe('failed');
+		expect(store.saveProfile(withStaff(-1), FIRST)).toBe('invalid');
 		expect(storage.setCalls).toBe(0);
 	});
 
@@ -434,7 +434,7 @@ describe('replaceFromImport', () => {
 		const { storage, store } = savedStore();
 		const before = storage.getItem(PROFILE_KEY);
 		const broken = { ...storedOf(withStaff(19)), extra: true } as unknown as StoredProfile;
-		expect(store.replaceFromImport(broken)).toBe('failed');
+		expect(store.replaceFromImport(broken)).toBe('invalid');
 		expect(storage.getItem(PROFILE_KEY)).toBe(before);
 	});
 
