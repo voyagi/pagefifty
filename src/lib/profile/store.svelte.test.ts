@@ -142,6 +142,19 @@ describe('createProfileStore', () => {
 		expect(storage.getItem(PROFILE_KEY)).toBe(newer);
 	});
 
+	it('compares a save with what storage holds now, not with what this page last wrote', () => {
+		const storage = new CountingStorage();
+		const first = createProfileStore(storage);
+		const second = createProfileStore(storage);
+		first.load();
+		second.load();
+		expect(first.saveProfile(withStaff(19), FIRST)).toBe('saved');
+		expect(second.saveProfile(withStaff(20), LATER)).toBe('saved');
+		expect(first.saveProfile(withStaff(19), LATER)).toBe('saved');
+		expect(JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile.staff.total).toBe(19);
+		expect(first.stored?.savedAt).toBe(LATER.toISOString());
+	});
+
 	it('never writes over a newer profile another tab saved after this page loaded', () => {
 		const storage = new CountingStorage();
 		const store = createProfileStore(storage);
