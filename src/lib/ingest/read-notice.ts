@@ -30,6 +30,9 @@ const NAMESPACES: ReadonlyMap<string, string> = new Map([
 	['efext', 'http://data.europa.eu/p27/eforms-ubl-extensions/1'],
 	['ext', 'urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2']
 ]);
+const PREFIX_BY_NAMESPACE: ReadonlyMap<string, string> = new Map(
+	[...NAMESPACES].map(([prefix, uri]) => [uri, prefix])
+);
 const DEFAULT_DECLARATION = '@_xmlns';
 const PREFIX_DECLARATION = '@_xmlns:';
 
@@ -85,11 +88,21 @@ function declaredPrefix(key: string): string | undefined {
 	return key.startsWith(PREFIX_DECLARATION) ? key.slice(PREFIX_DECLARATION.length) : undefined;
 }
 
+// A known prefix must keep its namespace, and a namespace the reader reads must keep its prefix:
+// elements are looked up by prefixed name, so an alias would hide them rather than fail.
 function declarationFault(key: string, uri: unknown): string | undefined {
 	const prefix = declaredPrefix(key);
-	const expected = prefix === undefined ? undefined : NAMESPACES.get(prefix);
-	if (expected === undefined || expected === uri) return undefined;
-	return `namespace prefix ${prefix || '(default)'} is bound to ${String(uri)}, expected ${expected}`;
+	if (prefix === undefined) return undefined;
+	const expected = NAMESPACES.get(prefix);
+	if (expected !== undefined) {
+		return expected === uri
+			? undefined
+			: `namespace prefix ${prefix || '(default)'} is bound to ${String(uri)}, expected ${expected}`;
+	}
+	const readAs = typeof uri === 'string' ? PREFIX_BY_NAMESPACE.get(uri) : undefined;
+	return readAs === undefined
+		? undefined
+		: `namespace ${String(uri)} is bound to prefix ${prefix}, and the reader reads it only as ${readAs || 'the default namespace'}`;
 }
 
 // Every declaration on every element of the parsed tree. Text, comments and attribute values that

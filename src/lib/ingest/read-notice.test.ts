@@ -219,6 +219,32 @@ describe('readNotice record details', () => {
 		);
 	});
 
+	// The reader looks elements up by their prefixed names, so a lot written as ns2:... under an
+	// alias for the cac namespace would be skipped without a word. An alias is refused instead.
+	it.each([
+		['ns2', 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2', 'cac'],
+		['cn', 'urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2', 'the default namespace']
+	])('refuses the prefix %s for a namespace the reader reads', (prefix, uri, readAs) => {
+		const text = ONE_LOT.replace(
+			'<cbc:UBLVersionID>',
+			`<efac:Probe xmlns:${prefix}="${uri}"/><cbc:UBLVersionID>`
+		);
+		const result = refused(text);
+		expect(result.kind).toBe('malformed');
+		expect(result.detail).toBe(
+			`namespace ${uri} is bound to prefix ${prefix}, and the reader reads it only as ${readAs}`
+		);
+	});
+
+	it('reads a notice that declares a namespace the reader does not use', () => {
+		const text = ONE_LOT.replace(
+			'<cbc:UBLVersionID>',
+			'<cbc:UBLVersionID xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
+		);
+		expect(text).not.toBe(ONE_LOT);
+		expect(readOk(text)).toEqual(readOk(ONE_LOT));
+	});
+
 	it('reads a notice with no publication id of its own', () => {
 		const text = ONE_LOT.replace(
 			/<efbc:NoticePublicationID[^>]*>[^<]*<\/efbc:NoticePublicationID>/,
