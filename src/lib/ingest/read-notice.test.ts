@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { fc, test } from '@fast-check/vitest';
 import { capturePath, readFixture } from '../../test/fixtures/node';
+import { NoticeRecordSchema } from '../snapshot/index-row';
 import { toBcp47 } from './languages';
 import { toNoticeRecord } from './record';
 import { MAX_NOTICE_BYTES, readNotice, readNoticeXml, type ReadFailure } from './read-notice';
@@ -448,6 +450,103 @@ describe('readNotice refusals', () => {
 		const result = readNoticeXml(encode(readFixture('truncated')));
 		expect(result.ok).toBe(false);
 		expect('tree' in result).toBe(false);
+	});
+});
+
+// Inputs built to break the reader. The build writes only records the record schema accepts, so a
+// record the reader returns must pass that schema, and no input may make the reader throw.
+describe('readNotice under hostile input', () => {
+	it.each(['__proto__', 'constructor'])(
+		'refuses an element named %s and pollutes nothing',
+		(name) => {
+			const text = ONE_LOT.replace(
+				'<cbc:UBLVersionID>',
+				`<${name}><polluted>yes</polluted></${name}><cbc:UBLVersionID>`
+			);
+			expect(refused(text).kind).toBe('malformed');
+			expect(({} as { polluted?: unknown }).polluted).toBeUndefined();
+		}
+	);
+
+	it('refuses a title of blanks as a missing title', () => {
+		const text = ONE_LOT.replace(PROCEDURE_TITLE, '<cbc:Name languageID="DEU">   </cbc:Name>');
+		expect(refused(text).detail).toContain('ContractNotice/cac:ProcurementProject/cbc:Name');
+	});
+
+	// The parser merges a CDATA section into the text with the blanks around it trimmed away, and
+	// its content is never entity-decoded in XML, so neither reading would be the published text.
+	it.each([
+		['a whole title', '<cbc:Name languageID="DEU"><![CDATA[A &amp; B]]></cbc:Name>'],
+		['part of a title', '<cbc:Name languageID="DEU">Los <![CDATA[4]]> Bau</cbc:Name>']
+	])('refuses a CDATA section in %s rather than misread it', (_where, title) => {
+		const result = refused(ONE_LOT.replace(PROCEDURE_TITLE, title));
+		expect(result.kind).toBe('malformed');
+		expect(result.detail).toContain('CDATA');
+	});
+
+	it('reads a notice of 150000 repeated elements without overflowing the stack', () => {
+		const text = ONE_LOT.replace(
+			'<cbc:UBLVersionID>',
+			`${'<cbc:Note/>'.repeat(150000)}<cbc:UBLVersionID>`
+		);
+		expect(encode(text).length).toBeLessThanOrEqual(MAX_NOTICE_BYTES);
+		expect(readOk(text).noticeNumber).toBe('609955-2026');
+	});
+
+	test.prop([fc.nat(), fc.nat({ max: 400 })])(
+		'never throws on the notice cut anywhere, and any record it reads passes the record schema',
+		(at, length) => {
+			const start = at % ONE_LOT.length;
+			const result = read(ONE_LOT.slice(0, start) + ONE_LOT.slice(start + length));
+			if (result.ok) expect(NoticeRecordSchema.safeParse(result.record).success).toBe(true);
+			else expect(['too-large', 'doctype', 'malformed']).toContain(result.kind);
+		}
+	);
+
+	// Every pairing of edge values, not a random sample: a hundred random draws from these ranges
+	// missed 24:00:00, which Date.parse accepts and the record schema refuses. The tree is parsed
+	// once and its two deadline values are rewritten in place, so thousands of pairings stay cheap.
+	it('accepts a tender deadline only when the record schema accepts it too', () => {
+		const parsed = readNoticeXml(encode(ONE_LOT));
+		if (!parsed.ok) throw new Error(`the one-lot notice did not parse: ${parsed.detail}`);
+		const child = (node: unknown, key: string | number) =>
+			(node as Record<string | number, unknown>)[key];
+		const lot = child(child(child(parsed.tree, 'ContractNotice'), 'cac:ProcurementProjectLot'), 0);
+		const period = child(child(lot, 'cac:TenderingProcess'), 'cac:TenderSubmissionDeadlinePeriod');
+		const set = period as Record<string, unknown>;
+		expect([set['cbc:EndDate'], set['cbc:EndTime']]).toEqual([
+			'2026-10-06+02:00',
+			'10:30:00+02:00'
+		]);
+
+		const zones = ['', 'Z', '+02:00', '-05:30', '+00:00', '-00:00', '+14:00', '+24:00', '+02:60'];
+		const days = [
+			'2026-10-06',
+			'2028-02-29',
+			'2026-02-29',
+			'2026-13-01',
+			'2026-04-31',
+			'0099-01-01'
+		];
+		const clocks = ['00:00:00', '10:30:00', '23:59:59', '24:00:00', '23:60:00', '23:59:60'];
+		const fractions = ['', '.5', '.123456789'];
+		const accepted: string[] = [];
+		const disagreements: string[] = [];
+		for (const day of days)
+			for (const dayZone of zones)
+				for (const clock of clocks)
+					for (const fraction of fractions)
+						for (const clockZone of zones) {
+							set['cbc:EndDate'] = `${day}${dayZone}`;
+							set['cbc:EndTime'] = `${clock}${fraction}${clockZone}`;
+							const built = toNoticeRecord(parsed.tree, '609955-2026');
+							if (!built.ok) continue;
+							const pair = `${set['cbc:EndDate']} ${set['cbc:EndTime']}`;
+							accepted.push(pair);
+							if (!NoticeRecordSchema.safeParse(built.record).success) disagreements.push(pair);
+						}
+		expect(accepted).toContain('2026-10-06+02:00 10:30:00+02:00');
+		expect(disagreements).toEqual([]);
 	});
 });
 

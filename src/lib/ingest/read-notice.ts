@@ -1,6 +1,6 @@
 // The one module that imports the XML parser (depcruise single-parser-entry), so every notice
-// passes the size cap, the DOCTYPE refusal and validation before it is parsed. Each step fails
-// with a typed result, never a partial record.
+// passes the size cap, the DOCTYPE and CDATA refusals and validation before it is parsed. Each
+// step fails with a typed result, never a partial record.
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only and
 // relative imports with their .ts extension.
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
@@ -151,6 +151,11 @@ export function readNoticeXml(bytes: Uint8Array): TreeResult {
 	const text = decode(bytes);
 	if (text === undefined) return fail('malformed', 'not UTF-8 text');
 	if (/<!DOCTYPE|<!ENTITY/i.test(text)) return fail('doctype', 'a DOCTYPE or ENTITY declaration');
+	// The parser folds a CDATA section into the text with the blanks around it trimmed away, and the
+	// reader would then decode references XML leaves literal there, so neither reading is the text.
+	if (text.includes('<![CDATA[')) {
+		return fail('malformed', 'a CDATA section, whose text this reader cannot keep as published');
+	}
 	const valid = XMLValidator.validate(text);
 	if (valid !== true) {
 		return fail('malformed', `${valid.err.code} at line ${valid.err.line}: ${valid.err.msg}`);

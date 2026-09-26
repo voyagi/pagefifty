@@ -143,7 +143,9 @@ function pickName(names: unknown[], noticeLanguage: string | undefined): LangTex
 }
 
 const DATE = /^(\d{4})-(\d{2})-(\d{2})(Z|[+-]\d{2}:\d{2})?$/;
-const TIME = /^(\d{2}:\d{2}:\d{2}(?:\.\d+)?)(Z|[+-]\d{2}:\d{2})?$/;
+// Hours run to 23. XML also allows 24:00:00 for the end of a day, and Date.parse accepts it, but the
+// record schema does not, and no notice in the capture uses it, so it is refused here by name.
+const TIME = /^((?:[01]\d|2[0-3]):\d{2}:\d{2}(?:\.\d+)?)(Z|[+-]\d{2}:\d{2})?$/;
 
 // Date.parse accepts 30 February (V8 answers a number for it), so the day is also checked against
 // the calendar before it becomes part of a deadline.
