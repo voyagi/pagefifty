@@ -70,8 +70,9 @@ function everyLotAround(states: readonly CriterionState[]): LotInput[] {
 
 // The lot verdict table, one row per verdict and one entry per ASK FIRST reason, each clause as the
 // table states it. The code decides by a chain of checks; this reads every row and keeps the most
-// severe that applies, so the enumeration compares two readings of the table, not the code with
-// itself.
+// severe that applies, so the enumeration compares two readings of the verdict rows. The reason
+// entries are written the same way as the module's, so they check only the precedence between
+// reasons: each reason's own clause is pinned by the hand-written cases further down.
 function tableDecision(input: LotInput): LotDecision {
 	const any = (state: CriterionState) => input.states.includes(state);
 	const fact = (name: CoverageFact) => input.facts.includes(name);
