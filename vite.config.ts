@@ -16,7 +16,7 @@ function projectTest(name: keyof typeof PROJECTS) {
 	};
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
 	// Under vitest, wrangler's local config reader would hand the workerd project every key in a
 	// dotenv file beside wrangler.jsonc as a binding, real provider keys included. Tests never see
 	// a key. The vitest command sets VITEST, but a run started through vitest's API (an editor
@@ -25,6 +25,10 @@ export default defineConfig(({ mode }) => {
 	if (mode === 'test' || process.env.VITEST) {
 		process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';
 	}
+	// Vite dev injects each component's styles as a style element, so dev needs inline styles. The
+	// built Worker links every stylesheet, so production keeps style-src to 'self' and the nonce.
+	const styleSrc: ('self' | 'unsafe-inline')[] =
+		command === 'serve' ? ['self', 'unsafe-inline'] : ['self'];
 	return {
 		plugins: [
 			sveltekit({
@@ -33,7 +37,28 @@ export default defineConfig(({ mode }) => {
 					runes: ({ filename }) =>
 						filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 				},
-				adapter: adapter()
+				adapter: adapter(),
+				// Pages render on request, so auto mode means a fresh nonce per response; the head
+				// script in src/app.html carries it through %sveltekit.nonce%.
+				csp: {
+					mode: 'auto',
+					directives: {
+						'default-src': ['self'],
+						'script-src': ['self'],
+						'style-src': styleSrc,
+						// SvelteKit mounts its route announcer with a style attribute after hydration,
+						// and the browser refuses it under style-src 'self' on every page. Attributes
+						// only: style elements and every script stay strict.
+						'style-src-attr': ['unsafe-inline'],
+						'img-src': ['self', 'data:'],
+						'font-src': ['self'],
+						'connect-src': ['self'],
+						'object-src': ['none'],
+						'base-uri': ['self'],
+						'form-action': ['self'],
+						'frame-ancestors': ['none']
+					}
+				}
 			})
 		],
 		build: {

@@ -1,0 +1,279 @@
+/* The one global stylesheet: fonts, tokens, both palettes and the base element rules. Every other
+   rule lives in the scoped style of the component that owns it and reads these properties. */
+
+/* IBM Plex, SIL Open Font License 1.1, latin subset, self-hosted. The nine faces differ only in
+   file and weight, and CSS has no way to share the rest, so the copy gate skips them. */
+/* jscpd:ignore-start */
+@font-face {
+	font-family: 'IBM Plex Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/plex-sans-400.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/plex-sans-500.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/plex-sans-600.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Sans Condensed';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/plex-sans-condensed-500.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Sans Condensed';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/plex-sans-condensed-600.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Sans Condensed';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/plex-sans-condensed-700.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/plex-mono-400.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/plex-mono-500.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/plex-mono-600.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* jscpd:ignore-end */
+
+:root {
+	color-scheme: light;
+	--desk: #d9dcdf;
+	--desk-ink: #3b3f44;
+	--ink: #141414;
+	--ink-2: #464a50;
+	--ink-3: #5f646b;
+	--acetate: #f6f8fa;
+	--acetate-edge: rgb(20 20 20 / 0.16);
+	--acetate-rule: rgb(20 20 20 / 0.1);
+	--leaf-back: #c9cdd1;
+	--leaf-back-ink: #33373c;
+	--errata: #d42a24;
+	--errata-ink: #ffffff;
+	--focus: #1d3fd8;
+	--selection: rgb(242 183 5 / 0.45);
+
+	--yellow: #f2b705;
+	--grass: #3d9a3a;
+	--teal: #11808a;
+	--ultramarine: #2d3fb5;
+	--violet: #6e3fa3;
+	--slate: #3f5566;
+	--on-yellow: #141414;
+	--on-grass: #141414;
+	--on-teal: #ffffff;
+	--on-ultramarine: #ffffff;
+	--on-violet: #ffffff;
+	--on-slate: #ffffff;
+
+	--board: var(--yellow);
+	--lift: 0 1px 0 rgb(20 20 20 / 0.08), 0 6px 14px -6px rgb(20 20 20 / 0.28);
+
+	--font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+	--font-cond: 'IBM Plex Sans Condensed', 'IBM Plex Sans', 'Arial Narrow', sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+	--step--1: 0.8125rem;
+	--step-0: 1rem;
+	--step-1: 1.1875rem;
+	--step-2: 1.4375rem;
+	--step-3: 1.75rem;
+	--step-4: 2.125rem;
+	--step-5: 3rem;
+	--step-6: 6rem;
+
+	--hinge: 90ms;
+	--gutter: clamp(1rem, 3vw, 2.5rem);
+	--rail: 3.25rem;
+	--board-pad: 1.75rem;
+}
+
+/* Dark is its own palette: a night desk, smoked acetate, boards and tabs kept at full strength. */
+:root[data-theme='dark'] {
+	color-scheme: dark;
+	--desk: #0e0f11;
+	--desk-ink: #b9bdc2;
+	--ink: #ecedea;
+	--ink-2: #bfc3c7;
+	--ink-3: #9ca1a7;
+	--acetate: #16181b;
+	--acetate-edge: rgb(236 237 234 / 0.16);
+	--acetate-rule: rgb(236 237 234 / 0.1);
+	--leaf-back: #2a2d31;
+	--leaf-back-ink: #c9ccd0;
+	--errata: #ff5a4a;
+	--errata-ink: #141414;
+	--focus: #8fa6ff;
+	--selection: rgb(242 183 5 / 0.35);
+	--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+}
+
+/* With the head script blocked no theme is set, and Device, the default, still has to follow the
+   device. A selector cannot reach inside a media query, so the block is repeated on purpose:
+   the copy gate skips it and src/lib/theme/theme.test.ts holds it equal to the block above. */
+/* jscpd:ignore-start */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]) {
+		color-scheme: dark;
+		--desk: #0e0f11;
+		--desk-ink: #b9bdc2;
+		--ink: #ecedea;
+		--ink-2: #bfc3c7;
+		--ink-3: #9ca1a7;
+		--acetate: #16181b;
+		--acetate-edge: rgb(236 237 234 / 0.16);
+		--acetate-rule: rgb(236 237 234 / 0.1);
+		--leaf-back: #2a2d31;
+		--leaf-back-ink: #c9ccd0;
+		--errata: #ff5a4a;
+		--errata-ink: #141414;
+		--focus: #8fa6ff;
+		--selection: rgb(242 183 5 / 0.35);
+		--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+	}
+}
+/* jscpd:ignore-end */
+
+/* Custom properties cannot drive a media query, so each component repeats the 720px breakpoint
+   literally; only the tokens that change on phones are set here. */
+@media (max-width: 720px) {
+	:root {
+		--rail: 0rem;
+		--board-pad: 0.625rem;
+		--step-6: 3.5rem;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scrollbar-color: var(--ink-3) var(--desk);
+}
+
+body {
+	margin: 0;
+	background: var(--desk);
+	color: var(--ink);
+	font-family: var(--font-sans);
+	font-size: var(--step-0);
+	line-height: 1.5;
+	font-variant-numeric: tabular-nums;
+}
+
+.app {
+	display: contents;
+}
+
+::selection {
+	background: var(--selection);
+	color: var(--ink);
+}
+
+a {
+	color: inherit;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.22em;
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+.mono {
+	font-family: var(--font-mono);
+	font-size: 0.9375em;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+	}
+}

@@ -1,0 +1,142 @@
+// The head script in src/app.html paints the theme before any stylesheet loads and cannot import
+// theme.ts, so the two are held together here: the script runs in a stand-in browser over every
+// combination of inputs and must land on the theme decideTheme picks.
+import { readdirSync, readFileSync } from 'node:fs';
+import { createContext, runInContext } from 'node:vm';
+import { describe, expect, it } from 'vitest';
+import { THEME_CHOICES, THEME_KEY, decideTheme, knownChoice, resolveTheme } from './theme';
+
+const APP_HTML = readFileSync('src/app.html', 'utf8');
+const APP_CSS = readFileSync('src/app.css', 'utf8');
+const HEAD_SCRIPT = /<script nonce="%sveltekit\.nonce%">([\s\S]*?)<\/script>/;
+
+function headScript(): string {
+	const match = HEAD_SCRIPT.exec(APP_HTML);
+	if (!match) throw new Error('src/app.html has no nonce-carrying inline head script');
+	return match[1];
+}
+
+// The declarations inside the first rule whose selector matches, one per entry.
+function declarations(selector: RegExp): string[] {
+	const match = new RegExp(`${selector.source}\\s*\\{([^}]*)\\}`).exec(APP_CSS);
+	if (!match) throw new Error(`src/app.css has no rule matching ${selector}`);
+	return match[1]
+		.split(';')
+		.map((line) => line.trim())
+		.filter(Boolean);
+}
+
+interface Setup {
+	query: string | null;
+	stored: string | null;
+	storageThrows: boolean;
+	osDark: boolean;
+}
+
+function firstPaint(setup: Setup): string | undefined {
+	const root = { dataset: {} as Record<string, string> };
+	const context: Record<string, unknown> = {
+		URLSearchParams,
+		location: { search: setup.query == null ? '' : `?theme=${encodeURIComponent(setup.query)}` },
+		localStorage: {
+			getItem: (key: string) => {
+				if (setup.storageThrows) throw new Error('storage blocked');
+				return key === THEME_KEY ? setup.stored : null;
+			}
+		},
+		matchMedia: (query: string) => ({
+			matches: query === '(prefers-color-scheme: dark)' && setup.osDark
+		}),
+		document: { documentElement: root }
+	};
+	context.window = context;
+	createContext(context);
+	runInContext(headScript(), context);
+	return root.dataset.theme;
+}
+
+describe('theme decision', () => {
+	it('accepts only the three choices, by exact value', () => {
+		expect(THEME_CHOICES).toEqual(['light', 'dark', 'device']);
+		expect(THEME_KEY).toBe('pagefifty-theme');
+		for (const choice of THEME_CHOICES) expect(knownChoice(choice)).toBe(choice);
+		for (const junk of [null, undefined, '', 'DARK', ' dark', 'purple', 1, {}]) {
+			expect(knownChoice(junk)).toBeNull();
+		}
+	});
+
+	it('resolves Device against the OS and leaves a picked theme alone', () => {
+		expect(resolveTheme('device', true)).toBe('dark');
+		expect(resolveTheme('device', false)).toBe('light');
+		expect(resolveTheme('light', true)).toBe('light');
+		expect(resolveTheme('dark', false)).toBe('dark');
+	});
+
+	it('falls back to Device for an unknown or absent stored value', () => {
+		for (const stored of [null, 'purple', 'DARK', '']) {
+			expect(decideTheme({ query: null, stored, storageThrows: false, osDark: true })).toEqual({
+				choice: 'device',
+				resolved: 'dark'
+			});
+		}
+	});
+
+	it('paints the theme decideTheme picks for every query, stored value, blocked storage and OS', () => {
+		const values = [null, '', 'light', 'dark', 'device', 'purple', 'DARK'];
+		let cases = 0;
+		for (const query of values) {
+			for (const stored of values) {
+				for (const storageThrows of [false, true]) {
+					for (const osDark of [false, true]) {
+						const setup = { query, stored, storageThrows, osDark };
+						const choice =
+							knownChoice(query) ?? (storageThrows ? null : knownChoice(stored)) ?? 'device';
+						const decided = decideTheme(setup);
+						const label = JSON.stringify(setup);
+						expect(decided.choice, label).toBe(choice);
+						expect(firstPaint(setup), label).toBe(decided.resolved);
+						cases++;
+					}
+				}
+			}
+		}
+		expect(cases).toBe(196);
+	});
+});
+
+describe('src/app.html', () => {
+	it('runs the head script before the SvelteKit head, where every stylesheet link goes', () => {
+		const script = APP_HTML.search(HEAD_SCRIPT);
+		expect(script).toBeGreaterThan(-1);
+		expect(script).toBeLessThan(APP_HTML.indexOf('%sveltekit.head%'));
+		expect(APP_HTML.indexOf('<link')).toBe(-1);
+	});
+
+	it('carries no style attribute, so production can keep style-src to self', () => {
+		expect(APP_HTML).not.toMatch(/\sstyle=/);
+	});
+});
+
+describe('src/app.css', () => {
+	it('gives a page with no theme set the same dark palette when the device is dark', () => {
+		const picked = declarations(/:root\[data-theme='dark'\]/);
+		const unscripted = declarations(
+			/@media \(prefers-color-scheme: dark\)\s*\{\s*:root:not\(\[data-theme\]\)/
+		);
+		expect(picked.length).toBeGreaterThan(10);
+		expect(unscripted).toEqual(picked);
+	});
+});
+
+describe('static/fonts', () => {
+	it('serves the nine Plex files byte for byte as design/assets/fonts holds them', () => {
+		const source = readdirSync('design/assets/fonts').filter((name) => name.endsWith('.woff2'));
+		const served = readdirSync('static/fonts').filter((name) => name.endsWith('.woff2'));
+		expect(source).toHaveLength(9);
+		expect(served.sort()).toEqual(source.sort());
+		for (const name of source) {
+			const original = readFileSync(`design/assets/fonts/${name}`);
+			expect(readFileSync(`static/fonts/${name}`).equals(original), name).toBe(true);
+		}
+	});
+});
