@@ -156,6 +156,9 @@ export function readNoticeXml(bytes: Uint8Array): TreeResult {
 	if (text.includes('<![CDATA[')) {
 		return fail('malformed', 'a CDATA section, whose text this reader cannot keep as published');
 	}
+	// fast-xml-parser 5.11 marks XMLValidator deprecated in favour of the separate fast-xml-validator
+	// package, but still ships and maintains it. It stays rather than adding a package; a release
+	// that drops the export fails the type check at this module's import.
 	const valid = XMLValidator.validate(text);
 	if (valid !== true) {
 		return fail('malformed', `${valid.err.code} at line ${valid.err.line}: ${valid.err.msg}`);
