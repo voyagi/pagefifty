@@ -66,6 +66,17 @@ describe('firm profile page', () => {
 		expect(localStorage.getItem(PROFILE_KEY)).toBe(newer);
 	});
 
+	it('never calls a profile saved when blocked storage keeps it on this page only', async () => {
+		vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		render(Page);
+		await userEvent.type(await staffField(), '19');
+		expect(screen.getByRole('status').textContent).toBe(
+			'Not saved: this browser blocks storage, so the profile lasts only while this page is open.'
+		);
+	});
+
 	it('says so when the browser refuses to store the profile', async () => {
 		vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
 			throw new DOMException('full', 'QuotaExceededError');

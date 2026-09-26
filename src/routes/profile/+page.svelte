@@ -2,13 +2,19 @@
 	import { onMount } from 'svelte';
 	import { parseCount, type FieldProblem } from '$lib/profile/fields';
 	import { PROFILE_SCHEMA_VERSION, emptyProfile } from '$lib/profile/schema';
-	import { browserStorage, createProfileStore, type SaveResult } from '$lib/profile/store.svelte';
+	import {
+		browserStorage,
+		createProfileStore,
+		isKeptInMemory,
+		type SaveResult
+	} from '$lib/profile/store.svelte';
 
 	// Storage is read only here, after mount, so the server never renders or receives a profile.
 	let store = $state<ReturnType<typeof createProfileStore> | null>(null);
 	let totalStaff = $state('');
 	let problem = $state<FieldProblem | null>(null);
 	let lastSave = $state<SaveResult | null>(null);
+	let inMemoryOnly = $state(false);
 
 	const FIELD_HELP: Record<FieldProblem, string> = {
 		'not-a-number': 'Not a whole number yet. Write the number of people, like 19.',
@@ -17,7 +23,9 @@
 	};
 
 	onMount(() => {
-		const created = createProfileStore(browserStorage());
+		const storage = browserStorage();
+		inMemoryOnly = isKeptInMemory(storage);
+		const created = createProfileStore(storage);
 		totalStaff = created.load()?.profile.staff.total?.toString() ?? '';
 		store = created;
 	});
@@ -52,7 +60,11 @@
 		if (problem) return 'Not saved: Total staff needs a valid value. The rest is saved.';
 		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
 		const savedAt = store?.stored?.savedAt;
-		return savedAt ? `Saved in this browser at ${savedAtTime(savedAt)}.` : 'Nothing saved yet.';
+		if (!savedAt) return 'Nothing saved yet.';
+		if (inMemoryOnly) {
+			return 'Not saved: this browser blocks storage, so the profile lasts only while this page is open.';
+		}
+		return `Saved in this browser at ${savedAtTime(savedAt)}.`;
 	});
 </script>
 

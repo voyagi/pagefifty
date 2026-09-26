@@ -133,3 +133,9 @@ export function browserStorage(source: { readonly localStorage: Storage } = wind
 		return new MemoryStorage();
 	}
 }
+
+// True for the stand-in above: a save there lasts only while the page is open, so the page must
+// never call it saved in this browser.
+export function isKeptInMemory(storage: Storage): boolean {
+	return storage instanceof MemoryStorage;
+}

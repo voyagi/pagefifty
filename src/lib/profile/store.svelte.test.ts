@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { emptyProfile, type Profile } from './schema';
-import { ACTIVE_FIRM_KEY, PROFILE_KEY, browserStorage, createProfileStore } from './store.svelte';
+import {
+	ACTIVE_FIRM_KEY,
+	PROFILE_KEY,
+	browserStorage,
+	createProfileStore,
+	isKeptInMemory
+} from './store.svelte';
 
 class CountingStorage implements Storage {
 	readonly values = new Map<string, string>();
@@ -173,6 +179,7 @@ describe('createProfileStore', () => {
 describe('browserStorage', () => {
 	it('returns the window storage when it can be read', () => {
 		expect(browserStorage()).toBe(window.localStorage);
+		expect(isKeptInMemory(browserStorage())).toBe(false);
 	});
 
 	it('returns a working in-memory stand-in when reading localStorage throws', () => {
@@ -183,6 +190,7 @@ describe('browserStorage', () => {
 		};
 		const storage = browserStorage(blocked);
 		expect(storage).not.toBe(window.localStorage);
+		expect(isKeptInMemory(storage)).toBe(true);
 		storage.setItem(PROFILE_KEY, 'x');
 		expect(storage.getItem(PROFILE_KEY)).toBe('x');
 		expect(storage.length).toBe(1);
