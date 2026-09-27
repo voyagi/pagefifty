@@ -31,7 +31,8 @@ const RECORD: NoticeRecord = {
 				{
 					code: 'slc-stand-ins',
 					descriptions: [GERMAN('Nachweis über Betriebshaftpflichtversicherung')],
-					parameters: [{ listName: 'number-weight', code: 'ord-imp', value: '1' }]
+					parameters: [{ listName: 'number-weight', code: 'ord-imp', value: '1' }],
+					pointsToDocuments: false
 				}
 			],
 			criteriaSources: ['epo-notice'],
@@ -93,7 +94,7 @@ describe('NOTICE_NUMBER', () => {
 });
 
 describe('toIndexRow and the index schema', () => {
-	it('projects number, title, buyers, countries, CPV codes, value and lot deadlines only', () => {
+	it('projects number, title, buyers, countries, CPV codes, value, lot deadlines and coverage only', () => {
 		expect(toIndexRow(RECORD)).toEqual({
 			noticeNumber: '609955-2026',
 			title: RECORD.title,
@@ -101,8 +102,24 @@ describe('toIndexRow and the index schema', () => {
 			country: ['DEU'],
 			cpvCodes: ['45315700', '48921000'],
 			estimatedValue: { amount: '834550.06', currency: 'EUR' },
-			lots: [{ id: 'LOT-0000', deadlines: { tender: '2026-10-06T10:30:00+02:00' } }]
+			lots: [
+				{
+					id: 'LOT-0000',
+					deadlines: { tender: '2026-10-06T10:30:00+02:00' },
+					coverage: { criteriaCount: 1, sources: ['epo-notice'], pointsToDocuments: false }
+				}
+			]
 		});
+	});
+
+	it('refuses a lot row without its coverage input, or a criterion without its label', () => {
+		const row = toIndexRow(RECORD);
+		const bare = { id: row.lots[0].id, deadlines: row.lots[0].deadlines };
+		expect(SnapshotIndexSchema.safeParse(index([{ ...row, lots: [bare] }])).success).toBe(false);
+		const [{ code, descriptions, parameters }] = RECORD.lots[0].criteria;
+		const lot = { ...RECORD.lots[0], criteria: [{ code, descriptions, parameters }] };
+		expect(NoticeRecordSchema.safeParse({ ...RECORD, lots: [lot] }).success).toBe(false);
+		expect(NoticeRecordSchema.safeParse(RECORD).success).toBe(true);
 	});
 
 	it("lists every buyer's country once, in the order the buyers are published", () => {
@@ -220,10 +237,12 @@ describe('toIndexRow and the index schema', () => {
 	});
 
 	it('refuses a deadline without its offset', () => {
+		const good = toIndexRow(RECORD);
 		const row = {
-			...toIndexRow(RECORD),
-			lots: [{ id: 'LOT-0000', deadlines: { tender: '2026-10-06T10:30:00' } }]
+			...good,
+			lots: [{ ...good.lots[0], deadlines: { tender: '2026-10-06T10:30:00' } }]
 		};
+		expect(SnapshotIndexSchema.safeParse(index([good])).success).toBe(true);
 		expect(SnapshotIndexSchema.safeParse(index([row])).success).toBe(false);
 	});
 });

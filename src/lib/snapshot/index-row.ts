@@ -2,6 +2,7 @@
 // built index and records with.
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
+import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
 import type {
 	Amount,
 	Buyer,
@@ -54,7 +55,8 @@ const ParameterSchema: z.ZodType<CriterionParameter> = z.strictObject({
 const CriterionSchema: z.ZodType<Criterion> = z.strictObject({
 	code: z.string(),
 	descriptions: z.array(LangTextSchema),
-	parameters: z.array(ParameterSchema)
+	parameters: z.array(ParameterSchema),
+	pointsToDocuments: z.boolean()
 });
 
 const GroupLegalFormSchema: z.ZodType<GroupLegalForm> = z.strictObject({
@@ -67,9 +69,18 @@ const LegislationSchema: z.ZodType<LegislationReference> = z.strictObject({
 	description: LangTextSchema.optional()
 });
 
-const LotRowSchema: z.ZodType<Pick<LotRecord, 'id' | 'deadlines'>> = z.strictObject({
+const LotCoverageSchema: z.ZodType<LotCoverageInput> = z.strictObject({
+	criteriaCount: z.number().int().nonnegative(),
+	sources: z.array(z.string()),
+	pointsToDocuments: z.boolean()
+});
+
+type LotRow = Pick<LotRecord, 'id' | 'deadlines'> & { coverage: LotCoverageInput };
+
+const LotRowSchema: z.ZodType<LotRow> = z.strictObject({
 	id: z.string(),
-	deadlines: DeadlinesSchema
+	deadlines: DeadlinesSchema,
+	coverage: LotCoverageSchema
 });
 
 // A notice number as TED's site and search API write it: the running number of the year without
@@ -153,7 +164,11 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 		country: unique(record.buyers.map((buyer) => buyer.country)),
 		cpvCodes: unique([...record.cpv.main, ...record.cpv.additional]),
 		...(estimatedValue && { estimatedValue }),
-		lots: record.lots.map(({ id, deadlines }) => ({ id, deadlines }))
+		lots: record.lots.map((lot) => ({
+			id: lot.id,
+			deadlines: lot.deadlines,
+			coverage: summarizeLot(lot)
+		}))
 	};
 }
 

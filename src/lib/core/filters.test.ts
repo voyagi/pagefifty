@@ -38,7 +38,13 @@ function rowDue(noticeNumber: string, tender?: string): IndexRow {
 		buyers: [],
 		country: ['DEU'],
 		cpvCodes: ['72000000'],
-		lots: [{ id: 'LOT-0001', deadlines: tender ? { tender } : {} }]
+		lots: [
+			{
+				id: 'LOT-0001',
+				deadlines: tender ? { tender } : {},
+				coverage: { criteriaCount: 0, sources: ['epo-notice'], pointsToDocuments: false }
+			}
+		]
 	};
 }
 
