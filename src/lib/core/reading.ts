@@ -95,7 +95,9 @@ export function coverageLines(input: LotCoverageInput, documents?: DocumentsLink
 
 // every() is true over an empty list, so a lot that declares no BT-821 source would otherwise
 // count as notice-only and could reach GO. Its reason stays criteria-in-documents, the cautious
-// reading, because SPEC R2 fixes the ASK FIRST reasons at five.
+// reading, because SPEC R2 fixes the ASK FIRST reasons at five. coverage() does not see that case,
+// so the list tag would say otherwise; no lot of the capture names no source or an unknown one, and
+// go-rule.test.ts fails if a lot's tag and this reason ever disagree.
 export function toLotInput(input: LotCoverageInput, states: readonly CriterionState[]): LotInput {
 	return {
 		states,

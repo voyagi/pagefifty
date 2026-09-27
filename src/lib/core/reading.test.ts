@@ -357,7 +357,10 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 			);
 			expect(index.rows).toHaveLength(363);
 			const census: Record<string, { pointing: number; plain: number }> = {};
+			const tags: Record<string, number> = {};
 			for (const row of index.rows) {
+				const { tag } = readingStatus(row.lots.map((lot) => lot.coverage));
+				tags[tag] = (tags[tag] ?? 0) + 1;
 				const record = NoticeRecordSchema.parse(
 					JSON.parse(readFileSync(join(folder, 'records', `${row.noticeNumber}.json`), 'utf8'))
 				);
@@ -375,6 +378,8 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 					}
 				}
 			}
+			// The tag counts the build spec and the pitch quote.
+			expect(tags).toEqual({ 'criteria-in-documents': 307, 'criteria-not-read': 56 });
 			expect(Object.keys(census).sort()).toEqual(['de', 'fr', 'nl']);
 			for (const tally of Object.values(census)) {
 				expect(tally.pointing).toBeGreaterThan(0);

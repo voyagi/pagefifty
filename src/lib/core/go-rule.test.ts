@@ -8,7 +8,7 @@ import type { LotRecord } from '../ingest/record';
 import { NoticeRecordSchema } from '../snapshot/index-row';
 import { summarizeLot, type LotCoverageInput } from './coverage-facts';
 import { DOCUMENT_POINTERS, normalizeCriterionText } from './document-pointer';
-import { toLotInput } from './reading';
+import { readingStatus, toLotInput } from './reading';
 import { decideLot, type CriterionState } from './verdict';
 
 // Phase 1 decides no criterion, so every one is set MET: the most favourable profile there is. A
@@ -125,19 +125,51 @@ describe('the GO rule on shaped lots', () => {
 });
 
 describe(`every lot of the ${CAPTURE_ID} capture under the most favourable profile`, () => {
-	it('reads GO only where the lot declares a reserved-procurement code', () => {
-		const folder = join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'records');
+	const folder = join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'records');
+	const builtRecord = (notice: string) =>
+		NoticeRecordSchema.parse(JSON.parse(readFileSync(join(folder, `${notice}.json`), 'utf8')));
+
+	// Each names a buyer's form by its number or its title and nothing else points to the documents,
+	// so without those rules the lot would read GO.
+	it.each([
+		['625582-2026', 'LOT-0000', 'in der anlage b-09'],
+		['630068-2026', 'LOT-0000', 'die anlage 6a'],
+		['635431-2026', 'LOT-0001', 'im dokument eigenerklärungen']
+	])('reads %s %s ASK FIRST: "%s" holds part of its criteria', (notice, id, evidence) => {
+		const lot = builtRecord(notice).lots.find((each) => each.id === id);
+		if (!lot) throw new Error(`${notice} has no ${id}`);
+		const texts = lot.criteria.flatMap((each) => each.descriptions.map((one) => one.text));
+		expect(texts.some((text) => normalizeCriterionText(text).includes(evidence))).toBe(true);
+		expect(mostFavourable(lot)).toEqual(ASK_FIRST_DOCUMENTS);
+		const unpointed = { ...summarizeLot(lot), pointsToDocuments: false };
+		expect(decide(unpointed, everyMet(lot.criteria.length))).toEqual({ verdict: 'GO' });
+	});
+
+	// The list tag reads only the sources a lot names, while the verdict input also sends a lot that
+	// names no source, or an unknown one, to criteria-in-documents. The two agree only because every
+	// lot of the capture names a known source, so the census pins the agreement itself.
+	it('reads GO only where the lot declares a reserved-procurement code, and never contradicts the tag', () => {
 		const unknownReserved: string[] = [];
+		const tagHidesDocuments: string[] = [];
 		let go = 0;
 		for (const file of readdirSync(folder)) {
 			const record = NoticeRecordSchema.parse(JSON.parse(readFileSync(join(folder, file), 'utf8')));
 			for (const lot of record.lots) {
-				if (mostFavourable(lot).verdict !== 'GO') continue;
+				const decision = mostFavourable(lot);
+				const inDocuments =
+					decision.verdict === 'ASK FIRST' && decision.reason === 'criteria-in-documents';
+				if (inDocuments && readingStatus([summarizeLot(lot)]).tag !== 'criteria-in-documents') {
+					tagHidesDocuments.push(`${record.noticeNumber} ${lot.id}`);
+				}
+				if (decision.verdict !== 'GO') continue;
 				go += 1;
 				if (lot.reserved === undefined) unknownReserved.push(`${record.noticeNumber} ${lot.id}`);
 			}
 		}
-		expect(go).toBeGreaterThan(0);
+		// The count the build spec and the pitch quote. Fifteen distinct listed phrases each decide at
+		// least one lot here, so a phrase dropped or narrowed changes it: update it only on purpose.
+		expect(go).toBe(76);
 		expect(unknownReserved).toEqual([]);
+		expect(tagHidesDocuments).toEqual([]);
 	}, 30_000);
 });

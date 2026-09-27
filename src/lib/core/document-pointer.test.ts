@@ -138,6 +138,56 @@ describe('pointsToDocuments', () => {
 		expect(pointsToDocuments('Nessun documento citato', 'it')).toBe(false);
 	});
 
+	it('reads an annex the documents number as a pointer, in each spelling the capture uses', () => {
+		for (const text of [
+			'Zur Nachweisführung soll die Anlage 6a verwendet werden.',
+			'durch zwei Referenzprojekte in der Anlage B-09 nachgewiesen',
+			'muss die "Anlage 06 - Bieterauskunft mit Eigenerklärung" ausgefüllt beigefügt sein',
+			'Nachweis: Eigenerklärung, Anlage 02_Erklärung zur Eignung',
+			'Zur Angabe der Referenzen wird auf die Anlage 2f5 verwiesen.',
+			'Die Anlagen 1 bis 3 sind auszufüllen.',
+			'Anlage Nr. 4 ist beizulegen.'
+		]) {
+			expect(pointsToDocuments(text, 'de'), text).toBe(true);
+		}
+		expect(pointsToDocuments('volgens bijlage 3 aan te leveren', 'nl')).toBe(true);
+	});
+
+	it('leaves a bare annex and words that only hold the letters of one plain', () => {
+		for (const text of [
+			'Dem Angebot ist als Anlage der Auszug aus dem Handelsregister beizulegen.',
+			'Abschluss als Elektroanlagenmonteur oder Elektroniker',
+			'Betrieb von Erzeugungsanlagen 3 Jahre lang',
+			'Referenz im dokumentierten Anwendungsbereich'
+		]) {
+			expect(pointsToDocuments(text, 'de'), text).toBe(false);
+		}
+		expect(pointsToDocuments('een planning als bijlage (maximaal een A3)', 'nl')).toBe(false);
+	});
+
+	it('reads a form named by its title and the umlaut plurals of listed words as pointers', () => {
+		expect(
+			pointsToDocuments(
+				'Die Angaben sind im Dokument Eigenerklärungen für die Eignung zu tätigen.',
+				'de'
+			)
+		).toBe(true);
+		expect(
+			pointsToDocuments(
+				'die im Erstellungsvertrag, inkl. seiner Anhänge, genannten Leistungen',
+				'de'
+			)
+		).toBe(true);
+		expect(pointsToDocuments('Die ausgefüllten Formblätter sind einzureichen.', 'de')).toBe(true);
+	});
+
+	it('checks every pattern when the language is unknown', () => {
+		expect(pointsToDocuments('Zur Nachweisführung soll die Anlage 6a verwendet werden.')).toBe(
+			true
+		);
+		expect(pointsToDocuments('volgens bijlage 3', 'it')).toBe(true);
+	});
+
 	it('reads a regional language tag by its primary subtag', () => {
 		expect(pointsToDocuments('Siehe Leistungsbeschreibung', 'de-AT')).toBe(true);
 		expect(pointsToDocuments('Siehe Leistungsbeschreibung', 'DE')).toBe(true);

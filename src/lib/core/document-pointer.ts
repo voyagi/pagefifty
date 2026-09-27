@@ -30,10 +30,14 @@ export function normalizeCriterionText(text: string): string {
 // A web address in a criterion sends the reader outside the notice, whatever the language.
 const ADDRESSES = ['https://', 'http://', 'www.'];
 
-// Phrases taken from the criterion texts of the 2026-09-15 capture, matched as substrings of the
-// normalised text so German compounds and plurals match their stem. A bare "Anlage", "bijlage" or
+// Phrases taken from the criterion texts of the 2026-09-15 capture, plus each language's usual names
+// for the procurement documents (most French and English ones match no criterion of that capture;
+// go-rule.test.ts pins what the list decides there). Matched as substrings of the
+// normalised text so German compounds and plurals match their stem; a plural whose umlaut breaks
+// the stem ("Anhänge", "Formblätter") is listed beside it. A bare "Anlage", "bijlage" or
 // "Unterlagen" is left out: it names what the tenderer attaches, not the buyer's documents, so an
-// annex counts only when it is quoted, bracketed, cited "gemäß Anlage" or said to be enclosed.
+// annex counts only when it is quoted, bracketed, numbered, cited "gemäß Anlage" or said to be
+// enclosed.
 const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 	de: [
 		'vergabeunterlage',
@@ -48,12 +52,14 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'vergabeplattform',
 		'hinterlegt',
 		'formblatt',
+		'formblätter',
 		'formular',
 		'vordruck',
 		'gemäss anlage',
 		'anlage "',
 		'(anlage',
 		'anhang',
+		'anhänge',
 		'dokument "',
 		'(dokument',
 		'siehe dokument',
@@ -105,16 +111,36 @@ export const DOCUMENT_POINTERS: Readonly<Record<PointerLanguage, readonly string
 	en: PHRASES.en.map(normalizeCriterionText)
 };
 
-const EVERY_PHRASE: readonly string[] = [...new Set(Object.values(DOCUMENT_POINTERS).flat())];
+// An annex with a number, or a letter and a number ("Anlage 6a", "Anlage B-09", "Anlage
+// 02_Erklärung", "bijlage 3"), is numbered by the buyer's documents, so it points there unquoted;
+// "im Dokument" names a document by its title, as a quoted title after "Dokument" does. Matched on normalised text,
+// so letters are lower case and every space is one space; no letter may stand before the word, so
+// "Elektroanlagen" stays plain.
+const PATTERNS: Readonly<Record<PointerLanguage, readonly RegExp[]>> = {
+	de: [/(?<!\p{L})anlagen? (?:nr\. ?)?[a-z]?[-.]?\d/u, /(?<!\p{L})im dokument(?!\p{L})/u],
+	nl: [/(?<!\p{L})bijlagen? (?:nr\. ?)?[a-z]?[-.]?\d/u],
+	fr: [],
+	en: []
+};
 
-function phrasesFor(lang: string | undefined): readonly string[] {
+const EVERY_PHRASE: readonly string[] = [...new Set(Object.values(DOCUMENT_POINTERS).flat())];
+const EVERY_PATTERN: readonly RegExp[] = Object.values(PATTERNS).flat();
+
+function listsFor(lang: string | undefined) {
 	const primary = lang?.split('-')[0].toLowerCase();
 	return primary !== undefined && Object.hasOwn(DOCUMENT_POINTERS, primary)
-		? DOCUMENT_POINTERS[primary as PointerLanguage]
-		: EVERY_PHRASE;
+		? {
+				phrases: DOCUMENT_POINTERS[primary as PointerLanguage],
+				patterns: PATTERNS[primary as PointerLanguage]
+			}
+		: { phrases: EVERY_PHRASE, patterns: EVERY_PATTERN };
 }
 
 export function pointsToDocuments(text: string, lang?: string): boolean {
 	const normalized = normalizeCriterionText(text);
-	return phrasesFor(lang).some((phrase) => normalized.includes(phrase));
+	const { phrases, patterns } = listsFor(lang);
+	return (
+		phrases.some((phrase) => normalized.includes(phrase)) ||
+		patterns.some((pattern) => pattern.test(normalized))
+	);
 }
