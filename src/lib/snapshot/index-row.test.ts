@@ -120,11 +120,37 @@ describe('toIndexRow and the index schema', () => {
 	});
 
 	it('leaves the value out of a row whose notice publishes none', () => {
-		const withoutValue: NoticeRecord = { ...RECORD };
+		const withoutValue: NoticeRecord = { ...RECORD, lots: [{ ...BARE_LOT }] };
 		delete withoutValue.estimatedValue;
 		const row = toIndexRow(withoutValue);
 		expect(row).not.toHaveProperty('estimatedValue');
 		expect(SnapshotIndexSchema.safeParse(index([row])).success).toBe(true);
+	});
+
+	// 623488-2026 publishes its 1,650,000 EUR only on its one lot, which is the whole procedure.
+	it("gives a one-lot notice its lot's value when the procedure publishes none", () => {
+		const lotValue = { amount: '1650000', currency: 'EUR' };
+		const record: NoticeRecord = { ...RECORD, lots: [{ ...BARE_LOT, estimatedValue: lotValue }] };
+		delete record.estimatedValue;
+		expect(toIndexRow(record).estimatedValue).toEqual(lotValue);
+	});
+
+	// D-09: lot values can overlap, so several of them never become the card's one value.
+	it('gives no value when several lots carry one and the procedure publishes none', () => {
+		const lot = (id: string) => ({
+			...BARE_LOT,
+			id,
+			estimatedValue: { amount: '9375000', currency: 'EUR' }
+		});
+		const record: NoticeRecord = { ...RECORD, lots: [lot('LOT-0001'), lot('LOT-0002')] };
+		delete record.estimatedValue;
+		expect(toIndexRow(record)).not.toHaveProperty('estimatedValue');
+	});
+
+	it('keeps the procedure value over a different value on its one lot', () => {
+		const lotValue = { amount: '700000', currency: 'EUR' };
+		const record: NoticeRecord = { ...RECORD, lots: [{ ...BARE_LOT, estimatedValue: lotValue }] };
+		expect(toIndexRow(record).estimatedValue).toEqual({ amount: '834550.06', currency: 'EUR' });
 	});
 
 	it('refuses a value given as a number', () => {

@@ -134,10 +134,18 @@ export type SnapshotIndex = z.infer<typeof SnapshotIndexSchema>;
 
 const unique = (values: string[]) => [...new Set(values)];
 
+// The card's value is the procedure's (D-09). A notice with one lot may publish it on that lot
+// only, and then the lot is the whole procedure; values on several lots can overlap, so they are
+// never summed or picked into the card's one value.
+function cardValue(record: NoticeRecord): Amount | undefined {
+	if (record.estimatedValue) return record.estimatedValue;
+	return record.lots.length === 1 ? record.lots[0].estimatedValue : undefined;
+}
+
 // The list filters on country and CPV group from any main or additional code (research Pitfall 4:
 // a main CPV can sit outside the IT groups while an additional one is inside).
 export function toIndexRow(record: NoticeRecord): IndexRow {
-	const { estimatedValue } = record;
+	const estimatedValue = cardValue(record);
 	return {
 		noticeNumber: record.noticeNumber,
 		title: record.title,
