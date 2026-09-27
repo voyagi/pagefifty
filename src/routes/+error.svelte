@@ -16,6 +16,19 @@
 	// Widened to string for the same reason: an error page is reached from any path at all.
 	const path = $derived<string>(page.url.pathname);
 	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
+
+	// The address arrives percent-encoded, but the visitor typed letters, so the letters come back. A
+	// malformed escape stays as sent, and a control or direction character shows as the replacement
+	// mark, so an echoed address cannot reorder or hide the text around it.
+	function readable(pathname: string): string {
+		let decoded = pathname;
+		try {
+			decoded = decodeURIComponent(pathname);
+		} catch (error) {
+			if (!(error instanceof URIError)) throw error;
+		}
+		return decoded.replace(/[\p{Cc}\p{Cf}]/gu, '�');
+	}
 </script>
 
 <svelte:head>
@@ -30,9 +43,11 @@
 			{#if notice !== undefined}
 				<h1 id="error-title">No tender with this notice number</h1>
 				{@render tab()}
+				<!-- Both days are the snapshot's; error.dom.test.ts fails when the built index disagrees. -->
 				<p class="lede">
 					Notice <span class="mono echo">{notice}</span> is not in the 15 Sep 2026 snapshot. It may be
-					outside the IT, Netherlands, Belgium and Germany scope, or published after the capture.
+					outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026, or published
+					after the capture.
 				</p>
 				<div class="actions">
 					{#if onExample}
@@ -46,7 +61,7 @@
 				<h1 id="error-title">No page at this address</h1>
 				{@render tab()}
 				<p class="lede">Check the address for a typo, or go back to the open tenders.</p>
-				<p class="mono echo path">{page.url.pathname}</p>
+				<p class="mono echo path">{readable(path)}</p>
 				<div class="actions">
 					<Button href="/tenders">Browse open tenders</Button>
 				</div>

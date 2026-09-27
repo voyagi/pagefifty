@@ -1,5 +1,9 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { render, screen } from '@testing-library/svelte';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { captureDay, SnapshotIndexSchema } from '$lib/snapshot/index-row';
+import { CAPTURE_ID } from '../test/fixtures/roles';
 
 const state = vi.hoisted(() => ({
 	page: {
@@ -46,8 +50,29 @@ describe('error page', () => {
 	it('echoes a path as text, never as markup', () => {
 		at(404, '/<b>bold</b>', { message: 'Not Found' });
 		const { container } = render(ErrorPage);
+		expect(state.page.url.pathname).toBe('/%3Cb%3Ebold%3C/b%3E');
 		expect(container.querySelector('.path b')).toBeNull();
-		expect(container.querySelector('.path')?.textContent).toBe('/%3Cb%3Ebold%3C/b%3E');
+		expect(container.querySelector('.path')?.textContent).toBe('/<b>bold</b>');
+	});
+
+	it('echoes the letters a visitor typed, not their percent escapes', () => {
+		at(404, '/tenders/überblick', { message: 'Not Found' });
+		const { container } = render(ErrorPage);
+		expect(state.page.url.pathname).toBe('/tenders/%C3%BCberblick');
+		expect(container.querySelector('.path')?.textContent).toBe('/tenders/überblick');
+	});
+
+	it('keeps a malformed escape as sent', () => {
+		at(404, '/broken%E0%A4%A', { message: 'Not Found' });
+		const { container } = render(ErrorPage);
+		expect(container.querySelector('.path')?.textContent).toBe('/broken%E0%A4%A');
+	});
+
+	it('shows control and direction characters as the replacement mark', () => {
+		at(404, '/a%E2%80%AEb%0Ac', { message: 'Not Found' });
+		const { container } = render(ErrorPage);
+		const mark = String.fromCodePoint(0xfffd);
+		expect(container.querySelector('.path')?.textContent).toBe(`/a${mark}b${mark}c`);
 	});
 
 	it('names an unknown notice and the snapshot, and leads to the tenders off the example', () => {
@@ -61,10 +86,34 @@ describe('error page', () => {
 			'No tender with this notice number'
 		);
 		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
-			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, or published after the capture.'
+			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026, or published after the capture.'
 		);
 		expect(hrefs()).toContain('/tenders');
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
+	});
+
+	// The copy writes both days out; a new capture must fail here rather than leave the page naming
+	// the old snapshot or the old publication window.
+	it('names the capture day and the first publication day the built index records', () => {
+		const index = SnapshotIndexSchema.parse(
+			JSON.parse(
+				readFileSync(join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'index.json'), 'utf8')
+			)
+		);
+		const from = /publication-date>=(\d{4})(\d{2})(\d{2})/.exec(index.capture.query);
+		if (!from)
+			throw new Error(`the capture query names no first publication day: ${index.capture.query}`);
+		at(404, '/tenders/999999-2026', {
+			message: 'Not Found',
+			kind: 'unknown-notice',
+			notice: '999999-2026'
+		});
+		render(ErrorPage);
+		const lede = squash(document.querySelector('.lede')?.textContent);
+		expect(lede).toContain(`not in the ${captureDay(index.capture.fetchedAt)} snapshot`);
+		expect(lede).toContain(
+			`published before ${captureDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`)},`
+		);
 	});
 
 	it('offers the way back to the example run first on an example route', () => {
