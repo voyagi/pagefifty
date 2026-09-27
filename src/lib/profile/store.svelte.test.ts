@@ -301,15 +301,16 @@ function storageEvent(key: string | null, newValue: string | null) {
 }
 
 // What another tab's write looks like from here: storage holds the value first, then the event
-// arrives. A null value removes the key. A clear (key null) changes nothing here.
+// arrives. A null value removes the key, and a null key is a clear, which empties storage.
 function otherTabWrites(
 	storage: CountingStorage,
 	target: EventTarget,
 	key: string | null,
 	newValue: string | null
 ) {
-	if (key !== null && newValue === null) storage.values.delete(key);
-	else if (key !== null && newValue !== null) storage.values.set(key, newValue);
+	if (key === null) storage.values.clear();
+	else if (newValue === null) storage.values.delete(key);
+	else storage.values.set(key, newValue);
 	target.dispatchEvent(storageEvent(key, newValue));
 }
 
@@ -479,29 +480,60 @@ describe('listen', () => {
 		expect(store.stored).toEqual(other);
 	});
 
+	// The next save builds on what storage holds, so the page shows what a reload would read: junk,
+	// an invalid envelope or a removal leaves nothing saved, never a profile only this page still has.
 	it.each([
 		['junk', '{'],
 		['an invalid envelope', JSON.stringify(storedOf(withStaff(-1)))],
 		['a removed profile', null]
-	])('ignores %s for the profile key', (_what, newValue) => {
+	])('reads %s from another tab as nothing saved, as a reload would', (_what, newValue) => {
 		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
-		const before = store.stored;
 		otherTabWrites(storage, target, PROFILE_KEY, newValue);
-		expect(store.stored).toBe(before);
+		expect(store.stored).toBeNull();
+		expect(createProfileStore(storage).load()).toBeNull();
 	});
 
-	it('ignores an event for another key, and a cleared storage', () => {
+	it('never brings back a profile another tab removed when this page saves a field', () => {
+		const { storage, store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		otherTabWrites(storage, target, PROFILE_KEY, null);
+		const setYears = (current: Profile) => ({ ...current, completedFinancialYears: 3 });
+		expect(store.updateProfile(setYears, LATER)).toBe('saved');
+		const kept = JSON.parse(storage.getItem(PROFILE_KEY) ?? 'null').profile;
+		expect([kept.completedFinancialYears, kept.staff.total]).toEqual([3, undefined]);
+		expect(store.stored?.profile).toEqual(kept);
+	});
+
+	it('clears the newer-version note once another tab removes that profile', () => {
+		const { storage, store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		otherTabWrites(storage, target, PROFILE_KEY, JSON.stringify({ schemaVersion: 3 }));
+		otherTabWrites(storage, target, PROFILE_KEY, null);
+		expect([store.newerVersion, store.stored]).toEqual([null, null]);
+	});
+
+	it('ignores an event for another key', () => {
 		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
 		const before = store.stored;
 		const other = canonicalStoredJson(storedOf(withStaff(42), LATER));
 		otherTabWrites(storage, target, 'pagefifty-profile-copy', other);
-		otherTabWrites(storage, target, null, null);
 		expect(store.stored).toBe(before);
 		expect(store.activeFirm).toBe('own');
+	});
+
+	it('follows a storage another tab cleared: nothing saved, and back on the own firm', () => {
+		const { storage, store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		store.useDemo();
+		otherTabWrites(storage, target, null, null);
+		expect([store.stored, store.activeFirm]).toEqual([null, 'own']);
 	});
 
 	it('notes a newer schema version another tab stored, keeping the profile it has', () => {

@@ -173,22 +173,25 @@ export function createProfileStore(storage: Storage) {
 	}
 
 	// A storage event says a key changed in another tab, and it can arrive after this page has read
-	// that change and written over it. So it is only a notice: the key is filtered exactly, read again
-	// from storage and validated before it replaces anything; junk and removals are ignored.
+	// that change and written over it. So it is only a notice: the key is filtered exactly and read
+	// again from storage. The profile shown is then what a reload would read, because the next save
+	// builds on storage: a valid envelope replaces it, and junk, an invalid envelope or a removal
+	// leave nothing saved rather than a profile only this page still holds. A newer version's profile
+	// is noted and the one shown kept, since every save is refused while it is there. A null key is
+	// another tab clearing the whole storage, which changes both keys.
 	function onStorage(event: Event) {
 		const { key } = event as StorageEvent;
-		if (key === ACTIVE_FIRM_KEY) {
-			activeFirm = readFirm(readKey(storage, key));
+		if (key === null || key === ACTIVE_FIRM_KEY) {
+			activeFirm = readFirm(readKey(storage, ACTIVE_FIRM_KEY));
+		}
+		if (key !== null && key !== PROFILE_KEY) return;
+		const read = parseStored(readKey(storage, PROFILE_KEY));
+		if (read.kind === 'newer') {
+			newerVersion = read.version;
 			return;
 		}
-		if (key !== PROFILE_KEY) return;
-		const read = parseStored(readKey(storage, key));
-		if (read.kind === 'read') {
-			stored = read.stored;
-			newerVersion = null;
-		} else if (read.kind === 'newer') {
-			newerVersion = read.version;
-		}
+		stored = read.kind === 'read' ? read.stored : null;
+		newerVersion = null;
 	}
 
 	function listen(target: StorageEventSource): () => void {
@@ -196,8 +199,11 @@ export function createProfileStore(storage: Storage) {
 		return () => target.removeEventListener('storage', onStorage);
 	}
 
-	// Asked once per page and only once something is really stored: a browser that grants it keeps
-	// the profile out of eviction. The page says the browser may delete it whatever this resolves to.
+	// Asked at most once per page, and only after this page has written the profile itself (plan
+	// 01-08): a browser that grants it keeps the profile out of eviction. Firefox answers the request
+	// with a permission popup (MDN, storage quotas and eviction criteria, read 2026-09-27), so it
+	// follows the user's own save and a visit that only reads never asks. The page says the browser
+	// may delete the profile whatever this resolves to.
 	function requestPersistOnce(nav: PersistCapableNavigator | undefined) {
 		const manager = nav?.storage;
 		if (persistRequested || !hasSaved || typeof manager?.persist !== 'function') return;
