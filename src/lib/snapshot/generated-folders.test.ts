@@ -147,6 +147,24 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(kept.capture.total).toBe(1);
 	});
 
+	it.each([
+		['absent', {}],
+		['empty', { 'publication-number': '' }]
+	])('names each notice whose number is %s, never as a repeat of another', (_what, numberless) => {
+		writeCapture(['609955-2026']);
+		const listing = readJson(join(capture, 'notices.json')) as Record<string, unknown>;
+		const notices = [{ 'publication-number': '609955-2026' }, numberless, numberless];
+		writeFileSync(join(capture, 'notices.json'), JSON.stringify({ ...listing, total: 3, notices }));
+		const run = build();
+		expect(run.status).toBe(1);
+		const named = run.stderr.match(
+			/\(none\): listing: a notice in notices\.json has no publication-number/g
+		);
+		expect(named).toHaveLength(2);
+		expect(run.stderr).not.toContain('listed more than once');
+		expect(run.stderr).not.toContain('undefined');
+	});
+
 	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
 		writeCapture(['609955-2026']);
 		expect(build().status).toBe(0);
