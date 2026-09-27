@@ -123,6 +123,8 @@ export function applyFilters<Row extends FilterableRow>(
 	return rows.filter((row) => {
 		if (!inCountries(row, state.countries) || !inGroups(row, state.cpv)) return false;
 		if (!dated) return true;
+		// A notice is filtered by the one deadline the list shows for it (D-08), so a later lot's
+		// own deadline does not match a day by itself.
 		const { shown } = noticeDeadline(row.lots, now);
 		if (shown.kind === 'in-notice') return false;
 		const at = Date.parse(shown.instant);

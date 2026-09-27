@@ -11,7 +11,8 @@ import {
 	formatDeadline,
 	isOpen,
 	noticeDeadline,
-	timeLeft
+	timeLeft,
+	usableTimeZone
 } from './deadline';
 
 const AMSTERDAM = 'Europe/Amsterdam';
@@ -286,6 +287,20 @@ describe('formatDeadline', () => {
 				expect(formatDeadline(deadline.instant, NEW_YORK)).toBe(newYork);
 			}
 		);
+	});
+});
+
+describe('usableTimeZone', () => {
+	it('keeps a zone Intl can format in, an old alias included', () => {
+		expect(usableTimeZone(NEW_YORK)).toBe(NEW_YORK);
+		const alias = usableTimeZone('Asia/Calcutta');
+		expect(formatDeadline('2026-10-06T10:00:00+02:00', alias)).toBe('6 Oct 2026, 13:30 GMT+5:30');
+	});
+
+	it('falls back to the server zone for a zone a browser reports but Intl refuses', () => {
+		for (const zone of ['Etc/Unknown', 'Factory', '', undefined]) {
+			expect(usableTimeZone(zone)).toBe(SERVER_TIME_ZONE);
+		}
 	});
 });
 

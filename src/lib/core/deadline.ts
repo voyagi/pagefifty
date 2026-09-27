@@ -109,6 +109,19 @@ export function formatDeadline(instant: string, timeZone: string): string {
 	return `${date}, ${part.hour}:${part.minute} ${zoneName(moment, timeZone)}`;
 }
 
+// A browser that cannot tell its own zone reports a name Intl refuses ("Etc/Unknown" in Chromium on
+// a misconfigured host), and formatting in it throws. The label then stays in the server's zone,
+// which it already showed before hydration, rather than breaking the page after it.
+export function usableTimeZone(zone: string | undefined): string {
+	if (!zone) return SERVER_TIME_ZONE;
+	try {
+		return new Intl.DateTimeFormat('en-GB', { timeZone: zone }).resolvedOptions().timeZone;
+	} catch (error) {
+		if (error instanceof RangeError) return SERVER_TIME_ZONE;
+		throw error;
+	}
+}
+
 export function timeLeft(instant: string, now: Date): string | undefined {
 	const remaining = Date.parse(instant) - now.getTime();
 	if (remaining <= 0) return undefined;

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { SERVER_TIME_ZONE, formatDeadline } from '$lib/core/deadline';
+	import { SERVER_TIME_ZONE, formatDeadline, usableTimeZone } from '$lib/core/deadline';
 
 	let { instant, visitorTimeZone }: { instant: string; visitorTimeZone?: string } = $props();
 
@@ -13,7 +13,7 @@
 
 	const timeZone = $derived(
 		mounted
-			? (visitorTimeZone ?? new Intl.DateTimeFormat().resolvedOptions().timeZone)
+			? usableTimeZone(visitorTimeZone ?? new Intl.DateTimeFormat().resolvedOptions().timeZone)
 			: SERVER_TIME_ZONE
 	);
 </script>

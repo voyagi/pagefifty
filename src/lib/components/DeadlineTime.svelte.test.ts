@@ -65,6 +65,14 @@ describe('DeadlineTime', () => {
 		expect(timeElement(container).textContent).toBe(formatDeadline(INSTANT, zone));
 	});
 
+	it('keeps the Central European label when the browser reports a zone Intl refuses', () => {
+		const { container } = render(DeadlineTime, {
+			props: { instant: INSTANT, visitorTimeZone: 'Etc/Unknown' }
+		});
+		flushSync();
+		expect(timeElement(container).textContent).toBe(formatDeadline(INSTANT, SERVER_TIME_ZONE));
+	});
+
 	it('follows a new instant', async () => {
 		const { container, rerender } = render(DeadlineTime, {
 			props: { instant: INSTANT, visitorTimeZone: 'Europe/Amsterdam' }
