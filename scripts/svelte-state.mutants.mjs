@@ -315,7 +315,16 @@ export default async (env) => {
 
 // Returns the parsed JSON report, or null with the reason when the run produced no answer. A run that
 // was killed, wrote no report or never loaded the module under test must not read as "a test failed".
+// A run that never served the module asked nothing, so it is tried once more in a fresh folder: one
+// such failure was seen when three runs started together. A run that reached the test is never
+// repeated, so a retry can never turn a caught mutation into an escaped one or back.
 async function runServed(folder, module, source) {
+  const first = await runServedOnce(folder, module, source);
+  if (first.report || !first.why.startsWith('the module was never served')) return first;
+  return runServedOnce(`${folder}-retry`, module, source);
+}
+
+async function runServedOnce(folder, module, source) {
   mkdirSync(folder, { recursive: true });
   const served = join(folder, 'served.ts');
   const marker = join(folder, 'served.marker');
