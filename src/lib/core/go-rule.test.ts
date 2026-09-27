@@ -1,0 +1,143 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import { readFixture } from '../../test/fixtures/node';
+import { CAPTURE_ID, FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
+import { readNotice } from '../ingest/read-notice';
+import type { LotRecord } from '../ingest/record';
+import { NoticeRecordSchema } from '../snapshot/index-row';
+import { summarizeLot, type LotCoverageInput } from './coverage-facts';
+import { DOCUMENT_POINTERS, normalizeCriterionText } from './document-pointer';
+import { toLotInput } from './reading';
+import { decideLot, type CriterionState } from './verdict';
+
+// Phase 1 decides no criterion, so every one is set MET: the most favourable profile there is. A
+// lot that is not GO under it is not GO for any firm.
+const everyMet = (count: number): CriterionState[] => Array.from({ length: count }, () => 'MET');
+
+function onlyLotOf(role: RoleName, which = 0): LotRecord {
+	const entry = FIXTURE_ROLES[role];
+	const noticeNumber = entry.kind === 'synthetic' ? entry.derivedFrom : entry.notices[which].notice;
+	const result = readNotice(new TextEncoder().encode(readFixture(role, which)), { noticeNumber });
+	if (!result.ok) throw new Error(`${role} did not read: ${result.detail}`);
+	expect(result.record.lots).toHaveLength(1);
+	return result.record.lots[0];
+}
+
+const decide = (input: LotCoverageInput, states: CriterionState[]) =>
+	decideLot(toLotInput(input, states));
+
+const mostFavourable = (lot: LotRecord) => decide(summarizeLot(lot), everyMet(lot.criteria.length));
+
+const germanPhrasesIn = (lot: LotRecord, criterion: number) =>
+	DOCUMENT_POINTERS.de.filter((phrase) =>
+		lot.criteria[criterion].descriptions.some((each) =>
+			normalizeCriterionText(each.text).includes(phrase)
+		)
+	);
+
+const ASK_FIRST_DOCUMENTS = { verdict: 'ASK FIRST', reason: 'criteria-in-documents' };
+
+describe('the GO rule on real notices, every criterion MET', () => {
+	it('reads 609955-2026 ASK FIRST with the reason criteria-in-documents', () => {
+		const lot = onlyLotOf('go-rule', 1);
+		expect(FIXTURE_ROLES['go-rule'].notices[1].notice).toBe('609955-2026');
+		expect(summarizeLot(lot)).toEqual({
+			criteriaCount: 6,
+			sources: ['epo-notice'],
+			pointsToDocuments: true
+		});
+		expect(lot.criteria.map((criterion) => criterion.pointsToDocuments)).toEqual(
+			Array.from({ length: 6 }, () => true)
+		);
+		expect(germanPhrasesIn(lot, 1)).toEqual(['vergabeunterlage']);
+		expect(mostFavourable(lot)).toEqual(ASK_FIRST_DOCUMENTS);
+	});
+
+	it('reads 607074-2026 ASK FIRST with the reason criteria-in-documents', () => {
+		const lot = onlyLotOf('go-rule', 0);
+		expect(FIXTURE_ROLES['go-rule'].notices[0].notice).toBe('607074-2026');
+		expect(summarizeLot(lot)).toEqual({
+			criteriaCount: 9,
+			sources: ['epo-notice'],
+			pointsToDocuments: true
+		});
+		for (const criterion of lot.criteria.keys()) {
+			expect(germanPhrasesIn(lot, criterion)).toEqual(
+				expect.arrayContaining(['folgendem link', 'eignungskriterien finden', 'https://'])
+			);
+		}
+		expect(germanPhrasesIn(lot, 5)).toContain('vergabeunterlage');
+		expect(mostFavourable(lot)).toEqual(ASK_FIRST_DOCUMENTS);
+	});
+
+	it('reads 630477-2026 ASK FIRST, decided by criterion 3 and its enclosed reference form', () => {
+		const lot = onlyLotOf('go-rule', 2);
+		expect(FIXTURE_ROLES['go-rule'].notices[2].notice).toBe('630477-2026');
+		expect(lot.criteria.map((criterion) => criterion.pointsToDocuments)).toEqual([
+			false,
+			false,
+			false,
+			true
+		]);
+		expect(lot.criteria[3].code).toBe('slc-abil-ref-supply');
+		expect(lot.criteria[3].descriptions[0].text).toContain(
+			'das den Vergabeunterlagen beiliegende Formblatt (Anlage A10 Referenzen)'
+		);
+		expect(germanPhrasesIn(lot, 3)).toEqual([
+			'vergabeunterlage',
+			'formblatt',
+			'(anlage',
+			'beiliegend'
+		]);
+		expect(mostFavourable(lot)).toEqual(ASK_FIRST_DOCUMENTS);
+	});
+
+	it('lets the pointer alone decide each of the three: without it the same lot would be GO', () => {
+		for (const which of [0, 1, 2]) {
+			const lot = onlyLotOf('go-rule', which);
+			expect(lot.reserved).toBe('none');
+			const unpointed = { ...summarizeLot(lot), pointsToDocuments: false };
+			expect(decide(unpointed, everyMet(lot.criteria.length))).toEqual({ verdict: 'GO' });
+		}
+	});
+});
+
+describe('the GO rule on shaped lots', () => {
+	it('reads a notice-only lot with one MET and one INFO criterion and no pointer GO', () => {
+		const input = { criteriaCount: 2, sources: ['epo-notice'], pointsToDocuments: false };
+		expect(decide(input, ['MET', 'INFO'])).toEqual({ verdict: 'GO' });
+	});
+
+	it('reads a notice-source lot with no criteria ASK FIRST with the reason no-criteria-in-notice', () => {
+		const lot = onlyLotOf('notice-source-no-criteria');
+		expect(lot.criteriaSources).toEqual(['epo-notice']);
+		expect(mostFavourable(lot)).toEqual({ verdict: 'ASK FIRST', reason: 'no-criteria-in-notice' });
+	});
+
+	it('never reads a lot that declares no BT-821 source GO', () => {
+		const lot = onlyLotOf('one-lot');
+		const declared = { ...summarizeLot(lot), criteriaCount: 2, pointsToDocuments: false };
+		expect(decide(declared, ['MET', 'MET'])).toEqual({ verdict: 'GO' });
+		const undeclared = { ...declared, sources: [] };
+		expect(decide(undeclared, ['MET', 'MET'])).toEqual(ASK_FIRST_DOCUMENTS);
+	});
+});
+
+describe(`every lot of the ${CAPTURE_ID} capture under the most favourable profile`, () => {
+	it('reads GO only where the lot declares a reserved-procurement code', () => {
+		const folder = join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'records');
+		const unknownReserved: string[] = [];
+		let go = 0;
+		for (const file of readdirSync(folder)) {
+			const record = NoticeRecordSchema.parse(JSON.parse(readFileSync(join(folder, file), 'utf8')));
+			for (const lot of record.lots) {
+				if (mostFavourable(lot).verdict !== 'GO') continue;
+				go += 1;
+				if (lot.reserved === undefined) unknownReserved.push(`${record.noticeNumber} ${lot.id}`);
+			}
+		}
+		expect(go).toBeGreaterThan(0);
+		expect(unknownReserved).toEqual([]);
+	}, 30_000);
+});
