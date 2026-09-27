@@ -1,0 +1,107 @@
+<script lang="ts">
+	import { page } from '$app/state';
+	import type { Pathname } from '$app/types';
+	import Binder from '$lib/components/Binder.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import Leaf from '$lib/components/Leaf.svelte';
+
+	// /example has no route until plan 01-15, so Pathname does not list it yet. The link below renders
+	// only when an /example route itself throws the unknown-notice error, so it never leads nowhere.
+	const EXAMPLE = '/example' as string as Pathname;
+
+	const notFound = $derived(page.status === 404);
+	const notice = $derived(
+		notFound && page.error?.kind === 'unknown-notice' ? (page.error.notice ?? '') : undefined
+	);
+	// Widened to string for the same reason: an error page is reached from any path at all.
+	const path = $derived<string>(page.url.pathname);
+	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
+</script>
+
+<svelte:head>
+	<title
+		>{notFound ? 'Page not found - Pagefifty' : 'This page could not be built - Pagefifty'}</title
+	>
+</svelte:head>
+
+<Binder board="slate">
+	<Leaf id="error" tab={String(page.status)} tabMono hue="slate" labelledby="error-title" open>
+		{#snippet children(tab)}
+			{#if notice !== undefined}
+				<h1 id="error-title">No tender with this notice number</h1>
+				{@render tab()}
+				<p class="lede">
+					Notice <span class="mono echo">{notice}</span> is not in the 15 Sep 2026 snapshot. It may be
+					outside the IT, Netherlands, Belgium and Germany scope, or published after the capture.
+				</p>
+				<div class="actions">
+					{#if onExample}
+						<Button href={EXAMPLE}>Back to the example run</Button>
+						<Button variant="secondary" href="/tenders">Browse open tenders</Button>
+					{:else}
+						<Button href="/tenders">Browse open tenders</Button>
+					{/if}
+				</div>
+			{:else if notFound}
+				<h1 id="error-title">No page at this address</h1>
+				{@render tab()}
+				<p class="lede">Check the address for a typo, or go back to the open tenders.</p>
+				<p class="mono echo path">{page.url.pathname}</p>
+				<div class="actions">
+					<Button href="/tenders">Browse open tenders</Button>
+				</div>
+			{:else}
+				<h1 id="error-title">This page could not be built</h1>
+				{@render tab()}
+				<p class="lede">
+					The server hit an error while building this page. Reload in a minute. If it keeps
+					happening, the list of open tenders may still work.
+				</p>
+				<div class="actions">
+					<Button href="/tenders">Browse open tenders</Button>
+				</div>
+			{/if}
+		{/snippet}
+	</Leaf>
+</Binder>
+
+<style>
+	h1 {
+		max-width: 24ch;
+		font: 600 var(--step-4) / 1.1 var(--font-cond);
+		letter-spacing: -0.015em;
+		text-wrap: balance;
+	}
+
+	.lede {
+		max-width: 52ch;
+		margin-top: 1rem;
+		font-size: var(--step-1);
+		line-height: 1.45;
+		text-wrap: pretty;
+	}
+
+	/* Whatever a stranger typed comes back as text, and a path with no break in it still wraps. */
+	.echo {
+		overflow-wrap: anywhere;
+		color: var(--ink);
+	}
+
+	.path {
+		margin-top: 1rem;
+		max-width: 70ch;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	@media (max-width: 720px) {
+		h1 {
+			font-size: var(--step-3);
+		}
+	}
+</style>

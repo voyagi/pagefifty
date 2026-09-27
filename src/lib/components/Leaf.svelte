@@ -12,6 +12,7 @@
 		ply = 1,
 		count,
 		open = false,
+		tabMono = false,
 		children
 	}: {
 		id: string;
@@ -21,13 +22,14 @@
 		ply?: 1 | 2;
 		count?: number;
 		open?: boolean;
+		tabMono?: boolean;
 		children: Snippet<[Snippet]>;
 	} = $props();
 </script>
 
 {#snippet tabLink()}
 	<a class="tab hue-{hue}" href="#{id}" aria-current={open ? 'true' : undefined}>
-		<span>{tab}</span>
+		<span class:mono-label={tabMono}>{tab}</span>
 		{#if count !== undefined}<span class="count">{count}</span>{/if}
 	</a>
 {/snippet}
@@ -93,6 +95,12 @@
 		font-family: var(--font-mono);
 		font-weight: 500;
 		margin-top: 0.5rem;
+	}
+
+	/* A status code is evidence, so it reads in Mono like a count. */
+	.mono-label {
+		font-family: var(--font-mono);
+		font-weight: 500;
 	}
 
 	.hue-slate {
