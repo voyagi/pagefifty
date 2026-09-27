@@ -132,8 +132,10 @@ export function createProfileStore(storage: Storage) {
 		return saveChange(() => profile, now);
 	}
 
-	// One field's change: an edit here never overwrites a newer write another tab made to a
-	// different field, even before that tab's storage event arrives.
+	// One field's change, applied to the profile storage holds at this moment, so a field another
+	// tab saved before it is kept even when that tab's storage event has not arrived yet. Storage
+	// cannot read and write as one step across tabs, so two tabs saving in the same instant can still
+	// race, and the later write wins.
 	function updateProfile(change: (current: Profile) => Profile, now: Date): SaveResult {
 		return saveChange(change, now);
 	}
@@ -170,16 +172,17 @@ export function createProfileStore(storage: Storage) {
 		}
 	}
 
-	// A storage event carries whatever another page wrote, so it is filtered by exact key and the
-	// profile is validated again before it replaces anything; junk and removals are ignored.
+	// A storage event says a key changed in another tab, and it can arrive after this page has read
+	// that change and written over it. So it is only a notice: the key is filtered exactly, read again
+	// from storage and validated before it replaces anything; junk and removals are ignored.
 	function onStorage(event: Event) {
-		const { key, newValue } = event as StorageEvent;
+		const { key } = event as StorageEvent;
 		if (key === ACTIVE_FIRM_KEY) {
-			activeFirm = readFirm(newValue);
+			activeFirm = readFirm(readKey(storage, key));
 			return;
 		}
 		if (key !== PROFILE_KEY) return;
-		const read = parseStored(newValue);
+		const read = parseStored(readKey(storage, key));
 		if (read.kind === 'read') {
 			stored = read.stored;
 			newerVersion = null;

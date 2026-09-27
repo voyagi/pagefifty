@@ -300,6 +300,19 @@ function storageEvent(key: string | null, newValue: string | null) {
 	return new StorageEvent('storage', { key, newValue });
 }
 
+// What another tab's write looks like from here: storage holds the value first, then the event
+// arrives. A null value removes the key. A clear (key null) changes nothing here.
+function otherTabWrites(
+	storage: CountingStorage,
+	target: EventTarget,
+	key: string | null,
+	newValue: string | null
+) {
+	if (key !== null && newValue === null) storage.values.delete(key);
+	else if (key !== null && newValue !== null) storage.values.set(key, newValue);
+	target.dispatchEvent(storageEvent(key, newValue));
+}
+
 describe('the demo firm slot', () => {
 	it('starts on the own firm with nothing stored', () => {
 		const store = createProfileStore(new CountingStorage());
@@ -458,11 +471,11 @@ describe('replaceFromImport', () => {
 
 describe('listen', () => {
 	it('takes a valid profile another tab stored', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
 		const other = storedOf(withStaff(42), LATER);
-		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(other)));
+		otherTabWrites(storage, target, PROFILE_KEY, canonicalStoredJson(other));
 		expect(store.stored).toEqual(other);
 	});
 
@@ -471,64 +484,87 @@ describe('listen', () => {
 		['an invalid envelope', JSON.stringify(storedOf(withStaff(-1)))],
 		['a removed profile', null]
 	])('ignores %s for the profile key', (_what, newValue) => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
 		const before = store.stored;
-		target.dispatchEvent(storageEvent(PROFILE_KEY, newValue));
+		otherTabWrites(storage, target, PROFILE_KEY, newValue);
 		expect(store.stored).toBe(before);
 	});
 
 	it('ignores an event for another key, and a cleared storage', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
 		const before = store.stored;
 		const other = canonicalStoredJson(storedOf(withStaff(42), LATER));
-		target.dispatchEvent(storageEvent('pagefifty-profile-copy', other));
-		target.dispatchEvent(storageEvent(null, null));
+		otherTabWrites(storage, target, 'pagefifty-profile-copy', other);
+		otherTabWrites(storage, target, null, null);
 		expect(store.stored).toBe(before);
 		expect(store.activeFirm).toBe('own');
 	});
 
 	it('notes a newer schema version another tab stored, keeping the profile it has', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
 		const before = store.stored;
-		target.dispatchEvent(storageEvent(PROFILE_KEY, JSON.stringify({ schemaVersion: 3 })));
+		otherTabWrites(storage, target, PROFILE_KEY, JSON.stringify({ schemaVersion: 3 }));
 		expect(store.newerVersion).toBe(3);
 		expect(store.stored).toBe(before);
 	});
 
 	it('drops the newer-version note once another tab stores a profile this page reads', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
-		target.dispatchEvent(storageEvent(PROFILE_KEY, JSON.stringify({ schemaVersion: 3 })));
+		otherTabWrites(storage, target, PROFILE_KEY, JSON.stringify({ schemaVersion: 3 }));
 		const other = storedOf(withStaff(42), LATER);
-		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(other)));
+		otherTabWrites(storage, target, PROFILE_KEY, canonicalStoredJson(other));
 		expect([store.newerVersion, store.stored]).toEqual([null, other]);
 	});
 
 	it('follows the active firm another tab picked, unknown values reading as own', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		store.listen(target);
-		target.dispatchEvent(storageEvent(ACTIVE_FIRM_KEY, 'demo'));
+		otherTabWrites(storage, target, ACTIVE_FIRM_KEY, 'demo');
 		expect(store.activeFirm).toBe('demo');
-		target.dispatchEvent(storageEvent(ACTIVE_FIRM_KEY, 'junk'));
+		otherTabWrites(storage, target, ACTIVE_FIRM_KEY, 'junk');
 		expect(store.activeFirm).toBe('own');
 	});
 
 	it('stops following once the returned function is called', () => {
-		const { store } = savedStore();
+		const { storage, store } = savedStore();
 		const target = new EventTarget();
 		const stop = store.listen(target);
 		stop();
 		const before = store.stored;
-		target.dispatchEvent(storageEvent(PROFILE_KEY, canonicalStoredJson(storedOf(withStaff(42)))));
+		otherTabWrites(storage, target, PROFILE_KEY, canonicalStoredJson(storedOf(withStaff(42))));
 		expect(store.stored).toBe(before);
+	});
+
+	// A storage event reports a write that may already be overtaken: this page can read that value
+	// and save its own over it before the event is delivered.
+	it('keeps its own later save when the event for an earlier write from another tab arrives after it', () => {
+		const { storage, store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		const earlier = canonicalStoredJson(storedOf(withStaff(42), FIRST));
+		storage.values.set(PROFILE_KEY, earlier);
+		expect(store.saveProfile(withStaff(20), LATER)).toBe('saved');
+		target.dispatchEvent(storageEvent(PROFILE_KEY, earlier));
+		expect(store.stored?.profile.staff.total).toBe(20);
+	});
+
+	it('keeps the firm this page switched to when the event for an earlier pick arrives after it', () => {
+		const { storage, store } = savedStore();
+		const target = new EventTarget();
+		store.listen(target);
+		storage.values.set(ACTIVE_FIRM_KEY, 'demo');
+		store.backToOwn();
+		target.dispatchEvent(storageEvent(ACTIVE_FIRM_KEY, 'demo'));
+		expect(store.activeFirm).toBe('own');
 	});
 });
 
