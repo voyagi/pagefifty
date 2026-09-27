@@ -4,7 +4,7 @@ Locked 2026-09-16. Direction name: **The Tabbed Manual**. Chosen by the owner, t
 
 ## Who this is for, measured
 
-The owner or bid lead of a 5 to 50 person IT firm in the Netherlands, Belgium or Germany, at a desk late in the day, deciding in minutes whether the firm can legally take part in an open public tender.
+The owner or bid lead of a 5 to 50 person IT firm in the Netherlands, Belgium or Germany, at a desk late in the day, deciding in minutes whether the firm meets an open public tender's published selection criteria.
 
 What they already use every week, read from live stylesheets on 2026-09-16 (homepage plus up to 12 linked stylesheets, declarations counted):
 

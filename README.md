@@ -1,11 +1,12 @@
 # Pagefifty
 
-Can a small IT firm legally bid on this EU public tender? Pagefifty reads the tender's own
-published selection criteria, checks each one against the firm's profile, and answers GO, NO-GO or
-ASK FIRST with every clause quoted and linked to its source.
+The rule your firm can't meet alone is on page fifty. Read it first. Pagefifty checks whether your
+firm meets a tender's published selection criteria, and quotes each clause from the tender's own
+text with its source.
 
-Status: early development. The examples/ folder will hold a captured real run that replays with no
-key and no install.
+Status: early development. The [examples/2026-09-15/](examples/2026-09-15/) folder holds the
+captured TED snapshot the example run replays with no key and no install. TED is the source; the
+folder's README gives the reuse terms and what was scrubbed.
 
 ## Data sources
 
