@@ -11,8 +11,7 @@ import {
 	formatDeadline,
 	isOpen,
 	noticeDeadline,
-	timeLeft,
-	type DisplayedDeadline
+	timeLeft
 } from './deadline';
 
 const AMSTERDAM = 'Europe/Amsterdam';
@@ -27,7 +26,7 @@ function lotsOf(role: RoleName, which = 0): LotRecord[] {
 	return result.record.lots;
 }
 
-const tender = (instant: string): DisplayedDeadline => ({ kind: 'tender', instant });
+const tender = (instant: string) => ({ kind: 'tender' as const, instant });
 const lotWith = (deadlines: LotRecord['deadlines']) => ({ deadlines });
 const IN_NOTICE = lotWith({});
 
@@ -110,12 +109,14 @@ describe('noticeDeadline', () => {
 			'2026-10-05T10:00:00+02:00',
 			'2026-10-06T10:00:00+02:00'
 		]);
-		expect(noticeDeadline(lots, CAPTURE_NOW)).toEqual({
+		const expected = {
 			open: true,
 			shown: tender('2026-10-05T10:00:00+02:00'),
 			lotsDiffer: true,
 			openLotCount: 2
-		});
+		};
+		expect(noticeDeadline(lots, CAPTURE_NOW)).toEqual(expected);
+		expect(noticeDeadline([...lots].reverse(), CAPTURE_NOW)).toEqual(expected);
 	});
 
 	it('counts only the lots still open once the earlier one has closed', () => {
@@ -229,8 +230,8 @@ describe('formatDeadline', () => {
 	});
 
 	it('keeps the GMT offset where no locale has a short name for the zone', () => {
-		expect(formatDeadline('2026-10-06T10:00:00+02:00', 'Asia/Dubai')).toBe(
-			'6 Oct 2026, 12:00 GMT+4'
+		expect(formatDeadline('2026-10-06T10:00:00+02:00', 'America/Sao_Paulo')).toBe(
+			'6 Oct 2026, 05:00 GMT-3'
 		);
 	});
 
