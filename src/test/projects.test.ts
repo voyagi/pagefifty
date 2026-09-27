@@ -115,13 +115,17 @@ describe('vitest projects', () => {
 		);
 	});
 
-	// verdict.ts is pinned by its mutants harness only while something runs it. CI and the ship gate
-	// both run the gate chain, which must still end with gate:size: the step after it needs the build.
-	it('runs the verdict mutants harness in the gate chain, before the build that ends it', () => {
+	// verdict.ts and the two rune modules Stryker leaves out are pinned by their mutants harnesses only
+	// while something runs them. CI and the ship gate both run the gate chain, which must still end
+	// with gate:size: the step after it needs the build.
+	it('runs both mutants harnesses in the gate chain, before the build that ends it', () => {
 		const { scripts } = JSON.parse(readFileSync('package.json', 'utf8')) as {
 			scripts: Record<string, string>;
 		};
-		expect(scripts['gate:mutants']).toBe('node scripts/verdict.mutants.mjs');
+		expect(scripts['gate:mutants'].split(' && ')).toEqual([
+			'node scripts/verdict.mutants.mjs',
+			'node scripts/svelte-state.mutants.mjs'
+		]);
 		const chain = scripts.gate.split(' && ');
 		expect(chain).toContain('npm run gate:mutants');
 		expect(chain.at(-1)).toBe('npm run gate:size');

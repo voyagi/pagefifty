@@ -550,6 +550,85 @@ describe('readNotice under hostile input', () => {
 	});
 });
 
+// Probe A4 (2026-09-26): with the validator step removed, a file cut just after a complete tag
+// parses to a partial tree with no error, so only the validator stands between it and a record.
+const CUT_AFTER_A_TAG = ONE_LOT.slice(
+	0,
+	ONE_LOT.indexOf('</efac:SelectionCriteria>') + '</efac:SelectionCriteria>'.length
+);
+
+describe('readNotice typed failures, by kind and detail', () => {
+	const bytesOf = {
+		'a DOCTYPE declaring an entity': () => encode(readFixture('doctype-entity')),
+		'a file cut inside a start tag': () => encode(readFixture('truncated')),
+		'a file cut just after a complete tag': () => encode(CUT_AFTER_A_TAG),
+		'a stray UTF-8 continuation byte': () => {
+			const bytes = encode(ONE_LOT);
+			bytes[200] = 0x80;
+			return bytes;
+		},
+		'a multibyte sequence cut at the end': () => new Uint8Array([...encode(ONE_LOT), 0xc3]),
+		'the oversize notice, one byte over the cap': () => encode(readFixture('oversize')),
+		'one byte over the cap and not UTF-8 at all': () =>
+			new Uint8Array(MAX_NOTICE_BYTES + 1).fill(0xff),
+		'another root element': () =>
+			encode(
+				ONE_LOT.replace('<ContractNotice ', '<PlannedNotice ').replace(
+					'</ContractNotice>',
+					'</PlannedNotice>'
+				)
+			)
+	};
+
+	it.each([
+		['a DOCTYPE declaring an entity', 'doctype', /^a DOCTYPE or ENTITY declaration$/],
+		['a file cut inside a start tag', 'malformed', /^InvalidAttr at line \d+: /],
+		['a file cut just after a complete tag', 'malformed', /^InvalidXml at line \d+: /],
+		['a stray UTF-8 continuation byte', 'malformed', /^not UTF-8 text$/],
+		['a multibyte sequence cut at the end', 'malformed', /^not UTF-8 text$/],
+		[
+			'the oversize notice, one byte over the cap',
+			'too-large',
+			/^2097153 bytes, over the 2097152 byte cap$/
+		],
+		[
+			'one byte over the cap and not UTF-8 at all',
+			'too-large',
+			/^2097153 bytes, over the 2097152 byte cap$/
+		],
+		['another root element', 'malformed', /^root element PlannedNotice is not ContractNotice$/]
+	] as const)('refuses %s as %s, whole', (input, kind, detail) => {
+		const result = readNotice(bytesOf[input](), { noticeNumber: '609955-2026' });
+		expect(result.ok).toBe(false);
+		expect(result).not.toHaveProperty('record');
+		expect(result.ok ? undefined : result.kind).toBe(kind);
+		expect(result.ok ? '' : result.detail).toMatch(detail);
+	});
+
+	it('refuses a notice whose own publication id is another notice', () => {
+		const result = read(ONE_LOT, '609956-2026');
+		expect(result.ok ? undefined : result.kind).toBe('malformed');
+		expect(result.ok ? '' : result.detail).toBe(
+			'publication id 00609955-2026 is not notice 609956-2026'
+		);
+	});
+});
+
+describe('readNotice on the largest notice, 600457-2026', () => {
+	// 355,325 bytes as captured; the tracked copy is a little smaller once contact data is scrubbed.
+	it('reads it under the cap with all 17 lots, and logs the parse time in node', () => {
+		const bytes = encode(readFixture('largest'));
+		expect(bytes.byteLength).toBeGreaterThan(350_000);
+		expect(bytes.byteLength).toBeLessThan(MAX_NOTICE_BYTES);
+		const started = performance.now();
+		const result = readNotice(bytes, { noticeNumber: '600457-2026' });
+		const ms = performance.now() - started;
+		console.log(`parse 600457-2026: ${ms.toFixed(1)} ms in node`);
+		expect(result.ok && result.record.lots).toHaveLength(17);
+		expect(ms).toBeGreaterThan(0);
+	});
+});
+
 describe('toBcp47', () => {
 	it.each([
 		['DEU', 'de'],

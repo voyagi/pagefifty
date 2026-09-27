@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { parseCount, type FieldProblem } from '$lib/profile/fields';
-	import { PROFILE_SCHEMA_VERSION, emptyProfile } from '$lib/profile/schema';
+	import { PROFILE_SCHEMA_VERSION } from '$lib/profile/schema';
 	import {
 		browserStorage,
 		createProfileStore,
@@ -38,9 +38,8 @@
 			return;
 		}
 		problem = null;
-		const profile = store.stored?.profile ?? emptyProfile();
-		lastSave = store.saveProfile(
-			{ ...profile, staff: { ...profile.staff, total: parsed.value } },
+		lastSave = store.updateProfile(
+			(current) => ({ ...current, staff: { ...current.staff, total: parsed.value } }),
 			new Date()
 		);
 	}
@@ -67,6 +66,9 @@
 			return savedAt ? `${invalid} The rest is saved.` : invalid;
 		}
 		if (lastSave === 'failed') return 'Not saved: this browser refused to store the profile.';
+		if (lastSave === 'invalid') {
+			return 'Not saved: that change does not fit the profile, so nothing was changed.';
+		}
 		if (!savedAt) return 'Nothing saved yet.';
 		if (inMemoryOnly) {
 			return 'Not saved: this browser blocks storage, so the profile lasts only while this page is open.';
@@ -129,7 +131,7 @@
 		font-variant-numeric: tabular-nums;
 		min-height: 44px;
 		padding: 0 0.75rem;
-		border: 1px solid #5f646b;
+		border: 1px solid var(--ink-3);
 		border-radius: 3px;
 	}
 
@@ -157,7 +159,7 @@
 		display: block;
 		height: 0.875rem;
 		border-radius: 2px;
-		background: rgb(20 20 20 / 0.12);
+		background: var(--acetate-edge);
 	}
 
 	.loading span:nth-of-type(1) {
@@ -170,15 +172,5 @@
 
 	.loading span:nth-of-type(3) {
 		width: 40%;
-	}
-
-	.visually-hidden {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		clip-path: inset(50%);
-		white-space: nowrap;
 	}
 </style>

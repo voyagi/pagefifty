@@ -98,8 +98,14 @@ async function snapshotTransport(folder) {
 	return createSnapshotTransport(entries, async (path) => new Uint8Array(await readFile(path)));
 }
 
+// An absent or empty publication-number is no number at all: readOne refuses each such notice on
+// its own, the failure line names it (none), and two of them are never repeats of each other.
+function hasNumber(number) {
+	return typeof number === 'string' && number.length > 0;
+}
+
 async function readOne(transport, number) {
-	if (typeof number !== 'string' || number.length === 0) {
+	if (!hasNumber(number)) {
 		return { ok: false, kind: 'listing', detail: 'a notice in notices.json has no publication-number' };
 	}
 	const response = await transport(new Request(tedNoticeXmlUrl(number)));
@@ -124,7 +130,11 @@ async function buildCapture(examples, id) {
 			});
 		}
 		if (!result.ok) {
-			failures.push({ number: number ?? '(none)', kind: result.kind, detail: result.detail });
+			failures.push({
+				number: hasNumber(number) ? number : '(none)',
+				kind: result.kind,
+				detail: result.detail
+			});
 			continue;
 		}
 		// The loader parses each record with this schema, so one it would refuse is never written.
@@ -141,7 +151,9 @@ async function buildCapture(examples, id) {
 			detail: `total is ${listing.total} but ${numbers.length} notices are listed`
 		});
 	}
-	const duplicates = numbers.filter((number, index) => numbers.indexOf(number) !== index);
+	const duplicates = numbers.filter(
+		(number, index) => hasNumber(number) && numbers.indexOf(number) !== index
+	);
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
 	}

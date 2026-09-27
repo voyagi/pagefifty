@@ -20,50 +20,80 @@ const Year = z.number().int().min(1900).max(2100);
 // anything past Number.MAX_SAFE_INTEGER (schema.test.ts pins that).
 const Whole = z.number().int().nonnegative();
 
-export const ProfileSchema = z.strictObject({
-	registration: z.strictObject({ country: Country.optional(), register: Text.optional() }),
-	authorisations: z.array(z.strictObject({ name: Text, register: Text.optional() })),
-	reservedOperator: z.boolean().optional(),
-	securityClearances: z.array(z.strictObject({ country: Country, level: Text })),
-	completedFinancialYears: Whole.optional(),
-	// Keyed by the year a financial year ends.
-	turnover: z.array(
-		z.strictObject({
-			year: Year,
-			generalNet: Whole.optional(),
-			specific: z.array(z.strictObject({ businessLine: Text, net: Whole.optional() }))
-		})
-	),
-	staff: z.strictObject({
-		total: Whole.optional(),
-		byRole: z.array(
-			z.strictObject({ role: Text, domain: Text.optional(), count: Whole.optional() })
+// The index of every row whose year an earlier row already holds.
+function repeatedYearRows(rows: readonly { year: number }[]): number[] {
+	const seen = new Set<number>();
+	return rows.flatMap((row, index) => {
+		const repeated = seen.has(row.year);
+		seen.add(row.year);
+		return repeated ? [index] : [];
+	});
+}
+
+export const ProfileSchema = z
+	.strictObject({
+		registration: z.strictObject({ country: Country.optional(), register: Text.optional() }),
+		authorisations: z.array(z.strictObject({ name: Text, register: Text.optional() })),
+		reservedOperator: z.boolean().optional(),
+		securityClearances: z.array(z.strictObject({ country: Country, level: Text })),
+		completedFinancialYears: Whole.optional(),
+		// Keyed by the year a financial year ends.
+		turnover: z.array(
+			z.strictObject({
+				year: Year,
+				generalNet: Whole.optional(),
+				specific: z.array(z.strictObject({ businessLine: Text, net: Whole.optional() }))
+			})
 		),
-		// A yearly average headcount is often a fraction (17.5 people), unlike a count.
-		yearlyAverages: z.array(
-			z.strictObject({ year: Year, average: z.number().nonnegative().optional() })
-		)
-	}),
-	insurance: z.array(
-		z.strictObject({ kind: Text, coverEuros: Whole.optional(), validUntil: Day.optional() })
-	),
-	certificates: z.array(
-		z.strictObject({ standard: Text, scope: Text.optional(), validUntil: Day.optional() })
-	),
-	references: z.array(
-		z.strictObject({
-			client: Text,
-			clientType: z.enum(['public', 'private']).optional(),
-			start: Day.optional(),
-			completion: Day.optional(),
-			valueNet: Whole.optional(),
-			categories: z.array(Text),
-			performedByFirm: z.boolean().optional()
-		})
-	),
-	countries: z.array(Country),
-	languages: z.array(Language)
-});
+		staff: z.strictObject({
+			total: Whole.optional(),
+			byRole: z.array(
+				z.strictObject({ role: Text, domain: Text.optional(), count: Whole.optional() })
+			),
+			// A yearly average headcount is often a fraction (17.5 people), unlike a count.
+			yearlyAverages: z.array(
+				z.strictObject({ year: Year, average: z.number().nonnegative().optional() })
+			)
+		}),
+		insurance: z.array(
+			z.strictObject({ kind: Text, coverEuros: Whole.optional(), validUntil: Day.optional() })
+		),
+		certificates: z.array(
+			z.strictObject({ standard: Text, scope: Text.optional(), validUntil: Day.optional() })
+		),
+		references: z.array(
+			z.strictObject({
+				client: Text,
+				clientType: z.enum(['public', 'private']).optional(),
+				start: Day.optional(),
+				completion: Day.optional(),
+				valueNet: Whole.optional(),
+				categories: z.array(Text),
+				performedByFirm: z.boolean().optional()
+			})
+		),
+		countries: z.array(Country),
+		languages: z.array(Language)
+	})
+	.superRefine((profile, ctx) => {
+		// One figure per year: with two rows for a year every later reading (the form's average,
+		// phase 2's comparisons) would pick one by position, so the repeated year is refused by name.
+		const lists = [
+			{ path: ['turnover'], rows: profile.turnover },
+			{ path: ['staff', 'yearlyAverages'], rows: profile.staff.yearlyAverages }
+		];
+		for (const { path, rows } of lists) {
+			for (const index of repeatedYearRows(rows)) {
+				const { year } = rows[index];
+				ctx.addIssue({
+					code: 'custom',
+					message: `year ${year} is listed twice`,
+					path: [...path, index, 'year'],
+					input: year
+				});
+			}
+		}
+	});
 
 export type Profile = z.infer<typeof ProfileSchema>;
 
