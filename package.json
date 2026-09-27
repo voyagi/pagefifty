@@ -29,7 +29,7 @@
 		"gate:deps": "depcruise src --config .dependency-cruiser.cjs",
 		"gate:size": "npm run build && size-limit",
 		"gate:dead": "node scripts/check-dead.mjs",
-		"gate:mutants": "node scripts/verdict.mutants.mjs",
+		"gate:mutants": "node scripts/verdict.mutants.mjs && node scripts/svelte-state.mutants.mjs",
 		"gate:env": "node scripts/check-env-example.mjs",
 		"gate:tsconfig": "node scripts/check-tsconfig-coverage.mjs",
 		"gate:ship-artifacts": "node scripts/check-ship-artifacts.mjs && node scripts/check-judged-artifacts.mjs",
