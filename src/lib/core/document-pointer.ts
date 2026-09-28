@@ -136,16 +136,22 @@ export const DOCUMENT_POINTERS: Readonly<Record<PointerLanguage, readonly string
 	en: PHRASES.en.map(normalizeCriterionText)
 };
 
-// An annex with a number, or a letter and a number ("Anlage 6a", "Anlage B-09", "Anlage
-// 02_Erklärung", "bijlage 3"), is numbered by the buyer's documents, so it points there unquoted;
-// "im Dokument" names a document by its title, as a quoted title after "Dokument" does. Matched on normalised text,
-// so letters are lower case and every space is one space; no letter may stand before the word, so
-// "Elektroanlagen" stays plain.
+// An annex with a number, a letter, or both ("Anlage 6a", "Anlage B-09", "Anlage A", "Anlage
+// 02_Erklärung", "bijlage 3", "Annex C") is named by the buyer's documents, so it points there
+// unquoted; an English annex, appendix or attachment counts only so, since a bare one may be what
+// the tenderer attaches, as a bare "Anlage" is. "im Dokument" names a document by its title, as a
+// quoted title after "Dokument" does. Matched on normalised text, so letters are lower case and
+// every space is one space; no letter may stand before the word, so "Elektroanlagen" stays plain.
 const PATTERNS: Readonly<Record<PointerLanguage, readonly RegExp[]>> = {
-	de: [/(?<!\p{L})anlagen? (?:nr\. ?)?[a-z]?[-.]?\d/u, /(?<!\p{L})im dokument(?!\p{L})/u],
-	nl: [/(?<!\p{L})bijlagen? (?:nr\. ?)?[a-z]?[-.]?\d/u],
+	de: [
+		/(?<!\p{L})anlagen? (?:nr\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u,
+		/(?<!\p{L})im dokument(?!\p{L})/u
+	],
+	nl: [/(?<!\p{L})bijlagen? (?:nr\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u],
 	fr: [],
-	en: []
+	en: [
+		/(?<!\p{L})(?:annex(?:es)?|appendix|appendices|attachments?) (?:no\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u
+	]
 };
 
 const EVERY_PHRASE: readonly string[] = [...new Set(Object.values(DOCUMENT_POINTERS).flat())];

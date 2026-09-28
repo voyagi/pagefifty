@@ -166,6 +166,26 @@ describe('pointsToDocuments', () => {
 		expect(pointsToDocuments('volgens bijlage 3 aan te leveren', 'nl')).toBe(true);
 	});
 
+	// A letter names the buyer's annex as a number does; each of these read as plain before.
+	it('reads an annex named by a letter alone as a pointer, and an English one named at all', () => {
+		for (const [lang, text] of [
+			['de', 'Siehe Anlage A für die Mindestanforderungen.'],
+			['de', 'Die Anlagen B und C sind beizulegen.'],
+			['nl', 'Zie bijlage A voor de minimumeisen.'],
+			['en', 'See Annex A for the minimum turnover requirement.'],
+			['en', 'The references listed in Appendix 2 are required.'],
+			['en', 'Complete Attachment C.']
+		]) {
+			expect(pointsToDocuments(text, lang), text).toBe(true);
+		}
+		for (const [lang, text] of [
+			['de', 'Dem Angebot ist als Anlage der Auszug aus dem Handelsregister beizulegen.'],
+			['en', 'Attach an annex with your company profile.']
+		]) {
+			expect(pointsToDocuments(text, lang), text).toBe(false);
+		}
+	});
+
 	it('leaves a bare annex and words that only hold the letters of one plain', () => {
 		for (const text of [
 			'Dem Angebot ist als Anlage der Auszug aus dem Handelsregister beizulegen.',
