@@ -34,9 +34,9 @@ const ADDRESSES = ['https://', 'http://', 'www.'];
 // for the procurement documents and for a buyer's questionnaire (most French and English ones match
 // no criterion of that capture; go-rule.test.ts pins what the list decides there). Matched as
 // substrings of the normalised text so German compounds and plurals match their stem; a plural whose
-// umlaut breaks the stem ("Anhänge", "Formblätter") is listed beside it. A form the tenderer fills in
-// ("ausgefüllt", "auszufüllen", "befüllt") and a file named by its title ('Datei "A 08 ..."') are the
-// buyer's, so they point there as a questionnaire does. A bare "Anlage", "bijlage" or "Unterlagen" is
+// umlaut breaks the stem ("Anhänge", "Formblätter") is listed beside it. A form, one the tenderer fills
+// in ("ausgefüllt", "ingevuld", "dûment complété") and a file named by its title ('Datei "A 08 ..."')
+// are the buyer's, so in every language they point there as a questionnaire does. A bare "Anlage", "bijlage" or "Unterlagen" is
 // left out: it names what the tenderer attaches, not the buyer's documents, so an annex counts only
 // when it is quoted, bracketed, numbered, cited "gemäß Anlage" or said to be enclosed.
 const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
@@ -90,6 +90,9 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'in bijlage',
 		'(bijlage',
 		'vragenlijst',
+		'formulier',
+		'ingevuld',
+		'in te vullen',
 		...ADDRESSES
 	],
 	fr: [
@@ -100,8 +103,9 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'documents de marché',
 		'dossier de consultation',
 		'règlement de consultation',
-		'formulaire de soumission',
-		"formulaire d'offre",
+		'formulaire',
+		'dûment complété',
+		'dûment rempli',
 		'questionnaire',
 		...ADDRESSES
 	],

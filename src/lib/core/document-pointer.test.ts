@@ -194,7 +194,13 @@ describe('pointsToDocuments', () => {
 			['de', 'Umsatzzahlen der letzten drei Jahre (Datei A 08 Umsatzzahlen)'],
 			['de', 'siehe geforderte Nachweise (Bietereigenerklärung, Sanktionen Russland)'],
 			['nl', 'Vul de vragenlijst voor de selectie in.'],
+			['nl', 'Het referentieformulier gebruiken.'],
+			['nl', 'Een volledig ingevulde verklaring van de kandidaat.'],
+			['nl', 'De kandidaat dient de tabel in te vullen.'],
 			['fr', 'Répondre au questionnaire de sélection.'],
+			['fr', 'Le formulaire de candidature signé.'],
+			['fr', "L'attestation dûment complétée par le client."],
+			['fr', "L'attestation dûment remplie par le client."],
 			['en', 'Complete the selection questionnaire.']
 		]) {
 			expect(pointsToDocuments(text, lang), text).toBe(true);

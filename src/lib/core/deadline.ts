@@ -95,6 +95,17 @@ function zoneName(instant: Date, timeZone: string): string {
 }
 
 // Month names come from the table: en-GB data now writes September as "Sept".
+function dayText(part: Record<string, string>): string {
+	return `${Number(part.day)} ${MONTHS[Number(part.month) - 1]} ${part.year}`;
+}
+
+// The day alone, written "15 Sep 2026", for dates such as the snapshot's capture day.
+export function formatDay(instant: string, timeZone: string): string {
+	return dayText(
+		partsIn(new Date(instant), timeZone, { day: 'numeric', month: 'numeric', year: 'numeric' })
+	);
+}
+
 export function formatDeadline(instant: string, timeZone: string): string {
 	const moment = new Date(instant);
 	const part = partsIn(moment, timeZone, {
@@ -105,8 +116,7 @@ export function formatDeadline(instant: string, timeZone: string): string {
 		minute: '2-digit',
 		hourCycle: 'h23'
 	});
-	const date = `${Number(part.day)} ${MONTHS[Number(part.month) - 1]} ${part.year}`;
-	return `${date}, ${part.hour}:${part.minute} ${zoneName(moment, timeZone)}`;
+	return `${dayText(part)}, ${part.hour}:${part.minute} ${zoneName(moment, timeZone)}`;
 }
 
 // A browser that cannot tell its own zone reports a name Intl refuses ("Etc/Unknown" in Chromium on

@@ -3,6 +3,7 @@
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
 import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
+import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
 import type {
 	Amount,
 	Buyer,
@@ -172,17 +173,7 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 	};
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-// The capture's day as the buyers in scope count it (Central European Time), written "15 Sep 2026".
-// Month names come from this table, because en-GB formatting now writes September as "Sept".
+// The capture's day as the buyers in scope count it, in the zone and the words every deadline uses.
 export function captureDay(fetchedAt: string): string {
-	const parts = new Intl.DateTimeFormat('en-GB', {
-		timeZone: 'Europe/Amsterdam',
-		year: 'numeric',
-		month: 'numeric',
-		day: 'numeric'
-	}).formatToParts(new Date(fetchedAt));
-	const part = (type: string) => Number(parts.find((each) => each.type === type)?.value);
-	return `${part('day')} ${MONTHS[part('month') - 1]} ${part('year')}`;
+	return formatDay(fetchedAt, SERVER_TIME_ZONE);
 }
