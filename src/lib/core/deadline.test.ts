@@ -342,6 +342,22 @@ describe('usableTimeZone', () => {
 			expect(usableTimeZone(zone)).toBe(SERVER_TIME_ZONE);
 		}
 	});
+
+	// Only a refused zone falls back; any other failure is a real fault and must not be hidden as one.
+	it('passes on a failure that is not a refused zone', () => {
+		const failing = new Proxy(Intl.DateTimeFormat, {
+			construct() {
+				throw new TypeError('formatter unavailable');
+			}
+		});
+		vi.stubGlobal('Intl', Object.create(Intl, { DateTimeFormat: { value: failing } }));
+		try {
+			// A name no other test formats in, so no kept formatter answers before the constructor runs.
+			expect(() => usableTimeZone('Mars/Olympus')).toThrow(TypeError);
+		} finally {
+			vi.unstubAllGlobals();
+		}
+	});
 });
 
 describe('timeLeft', () => {
