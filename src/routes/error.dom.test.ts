@@ -62,6 +62,14 @@ describe('error page', () => {
 		expect(container.querySelector('.path')?.textContent).toBe('/tenders/überblick');
 	});
 
+	// Letters come back, but an escape that stands for a slash, a question mark, a hash or a percent
+	// sign stays one, as the router read it: decoded, each would name a different address.
+	it('keeps the escapes that would change the address the visitor asked for', () => {
+		at(404, '/a%2Fb/x%3Fy/%23top/rate%25/%C3%BCber', { message: 'Not Found' });
+		const { container } = render(ErrorPage);
+		expect(container.querySelector('.path')?.textContent).toBe('/a%2Fb/x%3Fy/%23top/rate%25/über');
+	});
+
 	// The built Worker answers a malformed escape with 400 before any route runs (measured at ritual
 	// p5), so that is the status this echo meets.
 	it('keeps a malformed escape as sent', () => {

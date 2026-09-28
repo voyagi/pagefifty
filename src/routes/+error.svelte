@@ -33,12 +33,13 @@
 		return text.replace(/[\p{Cc}\p{Cf}]/gu, '�');
 	}
 
-	// The address arrives percent-encoded, but the visitor typed letters, so the letters come back. A
-	// malformed escape stays as sent.
+	// The address arrives percent-encoded, but the visitor typed letters, so the letters come back.
+	// Decoded as the router reads it: an escape for a slash, a question mark, a hash or a percent sign
+	// stays one, since decoded it would name another address. A malformed escape stays as sent.
 	function readable(pathname: string): string {
 		let decoded = pathname;
 		try {
-			decoded = decodeURIComponent(pathname);
+			decoded = pathname.split('%25').map(decodeURI).join('%25');
 		} catch (error) {
 			if (!(error instanceof URIError)) throw error;
 		}

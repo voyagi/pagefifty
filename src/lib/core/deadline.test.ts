@@ -302,6 +302,34 @@ describe('formatDeadline', () => {
 	});
 });
 
+describe('formatter reuse', () => {
+	afterEach(() => {
+		vi.unstubAllGlobals();
+	});
+
+	// A list renders one label per card on the server and again in the browser after start-up, and
+	// building a formatter costs about ten times using one (ritual p7: 363 labels, 44 ms against 4).
+	it('builds each formatter once, however many labels and zone checks it serves', () => {
+		let built = 0;
+		const counting = new Proxy(Intl.DateTimeFormat, {
+			construct(target, args) {
+				built += 1;
+				return Reflect.construct(target, args);
+			}
+		});
+		vi.stubGlobal('Intl', Object.create(Intl, { DateTimeFormat: { value: counting } }));
+		for (let day = 1; day <= 60; day += 1) {
+			const instant = `2026-10-${String((day % 28) + 1).padStart(2, '0')}T10:00:00+02:00`;
+			formatDeadline(instant, 'Europe/Lisbon');
+			formatDeadline(instant, NEW_YORK);
+			usableTimeZone('Europe/Lisbon');
+		}
+		// Three shapes per zone at most (the date and time, the British zone name, the American one)
+		// plus the zone check: seven, however many labels.
+		expect(built).toBeLessThanOrEqual(7);
+	});
+});
+
 describe('usableTimeZone', () => {
 	it('keeps a zone Intl can format in, an old alias included', () => {
 		expect(usableTimeZone(NEW_YORK)).toBe(NEW_YORK);

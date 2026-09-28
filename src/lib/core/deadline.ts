@@ -2,6 +2,8 @@
 // rendered date read these functions, so a notice can never show open while filtering as closed.
 // No function here reads the clock: "now" is always an argument, so one render judges every card
 // against the same instant (D-06).
+// Imported by src/lib/snapshot/index-row.ts at build time under Node type stripping: erasable
+// syntax only, relative imports with their .ts extension.
 import type { LotDeadlines } from '../ingest/record.ts';
 
 // Every buyer in scope publishes in CET or CEST, and the server cannot know a visitor's zone
@@ -73,13 +75,34 @@ export function noticeDeadline(lots: readonly HasDeadlines[], now: Date): Notice
 	};
 }
 
+// Building a formatter costs about ten times using one, and a list renders a label per card on the
+// server and again in the browser, so each locale, zone and option set is built once (363 labels:
+// 44 ms built afresh, 4 ms reused, measured at ritual p7). The keys stay few: two locales, four
+// option sets, and the server's zone or the one visitor's.
+const formatters = new Map<string, Intl.DateTimeFormat>();
+
+function formatter(
+	locale: string,
+	timeZone: string,
+	options: Intl.DateTimeFormatOptions
+): Intl.DateTimeFormat {
+	const key = `${locale}|${timeZone}|${JSON.stringify(options)}`;
+	let found = formatters.get(key);
+	if (found === undefined) {
+		// A zone Intl refuses throws here, before anything is kept.
+		found = new Intl.DateTimeFormat(locale, { timeZone, ...options });
+		formatters.set(key, found);
+	}
+	return found;
+}
+
 function partsIn(
 	instant: Date,
 	timeZone: string,
 	options: Intl.DateTimeFormatOptions,
 	locale = 'en-GB'
 ): Record<string, string> {
-	const parts = new Intl.DateTimeFormat(locale, { timeZone, ...options }).formatToParts(instant);
+	const parts = formatter(locale, timeZone, options).formatToParts(instant);
 	return Object.fromEntries(parts.map((part) => [part.type, part.value]));
 }
 
@@ -125,7 +148,7 @@ export function formatDeadline(instant: string, timeZone: string): string {
 export function usableTimeZone(zone: string | undefined): string {
 	if (!zone) return SERVER_TIME_ZONE;
 	try {
-		return new Intl.DateTimeFormat('en-GB', { timeZone: zone }).resolvedOptions().timeZone;
+		return formatter('en-GB', zone, {}).resolvedOptions().timeZone;
 	} catch (error) {
 		if (error instanceof RangeError) return SERVER_TIME_ZONE;
 		throw error;
