@@ -271,6 +271,19 @@ describe('pointsToDocuments', () => {
 		).toBe(false);
 	});
 
+	// French names the consultation's documents with the article ("de la consultation"), and France's
+	// usual specifications are the "cahier des clauses" (administrative and technical). One phrase each.
+	it('reads the French consultation documents named with their article, and the clause books', () => {
+		for (const text of [
+			'Voir le règlement de la consultation.',
+			'Les pièces du dossier de la consultation.',
+			'Conformément au cahier des clauses administratives particulières.'
+		]) {
+			expect(pointsToDocuments(text), text).toBe(true);
+		}
+		expect(pointsToDocuments('La consultation porte sur trois lots.')).toBe(false);
+	});
+
 	it('reads a title in single quotes as one in double quotes', () => {
 		const low = String.fromCodePoint(0x201a);
 		const left = String.fromCodePoint(0x2018);
