@@ -52,16 +52,18 @@ function renderedLines(): string[] {
 }
 
 describe('CoverageList', () => {
+	// 609569-2026 is held for its deadline, and its one criterion sits in the notice with no pointer
+	// to the documents, so nothing on its lot is left unread. The go-rule notices are no fixture for
+	// this: their criteria point to the documents.
 	it('lists what was read from a lot whose criteria are all in the notice', () => {
-		const record = recordOf('go-rule', 0);
-		const count = record.lots[0].criteria.length;
+		const record = recordOf('before-dst', 0);
+		expect(record.lots[0].criteria).toHaveLength(1);
 		render(CoverageList, { props: { lines: linesOf(record) } });
-		const lines = renderedLines();
-		expect(lines[0]).toBe(
-			`Read: ${count} selection criteria published in the notice for this lot.`
-		);
-		expect(lines.slice(-2)).toEqual([NOT_ASSESSED, NOT_COMPARED]);
-		expect(lines).not.toContain(NOT_READ_DOCUMENTS);
+		expect(renderedLines()).toEqual([
+			'Read: 1 selection criterion published in the notice for this lot.',
+			NOT_ASSESSED,
+			NOT_COMPARED
+		]);
 	});
 
 	it('says the procurement documents were not read for 600367-2026 and links them by name', () => {
@@ -111,6 +113,19 @@ describe('CoverageList', () => {
 			documents.href
 		);
 		expect(screen.queryByRole('link', { name: 'Open the procurement documents' })).toBeNull();
+	});
+
+	it('names a restricted address that is not http or https as published, with no link', () => {
+		const documents: DocumentsLink = { published: 'ftp://docs.example.test/1', restricted: true };
+		const lines = coverageLines(
+			{ criteriaCount: 0, sources: ['epo-procurement-document'], pointsToDocuments: false },
+			documents
+		);
+		const { container } = render(CoverageList, { props: { lines } });
+		expect(screen.queryByRole('link')).toBeNull();
+		expect(squash(container.querySelector('.documents')?.textContent)).toBe(
+			'Restricted procurement documents, published as ftp://docs.example.test/1'
+		);
 	});
 
 	it('renders the lines it is given and computes no coverage of its own', () => {
