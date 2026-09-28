@@ -72,6 +72,10 @@ export default defineConfig(({ command, mode }) => {
 			// project does not replace it (the configs merge by concatenation), so the setup itself
 			// builds once per vitest process.
 			globalSetup: ['src/test/build-records.global.ts'],
+			// On a loaded machine, tests that start a Node process or import a config crossed the 5 s
+			// default, a different test on each whole run. The node and jsdom projects extend this root;
+			// the workerd project does not and keeps its own default.
+			testTimeout: 30_000,
 			// summary: false keeps one line per test file, tagged with its project, when not on a TTY.
 			reporters: [
 				['default', { summary: false }],

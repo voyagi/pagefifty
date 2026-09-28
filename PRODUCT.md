@@ -8,19 +8,19 @@ web
 
 ## Users
 
-The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Belgium or Germany. They sit at a desk late in a busy day, on a laptop, with an open EU public tender in front of them that someone found or forwarded. The job: decide in a few minutes whether the firm can legally take part at all, before anyone spends two days writing a bid. They are not procurement lawyers and often do not read the language the tender is written in.
+The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Belgium or Germany. They sit at a desk late in a busy day, on a laptop, with an open EU public tender in front of them that someone found or forwarded. The job: decide in a few minutes whether the firm meets a tender's published selection criteria, before anyone spends two days writing a bid. They are not procurement lawyers and often do not read the language the tender is written in.
 
 ## Product Purpose
 
 Pagefifty reads an open tender's own published selection criteria, checks each one against the firm's profile, and returns GO, NO-GO or ASK FIRST. Every clause behind the verdict is quoted from the tender's text, linked to its source, and read back in plain English.
 
-Success is a firm that drops a tender it could never win within minutes, or goes ahead knowing no published rule shuts it out. For the hackathon, success is a judge with three minutes seeing a real open tender, the knock-out clause quoted and read in plain English, the verdict, and one measured number with its inference cost.
+Success is a firm that drops a tender it could never win within minutes, or goes ahead knowing it meets every published criterion that was read, and knowing which criteria were not read. For the hackathon, success is a judge with three minutes seeing a real open tender, the knock-out clause quoted and read in plain English, the verdict, and one measured number with its inference cost.
 
 ## Positioning
 
 Pagefifty leads with the clause that rules the firm out. The rule that knocks a small firm out (a minimum headcount per role, a turnover floor, a certificate, three reference projects of a given size) is never on page one; it waits deep in the notice and the document pack. Pagefifty shows that exact clause, quoted and sourced, and shows the ruled-out tenders as loudly as the ones the firm can bid on.
 
-It never gives a verdict the source does not support. Tender alert tools find tenders; Pagefifty tells a firm which ones a checked, published selection criterion shuts it out of, and proves it with the buyer's own words. A verdict covers the criteria it read, never every condition for taking part.
+It never gives a verdict the source does not support. Eligibility checkers answer yes or no; Pagefifty shows which published selection criterion the firm does not meet on its own, quotes the clause with its source, and proves it with the buyer's own words. A verdict covers the criteria it read, never every condition for taking part.
 
 ## Operating Context
 

@@ -2,6 +2,8 @@
 // built index and records with.
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
+import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
+import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
 import type {
 	Amount,
 	Buyer,
@@ -54,7 +56,8 @@ const ParameterSchema: z.ZodType<CriterionParameter> = z.strictObject({
 const CriterionSchema: z.ZodType<Criterion> = z.strictObject({
 	code: z.string(),
 	descriptions: z.array(LangTextSchema),
-	parameters: z.array(ParameterSchema)
+	parameters: z.array(ParameterSchema),
+	pointsToDocuments: z.boolean()
 });
 
 const GroupLegalFormSchema: z.ZodType<GroupLegalForm> = z.strictObject({
@@ -67,9 +70,18 @@ const LegislationSchema: z.ZodType<LegislationReference> = z.strictObject({
 	description: LangTextSchema.optional()
 });
 
-const LotRowSchema: z.ZodType<Pick<LotRecord, 'id' | 'deadlines'>> = z.strictObject({
+const LotCoverageSchema: z.ZodType<LotCoverageInput> = z.strictObject({
+	criteriaCount: z.number().int().nonnegative(),
+	sources: z.array(z.string()),
+	pointsToDocuments: z.boolean()
+});
+
+type LotRow = Pick<LotRecord, 'id' | 'deadlines'> & { coverage: LotCoverageInput };
+
+const LotRowSchema: z.ZodType<LotRow> = z.strictObject({
 	id: z.string(),
-	deadlines: DeadlinesSchema
+	deadlines: DeadlinesSchema,
+	coverage: LotCoverageSchema
 });
 
 // A notice number as TED's site and search API write it: the running number of the year without
@@ -87,7 +99,8 @@ const IndexRowSchema = z.strictObject({
 	country: z.array(z.string()),
 	cpvCodes: z.array(z.string()),
 	estimatedValue: AmountSchema.optional(),
-	lots: z.array(LotRowSchema)
+	// The build refuses a notice with no lot, so an empty list means a damaged file.
+	lots: z.array(LotRowSchema).min(1)
 });
 
 const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
@@ -116,7 +129,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
 	documents: DocumentsLinkSchema.optional(),
 	changeReasons: z.array(z.string()),
-	lots: z.array(LotRecordSchema)
+	lots: z.array(LotRecordSchema).min(1)
 });
 
 export const SnapshotIndexSchema = z.strictObject({
@@ -153,21 +166,15 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 		country: unique(record.buyers.map((buyer) => buyer.country)),
 		cpvCodes: unique([...record.cpv.main, ...record.cpv.additional]),
 		...(estimatedValue && { estimatedValue }),
-		lots: record.lots.map(({ id, deadlines }) => ({ id, deadlines }))
+		lots: record.lots.map((lot) => ({
+			id: lot.id,
+			deadlines: lot.deadlines,
+			coverage: summarizeLot(lot)
+		}))
 	};
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-// The capture's day as the buyers in scope count it (Central European Time), written "15 Sep 2026".
-// Month names come from this table, because en-GB formatting now writes September as "Sept".
+// The capture's day as the buyers in scope count it, in the zone and the words every deadline uses.
 export function captureDay(fetchedAt: string): string {
-	const parts = new Intl.DateTimeFormat('en-GB', {
-		timeZone: 'Europe/Amsterdam',
-		year: 'numeric',
-		month: 'numeric',
-		day: 'numeric'
-	}).formatToParts(new Date(fetchedAt));
-	const part = (type: string) => Number(parts.find((each) => each.type === type)?.value);
-	return `${part('day')} ${MONTHS[part('month') - 1]} ${part('year')}`;
+	return formatDay(fetchedAt, SERVER_TIME_ZONE);
 }

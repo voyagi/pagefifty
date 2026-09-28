@@ -2,6 +2,7 @@
 // as published: a figure is parsed later by code that knows its locale, never here.
 // Imported by scripts/build-records.mjs under Node type stripping, so erasable syntax only and
 // relative imports with their .ts extension.
+import { pointsToDocuments } from '../core/document-pointer.ts';
 import { toBcp47 } from './languages.ts';
 
 export interface LangText {
@@ -52,10 +53,13 @@ export interface CriterionParameter {
 	value: string;
 }
 
+// pointsToDocuments is true when any language version of the text sends the reader to the
+// procurement documents; set once here so no page runs the classifier.
 export interface Criterion {
 	code: string;
 	descriptions: LangText[];
 	parameters: CriterionParameter[];
+	pointsToDocuments: boolean;
 }
 
 export interface GroupLegalForm {
@@ -324,10 +328,14 @@ function toCriterion(criterion: unknown, lotWhere: string): Criterion {
 		(each) => attribute(each, 'listName') === 'selection-criterion' && textOf(each)
 	);
 	if (code === undefined) throw missing(`${where}/cbc:TendererRequirementTypeCode`);
+	const descriptions = langTexts(criterion, ['cbc:Description']);
 	return {
 		code: textOf(code),
-		descriptions: langTexts(criterion, ['cbc:Description']),
-		parameters: walk(criterion, ['efac:CriterionParameter']).map((each) => toParameter(each, where))
+		descriptions,
+		parameters: walk(criterion, ['efac:CriterionParameter']).map((each) =>
+			toParameter(each, where)
+		),
+		pointsToDocuments: descriptions.some((each) => pointsToDocuments(each.text))
 	};
 }
 

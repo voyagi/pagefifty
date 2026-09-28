@@ -71,7 +71,7 @@ function verdict(result) {
 		return 2;
 	}
 	if (audited.length !== pages.length) {
-		console.error('a11y: a page did not load with status 200, an h1 and its theme, so it was not audited');
+		console.error('a11y: a page did not load with its expected status, an h1 and its theme, so it was not audited');
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {

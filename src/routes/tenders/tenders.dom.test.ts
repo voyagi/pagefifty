@@ -1,5 +1,9 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { render, screen } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
+import { captureDay, SnapshotIndexSchema } from '$lib/snapshot/index-row';
+import { CAPTURE_ID } from '../../test/fixtures/roles';
 import Page from './+page.svelte';
 
 const data = {
@@ -51,6 +55,24 @@ describe('tenders list', () => {
 		const { container } = render(Page, { props: { data } });
 		expect(container.querySelector('tr b')).toBeNull();
 		expect(screen.getByText('Gebäudeautomation <b>Los 4</b>')).toBeTruthy();
+	});
+
+	// The capture holds only notices published from the query's first day to the capture day, so the
+	// caveat names both; a new capture must fail here rather than leave the page naming old days.
+	it('names the first publication day and the capture day the built index records', () => {
+		const index = SnapshotIndexSchema.parse(
+			JSON.parse(
+				readFileSync(join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'index.json'), 'utf8')
+			)
+		);
+		const from = /publication-date>=(\d{4})(\d{2})(\d{2})/.exec(index.capture.query);
+		if (!from)
+			throw new Error(`the capture query names no first publication day: ${index.capture.query}`);
+		const capturedOn = captureDay(index.capture.fetchedAt);
+		const { container } = render(Page, { props: { data: { ...data, capturedOn } } });
+		expect(container.querySelector('.caveat')?.textContent?.replace(/\s+/g, ' ').trim()).toBe(
+			`A snapshot, not live: tenders published before ${captureDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`)} or after ${capturedOn} are missing.`
+		);
 	});
 
 	it('is the skip link target', () => {

@@ -6,14 +6,27 @@
 
 // One entry per route and theme. The theme is forced through ?theme=, so every entry's data-theme
 // check applies: a page that did not paint the theme it was asked for is not audited. A new route
-// adds its two entries here, since both palettes reach every page through the desk bar.
+// adds its two entries here, since both palettes reach every page through the desk bar. An entry
+// expecting a status other than 200 says so; any other status still leaves the page unaudited.
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
 	{ slug: 'tenders', theme: 'light', url: 'http://127.0.0.1:8788/tenders?theme=light' },
 	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
-	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' }
+	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
+	{
+		slug: 'not-found',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/no-such-page?theme=light',
+		expectStatus: 404
+	},
+	{
+		slug: 'not-found',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/no-such-page?theme=dark',
+		expectStatus: 404
+	}
 ];
 
 // axe "incomplete" means it could not decide, which is not clean. An entry here accepts one
@@ -35,7 +48,8 @@ async function loadState(entry) {
 	entry.h1Count = state.h1;
 	entry.themeApplied = state.theme;
 	const problems = [];
-	if (entry.status !== 200) problems.push(`status ${entry.status}`);
+	const expected = entry.expectStatus ?? 200;
+	if (entry.status !== expected) problems.push(`status ${entry.status}, expected ${expected}`);
 	if (state.h1 === 0) problems.push('no h1');
 	if (entry.theme !== 'none' && state.theme !== entry.theme) {
 		problems.push(`data-theme is "${state.theme}", expected "${entry.theme}"`);
@@ -84,8 +98,16 @@ function isAccepted(item) {
 	);
 }
 
-async function audit({ slug, theme, url }) {
-	const entry = { slug, theme, url, violations: [], incomplete: [], acceptedIncomplete: [] };
+async function audit({ slug, theme, url, expectStatus }) {
+	const entry = {
+		slug,
+		theme,
+		url,
+		expectStatus,
+		violations: [],
+		incomplete: [],
+		acceptedIncomplete: []
+	};
 	entry.loadProblem = await loadState(entry);
 	if (entry.loadProblem) return entry;
 	const result = await runAxe();
