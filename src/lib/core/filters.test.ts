@@ -93,6 +93,22 @@ describe('parseFilters and toSearch', () => {
 		expect(parse(query)).toEqual({ state, dropped: true });
 	});
 
+	it('keeps a day given twice once, without a flag, as it keeps a country', () => {
+		expect(parse('from=2026-10-01&from=2026-10-01')).toEqual({
+			state: { countries: [], cpv: [], from: '2026-10-01' },
+			dropped: false
+		});
+	});
+
+	const KEYS = ['country', 'cpv', 'from', 'to', 'theme'] as const;
+	const VALUES = ['NL', 'BE', 'DE', '72', '48', '2026-10-01', '2026-10-31', '', '1969-12-31'];
+	test.prop([
+		fc.array(fc.tuple(fc.constantFrom(...KEYS), fc.oneof(fc.string(), fc.constantFrom(...VALUES))))
+	])('reads any query into a state that writes back to itself unflagged', (pairs) => {
+		const { state } = parseFilters(new URLSearchParams(pairs));
+		expect(parseFilters(new URLSearchParams(toSearch(state)))).toEqual({ state, dropped: false });
+	});
+
 	it('keeps a country picked twice once, without a flag', () => {
 		expect(parse('country=NL&country=NL')).toEqual({
 			state: { countries: ['NL'], cpv: [] },

@@ -8,10 +8,11 @@ type PointerLanguage = 'de' | 'nl' | 'fr' | 'en';
 const anyOf = (...codePoints: number[]) =>
 	new RegExp(`[${String.fromCodePoint(...codePoints)}]`, 'gu');
 
-// Left and right single quotes and the modifier apostrophe; low-9, left and right double quotes and
-// both guillemets. Notices quote a document's title with any of them.
+// Left and right single quotes and the modifier apostrophe; low-9, left and right double quotes, the
+// low-9 single quote German opens a nested title with, and double and single guillemets. Notices
+// quote a document's title with any of them, so all read as one quote mark.
 const APOSTROPHES = anyOf(0x2018, 0x2019, 0x02bc);
-const QUOTES = anyOf(0x201c, 0x201d, 0x201e, 0x00ab, 0x00bb);
+const QUOTES = anyOf(0x201c, 0x201d, 0x201e, 0x00ab, 0x00bb, 0x201a, 0x2039, 0x203a);
 
 // NFC so a decomposed umlaut and its composed form become one string; sharp s folded so Swiss
 // spelling and upper-cased text match; every space kind (U+00A0 and U+202F included, which \s

@@ -213,6 +213,18 @@ describe('pointsToDocuments', () => {
 		).toBe(false);
 	});
 
+	it('reads a title in single quotes as one in double quotes', () => {
+		const low = String.fromCodePoint(0x201a);
+		const left = String.fromCodePoint(0x2018);
+		const [open, close] = [String.fromCodePoint(0x2039), String.fromCodePoint(0x203a)];
+		expect(
+			pointsToDocuments(`Nachweis mit der Anlage ${low}Referenzen${left} erbringen`, 'de')
+		).toBe(true);
+		expect(pointsToDocuments(`Umsatzzahlen laut Datei ${open}A 08 Umsatz${close}`, 'de')).toBe(
+			true
+		);
+	});
+
 	it('checks every pattern when the language is unknown', () => {
 		expect(pointsToDocuments('Zur Nachweisführung soll die Anlage 6a verwendet werden.')).toBe(
 			true

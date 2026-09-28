@@ -50,9 +50,10 @@ function pickListed<T extends string>(values: string[], allowed: readonly T[]) {
 	};
 }
 
-// The plain GET form submits an empty date field as "from=", which means no bound, not junk.
+// The plain GET form submits an empty date field as "from=", which means no bound, not junk. A day
+// given twice is kept once, as a country is; two different days are one too many.
 function pickDay(values: string[]) {
-	const given = values.filter((value) => value !== '');
+	const given = [...new Set(values.filter((value) => value !== ''))];
 	const [day] = given;
 	const valid = day !== undefined && isFilterDay(day);
 	return {

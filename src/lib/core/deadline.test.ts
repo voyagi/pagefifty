@@ -1,3 +1,4 @@
+import { fc, test } from '@fast-check/vitest';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
@@ -240,6 +241,17 @@ describe('formatDeadline', () => {
 		expect(formatDeadline('2026-07-01T12:00:00Z', 'Europe/London')).toBe('1 Jul 2026, 13:00 BST');
 	});
 
+	// The browser re-renders in whatever zone the visitor's machine reports.
+	it('labels a deadline in every zone the runtime knows', () => {
+		const shape =
+			/^\d{1,2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}, \d{2}:\d{2} \S+$/;
+		const zones = Intl.supportedValuesOf('timeZone');
+		expect(zones.length).toBeGreaterThan(300);
+		for (const zone of zones) {
+			expect(formatDeadline('2026-10-25T00:30:00Z', usableTimeZone(zone)), zone).toMatch(shape);
+		}
+	});
+
 	describe('the DST fixtures on both sides of 2026-10-25 01:00 UTC', () => {
 		const cases = [
 			{
@@ -344,5 +356,33 @@ describe('Central European filter days', () => {
 	it('crosses a month and a year end', () => {
 		expect(cetDayStart('2027-01-01').toISOString()).toBe('2026-12-31T23:00:00.000Z');
 		expect(cetDayEnd('2026-10-31').toISOString()).toBe('2026-10-31T22:59:59.999Z');
+	});
+
+	const DAY_MS = 86_400_000;
+	const calendar = new Intl.DateTimeFormat('en-GB', {
+		timeZone: AMSTERDAM,
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit'
+	});
+	const amsterdamDay = (ms: number) => {
+		const part = Object.fromEntries(
+			calendar.formatToParts(new Date(ms)).map((each) => [each.type, each.value])
+		);
+		return `${part.year}-${part.month}-${part.day}`;
+	};
+	const isoDay = (index: number) => new Date(index * DAY_MS).toISOString().slice(0, 10);
+
+	// Every day from 1970 to 2100 was checked this way once on 2026-09-28 and none broke; this
+	// samples the range on every run.
+	test.prop([
+		fc.integer({ min: Date.UTC(1970, 0, 1) / DAY_MS, max: Date.UTC(2100, 11, 31) / DAY_MS })
+	])('starts and ends every day where the Amsterdam calendar turns', (index) => {
+		const start = cetDayStart(isoDay(index)).getTime();
+		const end = cetDayEnd(isoDay(index)).getTime();
+		expect(amsterdamDay(start - 1)).toBe(isoDay(index - 1));
+		expect(amsterdamDay(start)).toBe(isoDay(index));
+		expect(amsterdamDay(end)).toBe(isoDay(index));
+		expect(amsterdamDay(end + 1)).toBe(isoDay(index + 1));
 	});
 });

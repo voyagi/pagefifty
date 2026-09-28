@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { fc, test } from '@fast-check/vitest';
 import { describe, expect, it } from 'vitest';
 import { readFixture } from '../../test/fixtures/node';
 import { CAPTURE_ID, FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
@@ -114,6 +115,25 @@ describe('the GO rule on shaped lots', () => {
 		const lot = onlyLotOf('notice-source-no-criteria');
 		expect(lot.criteriaSources).toEqual(['epo-notice']);
 		expect(mostFavourable(lot)).toEqual({ verdict: 'ASK FIRST', reason: 'no-criteria-in-notice' });
+	});
+
+	// Any lot, not only the capture's: under every criterion MET the list tag and the verdict tell
+	// one story, whatever sources the lot names, known or not, and whether a criterion points out.
+	const REASON_OF_TAG = {
+		'criteria-in-documents': 'criteria-in-documents',
+		'no-criteria-in-notice': 'no-criteria-in-notice',
+		'criteria-not-read': 'GO'
+	} as const;
+
+	test.prop([
+		fc.nat({ max: 6 }),
+		fc.subarray(['epo-notice', 'epo-procurement-document', 'epo-sub-espd', 'epo-unknown']),
+		fc.boolean()
+	])('gives every lot the tag its verdict implies', (count, sources, pointing) => {
+		const input = { criteriaCount: count, sources, pointsToDocuments: pointing && count > 0 };
+		const decision = decide(input, everyMet(count));
+		const outcome = decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict;
+		expect(outcome).toBe(REASON_OF_TAG[readingStatus([input]).tag]);
 	});
 
 	it('never reads a lot that declares no BT-821 source GO', () => {
