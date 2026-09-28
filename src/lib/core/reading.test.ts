@@ -420,9 +420,7 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 				expect(row.lots.map((lot) => lot.coverage)).toEqual(record.lots.map(summarizeLot));
 				for (const criterion of record.lots.flatMap((lot) => lot.criteria)) {
 					expect(typeof criterion.pointsToDocuments).toBe('boolean');
-					const labels = criterion.descriptions.map((each) =>
-						pointsToDocuments(each.text, each.lang)
-					);
+					const labels = criterion.descriptions.map((each) => pointsToDocuments(each.text));
 					expect(criterion.pointsToDocuments).toBe(labels.includes(true));
 					for (const [position, each] of criterion.descriptions.entries()) {
 						const tally = (census[each.lang ?? 'unknown'] ??= { pointing: 0, plain: 0 });

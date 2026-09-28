@@ -14,7 +14,7 @@ The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Be
 
 Pagefifty reads an open tender's own published selection criteria, checks each one against the firm's profile, and returns GO, NO-GO or ASK FIRST. Every clause behind the verdict is quoted from the tender's text, linked to its source, and read back in plain English.
 
-Success is a firm that drops a tender it could never win within minutes, or goes ahead knowing it meets every published criterion that was read, and which ones were not. For the hackathon, success is a judge with three minutes seeing a real open tender, the knock-out clause quoted and read in plain English, the verdict, and one measured number with its inference cost.
+Success is a firm that drops a tender it could never win within minutes, or goes ahead knowing it meets every published criterion that was read, and knowing which criteria were not read. For the hackathon, success is a judge with three minutes seeing a real open tender, the knock-out clause quoted and read in plain English, the verdict, and one measured number with its inference cost.
 
 ## Positioning
 

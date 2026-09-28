@@ -27,10 +27,12 @@
 	// / and /tenders read the same index, so the list is no way out of its own failure.
 	const onList = $derived(path === '/tenders');
 
+	const REPLACEMENT_MARK = String.fromCodePoint(0xfffd);
+
 	// A control or direction character shows as the replacement mark, so echoed text cannot reorder
 	// or hide the words around it.
 	function masked(text: string): string {
-		return text.replace(/[\p{Cc}\p{Cf}]/gu, '�');
+		return text.replace(/[\p{Cc}\p{Cf}]/gu, REPLACEMENT_MARK);
 	}
 
 	// The address arrives percent-encoded, but the visitor typed letters, so the letters come back.

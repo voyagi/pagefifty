@@ -139,45 +139,38 @@ export const DOCUMENT_POINTERS: Readonly<Record<PointerLanguage, readonly string
 // An annex with a number, a letter, or both ("Anlage 6a", "Anlage B-09", "Anlage A", "Anlage
 // 02_Erklärung", "bijlage 3", "Annex C") is named by the buyer's documents, so it points there
 // unquoted; an English annex, appendix or attachment counts only so, since a bare one may be what
-// the tenderer attaches, as a bare "Anlage" is. "im Dokument" names a document by its title, as a
-// quoted title after "Dokument" does. Matched on normalised text, so letters are lower case and
-// every space is one space; no letter may stand before the word, so "Elektroanlagen" stays plain.
+// the tenderer attaches, as a bare "Anlage" is. A number may follow the word directly or after a
+// hyphen or underscore ("Anlage6", "Anlage-6"); a letter alone needs a space or hyphen first
+// ("Annex-C"), since "Anlagen" itself ends in a letter. Matched on normalised text, so letters are
+// lower case and every space is one space; no letter may stand before the word, so
+// "Elektroanlagen" stays plain.
+const ANNEX_ID = String.raw`(?:[ _-]?(?:(?:nr|no)\. ?)?[a-z]?[-.]?\d|[ -](?:(?:nr|no)\. ?)?[a-z](?!\p{L}))`;
+const annex = (words: string) => new RegExp(String.raw`(?<!\p{L})(?:${words})${ANNEX_ID}`, 'u');
+
+// "im Dokument" names a document by its title, as a quoted title after "Dokument" does.
 const PATTERNS: Readonly<Record<PointerLanguage, readonly RegExp[]>> = {
-	de: [
-		/(?<!\p{L})anlagen? (?:nr\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u,
-		/(?<!\p{L})im dokument(?!\p{L})/u
-	],
-	nl: [/(?<!\p{L})bijlagen? (?:nr\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u],
+	de: [annex('anlagen?'), /(?<!\p{L})im dokument(?!\p{L})/u],
+	nl: [annex('bijlagen?')],
 	fr: [],
-	en: [
-		/(?<!\p{L})(?:annex(?:es)?|appendix|appendices|attachments?) (?:no\. ?)?(?:[a-z]?[-.]?\d|[a-z](?!\p{L}))/u
-	]
+	en: [annex('annex(?:es)?|appendix|appendices|attachments?')]
 };
 
+// Every language's list is checked, whatever language a text is tagged with: a buyer can write
+// English in the German field, and a pointer in any language can only make a verdict more careful.
+// On the 2026-09-15 capture this finds exactly what each text's own list finds (ritual p6).
 const EVERY_PHRASE: readonly string[] = [...new Set(Object.values(DOCUMENT_POINTERS).flat())];
 const EVERY_PATTERN: readonly RegExp[] = Object.values(PATTERNS).flat();
-
-function listsFor(lang: string | undefined) {
-	const primary = lang?.split('-')[0].toLowerCase();
-	return primary !== undefined && Object.hasOwn(DOCUMENT_POINTERS, primary)
-		? {
-				phrases: DOCUMENT_POINTERS[primary as PointerLanguage],
-				patterns: PATTERNS[primary as PointerLanguage]
-			}
-		: { phrases: EVERY_PHRASE, patterns: EVERY_PATTERN };
-}
 
 // A compound written with a hyphen ("Vergabe-Unterlagen", "aanbestedings-documenten"), or split by
 // one at a line end ("Leistungs- beschreibung" once spaces are collapsed), names the same document
 // as the joined word. Both readings are checked, so a hyphen can add a match but never hide one.
 const HYPHEN_IN_WORD = /(?<=\p{L})[-\u2010\u2011] ?(?=\p{L})/gu;
 
-export function pointsToDocuments(text: string, lang?: string): boolean {
+export function pointsToDocuments(text: string): boolean {
 	const normalized = normalizeCriterionText(text);
-	const { phrases, patterns } = listsFor(lang);
 	return [normalized, normalized.replace(HYPHEN_IN_WORD, '')].some(
 		(reading) =>
-			phrases.some((phrase) => reading.includes(phrase)) ||
-			patterns.some((pattern) => pattern.test(reading))
+			EVERY_PHRASE.some((phrase) => reading.includes(phrase)) ||
+			EVERY_PATTERN.some((pattern) => pattern.test(reading))
 	);
 }

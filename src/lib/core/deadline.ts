@@ -157,7 +157,8 @@ export function usableTimeZone(zone: string | undefined): string {
 
 export function timeLeft(instant: string, now: Date): string | undefined {
 	const remaining = Date.parse(instant) - now.getTime();
-	if (remaining <= 0) return undefined;
+	// Written so an instant that does not parse (NaN) gives no text either, never "NaN days".
+	if (!(remaining > 0)) return undefined;
 	const days = Math.floor(remaining / DAY_MS);
 	if (days === 0) return 'less than a day';
 	return days === 1 ? '1 day' : `${days} days`;

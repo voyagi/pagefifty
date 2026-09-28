@@ -335,7 +335,7 @@ function toCriterion(criterion: unknown, lotWhere: string): Criterion {
 		parameters: walk(criterion, ['efac:CriterionParameter']).map((each) =>
 			toParameter(each, where)
 		),
-		pointsToDocuments: descriptions.some((each) => pointsToDocuments(each.text, each.lang))
+		pointsToDocuments: descriptions.some((each) => pointsToDocuments(each.text))
 	};
 }
 

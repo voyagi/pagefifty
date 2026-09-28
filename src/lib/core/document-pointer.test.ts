@@ -50,7 +50,7 @@ describe('the classifier on the capture, one pointing and one plain criterion pe
 				const texts = criterionTexts(role, which, criterion, lang);
 				expect(texts.join(' ')).toContain(required(ref.evidence, 'evidence'));
 				for (const text of texts) {
-					expect(pointsToDocuments(text, lang)).toBe(required(ref.pointsToDocuments, 'label'));
+					expect(pointsToDocuments(text)).toBe(required(ref.pointsToDocuments, 'label'));
 				}
 			});
 		});
@@ -60,9 +60,9 @@ describe('the classifier on the capture, one pointing and one plain criterion pe
 		const [pointing] = criterionTexts('english-classifier', 0, 0, 'en');
 		const [plain] = criterionTexts('english-classifier', 0, 1, 'en');
 		expect(pointing).toContain('procurement documents');
-		expect(pointsToDocuments(pointing, 'en')).toBe(true);
+		expect(pointsToDocuments(pointing)).toBe(true);
 		expect(plain).toContain('turnover');
-		expect(pointsToDocuments(plain, 'en')).toBe(false);
+		expect(pointsToDocuments(plain)).toBe(false);
 	});
 });
 
@@ -122,33 +122,42 @@ describe('pointsToDocuments', () => {
 	const pointing = 'Allgemeine Hinweise: abschließende Liste in den Vergabeunterlagen';
 
 	it('gives NFC and NFD forms of one text the same label', () => {
-		expect(pointsToDocuments(pointing.normalize('NFD'), 'de')).toBe(true);
-		expect(pointsToDocuments(pointing.normalize('NFC'), 'de')).toBe(true);
+		expect(pointsToDocuments(pointing.normalize('NFD'))).toBe(true);
+		expect(pointsToDocuments(pointing.normalize('NFC'))).toBe(true);
 		const plain = 'Auszug aus dem Handelsregister, höchstens drei Monate alt';
-		expect(pointsToDocuments(plain.normalize('NFD'), 'de')).toBe(false);
-		expect(pointsToDocuments(plain.normalize('NFC'), 'de')).toBe(false);
+		expect(pointsToDocuments(plain.normalize('NFD'))).toBe(false);
+		expect(pointsToDocuments(plain.normalize('NFC'))).toBe(false);
 	});
 
 	it('gives a text with non-breaking spaces the label of the text with plain spaces', () => {
 		const french = 'Conformément au cahier des charges, voir ci-dessous';
 		for (const space of [NBSP, NARROW_NBSP]) {
 			const spaced = french.replaceAll(' ', space);
-			expect(pointsToDocuments(spaced, 'fr')).toBe(true);
-			expect(pointsToDocuments(spaced, 'fr')).toBe(pointsToDocuments(french, 'fr'));
+			expect(pointsToDocuments(spaced)).toBe(true);
+			expect(pointsToDocuments(spaced)).toBe(pointsToDocuments(french));
 		}
 		const english = 'as set out in the procurement documents';
-		expect(pointsToDocuments(english.replaceAll(' ', NBSP), 'en')).toBe(true);
+		expect(pointsToDocuments(english.replaceAll(' ', NBSP))).toBe(true);
 	});
 
-	it('checks only the list of a known language', () => {
-		expect(pointsToDocuments('Voir le cahier des charges', 'fr')).toBe(true);
-		expect(pointsToDocuments('Voir le cahier des charges', 'de')).toBe(false);
+	// Every list is read whatever language a text is tagged with, so a pointer written in another
+	// language than its field (English in the German field) still counts.
+	it('reads a pointer in any of the four languages, whatever language the text is in', () => {
+		for (const text of [
+			'Voir le cahier des charges',
+			'See the procurement documents for the minimum turnover',
+			'Zie de leidraad',
+			'Siehe Leistungsbeschreibung',
+			'Vedi il cahier des charges'
+		]) {
+			expect(pointsToDocuments(text), text).toBe(true);
+		}
+		expect(pointsToDocuments('Nessun documento citato')).toBe(false);
 	});
 
-	it('checks every list when the language is unknown or has no list', () => {
-		expect(pointsToDocuments('Voir le cahier des charges', undefined)).toBe(true);
-		expect(pointsToDocuments('Vedi il cahier des charges', 'it')).toBe(true);
-		expect(pointsToDocuments('Nessun documento citato', 'it')).toBe(false);
+	// Only the sharp s is folded, never the umlaut, so the listed "gemäss anlage" matches it.
+	it('reads "gemäß Anlage" written with a sharp s as the listed phrase', () => {
+		expect(pointsToDocuments('Die Referenzen sind gemäß Anlage einzureichen.')).toBe(true);
 	});
 
 	it('reads an annex the documents number as a pointer, in each spelling the capture uses', () => {
@@ -161,28 +170,49 @@ describe('pointsToDocuments', () => {
 			'Die Anlagen 1 bis 3 sind auszufüllen.',
 			'Anlage Nr. 4 ist beizulegen.'
 		]) {
-			expect(pointsToDocuments(text, 'de'), text).toBe(true);
+			expect(pointsToDocuments(text), text).toBe(true);
 		}
-		expect(pointsToDocuments('volgens bijlage 3 aan te leveren', 'nl')).toBe(true);
+		expect(pointsToDocuments('volgens bijlage 3 aan te leveren')).toBe(true);
 	});
 
 	// A letter names the buyer's annex as a number does; each of these read as plain before.
 	it('reads an annex named by a letter alone as a pointer, and an English one named at all', () => {
-		for (const [lang, text] of [
-			['de', 'Siehe Anlage A für die Mindestanforderungen.'],
-			['de', 'Die Anlagen B und C sind beizulegen.'],
-			['nl', 'Zie bijlage A voor de minimumeisen.'],
-			['en', 'See Annex A for the minimum turnover requirement.'],
-			['en', 'The references listed in Appendix 2 are required.'],
-			['en', 'Complete Attachment C.']
+		for (const text of [
+			'Siehe Anlage A für die Mindestanforderungen.',
+			'Die Anlagen B und C sind beizulegen.',
+			'Zie bijlage A voor de minimumeisen.',
+			'See Annex A for the minimum turnover requirement.',
+			'The references listed in Appendix 2 are required.',
+			'Complete Attachment C.'
 		]) {
-			expect(pointsToDocuments(text, lang), text).toBe(true);
+			expect(pointsToDocuments(text), text).toBe(true);
 		}
-		for (const [lang, text] of [
-			['de', 'Dem Angebot ist als Anlage der Auszug aus dem Handelsregister beizulegen.'],
-			['en', 'Attach an annex with your company profile.']
+		for (const text of [
+			'Dem Angebot ist als Anlage der Auszug aus dem Handelsregister beizulegen.',
+			'Attach an annex with your company profile.'
 		]) {
-			expect(pointsToDocuments(text, lang), text).toBe(false);
+			expect(pointsToDocuments(text), text).toBe(false);
+		}
+	});
+
+	// A number may follow the word directly or after a hyphen or underscore, a letter after a
+	// hyphen; each of these read as plain before.
+	it('reads an annex numbered or lettered without a space as a pointer', () => {
+		for (const text of [
+			'Siehe Anlage6.',
+			'Siehe Anlage-6.',
+			'Nachweis nach Anlage_4',
+			'zie bijlage3',
+			'See Annex-C.',
+			'Appendix-2 lists the references.'
+		]) {
+			expect(pointsToDocuments(text), text).toBe(true);
+		}
+		for (const text of [
+			'Siehe das Anlagen-Verzeichnis.',
+			'Die Anlagenbau-Referenz ist beizulegen.'
+		]) {
+			expect(pointsToDocuments(text), text).toBe(false);
 		}
 	});
 
@@ -193,55 +223,50 @@ describe('pointsToDocuments', () => {
 			'Betrieb von Erzeugungsanlagen 3 Jahre lang',
 			'Referenz im dokumentierten Anwendungsbereich'
 		]) {
-			expect(pointsToDocuments(text, 'de'), text).toBe(false);
+			expect(pointsToDocuments(text), text).toBe(false);
 		}
-		expect(pointsToDocuments('een planning als bijlage (maximaal een A3)', 'nl')).toBe(false);
+		expect(pointsToDocuments('een planning als bijlage (maximaal een A3)')).toBe(false);
 	});
 
 	it('reads a form named by its title and the umlaut plurals of listed words as pointers', () => {
 		expect(
-			pointsToDocuments(
-				'Die Angaben sind im Dokument Eigenerklärungen für die Eignung zu tätigen.',
-				'de'
-			)
+			pointsToDocuments('Die Angaben sind im Dokument Eigenerklärungen für die Eignung zu tätigen.')
 		).toBe(true);
 		expect(
-			pointsToDocuments(
-				'die im Erstellungsvertrag, inkl. seiner Anhänge, genannten Leistungen',
-				'de'
-			)
+			pointsToDocuments('die im Erstellungsvertrag, inkl. seiner Anhänge, genannten Leistungen')
 		).toBe(true);
-		expect(pointsToDocuments('Die ausgefüllten Formblätter sind einzureichen.', 'de')).toBe(true);
+		expect(pointsToDocuments('Die ausgefüllten Formblätter sind einzureichen.')).toBe(true);
 	});
 
-	// One sentence per phrase, each holding no other listed phrase, so dropping any one turns it red.
+	// One sentence per phrase, each holding no other listed phrase, so dropping any one turns it red;
+	// the exceptions are a word two languages share ("questionnaire") and the German "formular"
+	// inside the French "formulaire", which keep each other covered.
 	it('reads a questionnaire, a form to fill in and a file named by its title as pointers', () => {
-		for (const [lang, text] of [
-			['de', 's.Fragebogen zur Eignung'],
-			['de', 'Eigenerklärung Russland, ausgefüllt und unterschrieben'],
-			['de', 'Die Referenztabellen sind für jede Referenz lückenlos auszufüllen.'],
-			['de', 'Die Bieter müssen die Referenztabelle vollständig ausfüllen.'],
-			['de', 'Vorlage der befüllten Referenzliste mit Angabe der Ansprechpartner'],
-			['de', 'Umsatzzahlen laut Datei "A 08 Umsatzzahlen Lose 1-2"'],
-			['de', 'Referenzen in den Dateien "A 08 Referenzen Los 1" und "A 08 Referenzen Los 2"'],
-			['de', 'Umsatzzahlen der letzten drei Jahre (Datei A 08 Umsatzzahlen)'],
-			['de', 'siehe geforderte Nachweise (Bietereigenerklärung, Sanktionen Russland)'],
-			['nl', 'Vul de vragenlijst voor de selectie in.'],
-			['nl', 'Het referentieformulier gebruiken.'],
-			['nl', 'Een volledig ingevulde verklaring van de kandidaat.'],
-			['nl', 'De kandidaat dient de tabel in te vullen.'],
-			['fr', 'Répondre au questionnaire de sélection.'],
-			['fr', 'Le formulaire de candidature signé.'],
-			['fr', "L'attestation dûment complétée par le client."],
-			['fr', "L'attestation dûment remplie par le client."],
-			['en', 'Complete the selection questionnaire.']
+		for (const text of [
+			's.Fragebogen zur Eignung',
+			'Eigenerklärung Russland, ausgefüllt und unterschrieben',
+			'Die Referenztabellen sind für jede Referenz lückenlos auszufüllen.',
+			'Die Bieter müssen die Referenztabelle vollständig ausfüllen.',
+			'Vorlage der befüllten Referenzliste mit Angabe der Ansprechpartner',
+			'Umsatzzahlen laut Datei "A 08 Umsatzzahlen Lose 1-2"',
+			'Referenzen in den Dateien "A 08 Referenzen Los 1" und "A 08 Referenzen Los 2"',
+			'Umsatzzahlen der letzten drei Jahre (Datei A 08 Umsatzzahlen)',
+			'siehe geforderte Nachweise (Bietereigenerklärung, Sanktionen Russland)',
+			'Vul de vragenlijst voor de selectie in.',
+			'Het referentieformulier gebruiken.',
+			'Een volledig ingevulde verklaring van de kandidaat.',
+			'De kandidaat dient de tabel in te vullen.',
+			'Répondre au questionnaire de sélection.',
+			'Le formulaire de candidature signé.',
+			"L'attestation dûment complétée par le client.",
+			"L'attestation dûment remplie par le client.",
+			'Complete the selection questionnaire.'
 		]) {
-			expect(pointsToDocuments(text, lang), text).toBe(true);
+			expect(pointsToDocuments(text), text).toBe(true);
 		}
 		expect(
 			pointsToDocuments(
-				'Die Darstellung sollte zwei DIN A4-Seiten als digitales Dokument nicht überschreiten.',
-				'de'
+				'Die Darstellung sollte zwei DIN A4-Seiten als digitales Dokument nicht überschreiten.'
 			)
 		).toBe(false);
 	});
@@ -250,42 +275,38 @@ describe('pointsToDocuments', () => {
 		const low = String.fromCodePoint(0x201a);
 		const left = String.fromCodePoint(0x2018);
 		const [open, close] = [String.fromCodePoint(0x2039), String.fromCodePoint(0x203a)];
-		expect(
-			pointsToDocuments(`Nachweis mit der Anlage ${low}Referenzen${left} erbringen`, 'de')
-		).toBe(true);
-		expect(pointsToDocuments(`Umsatzzahlen laut Datei ${open}A 08 Umsatz${close}`, 'de')).toBe(
+		expect(pointsToDocuments(`Nachweis mit der Anlage ${low}Referenzen${left} erbringen`)).toBe(
 			true
 		);
+		expect(pointsToDocuments(`Umsatzzahlen laut Datei ${open}A 08 Umsatz${close}`)).toBe(true);
 	});
 
 	// Found at ritual p8: NFC keeps hyphens and soft hyphens, so each of these read as plain before.
 	it('reads a compound written with a hyphen or split by one at a line end as the joined word', () => {
-		for (const [lang, text] of [
-			['de', 'Nachweise gemäß den Vergabe-Unterlagen'],
-			['de', 'siehe Leistungs-\nbeschreibung'],
-			['de', `siehe Vergabe${SOFT_HYPHEN}\nunterlagen`],
-			['de', `siehe Leistungs${NON_BREAKING_HYPHEN}verzeichnis`],
-			['de', `Zur Nachweisführung soll die Anla${SOFT_HYPHEN}ge 6a verwendet werden.`],
-			['nl', 'zie de aanbestedings-documenten'],
-			['fr', 'selon le cahier des char-\nges']
+		for (const text of [
+			'Nachweise gemäß den Vergabe-Unterlagen',
+			'siehe Leistungs-\nbeschreibung',
+			`siehe Vergabe${SOFT_HYPHEN}\nunterlagen`,
+			`siehe Leistungs${NON_BREAKING_HYPHEN}verzeichnis`,
+			`Zur Nachweisführung soll die Anla${SOFT_HYPHEN}ge 6a verwendet werden.`,
+			'zie de aanbestedings-documenten',
+			'selon le cahier des char-\nges'
 		]) {
-			expect(pointsToDocuments(text, lang), text).toBe(true);
+			expect(pointsToDocuments(text), text).toBe(true);
 		}
-		expect(pointsToDocuments('Handelsregister-Auszug, höchstens drei Monate alt', 'de')).toBe(
-			false
-		);
+		expect(pointsToDocuments('Handelsregister-Auszug, höchstens drei Monate alt')).toBe(false);
 	});
 
 	it('keeps every listed phrase a pointer when a hyphen, a line-end split or an invisible character breaks it', () => {
 		const breaks = ['-', '-\n', SOFT_HYPHEN, `${SOFT_HYPHEN}\n`, ZERO_WIDTH_SPACE];
 		let checked = 0;
-		for (const [lang, phrases] of Object.entries(DOCUMENT_POINTERS)) {
+		for (const phrases of Object.values(DOCUMENT_POINTERS)) {
 			for (const phrase of phrases) {
 				for (let at = 1; at < phrase.length; at += 1) {
 					if (!/\p{L}/u.test(phrase[at - 1]) || !/\p{L}/u.test(phrase[at])) continue;
 					for (const mark of breaks) {
 						const broken = `${phrase.slice(0, at)}${mark}${phrase.slice(at)}`;
-						expect(pointsToDocuments(`Siehe ${broken} unten`, lang), broken).toBe(true);
+						expect(pointsToDocuments(`Siehe ${broken} unten`), broken).toBe(true);
 						checked += 1;
 					}
 				}
@@ -294,16 +315,12 @@ describe('pointsToDocuments', () => {
 		expect(checked).toBeGreaterThan(1000);
 	});
 
-	it('checks every pattern when the language is unknown', () => {
+	it('reads the annex patterns of every language in any text', () => {
 		expect(pointsToDocuments('Zur Nachweisführung soll die Anlage 6a verwendet werden.')).toBe(
 			true
 		);
-		expect(pointsToDocuments('volgens bijlage 3', 'it')).toBe(true);
-	});
-
-	it('reads a regional language tag by its primary subtag', () => {
-		expect(pointsToDocuments('Siehe Leistungsbeschreibung', 'de-AT')).toBe(true);
-		expect(pointsToDocuments('Siehe Leistungsbeschreibung', 'DE')).toBe(true);
+		expect(pointsToDocuments('volgens bijlage 3')).toBe(true);
+		expect(pointsToDocuments('Voir Annex 3')).toBe(true);
 	});
 
 	test.prop([
@@ -314,14 +331,14 @@ describe('pointsToDocuments', () => {
 	])('labels any text holding a listed phrase as pointing', (lang, pick, before, after) => {
 		const phrases = DOCUMENT_POINTERS[lang];
 		const phrase = phrases[pick % phrases.length];
-		expect(pointsToDocuments(`${before} ${phrase.toUpperCase()} ${after}`, lang)).toBe(true);
+		expect(pointsToDocuments(`${before} ${phrase.toUpperCase()} ${after}`)).toBe(true);
 	});
 
-	test.prop([fc.string({ unit: 'grapheme' }), fc.constantFrom('de', 'nl', 'fr', 'en', undefined)])(
+	test.prop([fc.string({ unit: 'grapheme' })])(
 		'gives the NFC and NFD forms of any text the same label',
-		(text, lang) => {
-			expect(pointsToDocuments(text.normalize('NFD'), lang)).toBe(
-				pointsToDocuments(text.normalize('NFC'), lang)
+		(text) => {
+			expect(pointsToDocuments(text.normalize('NFD'))).toBe(
+				pointsToDocuments(text.normalize('NFC'))
 			);
 		}
 	);

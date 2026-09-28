@@ -372,6 +372,11 @@ describe('timeLeft', () => {
 		expect(timeLeft(instant, new Date('2026-10-05T08:00:00Z'))).toBe('1 day');
 	});
 
+	// The schema refuses such an instant, but the function must not print "NaN days" if one arrives.
+	it('gives no text for an instant that does not parse', () => {
+		expect(timeLeft('not a date', new Date('2026-10-05T08:00:00Z'))).toBeUndefined();
+	});
+
 	it('says less than a day under 24 hours', () => {
 		expect(timeLeft(instant, new Date('2026-10-05T08:00:01Z'))).toBe('less than a day');
 		expect(timeLeft(instant, new Date('2026-10-06T07:59:59Z'))).toBe('less than a day');
