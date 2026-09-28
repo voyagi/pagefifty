@@ -62,10 +62,46 @@ describe('error page', () => {
 		expect(container.querySelector('.path')?.textContent).toBe('/tenders/überblick');
 	});
 
+	// The built Worker answers a malformed escape with 400 before any route runs (measured at ritual
+	// p5), so that is the status this echo meets.
 	it('keeps a malformed escape as sent', () => {
-		at(404, '/broken%E0%A4%A', { message: 'Not Found' });
+		at(400, '/broken%E0%A4%A', { message: 'Bad Request' });
 		const { container } = render(ErrorPage);
 		expect(container.querySelector('.path')?.textContent).toBe('/broken%E0%A4%A');
+	});
+
+	// A lone % answers 400 and a browser form posted to a page with no form actions answers 405 on
+	// the built Worker: the request is at fault, so a reload would only repeat it.
+	it.each([
+		[400, '/100%'],
+		[405, '/'],
+		[403, '/tenders']
+	])('answers a %i as a request it cannot answer, never as a server fault', (status, path) => {
+		at(status, path, { message: 'Refused' });
+		const { container } = render(ErrorPage);
+		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
+			'This request could not be answered'
+		);
+		expect(document.title).toBe('Request not answered - Pagefifty');
+		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
+			'The address, or the way it was sent, is not one this site can answer, so reloading will not help. Check the address for a typo, or go back to the open tenders.'
+		);
+		expect(container.querySelector('.path')?.textContent).toBe(path);
+		expect(squash(document.querySelector('a.tab')?.textContent)).toBe(String(status));
+		expect(document.body.textContent).not.toContain('Reload in a minute');
+		expect(screen.getByRole('link', { name: 'Browse open tenders' }).getAttribute('href')).toBe(
+			'/tenders'
+		);
+	});
+
+	it.each([
+		['kind without a notice', { message: 'Not Found', kind: 'unknown-notice' } as App.Error],
+		['an empty notice', { message: 'Not Found', kind: 'unknown-notice', notice: '' } as App.Error]
+	])('reads an unknown-notice error with %s as a plain unknown path', (_, error) => {
+		at(404, '/tenders/x', error);
+		const { container } = render(ErrorPage);
+		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('No page at this address');
+		expect(container.querySelector('.path')?.textContent).toBe('/tenders/x');
 	});
 
 	it('shows control and direction characters as the replacement mark', () => {
@@ -151,7 +187,28 @@ describe('error page', () => {
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
 	});
 
-	it('shows any other status as a page that could not be built, never the server message', () => {
+	// Both / and /tenders read the one index, so on the list's own address the error cannot point
+	// to the list as the thing that may still work.
+	it('on the list itself, a server error never says the list may still work', () => {
+		at(500, '/tenders', { message: 'Internal Error' });
+		render(ErrorPage);
+		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
+			'The server hit an error while building this page. Reload in a minute.'
+		);
+	});
+
+	it('anywhere else, a server error of any 5xx status points to the list', () => {
+		at(503, '/profile', { message: 'Internal Error' });
+		render(ErrorPage);
+		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
+			'This page could not be built'
+		);
+		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
+			'The server hit an error while building this page. Reload in a minute. If it keeps happening, the list of open tenders may still work.'
+		);
+	});
+
+	it('shows a server error as a page that could not be built, never the server message', () => {
 		at(500, '/tenders', { message: 'the 2026-09-15 index does not match its schema' });
 		render(ErrorPage);
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(

@@ -10,13 +10,22 @@
 	const EXAMPLE = '/example' as string as Pathname;
 
 	const notFound = $derived(page.status === 404);
-	// The notice number reaches this page from the address too, so it is masked like the path.
+	// Every 4xx but the 404 answered above is the request's fault, never the server's: the built
+	// Worker answers a lone % or a malformed escape with 400 and a browser form posted to a page with
+	// no form actions with 405, so a reload would only repeat it.
+	const refused = $derived(page.status >= 400 && page.status < 500);
+	// The notice number reaches this page from the address too, so it is masked like the path. An
+	// unknown-notice error that names no notice has nothing to name, so it reads as an unknown path.
 	const notice = $derived(
-		notFound && page.error?.kind === 'unknown-notice' ? masked(page.error.notice ?? '') : undefined
+		notFound && page.error?.kind === 'unknown-notice' && page.error.notice
+			? masked(page.error.notice)
+			: undefined
 	);
 	// Widened to string for the same reason: an error page is reached from any path at all.
 	const path = $derived<string>(page.url.pathname);
 	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
+	// / and /tenders read the same index, so the list is no way out of its own failure.
+	const onList = $derived(path === '/tenders');
 
 	// A control or direction character shows as the replacement mark, so echoed text cannot reorder
 	// or hide the words around it.
@@ -39,7 +48,11 @@
 
 <svelte:head>
 	<title
-		>{notFound ? 'Page not found - Pagefifty' : 'This page could not be built - Pagefifty'}</title
+		>{notFound
+			? 'Page not found - Pagefifty'
+			: refused
+				? 'Request not answered - Pagefifty'
+				: 'This page could not be built - Pagefifty'}</title
 	>
 </svelte:head>
 
@@ -71,12 +84,23 @@
 				<div class="actions">
 					<Button href="/tenders">Browse open tenders</Button>
 				</div>
+			{:else if refused}
+				<h1 id="error-title">This request could not be answered</h1>
+				{@render tab()}
+				<p class="lede">
+					The address, or the way it was sent, is not one this site can answer, so reloading will
+					not help. Check the address for a typo, or go back to the open tenders.
+				</p>
+				<p class="mono echo path">{readable(path)}</p>
+				<div class="actions">
+					<Button href="/tenders">Browse open tenders</Button>
+				</div>
 			{:else}
 				<h1 id="error-title">This page could not be built</h1>
 				{@render tab()}
 				<p class="lede">
-					The server hit an error while building this page. Reload in a minute. If it keeps
-					happening, the list of open tenders may still work.
+					The server hit an error while building this page. Reload in a minute.
+					{#if !onList}If it keeps happening, the list of open tenders may still work.{/if}
 				</p>
 				<div class="actions">
 					<Button href="/tenders">Browse open tenders</Button>

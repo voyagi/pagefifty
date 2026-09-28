@@ -1,5 +1,6 @@
 // errors.devbrowser.js - the error pages on the built Worker: a real 404 with a way back, a skip
-// link that lands, and a stranger's 300-character path echoed as text without sideways scroll.
+// link that lands, a typo the server refuses with 400 read as the request's fault, and a
+// stranger's 300-character path echoed as text without sideways scroll.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
@@ -23,9 +24,11 @@ async function read() {
 			echo: echo ? echo.textContent : null,
 			echoChildren: echo ? echo.children.length : -1,
 			pathname: location.pathname,
-			tenders: Array.from(document.querySelectorAll('a[href="/tenders"]')).map((a) =>
-				squash(a.textContent)
-			),
+			// Judged by where a link leads, not how it is written: the server writes ./tenders and the
+			// started app rewrites it to /tenders.
+			tenders: Array.from(document.querySelectorAll('a[href]'))
+				.filter((a) => new URL(a.href).pathname === '/tenders')
+				.map((a) => squash(a.textContent)),
 			scrollWidth: document.documentElement.scrollWidth,
 			clientWidth: document.documentElement.clientWidth
 		};
@@ -64,6 +67,22 @@ try {
 
 	await page.goto('http://127.0.0.1:8788/no-such-page?theme=dark');
 	await saveScreenshot(await page.screenshot({ fullPage: true }), 'pagefifty-404-1440-dark.png');
+
+	// A lone % cannot be decoded, so the server refuses it with 400 before any route runs: that is the
+	// visitor's typo, and the page must not call it a server error a reload could clear. The app never
+	// starts on such an address (SvelteKit's client decodes the path at hydration outside its error
+	// handling), so this page stays as served, with relative links that still lead to /tenders.
+	const refused = await page.goto('http://127.0.0.1:8788/100%');
+	const typo = await read();
+	check(
+		'a lone % answers 400 as a request that cannot be answered, echoing the address as sent',
+		refused.status() === 400 &&
+			typo.h1 === 'This request could not be answered' &&
+			typo.title === 'Request not answered - Pagefifty' &&
+			typo.echo === '/100%' &&
+			typo.tenders.includes('Browse open tenders'),
+		`status ${refused.status()}, h1 "${typo.h1}", title "${typo.title}", echo "${typo.echo}"`
+	);
 
 	await page.setViewportSize({ width: 390, height: 844 });
 	const long = await page.goto(
