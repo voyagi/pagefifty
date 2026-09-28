@@ -122,7 +122,7 @@ describe('error page', () => {
 			'No tender with this notice number'
 		);
 		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
-			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026, or published after the capture.'
+			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after the capture, or not a call for tenders TED listed as active that day.'
 		);
 		expect(hrefs()).toContain('/tenders');
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
@@ -148,8 +148,13 @@ describe('error page', () => {
 		const lede = squash(document.querySelector('.lede')?.textContent);
 		expect(lede).toContain(`not in the ${captureDay(index.capture.fetchedAt)} snapshot`);
 		expect(lede).toContain(
-			`published before ${captureDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`)},`
+			`published before ${captureDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`)} or after the capture,`
 		);
+		// Only calls for tenders are in the capture (the query's notice type), and only those TED
+		// listed as active (scope ACTIVE, recorded in examples/2026-09-15/README.md): 10 notices of
+		// the same query were in scope and window but no longer active (spike 001, 373 against 363).
+		expect(index.capture.query).toContain('notice-type=cn-standard');
+		expect(lede).toContain('not a call for tenders TED listed as active that day.');
 	});
 
 	it('shows control and direction characters in an unknown notice as the replacement mark', () => {

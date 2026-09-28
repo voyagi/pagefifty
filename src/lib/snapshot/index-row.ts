@@ -99,7 +99,8 @@ const IndexRowSchema = z.strictObject({
 	country: z.array(z.string()),
 	cpvCodes: z.array(z.string()),
 	estimatedValue: AmountSchema.optional(),
-	lots: z.array(LotRowSchema)
+	// The build refuses a notice with no lot, so an empty list means a damaged file.
+	lots: z.array(LotRowSchema).min(1)
 });
 
 const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
@@ -128,7 +129,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
 	documents: DocumentsLinkSchema.optional(),
 	changeReasons: z.array(z.string()),
-	lots: z.array(LotRecordSchema)
+	lots: z.array(LotRecordSchema).min(1)
 });
 
 export const SnapshotIndexSchema = z.strictObject({

@@ -65,8 +65,8 @@
 				<!-- Both days are the snapshot's; error.dom.test.ts fails when the built index disagrees. -->
 				<p class="lede">
 					Notice <span class="mono echo">{notice}</span> is not in the 15 Sep 2026 snapshot. It may be
-					outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026, or published
-					after the capture.
+					outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after
+					the capture, or not a call for tenders TED listed as active that day.
 				</p>
 				<div class="actions">
 					{#if onExample}

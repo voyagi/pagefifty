@@ -236,6 +236,18 @@ describe('toIndexRow and the index schema', () => {
 		expect(result.error?.issues[0].path).toEqual(['rows', 0, 'noticeNumber']);
 	});
 
+	// The build refuses a notice with no lot (record.ts), so a lotless row can only be a damaged file,
+	// which would otherwise list as open with no deadline and no criteria.
+	it('refuses a row or a record with no lot', () => {
+		const row = { ...toIndexRow(RECORD), lots: [] };
+		const result = SnapshotIndexSchema.safeParse(index([row]));
+		expect(result.success).toBe(false);
+		expect(result.error?.issues[0].path).toEqual(['rows', 0, 'lots']);
+		const record = NoticeRecordSchema.safeParse({ ...RECORD, lots: [] });
+		expect(record.success).toBe(false);
+		expect(record.error?.issues[0].path).toEqual(['lots']);
+	});
+
 	it('refuses a deadline without its offset', () => {
 		const good = toIndexRow(RECORD);
 		const row = {
