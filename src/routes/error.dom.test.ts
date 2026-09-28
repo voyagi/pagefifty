@@ -200,10 +200,10 @@ describe('error page', () => {
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
 	});
 
-	// Both / and /tenders read the one index, so on the list's own address the error cannot point
-	// to the list as the thing that may still work.
-	it('on the list itself, a server error never says the list may still work', () => {
-		at(500, '/tenders', { message: 'Internal Error' });
+	// Both / and /tenders read the one index, so on either address the error cannot point to the
+	// list as the thing that may still work.
+	it.each(['/', '/tenders'])('at %s, a server error never says the list may still work', (path) => {
+		at(500, path, { message: 'Internal Error' });
 		render(ErrorPage);
 		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
 			'The server hit an error while building this page. Reload in a minute.'

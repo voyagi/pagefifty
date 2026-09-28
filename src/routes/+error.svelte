@@ -24,8 +24,8 @@
 	// Widened to string for the same reason: an error page is reached from any path at all.
 	const path = $derived<string>(page.url.pathname);
 	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
-	// / and /tenders read the same index, so the list is no way out of its own failure.
-	const onList = $derived(path === '/tenders');
+	// / and /tenders read the same index, so on either one the list is no way out of the failure.
+	const readsIndex = $derived(path === '/' || path === '/tenders');
 
 	const REPLACEMENT_MARK = String.fromCodePoint(0xfffd);
 
@@ -103,7 +103,7 @@
 				{@render tab()}
 				<p class="lede">
 					The server hit an error while building this page. Reload in a minute.
-					{#if !onList}If it keeps happening, the list of open tenders may still work.{/if}
+					{#if !readsIndex}If it keeps happening, the list of open tenders may still work.{/if}
 				</p>
 				<div class="actions">
 					<Button href="/tenders">Browse open tenders</Button>
