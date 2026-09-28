@@ -8,6 +8,11 @@ import { DOCUMENT_POINTERS, normalizeCriterionText, pointsToDocuments } from './
 const NBSP = String.fromCodePoint(0x00a0);
 const NARROW_NBSP = String.fromCodePoint(0x202f);
 const RIGHT_QUOTE = String.fromCodePoint(0x2019);
+const SOFT_HYPHEN = String.fromCodePoint(0x00ad);
+const ZERO_WIDTH_SPACE = String.fromCodePoint(0x200b);
+const WORD_JOINER = String.fromCodePoint(0x2060);
+const LEFT_TO_RIGHT_MARK = String.fromCodePoint(0x200e);
+const NON_BREAKING_HYPHEN = String.fromCodePoint(0x2011);
 
 const CAPTURE_CLASSIFIERS = {
 	de: 'german-classifier',
@@ -75,6 +80,14 @@ describe('normalizeCriterionText', () => {
 
 	it('reads a typographic apostrophe as the plain one', () => {
 		expect(normalizeCriterionText(`formulaire d${RIGHT_QUOTE}offre`)).toBe("formulaire d'offre");
+	});
+
+	it('reads a soft hyphen as a hyphen and drops zero-width and direction characters', () => {
+		expect(normalizeCriterionText(`Vergabe${SOFT_HYPHEN}unterlagen`)).toBe('vergabe-unterlagen');
+		expect(normalizeCriterionText(`Ver${ZERO_WIDTH_SPACE}gabe${WORD_JOINER}unterlagen`)).toBe(
+			'vergabeunterlagen'
+		);
+		expect(normalizeCriterionText(`a${LEFT_TO_RIGHT_MARK}b`)).toBe('ab');
 	});
 
 	test.prop([fc.string({ unit: 'grapheme' })])('is idempotent', (text) => {
@@ -223,6 +236,42 @@ describe('pointsToDocuments', () => {
 		expect(pointsToDocuments(`Umsatzzahlen laut Datei ${open}A 08 Umsatz${close}`, 'de')).toBe(
 			true
 		);
+	});
+
+	// Found at ritual p8: NFC keeps hyphens and soft hyphens, so each of these read as plain before.
+	it('reads a compound written with a hyphen or split by one at a line end as the joined word', () => {
+		for (const [lang, text] of [
+			['de', 'Nachweise gemäß den Vergabe-Unterlagen'],
+			['de', 'siehe Leistungs-\nbeschreibung'],
+			['de', `siehe Vergabe${SOFT_HYPHEN}\nunterlagen`],
+			['de', `siehe Leistungs${NON_BREAKING_HYPHEN}verzeichnis`],
+			['de', `Zur Nachweisführung soll die Anla${SOFT_HYPHEN}ge 6a verwendet werden.`],
+			['nl', 'zie de aanbestedings-documenten'],
+			['fr', 'selon le cahier des char-\nges']
+		]) {
+			expect(pointsToDocuments(text, lang), text).toBe(true);
+		}
+		expect(pointsToDocuments('Handelsregister-Auszug, höchstens drei Monate alt', 'de')).toBe(
+			false
+		);
+	});
+
+	it('keeps every listed phrase a pointer when a hyphen, a line-end split or an invisible character breaks it', () => {
+		const breaks = ['-', '-\n', SOFT_HYPHEN, `${SOFT_HYPHEN}\n`, ZERO_WIDTH_SPACE];
+		let checked = 0;
+		for (const [lang, phrases] of Object.entries(DOCUMENT_POINTERS)) {
+			for (const phrase of phrases) {
+				for (let at = 1; at < phrase.length; at += 1) {
+					if (!/\p{L}/u.test(phrase[at - 1]) || !/\p{L}/u.test(phrase[at])) continue;
+					for (const mark of breaks) {
+						const broken = `${phrase.slice(0, at)}${mark}${phrase.slice(at)}`;
+						expect(pointsToDocuments(`Siehe ${broken} unten`, lang), broken).toBe(true);
+						checked += 1;
+					}
+				}
+			}
+		}
+		expect(checked).toBeGreaterThan(1000);
 	});
 
 	it('checks every pattern when the language is unknown', () => {

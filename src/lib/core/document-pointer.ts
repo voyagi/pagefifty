@@ -13,12 +13,19 @@ const anyOf = (...codePoints: number[]) =>
 // quote a document's title with any of them, so all read as one quote mark.
 const APOSTROPHES = anyOf(0x2018, 0x2019, 0x02bc);
 const QUOTES = anyOf(0x201c, 0x201d, 0x201e, 0x00ab, 0x00bb, 0x201a, 0x2039, 0x203a);
+const SOFT_HYPHEN = String.fromCodePoint(0x00ad);
 
-// NFC so a decomposed umlaut and its composed form become one string; sharp s folded so Swiss
-// spelling and upper-cased text match; every space kind (U+00A0 and U+202F included, which \s
-// matches) collapsed, so a phrase split by a line break or a non-breaking space still matches.
+// A soft hyphen marks where a word may break, so it reads as the hyphen it prints as; the other
+// invisible format characters (zero-width spaces and joiners, direction marks) are dropped, since
+// NFC keeps them and one inside a word would hide a phrase. Dropped first, so the NFC below can
+// compose what they stood between. NFC so a decomposed umlaut and its composed form become one
+// string; sharp s folded so Swiss spelling and upper-cased text match; every space kind (U+00A0
+// and U+202F included, which \s matches) collapsed, so a phrase split by a line break or a
+// non-breaking space still matches.
 export function normalizeCriterionText(text: string): string {
 	return text
+		.replaceAll(SOFT_HYPHEN, '-')
+		.replace(/\p{Cf}/gu, '')
 		.toLowerCase()
 		.normalize('NFC')
 		.replaceAll('ß', 'ss')
@@ -154,11 +161,17 @@ function listsFor(lang: string | undefined) {
 		: { phrases: EVERY_PHRASE, patterns: EVERY_PATTERN };
 }
 
+// A compound written with a hyphen ("Vergabe-Unterlagen", "aanbestedings-documenten"), or split by
+// one at a line end ("Leistungs- beschreibung" once spaces are collapsed), names the same document
+// as the joined word. Both readings are checked, so a hyphen can add a match but never hide one.
+const HYPHEN_IN_WORD = /(?<=\p{L})[-\u2010\u2011] ?(?=\p{L})/gu;
+
 export function pointsToDocuments(text: string, lang?: string): boolean {
 	const normalized = normalizeCriterionText(text);
 	const { phrases, patterns } = listsFor(lang);
-	return (
-		phrases.some((phrase) => normalized.includes(phrase)) ||
-		patterns.some((pattern) => pattern.test(normalized))
+	return [normalized, normalized.replace(HYPHEN_IN_WORD, '')].some(
+		(reading) =>
+			phrases.some((phrase) => reading.includes(phrase)) ||
+			patterns.some((pattern) => pattern.test(reading))
 	);
 }

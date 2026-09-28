@@ -1,6 +1,6 @@
 import { render } from '@testing-library/svelte';
 import { flushSync } from 'svelte';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { SERVER_TIME_ZONE, formatDeadline } from '$lib/core/deadline';
 import DeadlineTime from './DeadlineTime.svelte';
 
@@ -63,6 +63,33 @@ describe('DeadlineTime', () => {
 		flushSync();
 		const zone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
 		expect(timeElement(container).textContent).toBe(formatDeadline(INSTANT, zone));
+	});
+
+	// A list shows one label per card; building a default formatter per card only to read the zone
+	// cost 24 ms over 363 cards (ritual p8), so the zone is read once for the page.
+	it('reads the browser zone once however many labels a page shows', () => {
+		const zone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+		let defaults = 0;
+		const counting = new Proxy(Intl.DateTimeFormat, {
+			construct(target, args) {
+				if (args.length === 0) defaults += 1;
+				return Reflect.construct(target, args);
+			}
+		});
+		vi.stubGlobal('Intl', Object.create(Intl, { DateTimeFormat: { value: counting } }));
+		try {
+			const containers = Array.from(
+				{ length: 20 },
+				() => render(DeadlineTime, { props: { instant: INSTANT } }).container
+			);
+			flushSync();
+			for (const container of containers) {
+				expect(timeElement(container).textContent).toBe(formatDeadline(INSTANT, zone));
+			}
+			expect(defaults).toBeLessThanOrEqual(1);
+		} finally {
+			vi.unstubAllGlobals();
+		}
 	});
 
 	it('keeps the Central European label when the browser reports a zone Intl refuses', () => {
