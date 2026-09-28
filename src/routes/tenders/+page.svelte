@@ -10,8 +10,9 @@
 	<header class="index-head">
 		<h1>Open IT tenders</h1>
 		<p class="capture mono">Snapshot captured from TED on {data.capturedOn}</p>
+		<!-- The capture query starts on 1 Sep 2026; tenders.dom.test.ts fails when the built index disagrees. -->
 		<p class="caveat">
-			A snapshot, not live: tenders published after {data.capturedOn} are missing.
+			A snapshot, not live: tenders published before 1 Sep 2026 or after {data.capturedOn} are missing.
 		</p>
 	</header>
 
