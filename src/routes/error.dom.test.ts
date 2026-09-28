@@ -116,6 +116,17 @@ describe('error page', () => {
 		);
 	});
 
+	it('shows control and direction characters in an unknown notice as the replacement mark', () => {
+		at(404, '/tenders/x', {
+			message: 'Not Found',
+			kind: 'unknown-notice',
+			notice: `12${String.fromCodePoint(0x202e)}34${String.fromCodePoint(0x0a)}-2026`
+		});
+		render(ErrorPage);
+		const mark = String.fromCodePoint(0xfffd);
+		expect(document.querySelector('.lede .echo')?.textContent).toBe(`12${mark}34${mark}-2026`);
+	});
+
 	it('offers the way back to the example run first on an example route', () => {
 		at(404, '/example/999999-2026', {
 			message: 'Not Found',

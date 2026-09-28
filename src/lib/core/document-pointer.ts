@@ -31,13 +31,14 @@ export function normalizeCriterionText(text: string): string {
 const ADDRESSES = ['https://', 'http://', 'www.'];
 
 // Phrases taken from the criterion texts of the 2026-09-15 capture, plus each language's usual names
-// for the procurement documents (most French and English ones match no criterion of that capture;
-// go-rule.test.ts pins what the list decides there). Matched as substrings of the
-// normalised text so German compounds and plurals match their stem; a plural whose umlaut breaks
-// the stem ("Anhänge", "Formblätter") is listed beside it. A bare "Anlage", "bijlage" or
-// "Unterlagen" is left out: it names what the tenderer attaches, not the buyer's documents, so an
-// annex counts only when it is quoted, bracketed, numbered, cited "gemäß Anlage" or said to be
-// enclosed.
+// for the procurement documents and for a buyer's questionnaire (most French and English ones match
+// no criterion of that capture; go-rule.test.ts pins what the list decides there). Matched as
+// substrings of the normalised text so German compounds and plurals match their stem; a plural whose
+// umlaut breaks the stem ("Anhänge", "Formblätter") is listed beside it. A form the tenderer fills in
+// ("ausgefüllt", "auszufüllen", "befüllt") and a file named by its title ('Datei "A 08 ..."') are the
+// buyer's, so they point there as a questionnaire does. A bare "Anlage", "bijlage" or "Unterlagen" is
+// left out: it names what the tenderer attaches, not the buyer's documents, so an annex counts only
+// when it is quoted, bracketed, numbered, cited "gemäß Anlage" or said to be enclosed.
 const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 	de: [
 		'vergabeunterlage',
@@ -55,6 +56,11 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'formblätter',
 		'formular',
 		'vordruck',
+		'fragebogen',
+		'ausgefüllt',
+		'auszufüllen',
+		'ausfüllen',
+		'befüllt',
 		'gemäss anlage',
 		'anlage "',
 		'(anlage',
@@ -62,7 +68,11 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'anhänge',
 		'dokument "',
 		'(dokument',
+		'datei "',
+		'dateien "',
+		'(datei',
 		'siehe dokument',
+		'siehe geforderte nachweise',
 		'den beigefügten',
 		'die beigefügten',
 		'beiliegend',
@@ -79,6 +89,7 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'bestek',
 		'in bijlage',
 		'(bijlage',
+		'vragenlijst',
 		...ADDRESSES
 	],
 	fr: [
@@ -91,6 +102,7 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'règlement de consultation',
 		'formulaire de soumission',
 		"formulaire d'offre",
+		'questionnaire',
 		...ADDRESSES
 	],
 	en: [
@@ -100,6 +112,7 @@ const PHRASES: Readonly<Record<PointerLanguage, readonly string[]>> = {
 		'contract document',
 		'invitation to tender',
 		'terms of reference',
+		'questionnaire',
 		...ADDRESSES
 	]
 };

@@ -33,6 +33,9 @@ const NOT_READ_DOCUMENTS =
 	'Not read: the procurement documents, which the buyer names as a source of criteria.';
 const NOT_READ_ESPD = 'Not read: the ESPD, which the buyer names as a source of criteria.';
 const NOT_READ_POINTER = 'Not read: the documents a criterion refers to.';
+const NOT_READ_UNNAMED =
+	'Not read: any criteria outside the notice, which names no source of criteria this version can read for this lot.';
+const UNKNOWN_SOURCE = 'epo-unknown';
 const NOT_ASSESSED =
 	"Not assessed: exclusion grounds, registration or authorisation, declarations the notice demands, and the buyer's shortlisting.";
 const NOT_COMPARED = 'Not compared: your firm profile. This version shows criteria as published.';
@@ -105,6 +108,30 @@ describe('summarizeLot and coverage', () => {
 		expect(coverage(lotInput(2, [NOTICE])).facts).toEqual([]);
 	});
 
+	it('reads a lot that names no source, or one this version does not know, as a source not read', () => {
+		for (const sources of [[], [UNKNOWN_SOURCE], [NOTICE, UNKNOWN_SOURCE]]) {
+			const facts = coverage(lotInput(2, sources));
+			expect(facts, JSON.stringify(sources)).toMatchObject({
+				sourceUnnamed: true,
+				noticeIsOnlySource: false
+			});
+			expect(facts.facts).toEqual(['SOURCE_UNREAD']);
+		}
+	});
+
+	it('reads each known source as named, and the notice alone as the only source', () => {
+		expect(coverage(lotInput(2, [NOTICE]))).toMatchObject({
+			sourceUnnamed: false,
+			noticeIsOnlySource: true
+		});
+		for (const source of [DOCUMENTS, ESPD]) {
+			expect(coverage(lotInput(2, [source])), source).toMatchObject({
+				sourceUnnamed: false,
+				noticeIsOnlySource: false
+			});
+		}
+	});
+
 	it('keeps the sources as declared, a repeat included, without sharing the array', () => {
 		const lot = { criteria: [], criteriaSources: [NOTICE, NOTICE] };
 		const input = summarizeLot(lot);
@@ -154,6 +181,14 @@ describe('readingStatus', () => {
 			text: NO_CRITERIA,
 			reason: NO_CRITERIA_REASON
 		});
+	});
+
+	it('gives "Criteria in the documents" to a lot that names no source or an unknown one', () => {
+		for (const sources of [[], [UNKNOWN_SOURCE]]) {
+			expect(readingStatus([lotInput(3, sources)]).tag, JSON.stringify(sources)).toBe(
+				'criteria-in-documents'
+			);
+		}
 	});
 
 	it('gives "Criteria in the documents" to criteria in the notice with one pointing criterion', () => {
@@ -271,6 +306,17 @@ describe('coverageLines', () => {
 		]);
 	});
 
+	it('says criteria outside the notice were not read when the lot names no source it can read', () => {
+		for (const sources of [[], [UNKNOWN_SOURCE]]) {
+			expect(fullLines(coverageLines(lotInput(2, sources))), JSON.stringify(sources)).toEqual([
+				readN(2),
+				NOT_READ_UNNAMED,
+				NOT_ASSESSED,
+				NOT_COMPARED
+			]);
+		}
+	});
+
 	it('leaves the documents line without a link when the notice names none', () => {
 		const [, documentsLine] = coverageLines(lotInput(0, [DOCUMENTS]));
 		expect(fullLine(documentsLine)).toBe(NOT_READ_DOCUMENTS);
@@ -310,8 +356,8 @@ describe('coverageLines', () => {
 	});
 });
 
-describe('one coverage function for the tag and the coverage list', () => {
-	it('is called by readingStatus and by coverageLines', () => {
+describe('one coverage function for the tag, the coverage list and the verdict input', () => {
+	it('is called by readingStatus, by coverageLines and by toLotInput', () => {
 		const counted = vi.mocked(coverage);
 		const [input] = inputsOf(recordOf('one-lot'));
 		counted.mockClear();
@@ -319,6 +365,10 @@ describe('one coverage function for the tag and the coverage list', () => {
 		expect(counted).toHaveBeenCalledWith(input);
 		counted.mockClear();
 		coverageLines(input);
+		expect(counted).toHaveBeenCalledTimes(1);
+		expect(counted).toHaveBeenCalledWith(input);
+		counted.mockClear();
+		toLotInput(input, ['MET']);
 		expect(counted).toHaveBeenCalledTimes(1);
 		expect(counted).toHaveBeenCalledWith(input);
 	});
@@ -340,8 +390,11 @@ describe('toLotInput', () => {
 		expect(toLotInput(lotInput(2, [ESPD]), []).noticeIsOnlySource).toBe(false);
 	});
 
-	it('never makes the notice the only source of a lot that declares no source', () => {
+	it('never makes the notice the only source of a lot that declares no source or an unknown one', () => {
 		expect(toLotInput(lotInput(2, []), ['MET', 'MET']).noticeIsOnlySource).toBe(false);
+		expect(
+			toLotInput(lotInput(2, [NOTICE, UNKNOWN_SOURCE]), ['MET', 'MET']).noticeIsOnlySource
+		).toBe(false);
 	});
 });
 
@@ -379,7 +432,7 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 				}
 			}
 			// The tag counts the build spec and the pitch quote.
-			expect(tags).toEqual({ 'criteria-in-documents': 307, 'criteria-not-read': 56 });
+			expect(tags).toEqual({ 'criteria-in-documents': 313, 'criteria-not-read': 50 });
 			expect(Object.keys(census).sort()).toEqual(['de', 'fr', 'nl']);
 			for (const tally of Object.values(census)) {
 				expect(tally.pointing).toBeGreaterThan(0);

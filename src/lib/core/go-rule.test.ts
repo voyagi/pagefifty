@@ -87,6 +87,7 @@ describe('the GO rule on real notices, every criterion MET', () => {
 		expect(germanPhrasesIn(lot, 3)).toEqual([
 			'vergabeunterlage',
 			'formblatt',
+			'auszufüllen',
 			'(anlage',
 			'beiliegend'
 		]);
@@ -129,12 +130,20 @@ describe(`every lot of the ${CAPTURE_ID} capture under the most favourable profi
 	const builtRecord = (notice: string) =>
 		NoticeRecordSchema.parse(JSON.parse(readFileSync(join(folder, `${notice}.json`), 'utf8')));
 
-	// Each names a buyer's form by its number or its title and nothing else points to the documents,
-	// so without those rules the lot would read GO.
+	// Each names a buyer's form by its number or its title, a file by its title, the buyer's
+	// questionnaire or a form to fill in, and nothing else points to the documents, so without those
+	// rules the lot would read GO.
 	it.each([
 		['625582-2026', 'LOT-0000', 'in der anlage b-09'],
 		['630068-2026', 'LOT-0000', 'die anlage 6a'],
-		['635431-2026', 'LOT-0001', 'im dokument eigenerklärungen']
+		['635431-2026', 'LOT-0001', 'im dokument eigenerklärungen'],
+		['624240-2026', 'LOT-0000', 's.fragebogen zur eignung'],
+		['633195-2026', 'LOT-0001', 'dateien "a 08 referenzen los 1"'],
+		['629099-2026', 'LOT-0002', 'eine vollständig ausgefüllte eigenerklärung'],
+		['630265-2026', 'LOT-0000', 'ausgefüllte "eigenerklärung zur eignung"'],
+		['603341-2026', 'LOT-0000', 'eigenerklärung russland, ausgefüllt und unterschrieben'],
+		['600779-2026', 'LOT-0002', 'vorlage der befüllten referenzliste'],
+		['619892-2026', 'LOT-0001', 'siehe geforderte nachweise']
 	])('reads %s %s ASK FIRST: "%s" holds part of its criteria', (notice, id, evidence) => {
 		const lot = builtRecord(notice).lots.find((each) => each.id === id);
 		if (!lot) throw new Error(`${notice} has no ${id}`);
@@ -145,9 +154,8 @@ describe(`every lot of the ${CAPTURE_ID} capture under the most favourable profi
 		expect(decide(unpointed, everyMet(lot.criteria.length))).toEqual({ verdict: 'GO' });
 	});
 
-	// The list tag reads only the sources a lot names, while the verdict input also sends a lot that
-	// names no source, or an unknown one, to criteria-in-documents. The two agree only because every
-	// lot of the capture names a known source, so the census pins the agreement itself.
+	// The list tag and the verdict input read one coverage() and agree by construction; the census
+	// re-checks that on every real lot, so a later change to either side cannot split them unseen.
 	it('reads GO only where the lot declares a reserved-procurement code, and never contradicts the tag', () => {
 		const unknownReserved: string[] = [];
 		const tagHidesDocuments: string[] = [];
@@ -166,9 +174,10 @@ describe(`every lot of the ${CAPTURE_ID} capture under the most favourable profi
 				if (lot.reserved === undefined) unknownReserved.push(`${record.noticeNumber} ${lot.id}`);
 			}
 		}
-		// The count the build spec and the pitch quote. Fifteen distinct listed phrases each decide at
-		// least one lot here, so a phrase dropped or narrowed changes it: update it only on purpose.
-		expect(go).toBe(76);
+		// The count the build spec and the pitch quote. Eighteen distinct listed phrases and both German
+		// patterns each decide at least one lot here, so one dropped or narrowed changes it: update it
+		// only on purpose.
+		expect(go).toBe(64);
 		expect(unknownReserved).toEqual([]);
 		expect(tagHidesDocuments).toEqual([]);
 	}, 30_000);

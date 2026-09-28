@@ -2,7 +2,7 @@
 // coverage() over notice facts alone: no profile value reaches either, and neither string names a
 // verdict (SPEC R3).
 import type { DocumentsLink } from '../ingest/record.ts';
-import { coverage, SOURCE_NOTICE, type LotCoverageInput } from './coverage-facts.ts';
+import { coverage, type LotCoverageInput } from './coverage-facts.ts';
 import type { CriterionState, LotInput } from './verdict.ts';
 
 export interface ReadingStatus {
@@ -27,12 +27,13 @@ const NOT_COMPARED: CoverageLine = {
 	text: 'your firm profile. This version shows criteria as published.'
 };
 
-// "Criteria in the documents" wins whenever any lot names the documents or the ESPD or any
-// criterion points there, even beside criteria in the notice (UI-SPEC section 4).
+// "Criteria in the documents" wins whenever any lot names the documents or the ESPD, names no
+// source this version can read, or has a criterion pointing there, even beside criteria in the
+// notice (UI-SPEC section 4). That is the SOURCE_UNREAD fact the verdict input carries.
 export function readingStatus(lots: readonly LotCoverageInput[]): ReadingStatus {
 	const facts = lots.map((lot) => coverage(lot));
 	const count = facts.reduce((total, lot) => total + lot.criteriaInNotice, 0);
-	if (facts.some((lot) => lot.namesDocuments || lot.namesEspd || lot.pointsToDocuments)) {
+	if (facts.some((lot) => lot.facts.includes('SOURCE_UNREAD'))) {
 		return {
 			tag: 'criteria-in-documents',
 			count,
@@ -87,23 +88,27 @@ export function coverageLines(input: LotCoverageInput, documents?: DocumentsLink
 			text: 'the ESPD, which the buyer names as a source of criteria.'
 		});
 	}
+	if (facts.sourceUnnamed) {
+		lines.push({
+			status: 'Not read',
+			text: 'any criteria outside the notice, which names no source of criteria this version can read for this lot.'
+		});
+	}
 	if (facts.pointsToDocuments) {
 		lines.push({ status: 'Not read', text: 'the documents a criterion refers to.' });
 	}
 	return [...lines, NOT_ASSESSED, NOT_COMPARED];
 }
 
-// every() is true over an empty list, so a lot that declares no BT-821 source would otherwise
-// count as notice-only and could reach GO. Its reason stays criteria-in-documents, the cautious
-// reading, because SPEC R2 fixes the ASK FIRST reasons at five. coverage() does not see that case,
-// so the list tag would say otherwise; no lot of the capture names no source or an unknown one, and
-// go-rule.test.ts fails if a lot's tag and this reason ever disagree.
+// A lot that names no BT-821 source, or one this version does not know, is never notice-only, so it
+// cannot reach GO. Its reason is criteria-in-documents, the cautious reading, because SPEC R2 fixes
+// the ASK FIRST reasons at five; the list tag reads the same coverage() and says the same.
 export function toLotInput(input: LotCoverageInput, states: readonly CriterionState[]): LotInput {
+	const facts = coverage(input);
 	return {
 		states,
-		facts: coverage(input).facts,
-		noticeIsOnlySource:
-			input.sources.length > 0 && input.sources.every((source) => source === SOURCE_NOTICE),
+		facts: facts.facts,
+		noticeIsOnlySource: facts.noticeIsOnlySource,
 		pointsToDocuments: input.pointsToDocuments
 	};
 }

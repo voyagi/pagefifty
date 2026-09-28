@@ -181,6 +181,32 @@ describe('pointsToDocuments', () => {
 		expect(pointsToDocuments('Die ausgefüllten Formblätter sind einzureichen.', 'de')).toBe(true);
 	});
 
+	// One sentence per phrase, each holding no other listed phrase, so dropping any one turns it red.
+	it('reads a questionnaire, a form to fill in and a file named by its title as pointers', () => {
+		for (const [lang, text] of [
+			['de', 's.Fragebogen zur Eignung'],
+			['de', 'Eigenerklärung Russland, ausgefüllt und unterschrieben'],
+			['de', 'Die Referenztabellen sind für jede Referenz lückenlos auszufüllen.'],
+			['de', 'Die Bieter müssen die Referenztabelle vollständig ausfüllen.'],
+			['de', 'Vorlage der befüllten Referenzliste mit Angabe der Ansprechpartner'],
+			['de', 'Umsatzzahlen laut Datei "A 08 Umsatzzahlen Lose 1-2"'],
+			['de', 'Referenzen in den Dateien "A 08 Referenzen Los 1" und "A 08 Referenzen Los 2"'],
+			['de', 'Umsatzzahlen der letzten drei Jahre (Datei A 08 Umsatzzahlen)'],
+			['de', 'siehe geforderte Nachweise (Bietereigenerklärung, Sanktionen Russland)'],
+			['nl', 'Vul de vragenlijst voor de selectie in.'],
+			['fr', 'Répondre au questionnaire de sélection.'],
+			['en', 'Complete the selection questionnaire.']
+		]) {
+			expect(pointsToDocuments(text, lang), text).toBe(true);
+		}
+		expect(
+			pointsToDocuments(
+				'Die Darstellung sollte zwei DIN A4-Seiten als digitales Dokument nicht überschreiten.',
+				'de'
+			)
+		).toBe(false);
+	});
+
 	it('checks every pattern when the language is unknown', () => {
 		expect(pointsToDocuments('Zur Nachweisführung soll die Anlage 6a verwendet werden.')).toBe(
 			true

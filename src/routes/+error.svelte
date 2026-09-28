@@ -10,16 +10,22 @@
 	const EXAMPLE = '/example' as string as Pathname;
 
 	const notFound = $derived(page.status === 404);
+	// The notice number reaches this page from the address too, so it is masked like the path.
 	const notice = $derived(
-		notFound && page.error?.kind === 'unknown-notice' ? (page.error.notice ?? '') : undefined
+		notFound && page.error?.kind === 'unknown-notice' ? masked(page.error.notice ?? '') : undefined
 	);
 	// Widened to string for the same reason: an error page is reached from any path at all.
 	const path = $derived<string>(page.url.pathname);
 	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
 
+	// A control or direction character shows as the replacement mark, so echoed text cannot reorder
+	// or hide the words around it.
+	function masked(text: string): string {
+		return text.replace(/[\p{Cc}\p{Cf}]/gu, '�');
+	}
+
 	// The address arrives percent-encoded, but the visitor typed letters, so the letters come back. A
-	// malformed escape stays as sent, and a control or direction character shows as the replacement
-	// mark, so an echoed address cannot reorder or hide the text around it.
+	// malformed escape stays as sent.
 	function readable(pathname: string): string {
 		let decoded = pathname;
 		try {
@@ -27,7 +33,7 @@
 		} catch (error) {
 			if (!(error instanceof URIError)) throw error;
 		}
-		return decoded.replace(/[\p{Cc}\p{Cf}]/gu, '�');
+		return masked(decoded);
 	}
 </script>
 
