@@ -13,6 +13,8 @@
 		count,
 		open = false,
 		tabMono = false,
+		tabLabel,
+		element = 'section',
 		children
 	}: {
 		id: string;
@@ -23,20 +25,33 @@
 		count?: number;
 		open?: boolean;
 		tabMono?: boolean;
+		tabLabel?: string;
+		element?: 'section' | 'article';
 		children: Snippet<[Snippet]>;
 	} = $props();
 </script>
 
 {#snippet tabLink()}
-	<a class="tab hue-{hue}" href="#{id}" aria-current={open ? 'true' : undefined}>
+	<a
+		class="tab hue-{hue}"
+		href="#{id}"
+		aria-current={open ? 'true' : undefined}
+		aria-label={tabLabel}
+	>
 		<span class:mono-label={tabMono}>{tab}</span>
 		{#if count !== undefined}<span class="count">{count}</span>{/if}
 	</a>
 {/snippet}
 
-<section class="leaf" class:ply-2={ply === 2} {id} aria-labelledby={labelledby}>
+<svelte:element
+	this={element}
+	class="leaf"
+	class:ply-2={ply === 2}
+	{id}
+	aria-labelledby={labelledby}
+>
 	{@render children(tabLink)}
-</section>
+</svelte:element>
 
 <style>
 	.leaf {
