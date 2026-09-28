@@ -49,9 +49,10 @@ const renderPage = (data: TenderListData) => render(Page, { props: { data } });
 
 describe('tenders list page', () => {
 	it('names the page and the capture day', () => {
-		renderPage(dataFor(index.rows));
+		const { container } = renderPage(dataFor(index.rows));
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Open IT tenders');
-		expect(screen.getByText('Snapshot captured from TED on 15 Sep 2026')).toBeTruthy();
+		const captureLine = container.querySelector('.capture .mono');
+		expect(squash(captureLine?.textContent)).toBe('Snapshot captured from TED on 15 Sep 2026');
 		expect(document.title).toBe('Open IT tenders in NL, BE and DE - Pagefifty');
 	});
 

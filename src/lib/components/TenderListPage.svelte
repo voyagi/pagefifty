@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { formatDeadline, SERVER_TIME_ZONE } from '$lib/core/deadline';
-	import { countsLine, type TenderListData } from '$lib/tenders/list';
+	import type { Pathname } from '$app/types';
+	import { countsLine, dayText, filterSummary, type TenderListData } from '$lib/tenders/list';
 	import Binder from './Binder.svelte';
+	import EmptyState from './EmptyState.svelte';
+	import FilterForm from './FilterForm.svelte';
 	import Leaf from './Leaf.svelte';
 	import TenderTable from './TenderTable.svelte';
 
@@ -32,6 +35,19 @@
 			? `A snapshot, not live: tenders published before ${capture.firstPublished} or after ${capture.capturedOn} are missing.`
 			: `A snapshot, not live: tenders published after ${capture.capturedOn} are missing.`
 	);
+
+	// /example has no route until a later plan, so Pathname does not list it yet.
+	const listPath = $derived(basePath as Pathname);
+	// Filters that match nothing in either group replace both tables with one named state, never a
+	// blank page; an unfiltered list always shows its tables.
+	const nothingMatches = $derived(list.filtered && list.counts.shown === 0);
+	const emptyBody = $derived.by(() => {
+		const { from, to } = data.filters;
+		if (list.inverted && from && to) {
+			return `The deadline range ends before it starts: ${dayText(from)} is after ${dayText(to)}. Swap the two dates.`;
+		}
+		return `Nothing in the ${capture.capturedOn} snapshot matches ${filterSummary(data.filters)}. Widen the deadline range or pick another country.`;
+	});
 </script>
 
 <Binder {board}>
@@ -69,43 +85,72 @@
 				</div>
 				<div class="capture">
 					{#if example}
-						<p class="mono">Captured from TED on {capture.capturedOn} at {capturedAt}</p>
+						<p class="mono">
+							Captured from TED on <span class="day">{capture.capturedOn} at {capturedAt}</span>
+						</p>
 					{:else}
-						<p class="mono">Snapshot captured from TED on {capture.capturedOn}</p>
+						<p class="mono">
+							Snapshot captured from TED on <span class="day">{capture.capturedOn}</span>
+						</p>
 					{/if}
 					<p class="caveat">{caveat}</p>
 				</div>
 			</header>
 
-			<TenderTable rows={list.open} caption="Open tenders, soonest deadline first" {basePath} />
+			<FilterForm state={data.filters} {basePath} />
+			{#if data.dropped}
+				<p class="status" role="status">
+					Some filter values in the address were not recognised and were ignored.
+				</p>
+			{/if}
+
+			{#if nothingMatches}
+				<EmptyState
+					heading="No tenders match these filters"
+					body={emptyBody}
+					clearHref={listPath}
+				/>
+			{:else if list.open.length === 0 && list.closed.length > 0}
+				<p class="note">No tender in this list is still open. The closed ones are below.</p>
+			{:else}
+				<TenderTable rows={list.open} caption="Open tenders, soonest deadline first" {basePath} />
+			{/if}
 		{/snippet}
 	</Leaf>
 
-	<Leaf
-		id="closed"
-		tab="Closed"
-		hue={board}
-		labelledby="closed-title"
-		count={list.counts.closed}
-		ply={2}
-	>
-		{#snippet children(tab)}
-			<details>
-				<summary
-					><h2 id="closed-title">
-						{closedSummary} (<span class="mono">{list.counts.closed}</span>)
-					</h2></summary
-				>
-				<TenderTable
-					rows={list.closed}
-					caption="Tenders that have closed, by the deadline they closed on"
-					{basePath}
-					closed
-				/>
-			</details>
-			{@render tab()}
-		{/snippet}
-	</Leaf>
+	{#if !nothingMatches}
+		<Leaf
+			id="closed"
+			tab="Closed"
+			hue={board}
+			labelledby="closed-title"
+			count={list.counts.closed}
+			ply={2}
+		>
+			{#snippet children(tab)}
+				{#if list.closed.length > 0}
+					<details>
+						<summary
+							><h2 id="closed-title">
+								{closedSummary} (<span class="mono">{list.counts.closed}</span>)
+							</h2></summary
+						>
+						<TenderTable
+							rows={list.closed}
+							caption="Tenders that have closed, by the deadline they closed on"
+							{basePath}
+							closed
+						/>
+					</details>
+					{@render tab()}
+				{:else}
+					<h2 id="closed-title" class="visually-hidden">{closedSummary}</h2>
+					{@render tab()}
+					<p class="note">No tender in this list has closed since the capture.</p>
+				{/if}
+			{/snippet}
+		</Leaf>
+	{/if}
 </Binder>
 
 <style>
@@ -142,8 +187,13 @@
 	}
 
 	.capture {
-		flex: 0 1 22rem;
+		flex: 0 1 26rem;
 		min-width: 0;
+	}
+
+	/* A date is one piece of evidence, so it never breaks across lines. */
+	.day {
+		white-space: nowrap;
 	}
 
 	.caveat {
@@ -151,6 +201,17 @@
 		font-size: var(--step--1);
 		line-height: 1.3;
 		color: var(--ink-2);
+	}
+
+	.status,
+	.note {
+		max-width: 70ch;
+		font-size: var(--step--1);
+		color: var(--ink-2);
+	}
+
+	.status {
+		margin: -0.5rem 0 1.5rem;
 	}
 
 	summary {
