@@ -1,8 +1,8 @@
-import { DEFAULT_CAPTURE, loadIndex } from '$lib/server/records';
-import { captureDay } from '$lib/snapshot/index-row';
+import { DEFAULT_CAPTURE } from '$lib/server/records';
+import { loadTenderList } from '$lib/server/tenders';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
-	const { capture, rows } = await loadIndex(DEFAULT_CAPTURE);
-	return { capturedOn: captureDay(capture.fetchedAt), total: capture.total, rows };
-};
+// The real clock, read once per request: every card on the page is judged open or closed against
+// this one instant (D-06).
+export const load: PageServerLoad = ({ url }) =>
+	loadTenderList({ capture: DEFAULT_CAPTURE, url, now: new Date() });
