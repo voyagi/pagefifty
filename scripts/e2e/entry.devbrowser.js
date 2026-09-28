@@ -24,7 +24,9 @@ async function read() {
 			h1Size: h1 ? getComputedStyle(h1).fontSize : '',
 			body: squash(document.body.textContent),
 			capture: squash((document.querySelector('.capture') || {}).textContent),
-			hrefs: Array.from(document.querySelectorAll('a[href]')).map((a) => a.getAttribute('href')),
+			// Where each link leads, not its raw text: the server writes relative links (./tenders) and
+			// the started app rewrites them, so a raw read depends on whether hydration has finished.
+			hrefs: Array.from(document.querySelectorAll('a[href]')).map((a) => new URL(a.href).pathname),
 			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 		};
 	});
