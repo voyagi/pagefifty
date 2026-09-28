@@ -6,6 +6,7 @@ import { readNotice } from '../ingest/read-notice';
 import { toIndexRow, type IndexRow } from '../snapshot/index-row';
 import type { FilterState } from '../core/filters';
 import {
+	COUNTRY_NAMES,
 	buildTenderList,
 	captureFacts,
 	countsLine,
@@ -104,6 +105,22 @@ describe('buildTenderList order and groups', () => {
 		expect(row?.reading.text).toBe('Criteria in the documents');
 		expect(row?.value).toBe('EUR 834,550.06');
 		expect(row?.countries).toEqual(['Germany']);
+	});
+});
+
+describe('buyer countries', () => {
+	it('names the three countries in scope in English', () => {
+		expect(COUNTRY_NAMES).toEqual({ NLD: 'Netherlands', BEL: 'Belgium', DEU: 'Germany' });
+	});
+
+	// A joint procurement can list buyers from outside the scope; their codes stay as published.
+	it('writes every buyer country of a row, and a code outside the scope as it is', () => {
+		const joint = {
+			...rowDue('700010-2026', '2026-11-02T10:00:00+01:00'),
+			country: ['DEU', 'FRA']
+		};
+		const list = buildTenderList({ rows: [joint] }, NO_FILTER, CAPTURE_NOW);
+		expect(list.open[0].countries).toEqual([COUNTRY_NAMES.DEU, 'FRA']);
 	});
 });
 
