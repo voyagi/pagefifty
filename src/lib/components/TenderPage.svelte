@@ -2,11 +2,14 @@
 	import type { TenderPageData } from '$lib/tenders/tender-page';
 	import Binder from './Binder.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
+	import FacedownLeaf from './FacedownLeaf.svelte';
 	import Facts from './Facts.svelte';
 	import Label from './Label.svelte';
 	import Leaf from './Leaf.svelte';
 	import LeafGrid from './LeafGrid.svelte';
 	import LotLeaf from './LotLeaf.svelte';
+	import SourceLinks from './SourceLinks.svelte';
+	import UnreadStrip from './UnreadStrip.svelte';
 
 	let {
 		data,
@@ -92,6 +95,8 @@
 					{tender.title.text}
 				</h1>
 				{@render tab()}
+				<UnreadStrip />
+				<SourceLinks tedUrl={tender.tedUrl} documents={tender.documents} />
 				{#if tender.lotIndex.length > 0}
 					<nav class="lot-index" aria-labelledby="lot-index-title">
 						<Label id="lot-index-title">
@@ -123,6 +128,17 @@
 	{#each tender.lots as lot (lot.anchor)}
 		<LotLeaf {lot} />
 	{/each}
+
+	{#if tender.documentsUnread}
+		<FacedownLeaf documents={tender.documents} />
+	{/if}
+
+	<!-- The capture day comes from the capture itself, so a new capture renames it. -->
+	<p class="leaf-foot">
+		Criteria as published in TED notice <span class="mono">{tender.noticeNumber}</span>. Source:
+		TED, the EU's Tenders Electronic Daily, snapshot captured {data.capture.capturedOn}. Not legal
+		advice.
+	</p>
 </Binder>
 
 <style>
@@ -162,11 +178,15 @@
 		border-top: 1px solid var(--acetate-rule);
 	}
 
+	/* Each link already names its lot number, so the list carries no second one; seventeen lots
+	   pack into columns instead of one long run. */
 	.lot-index ol {
 		margin: 0;
-		padding-left: 1.5rem;
+		padding: 0;
+		list-style: none;
 		display: grid;
-		gap: 0.625rem;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+		gap: 0.75rem 1.75rem;
 	}
 
 	.lot-index li {
@@ -175,9 +195,17 @@
 		hyphens: auto;
 	}
 
-	.lot-index li::marker {
-		font-family: var(--font-mono);
-		color: var(--ink-3);
+	.lot-index .sub {
+		font-size: var(--step--1);
+	}
+
+	/* The foot is set on the yellow board itself, so it takes the board's own ink. */
+	.leaf-foot {
+		max-width: 80ch;
+		margin-top: 1rem;
+		font-size: var(--step--1);
+		font-weight: 500;
+		color: var(--on-yellow);
 	}
 
 	@media (max-width: 720px) {

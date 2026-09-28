@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LangText } from '$lib/ingest/record';
 	import type { LotView } from '$lib/tenders/tender-page';
+	import CoverageList from './CoverageList.svelte';
 	import CriterionRow from './CriterionRow.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import Facts from './Facts.svelte';
@@ -113,6 +114,7 @@
 					{/each}
 				</section>
 			{/each}
+			<CoverageList lines={lot.coverage} />
 		</LeafGrid>
 	{/snippet}
 </Leaf>

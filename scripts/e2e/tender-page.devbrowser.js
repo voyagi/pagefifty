@@ -38,6 +38,25 @@ function readPage() {
 	});
 }
 
+// The parts of the tender page Task 2 adds, read from the rendered page.
+function readTender() {
+	return page.evaluate(() => {
+		const text = (node) => (node ? node.textContent.replace(/\s+/g, ' ').trim() : '');
+		const links = {};
+		document.querySelectorAll('main a[href^="http"]').forEach((link) => {
+			links[text(link)] = link.getAttribute('href');
+		});
+		return {
+			coverage: Array.from(document.querySelectorAll('.coverage')).map(text),
+			strip: text(document.querySelector('.unread-strip')),
+			links,
+			documentsLeaf: Boolean(document.querySelector('section#documents')),
+			foot: text(document.querySelector('.leaf-foot')),
+			lotNote: text(document.querySelector('#lot-1'))
+		};
+	});
+}
+
 async function notFound(path, answer) {
 	const shown = await readPage();
 	const worded =
@@ -84,6 +103,80 @@ try {
 		'the page title names the tender and its notice',
 		facts.title.endsWith('(609955-2026) - Pagefifty'),
 		`"${facts.title}"`
+	);
+
+	const tender = await readTender();
+	check(
+		'609955-2026 lists what was read and what was not, the pointer line included',
+		tender.coverage.length === 1 &&
+			tender.coverage[0].includes(
+				'Read: 6 selection criteria published in the notice for this lot.'
+			) &&
+			tender.coverage[0].includes('Not read: the documents a criterion refers to.') &&
+			tender.coverage[0].includes('Not compared: your firm profile.'),
+		`${tender.coverage.length} coverage lists: ${tender.coverage.join(' | ').slice(0, 300)}`
+	);
+	check(
+		'609955-2026 shows the unread strip, the TED link and the documents link as published',
+		tender.strip.startsWith('Shown as published in the notice.') &&
+			tender.links['Open notice on TED'] ===
+				'https://ted.europa.eu/en/notice/-/detail/609955-2026' &&
+			tender.links['Open the procurement documents'] ===
+				'https://www.evergabe-online.de/tenderdocuments.html?id=887787',
+		`strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}`
+	);
+	check(
+		'609955-2026 ends with the face-down Documents leaf and the leaf foot naming the capture day',
+		tender.documentsLeaf &&
+			tender.foot ===
+				"Criteria as published in TED notice 609955-2026. Source: TED, the EU's Tenders Electronic Daily, snapshot captured 15 Sep 2026. Not legal advice.",
+		`documents leaf ${tender.documentsLeaf}, foot "${tender.foot}"`
+	);
+	const served = await page.evaluate(async () =>
+		(await fetch('http://127.0.0.1:8788/tenders/609955-2026')).text()
+	);
+	check(
+		'without scripts the served page holds the criteria, the coverage list and the Documents leaf',
+		(served.match(/<blockquote/g) || []).length === 6 &&
+			served.includes('What was read and what was not') &&
+			served.includes('id="documents"'),
+		`${(served.match(/<blockquote/g) || []).length} quotes, coverage ${served.includes('What was read and what was not')}, documents leaf ${served.includes('id="documents"')}`
+	);
+	check(
+		'copy read for PLAW-09: 609955-2026, no verdict word in it',
+		facts.ownCopy.length > 0 && VERDICT_WORDS.exec(facts.ownCopy) === null,
+		facts.ownCopy
+	);
+
+	await page.goto('http://127.0.0.1:8788/tenders/600954-2026');
+	const restricted = await readTender();
+	check(
+		'600954-2026 words its restricted documents link as access on request',
+		restricted.links['Request access to the restricted procurement documents'] ===
+			'https://app.tenpu.eu/public/tender/dps/1167' &&
+			!('Open the procurement documents' in restricted.links),
+		JSON.stringify(restricted.links)
+	);
+
+	await page.goto('http://127.0.0.1:8788/tenders/600367-2026');
+	const documentsOnly = await readTender();
+	const documentsCopy = await readPage();
+	check(
+		'600367-2026 says the procurement documents were not read and links them by name',
+		documentsOnly.coverage[0].includes(
+			'Not read: the procurement documents, which the buyer names as a source of criteria.'
+		) &&
+			documentsOnly.coverage[0].includes(
+				'Read: the notice, which publishes no selection criteria for this lot.'
+			) &&
+			documentsOnly.lotNote.includes('This lot publishes no selection criteria in the notice.') &&
+			documentsOnly.documentsLeaf,
+		`${documentsOnly.coverage[0].slice(0, 200)}, documents leaf ${documentsOnly.documentsLeaf}`
+	);
+	check(
+		'copy read for PLAW-09: 600367-2026, no verdict word in it',
+		documentsCopy.ownCopy.length > 0 && VERDICT_WORDS.exec(documentsCopy.ownCopy) === null,
+		documentsCopy.ownCopy
 	);
 
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
