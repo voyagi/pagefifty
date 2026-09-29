@@ -15,9 +15,10 @@
 	// no form actions with 405, so a reload would only repeat it.
 	const refused = $derived(page.status >= 400 && page.status < 500);
 	// The notice number reaches this page from the address too, so it is masked like the path. An
-	// unknown-notice error that names no notice has nothing to name, so it reads as an unknown path.
+	// unknown-notice error that names no notice, or only blanks (/tenders/%20 arrives as a space), has
+	// nothing to name, so it reads as an unknown path.
 	const notice = $derived(
-		notFound && page.error?.kind === 'unknown-notice' && page.error.notice
+		notFound && page.error?.kind === 'unknown-notice' && page.error.notice?.trim()
 			? masked(page.error.notice)
 			: undefined
 	);
