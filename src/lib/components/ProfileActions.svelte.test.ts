@@ -40,7 +40,12 @@ afterEach(() => {
 
 const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
 const status = () => squash(screen.getByRole('status').textContent);
-const alertText = async () => squash((await screen.findByRole('alert')).textContent);
+// The alert's sentences and field lines are separate blocks, so their text is joined with a space
+// the way a reader meets them, not run together as raw textContent would.
+const alertText = async () => {
+	const alert = await screen.findByRole('alert');
+	return squash([...alert.querySelectorAll('p, li')].map((block) => block.textContent).join(' '));
+};
 const staffField = () => screen.findByLabelText('Total staff') as Promise<HTMLInputElement>;
 const importInput = () => screen.getByLabelText('Import a profile file') as HTMLInputElement;
 

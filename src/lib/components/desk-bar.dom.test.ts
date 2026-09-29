@@ -1,5 +1,6 @@
 import { render, screen, within } from '@testing-library/svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetProfileStore } from '$lib/profile/store.svelte';
 import DeskBar from './DeskBar.svelte';
 import MainNav from './MainNav.svelte';
 
@@ -60,15 +61,18 @@ describe('DeskBar', () => {
 		expect(first?.getAttribute('href')).toBe('#main');
 	});
 
-	it('carries the wordmark, the main nav, the reserved firm slot and the theme switch', () => {
+	// The empty server render of the slot is held in FirmSlot.ssr.test.ts; in the browser it fills.
+	it('carries the wordmark, the main nav, the firm slot and the theme switch', async () => {
+		localStorage.clear();
+		resetProfileStore();
 		const { container } = render(DeskBar, { props: { path: '/tenders' } });
 		const header = screen.getByRole('banner');
 		expect(within(header).getByRole('link', { name: 'Pagefifty' }).getAttribute('href')).toBe('/');
 		expect(navLinks().map((link) => link.current)).toEqual(['page', null]);
 		expect(within(header).getByRole('group', { name: 'Theme' })).toBeTruthy();
-		const slot = container.querySelector('[data-firm-slot]');
-		expect(slot).toBeTruthy();
-		expect(slot?.textContent?.trim()).toBe('');
+		await vi.waitFor(() =>
+			expect(container.querySelector('[data-firm-slot]')?.textContent).toContain('Your firm')
+		);
 	});
 
 	it('has no hamburger: every nav link is in the page, none behind a toggle', () => {

@@ -32,7 +32,11 @@ function readPage() {
 			),
 			body: document.body.textContent.replace(/\s+/g, ' '),
 			ownCopy: copy.textContent.replace(/\s+/g, ' '),
-			listLinks: document.querySelectorAll('main a[href="/tenders"]').length,
+			// The server writes relative hrefs ("../tenders") and hydration rewrites them, so the link is
+			// matched by the address it resolves to, never by the attribute text.
+			listLinks: Array.from(document.querySelectorAll('main a[href]')).filter(
+				(link) => new URL(link.href).pathname === '/tenders'
+			).length,
 			title: document.title
 		};
 	});

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import FirmSlot from './FirmSlot.svelte';
 	import MainNav from './MainNav.svelte';
 	import SkipLink from './SkipLink.svelte';
 	import ThemeSwitch from './ThemeSwitch.svelte';
@@ -12,9 +13,7 @@
 	<a class="wordmark" href={resolve('/')}>Pagefifty</a>
 	<div class="nav"><MainNav {path} /></div>
 	<span class="spacer"></span>
-	<!-- The firm slot is filled in the browser, where the profile lives (plan 01-14). The server
-	     renders it empty at its full two-line height so filling it never moves the bar. -->
-	<div class="firm" data-firm-slot></div>
+	<FirmSlot {path} />
 	<ThemeSwitch />
 </header>
 
@@ -45,26 +44,25 @@
 		flex: 1;
 	}
 
-	.firm {
-		min-height: calc(var(--step-0) * 1.35 + var(--step--1) * 1.35);
-		font-size: var(--step--1);
-		line-height: 1.35;
-		text-align: right;
-	}
-
+	/* On a phone the demo label (the firm slot's own rule) sits right after the wordmark, so the
+	   spacer and the theme switch follow it; the nav takes the second row. */
 	@media (max-width: 720px) {
 		.deskbar {
 			flex-wrap: wrap;
 			gap: 0.5rem 1rem;
 		}
 
+		.spacer {
+			order: 1;
+		}
+
+		.deskbar > :global(.theme) {
+			order: 2;
+		}
+
 		.nav {
 			order: 3;
 			width: 100%;
-		}
-
-		.firm {
-			display: none;
 		}
 	}
 </style>

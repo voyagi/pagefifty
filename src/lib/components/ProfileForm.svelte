@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from 'svelte';
+	import { untrack, type ComponentProps } from 'svelte';
 	import { formatDay, usableTimeZone } from '$lib/core/deadline';
 	import { EU_EEA_COUNTRIES, EU_LANGUAGES } from '$lib/profile/codes';
 	import {
@@ -18,11 +18,11 @@
 	import DateField from './DateField.svelte';
 	import Facts from './Facts.svelte';
 	import Field from './Field.svelte';
-	import Leaf from './Leaf.svelte';
 	import LoadingLines from './LoadingLines.svelte';
 	import MoneyField from './MoneyField.svelte';
+	import ProfileActions from './ProfileActions.svelte';
+	import ProfileLeaf from './ProfileLeaf.svelte';
 	import SelectField from './SelectField.svelte';
-	import StatusLine from './StatusLine.svelte';
 	import ToggleChip from './ToggleChip.svelte';
 
 	// store is null until the page has read storage in the browser; until then every leaf shows its
@@ -43,7 +43,9 @@
 		| { kind: 'saved'; time: string }
 		| { kind: 'removed'; name: string }
 		| { kind: 'failed' }
-		| { kind: 'refused' };
+		| { kind: 'refused' }
+		| { kind: 'reading'; file: string }
+		| { kind: 'imported'; file: string };
 
 	type NumberKind = 'money' | 'staff' | 'years';
 
@@ -253,9 +255,27 @@
 
 	const isExpired = (standard: string) => certificateHint(standard).strong;
 
+	// An imported file replaces the whole profile, so every field shows it and no error is left over
+	// from what was typed before. A refused file leaves the status as it stood before the read.
+	type ImportEvent = Parameters<ComponentProps<typeof ProfileActions>['onimport']>[0];
+	let beforeImport: FormEvent | null = null;
+	function onimport(event: ImportEvent) {
+		if (event.kind === 'reading') {
+			if (lastEvent?.kind !== 'reading') beforeImport = lastEvent;
+			lastEvent = event;
+		} else if (event.kind === 'imported') {
+			errors = {};
+			syncDrafts(() => false);
+			lastEvent = event;
+		} else {
+			lastEvent = beforeImport;
+		}
+	}
+
 	const status = $derived.by((): SaveStatus => {
 		const newer = store?.newerVersion;
 		if (newer != null) return { kind: 'newer', version: newer, reads: PROFILE_SCHEMA_VERSION };
+		if (lastEvent?.kind === 'reading') return lastEvent;
 		const invalid = Object.values(errors).map((entry) => entry.label);
 		if (invalid.length > 0) {
 			const rest = keptInMemory ? 'memory' : store?.stored ? 'saved' : 'nothing';
@@ -266,6 +286,7 @@
 		}
 		if (lastEvent?.kind === 'removed') return lastEvent;
 		if (!store?.stored) return { kind: 'nothing', inMemory: keptInMemory };
+		if (lastEvent?.kind === 'imported') return { ...lastEvent, inMemory: keptInMemory };
 		if (lastEvent?.kind === 'saved' && !keptInMemory) return lastEvent;
 		return { kind: 'kept', inMemory: keptInMemory };
 	});
@@ -273,313 +294,260 @@
 	const exported = $derived(store?.stored?.lastExportedAt ?? null);
 </script>
 
-<Leaf id="firm" tab="Firm" hue="ultramarine" labelledby="profile-title" open>
-	{#snippet children(tab)}
-		<div class="grid">
-			<Facts head="Kept in this browser">
-				<p>
-					Nothing here is sent to a server. This browser may delete it without asking, so export the
-					file and keep it.
+<ProfileLeaf leaf="firm">
+	{#snippet margin()}
+		<Facts head="Kept in this browser">
+			<p>
+				Nothing here is sent to a server. This browser may delete it without asking, so export the
+				file and keep it.
+			</p>
+			{#if store}
+				<p class="exported">
+					Last exported: {exported === null ? 'never' : formatDay(exported, zone)}
 				</p>
-				{#if store}
-					<p class="exported">
-						Last exported: {exported === null ? 'never' : formatDay(exported, zone)}
-					</p>
-				{/if}
-			</Facts>
-			<div class="main">
-				<h1 class="title" id="profile-title">Your firm profile</h1>
-				{@render tab()}
-				{#if store && !store.stored}
-					<p class="lede">
-						Nothing saved yet. Fill in what you can prove with a document, or try the pages with the
-						demo firm.
-					</p>
-				{:else}
-					<p class="gloss">
-						The figures Pagefifty will check each tender's criteria against. Fill in what you can
-						prove with a document.
-					</p>
-				{/if}
-				<noscript>
-					<p class="noscript">
-						The firm profile is kept in this browser and needs JavaScript to read and save it.
-					</p>
-				</noscript>
-				{#if store}
-					<StatusLine text={saveStatusText(status)} />
-				{:else}
-					<LoadingLines label="Reading the profile kept in this browser." />
-				{/if}
-			</div>
+			{/if}
+		</Facts>
+	{/snippet}
+	{#snippet body(tab)}
+		<h1 class="title" id="profile-title">Your firm profile</h1>
+		{@render tab()}
+		{#if store && !store.stored}
+			<p class="lede">
+				Nothing saved yet. Fill in what you can prove with a document, or try the pages with the
+				demo firm.
+			</p>
+		{:else}
+			<p class="gloss">
+				The figures Pagefifty will check each tender's criteria against. Fill in what you can prove
+				with a document.
+			</p>
+		{/if}
+		<noscript>
+			<p class="noscript">
+				The firm profile is kept in this browser and needs JavaScript to read and save it.
+			</p>
+		</noscript>
+		{#if store}
+			<ProfileActions {store} {clock} statusText={saveStatusText(status)} {onimport} />
+		{:else}
+			<LoadingLines label="Reading the profile kept in this browser." />
+		{/if}
+	{/snippet}
+</ProfileLeaf>
+
+<ProfileLeaf leaf="turnover">
+	{#snippet body()}
+		<div>
+			{#if store && years}
+				<div class="form-grid">
+					{#each years as year (year)}
+						{@const key = turnoverKey(year)}
+						<MoneyField
+							id="turnover-{year}"
+							label={String(year)}
+							value={drafts[key] ?? ''}
+							error={errorFor(key)}
+							onchange={(result, text) =>
+								onNumber(key, String(year), 'money', result, text, (current, value) =>
+									withTurnover(current, year, value)
+								)}
+							onfocus={() => (focusedKey = key)}
+							onblur={() => (focusedKey = null)}
+						/>
+					{/each}
+					<Field
+						id="turnover-average"
+						label="Average"
+						value={average === undefined ? '' : String(Math.round(average))}
+						hint="Worked out once all three years are numbers"
+						readonly
+					/>
+					<div class="row-start">
+						<Field
+							id="completed-years"
+							label="Completed financial years"
+							hint="Years with filed accounts, like 3."
+							inputmode="numeric"
+							value={drafts.years ?? ''}
+							error={errorFor('years')}
+							oninput={(text) =>
+								onNumber(
+									'years',
+									'Completed financial years',
+									'years',
+									parseCount(text),
+									text,
+									(current, value) => ({ ...current, completedFinancialYears: value })
+								)}
+							onfocus={() => (focusedKey = 'years')}
+							onblur={() => (focusedKey = null)}
+						/>
+					</div>
+				</div>
+			{:else}
+				<LoadingLines />
+			{/if}
 		</div>
 	{/snippet}
-</Leaf>
+</ProfileLeaf>
 
-<Leaf id="turnover" tab="Turnover" hue="yellow" labelledby="turnover-title" ply={2}>
-	{#snippet children(tab)}
-		<div class="grid">
-			<Facts head="Turnover" headingId="turnover-title">
-				<p>
-					Net yearly turnover in euros, from your filed accounts. Each year is the financial year
-					that ends in it.
-				</p>
-			</Facts>
-			{@render tab()}
-			<div class="main">
-				{#if store && years}
-					<div class="form-grid">
-						{#each years as year (year)}
-							{@const key = turnoverKey(year)}
-							<MoneyField
-								id="turnover-{year}"
-								label={String(year)}
+<ProfileLeaf leaf="people">
+	{#snippet body()}
+		<div>
+			{#if store}
+				<div class="form-grid">
+					<Field
+						id="total-staff"
+						label="Total staff"
+						hint="Everyone on the payroll, like 19."
+						inputmode="numeric"
+						value={drafts.staff ?? ''}
+						error={errorFor('staff')}
+						oninput={(text) =>
+							onNumber(
+								'staff',
+								'Total staff',
+								'staff',
+								parseCount(text),
+								text,
+								(current, value) => ({
+									...current,
+									staff: { ...current.staff, total: value }
+								})
+							)}
+						onfocus={() => (focusedKey = 'staff')}
+						onblur={() => (focusedKey = null)}
+					/>
+				</div>
+			{:else}
+				<LoadingLines />
+			{/if}
+		</div>
+	{/snippet}
+</ProfileLeaf>
+
+<ProfileLeaf leaf="certificates">
+	{#snippet body()}
+		<div>
+			{#if store}
+				<div class="chips" role="group" aria-label="Certificates held">
+					{#each [...COMMON_CERTIFICATES, ...added] as standard (standard)}
+						<ToggleChip
+							label={standard}
+							pressed={held.includes(standard)}
+							dashed={held.includes(standard) && isExpired(standard)}
+							onclick={() => toggleCertificate(standard)}
+						/>
+					{/each}
+					<ToggleChip
+						label="Add another"
+						expanded={adding}
+						controls="add-certificate"
+						onclick={() => (adding = !adding)}
+					/>
+				</div>
+				<div class="add" id="add-certificate" hidden={!adding}>
+					<Field
+						id="certificate-name"
+						label="Certificate name"
+						hint="Like ISO 22301."
+						maxlength={80}
+						bind:value={newName}
+						error={nameMissing
+							? fieldErrorText({ kind: 'certificate-name', reason: 'empty' })
+							: undefined}
+						oninput={() => (nameMissing = false)}
+					/>
+					<Button variant="secondary" onclick={addCertificate}>Add certificate</Button>
+				</div>
+				{#if profile.certificates.length > 0}
+					<div class="form-grid dates">
+						{#each profile.certificates as certificate, index (certificate.standard)}
+							{@const key = certificateKey(certificate.standard)}
+							{@const hint = certificateHint(certificate.standard)}
+							<DateField
+								id="certificate-until-{index}"
+								label="{certificate.standard} valid until"
+								hint={hint.text}
 								value={drafts[key] ?? ''}
 								error={errorFor(key)}
-								onchange={(result, text) =>
-									onNumber(key, String(year), 'money', result, text, (current, value) =>
-										withTurnover(current, year, value)
-									)}
+								onchange={(result, text) => {
+									drafts[key] = text;
+									if (!result.ok) {
+										setError(key, `${certificate.standard} valid until`, {
+											kind: 'certificate-date',
+											reason: 'not-a-date'
+										});
+										return;
+									}
+									clearError(key);
+									setValidUntil(certificate.standard, result.value);
+								}}
 								onfocus={() => (focusedKey = key)}
 								onblur={() => (focusedKey = null)}
 							/>
 						{/each}
-						<Field
-							id="turnover-average"
-							label="Average"
-							value={average === undefined ? '' : String(Math.round(average))}
-							hint="Worked out once all three years are numbers"
-							readonly
-						/>
-						<div class="row-start">
-							<Field
-								id="completed-years"
-								label="Completed financial years"
-								hint="Years with filed accounts, like 3."
-								inputmode="numeric"
-								value={drafts.years ?? ''}
-								error={errorFor('years')}
-								oninput={(text) =>
-									onNumber(
-										'years',
-										'Completed financial years',
-										'years',
-										parseCount(text),
-										text,
-										(current, value) => ({ ...current, completedFinancialYears: value })
-									)}
-								onfocus={() => (focusedKey = 'years')}
-								onblur={() => (focusedKey = null)}
-							/>
-						</div>
 					</div>
-				{:else}
-					<LoadingLines />
 				{/if}
-			</div>
+			{:else}
+				<LoadingLines />
+			{/if}
 		</div>
 	{/snippet}
-</Leaf>
+</ProfileLeaf>
 
-<Leaf id="people" tab="People" hue="teal" labelledby="people-title" ply={2}>
-	{#snippet children(tab)}
-		<div class="grid">
-			<Facts head="People" headingId="people-title">
-				<p>People on your payroll today.</p>
-			</Facts>
-			{@render tab()}
-			<div class="main">
-				{#if store}
-					<div class="form-grid">
-						<Field
-							id="total-staff"
-							label="Total staff"
-							hint="Everyone on the payroll, like 19."
-							inputmode="numeric"
-							value={drafts.staff ?? ''}
-							error={errorFor('staff')}
-							oninput={(text) =>
-								onNumber(
-									'staff',
-									'Total staff',
-									'staff',
-									parseCount(text),
-									text,
-									(current, value) => ({
-										...current,
-										staff: { ...current.staff, total: value }
-									})
-								)}
-							onfocus={() => (focusedKey = 'staff')}
-							onblur={() => (focusedKey = null)}
-						/>
-					</div>
-				{:else}
-					<LoadingLines />
-				{/if}
-			</div>
-		</div>
-	{/snippet}
-</Leaf>
-
-<Leaf id="certificates" tab="Certificates" hue="grass" labelledby="certificates-title" ply={2}>
-	{#snippet children(tab)}
-		<div class="grid">
-			<Facts head="Certificates" headingId="certificates-title">
-				<p>Certificates your firm holds, with the date each one runs out.</p>
-			</Facts>
-			{@render tab()}
-			<div class="main">
-				{#if store}
-					<div class="chips" role="group" aria-label="Certificates held">
-						{#each [...COMMON_CERTIFICATES, ...added] as standard (standard)}
-							<ToggleChip
-								label={standard}
-								pressed={held.includes(standard)}
-								dashed={held.includes(standard) && isExpired(standard)}
-								onclick={() => toggleCertificate(standard)}
+<ProfileLeaf leaf="countries">
+	{#snippet body()}
+		<div>
+			{#if store}
+				<div class="form-grid">
+					<SelectField
+						id="registration-country"
+						label="Country of registration"
+						placeholder="Choose a country"
+						options={EU_EEA_COUNTRIES}
+						value={profile.registration.country ?? ''}
+						onchange={(code) =>
+							save((current) => ({
+								...current,
+								registration: { ...current.registration, country: code || undefined }
+							}))}
+					/>
+				</div>
+				<fieldset onchange={(changed) => toggleCode('countries', changed.target)}>
+					<legend>Countries you work in</legend>
+					<div class="chips">
+						{#each EU_EEA_COUNTRIES as country (country.code)}
+							<CheckChip
+								name="countries"
+								value={country.code}
+								label={country.name}
+								checked={profile.countries.includes(country.code)}
 							/>
 						{/each}
-						<ToggleChip
-							label="Add another"
-							expanded={adding}
-							controls="add-certificate"
-							onclick={() => (adding = !adding)}
-						/>
 					</div>
-					<div class="add" id="add-certificate" hidden={!adding}>
-						<Field
-							id="certificate-name"
-							label="Certificate name"
-							hint="Like ISO 22301."
-							maxlength={80}
-							bind:value={newName}
-							error={nameMissing
-								? fieldErrorText({ kind: 'certificate-name', reason: 'empty' })
-								: undefined}
-							oninput={() => (nameMissing = false)}
-						/>
-						<Button variant="secondary" onclick={addCertificate}>Add certificate</Button>
+				</fieldset>
+				<fieldset onchange={(changed) => toggleCode('languages', changed.target)}>
+					<legend>Languages your team works in</legend>
+					<div class="chips">
+						{#each EU_LANGUAGES as language (language.code)}
+							<CheckChip
+								name="languages"
+								value={language.code}
+								label={language.name}
+								checked={profile.languages.includes(language.code)}
+							/>
+						{/each}
 					</div>
-					{#if profile.certificates.length > 0}
-						<div class="form-grid dates">
-							{#each profile.certificates as certificate, index (certificate.standard)}
-								{@const key = certificateKey(certificate.standard)}
-								{@const hint = certificateHint(certificate.standard)}
-								<DateField
-									id="certificate-until-{index}"
-									label="{certificate.standard} valid until"
-									hint={hint.text}
-									value={drafts[key] ?? ''}
-									error={errorFor(key)}
-									onchange={(result, text) => {
-										drafts[key] = text;
-										if (!result.ok) {
-											setError(key, `${certificate.standard} valid until`, {
-												kind: 'certificate-date',
-												reason: 'not-a-date'
-											});
-											return;
-										}
-										clearError(key);
-										setValidUntil(certificate.standard, result.value);
-									}}
-									onfocus={() => (focusedKey = key)}
-									onblur={() => (focusedKey = null)}
-								/>
-							{/each}
-						</div>
-					{/if}
-				{:else}
-					<LoadingLines />
-				{/if}
-			</div>
+				</fieldset>
+			{:else}
+				<LoadingLines />
+			{/if}
 		</div>
 	{/snippet}
-</Leaf>
-
-<Leaf id="countries" tab="Countries" hue="ultramarine" labelledby="countries-title" ply={2}>
-	{#snippet children(tab)}
-		<div class="grid">
-			<Facts head="Countries and languages" headingId="countries-title">
-				<p>Where the firm is registered, where it works and the languages the team works in.</p>
-			</Facts>
-			{@render tab()}
-			<div class="main">
-				{#if store}
-					<div class="form-grid">
-						<SelectField
-							id="registration-country"
-							label="Country of registration"
-							placeholder="Choose a country"
-							options={EU_EEA_COUNTRIES}
-							value={profile.registration.country ?? ''}
-							onchange={(code) =>
-								save((current) => ({
-									...current,
-									registration: { ...current.registration, country: code || undefined }
-								}))}
-						/>
-					</div>
-					<fieldset onchange={(changed) => toggleCode('countries', changed.target)}>
-						<legend>Countries you work in</legend>
-						<div class="chips">
-							{#each EU_EEA_COUNTRIES as country (country.code)}
-								<CheckChip
-									name="countries"
-									value={country.code}
-									label={country.name}
-									checked={profile.countries.includes(country.code)}
-								/>
-							{/each}
-						</div>
-					</fieldset>
-					<fieldset onchange={(changed) => toggleCode('languages', changed.target)}>
-						<legend>Languages your team works in</legend>
-						<div class="chips">
-							{#each EU_LANGUAGES as language (language.code)}
-								<CheckChip
-									name="languages"
-									value={language.code}
-									label={language.name}
-									checked={profile.languages.includes(language.code)}
-								/>
-							{/each}
-						</div>
-					</fieldset>
-				{:else}
-					<LoadingLines />
-				{/if}
-			</div>
-		</div>
-	{/snippet}
-</Leaf>
+</ProfileLeaf>
 
 <style>
-	/* The margin column, then four equal columns; the form grid inside drops to two, then one. */
-	.grid {
-		display: grid;
-		grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
-		column-gap: 1.75rem;
-	}
-
-	.main {
-		grid-column: 2 / span 4;
-		min-width: 0;
-	}
-
-	.title {
-		font: 600 var(--step-4) / 1.1 var(--font-cond);
-		letter-spacing: -0.015em;
-		text-wrap: balance;
-	}
-
-	.gloss {
-		margin-top: 0.35rem;
-		max-width: 70ch;
-		color: var(--ink-2);
-	}
-
 	.lede {
 		margin-top: 0.35rem;
 		max-width: 52ch;
@@ -597,21 +565,8 @@
 		color: var(--ink);
 	}
 
-	.form-grid {
-		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 1rem 1.25rem;
-		align-items: start;
-	}
-
 	.row-start {
 		grid-column: 1;
-	}
-
-	.chips {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
 	}
 
 	.add {
@@ -654,30 +609,7 @@
 		font-size: var(--step--1);
 	}
 
-	@media (max-width: 1100px) {
-		.grid {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-		}
-
-		.main {
-			grid-column: 1 / -1;
-		}
-
-		.form-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-
 	@media (max-width: 720px) {
-		.grid,
-		.form-grid {
-			grid-template-columns: minmax(0, 1fr);
-		}
-
-		.title {
-			font-size: var(--step-3);
-		}
-
 		.add > :global(.btn) {
 			margin-bottom: 0;
 		}
