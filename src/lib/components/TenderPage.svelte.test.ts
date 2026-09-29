@@ -7,6 +7,12 @@ import type { NoticeRecord } from '$lib/ingest/record';
 import { buildTenderPage } from '$lib/tenders/tender-page';
 import TenderPage from './TenderPage.svelte';
 
+// DeadlineTime draws its label in the visitor's own zone once mounted, and these expectations are
+// written in Central European Time, so the file pins that zone rather than taking the machine's
+// (CI runs in UTC). Node applies a TZ assignment to the next Intl call; the component reads the
+// zone only after mount.
+process.env.TZ = 'Europe/Amsterdam';
+
 const BEFORE = new Date('2026-09-20T10:00:00Z');
 const AFTER = new Date('2028-01-01T00:00:00Z');
 const CAPTURE = {
