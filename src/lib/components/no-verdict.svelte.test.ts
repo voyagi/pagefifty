@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { cleanup, render } from '@testing-library/svelte';
-import fc from 'fast-check';
+import { fc } from '@fast-check/vitest';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { FilterState } from '$lib/core/filters';
 import { readNotice } from '$lib/ingest/read-notice';

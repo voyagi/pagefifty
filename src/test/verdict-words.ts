@@ -20,7 +20,19 @@ export function checkedText(root: Element): string {
 	return [copy.textContent ?? '', ...names].join('\n');
 }
 
+// The unicode flag refuses an escaped hyphen outside a class, and none of these words sits in one.
+const escaped = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Case-sensitive whole words, where a hyphen joins a word: "Google" and "going" hold no "Go", and
+// "NO-GO" is one verdict, never "GO" as well. Longest first, so "NO-GO" wins over "GO".
+const FINDER = new RegExp(
+	`(?<![\\p{L}\\p{N}-])(?:${[...VERDICT_WORDS]
+		.sort((a, b) => b.length - a.length)
+		.map(escaped)
+		.join('|')})(?![\\p{L}\\p{N}-])`,
+	'gu'
+);
+
 export function findVerdictWords(root: Element): string[] {
-	void checkedText(root);
-	return [];
+	return checkedText(root).match(FINDER) ?? [];
 }
