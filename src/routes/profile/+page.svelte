@@ -7,12 +7,12 @@
 	import { getProfileStore } from '$lib/profile/store.svelte';
 
 	// Storage is read only here, after mount, so the server never renders or receives a profile.
-	// Until then the form's leaves show their loading lines, in either mode.
+	// Until then the form's leaves show their loading lines, in either mode. The shared store reads
+	// storage when it is created and follows other tabs after that, so the page reads it as it is.
 	let shared = $state<ReturnType<typeof getProfileStore> | null>(null);
 
 	onMount(() => {
 		shared = getProfileStore();
-		shared.store.load();
 	});
 
 	const demo = $derived(shared?.store.activeFirm === 'demo');
