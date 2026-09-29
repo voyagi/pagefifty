@@ -51,19 +51,23 @@ function readTender() {
 			strip: text(document.querySelector('.unread-strip')),
 			links,
 			documentsLeaf: Boolean(document.querySelector('section#documents')),
+			documentsText: text(document.querySelector('section#documents')),
 			foot: text(document.querySelector('.leaf-foot')),
 			lotNote: text(document.querySelector('#lot-1'))
 		};
 	});
 }
 
-async function notFound(path, answer) {
+const NO_TENDER = 'No tender with this notice number';
+const NO_PAGE = 'No page at this address';
+
+// Each address names the heading it must get: a number, well formed or not, is named back as a
+// notice; a blank one names nothing, so it reads as an unknown address.
+async function notFound(path, answer, heading) {
 	const shown = await readPage();
-	const worded =
-		shown.h1 === 'No tender with this notice number' || shown.h1 === 'No page at this address';
 	check(
-		`${path} answers 404 with the not-found page and a link to /tenders`,
-		answer.status() === 404 && worded && shown.listLinks > 0,
+		`${path} answers 404 with "${heading}" and a link to /tenders`,
+		answer.status() === 404 && shown.h1 === heading && shown.listLinks > 0,
 		`status ${answer.status()}, h1 "${shown.h1}", ${shown.listLinks} links to /tenders`
 	);
 }
@@ -174,6 +178,13 @@ try {
 		`${documentsOnly.coverage[0].slice(0, 200)}, documents leaf ${documentsOnly.documentsLeaf}`
 	);
 	check(
+		'600367-2026 shows no criteria, so its Documents leaf points at none "shown above"',
+		documentsOnly.documentsText.includes(
+			'The notice itself publishes no selection criteria, and the documents may set some.'
+		) && !documentsOnly.documentsText.includes('shown above'),
+		`"${documentsOnly.documentsText.slice(0, 160)}"`
+	);
+	check(
 		'copy read for PLAW-09: 600367-2026, no verdict word in it',
 		documentsCopy.ownCopy.length > 0 && VERDICT_WORDS.exec(documentsCopy.ownCopy) === null,
 		documentsCopy.ownCopy
@@ -200,10 +211,31 @@ try {
 
 	await notFound(
 		'/tenders/000000-0000',
-		await page.goto('http://127.0.0.1:8788/tenders/000000-0000')
+		await page.goto('http://127.0.0.1:8788/tenders/000000-0000'),
+		NO_TENDER
 	);
-	await notFound('/tenders/%20', await page.goto('http://127.0.0.1:8788/tenders/%20'));
-	await notFound('/tenders/12345', await page.goto('http://127.0.0.1:8788/tenders/12345'));
+	await notFound('/tenders/%20', await page.goto('http://127.0.0.1:8788/tenders/%20'), NO_PAGE);
+	await notFound(
+		'/tenders/12345',
+		await page.goto('http://127.0.0.1:8788/tenders/12345'),
+		NO_TENDER
+	);
+
+	// Well formed, so the real record lookup runs and misses: the one 404 the unit test reaches only
+	// through a mocked reader.
+	await notFound(
+		'/tenders/999991-2026',
+		await page.goto('http://127.0.0.1:8788/tenders/999991-2026'),
+		NO_TENDER
+	);
+	const unknownLede = await page.evaluate(() =>
+		document.querySelector('.lede').textContent.replace(/\s+/g, ' ').trim()
+	);
+	check(
+		'/tenders/999991-2026 names the number back and the snapshot day',
+		unknownLede.startsWith('Notice 999991-2026 is not in the 15 Sep 2026 snapshot.'),
+		`"${unknownLede.slice(0, 90)}"`
+	);
 
 	const trailing = await page.goto('http://127.0.0.1:8788/tenders/');
 	const list = await readPage();

@@ -15,6 +15,42 @@ const AUDITS = [
 	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
+	// The tender page twice: one lot with the face-down Documents leaf, then the capture's largest
+	// notice, whose 17 lots bring the lot index and seventeen leaf tabs.
+	{
+		slug: 'tender-one-lot',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders/609955-2026?theme=light'
+	},
+	{
+		slug: 'tender-one-lot',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders/609955-2026?theme=dark'
+	},
+	{
+		slug: 'tender-17-lots',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders/600457-2026?theme=light'
+	},
+	{
+		slug: 'tender-17-lots',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders/600457-2026?theme=dark'
+	},
+	// A well-formed number the snapshot does not hold takes the error page's own notice branch,
+	// which the unknown path below never renders.
+	{
+		slug: 'unknown-notice',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders/999991-2026?theme=light',
+		expectStatus: 404
+	},
+	{
+		slug: 'unknown-notice',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders/999991-2026?theme=dark',
+		expectStatus: 404
+	},
 	{
 		slug: 'not-found',
 		theme: 'light',
