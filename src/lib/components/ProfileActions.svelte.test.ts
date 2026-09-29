@@ -239,6 +239,30 @@ describe('importing a profile file', () => {
 		expect((await staffField()).value).toBe('19');
 	});
 
+	// A key a plain object inherits (constructor, toString, __proto__) is still a key the file holds,
+	// named as it stands, never a built-in the label table happens to reach.
+	it('names a key the file holds even when it shares a name with a built-in', async () => {
+		render(Page);
+		await staffField();
+		const text = storedFile(1)
+			.replace(
+				'{"schemaVersion"',
+				'{"constructor":1,"toString":2,"__proto__":{"x":3},"schemaVersion"'
+			)
+			.replace('"profile":{', '"profile":{"hasOwnProperty":4,');
+		await userEvent.upload(importInput(), jsonFile('built-in.json', text));
+		const alert = await screen.findByRole('alert');
+		const lines = within(alert)
+			.getAllByRole('listitem')
+			.map((item) => squash(item.textContent));
+		expect(lines).toEqual([
+			'Profile field hasOwnProperty: Pagefifty does not know this field. Found 4.',
+			'File field constructor: Pagefifty does not know this field. Found 1.',
+			'File field toString: Pagefifty does not know this field. Found 2.',
+			'File field __proto__: Pagefifty does not know this field. Found {"x":3}.'
+		]);
+	});
+
 	it('lists at most 20 field lines, then how many more', async () => {
 		render(Page);
 		await staffField();
