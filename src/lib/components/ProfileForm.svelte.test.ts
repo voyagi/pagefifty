@@ -208,7 +208,10 @@ describe('ProfileForm, values and errors', () => {
 		mount();
 		await userEvent.click(screen.getByRole('button', { name: 'NEN 7510' }));
 		setDate(field('NEN 7510 valid until'), '2026-03-12');
-		expect(screen.getByText('Expired on 12 Mar 2026. It stays in your profile.')).toBeTruthy();
+		// UI-SPEC: the expired hint turns to ink 600, the strong hint, so it cannot be missed.
+		const expired = screen.getByText('Expired on 12 Mar 2026. It stays in your profile.');
+		expect(expired.classList.contains('strong')).toBe(true);
+		expect(field('NEN 7510 valid until').getAttribute('aria-describedby')).toBe(expired.id);
 		expect(stored().profile.certificates).toEqual([
 			{ standard: 'NEN 7510', validUntil: '2026-03-12' }
 		]);
@@ -375,6 +378,32 @@ describe('ProfileForm, the save status and the storage line', () => {
 		});
 		await retype('Total staff', '3');
 		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+	});
+
+	// A tick box or a choice has no error line of its own, so a refused change must not stay shown
+	// as if it were kept; what another tab stores afterwards still shows.
+	it('shows a refused tick and a refused country as storage holds them', async () => {
+		mount();
+		// This setup's HTMLSelectElement type clashes with Element over remove(), so the value is read
+		// through its shape rather than a cast to the select type.
+		const select = screen.getByLabelText('Country of registration');
+		const choice = () => (select as unknown as { value: string }).value;
+		await userEvent.selectOptions(select, 'NL');
+		const refuse = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+			throw new DOMException('full', 'QuotaExceededError');
+		});
+		const germany = screen.getByRole('checkbox', { name: 'Germany' }) as HTMLInputElement;
+		await userEvent.click(germany);
+		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+		expect(germany.checked).toBe(false);
+		await userEvent.selectOptions(select, 'BE');
+		expect(choice()).toBe('NL');
+		refuse.mockRestore();
+		otherTabWrites((document) => {
+			document.profile.registration = { country: 'BE' };
+			document.profile.countries = ['DE'];
+		});
+		await vi.waitFor(() => expect([choice(), germany.checked]).toEqual(['BE', true]));
 	});
 
 	it('never blames the browser for a change the profile schema refuses', async () => {

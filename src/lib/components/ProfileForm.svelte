@@ -115,9 +115,10 @@
 	}
 
 	// Every change is one field set on the profile storage holds at this moment, never a snapshot of
-	// this form, so a field another tab saved in the meantime is kept.
-	function save(change: (current: Profile) => Profile, removed?: string) {
-		if (!store) return;
+	// this form, so a field another tab saved in the meantime is kept. The answer says whether the
+	// change is now in storage ('saved' or 'unchanged') or was refused.
+	function save(change: (current: Profile) => Profile, removed?: string): boolean {
+		if (!store) return false;
 		const now = clock();
 		const result = store.updateProfile(change, now);
 		if (result === 'saved') {
@@ -131,6 +132,7 @@
 		} else if (result === 'invalid') {
 			lastEvent = { kind: 'refused' };
 		}
+		return result === 'saved' || result === 'unchanged';
 	}
 
 	function onNumber(
@@ -217,11 +219,13 @@
 			const rest = codes.filter((entry) => entry !== code);
 			return checked ? [...rest, code] : rest;
 		};
-		save((current) =>
+		const kept = save((current) =>
 			list === 'countries'
 				? { ...current, countries: next(current.countries) }
 				: { ...current, languages: next(current.languages) }
 		);
+		// A tick box has no error line: a refused change shows the box as storage holds it.
+		if (!kept) target.checked = profile[list].includes(code);
 	}
 
 	function savedValue(key: string): string | undefined {
@@ -469,6 +473,7 @@
 								id="certificate-until-{index}"
 								label="{certificate.standard} valid until"
 								hint={hint.text}
+								hintStrong={hint.strong}
 								value={drafts[key] ?? ''}
 								error={errorFor(key)}
 								onchange={(result, text) => {
@@ -507,11 +512,14 @@
 						placeholder="Choose a country"
 						options={EU_EEA_COUNTRIES}
 						value={profile.registration.country ?? ''}
-						onchange={(code) =>
-							save((current) => ({
+						onchange={(code, select) => {
+							const kept = save((current) => ({
 								...current,
 								registration: { ...current.registration, country: code || undefined }
-							}))}
+							}));
+							// Like a tick box, a refused choice shows what storage holds.
+							if (!kept) select.value = profile.registration.country ?? '';
+						}}
 					/>
 				</div>
 				<fieldset onchange={(changed) => toggleCode('countries', changed.target)}>

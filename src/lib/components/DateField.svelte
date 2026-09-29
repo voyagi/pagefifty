@@ -24,6 +24,7 @@
 		id,
 		label,
 		hint,
+		hintStrong = false,
 		error,
 		value = $bindable(''),
 		onchange,
@@ -33,6 +34,7 @@
 		id: string;
 		label: string;
 		hint?: string;
+		hintStrong?: boolean;
 		error?: string;
 		value?: string;
 		onchange: (result: DateResult, text: string) => void;
@@ -45,6 +47,7 @@
 	{id}
 	{label}
 	{hint}
+	{hintStrong}
 	{error}
 	bind:value
 	type="date"

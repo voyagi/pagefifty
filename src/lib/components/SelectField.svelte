@@ -3,13 +3,15 @@
 	import Field from './Field.svelte';
 
 	// A native select in the field box: the browser's own picker, keyboard and screen reader handling.
+	// The value flows one way, from what storage holds; a caller whose change was refused puts the
+	// select back through the element it is handed, and a later stored value still reaches it.
 	let {
 		id,
 		label,
 		hint,
 		placeholder,
 		options,
-		value = $bindable(''),
+		value = '',
 		onchange
 	}: {
 		id: string;
@@ -18,7 +20,7 @@
 		placeholder: string;
 		options: readonly CodeName[];
 		value?: string;
-		onchange: (value: string) => void;
+		onchange: (value: string, select: HTMLSelectElement) => void;
 	} = $props();
 </script>
 
@@ -26,8 +28,8 @@
 	{#snippet control(attrs)}
 		<select
 			{id}
-			bind:value
-			onchange={(event) => onchange(event.currentTarget.value)}
+			{value}
+			onchange={(event) => onchange(event.currentTarget.value, event.currentTarget)}
 			aria-describedby={attrs.describedby}
 		>
 			<option value="">{placeholder}</option>
