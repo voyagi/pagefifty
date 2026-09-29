@@ -451,6 +451,36 @@ describe('ProfileForm, another tab', () => {
 		expect(stored().profile.turnover).toEqual([{ year: 2025, generalNet: 1200000, specific: [] }]);
 	});
 
+	// The field the user is in keeps their text through another tab's write; once they leave it, it
+	// shows what storage holds, never the old number.
+	it("shows another tab's value once the user leaves the field it was kept in", async () => {
+		mount();
+		await retype('Total staff', '19');
+		otherTabWrites((document) => {
+			(document.profile.staff as { total: number }).total = 42;
+		});
+		expect(field('Total staff').value).toBe('19');
+		await userEvent.click(document.body);
+		await vi.waitFor(() => expect(field('Total staff').value).toBe('42'));
+	});
+
+	// A number the browser refused to store must not stay on screen once the user moves on, where a
+	// later save elsewhere would call the profile saved while this field shows something else.
+	it('shows the stored number again once the user leaves a field whose save was refused', async () => {
+		mount();
+		await retype('Total staff', '19');
+		const refuse = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+			throw new DOMException('full', 'QuotaExceededError');
+		});
+		await retype('Total staff', '25');
+		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+		refuse.mockRestore();
+		await retype('Completed financial years', '6');
+		expect(stored().profile.staff.total).toBe(19);
+		expect(field('Total staff').value).toBe('19');
+		expect(status()).toBe('Saved in this browser at 14:34.');
+	});
+
 	// A profile naming one certificate twice fails the schema, so it reads as nothing saved rather
 	// than reaching the certificate list, which is drawn by name.
 	it('keeps drawing when another tab stores one certificate twice', async () => {

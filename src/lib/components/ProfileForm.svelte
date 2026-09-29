@@ -102,6 +102,16 @@
 		return () => window.removeEventListener('storage', onStorage);
 	});
 
+	// Leaving a field shows what storage holds for it, unless the field shows an error: a value
+	// another tab saved while the user was in the field, or one this browser refused to store, must
+	// never stay on screen as if it were the profile, where the export and the save status would
+	// both disagree with it.
+	function left(key: string) {
+		focusedKey = null;
+		if (key in errors) return;
+		drafts[key] = storedDrafts(store?.stored?.profile ?? emptyProfile())[key] ?? '';
+	}
+
 	function setError(key: string, label: string, error: FieldError) {
 		errors = { ...errors, [key]: { label, error } };
 	}
@@ -358,7 +368,7 @@
 									withTurnover(current, year, value)
 								)}
 							onfocus={() => (focusedKey = key)}
-							onblur={() => (focusedKey = null)}
+							onblur={() => left(key)}
 						/>
 					{/each}
 					<Field
@@ -386,7 +396,7 @@
 									(current, value) => ({ ...current, completedFinancialYears: value })
 								)}
 							onfocus={() => (focusedKey = 'years')}
-							onblur={() => (focusedKey = null)}
+							onblur={() => left('years')}
 						/>
 					</div>
 				</div>
@@ -422,7 +432,7 @@
 								})
 							)}
 						onfocus={() => (focusedKey = 'staff')}
-						onblur={() => (focusedKey = null)}
+						onblur={() => left('staff')}
 					/>
 				</div>
 			{:else}
@@ -491,7 +501,7 @@
 									setValidUntil(certificate.standard, result.value);
 								}}
 								onfocus={() => (focusedKey = key)}
-								onblur={() => (focusedKey = null)}
+								onblur={() => left(key)}
 							/>
 						{/each}
 					</div>
