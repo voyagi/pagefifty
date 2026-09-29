@@ -168,6 +168,35 @@ describe('importing a profile file', () => {
 		);
 	});
 
+	// Files apply in the order picked. While one is still being read the status says so, and a later
+	// refusal never takes the status back past an import that did replace the profile.
+	it('keeps the status true when two picked files overlap and the second is refused', async () => {
+		render(Page);
+		await saveStaff('19');
+		const slow = (name: string) => {
+			let finish: (text: string) => void = () => undefined;
+			const file = jsonFile(name, '');
+			Object.defineProperty(file, 'text', {
+				value: () => new Promise<string>((resolve) => (finish = resolve))
+			});
+			return { file, finish: (text: string) => finish(text) };
+		};
+		const first = slow('first.json');
+		const second = slow('second.json');
+		await userEvent.upload(importInput(), first.file);
+		await userEvent.upload(importInput(), second.file);
+		await vi.waitFor(() => expect(status()).toBe('Reading second.json.'));
+		first.finish(storedFile(7));
+		await vi.waitFor(() =>
+			expect(JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}').profile.staff.total).toBe(7)
+		);
+		expect(status()).toBe('Reading second.json.');
+		second.finish('not json');
+		expect(await alertText()).toContain('second.json is not a profile file');
+		expect(status()).toBe('Imported first.json. It replaced the profile that was in this browser.');
+		expect((await staffField()).value).toBe('7');
+	});
+
 	it('refuses a file that is not JSON, the empty file included', async () => {
 		render(Page);
 		await staffField();

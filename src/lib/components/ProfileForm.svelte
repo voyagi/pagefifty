@@ -44,7 +44,6 @@
 		| { kind: 'removed'; name: string }
 		| { kind: 'failed' }
 		| { kind: 'refused' }
-		| { kind: 'reading'; file: string }
 		| { kind: 'imported'; file: string };
 
 	type NumberKind = 'money' | 'staff' | 'years';
@@ -260,26 +259,29 @@
 	const isExpired = (standard: string) => certificateHint(standard).strong;
 
 	// An imported file replaces the whole profile, so every field shows it and no error is left over
-	// from what was typed before. A refused file leaves the status as it stood before the read.
+	// from what was typed before. Files settle in the order picked, so the first one listed is the one
+	// settling. While any is still being read the status names the latest pick; a refused file leaves
+	// the status as it stood, since only an import changes the profile.
 	type ImportEvent = Parameters<ComponentProps<typeof ProfileActions>['onimport']>[0];
-	let beforeImport: FormEvent | null = null;
+	let readingFiles = $state<string[]>([]);
 	function onimport(event: ImportEvent) {
 		if (event.kind === 'reading') {
-			if (lastEvent?.kind !== 'reading') beforeImport = lastEvent;
-			lastEvent = event;
-		} else if (event.kind === 'imported') {
+			readingFiles = [...readingFiles, event.file];
+			return;
+		}
+		readingFiles = readingFiles.slice(1);
+		if (event.kind === 'imported') {
 			errors = {};
 			syncDrafts(() => false);
 			lastEvent = event;
-		} else {
-			lastEvent = beforeImport;
 		}
 	}
 
 	const status = $derived.by((): SaveStatus => {
 		const newer = store?.newerVersion;
 		if (newer != null) return { kind: 'newer', version: newer, reads: PROFILE_SCHEMA_VERSION };
-		if (lastEvent?.kind === 'reading') return lastEvent;
+		const latestPick = readingFiles.at(-1);
+		if (latestPick !== undefined) return { kind: 'reading', file: latestPick };
 		const invalid = Object.values(errors).map((entry) => entry.label);
 		if (invalid.length > 0) {
 			const rest = keptInMemory ? 'memory' : store?.stored ? 'saved' : 'nothing';
