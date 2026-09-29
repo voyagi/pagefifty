@@ -78,9 +78,25 @@ function resolveDevBrowser() {
 
 let devBrowserExe = null;
 
+const STATUS_TIMEOUT_MS = 60_000;
+
+// The status command starts the daemon when none runs, and the daemon keeps whatever output it
+// inherited. A synchronous spawn waits for every holder of a piped output to close it, so a piped
+// status call waited as long as the daemon lived (a 25-minute e2e hang). Only the exit code is
+// read, so nothing is piped, and a command that never answers is given up on.
+export function devBrowserStatus(exe, args = ['status'], timeoutMs = STATUS_TIMEOUT_MS) {
+	return spawnSync(exe, args, { stdio: 'ignore', windowsHide: true, timeout: timeoutMs });
+}
+
 export function checkDevBrowser() {
 	const exe = resolveDevBrowser();
-	const status = exe ? spawnSync(exe, ['status'], { encoding: 'utf8', windowsHide: true }) : null;
+	const status = exe ? devBrowserStatus(exe) : null;
+	if (status?.error?.code === 'ETIMEDOUT') {
+		throw new HarnessError(
+			2,
+			`dev-browser status did not answer within ${STATUS_TIMEOUT_MS / 1000} s, so this run audited nothing: run dev-browser status once in its own shell, then run this again`
+		);
+	}
 	if (!status || status.error || status.status !== 0) {
 		const why = !exe
 			? 'no dev-browser on PATH'
