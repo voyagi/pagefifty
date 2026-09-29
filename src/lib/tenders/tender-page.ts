@@ -142,11 +142,16 @@ const DEADLINE_KINDS = { request: 'Requests to participate', tender: 'Tenders' }
 
 // The documents every lot shares. In the 2026-09-15 capture no notice publishes a procedure-level
 // link and no two lots of one notice publish different ones, so the lot's link is the notice's.
+// Shared means the same address AND the same restriction: an address open on one lot and
+// restricted on another could be worded neither way for the whole notice.
 function noticeDocuments(record: NoticeRecord): DocumentsLink | undefined {
 	if (record.documents) return record.documents;
 	const links = record.lots.map((lot) => lot.documents);
 	const [first] = links;
-	return first && links.every((link) => link?.published === first.published) ? first : undefined;
+	const same = (link: DocumentsLink | undefined) =>
+		link?.published === first?.published &&
+		Boolean(link?.restricted) === Boolean(first?.restricted);
+	return first && links.every(same) ? first : undefined;
 }
 
 const sameText = (a: LangText) => (b: LangText) => a.text === b.text;

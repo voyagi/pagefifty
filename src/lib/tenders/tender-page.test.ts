@@ -238,4 +238,22 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 		};
 		expect(buildTenderPage(record, BEFORE_DEADLINES).documents).toBeUndefined();
 	});
+
+	// One address, open on one lot and restricted on the other: the notice cannot word it either
+	// way, so each lot's own coverage line carries its link.
+	it('names no documents for the notice when its lots share an address but not the restriction', () => {
+		const address = 'https://a.example.test/';
+		const record: NoticeRecord = {
+			...base,
+			lots: [
+				{ ...base.lots[0], documents: { published: address, href: address } },
+				{
+					...base.lots[0],
+					id: 'LOT-0002',
+					documents: { published: address, href: address, restricted: true }
+				}
+			]
+		};
+		expect(buildTenderPage(record, BEFORE_DEADLINES).documents).toBeUndefined();
+	});
 });

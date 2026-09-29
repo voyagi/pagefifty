@@ -21,6 +21,7 @@
 
 	const tender = $derived(data.tender);
 	const deadline = $derived(tender.deadline);
+	const criteriaShown = $derived(tender.lots.some((lot) => lot.criteria.length > 0));
 </script>
 
 {#snippet buyers()}
@@ -130,7 +131,7 @@
 	{/each}
 
 	{#if tender.documentsUnread}
-		<FacedownLeaf documents={tender.documents} />
+		<FacedownLeaf documents={tender.documents} {criteriaShown} />
 	{/if}
 
 	<!-- The capture day comes from the capture itself, so a new capture renames it. -->

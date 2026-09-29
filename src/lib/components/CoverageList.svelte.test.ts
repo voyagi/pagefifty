@@ -177,7 +177,7 @@ describe('SourceLinks', () => {
 describe('FacedownLeaf and the tender page around it', () => {
 	it('lies face down with the documents unread and their link', () => {
 		const documents = recordOf('documents-only', 0).lots[0].documents;
-		render(FacedownLeaf, { props: { documents } });
+		render(FacedownLeaf, { props: { documents, criteriaShown: true } });
 		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
 		expect(leaf.id).toBe('documents');
 		expect(squash(leaf.textContent)).toContain(
@@ -191,6 +191,29 @@ describe('FacedownLeaf and the tender page around it', () => {
 		render(TenderPage, { props: { data: { tender, capture: CAPTURE } } });
 		expect(screen.getByRole('region', { name: 'Documents not read yet' })).toBeTruthy();
 		expect(renderedLines()).toContain('Not read: the documents a criterion refers to.');
+	});
+
+	// 600367-2026 publishes no criteria in the notice, so the leaf cannot point at criteria "shown
+	// above": the page shows none.
+	it('never points at criteria shown above on a notice that publishes none', () => {
+		const tender = buildTenderPage(recordOf('documents-only', 0), NOW);
+		expect(tender.lots.every((lot) => lot.criteria.length === 0)).toBe(true);
+		render(TenderPage, { props: { data: { tender, capture: CAPTURE } } });
+		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
+		expect(squash(leaf.textContent)).toContain(
+			'The procurement documents have not been read. The notice itself publishes no selection criteria, and the documents may set some.'
+		);
+		expect(leaf.textContent).not.toContain('shown above');
+	});
+
+	it('keeps the shown-above wording when the notice publishes criteria', () => {
+		const tender = buildTenderPage(recordOf('one-lot'), NOW);
+		render(TenderPage, { props: { data: { tender, capture: CAPTURE } } });
+		expect(
+			squash(screen.getByRole('region', { name: 'Documents not read yet' }).textContent)
+		).toContain(
+			'The criteria shown above come from the notice alone, and the documents can add more.'
+		);
 	});
 
 	it('shows no Documents leaf when every lot is read from the notice alone', () => {

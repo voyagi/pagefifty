@@ -5,7 +5,9 @@
 
 	// Shown when any lot's coverage names a source this version does not read, so the criteria on
 	// the page may not be all there are. It says what was not read and never what the firm may do.
-	let { documents }: { documents?: Documents } = $props();
+	// criteriaShown says whether any lot shows a criterion: on a notice that publishes none, there
+	// are no criteria "shown above" to point at.
+	let { documents, criteriaShown }: { documents?: Documents; criteriaShown: boolean } = $props();
 </script>
 
 <Leaf id="documents" tab="Documents" hue="facedown" labelledby="documents-title" ply={2}>
@@ -26,8 +28,10 @@
 			</h2>
 			{@render tab()}
 			<p class="body">
-				<strong>The procurement documents have not been read.</strong> The criteria shown above come
-				from the notice alone, and the documents can add more.
+				<strong>The procurement documents have not been read.</strong>
+				{criteriaShown
+					? 'The criteria shown above come from the notice alone, and the documents can add more.'
+					: 'The notice itself publishes no selection criteria, and the documents may set some.'}
 				{#if documents !== undefined}<span class="link"><DocumentsLink {documents} /></span>{/if}
 			</p>
 		</div>
