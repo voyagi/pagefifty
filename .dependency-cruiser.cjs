@@ -26,6 +26,14 @@ module.exports = {
 			to: { path: '^src/lib/profile/', reachable: true }
 		},
 		{
+			name: 'no-ui-reaches-verdict',
+			severity: 'error',
+			comment:
+				'Phase 1 draws no verdict (SPEC R3): no component or route may reach the verdict module, directly or through another module. source-rules.test.ts checks the direct import; this rule covers the path through a library module. The verdict page of a later phase lifts it on purpose.',
+			from: { path: '(^src/lib/components/|^src/routes/)', pathNot: '\\.test\\.ts$' },
+			to: { path: '^src/lib/core/verdict\\.ts$', reachable: true }
+		},
+		{
 			name: 'single-parser-entry',
 			severity: 'error',
 			comment:

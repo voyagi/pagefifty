@@ -2,8 +2,9 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-// Phase 1 draws no verdict (SPEC R3), so no component or route may reach the verdict module, and
-// the errata colours belong to the verdict page of a later phase, so none of them may use those.
+// Phase 1 draws no verdict (SPEC R3), so no component or route may import the verdict module (the
+// no-ui-reaches-verdict rule in .dependency-cruiser.cjs covers reaching it through another module),
+// and the errata colours belong to the verdict page of a later phase, so none of them may use those.
 const ROOTS = [join('src', 'lib', 'components'), join('src', 'routes')];
 
 function sourceFiles(dir: string): string[] {
