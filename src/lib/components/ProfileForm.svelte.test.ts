@@ -451,6 +451,21 @@ describe('ProfileForm, another tab', () => {
 		expect(stored().profile.turnover).toEqual([{ year: 2025, generalNet: 1200000, specific: [] }]);
 	});
 
+	// A profile naming one certificate twice fails the schema, so it reads as nothing saved rather
+	// than reaching the certificate list, which is drawn by name.
+	it('keeps drawing when another tab stores one certificate twice', async () => {
+		mount();
+		await retype('Total staff', '19');
+		await userEvent.click(document.body);
+		otherTabWrites((document) => {
+			document.profile.certificates = [{ standard: 'ISO 27001' }, { standard: 'ISO 27001' }];
+		});
+		await vi.waitFor(() => expect(field('Total staff').value).toBe(''));
+		expect(screen.getByRole('button', { name: 'ISO 27001' }).getAttribute('aria-pressed')).toBe(
+			'false'
+		);
+	});
+
 	it('empties the form when another tab removes the profile', async () => {
 		mount();
 		await retype('Total staff', '19');

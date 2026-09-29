@@ -30,6 +30,10 @@
 			return { first: `${DEMO_FIRM_SHORT} (demo firm)`, second: 'Invented figures', demo: true };
 		}
 		if (!shared || shared.keptInMemory) return null;
+		// A profile this page cannot read is still a profile, as the profile page itself says.
+		if (shared.store.newerVersion !== null) {
+			return { first: 'Your firm', second: 'Saved by a newer version', demo: false };
+		}
 		const stored = shared.store.stored;
 		if (!stored) return { first: 'Your firm', second: 'No profile yet', demo: false };
 		const exported = stored.lastExportedAt;

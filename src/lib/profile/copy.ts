@@ -182,9 +182,24 @@ const PROBLEMS: Record<string, string> = {
 	invalid_union: 'the value matches none of the accepted forms',
 	invalid_key: 'a key in it is not valid',
 	invalid_element: 'an entry in it is not valid',
-	invalid_value: 'the value is not one of the accepted values',
-	custom: 'the year is listed twice'
+	invalid_value: 'the value is not one of the accepted values'
 };
+
+// The schema raises a custom issue only for a repeated row, on the key the row repeats.
+const REPEATED: Record<string, string> = {
+	year: 'the year is listed twice',
+	standard: 'the certificate is listed twice'
+};
+
+function problemText(issue: FieldIssue): string {
+	if (issue.problem === 'custom') {
+		const last = issue.path.at(-1);
+		if (typeof last === 'string' && Object.hasOwn(REPEATED, last)) return REPEATED[last];
+	} else if (Object.hasOwn(PROBLEMS, issue.problem)) {
+		return PROBLEMS[issue.problem];
+	}
+	return 'the value is not valid';
+}
 
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 const clip = (text: string) =>
@@ -224,7 +239,7 @@ function foundText(found: unknown): string {
 type FieldIssue = NonNullable<ImportRefusal['fields']>[number];
 
 function fieldLine(issue: FieldIssue): string {
-	const problem = PROBLEMS[issue.problem] ?? 'the value is not valid';
+	const problem = problemText(issue);
 	const found = foundText(issue.found);
 	// A clipped value already ends on its three dots; a full stop after them would read as four.
 	return `${fieldLabel(issue.path)}: ${problem}. Found ${found}${found.endsWith('...') ? '' : '.'}`;

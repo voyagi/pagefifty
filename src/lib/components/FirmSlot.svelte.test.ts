@@ -95,6 +95,17 @@ describe('the header firm slot', () => {
 		});
 	});
 
+	// The profile page says a newer Pagefifty saved the stored profile; the header must not say there
+	// is none.
+	it('never says no profile yet when a newer version saved one', async () => {
+		localStorage.setItem(PROFILE_KEY, JSON.stringify({ schemaVersion: 2, savedAt: '2027-01-01' }));
+		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		expect(await filledSlot(container)).toEqual({
+			first: 'Your firm',
+			second: 'Saved by a newer version'
+		});
+	});
+
 	it('labels the demo firm while it is active', async () => {
 		localStorage.setItem(PROFILE_KEY, saved(null));
 		localStorage.setItem(ACTIVE_FIRM_KEY, 'demo');

@@ -233,9 +233,10 @@ const profileArbitrary: fc.Arbitrary<Profile> = fc
 				fc.record({ kind: text, coverEuros: whole, validUntil: day }, { requiredKeys: ['kind'] }),
 				{ maxLength: 2 }
 			),
-			certificates: fc.array(
+			// One row per certificate, as the schema reads the name: trimmed.
+			certificates: fc.uniqueArray(
 				fc.record({ standard: text, scope: text, validUntil: day }, { requiredKeys: ['standard'] }),
-				{ maxLength: 4 }
+				{ maxLength: 4, selector: (certificate) => certificate.standard.trim() }
 			),
 			references: fc.array(
 				fc.record(
@@ -321,6 +322,17 @@ describe('findVerdictWords', () => {
 		expect(findVerdictWords(mount('<a aria-label="Ask first" href="/x"></a>'))).toEqual([
 			'Ask first'
 		]);
+		expect(
+			findVerdictWords(mount('<img alt="No-go" src="x.png"><span title="GO">?</span>'))
+		).toEqual(['No-go', 'GO']);
+	});
+
+	// Elements sit side by side with no space between them in the markup; a word in one is still a
+	// word, never the tail of the text before it ("Lot 1GO").
+	it('finds a verdict word set right against the text of the element before or after it', () => {
+		expect(
+			findVerdictWords(mount('<p><strong>Lot 1</strong><span>GO</span><em>met</em></p>'))
+		).toEqual(['GO']);
 	});
 });
 

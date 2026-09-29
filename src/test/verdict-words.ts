@@ -8,16 +8,26 @@ export const VERDICT_WORDS: readonly string[] = [
 	...new Set([...LOT_VERDICTS, ...Object.values(VERDICT_LABELS), 'Partner needed', 'Out alone'])
 ];
 
+// Attributes whose text a reader meets as page text: a screen reader announces the first two, and
+// a pointer shows the third.
+const NAMED_BY = ['aria-label', 'alt', 'title'];
+
 // The page's own words: everything except text marked as the notice's (titles, buyers,
-// descriptions), which may say anything, "Go-Live" included. Accessible names count too, since a
-// screen reader announces them as page text.
+// descriptions), which may say anything, "Go-Live" included. Each text node is its own line, since
+// markup can set two elements side by side with no space between them and a word in one must never
+// read as the tail of the text before it ("Lot 1GO").
 export function checkedText(root: Element): string {
 	const copy = root.cloneNode(true) as Element;
 	for (const node of copy.querySelectorAll('[data-notice-text]')) node.remove();
-	const names = [...copy.querySelectorAll('[aria-label]')].map(
-		(node) => node.getAttribute('aria-label') ?? ''
+	const texts: string[] = [];
+	const walker = copy.ownerDocument.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
+	for (let node = walker.nextNode(); node !== null; node = walker.nextNode()) {
+		texts.push(node.nodeValue ?? '');
+	}
+	const names = NAMED_BY.flatMap((attribute) =>
+		[...copy.querySelectorAll(`[${attribute}]`)].map((node) => node.getAttribute(attribute) ?? '')
 	);
-	return [copy.textContent ?? '', ...names].join('\n');
+	return [...texts, ...names].join('\n');
 }
 
 // The unicode flag refuses an escaped hyphen outside a class, and none of these words sits in one.

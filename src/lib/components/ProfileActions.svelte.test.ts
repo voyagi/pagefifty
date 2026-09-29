@@ -303,6 +303,26 @@ describe('importing a profile file', () => {
 		]);
 	});
 
+	// The certificate list is drawn by name, so a file naming one certificate twice would stop the
+	// page drawing if it were stored; it is refused whole and the page keeps working.
+	it('refuses a file holding one certificate twice and keeps drawing the form', async () => {
+		render(Page);
+		await saveStaff('19');
+		const before = localStorage.getItem(PROFILE_KEY);
+		const text = storedFile(5, {
+			certificates: [{ standard: 'ISO 27001' }, { standard: 'ISO 27001', validUntil: '2027-05-31' }]
+		});
+		await userEvent.upload(importInput(), jsonFile('twice.json', text));
+		expect(await alertText()).toBe(
+			`twice.json was not imported because 1 field is not valid: Certificates row 2, standard: the certificate is listed twice. Found "ISO 27001". ${NOTHING_CHANGED}`
+		);
+		expect(localStorage.getItem(PROFILE_KEY)).toBe(before);
+		expect((await staffField()).value).toBe('19');
+		expect(screen.getByRole('button', { name: 'ISO 27001' }).getAttribute('aria-pressed')).toBe(
+			'false'
+		);
+	});
+
 	it('lists at most 20 field lines, then how many more', async () => {
 		render(Page);
 		await staffField();
