@@ -115,7 +115,10 @@
 									{#if entry.deadline.kind === 'in-notice'}
 										<span class="sub">In notice</span>
 									{:else}
-										<span class="sub"><DeadlineTime instant={entry.deadline.instant} /></span>
+										<span class="sub"
+											>{#if entry.closed}<span class="lot-closed">Closed</span>{/if}
+											<DeadlineTime instant={entry.deadline.instant} /></span
+										>
 									{/if}
 								</li>
 							{/each}
@@ -198,6 +201,10 @@
 
 	.lot-index .sub {
 		font-size: var(--step--1);
+	}
+
+	.lot-closed {
+		font-weight: 600;
 	}
 
 	/* The foot is set on the yellow board itself, so it takes the board's own ink. */

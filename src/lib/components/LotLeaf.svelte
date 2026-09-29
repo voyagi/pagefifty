@@ -36,6 +36,7 @@
 			{#if lot.deadline.kind === 'in-notice'}
 				In notice
 			{:else}
+				{#if lot.closed}<span class="closed">Closed</span>{/if}
 				<DeadlineTime instant={lot.deadline.instant} />
 				<span class="sub">{lot.deadlineKind}</span>
 			{/if}
@@ -72,6 +73,11 @@
 		<div>
 			<dt>Reserved participation</dt>
 			<dd><span class="mono">{lot.reserved}</span></dd>
+		</div>
+	{:else if lot.reservedUnstated}
+		<div>
+			<dt>Reserved participation</dt>
+			<dd>Not stated in the notice</dd>
 		</div>
 	{/if}
 {/snippet}
@@ -130,6 +136,12 @@
 	.lot-id {
 		margin-top: 0.25rem;
 		overflow-wrap: anywhere;
+	}
+
+	/* Written as the notice's own closed deadline is: the word, then the date under it. */
+	.closed {
+		display: block;
+		font-weight: 600;
 	}
 
 	.sub {

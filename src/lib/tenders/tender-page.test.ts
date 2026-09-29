@@ -123,6 +123,28 @@ describe('buildTenderPage on several lots', () => {
 		expect(page.lots.map((lot) => lot.id)).toEqual(record.lots.map((lot) => lot.id));
 	});
 
+	// lots-differ: lot 1 closes 5 Oct 2026 at 10:00 CEST, lot 2 a day later.
+	it('marks a lot closed once its own deadline has passed while another lot keeps the notice open', () => {
+		const record = recordOf('lots-differ');
+		const between = buildTenderPage(record, new Date('2026-10-05T12:00:00Z'));
+		expect(between.deadline.open).toBe(true);
+		expect(between.lots.map((lot) => lot.closed)).toEqual([true, false]);
+		expect(between.lotIndex.map((entry) => entry.closed)).toEqual([true, false]);
+		expect(buildTenderPage(record, BEFORE_DEADLINES).lots.map((lot) => lot.closed)).toEqual([
+			false,
+			false
+		]);
+		expect(buildTenderPage(record, AFTER_DEADLINES).lots.map((lot) => lot.closed)).toEqual([
+			true,
+			true
+		]);
+	});
+
+	it('never marks a lot without a deadline period closed', () => {
+		const page = buildTenderPage(recordOf('neither-deadline'), AFTER_DEADLINES);
+		expect(page.lots.map((lot) => lot.closed)).toEqual([false]);
+	});
+
 	it('keeps a code published in both lots of 600779-2026 attached to each lot', () => {
 		const record = recordOf('same-code-in-two-lots');
 		const page = buildTenderPage(record, BEFORE_DEADLINES);
@@ -201,6 +223,16 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 		expect(bare.lots[0].groupLegalForm).toBeUndefined();
 	});
 
+	// 635218-2026 in the capture declares no reservation code on its lot: unknown, never "none".
+	it('tells a lot that states no reservation code from one declared not reserved', () => {
+		const lot = { ...base.lots[0] };
+		delete lot.reserved;
+		const unstated = buildTenderPage({ ...base, lots: [lot] }, BEFORE_DEADLINES).lots[0];
+		const none = buildTenderPage(withLot({ reserved: 'none' }), BEFORE_DEADLINES).lots[0];
+		expect([unstated.reserved, unstated.reservedUnstated]).toEqual([undefined, true]);
+		expect([none.reserved, none.reservedUnstated]).toEqual([undefined, false]);
+	});
+
 	it('shows a note published on both the procedure and the lot once, as the procedure note', () => {
 		const note = { text: 'Hinweis', lang: 'de' };
 		const page = buildTenderPage(
@@ -220,6 +252,13 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 		const [description] = buildTenderPage(withLot({ criteria }), BEFORE_DEADLINES).lots[0]
 			.criteria[0].descriptions;
 		expect(description.language).toBe('XXX');
+	});
+
+	it('says a description that carries no language code does not state its language', () => {
+		const criteria = [{ ...base.lots[0].criteria[0], descriptions: [{ text: 'Tekst' }] }];
+		const [description] = buildTenderPage(withLot({ criteria }), BEFORE_DEADLINES).lots[0]
+			.criteria[0].descriptions;
+		expect(description.language).toBe('Language not stated');
 	});
 
 	it('keeps a restricted documents link marked, so it is never shown as the open documents', () => {

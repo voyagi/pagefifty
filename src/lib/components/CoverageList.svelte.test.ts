@@ -98,6 +98,19 @@ describe('CoverageList', () => {
 		expect(screen.getByText('javascript:alert(1)').tagName).not.toBe('A');
 	});
 
+	it('names an open address that is not http or https as published, with no link', () => {
+		const documents: DocumentsLink = { published: 'ftp://docs.example.test/1' };
+		const lines = coverageLines(
+			{ criteriaCount: 0, sources: ['epo-procurement-document'], pointsToDocuments: false },
+			documents
+		);
+		const { container } = render(CoverageList, { props: { lines } });
+		expect(screen.queryByRole('link')).toBeNull();
+		expect(squash(container.querySelector('.documents')?.textContent)).toBe(
+			'Procurement documents, published as ftp://docs.example.test/1'
+		);
+	});
+
 	it('words a restricted documents link as access on request, never as the open documents', () => {
 		const documents: DocumentsLink = {
 			published: 'https://app.tenpu.eu/public/tender/dps/1167',

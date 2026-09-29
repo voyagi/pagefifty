@@ -11,6 +11,7 @@ import type {
 import { summarizeLot } from '../core/coverage-facts';
 import {
 	displayedDeadline,
+	isOpen,
 	noticeDeadline,
 	timeLeft,
 	type DisplayedDeadline,
@@ -43,12 +44,18 @@ export interface LotView {
 	id: string;
 	title?: LangText;
 	deadline: DisplayedDeadline;
+	// The lot's own deadline has passed. A notice stays open while any lot is open (D-08), so a
+	// closed lot can sit on an open notice, and its date alone would read as still open.
+	closed: boolean;
 	deadlineKind?: 'Requests to participate' | 'Tenders';
 	value: string | null;
 	criteriaSource?: string;
 	legalBasis: { code: string; name?: string };
 	legislation: LegislationReference[];
 	reserved?: string;
+	// The lot declares no reservation code at all (BT-71 absent): unknown, which is never "none", so
+	// the page says it is not stated rather than showing the lot as not reserved.
+	reservedUnstated: boolean;
 	procedureNotes: LangText[];
 	notes: LangText[];
 	groupLegalForm?: LangText;
@@ -61,6 +68,7 @@ interface LotIndexEntry {
 	anchor: string;
 	title?: LangText;
 	deadline: DisplayedDeadline;
+	closed: boolean;
 }
 
 export interface TenderPageModel {
@@ -130,11 +138,14 @@ function criteriaSourceText(sources: readonly string[]): string | undefined {
 const LANGUAGE_NAMES = new Intl.DisplayNames('en', { type: 'language' });
 
 // The language a description is written in, named in English. A code TED writes that no BCP 47 tag
-// was found for has no lang, so its published code is the only honest name.
+// was found for has no lang, so its published code is the only honest name; a text with no code at
+// all says so rather than leaving its label empty.
 function withLanguage(text: LangText): QuoteText {
 	return {
 		...text,
-		language: text.lang ? (LANGUAGE_NAMES.of(text.lang) ?? text.lang) : (text.rawLang ?? '')
+		language: text.lang
+			? (LANGUAGE_NAMES.of(text.lang) ?? text.lang)
+			: (text.rawLang ?? 'Language not stated')
 	};
 }
 
@@ -156,7 +167,7 @@ function noticeDocuments(record: NoticeRecord): DocumentsLink | undefined {
 
 const sameText = (a: LangText) => (b: LangText) => a.text === b.text;
 
-function toLotView(record: NoticeRecord, lot: LotRecord, index: number): LotView {
+function toLotView(record: NoticeRecord, lot: LotRecord, index: number, now: Date): LotView {
 	const deadline = displayedDeadline(lot);
 	const criteriaSource = criteriaSourceText(lot.criteriaSources);
 	const legalBasis = legalBasisName(record.legalBasis);
@@ -168,12 +179,14 @@ function toLotView(record: NoticeRecord, lot: LotRecord, index: number): LotView
 		id: lot.id,
 		...(lot.title && { title: lot.title }),
 		deadline,
+		closed: !isOpen(deadline, now),
 		...(deadline.kind !== 'in-notice' && { deadlineKind: DEADLINE_KINDS[deadline.kind] }),
 		value: formatValue(lot.estimatedValue),
 		...(criteriaSource && { criteriaSource }),
 		legalBasis: { code: record.legalBasis, ...(legalBasis && { name: legalBasis }) },
 		legislation: record.nationalLegislation,
 		...(reserved && { reserved }),
+		reservedUnstated: lot.reserved === undefined,
 		procedureNotes: record.procedureNotes,
 		// A one-lot notice can publish the same note on the procedure and the lot; it shows once.
 		notes: lot.notes.filter((note) => !record.procedureNotes.some(sameText(note))),
@@ -197,7 +210,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 			: undefined;
 	const kind = workKind(record.cpv);
 	const documents = noticeDocuments(record);
-	const lots = record.lots.map((lot, index) => toLotView(record, lot, index));
+	const lots = record.lots.map((lot, index) => toLotView(record, lot, index, now));
 	return {
 		noticeNumber: record.noticeNumber,
 		title: record.title,
@@ -211,11 +224,12 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 		...(documents && { documents }),
 		lotIndex:
 			lots.length > 1
-				? lots.map(({ number, anchor, title, deadline: shown }) => ({
+				? lots.map(({ number, anchor, title, deadline: shown, closed }) => ({
 						number,
 						anchor,
 						...(title && { title }),
-						deadline: shown
+						deadline: shown,
+						closed
 					}))
 				: [],
 		lots,

@@ -112,6 +112,22 @@ describe('TenderPage', () => {
 		expect(within(index).getAllByRole('listitem')).toHaveLength(2);
 	});
 
+	// lots-differ: lot 1 closes 5 Oct 2026 at 10:00 CEST, lot 2 a day later.
+	it('marks the lot whose own deadline has passed as closed, in its leaf and in the lot index', () => {
+		renderPage(recordOf('lots-differ'), new Date('2026-10-05T12:00:00Z'));
+		const first = factsOf(screen.getByRole('region', { name: 'Lot 1' })).Deadline;
+		const second = factsOf(screen.getByRole('region', { name: 'Lot 2' })).Deadline;
+		expect([first, second]).toEqual([
+			'Closed 5 Oct 2026, 10:00 CEST Tenders',
+			'6 Oct 2026, 10:00 CEST Tenders'
+		]);
+		const index = screen.getByRole('navigation', { name: 'Lots in this notice (2)' });
+		const entries = within(index)
+			.getAllByRole('listitem')
+			.map((item) => squash(item.querySelector('.sub')?.textContent));
+		expect(entries).toEqual(['Closed 5 Oct 2026, 10:00 CEST', '6 Oct 2026, 10:00 CEST']);
+	});
+
 	it('shows a legal basis it has no name for as published, and a value under the floor as not published', () => {
 		renderPage(recordOf('other-legal-basis', 0));
 		const lot = factsOf(screen.getByRole('region', { name: 'Lot 1' }));
@@ -135,6 +151,15 @@ describe('TenderPage', () => {
 		expect(
 			factsOf(screen.getAllByRole('region', { name: 'Lot 1' })[1])['Reserved participation']
 		).toBeUndefined();
+	});
+
+	it('says a lot that states no reservation code does not state one, never that it is not reserved', () => {
+		const record = recordOf('one-lot');
+		const lot = { ...record.lots[0] };
+		delete lot.reserved;
+		renderPage({ ...record, lots: [lot] });
+		const facts = factsOf(screen.getByRole('region', { name: 'Lot 1' }));
+		expect(facts['Reserved participation']).toBe('Not stated in the notice');
 	});
 
 	it("shows the lot's own note under its label, with its lang", () => {

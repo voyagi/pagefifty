@@ -6,8 +6,9 @@
 </script>
 
 <!-- A restricted link (BT-615) opens an access request, not the documents, so it never takes the
-     open documents' wording. An address that is not http or https is shown as text only. The
-     restricted prefix is one string because Svelte drops the space at the end of an {#if} block. -->
+     open documents' wording. An address that is not http or https is shown as text only, still
+     named as the documents it stands for. The prefix is one string because Svelte drops the space
+     at the end of an {#if} block. -->
 {#if documents.href !== undefined}
 	<a href={documents.href} rel="external noreferrer"
 		>{documents.restricted
@@ -16,9 +17,9 @@
 	>
 {:else}
 	<span class="published"
-		>{documents.restricted ? 'Restricted procurement documents, published as ' : ''}<span
-			class="mono">{documents.published}</span
-		></span
+		>{documents.restricted
+			? 'Restricted procurement documents, published as '
+			: 'Procurement documents, published as '}<span class="mono">{documents.published}</span></span
 	>
 {/if}
 
