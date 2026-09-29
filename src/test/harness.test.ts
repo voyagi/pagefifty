@@ -5,7 +5,49 @@ import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
-import { npmCliPath, wranglerDevArgs } from '../../scripts/harness.mjs';
+import { devBrowserStatus, npmCliPath, wranglerDevArgs } from '../../scripts/harness.mjs';
+
+// Stand-ins for dev-browser's status command. The first starts a daemon and exits, as the real one
+// does when none runs: the daemon keeps the output it inherited, and a synchronous spawn that pipes
+// the output waits for every holder to close it, which hung npm run test:e2e for 25 minutes.
+const STARTS_A_DAEMON = `
+import { spawn } from 'node:child_process';
+spawn(process.execPath, ['-e', 'setTimeout(() => {}, 8000)'], { detached: true, stdio: 'inherit' }).unref();
+`;
+const NEVER_ANSWERS = 'setTimeout(() => {}, 8000);';
+
+function standIn(source: string): { script: string; folder: string } {
+	const folder = mkdtempSync(join(tmpdir(), 'pagefifty-status-'));
+	const script = join(folder, 'status.mjs');
+	writeFileSync(script, source);
+	return { script, folder };
+}
+
+describe('the dev-browser status call', () => {
+	it('returns once the command exits, even while a daemon it started keeps running', () => {
+		const { script, folder } = standIn(STARTS_A_DAEMON);
+		try {
+			const started = Date.now();
+			const run = devBrowserStatus(process.execPath, [script], 20_000);
+			expect(Date.now() - started).toBeLessThan(4_000);
+			expect([run.status, run.error]).toEqual([0, undefined]);
+		} finally {
+			rmSync(folder, { recursive: true, force: true });
+		}
+	});
+
+	it('stops waiting for a command that never answers once its time is up', () => {
+		const { script, folder } = standIn(NEVER_ANSWERS);
+		try {
+			const started = Date.now();
+			const run = devBrowserStatus(process.execPath, [script], 1_000);
+			expect(Date.now() - started).toBeLessThan(4_000);
+			expect((run.error as NodeJS.ErrnoException | undefined)?.code).toBe('ETIMEDOUT');
+		} finally {
+			rmSync(folder, { recursive: true, force: true });
+		}
+	});
+});
 
 // The run lock lives under the home folder, so its rules are tried in a child whose home is a
 // throwaway folder; the child refuses to touch anything if the harness resolved another home.

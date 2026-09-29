@@ -4,6 +4,7 @@
 // relative imports with their .ts extension.
 import { pointsToDocuments } from '../core/document-pointer.ts';
 import { toBcp47 } from './languages.ts';
+import { linkTarget } from './link-target.ts';
 
 export interface LangText {
 	text: string;
@@ -489,18 +490,11 @@ export function toNoticeRecord(tree: unknown, noticeNumber: string): RecordResul
 	}
 }
 
-const LINK_SCHEMES: ReadonlySet<string> = new Set(['http:', 'https:']);
-
 // Only an absolute http or https URL becomes a link target; javascript:, data:, a relative or an
 // unparseable URI keeps its published text and no href.
 export function safeLink(published: string): SafeLink {
-	let url: URL;
-	try {
-		url = new URL(published);
-	} catch {
-		return { published };
-	}
-	return LINK_SCHEMES.has(url.protocol) ? { published, href: url.href } : { published };
+	const href = linkTarget(published);
+	return href === undefined ? { published } : { published, href };
 }
 
 // TED's own id for the notice, zero-padded as published ("00609955-2026"), when the notice has one.

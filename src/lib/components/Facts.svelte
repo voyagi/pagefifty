@@ -2,36 +2,47 @@
 	import type { Snippet } from 'svelte';
 
 	// With headingId the margin head is the leaf's own heading (an h2 its section is labelled by);
-	// without it the head is a label for the column, not part of the outline.
+	// without it the head is a label for the column, not part of the outline. A head that needs
+	// markup (a lang per buyer) comes as a snippet, and rows that need markup (Mono figures, a time)
+	// render inside the same list as the plain facts.
 	let {
 		head,
 		headingId,
+		label,
 		facts = [],
+		rows,
 		children
 	}: {
-		head: string;
+		head: string | Snippet;
 		headingId?: string;
+		label?: string;
 		facts?: readonly { term: string; detail: string }[];
+		rows?: Snippet;
 		children?: Snippet;
 	} = $props();
 </script>
 
-<div class="margin-col">
+{#snippet headText()}
+	{#if typeof head === 'string'}{head}{:else}{@render head()}{/if}
+{/snippet}
+
+<svelte:element this={label === undefined ? 'div' : 'aside'} class="margin-col" aria-label={label}>
 	{#if headingId !== undefined}
-		<h2 class="margin-head" id={headingId}>{head}</h2>
+		<h2 class="margin-head" id={headingId}>{@render headText()}</h2>
 	{:else}
-		<p class="margin-head">{head}</p>
+		<p class="margin-head">{@render headText()}</p>
 	{/if}
 	{@render children?.()}
-	{#if facts.length > 0}
+	{#if facts.length > 0 || rows !== undefined}
 		<dl class="facts">
 			{#each facts as fact (fact.term)}
 				<dt>{fact.term}</dt>
 				<dd>{fact.detail}</dd>
 			{/each}
+			{@render rows?.()}
 		</dl>
 	{/if}
-</div>
+</svelte:element>
 
 <style>
 	.margin-col {
@@ -55,12 +66,13 @@
 		gap: 0.625rem;
 	}
 
-	dt {
+	/* Rows passed as a snippet belong to the caller's scope, so these reach them as globals. */
+	.facts :global(dt) {
 		font-weight: 500;
 		color: var(--ink-3);
 	}
 
-	dd {
+	.facts :global(dd) {
 		margin: 0;
 		color: var(--ink);
 	}

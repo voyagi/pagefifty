@@ -104,7 +104,9 @@ describe('error page', () => {
 
 	it.each([
 		['kind without a notice', { message: 'Not Found', kind: 'unknown-notice' } as App.Error],
-		['an empty notice', { message: 'Not Found', kind: 'unknown-notice', notice: '' } as App.Error]
+		['an empty notice', { message: 'Not Found', kind: 'unknown-notice', notice: '' } as App.Error],
+		// /tenders/%20 reaches the route as a single space, which names nothing either.
+		['a blank notice', { message: 'Not Found', kind: 'unknown-notice', notice: ' \t' } as App.Error]
 	])('reads an unknown-notice error with %s as a plain unknown path', (_, error) => {
 		at(404, '/tenders/x', error);
 		const { container } = render(ErrorPage);

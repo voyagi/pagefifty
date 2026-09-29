@@ -13,30 +13,47 @@
 		count,
 		open = false,
 		tabMono = false,
+		tabLabel,
+		element = 'section',
 		children
 	}: {
 		id: string;
 		tab: string;
-		hue: Board;
+		// A face-down leaf is a document not read yet: it has no division hue, only the leaf back.
+		hue: Board | 'facedown';
 		labelledby: string;
 		ply?: 1 | 2;
 		count?: number;
 		open?: boolean;
 		tabMono?: boolean;
+		tabLabel?: string;
+		element?: 'section' | 'article';
 		children: Snippet<[Snippet]>;
 	} = $props();
 </script>
 
 {#snippet tabLink()}
-	<a class="tab hue-{hue}" href="#{id}" aria-current={open ? 'true' : undefined}>
+	<a
+		class="tab hue-{hue}"
+		href="#{id}"
+		aria-current={open ? 'true' : undefined}
+		aria-label={tabLabel}
+	>
 		<span class:mono-label={tabMono}>{tab}</span>
 		{#if count !== undefined}<span class="count">{count}</span>{/if}
 	</a>
 {/snippet}
 
-<section class="leaf" class:ply-2={ply === 2} {id} aria-labelledby={labelledby}>
+<svelte:element
+	this={element}
+	class="leaf"
+	class:ply-2={ply === 2}
+	class:facedown={hue === 'facedown'}
+	{id}
+	aria-labelledby={labelledby}
+>
 	{@render children(tabLink)}
-</section>
+</svelte:element>
 
 <style>
 	.leaf {
@@ -47,6 +64,15 @@
 		border-radius: 3px;
 		padding: 1.75rem 2rem;
 		box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--board) 14%, transparent);
+	}
+
+	/* Dashed edges mean "not read or not settled"; the board rim stays off a leaf lying face down. */
+	.leaf.facedown {
+		background: var(--leaf-back);
+		color: var(--leaf-back-ink);
+		border: 1px dashed var(--leaf-back-ink);
+		padding: 1.25rem 2rem;
+		box-shadow: none;
 	}
 
 	/* Svelte cannot see a sibling leaf rendered by another Leaf instance, so the earlier one is global. */
@@ -127,12 +153,22 @@
 		background: var(--violet);
 		color: var(--on-violet);
 	}
+	.hue-facedown {
+		background: var(--leaf-back);
+		color: var(--leaf-back-ink);
+		outline: 1px dashed var(--leaf-back-ink);
+		outline-offset: -4px;
+	}
 
 	@media (max-width: 720px) {
 		.leaf,
 		.ply-2 {
 			margin-inline: 0;
 			padding: 1.25rem 1rem;
+		}
+
+		.leaf.facedown {
+			padding: 1rem;
 		}
 
 		:global(.leaf) + .leaf {
