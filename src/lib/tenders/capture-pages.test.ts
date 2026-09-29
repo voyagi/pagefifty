@@ -54,6 +54,10 @@ describe(`the tender page and the list over every notice of the ${CAPTURE_ID} ca
 			if (JSON.stringify(page.deadline) !== JSON.stringify(row.deadline)) say(notice, 'deadline');
 			if (page.value !== row.value) say(notice, `value ${page.value} against ${row.value}`);
 			if (page.countries.join() !== row.countries.join()) say(notice, 'countries');
+			// The list names the page's first buyer and counts the rest (a joint procurement).
+			if (row.buyer?.text !== page.buyers[0]?.text || row.otherBuyers !== page.buyers.length - 1) {
+				say(notice, `buyers: ${row.otherBuyers} others listed, ${page.buyers.length} on the page`);
+			}
 			if (page.documentsUnread !== (row.reading.tag === 'criteria-in-documents')) {
 				say(notice, 'documents unread against the reading tag');
 			}

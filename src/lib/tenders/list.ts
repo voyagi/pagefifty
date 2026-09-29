@@ -63,6 +63,9 @@ export interface ListRow {
 	noticeNumber: string;
 	title: LangText;
 	buyer?: LangText;
+	// A joint procurement names several buyers; the row shows the first and counts the rest, so it
+	// never reads as that one buyer's tender alone.
+	otherBuyers: number;
 	countries: string[];
 	value: string | null;
 	deadline: NoticeDeadline;
@@ -134,6 +137,7 @@ function toListRow(row: IndexRow, now: Date): ListRow {
 		noticeNumber: row.noticeNumber,
 		title: row.title,
 		...(buyer && { buyer }),
+		otherBuyers: Math.max(0, row.buyers.length - 1),
 		countries: row.country.map(countryName),
 		value: formatValue(row.estimatedValue),
 		deadline: noticeDeadline(row.lots, now),

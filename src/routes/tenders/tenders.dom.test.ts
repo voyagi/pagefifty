@@ -85,6 +85,32 @@ describe('tenders list page', () => {
 		]);
 	});
 
+	// The count is the page's own words, so it sits outside the notice text a verdict scan leaves out.
+	it('counts the other buyers of a joint procurement beside the first one', () => {
+		const { container } = renderPage(dataFor(index.rows));
+		const lines = (notice: string) => [
+			...container.querySelectorAll(`tr[data-notice="${notice}"] td.tender > .b`)
+		];
+		const joint = lines('612350-2026');
+		expect(joint.map((line) => squash(line.textContent))).toEqual([
+			'European Commission, DG BUDG - Budget',
+			'and 38 other buyers',
+			'612350-2026'
+		]);
+		expect(joint.map((line) => line.hasAttribute('data-notice-text'))).toEqual([
+			true,
+			false,
+			false
+		]);
+		expect(lines('629580-2026').map((line) => squash(line.textContent))[1]).toBe(
+			'and 1 other buyer'
+		);
+		expect(lines('609955-2026').map((line) => squash(line.textContent))).toEqual([
+			'Burgenlandkreis',
+			'609955-2026'
+		]);
+	});
+
 	it('is the skip link target in a slate binder', () => {
 		const { container } = renderPage(dataFor(index.rows));
 		const main = document.getElementById('main');
@@ -111,8 +137,16 @@ describe('tenders list page', () => {
 		expect(instants.length).toBeGreaterThan(100);
 		expect(instants.every((at) => at > NOW.getTime())).toBe(true);
 		expect(instants.every((at, i) => i === 0 || at >= instants[i - 1])).toBe(true);
+		// The closed table runs by the same one rule, so its caption names the order as the open one does.
+		expect(closed.querySelector('caption')?.textContent).toBe(
+			'Closed tenders, earliest deadline first'
+		);
 		const closedTimes = [...closed.querySelectorAll('tbody tr time')];
 		expect(closedTimes.length).toBeGreaterThan(10);
+		const closedInstants = closedTimes.map((time) =>
+			Date.parse(time.getAttribute('datetime') ?? '')
+		);
+		expect(closedInstants.every((at, i) => i === 0 || at >= closedInstants[i - 1])).toBe(true);
 		for (const time of closedTimes) {
 			expect(Date.parse(time.getAttribute('datetime') ?? '')).toBeLessThanOrEqual(NOW.getTime());
 		}

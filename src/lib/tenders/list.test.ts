@@ -144,6 +144,21 @@ describe('buyer countries', () => {
 	});
 });
 
+describe('buyers', () => {
+	// A joint procurement names several buyers. The row keeps the first by name and counts the rest,
+	// so it never reads as that one buyer's tender alone (8 capture notices name 2 to 39 buyers).
+	it.each([
+		['612350-2026', 'European Commission, DG BUDG - Budget', 38],
+		['611918-2026', 'Zweites Deutsches Fernsehen', 8],
+		['629580-2026', 'Thomas More Mechelen-Antwerpen', 1],
+		['609955-2026', 'Burgenlandkreis', 0]
+	])('names the first buyer of %s, %s, and counts %i others', (notice, first, others) => {
+		const list = buildTenderList({ rows: [realRow(notice)] }, NO_FILTER, CAPTURE_NOW);
+		const [row] = [...list.open, ...list.closed];
+		expect([row.buyer?.text, row.otherBuyers]).toEqual([first, others]);
+	});
+});
+
 describe('formatValue', () => {
 	it('reads the published values of the three capture notices by the EUR 1,000 floor', () => {
 		const [low, zero, cents] = REAL.map((row) => row.estimatedValue);

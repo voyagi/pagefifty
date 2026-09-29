@@ -141,7 +141,7 @@
 						>
 						<TenderTable
 							rows={list.closed}
-							caption="Tenders that have closed, by the deadline they closed on"
+							caption="Closed tenders, earliest deadline first"
 							{basePath}
 							closed
 						/>

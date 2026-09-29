@@ -58,6 +58,14 @@
 					{#if row.buyer}
 						<span class="b" lang={row.buyer.lang} data-notice-text>{row.buyer.text}</span>
 					{/if}
+					<!-- A joint procurement's other buyers are counted in the page's own words, outside the
+					     notice text. -->
+					{#if row.otherBuyers > 0}
+						<span class="b"
+							>and <span class="mono">{row.otherBuyers}</span>
+							{row.otherBuyers === 1 ? 'other buyer' : 'other buyers'}</span
+						>
+					{/if}
 					<span class="b mono">{row.noticeNumber}</span>
 				</td>
 				<td data-label="Country">{row.countries.join(', ')}</td>
