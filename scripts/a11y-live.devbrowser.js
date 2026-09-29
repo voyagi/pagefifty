@@ -62,8 +62,66 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/no-such-page?theme=dark',
 		expectStatus: 404
+	},
+	// No Belgian notice in the capture is due in 2027, so this filter always ends in the empty state.
+	{
+		slug: 'tenders-empty',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2027-01-01&theme=light',
+		expectText: 'No tenders match these filters'
+	},
+	{
+		slug: 'tenders-empty',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2027-01-01&theme=dark',
+		expectText: 'No tenders match these filters'
+	},
+	{
+		slug: 'profile-demo',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/profile?theme=light',
+		storage: { 'pagefifty-active-firm': 'demo' },
+		expectText: 'Brink Data B.V.'
+	},
+	{
+		slug: 'profile-demo',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/profile?theme=dark',
+		storage: { 'pagefifty-active-firm': 'demo' },
+		expectText: 'Brink Data B.V.'
+	},
+	{
+		slug: 'example',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		expectText: 'Example run'
+	},
+	{
+		slug: 'example',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		expectText: 'Example run'
+	},
+	{
+		slug: 'example-one-lot',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example/609955-2026?theme=light',
+		expectText: 'Example run from a snapshot'
+	},
+	{
+		slug: 'example-one-lot',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example/609955-2026?theme=dark',
+		expectText: 'Example run from a snapshot'
 	}
 ];
+
+// The held-out visual checks (longest titles, the most lots, chip wrapping, the demo label at 390)
+// are judged by a person from these shots; the automated run proves none of them.
+const WIDTHS = [390, 768, 1440];
+// A list page at phone width runs past 100,000 px; beyond this height a width shot keeps the first
+// screens only, and the full page stays in the shot taken at the audit width.
+const FULL_PAGE_LIMIT = 16000;
 
 // axe "incomplete" means it could not decide, which is not clean. An entry here accepts one
 // rule's undecided result only when every node's message matches, and says why.
@@ -73,13 +131,28 @@ const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
+// axe runs at the browser's own width, as before the width shots existed; they return to it.
+const AUDIT_VIEWPORT = page.viewportSize() ?? { width: 1280, height: 720 };
+
+// Storage is set on the origin before the audited page loads: addInitScript crashes this sandbox
+// (probe A9 in plan 01-02). Every entry starts from empty storage, so one entry's demo firm never
+// reaches the next.
+async function prepareStorage(storage) {
+	await page.goto('http://127.0.0.1:8788/', { waitUntil: 'networkidle' });
+	await page.evaluate((items) => {
+		localStorage.clear();
+		for (const [key, value] of Object.entries(items)) localStorage.setItem(key, value);
+	}, storage ?? {});
+}
 
 async function loadState(entry) {
+	await prepareStorage(entry.storage);
 	const response = await page.goto(entry.url, { waitUntil: 'networkidle' });
 	entry.status = response ? response.status() : 0;
 	const state = await page.evaluate(() => ({
 		h1: document.querySelectorAll('h1').length,
-		theme: document.documentElement.getAttribute('data-theme')
+		theme: document.documentElement.getAttribute('data-theme'),
+		text: document.body.textContent.replace(/\s+/g, ' ')
 	}));
 	entry.h1Count = state.h1;
 	entry.themeApplied = state.theme;
@@ -90,7 +163,23 @@ async function loadState(entry) {
 	if (entry.theme !== 'none' && state.theme !== entry.theme) {
 		problems.push(`data-theme is "${state.theme}", expected "${entry.theme}"`);
 	}
+	if (entry.expectText && !state.text.includes(entry.expectText)) {
+		problems.push(`"${entry.expectText}" is not on the page`);
+	}
 	return problems.join(', ');
+}
+
+async function widthShots(slug, theme) {
+	const saved = [];
+	for (const width of WIDTHS) {
+		await page.setViewportSize({ width, height: 900 });
+		await page.waitForTimeout(150);
+		const height = await page.evaluate(() => document.documentElement.scrollHeight);
+		const shot = await page.screenshot({ fullPage: height <= FULL_PAGE_LIMIT });
+		saved.push(await saveScreenshot(shot, `a11y-${slug}-${theme}-${width}.png`));
+	}
+	await page.setViewportSize(AUDIT_VIEWPORT);
+	return saved;
 }
 
 async function runAxe() {
@@ -134,15 +223,18 @@ function isAccepted(item) {
 	);
 }
 
-async function audit({ slug, theme, url, expectStatus }) {
+async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
 	const entry = {
 		slug,
 		theme,
 		url,
 		expectStatus,
+		expectText,
+		storage,
 		violations: [],
 		incomplete: [],
-		acceptedIncomplete: []
+		acceptedIncomplete: [],
+		widthShots: []
 	};
 	entry.loadProblem = await loadState(entry);
 	if (entry.loadProblem) return entry;
@@ -156,6 +248,7 @@ async function audit({ slug, theme, url, expectStatus }) {
 	}
 	const shot = await page.screenshot({ fullPage: true });
 	entry.screenshot = await saveScreenshot(shot, `a11y-${slug}-${theme}.png`);
+	entry.widthShots = await widthShots(slug, theme);
 	return entry;
 }
 

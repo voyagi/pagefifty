@@ -45,8 +45,9 @@ function reportPage(page) {
 		return;
 	}
 	const accepted = page.acceptedIncomplete.length;
+	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
 	console.log(
-		`${page.slug} | ${page.theme} | ${page.violations.length} violations | ` +
+		`${page.slug} | ${page.theme}${status} | ${page.violations.length} violations | ` +
 			`${page.incomplete.length} incomplete (${accepted} accepted) | ${page.screenshot}`
 	);
 	for (const item of [...page.violations, ...page.incomplete]) {
@@ -54,7 +55,8 @@ function reportPage(page) {
 		console.log(`  ${kind} ${item.id} (${item.impact}): ${item.help}`);
 		for (const node of item.nodes) console.log(`    ${node.target} ${node.message}`);
 	}
-	for (const item of page.acceptedIncomplete) console.log(`  accepted incomplete ${item.id}: ${item.why}`);
+	for (const item of page.acceptedIncomplete)
+		console.log(`  accepted incomplete ${item.id}: ${item.why}`);
 }
 
 function verdict(result) {
@@ -65,20 +67,33 @@ function verdict(result) {
 	const audited = pages.filter((page) => !page.loadProblem);
 	const violations = audited.reduce((sum, page) => sum + page.violations.length, 0);
 	const incomplete = audited.reduce((sum, page) => sum + page.incomplete.length, 0);
-	console.log(`a11y: ${routes} routes x ${themes} themes = ${audited.length} pages audited, ${violations} violations`);
+	console.log(
+		`a11y: ${routes} routes x ${themes} themes = ${audited.length} pages audited, ${violations} violations`
+	);
+	const shots = audited.reduce((sum, page) => sum + (page.widthShots ?? []).length, 0);
+	console.log(`a11y: ${shots} screenshots at 390, 768 and 1440 px for the visual backstops`);
 	if (routes === 0 || themes === 0) {
 		console.error('a11y: zero routes or themes configured, so nothing was audited');
 		return 2;
 	}
 	if (audited.length !== pages.length) {
-		console.error('a11y: a page did not load with its expected status, an h1 and its theme, so it was not audited');
+		console.error(
+			'a11y: a page did not load with its expected status, an h1 and its theme, so it was not audited'
+		);
+		return 2;
+	}
+	if (shots !== audited.length * 3) {
+		console.error(
+			'a11y: a page is missing a width screenshot, so the visual backstops lack evidence'
+		);
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {
 		console.error('a11y: the target-size rule did not run, so WCAG 2.5.8 went unchecked');
 		return 2;
 	}
-	if (incomplete > 0) console.error(`a11y: ${incomplete} incomplete results not in the driver's allowlist`);
+	if (incomplete > 0)
+		console.error(`a11y: ${incomplete} incomplete results not in the driver's allowlist`);
 	return violations > 0 || incomplete > 0 ? 1 : 0;
 }
 
@@ -99,11 +114,16 @@ async function main() {
 		const run = runDriver({
 			browserName: `pagefifty-a11y-${runId}`,
 			driverPath: resolve('scripts/a11y-live.devbrowser.js'),
-			timeoutSeconds: 120
+			// Eleven routes in two themes, each audited and then shot at three widths; kept under the
+			// run lock's stale age, which runDriver enforces.
+			timeoutSeconds: 260
 		});
 		const result = readResult(resultName);
 		if (run.code !== 0 || !result) {
-			throw new HarnessError(2, `the a11y driver did not finish (dev-browser exit ${run.code}): ${run.output.trim()}`);
+			throw new HarnessError(
+				2,
+				`the a11y driver did not finish (dev-browser exit ${run.code}): ${run.output.trim()}`
+			);
 		}
 		code = verdict(result);
 	} finally {

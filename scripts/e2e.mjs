@@ -5,7 +5,9 @@
 // exit code: this Node layer builds the Worker, serves it with wrangler dev on 127.0.0.1:8788,
 // runs every scripts/e2e/*.devbrowser.js driver through the dev-browser CLI in name order, and
 // owns the verdict. Each driver reads pagefifty-e2e-run.json from the dev-browser tmp folder
-// and writes { driver, checks: [{ name, ok, detail }] } to the result name it finds there.
+// and writes { driver, checks: [{ name, ok, detail }] } to the result name it finds there. A
+// driver may add logMustNotContain (strings the Worker's request log must not hold) and
+// logMustContain (lines it must), checked here after every driver has run.
 //
 // A run that checked nothing is never a pass: no dev-browser is exit 1 (never SKIPPED, since
 // verify:ship runs this locally and a skip would hide a run that never happened), and zero
@@ -19,7 +21,7 @@
 //             1 a check failed, dev-browser is missing or the URL is not allowlisted,
 //             2 the run could not run (lock, port, server, zero checks, a crash).
 
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import {
@@ -52,8 +54,51 @@ function driverPaths() {
 		.map((name) => resolve('scripts/e2e', name));
 }
 
+function readLog(logFile) {
+	try {
+		return readFileSync(logFile, 'utf8');
+	} catch (error) {
+		console.error(`[e2e] the wrangler log could not be read: ${error.message}`);
+		return '';
+	}
+}
+
+// The drivers run through spawnSync, which blocks this process, so wrangler's output waits in its
+// pipe until the event loop runs again. The log is read once it has stopped growing.
+async function settledLog(logFile) {
+	let last = -1;
+	let log = readLog(logFile);
+	for (let wait = 0; wait < 40 && log.length !== last; wait += 1) {
+		last = log.length;
+		await new Promise((done) => setTimeout(done, 250));
+		log = readLog(logFile);
+	}
+	return log;
+}
+
+// wrangler dev logs each request by method and path only, so this is a second check on paths; the
+// canary driver's own capture of every request the page sends is the proof on addresses, headers
+// and bodies. A driver that names strings the log must hold proves the log read is this run's.
+function logChecks(log, logRules) {
+	return logRules.flatMap(({ driver, mustNotContain, mustContain }) => {
+		const found = mustNotContain.filter((marker) => log.includes(marker));
+		const missing = mustContain.filter((line) => !log.includes(line));
+		return [
+			{
+				driver,
+				name: 'Worker log carries no marker',
+				ok: log.length > 0 && missing.length === 0 && found.length === 0,
+				detail:
+					`${log.split(/\r?\n/).length} log lines, ${mustNotContain.length} markers, ` +
+					`found ${JSON.stringify(found)}, expected lines missing ${JSON.stringify(missing)}`
+			}
+		];
+	});
+}
+
 function runDrivers(runId) {
 	const checks = [];
+	const logRules = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
 		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName });
@@ -61,6 +106,13 @@ function runDrivers(runId) {
 		const result = readResult(resultName);
 		const driver = result?.driver ?? driverPath;
 		for (const check of result?.checks ?? []) checks.push({ driver, ...check });
+		if (Array.isArray(result?.logMustNotContain)) {
+			logRules.push({
+				driver,
+				mustNotContain: result.logMustNotContain,
+				mustContain: Array.isArray(result.logMustContain) ? result.logMustContain : []
+			});
+		}
 		// A driver that died part-way must not leave only its passing checks behind.
 		if (run.code !== 0 || !result) {
 			checks.push({
@@ -71,12 +123,14 @@ function runDrivers(runId) {
 			});
 		}
 	}
-	return checks;
+	return { checks, logRules };
 }
 
 function verdict(checks) {
 	for (const check of checks) {
-		console.log(`${check.driver} | ${check.name} | ${check.ok ? 'PASS' : 'FAIL'} | ${check.detail}`);
+		console.log(
+			`${check.driver} | ${check.name} | ${check.ok ? 'PASS' : 'FAIL'} | ${check.detail}`
+		);
 	}
 	const passed = checks.filter((check) => check.ok).length;
 	console.log(`e2e: ${checks.length} checks, ${passed} passed`);
@@ -109,7 +163,9 @@ async function main() {
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		code = verdict(runDrivers(runId));
+		const { checks, logRules } = runDrivers(runId);
+		const log = logRules.length > 0 ? await settledLog(logFile) : '';
+		code = verdict([...checks, ...logChecks(log, logRules)]);
 	} finally {
 		if (worker && !(await stopWorker(worker.child))) code = 2;
 		releaseRunLock();
