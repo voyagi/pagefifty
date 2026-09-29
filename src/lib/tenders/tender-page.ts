@@ -35,7 +35,7 @@ export interface QuoteText extends LangText {
 
 // A weight or threshold published beside a criterion: named by its EU code list, or shown by its
 // list and code as published when the list has no name for it. The number stays as published.
-export type ParameterView = { label: string; value: string } | { code: string; value: string };
+type ParameterView = { label: string; value: string } | { code: string; value: string };
 
 export interface CriterionView {
 	code: string;
