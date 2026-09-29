@@ -102,7 +102,11 @@ export interface TenderListData {
 	capture: CaptureFacts;
 }
 
-const AMOUNT = /^(\d+)(?:\.(\d+))?$/;
+// A UBL amount is an xs:decimal, which allows a leading sign: the XML Schema spec's own example is
+// "+100000.00". The ingest keeps the text as published, so "+" reads as the same value, a point
+// with no digits after it as no fraction, and a negative amount is below the floor, a placeholder
+// like "0".
+const AMOUNT = /^([+-])?(\d+)(?:\.(\d*))?$/;
 // EUR 1,000 in cents, as digits: amounts are compared as digit strings, so no published value is
 // ever rounded through a float on its way to the floor test.
 const FLOOR_CENTS = '100000';
@@ -123,7 +127,8 @@ export function formatValue(value: Amount | undefined): string | null {
 	if (!value) return null;
 	const match = AMOUNT.exec(value.amount);
 	if (!match) return null;
-	const [, whole, fraction = ''] = match;
+	const [, sign, whole, fraction = ''] = match;
+	if (sign === '-') return null;
 	const cents = whole + fraction.padEnd(2, '0').slice(0, 2);
 	if (!atLeast(cents, FLOOR_CENTS)) return null;
 	const kept = fraction.replace(/0+$/, '');

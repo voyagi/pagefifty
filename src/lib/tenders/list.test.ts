@@ -176,12 +176,17 @@ describe('formatValue', () => {
 		['3000000.0', 'EUR 3,000,000'],
 		['672268.90', 'EUR 672,268.90'],
 		['8732295076.00', 'EUR 8,732,295,076'],
-		['0001500', 'EUR 1,500']
+		['0001500', 'EUR 1,500'],
+		// xs:decimal, the type of a UBL amount, allows a leading sign: the XML Schema spec's own
+		// example is "+100000.00". A point with no digits after it is no fraction.
+		['+100000.00', 'EUR 100,000'],
+		['+1500', 'EUR 1,500'],
+		['1500.', 'EUR 1,500']
 	])('writes %s as %s', (amount, written) => {
 		expect(formatValue({ amount, currency: 'EUR' })).toBe(written);
 	});
 
-	it.each(['999.99', '999', '0.5', '-5000', '1,500', '1.5e6', ''])(
+	it.each(['999.99', '999', '0.5', '-5000', '-1500000', '+999.99', '1,500', '1.5e6', '', '+', '.'])(
 		'publishes no value for %j',
 		(amount) => {
 			expect(formatValue({ amount, currency: 'EUR' })).toBeNull();
