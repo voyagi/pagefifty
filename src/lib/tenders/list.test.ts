@@ -6,9 +6,9 @@ import { readNotice } from '../ingest/read-notice';
 import { toIndexRow, type IndexRow } from '../snapshot/index-row';
 import type { FilterState } from '../core/filters';
 import {
-	COUNTRY_NAMES,
 	buildTenderList,
 	captureFacts,
+	countryName,
 	countsLine,
 	filterSummary,
 	formatValue,
@@ -110,11 +110,7 @@ describe('buildTenderList order and groups', () => {
 
 describe('buyer countries', () => {
 	it('names the three countries in scope in English', () => {
-		expect([COUNTRY_NAMES.NLD, COUNTRY_NAMES.BEL, COUNTRY_NAMES.DEU]).toEqual([
-			'Netherlands',
-			'Belgium',
-			'Germany'
-		]);
+		expect(['NLD', 'BEL', 'DEU'].map(countryName)).toEqual(['Netherlands', 'Belgium', 'Germany']);
 	});
 
 	// A joint procurement can list buyers from across the EU beside one in scope; every country is
@@ -127,6 +123,16 @@ describe('buyer countries', () => {
 		const list = buildTenderList({ rows: [joint] }, NO_FILTER, CAPTURE_NOW);
 		expect(list.open[0].countries).toEqual(['Germany', 'France', 'XKX']);
 	});
+
+	// The code comes from the notice, so it may name a key every plain object inherits.
+	it.each(['constructor', '__proto__', 'toString'])(
+		'shows a buyer country code %s as published, never a built-in property',
+		(code) => {
+			const row = { ...rowDue('700011-2026', '2026-11-02T10:00:00+01:00'), country: [code] };
+			const list = buildTenderList({ rows: [row] }, NO_FILTER, CAPTURE_NOW);
+			expect(list.open[0].countries).toEqual([code]);
+		}
+	);
 
 	// 612350-2026, the capture's one joint procurement across borders, lists buyers in 19 countries.
 	it('names all 19 buyer countries of 612350-2026, none left as a code', () => {
@@ -180,10 +186,12 @@ describe('countsLine', () => {
 		closed
 	});
 
+	// The live line says "closed", never "closed since the capture": 13 capture notices had closed
+	// before it was taken (tenders.dom.test.ts pins that against the built index).
 	it.each([
-		[counts(0, 0, 0, 0), '0 open and 0 closed since the capture, of 0 notices.'],
-		[counts(1, 1, 1, 0), '1 open and 0 closed since the capture, of 1 notice.'],
-		[counts(363, 363, 271, 92), '271 open and 92 closed since the capture, of 363 notices.']
+		[counts(0, 0, 0, 0), '0 open and 0 closed, of 0 notices.'],
+		[counts(1, 1, 1, 0), '1 open and 0 closed, of 1 notice.'],
+		[counts(363, 363, 271, 92), '271 open and 92 closed, of 363 notices.']
 	])('writes the unfiltered line with the right noun', (given, line) => {
 		expect(text(countsLine(given, false))).toBe(line);
 	});

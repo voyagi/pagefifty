@@ -127,8 +127,17 @@ describe('tenders list page', () => {
 			expect(row.querySelector('td')?.textContent?.trim().startsWith('Closed')).toBe(true);
 		}
 		expect(squash(details?.querySelector('summary')?.textContent)).toBe(
-			`Closed since the capture (${closedRows.length})`
+			`Closed (${closedRows.length})`
 		);
+	});
+
+	// The capture holds notices whose every lot had closed before it was taken, so the live list may
+	// never say its closed notices closed "since the capture".
+	it('never says a notice closed since the capture, which already held closed notices', () => {
+		const atCapture = buildTenderList(index, NO_FILTER, new Date(index.capture.fetchedAt));
+		expect(atCapture.closed.length).toBeGreaterThan(0);
+		const { container } = renderPage(dataFor(index.rows));
+		expect(container.textContent).not.toContain('since the capture');
 	});
 
 	it('shows the reading-status tag with its reason, and a missing value in words', () => {
@@ -152,9 +161,7 @@ describe('tenders list page', () => {
 		);
 		const { container } = renderPage(dataFor(rows));
 		const counts = container.querySelector('.counts');
-		expect(squash(counts?.textContent)).toBe(
-			`${n} open and 0 closed since the capture, of ${n} ${noun}.`
-		);
+		expect(squash(counts?.textContent)).toBe(`${n} open and 0 closed, of ${n} ${noun}.`);
 		expect([...(counts?.querySelectorAll('.mono') ?? [])].map((each) => each.textContent)).toEqual([
 			String(n),
 			'0',

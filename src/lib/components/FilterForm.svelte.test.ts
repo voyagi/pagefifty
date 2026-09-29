@@ -156,9 +156,7 @@ describe('TenderListPage states', () => {
 		});
 		expect(container.querySelector('details')).toBeNull();
 		const closed = container.querySelector('#closed') as HTMLElement;
-		expect(
-			within(closed).getByText('No tender in this list has closed since the capture.')
-		).toBeTruthy();
+		expect(within(closed).getByText('No tender in this list has closed.')).toBeTruthy();
 	});
 
 	// The time is cut from the formatted deadline text, so a change to that format must fail here.

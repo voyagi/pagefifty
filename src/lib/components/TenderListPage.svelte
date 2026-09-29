@@ -22,16 +22,15 @@
 	const board = $derived(example ? 'yellow' : 'slate');
 	const list = $derived(data.list);
 	const capture = $derived(data.capture);
-	// On the example "now" is the capture instant, so its closed notices had closed by then.
-	const closedWords = $derived(example ? 'closed at the capture time' : 'closed since the capture');
+	// On the example "now" is the capture instant, so its closed notices had closed by then. The live
+	// list says "closed" alone: some capture notices had closed before the capture was taken.
+	const closedWords = $derived(example ? 'closed at the capture time' : 'closed');
 	const counts = $derived(countsLine(list.counts, list.filtered, closedWords));
-	const closedSummary = $derived(
-		example ? 'Closed at the capture time' : 'Closed since the capture'
-	);
+	const closedSummary = $derived(example ? 'Closed at the capture time' : 'Closed');
 	const noneClosed = $derived(
 		example
 			? 'No tender in this list had closed at the capture time.'
-			: 'No tender in this list has closed since the capture.'
+			: 'No tender in this list has closed.'
 	);
 	const capturedAt = $derived(formatDeadline(capture.fetchedAt, SERVER_TIME_ZONE).split(', ')[1]);
 	// Both days come from the capture itself; tenders.dom.test.ts pins them against the built index.

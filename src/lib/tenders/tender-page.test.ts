@@ -31,6 +31,11 @@ describe('legalBasisName', () => {
 	it('leaves a code it has no name for to be shown as published', () => {
 		expect([legalBasisName('32024R2509'), legalBasisName('other')]).toEqual([undefined, undefined]);
 	});
+
+	// A code comes from the notice, so it may name a key every plain object inherits.
+	it.each(['constructor', '__proto__', 'toString'])('has no name for %s', (code) => {
+		expect(legalBasisName(code)).toBeUndefined();
+	});
 });
 
 describe('workKind', () => {
@@ -207,6 +212,16 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 			'epo-other',
 			undefined
 		]);
+	});
+
+	it('shows a source code and a buyer country that name a built-in property as published', () => {
+		const record: NoticeRecord = {
+			...withLot({ criteriaSources: ['constructor', 'epo-notice', '__proto__'] }),
+			buyers: [{ name: { text: 'Gemeente', lang: 'nl' }, country: '__proto__' }]
+		};
+		const page = buildTenderPage(record, BEFORE_DEADLINES);
+		expect(page.lots[0].criteriaSource).toBe('constructor and in the notice and __proto__');
+		expect(page.countries).toEqual(['__proto__']);
 	});
 
 	it('shows a reservation, and a group legal form only when its text is published', () => {

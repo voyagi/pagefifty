@@ -4,8 +4,8 @@
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
 //
-// The run uses the real clock and every captured tender will have closed by the time the entry is
-// judged, so no check here depends on a notice being open.
+// The run uses the real clock, so the captured tenders close day by day (on 1 Dec 2026 two of the
+// 363 are still open), and no check here depends on a notice being open.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tender-page';

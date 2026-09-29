@@ -19,7 +19,7 @@ import {
 } from '../core/deadline';
 import { coverageLines, readingStatus, type CoverageLine } from '../core/reading';
 import { toIndexRow } from '../snapshot/index-row';
-import { COUNTRY_NAMES, formatValue, type CaptureFacts } from './list';
+import { countryName, formatValue, type CaptureFacts } from './list';
 
 export interface WorkKind {
 	label: 'IT services' | 'Software packages';
@@ -94,16 +94,18 @@ export interface TenderPageData {
 	capture: CaptureFacts;
 }
 
-const LEGAL_BASIS_NAMES: Readonly<Record<string, string>> = {
-	'32014L0024': 'Directive 2014/24/EU',
-	'32014L0025': 'Directive 2014/25/EU',
-	'32014L0023': 'Directive 2014/23/EU',
-	'32009L0081': 'Directive 2009/81/EC'
-};
+// Maps, like the country names: every code here comes from the notice, and a plain object would
+// answer "constructor" or "__proto__" with a built-in property instead of nothing.
+const LEGAL_BASIS_NAMES: ReadonlyMap<string, string> = new Map([
+	['32014L0024', 'Directive 2014/24/EU'],
+	['32014L0025', 'Directive 2014/25/EU'],
+	['32014L0023', 'Directive 2014/23/EU'],
+	['32009L0081', 'Directive 2009/81/EC']
+]);
 
 // A code without a name here (32024R2509, "other") is shown as published, in Mono.
 export function legalBasisName(code: string): string | undefined {
-	return LEGAL_BASIS_NAMES[code];
+	return LEGAL_BASIS_NAMES.get(code);
 }
 
 // The first IT code decides the kind, and the main code is named beside it: in the 2026-09-15
@@ -119,17 +121,17 @@ export function workKind(cpv: NoticeRecord['cpv']): WorkKind | undefined {
 	return { label, code, ...(main !== undefined && main !== code && { main }) };
 }
 
-const SOURCE_PLACES: Readonly<Record<string, string>> = {
-	'epo-notice': 'the notice',
-	'epo-procurement-document': 'the procurement documents',
-	'epo-sub-espd': 'the ESPD'
-};
+const SOURCE_PLACES: ReadonlyMap<string, string> = new Map([
+	['epo-notice', 'the notice'],
+	['epo-procurement-document', 'the procurement documents'],
+	['epo-sub-espd', 'the ESPD']
+]);
 
 // BT-821 as the buyer declared it, each source once. A code this version does not know is shown
 // exactly as published, never reworded.
 function criteriaSourceText(sources: readonly string[]): string | undefined {
 	const named = [...new Set(sources)].map((source, index) => {
-		const place = SOURCE_PLACES[source];
+		const place = SOURCE_PLACES.get(source);
 		if (place === undefined) return source;
 		return `${index === 0 ? 'In' : 'in'} ${place}`;
 	});
@@ -218,7 +220,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 		buyers: record.buyers.map((buyer) => buyer.name),
 		deadline,
 		...(left && { timeLeft: left }),
-		countries: row.country.map((code) => COUNTRY_NAMES[code] ?? code),
+		countries: row.country.map(countryName),
 		...(kind && { kind }),
 		value: formatValue(row.estimatedValue),
 		tedUrl: `https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`,

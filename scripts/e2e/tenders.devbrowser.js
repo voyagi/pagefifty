@@ -3,8 +3,9 @@
 // the browser's own zone after hydration without a hydration warning.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
-// The run uses the real clock, and every captured tender will have closed by the time the entry is
-// judged, so no check assumes a notice is open: each one reads which group a row sits in first.
+// The run uses the real clock, so rows move from the open group to the closed one day by day (on
+// 1 Dec 2026 two of the 363 notices are still open; the last lot closes 9 Oct 2027), and no check
+// assumes a given notice is open: each one reads which group a row sits in first.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tenders';

@@ -9,39 +9,44 @@ import { readingStatus, type ReadingStatus } from '../core/reading';
 
 // Buyers carry ISO 3166-1 alpha-3 codes. A joint procurement can list buyers from across the EU
 // beside one in scope (612350-2026 lists 19 countries), so every EU and EEA country is named, and
-// a code outside this table is shown as published.
-export const COUNTRY_NAMES: Readonly<Record<string, string>> = {
-	AUT: 'Austria',
-	BEL: 'Belgium',
-	BGR: 'Bulgaria',
-	HRV: 'Croatia',
-	CYP: 'Cyprus',
-	CZE: 'Czechia',
-	DNK: 'Denmark',
-	EST: 'Estonia',
-	FIN: 'Finland',
-	FRA: 'France',
-	DEU: 'Germany',
-	GRC: 'Greece',
-	HUN: 'Hungary',
-	ISL: 'Iceland',
-	IRL: 'Ireland',
-	ITA: 'Italy',
-	LVA: 'Latvia',
-	LIE: 'Liechtenstein',
-	LTU: 'Lithuania',
-	LUX: 'Luxembourg',
-	MLT: 'Malta',
-	NLD: 'Netherlands',
-	NOR: 'Norway',
-	POL: 'Poland',
-	PRT: 'Portugal',
-	ROU: 'Romania',
-	SVK: 'Slovakia',
-	SVN: 'Slovenia',
-	ESP: 'Spain',
-	SWE: 'Sweden'
-};
+// a code outside this table is shown as published. A Map, because the code comes from the notice
+// and a plain object would answer "constructor" with a built-in function.
+const COUNTRY_NAMES: ReadonlyMap<string, string> = new Map([
+	['AUT', 'Austria'],
+	['BEL', 'Belgium'],
+	['BGR', 'Bulgaria'],
+	['HRV', 'Croatia'],
+	['CYP', 'Cyprus'],
+	['CZE', 'Czechia'],
+	['DNK', 'Denmark'],
+	['EST', 'Estonia'],
+	['FIN', 'Finland'],
+	['FRA', 'France'],
+	['DEU', 'Germany'],
+	['GRC', 'Greece'],
+	['HUN', 'Hungary'],
+	['ISL', 'Iceland'],
+	['IRL', 'Ireland'],
+	['ITA', 'Italy'],
+	['LVA', 'Latvia'],
+	['LIE', 'Liechtenstein'],
+	['LTU', 'Lithuania'],
+	['LUX', 'Luxembourg'],
+	['MLT', 'Malta'],
+	['NLD', 'Netherlands'],
+	['NOR', 'Norway'],
+	['POL', 'Poland'],
+	['PRT', 'Portugal'],
+	['ROU', 'Romania'],
+	['SVK', 'Slovakia'],
+	['SVN', 'Slovenia'],
+	['ESP', 'Spain'],
+	['SWE', 'Sweden']
+]);
+
+export function countryName(code: string): string {
+	return COUNTRY_NAMES.get(code) ?? code;
+}
 
 const COUNTRY_OF_FILTER: Readonly<Record<string, string>> = {
 	NL: 'Netherlands',
@@ -123,17 +128,13 @@ export function formatValue(value: Amount | undefined): string | null {
 	return `${value.currency} ${grouped(whole)}${decimals}`;
 }
 
-function countryNames(codes: readonly string[]): string[] {
-	return codes.map((code) => COUNTRY_NAMES[code] ?? code);
-}
-
 function toListRow(row: IndexRow, now: Date): ListRow {
 	const buyer = row.buyers[0]?.name;
 	return {
 		noticeNumber: row.noticeNumber,
 		title: row.title,
 		...(buyer && { buyer }),
-		countries: countryNames(row.country),
+		countries: row.country.map(countryName),
 		value: formatValue(row.estimatedValue),
 		deadline: noticeDeadline(row.lots, now),
 		reading: readingStatus(row.lots.map((lot) => lot.coverage))
@@ -188,10 +189,12 @@ export function buildTenderList(
 // Figures stay numbers so the page can set them in Mono; the words around them are plain text.
 export type CountsLine = (string | number)[];
 
+// The live list says "closed" alone: 13 capture notices had closed before the capture was taken, so
+// "closed since the capture" would be false for them.
 export function countsLine(
 	counts: ListCounts,
 	filtered: boolean,
-	closedWords = 'closed since the capture'
+	closedWords = 'closed'
 ): CountsLine {
 	const notices = counts.total === 1 ? ' notice' : ' notices';
 	if (!filtered) {
