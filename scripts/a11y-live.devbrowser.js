@@ -131,8 +131,11 @@ const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
-// axe runs at the browser's own width, as before the width shots existed; they return to it.
+// axe runs at the browser's own width, as before the width shots existed; they return to it. It is
+// set before the first audit too, so a browser that reports no size of its own (null) still has
+// every page audited at one width, never the first at another.
 const AUDIT_VIEWPORT = page.viewportSize() ?? { width: 1280, height: 720 };
+await page.setViewportSize(AUDIT_VIEWPORT);
 
 // Storage is set on the origin before the audited page loads: addInitScript crashes this sandbox
 // (probe A9 in plan 01-02). Every entry starts from empty storage, so one entry's demo firm never
