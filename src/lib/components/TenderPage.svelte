@@ -23,6 +23,11 @@
 	const tender = $derived(data.tender);
 	const deadline = $derived(tender.deadline);
 	const criteriaShown = $derived(tender.lots.some((lot) => lot.criteria.length > 0));
+	// The example counts the time left from the capture instant, so a visitor months later must not
+	// read it as days still left today; "Closed" needs no such note, since closed then is closed now.
+	const timeLeftTerm = $derived(
+		variant === 'example' ? 'Time left at the capture time' : 'Time left'
+	);
 </script>
 
 {#snippet buyers()}
@@ -46,7 +51,7 @@
 	</div>
 	{#if tender.timeLeft !== undefined}
 		<div>
-			<dt>Time left</dt>
+			<dt>{timeLeftTerm}</dt>
 			<dd><span class="mono">{tender.timeLeft}</span></dd>
 		</div>
 	{/if}

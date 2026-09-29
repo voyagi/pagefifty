@@ -188,4 +188,12 @@ describe('TenderPage', () => {
 		renderPage(recordOf('one-lot'), BEFORE, 'example');
 		expect(screen.getByRole('link', { name: 'Example' }).getAttribute('href')).toBe('#tender');
 	});
+
+	// Months after the capture a bare "Time left: 15 days" would read as days left today.
+	it('counts the example time left at the capture time, and says so', () => {
+		renderPage(recordOf('one-lot'), BEFORE, 'example');
+		const facts = factsOf(screen.getByRole('complementary', { name: 'Tender facts' }));
+		expect(facts['Time left at the capture time']).toBe('15 days');
+		expect(facts['Time left']).toBeUndefined();
+	});
 });
