@@ -4,7 +4,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { formatDay } from '$lib/core/deadline';
 import { localIsoDay } from '$lib/profile/export';
 import { StoredProfileSchema, emptyProfile } from '$lib/profile/schema';
-import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
+import {
+	ACTIVE_FIRM_KEY,
+	PROFILE_KEY,
+	getProfileStore,
+	resetProfileStore
+} from '$lib/profile/store.svelte';
 import Page from '../../routes/profile/+page.svelte';
 
 // A step that cannot read an older file is the one way to an invalid refusal with no field list;
@@ -148,6 +153,41 @@ describe('importing a profile file', () => {
 		);
 		expect((await staffField()).value).toBe('42');
 		expect(JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}').profile.staff.total).toBe(42);
+	});
+
+	it('asks the browser to keep the profile once an import stores it', async () => {
+		const { store } = getProfileStore();
+		const persist = vi.spyOn(store, 'requestPersistOnce');
+		render(Page);
+		await staffField();
+		await userEvent.upload(importInput(), jsonFile('mine.json', storedFile(42)));
+		await vi.waitFor(() =>
+			expect(status()).toBe('Imported mine.json. It replaced the profile that was in this browser.')
+		);
+		expect(persist).toHaveBeenCalledWith(navigator);
+	});
+
+	// A browser fires no change for the same file picked twice unless the input was emptied.
+	it('empties the file control after each pick, so the same file can be picked again', async () => {
+		render(Page);
+		await staffField();
+		await userEvent.upload(importInput(), jsonFile('mine.json', storedFile(42)));
+		await vi.waitFor(() => expect(status()).toMatch(/^Imported mine\.json\./));
+		expect(importInput().value).toBe('');
+		expect(importInput().files?.length ?? 0).toBe(0);
+	});
+
+	it('clears a field error left from typing once an import replaces the profile', async () => {
+		render(Page);
+		// Typing "1" saves it before the dot arrives, so the rest of the line says the rest is saved.
+		await userEvent.type(await staffField(), '1.5');
+		expect(status()).toMatch(/^Not saved: Total staff needs a valid value\./);
+		await userEvent.upload(importInput(), jsonFile('mine.json', storedFile(42)));
+		await vi.waitFor(() =>
+			expect(status()).toBe('Imported mine.json. It replaced the profile that was in this browser.')
+		);
+		expect((await staffField()).getAttribute('aria-invalid')).toBeNull();
+		expect((await staffField()).value).toBe('42');
 	});
 
 	it('says it is reading a file and leaves storage alone until the file passes', async () => {

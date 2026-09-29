@@ -1,6 +1,12 @@
 import { render, screen, within } from '@testing-library/svelte';
+import { tick } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
+import {
+	ACTIVE_FIRM_KEY,
+	PROFILE_KEY,
+	getProfileStore,
+	resetProfileStore
+} from '$lib/profile/store.svelte';
 import DeskBar from './DeskBar.svelte';
 
 // The export date in the slot is the visitor's local date; the zone is pinned so the expectation
@@ -45,6 +51,13 @@ const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g,
 
 function slotOf(container: HTMLElement) {
 	return container.querySelector('[data-firm-slot]') as HTMLElement;
+}
+
+// The slot reads its store after a lazy import in onMount: this waits for that import and the
+// render after it, so a check that the slot stayed empty is made after it had its chance to fill.
+async function settled() {
+	await vi.dynamicImportSettled();
+	await tick();
 }
 
 async function filledSlot(container: HTMLElement) {
@@ -119,12 +132,32 @@ describe('the header firm slot', () => {
 		);
 	});
 
+	// One store per page: the store the profile page switches is the one the header reads, so the
+	// header follows at once, with no storage event (those reach other tabs only).
+	it('relabels at once when the page switches to the demo firm through the shared store', async () => {
+		const { container } = render(DeskBar, { props: { path: '/profile' } });
+		await filledSlot(container);
+		getProfileStore().store.useDemo();
+		await vi.waitFor(() =>
+			expect(squash(slotOf(container).querySelector('strong')?.textContent)).toBe(
+				'Brink Data (demo firm)'
+			)
+		);
+	});
+
+	it('fills within one settle of its lazy import when storage works', async () => {
+		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		await settled();
+		expect(slotOf(container).tagName).toBe('A');
+	});
+
 	it('stays empty, and no link, when the browser blocks storage', async () => {
 		vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
 			throw new DOMException('blocked', 'SecurityError');
 		});
 		const { container } = render(DeskBar, { props: { path: '/tenders' } });
-		await vi.waitFor(() => expect(screen.getByRole('group', { name: 'Theme' })).toBeTruthy());
+		// The same wait the test above shows is long enough for the slot to fill.
+		await settled();
 		const slot = slotOf(container);
 		expect(slot.tagName).toBe('DIV');
 		expect(slot.textContent?.trim()).toBe('');
