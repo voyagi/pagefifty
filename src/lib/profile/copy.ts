@@ -202,15 +202,24 @@ function problemText(issue: FieldIssue): string {
 }
 
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
-const clip = (text: string) =>
-	text.length > MAX_FOUND_LENGTH ? `${text.slice(0, MAX_FOUND_LENGTH - 3)}...` : text;
+// Counted in characters, not UTF-16 units, so an emoji or any other character outside the basic
+// plane is never cut in half.
+function clip(text: string): string {
+	const characters = [...text];
+	return characters.length > MAX_FOUND_LENGTH
+		? `${characters.slice(0, MAX_FOUND_LENGTH - 3).join('')}...`
+		: text;
+}
 
 // "Turnover row 2, year" for ['profile', 'turnover', 1, 'year']; a key the schema does not know is
-// named as it stands in the file ("Profile field extra0"). Both tables are read by own key only, so
-// a file key such as constructor or __proto__ is never answered by what a plain object inherits.
+// named as it stands in the file ("Profile field extra0"), an empty one as two quotes. Both tables are
+// read by own key only, so a file key such as constructor or __proto__ is never answered by what a
+// plain object inherits, and a key holding a dot ("staff.total") never takes the label of the
+// field its dotted name spells.
 function fieldLabel(path: readonly (string | number)[]): string {
+	const dotted = path.some((part) => typeof part === 'string' && part.includes('.'));
 	const joined = path.join('.');
-	const known = Object.hasOwn(FIELD_LABELS, joined) ? FIELD_LABELS[joined] : undefined;
+	const known = !dotted && Object.hasOwn(FIELD_LABELS, joined) ? FIELD_LABELS[joined] : undefined;
 	if (known !== undefined) return known;
 	const inProfile = path[0] === 'profile';
 	let label = inProfile ? 'Profile' : 'File';
@@ -222,7 +231,7 @@ function fieldLabel(path: readonly (string | number)[]): string {
 		}
 		const word = Object.hasOwn(PATH_WORDS, part) ? PATH_WORDS[part] : undefined;
 		if (word === undefined) {
-			label += ` field ${clip(part)}`;
+			label += ` field ${part === '' ? '""' : clip(part)}`;
 		} else {
 			label = named ? `${label}, ${word}` : capitalise(word);
 		}

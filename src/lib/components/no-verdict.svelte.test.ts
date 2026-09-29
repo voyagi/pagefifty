@@ -321,6 +321,12 @@ describe('findVerdictWords', () => {
 		expect(findVerdictWords(mount('<p>NO-GO</p>'))).toEqual(['NO-GO']);
 	});
 
+	// A page may join the two halves with a hyphen that never breaks a line (U+2011); the verdict is
+	// still on the page, so the finder must still name one.
+	it('still flags a verdict joined by a non-breaking hyphen', () => {
+		expect(findVerdictWords(mount('<p>NO‑GO</p>'))).toEqual(['GO']);
+	});
+
 	it('reads the accessible names the page gives, not only its visible text', () => {
 		expect(findVerdictWords(mount('<a aria-label="Ask first" href="/x"></a>'))).toEqual([
 			'Ask first'
