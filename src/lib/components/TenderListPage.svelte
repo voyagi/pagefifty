@@ -28,6 +28,11 @@
 	const closedSummary = $derived(
 		example ? 'Closed at the capture time' : 'Closed since the capture'
 	);
+	const noneClosed = $derived(
+		example
+			? 'No tender in this list had closed at the capture time.'
+			: 'No tender in this list has closed since the capture.'
+	);
 	const capturedAt = $derived(formatDeadline(capture.fetchedAt, SERVER_TIME_ZONE).split(', ')[1]);
 	// Both days come from the capture itself; tenders.dom.test.ts pins them against the built index.
 	const caveat = $derived(
@@ -146,7 +151,7 @@
 				{:else}
 					<h2 id="closed-title" class="visually-hidden">{closedSummary}</h2>
 					{@render tab()}
-					<p class="note">No tender in this list has closed since the capture.</p>
+					<p class="note">{noneClosed}</p>
 				{/if}
 			{/snippet}
 		</Leaf>

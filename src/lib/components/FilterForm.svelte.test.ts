@@ -161,6 +161,28 @@ describe('TenderListPage states', () => {
 		).toBeTruthy();
 	});
 
+	// The time is cut from the formatted deadline text, so a change to that format must fail here.
+	it('writes the capture day and time on the example run, in the server zone', () => {
+		const { container } = render(TenderListPage, {
+			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
+		});
+		expect(squash(container.querySelector('.capture .mono')?.textContent)).toBe(
+			'Captured from TED on 15 Sep 2026 at 21:50 CEST'
+		);
+	});
+
+	// On the example "now" is the capture instant, so nothing can have closed since it.
+	it('words the no-closed note by the variant on the example run', () => {
+		const { container } = render(TenderListPage, {
+			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
+		});
+		const closed = container.querySelector('#closed') as HTMLElement;
+		expect(squash(closed.querySelector('.note')?.textContent)).toBe(
+			'No tender in this list had closed at the capture time.'
+		);
+		expect(closed.textContent).not.toContain('since the capture');
+	});
+
 	it('names the closed group by the variant, with its count in Mono', () => {
 		const { container } = render(TenderListPage, {
 			props: { data: pageData([OPEN_ROW, CLOSED_ROW]), variant: 'example', basePath: '/example' }
