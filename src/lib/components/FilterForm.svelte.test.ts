@@ -122,6 +122,41 @@ describe('FilterForm', () => {
 			dropped: false
 		});
 	});
+
+	// SvelteKit keeps the page, and this form, across a filter navigation, as rerender keeps it here,
+	// and Svelte writes a field only when its value changes. A change the visitor made but never
+	// applied would otherwise survive Clear filters and show a filter the list does not apply.
+	it('drops a chip the visitor ticked but never applied once the applied filters change', async () => {
+		const { container, rerender } = render(FilterForm, {
+			props: { state: { countries: ['NL'], cpv: [] }, basePath: '/tenders' }
+		});
+		(screen.getByRole('checkbox', { name: 'Belgium BE' }) as HTMLInputElement).click();
+		await rerender({ state: NO_FILTER, basePath: '/tenders' });
+		const checked = [...container.querySelectorAll<HTMLInputElement>('input:checked')];
+		expect(checked.map((box) => box.value)).toEqual([]);
+	});
+
+	it('drops a date the visitor typed but never applied once the applied filters change', async () => {
+		const { rerender } = render(FilterForm, {
+			props: { state: { countries: ['NL'], cpv: [] }, basePath: '/tenders' }
+		});
+		const typed = screen.getByLabelText('Deadline on or after') as HTMLInputElement;
+		typed.value = '2026-10-05';
+		expect(typed.value).toBe('2026-10-05');
+		await rerender({ state: NO_FILTER, basePath: '/tenders' });
+		expect((screen.getByLabelText('Deadline on or after') as HTMLInputElement).value).toBe('');
+	});
+
+	it('keeps a change the visitor has not applied while the applied filters stay the same', async () => {
+		const { rerender } = render(FilterForm, {
+			props: { state: { countries: ['NL'], cpv: [] }, basePath: '/tenders' }
+		});
+		(screen.getByRole('checkbox', { name: 'Belgium BE' }) as HTMLInputElement).click();
+		await rerender({ state: { countries: ['NL'], cpv: [] }, basePath: '/tenders' });
+		expect((screen.getByRole('checkbox', { name: 'Belgium BE' }) as HTMLInputElement).checked).toBe(
+			true
+		);
+	});
 });
 
 describe('TenderListPage states', () => {
