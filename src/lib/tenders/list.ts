@@ -7,10 +7,40 @@ import { formatDay, noticeDeadline, SERVER_TIME_ZONE, type NoticeDeadline } from
 import { applyFilters, isActive, rangeInverted, type FilterState } from '../core/filters';
 import { readingStatus, type ReadingStatus } from '../core/reading';
 
+// Buyers carry ISO 3166-1 alpha-3 codes. A joint procurement can list buyers from across the EU
+// beside one in scope (612350-2026 lists 19 countries), so every EU and EEA country is named, and
+// a code outside this table is shown as published.
 export const COUNTRY_NAMES: Readonly<Record<string, string>> = {
-	NLD: 'Netherlands',
+	AUT: 'Austria',
 	BEL: 'Belgium',
-	DEU: 'Germany'
+	BGR: 'Bulgaria',
+	HRV: 'Croatia',
+	CYP: 'Cyprus',
+	CZE: 'Czechia',
+	DNK: 'Denmark',
+	EST: 'Estonia',
+	FIN: 'Finland',
+	FRA: 'France',
+	DEU: 'Germany',
+	GRC: 'Greece',
+	HUN: 'Hungary',
+	ISL: 'Iceland',
+	IRL: 'Ireland',
+	ITA: 'Italy',
+	LVA: 'Latvia',
+	LIE: 'Liechtenstein',
+	LTU: 'Lithuania',
+	LUX: 'Luxembourg',
+	MLT: 'Malta',
+	NLD: 'Netherlands',
+	NOR: 'Norway',
+	POL: 'Poland',
+	PRT: 'Portugal',
+	ROU: 'Romania',
+	SVK: 'Slovakia',
+	SVN: 'Slovenia',
+	ESP: 'Spain',
+	SWE: 'Sweden'
 };
 
 const COUNTRY_OF_FILTER: Readonly<Record<string, string>> = {

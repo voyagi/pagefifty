@@ -106,8 +106,9 @@ export function legalBasisName(code: string): string | undefined {
 	return LEGAL_BASIS_NAMES[code];
 }
 
-// The first IT code decides the kind, and the main code is named beside it: 60 notices publish a
-// main CPV outside groups 72 and 48 (research Pitfall 4), so the kind never claims the main code.
+// The first IT code decides the kind, and the main code is named beside it: in the 2026-09-15
+// capture 65 of 363 notices publish a first main CPV outside groups 72 and 48 (research Pitfall 4),
+// so the kind never claims the main code.
 export function workKind(cpv: NoticeRecord['cpv']): WorkKind | undefined {
 	const code = [...cpv.main, ...cpv.additional].find(
 		(each) => each.startsWith('72') || each.startsWith('48')

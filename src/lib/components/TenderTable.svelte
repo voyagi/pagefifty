@@ -17,8 +17,8 @@
 		closed?: boolean;
 	} = $props();
 
-	// The tender page routes land in later plans, so Pathname does not list them yet; the notice
-	// number in the path is one the index schema accepted.
+	// /example/[notice] has no route until plan 01-15, so Pathname cannot type a path built from
+	// either base; the notice number in the path is one the index schema accepted.
 	const tenderPath = (notice: string) => `${basePath}/${notice}` as Pathname;
 </script>
 
