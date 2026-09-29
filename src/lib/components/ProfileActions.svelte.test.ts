@@ -331,6 +331,32 @@ describe('import refusals that need a planted fault', () => {
 		expect(localStorage.getItem(PROFILE_KEY)).toBe(before);
 	});
 
+	it('words one field, a missing value, a key outside the profile and a long value', async () => {
+		const { importRefusalLines } = await import('$lib/profile/copy');
+		const text = importRefusalLines({
+			ok: false,
+			reason: 'invalid',
+			fileName: 'one.json',
+			fields: [{ path: ['savedAt'], problem: 'invalid_format', found: undefined }]
+		});
+		expect([text.lead, ...text.fields].join(' ')).toBe(
+			'one.json was not imported because 1 field is not valid: Saved at: the value is not in the expected format. Found nothing.'
+		);
+		const lines = importRefusalLines({
+			ok: false,
+			reason: 'invalid',
+			fileName: 'two.json',
+			fields: [
+				{ path: ['extra'], problem: 'unrecognized_keys', found: 'x'.repeat(80) },
+				{ path: ['profile', 'staff', 'byRole', 0, 'count'], problem: 'some_new_code', found: -1 }
+			]
+		}).fields;
+		expect(lines).toEqual([
+			`File field extra: Pagefifty does not know this field. Found "${'x'.repeat(56)}...`,
+			'Staff, by role row 1, count: the value is not valid. Found -1.'
+		]);
+	});
+
 	it('words every issue code the profile schema can raise', async () => {
 		const { importRefusalLines } = await import('$lib/profile/copy');
 		const codes = [

@@ -146,7 +146,7 @@ const PATH_WORDS: Record<string, string> = {
 	net: 'net turnover',
 	staff: 'staff',
 	total: 'total',
-	byRole: 'staff by role',
+	byRole: 'by role',
 	role: 'role',
 	domain: 'domain',
 	count: 'count',
@@ -223,7 +223,9 @@ type FieldIssue = NonNullable<ImportRefusal['fields']>[number];
 
 function fieldLine(issue: FieldIssue): string {
 	const problem = PROBLEMS[issue.problem] ?? 'the value is not valid';
-	return `${fieldLabel(issue.path)}: ${problem}. Found ${foundText(issue.found)}.`;
+	const found = foundText(issue.found);
+	// A clipped value already ends on its three dots; a full stop after them would read as four.
+	return `${fieldLabel(issue.path)}: ${problem}. Found ${found}${found.endsWith('...') ? '' : '.'}`;
 }
 
 function refusalLead(refusal: ImportRefusal): string {
