@@ -83,12 +83,16 @@ try {
 	await page.waitForSelector(HYDRATED, { timeout: 10000 });
 	const facts = await readTables();
 
-	const openTimes = facts.open.map((row) => Date.parse(row.datetime));
-	const ascending = openTimes.every((at, i) => i === 0 || at >= openTimes[i - 1]);
+	// Once every captured deadline has passed (after 9 Oct 2027), the page shows a note in place of
+	// the open table, so the order and caption checks read the closed table and that note instead.
+	const noneOpen = facts.open.length === 0;
+	const ordered = noneOpen ? facts.closed : facts.open;
+	const times = ordered.map((row) => Date.parse(row.datetime));
+	const ascending = times.every((at, i) => i === 0 || at >= times[i - 1]);
 	check(
-		'the open table runs by deadline, soonest first, in document order',
-		facts.open.length > 0 && ascending,
-		`${facts.open.length} open rows read, non-decreasing ${ascending}, first ${facts.open[0] && facts.open[0].datetime}, last ${facts.open.length && facts.open[facts.open.length - 1].datetime}`
+		`the ${noneOpen ? 'closed' : 'open'} table runs by deadline, soonest first, in document order`,
+		ordered.length > 0 && ascending,
+		`${ordered.length} ${noneOpen ? 'closed' : 'open'} rows read, non-decreasing ${ascending}, first ${ordered[0] && ordered[0].datetime}, last ${ordered.length && ordered[ordered.length - 1].datetime}`
 	);
 
 	const passedInOpen = facts.open.filter((row) => Date.parse(row.datetime) <= facts.now);
@@ -100,9 +104,14 @@ try {
 	);
 
 	check(
-		'the open table is captioned as the soonest-first list of open tenders',
-		facts.openCaption === 'Open tenders, soonest deadline first',
-		`caption "${facts.openCaption}"`
+		noneOpen
+			? 'with no tender open, the page says so in place of the open table'
+			: 'the open table is captioned as the soonest-first list of open tenders',
+		noneOpen
+			? facts.openCaption === '' &&
+					facts.body.includes('No tender in this list is still open. The closed ones are below.')
+			: facts.openCaption === 'Open tenders, soonest deadline first',
+		`caption "${facts.openCaption}", ${facts.open.length} open rows`
 	);
 
 	const all = facts.open.concat(facts.closed);

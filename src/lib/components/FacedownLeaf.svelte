@@ -6,7 +6,9 @@
 	// Shown when any lot's coverage names a source this version does not read, so the criteria on
 	// the page may not be all there are. It says what was not read and never what the firm may do.
 	// criteriaShown says whether any lot shows a criterion: on a notice that publishes none, there
-	// are no criteria "shown above" to point at.
+	// are no criteria "shown above" to point at. The unread source can be the procurement documents,
+	// the ESPD or a source the buyer did not name, so the leaf names none of them; each lot's
+	// coverage list says which.
 	let { documents, criteriaShown }: { documents?: Documents; criteriaShown: boolean } = $props();
 </script>
 
@@ -28,10 +30,10 @@
 			</h2>
 			{@render tab()}
 			<p class="body">
-				<strong>The procurement documents have not been read.</strong>
+				<strong>Sources outside the notice have not been read.</strong>
 				{criteriaShown
-					? 'The criteria shown above come from the notice alone, and the documents can add more.'
-					: 'The notice itself publishes no selection criteria, and the documents may set some.'}
+					? 'The criteria shown above come from the notice alone, and those sources can add more.'
+					: 'The notice itself publishes no selection criteria, and those sources may set some.'}
 				{#if documents !== undefined}<span class="link"><DocumentsLink {documents} /></span>{/if}
 			</p>
 		</div>

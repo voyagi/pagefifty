@@ -227,7 +227,7 @@ describe('FacedownLeaf and the tender page around it', () => {
 		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
 		expect(leaf.id).toBe('documents');
 		expect(squash(leaf.textContent)).toContain(
-			'The procurement documents have not been read. The criteria shown above come from the notice alone, and the documents can add more.'
+			'Sources outside the notice have not been read. The criteria shown above come from the notice alone, and those sources can add more.'
 		);
 		expect(within(leaf).getByRole('link', { name: 'Open the procurement documents' })).toBeTruthy();
 	});
@@ -247,7 +247,7 @@ describe('FacedownLeaf and the tender page around it', () => {
 		render(TenderPage, { props: { data: { tender, capture: CAPTURE } } });
 		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
 		expect(squash(leaf.textContent)).toContain(
-			'The procurement documents have not been read. The notice itself publishes no selection criteria, and the documents may set some.'
+			'Sources outside the notice have not been read. The notice itself publishes no selection criteria, and those sources may set some.'
 		);
 		expect(leaf.textContent).not.toContain('shown above');
 	});
@@ -258,8 +258,17 @@ describe('FacedownLeaf and the tender page around it', () => {
 		expect(
 			squash(screen.getByRole('region', { name: 'Documents not read yet' }).textContent)
 		).toContain(
-			'The criteria shown above come from the notice alone, and the documents can add more.'
+			'The criteria shown above come from the notice alone, and those sources can add more.'
 		);
+	});
+
+	// The leaf shows for an unread ESPD or an unnamed source too, which are not the procurement
+	// documents, so it never names the documents as what was left unread.
+	it('names no one source as the unread one', () => {
+		const tender = buildTenderPage(recordOf('one-lot'), NOW);
+		render(TenderPage, { props: { data: { tender, capture: CAPTURE } } });
+		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
+		expect(leaf.textContent).not.toContain('procurement documents have not been read');
 	});
 
 	it('shows no Documents leaf when every lot is read from the notice alone', () => {

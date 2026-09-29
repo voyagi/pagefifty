@@ -180,7 +180,7 @@ try {
 	check(
 		'600367-2026 shows no criteria, so its Documents leaf points at none "shown above"',
 		documentsOnly.documentsText.includes(
-			'The notice itself publishes no selection criteria, and the documents may set some.'
+			'The notice itself publishes no selection criteria, and those sources may set some.'
 		) && !documentsOnly.documentsText.includes('shown above'),
 		`"${documentsOnly.documentsText.slice(0, 160)}"`
 	);
