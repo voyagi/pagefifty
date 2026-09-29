@@ -20,6 +20,17 @@
 		<p class="ref">
 			<span class="mono">Criterion {criterion.position} of {criterion.of}</span>
 		</p>
+		{#if criterion.parameters.length > 0}
+			<ul class="parameters" aria-label="Parameters as published">
+				{#each criterion.parameters as parameter, index (index)}
+					<li>
+						{#if 'label' in parameter}{parameter.label}{:else}<span class="mono"
+								>{parameter.code}</span
+							>{/if}: <span class="mono">{parameter.value}</span>
+					</li>
+				{/each}
+			</ul>
+		{/if}
 	</div>
 	<div class="quotes">
 		{#each criterion.descriptions as quote, index (index)}
@@ -63,6 +74,20 @@
 
 	.ref {
 		overflow-wrap: anywhere;
+	}
+
+	.parameters {
+		margin: 0.5rem 0 0;
+		padding: 0;
+		list-style: none;
+		font-size: var(--step--1);
+		line-height: 1.3;
+		color: var(--ink-2);
+		overflow-wrap: anywhere;
+	}
+
+	.parameters li + li {
+		margin-top: 0.25rem;
 	}
 
 	/* The hanging quote mark needs room on the leaf side of the text edge. */

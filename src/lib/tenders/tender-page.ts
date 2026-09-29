@@ -2,12 +2,14 @@
 // come in as arguments, so the deadline, the time left and the open test all read the one instant
 // the loader was given (D-06). Nothing here reads, translates or judges a clause (D-13).
 import type {
+	CriterionParameter,
 	DocumentsLink,
 	LangText,
 	LegislationReference,
 	LotRecord,
 	NoticeRecord
 } from '../ingest/record';
+import { parameterLabel } from '../codelists/labels';
 import { summarizeLot } from '../core/coverage-facts';
 import {
 	displayedDeadline,
@@ -31,11 +33,16 @@ export interface QuoteText extends LangText {
 	language: string;
 }
 
+// A weight or threshold published beside a criterion: named by its EU code list, or shown by its
+// list and code as published when the list has no name for it. The number stays as published.
+export type ParameterView = { label: string; value: string } | { code: string; value: string };
+
 export interface CriterionView {
 	code: string;
 	position: number;
 	of: number;
 	descriptions: QuoteText[];
+	parameters: ParameterView[];
 }
 
 export interface LotView {
@@ -61,6 +68,10 @@ export interface LotView {
 	groupLegalForm?: LangText;
 	criteria: CriterionView[];
 	coverage: CoverageLine[];
+	// The lot's own documents link, set only when the notice names no one link for every lot and no
+	// coverage line carries it: a lot whose criteria come from the notice alone would otherwise show
+	// its published link nowhere.
+	documents?: DocumentsLink;
 }
 
 interface LotIndexEntry {
@@ -170,8 +181,23 @@ function noticeDocuments(record: NoticeRecord): DocumentsLink | undefined {
 
 const sameText = (a: LangText) => (b: LangText) => a.text === b.text;
 
-function toLotView(record: NoticeRecord, lot: LotRecord, index: number, now: Date): LotView {
+function toParameterView({ listName, code, value }: CriterionParameter): ParameterView {
+	const label = parameterLabel(listName, code);
+	if (label !== undefined) return { label, value };
+	return { code: listName === undefined ? code : `${listName} ${code}`, value };
+}
+
+function toLotView(
+	record: NoticeRecord,
+	lot: LotRecord,
+	index: number,
+	now: Date,
+	shared: DocumentsLink | undefined
+): LotView {
 	const deadline = displayedDeadline(lot);
+	const coverage = coverageLines(summarizeLot(lot), lot.documents ?? record.documents);
+	const ownDocuments =
+		shared === undefined && !coverage.some((line) => line.link) ? lot.documents : undefined;
 	const criteriaSource = criteriaSourceText(lot.criteriaSources);
 	const legalBasis = legalBasisName(record.legalBasis);
 	const reserved = lot.reserved !== 'none' ? lot.reserved : undefined;
@@ -198,9 +224,11 @@ function toLotView(record: NoticeRecord, lot: LotRecord, index: number, now: Dat
 			code: criterion.code,
 			position: position + 1,
 			of: lot.criteria.length,
-			descriptions: criterion.descriptions.map(withLanguage)
+			descriptions: criterion.descriptions.map(withLanguage),
+			parameters: criterion.parameters.map(toParameterView)
 		})),
-		coverage: coverageLines(summarizeLot(lot), lot.documents ?? record.documents)
+		coverage,
+		...(ownDocuments && { documents: ownDocuments })
 	};
 }
 
@@ -213,7 +241,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 			: undefined;
 	const kind = workKind(record.cpv);
 	const documents = noticeDocuments(record);
-	const lots = record.lots.map((lot, index) => toLotView(record, lot, index, now));
+	const lots = record.lots.map((lot, index) => toLotView(record, lot, index, now, documents));
 	return {
 		noticeNumber: record.noticeNumber,
 		title: record.title,

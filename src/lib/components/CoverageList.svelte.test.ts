@@ -66,6 +66,23 @@ describe('CoverageList', () => {
 		]);
 	});
 
+	// A lot's own documents link, shown when neither the notice nor any coverage line names it.
+	it('adds a lot its own documents link after the lines, once', () => {
+		const record = recordOf('before-dst', 0);
+		const documents: DocumentsLink = {
+			published: 'https://a.example.test/',
+			href: 'https://a.example.test/'
+		};
+		const { container } = render(CoverageList, {
+			props: { lines: linesOf(record), documents }
+		});
+		const links = [...container.querySelectorAll('.documents a')].map((link) => [
+			link.getAttribute('href'),
+			squash(link.textContent)
+		]);
+		expect(links).toEqual([['https://a.example.test/', 'Open the procurement documents']]);
+	});
+
 	it('says the procurement documents were not read for 600367-2026 and links them by name', () => {
 		const record = recordOf('documents-only', 0);
 		render(CoverageList, { props: { lines: linesOf(record) } });

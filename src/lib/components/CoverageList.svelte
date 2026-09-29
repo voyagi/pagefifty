@@ -1,14 +1,19 @@
 <script lang="ts">
 	import type { CoverageLine } from '$lib/core/reading';
+	import type { DocumentsLink as Documents } from '$lib/ingest/record';
 	import DocumentsLink from './DocumentsLink.svelte';
 	import Label from './Label.svelte';
 
 	// Renders coverageLines output as given: the lines, their order and their wording are decided
-	// once, by the same coverage function as the list's reading-status tag.
-	let { lines }: { lines: readonly CoverageLine[] } = $props();
+	// once, by the same coverage function as the list's reading-status tag. documents is the lot's
+	// own link when no line and nothing else on the page carries it (LotView.documents).
+	let { lines, documents }: { lines: readonly CoverageLine[]; documents?: Documents } = $props();
 
 	const uid = $props.id();
-	const links = $derived(lines.flatMap((line) => (line.link ? [line.link] : [])));
+	const links = $derived([
+		...lines.flatMap((line) => (line.link ? [line.link] : [])),
+		...(documents ? [documents] : [])
+	]);
 </script>
 
 <section class="coverage" aria-labelledby="{uid}-coverage">

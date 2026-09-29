@@ -120,7 +120,7 @@
 					{/each}
 				</section>
 			{/each}
-			<CoverageList lines={lot.coverage} />
+			<CoverageList lines={lot.coverage} documents={lot.documents} />
 		</LeafGrid>
 	{/snippet}
 </Leaf>

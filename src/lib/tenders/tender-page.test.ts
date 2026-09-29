@@ -310,4 +310,76 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 		};
 		expect(buildTenderPage(record, BEFORE_DEADLINES).documents).toBeUndefined();
 	});
+
+	// A lot whose criteria come from the notice alone has no coverage line naming the documents, so
+	// when the notice names no one link for every lot, the lot carries its own or it shows nowhere.
+	it('keeps a lot its own documents link when neither the notice nor a coverage line shows it', () => {
+		const lotWith = (id: string, published: string, source: string) => ({
+			...base.lots[0],
+			id,
+			criteriaSources: [source],
+			documents: { published }
+		});
+		const own = buildTenderPage(
+			{
+				...base,
+				lots: [
+					lotWith('LOT-0001', 'https://a.example.test/', 'epo-notice'),
+					lotWith('LOT-0002', 'https://b.example.test/', 'epo-notice')
+				]
+			},
+			BEFORE_DEADLINES
+		);
+		expect(own.documents).toBeUndefined();
+		expect(own.lots.map((lot) => lot.documents?.published)).toEqual([
+			'https://a.example.test/',
+			'https://b.example.test/'
+		]);
+		const covered = buildTenderPage(
+			{
+				...base,
+				lots: [
+					lotWith('LOT-0001', 'https://a.example.test/', 'epo-procurement-document'),
+					lotWith('LOT-0002', 'https://b.example.test/', 'epo-procurement-document')
+				]
+			},
+			BEFORE_DEADLINES
+		);
+		expect(covered.lots.map((lot) => lot.documents)).toEqual([undefined, undefined]);
+		const shared = buildTenderPage(
+			withLot({
+				criteriaSources: ['epo-notice'],
+				documents: { published: 'https://a.example.test/' }
+			}),
+			BEFORE_DEADLINES
+		);
+		expect([shared.documents?.published, shared.lots[0].documents]).toEqual([
+			'https://a.example.test/',
+			undefined
+		]);
+	});
+
+	// 61 of the capture's 1,375 criteria publish a weight or threshold beside their text.
+	it('carries each criterion parameter with its EU code-list name, or its code when it has none', () => {
+		const [criterion] = base.lots[0].criteria;
+		const record = withLot({
+			criteria: [
+				{
+					...criterion,
+					parameters: [
+						{ listName: 'number-weight', code: 'poi-exa', value: '70.0' },
+						{ listName: 'number-threshold', code: 'min-score', value: '0' },
+						{ listName: 'number-weight', code: 'new-code', value: '3' },
+						{ code: 'ord-imp', value: '1' }
+					]
+				}
+			]
+		});
+		expect(buildTenderPage(record, BEFORE_DEADLINES).lots[0].criteria[0].parameters).toEqual([
+			{ label: 'Weight (points, exact)', value: '70.0' },
+			{ label: 'Minimum score', value: '0' },
+			{ code: 'number-weight new-code', value: '3' },
+			{ code: 'ord-imp', value: '1' }
+		]);
+	});
 });

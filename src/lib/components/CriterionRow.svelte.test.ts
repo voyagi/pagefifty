@@ -36,6 +36,28 @@ describe('CriterionRow', () => {
 		);
 		const mono = [...container.querySelectorAll('.mono')].map((each) => each.textContent?.trim());
 		expect(mono).toEqual(['slc-stand-other', 'Criterion 1 of 6']);
+		expect(container.querySelector('.parameters')).toBeNull();
+	});
+
+	it('lists each published parameter by its EU code-list name, or by its code in Mono', () => {
+		const [criterion] = buildTenderPage(recordOf('one-lot'), NOW).lots[0].criteria;
+		renderRow({
+			...criterion,
+			parameters: [
+				{ label: 'Weight (points, exact)', value: '70.0' },
+				{ code: 'number-weight new-code', value: '3' }
+			]
+		});
+		const list = screen.getByRole('list', { name: 'Parameters as published' });
+		const items = [...list.querySelectorAll('li')].map((each) =>
+			each.textContent?.replace(/\s+/g, ' ').trim()
+		);
+		expect(items).toEqual(['Weight (points, exact): 70.0', 'number-weight new-code: 3']);
+		expect([...list.querySelectorAll('.mono')].map((each) => each.textContent)).toEqual([
+			'70.0',
+			'number-weight new-code',
+			'3'
+		]);
 	});
 
 	it('shows a code the EU code list does not hold in Mono, and says it has no label', () => {
@@ -43,7 +65,8 @@ describe('CriterionRow', () => {
 			code: 'slc-not-in-the-list',
 			position: 2,
 			of: 3,
-			descriptions: [{ text: 'Nachweis', lang: 'de', language: 'German' }]
+			descriptions: [{ text: 'Nachweis', lang: 'de', language: 'German' }],
+			parameters: []
 		});
 		const heading = screen.getByRole('heading', { level: 3 });
 		expect(heading.querySelector('.mono')?.textContent).toBe('slc-not-in-the-list');
