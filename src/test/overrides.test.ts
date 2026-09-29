@@ -3,9 +3,10 @@ import { describe, expect, it } from 'vitest';
 
 // package.json pins undici under one exact miniflare (CVE-2026-85024, fixed in 7.29.1). npm applies
 // an override keyed to a version only while that version is installed and says nothing once it
-// stops matching. The CI scan leaves dev dependencies out and fails only on HIGH and CRITICAL, and
-// no Dependabot alert was open for the advisory on 2026-09-29, so a tooling update that lets the
-// pin lapse is caught here.
+// stops matching. The CI scan leaves dev dependencies out and fails only on HIGH and CRITICAL.
+// Dependabot does read dev dependencies (it opened alert 2 for this advisory against main's lockfile
+// at 2026-09-29 20:05 UTC), but only for the default branch and only as an alert after the merge,
+// so a tooling update that lets the pin lapse is caught here first, in the pull request making it.
 const pkg = JSON.parse(readFileSync('package.json', 'utf8')) as {
 	overrides?: Record<string, unknown>;
 };

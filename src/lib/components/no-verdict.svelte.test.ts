@@ -21,6 +21,9 @@ import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import NoVerdictHarness from '../../test/NoVerdictHarness.svelte';
 import PlantedVerdict from '../../test/PlantedVerdict.svelte';
 import { checkedText, findVerdictWords, VERDICT_WORDS } from '../../test/verdict-words';
+import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
+import EntryPage from '../../routes/+page.svelte';
+import ProfilePage from '../../routes/profile/+page.svelte';
 
 // SPEC R3: no phase 1 page shows a verdict, for any notice and any stored profile. Every capture
 // notice and every synthetic fixture that reads is rendered as a list row and as a tender page,
@@ -409,6 +412,43 @@ describe('the no-verdict property (SPEC R3)', () => {
 			);
 		}
 	);
+});
+
+// The other phase 1 pages: the entry page, and the profile page in each mode, where the stored
+// profile is drawn whole.
+describe('the no-verdict property on the entry and profile pages (SPEC R3)', () => {
+	beforeAll(() => {
+		vi.stubGlobal(
+			'matchMedia',
+			vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }))
+		);
+		return () => vi.unstubAllGlobals();
+	});
+
+	it('finds no verdict word on the entry page', () => {
+		const { container } = render(EntryPage, {
+			props: { data: { total: captured.length, capturedOn: CAPTURE.capturedOn } }
+		});
+		expect(checkedText(container)).toContain('Browse open tenders');
+		expect(findVerdictWords(container)).toEqual([]);
+	});
+
+	it.each([
+		['own, nothing stored', null, 'own'],
+		['own, the maximal profile', MAXIMAL_STORED, 'own'],
+		['demo', MAXIMAL_STORED, 'demo']
+	] as const)('finds no verdict word on the profile page, %s', async (_label, value, active) => {
+		resetProfileStore();
+		localStorage.clear();
+		if (value !== null) localStorage.setItem(PROFILE_KEY, value);
+		localStorage.setItem(ACTIVE_FIRM_KEY, active);
+		const { container } = render(ProfilePage);
+		// The leaves fill after mount, once the store has read storage.
+		await vi.waitFor(() => expect(container.querySelector('[aria-busy="true"]')).toBeNull());
+		expect(checkedText(container)).toContain(active === 'demo' ? 'Brink Data B.V.' : 'Total staff');
+		expect(findVerdictWords(container)).toEqual([]);
+		resetProfileStore();
+	});
 });
 
 describe('the planted verdict reader', () => {
