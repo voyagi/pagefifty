@@ -4,6 +4,7 @@
 	import { isActive, toSearch, type FilterState } from '$lib/core/filters';
 	import Button from './Button.svelte';
 	import CheckChip from './CheckChip.svelte';
+	import Field from './Field.svelte';
 
 	let { state, basePath }: { state: FilterState; basePath: '/tenders' | '/example' } = $props();
 
@@ -15,6 +16,10 @@
 	const WORK = [
 		{ value: '72', label: 'IT services' },
 		{ value: '48', label: 'Software packages' }
+	] as const;
+	const DATES = [
+		{ id: 'filter-from', name: 'from', label: 'Deadline on or after' },
+		{ id: 'filter-to', name: 'to', label: 'Deadline on or before' }
 	] as const;
 
 	// /example has no route until a later plan, so Pathname does not list it yet.
@@ -68,27 +73,21 @@
 			</div>
 		</fieldset>
 
+		<!-- Both dates share one hint, so each input points at it rather than at a hint of its own. -->
 		<div class="dates">
-			<div class="field">
-				<label for="filter-from">Deadline on or after</label>
-				<input
-					id="filter-from"
-					type="date"
-					name="from"
-					value={state.from ?? ''}
-					aria-describedby="filter-days"
-				/>
-			</div>
-			<div class="field">
-				<label for="filter-to">Deadline on or before</label>
-				<input
-					id="filter-to"
-					type="date"
-					name="to"
-					value={state.to ?? ''}
-					aria-describedby="filter-days"
-				/>
-			</div>
+			{#each DATES as date (date.name)}
+				<Field id={date.id} label={date.label}>
+					{#snippet control()}
+						<input
+							id={date.id}
+							type="date"
+							name={date.name}
+							value={state[date.name] ?? ''}
+							aria-describedby="filter-days"
+						/>
+					{/snippet}
+				</Field>
+			{/each}
 			<p class="hint" id="filter-days">Whole days in Central European Time.</p>
 		</div>
 
@@ -117,8 +116,7 @@
 		min-width: 0;
 	}
 
-	legend,
-	label {
+	legend {
 		padding: 0;
 		font-weight: 500;
 		font-size: var(--step--1);
@@ -138,29 +136,6 @@
 		display: grid;
 		grid-template-columns: repeat(2, minmax(10rem, 1fr));
 		gap: 0.35rem 1rem;
-	}
-
-	.field {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-	}
-
-	input {
-		min-height: 44px;
-		padding: 0 0.75rem;
-		font: 500 var(--step-0) / 1.2 var(--font-mono);
-		color: var(--ink);
-		background: var(--acetate);
-		border: 1px solid var(--ink-3);
-		border-radius: 3px;
-		caret-color: var(--ink);
-	}
-
-	input:focus-visible {
-		outline: 3px solid var(--focus);
-		outline-offset: 0;
-		border-color: var(--ink);
 	}
 
 	.hint {

@@ -7,11 +7,13 @@
 		variant = 'primary',
 		href,
 		type = 'button',
+		onclick,
 		children
 	}: {
 		variant?: 'primary' | 'secondary';
 		href?: Pathname;
 		type?: 'button' | 'submit';
+		onclick?: () => void;
 		children: Snippet;
 	} = $props();
 </script>
@@ -19,7 +21,7 @@
 {#if href !== undefined}
 	<a class="btn {variant}" href={resolve(href)}>{@render children()}</a>
 {:else}
-	<button class="btn {variant}" {type}>{@render children()}</button>
+	<button class="btn {variant}" {type} {onclick}>{@render children()}</button>
 {/if}
 
 <style>
