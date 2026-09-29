@@ -132,6 +132,6 @@ describe('the header firm slot', () => {
 			within(screen.getByRole('banner'))
 				.getAllByRole('link')
 				.map((l) => l.textContent?.trim())
-		).toEqual(['Skip to content', 'Pagefifty', 'Tenders', 'Firm profile']);
+		).toEqual(['Skip to content', 'Pagefifty', 'Tenders', 'Firm profile', 'Example run']);
 	});
 });

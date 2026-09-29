@@ -12,6 +12,15 @@ import {
 
 export const DEFAULT_CAPTURE = '2026-09-15';
 
+// A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
+// the snapshot was taken, read from the index the page already loads, so the example reads no
+// clock and no environment and stays the same page whenever a judge opens it (D-06).
+export type Now = Date | 'capture';
+
+export function instantOf(now: Now, index: SnapshotIndex): Date {
+	return now === 'capture' ? new Date(index.capture.fetchedAt) : now;
+}
+
 // The build names each record file after a notice number the index schema accepted, so the file
 // name is read back as written and loadRecord checks the number itself before any lookup.
 const INDEX_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/index\.json$/;

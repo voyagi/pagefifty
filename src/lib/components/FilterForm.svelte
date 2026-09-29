@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
 	import { isActive, toSearch, type FilterState } from '$lib/core/filters';
 	import Button from './Button.svelte';
 	import CheckChip from './CheckChip.svelte';
@@ -22,8 +21,6 @@
 		{ id: 'filter-to', name: 'to', label: 'Deadline on or before' }
 	] as const;
 
-	// /example has no route until a later plan, so Pathname does not list it yet.
-	const listPath = $derived(basePath as Pathname);
 	const countries = $derived(new Set<string>(state.countries));
 	const groups = $derived(new Set<string>(state.cpv));
 	// The router keeps this form across a filter navigation, and Svelte writes a field only when its
@@ -39,7 +36,7 @@
 	<form
 		class="filters"
 		method="get"
-		action={resolve(listPath)}
+		action={resolve(basePath)}
 		role="search"
 		aria-label="Filter tenders"
 	>
@@ -94,7 +91,7 @@
 		<div class="actions">
 			<Button type="submit">Apply filters</Button>
 			{#if isActive(state)}
-				<Button variant="secondary" href={listPath}>Clear filters</Button>
+				<Button variant="secondary" href={basePath}>Clear filters</Button>
 			{/if}
 		</div>
 	</form>

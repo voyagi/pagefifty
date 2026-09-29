@@ -3,7 +3,7 @@
 import { error } from '@sveltejs/kit';
 import { captureFacts } from '../tenders/list';
 import { buildTenderPage, type TenderPageData } from '../tenders/tender-page';
-import { loadIndex, loadRecord } from './records';
+import { instantOf, loadIndex, loadRecord, type Now } from './records';
 
 export function unknownNotice(notice: string): never {
 	error(404, { message: 'Not Found', kind: 'unknown-notice', notice });
@@ -18,10 +18,13 @@ export async function loadTenderPage({
 }: {
 	capture: string;
 	notice: string;
-	now: Date;
+	now: Now;
 }): Promise<TenderPageData> {
 	const record = await loadRecord(capture, notice);
 	if (record === undefined) unknownNotice(notice);
 	const index = await loadIndex(capture);
-	return { tender: buildTenderPage(record, now), capture: captureFacts(index.capture) };
+	return {
+		tender: buildTenderPage(record, instantOf(now, index)),
+		capture: captureFacts(index.capture)
+	};
 }

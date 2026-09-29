@@ -2,6 +2,7 @@
 	import type { TenderPageData } from '$lib/tenders/tender-page';
 	import Binder from './Binder.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
+	import DemoNote from './DemoNote.svelte';
 	import FacedownLeaf from './FacedownLeaf.svelte';
 	import Facts from './Facts.svelte';
 	import Label from './Label.svelte';
@@ -144,6 +145,9 @@
 		advice.
 	</p>
 </Binder>
+{#if variant === 'example'}
+	<DemoNote capturedOn={data.capture.capturedOn} />
+{/if}
 
 <style>
 	.buyer {

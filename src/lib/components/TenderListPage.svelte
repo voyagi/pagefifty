@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { formatDeadline, SERVER_TIME_ZONE } from '$lib/core/deadline';
-	import type { Pathname } from '$app/types';
 	import { countsLine, dayText, filterSummary, type TenderListData } from '$lib/tenders/list';
 	import Binder from './Binder.svelte';
+	import DemoNote from './DemoNote.svelte';
 	import EmptyState from './EmptyState.svelte';
 	import FilterForm from './FilterForm.svelte';
 	import Leaf from './Leaf.svelte';
@@ -40,8 +40,6 @@
 			: `A snapshot, not live: tenders published after ${capture.capturedOn} are missing.`
 	);
 
-	// /example has no route until a later plan, so Pathname does not list it yet.
-	const listPath = $derived(basePath as Pathname);
 	// Filters that match nothing in either group replace both tables with one named state, never a
 	// blank page; an unfiltered list always shows its tables.
 	const nothingMatches = $derived(list.filtered && list.counts.shown === 0);
@@ -112,7 +110,7 @@
 				<EmptyState
 					heading="No tenders match these filters"
 					body={emptyBody}
-					clearHref={listPath}
+					clearHref={basePath}
 				/>
 			{:else if list.open.length === 0 && list.closed.length > 0}
 				<p class="note">No tender in this list is still open. The closed ones are below.</p>
@@ -156,6 +154,9 @@
 		</Leaf>
 	{/if}
 </Binder>
+{#if example}
+	<DemoNote capturedOn={capture.capturedOn} />
+{/if}
 
 <style>
 	.index-head {

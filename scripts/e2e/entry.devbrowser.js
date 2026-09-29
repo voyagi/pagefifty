@@ -63,10 +63,17 @@ try {
 		desk.body.includes('This is not legal advice.'),
 		desk.body.includes('This is not legal advice.') ? 'present' : 'missing'
 	);
+	const example = await page.evaluate(async () => {
+		const link = Array.from(document.querySelectorAll('main a[href]')).find(
+			(each) => each.textContent.trim() === 'Open the example run'
+		);
+		if (!link) return { path: null, status: 0 };
+		return { path: new URL(link.href).pathname, status: (await fetch(link.href)).status };
+	});
 	check(
-		'no link targets /example yet',
-		!desk.hrefs.some((href) => href.startsWith('/example')),
-		`hrefs ${JSON.stringify(desk.hrefs)}`
+		'"Open the example run" leads to /example, which answers 200',
+		example.path === '/example' && example.status === 200,
+		`path ${example.path}, status ${example.status}`
 	);
 
 	await page.goto('http://127.0.0.1:8788/?theme=dark');

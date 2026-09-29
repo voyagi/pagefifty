@@ -34,17 +34,22 @@ describe('entry route', () => {
 		).toContain('mono');
 	});
 
-	it('leads to the tenders and the profile, says it is not legal advice, and links no example yet', () => {
-		renderEntry();
+	it('leads to the tenders, the example run and the profile, and says it is not legal advice', () => {
+		const { container } = renderEntry();
 		expect(screen.getByRole('link', { name: 'Browse open tenders' }).getAttribute('href')).toBe(
 			'/tenders'
 		);
+		const example = screen.getByRole('link', { name: 'Open the example run' });
+		expect(example.getAttribute('href')).toBe('/example');
+		expect(
+			[...(container.querySelector('.cover-foot .actions')?.querySelectorAll('a') ?? [])].map(
+				(link) => link.textContent?.trim()
+			)
+		).toEqual(['Browse open tenders', 'Open the example run']);
 		expect(screen.getByRole('link', { name: 'Set up your firm' }).getAttribute('href')).toBe(
 			'/profile'
 		);
 		expect(screen.getByText('This is not legal advice.')).toBeTruthy();
-		const hrefs = screen.getAllByRole('link').map((link) => link.getAttribute('href'));
-		expect(hrefs.some((href) => href?.startsWith('/example'))).toBe(false);
 	});
 
 	it('files the page in a teal binder with the Start tab open and the Firm tab after it', () => {

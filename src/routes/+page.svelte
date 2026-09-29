@@ -43,6 +43,7 @@
 					<div class="cover-foot">
 						<div class="actions">
 							<Button href="/tenders">Browse open tenders</Button>
+							<Button variant="secondary" href="/example">Open the example run</Button>
 						</div>
 						<p class="legal">This is not legal advice.</p>
 					</div>

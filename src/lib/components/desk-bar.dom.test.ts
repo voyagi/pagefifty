@@ -24,27 +24,39 @@ function navLinks() {
 }
 
 describe('MainNav', () => {
-	it('links exactly Tenders and Firm profile until the example run exists', () => {
+	it('links exactly Tenders, Firm profile and Example run, in that order', () => {
 		render(MainNav, { props: { path: '/' } });
 		expect(navLinks()).toEqual([
 			{ name: 'Tenders', href: '/tenders', current: null },
-			{ name: 'Firm profile', href: '/profile', current: null }
+			{ name: 'Firm profile', href: '/profile', current: null },
+			{ name: 'Example run', href: '/example', current: null }
 		]);
 	});
 
 	it('marks the link of the current route as the page', () => {
 		render(MainNav, { props: { path: '/profile' } });
-		expect(navLinks().map((link) => link.current)).toEqual([null, 'page']);
+		expect(navLinks().map((link) => link.current)).toEqual([null, 'page', null]);
 	});
 
 	it('marks the parent link on a child route', () => {
 		render(MainNav, { props: { path: '/tenders/600457-2026' } });
-		expect(navLinks().map((link) => link.current)).toEqual(['true', null]);
+		expect(navLinks().map((link) => link.current)).toEqual(['true', null, null]);
+	});
+
+	it('marks the example run as the page on /example and as the parent on its notices', () => {
+		render(MainNav, { props: { path: '/example' } });
+		expect(navLinks().map((link) => link.current)).toEqual([null, null, 'page']);
+		document.body.innerHTML = '';
+		render(MainNav, { props: { path: '/example/609955-2026' } });
+		expect(navLinks().map((link) => link.current)).toEqual([null, null, 'true']);
 	});
 
 	it('marks nothing for a path that only starts with the same letters', () => {
 		render(MainNav, { props: { path: '/tendersheet' } });
-		expect(navLinks().map((link) => link.current)).toEqual([null, null]);
+		expect(navLinks().map((link) => link.current)).toEqual([null, null, null]);
+		document.body.innerHTML = '';
+		render(MainNav, { props: { path: '/examples' } });
+		expect(navLinks().map((link) => link.current)).toEqual([null, null, null]);
 	});
 });
 
@@ -68,7 +80,7 @@ describe('DeskBar', () => {
 		const { container } = render(DeskBar, { props: { path: '/tenders' } });
 		const header = screen.getByRole('banner');
 		expect(within(header).getByRole('link', { name: 'Pagefifty' }).getAttribute('href')).toBe('/');
-		expect(navLinks().map((link) => link.current)).toEqual(['page', null]);
+		expect(navLinks().map((link) => link.current)).toEqual(['page', null, null]);
 		expect(within(header).getByRole('group', { name: 'Theme' })).toBeTruthy();
 		await vi.waitFor(() =>
 			expect(container.querySelector('[data-firm-slot]')?.textContent).toContain('Your firm')
