@@ -83,6 +83,22 @@ describe('CoverageList', () => {
 		expect(links).toEqual([['https://a.example.test/', 'Open the procurement documents']]);
 	});
 
+	// safeLink is the one producer of a link target and keeps only http and https; the address is
+	// checked again where it becomes an href, so a record from anywhere else cannot carry a script.
+	it('never makes a link of a documents address that is not http or https', () => {
+		const planted = 'javascript:alert(1)';
+		const { container } = render(SourceLinks, {
+			props: {
+				tedUrl: 'https://ted.europa.eu/en/notice/-/detail/609955-2026',
+				documents: { published: planted, href: planted }
+			}
+		});
+		expect(container.querySelectorAll('a')).toHaveLength(1);
+		expect(squash(container.textContent)).toContain(
+			`Procurement documents, published as ${planted}`
+		);
+	});
+
 	it('says the procurement documents were not read for 600367-2026 and links them by name', () => {
 		const record = recordOf('documents-only', 0);
 		render(CoverageList, { props: { lines: linesOf(record) } });

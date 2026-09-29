@@ -167,8 +167,10 @@ const DEADLINE_KINDS = { request: 'Requests to participate', tender: 'Tenders' }
 
 // The documents every lot shares. In the 2026-09-15 capture no notice publishes a procedure-level
 // link and no two lots of one notice publish different ones, so the lot's link is the notice's.
-// Shared means the same address AND the same restriction: an address open on one lot and
-// restricted on another could be worded neither way for the whole notice.
+// Shared means the same published address AND the same restriction: an address open on one lot
+// and restricted on another could be worded neither way for the whole notice. The link target is
+// no third test: safeLink derives it from the published address alone, so equal addresses always
+// carry equal targets.
 function noticeDocuments(record: NoticeRecord): DocumentsLink | undefined {
 	if (record.documents) return record.documents;
 	const links = record.lots.map((lot) => lot.documents);

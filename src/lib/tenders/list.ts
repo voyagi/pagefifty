@@ -225,7 +225,7 @@ export function countsLine(
 		counts.open,
 		' open, ',
 		counts.closed,
-		' closed.'
+		` ${closedWords}.`
 	];
 }
 

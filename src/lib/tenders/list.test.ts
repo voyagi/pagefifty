@@ -234,6 +234,11 @@ describe('countsLine', () => {
 		expect(text(countsLine(counts(2, 2, 1, 1), false, 'closed at the capture time'))).toBe(
 			'1 open and 1 closed at the capture time, of 2 notices.'
 		);
+		// The filtered line takes it too, so the example never says "closed" alone on one line and
+		// "closed at the capture time" on the other.
+		expect(text(countsLine(counts(2, 2, 1, 1), true, 'closed at the capture time'))).toBe(
+			'2 of 2 notices match these filters: 1 open, 1 closed at the capture time.'
+		);
 	});
 });
 

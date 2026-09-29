@@ -267,4 +267,24 @@ describe('TenderListPage states', () => {
 			)
 		).toBeTruthy();
 	});
+
+	// D-08 compares the open lots only, so the count names them: a partly closed notice has more lots
+	// than the ones whose deadlines differ.
+	it('counts the open lots whose deadlines differ, and says they are the open ones', () => {
+		const [lot] = OPEN_ROW.lots;
+		const row: IndexRow = {
+			...OPEN_ROW,
+			lots: [
+				lot,
+				{ ...lot, id: 'LOT-0002', deadlines: { tender: '2026-11-09T10:00:00+01:00' } },
+				{ ...lot, id: 'LOT-0003', deadlines: { tender: '2026-09-21T10:00:00+02:00' } }
+			]
+		};
+		const { container } = render(TenderListPage, {
+			props: { data: pageData([row]), basePath: '/tenders' }
+		});
+		expect(squash(container.querySelector('#open td.deadline small')?.textContent)).toBe(
+			'2 open lots, deadlines differ'
+		);
+	});
 });

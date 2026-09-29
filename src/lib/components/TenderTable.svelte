@@ -45,7 +45,7 @@
 						<DeadlineTime instant={shown.instant} />
 					{/if}
 					{#if row.deadline.lotsDiffer}
-						<small>{row.deadline.openLotCount} lots, deadlines differ</small>
+						<small>{row.deadline.openLotCount} open lots, deadlines differ</small>
 					{/if}
 				</td>
 				<td class="tender">
