@@ -11,7 +11,14 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	{ slug: 'tenders', theme: 'light', url: 'http://127.0.0.1:8788/tenders?theme=light' },
+	// A list is a table only above 1340px and cards at the audit width, so each list is audited as
+	// the table in Light and as cards in Dark: both layouts meet axe, at no extra entry.
+	{
+		slug: 'tenders',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders?theme=light',
+		width: 1440
+	},
 	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
@@ -96,7 +103,8 @@ const AUDITS = [
 		slug: 'example',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
-		expectText: 'Closed at the capture time'
+		expectText: 'Closed at the capture time',
+		width: 1440
 	},
 	{
 		slug: 'example',
@@ -135,7 +143,8 @@ const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
 // axe runs at the browser's own width, as before the width shots existed; they return to it. It is
 // set before the first audit too, so a browser that reports no size of its own (null) still has
-// every page audited at one width, never the first at another.
+// every page audited at one width, never the first at another. The only other width is one an
+// entry names itself (the list tables above), and the entry records the width it was audited at.
 const AUDIT_VIEWPORT = page.viewportSize() ?? { width: 1280, height: 720 };
 await page.setViewportSize(AUDIT_VIEWPORT);
 
@@ -228,7 +237,7 @@ function isAccepted(item) {
 	);
 }
 
-async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
+async function audit({ slug, theme, url, expectStatus, expectText, storage, width }) {
 	const entry = {
 		slug,
 		theme,
@@ -236,13 +245,19 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
 		expectStatus,
 		expectText,
 		storage,
+		width: width ?? AUDIT_VIEWPORT.width,
 		violations: [],
 		incomplete: [],
 		acceptedIncomplete: [],
 		widthShots: []
 	};
+	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
-	if (entry.loadProblem) return entry;
+	entry.auditedWidth = await page.evaluate(() => innerWidth);
+	if (entry.loadProblem) {
+		await page.setViewportSize(AUDIT_VIEWPORT);
+		return entry;
+	}
 	const result = await runAxe();
 	entry.violations = result.violations;
 	entry.targetSizeRan = result.targetSizeRan;

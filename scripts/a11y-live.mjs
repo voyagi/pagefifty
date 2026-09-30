@@ -16,7 +16,8 @@
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
 //             2 the audit did not happen: zero routes or themes, a page that did not load with an
-//               h1 and its theme, target-size never ran, or the lock, port or server failed.
+//               h1 and its theme, a page not audited at the width its entry names, target-size
+//               never ran, or the lock, port or server failed.
 
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -47,7 +48,7 @@ function reportPage(page) {
 	const accepted = page.acceptedIncomplete.length;
 	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
 	console.log(
-		`${page.slug} | ${page.theme}${status} | ${page.violations.length} violations | ` +
+		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${status} | ${page.violations.length} violations | ` +
 			`${page.incomplete.length} incomplete (${accepted} accepted) | ${page.screenshot}`
 	);
 	for (const item of [...page.violations, ...page.incomplete]) {
@@ -86,6 +87,12 @@ function verdict(result) {
 		console.error(
 			'a11y: a page is missing a width screenshot, so the visual backstops lack evidence'
 		);
+		return 2;
+	}
+	// A list is audited as its table only at the width its entry names, so a page read at any other
+	// width left one layout unaudited.
+	if (audited.some((page) => page.auditedWidth !== page.width)) {
+		console.error('a11y: a page was not audited at the width its entry names');
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {
