@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		exportDateText,
 		importAppliedText,
 		importFaultText,
 		importRefusalLines,
@@ -33,6 +34,8 @@
 	} = $props();
 
 	let refusal = $state<RefusalText | null>(null);
+	// Kept apart from the import refusal, so an export never clears or replaces what an import said.
+	let exportRefusal = $state<RefusalText | null>(null);
 
 	// Files apply in the order they were picked, whatever order their reads finish in; the store's
 	// answer is kept so a write the browser refused is never reported as an import.
@@ -75,7 +78,9 @@
 		if (!current) return;
 		const now = clock();
 		downloadProfile(current, now);
-		store.markExported(now);
+		const result = store.markExported(now);
+		exportRefusal =
+			result === 'failed' || result === 'newer-version' ? exportDateText(result) : null;
 	}
 </script>
 
@@ -103,6 +108,9 @@
 <StatusLine text={statusText} />
 {#if refusal}
 	<ErrorBlock text={refusal} />
+{/if}
+{#if exportRefusal}
+	<ErrorBlock text={exportRefusal} />
 {/if}
 
 <style>

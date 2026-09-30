@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	clockTime,
+	exportDateText,
 	fieldErrorText,
 	importAppliedText,
 	importFaultText,
@@ -27,6 +28,21 @@ const invalid = (fields: Issue[]): ImportRefusal => ({
 });
 const lineFor = (issue: Issue) => importRefusalLines(invalid([issue])).fields[0];
 const LONE_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/;
+
+describe('an export whose date the browser did not keep', () => {
+	it('says the file was downloaded and why its date was not stored', () => {
+		expect(exportDateText('failed')).toEqual({
+			lead: 'The profile file was downloaded, but this browser refused to store the export date, so its storage may be full or blocked.',
+			fields: [],
+			closing: 'Last exported still shows the date stored before.'
+		});
+		expect(exportDateText('newer-version')).toEqual({
+			lead: 'The profile file was downloaded, but this browser now holds a profile saved by a newer version of Pagefifty, so the export date was not stored.',
+			fields: [],
+			closing: 'Last exported still shows the date stored before.'
+		});
+	});
+});
 
 describe('fieldErrorText', () => {
 	it('words every number problem for each kind of number', () => {

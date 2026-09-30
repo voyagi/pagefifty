@@ -71,6 +71,27 @@ async function saveStaff(value: string) {
 	await userEvent.type(await staffField(), value);
 }
 
+// The download goes through an object URL and a clicked link, and jsdom performs neither, so the
+// blobs and the file names are collected here instead.
+function stubDownload() {
+	const created: Blob[] = [];
+	vi.stubGlobal('URL', {
+		...URL,
+		createObjectURL: (blob: Blob) => {
+			created.push(blob);
+			return 'blob:profile';
+		},
+		revokeObjectURL: () => undefined
+	});
+	const names: string[] = [];
+	vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (
+		this: HTMLAnchorElement
+	) {
+		names.push(this.download);
+	});
+	return { created, names };
+}
+
 // Every button and file control in the Firm leaf's action row, in the order the page draws them.
 function actionNames(): string[] {
 	const firm = document.getElementById('firm') as HTMLElement;
@@ -115,21 +136,7 @@ describe('profile actions in own mode', () => {
 	});
 
 	it('downloads the dated file and shows the export date', async () => {
-		const created: Blob[] = [];
-		vi.stubGlobal('URL', {
-			...URL,
-			createObjectURL: (blob: Blob) => {
-				created.push(blob);
-				return 'blob:profile';
-			},
-			revokeObjectURL: () => undefined
-		});
-		const names: string[] = [];
-		vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (
-			this: HTMLAnchorElement
-		) {
-			names.push(this.download);
-		});
+		const { created, names } = stubDownload();
 		render(Page);
 		await saveStaff('19');
 		await userEvent.click(screen.getByRole('button', { name: 'Export profile file' }));
@@ -140,6 +147,39 @@ describe('profile actions in own mode', () => {
 			screen.getByText(`Last exported: ${formatDay(now.toISOString(), 'Europe/Amsterdam')}`)
 		).toBeTruthy();
 		expect(JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}').lastExportedAt).not.toBeNull();
+	});
+
+	it('says the file was downloaded when the browser refuses to store its export date', async () => {
+		const { names } = stubDownload();
+		render(Page);
+		await saveStaff('19');
+		const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+			throw new DOMException('full', 'QuotaExceededError');
+		});
+		await userEvent.click(screen.getByRole('button', { name: 'Export profile file' }));
+		expect(names).toHaveLength(1);
+		expect(await alertText()).toBe(
+			'The profile file was downloaded, but this browser refused to store the export date, so its storage may be full or blocked. Last exported still shows the date stored before.'
+		);
+		expect(screen.getByText('Last exported: never')).toBeTruthy();
+		expect(JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}').lastExportedAt).toBeNull();
+		setItem.mockRestore();
+		await userEvent.click(screen.getByRole('button', { name: 'Export profile file' }));
+		expect(names).toHaveLength(2);
+		expect(screen.queryByRole('alert')).toBeNull();
+	});
+
+	it('says the export date was not stored when another tab left a newer-version profile', async () => {
+		const { names } = stubDownload();
+		render(Page);
+		await saveStaff('19');
+		// Written straight to storage, so this tab's store learns of it only when it next reads.
+		localStorage.setItem(PROFILE_KEY, JSON.stringify({ schemaVersion: 2 }));
+		await userEvent.click(screen.getByRole('button', { name: 'Export profile file' }));
+		expect(names).toHaveLength(1);
+		expect(await alertText()).toBe(
+			'The profile file was downloaded, but this browser now holds a profile saved by a newer version of Pagefifty, so the export date was not stored. Last exported still shows the date stored before.'
+		);
 	});
 });
 

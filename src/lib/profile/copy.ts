@@ -334,6 +334,18 @@ export function importFaultText(file: string): RefusalText {
 	};
 }
 
+// The file is saved to disk before its date is written, so this never closes on "Nothing was
+// changed": only the date failed to stay in this browser.
+export function exportDateText(result: 'failed' | 'newer-version'): RefusalText {
+	const lead = {
+		failed:
+			'The profile file was downloaded, but this browser refused to store the export date, so its storage may be full or blocked.',
+		'newer-version':
+			'The profile file was downloaded, but this browser now holds a profile saved by a newer version of Pagefifty, so the export date was not stored.'
+	}[result];
+	return { lead, fields: [], closing: 'Last exported still shows the date stored before.' };
+}
+
 // HH:MM in the given zone, 24-hour.
 export function clockTime(instant: Date, timeZone: string): string {
 	return new Intl.DateTimeFormat('en-GB', {
