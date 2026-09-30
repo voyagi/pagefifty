@@ -572,6 +572,38 @@ describe('ProfileForm, what shows after a refused write or a newer profile', () 
 		expect(field('Certificate name').value).toBe('ISO 22301');
 		expect(document.getElementById('add-certificate')?.hidden).toBe(false);
 	});
+
+	// Every field shows what storage holds once the user leaves it, not only the staff count.
+	it('shows the stored years, turnover and date again once the user leaves a refused field', async () => {
+		mount();
+		await retype('Completed financial years', '3');
+		await retype('2025', '1240000');
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 9001' }));
+		setDate(field('ISO 9001 valid until'), '2027-05-31');
+		refuseWrites();
+		await retype('Completed financial years', '5');
+		await retype('2025', '999');
+		const date = field('ISO 9001 valid until');
+		date.focus();
+		setDate(date, '2028-01-31');
+		expect(date.value).toBe('2028-01-31');
+		await userEvent.click(document.body);
+		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+		await vi.waitFor(() => expect(date.value).toBe('2027-05-31'));
+		expect(field('Completed financial years').value).toBe('3');
+		expect(field('2025').value).toBe('1240000');
+	});
+
+	// The error names what is wrong with the text, so leaving the field must not swap it for the
+	// stored value while the error still shows.
+	it('keeps the typed text of a field in error once the user leaves it', async () => {
+		mount();
+		await retype('2025', '1240000');
+		await retype('2025', '1.240');
+		await userEvent.click(document.body);
+		expect(field('2025').value).toBe('1.240');
+		expect(status()).toBe('Not saved: 2025 needs a valid value. The rest is saved.');
+	});
 });
 
 // D-19: phase 1 edits exactly the SPEC R4 subset. Every control the form draws must belong to one

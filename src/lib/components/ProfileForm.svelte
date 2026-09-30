@@ -49,7 +49,10 @@
 	type NumberKind = 'money' | 'staff' | 'years';
 
 	// Drafts hold what is typed, errors what is wrong with it. Storage only ever gets a valid value,
-	// so a field in error keeps its last valid value there until it is fixed.
+	// so a field in error keeps its last valid value there until it is fixed. What a field shows
+	// follows one rule: the typed text while the user is in the field or it shows an error, otherwise
+	// what storage holds. syncDrafts (load, another tab, an import), left (leaving a field) and
+	// toggleCertificate (a removal storage kept) each apply it at their moment.
 	let drafts = $state<Record<string, string>>({});
 	let errors = $state<Record<string, { label: string; error: FieldError }>>({});
 	let lastEvent = $state<FormEvent | null>(null);
