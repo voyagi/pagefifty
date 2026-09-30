@@ -20,12 +20,13 @@ const Year = z.number().int().min(1900).max(2100);
 // anything past Number.MAX_SAFE_INTEGER (schema.test.ts pins that).
 const Whole = z.number().int().nonnegative();
 
-// The index of every row whose year an earlier row already holds.
-function repeatedYearRows(rows: readonly { year: number }[]): number[] {
-	const seen = new Set<number>();
+// The index of every row whose key an earlier row already holds.
+function repeatedRows<T>(rows: readonly T[], keyOf: (row: T) => number | string): number[] {
+	const seen = new Set<number | string>();
 	return rows.flatMap((row, index) => {
-		const repeated = seen.has(row.year);
-		seen.add(row.year);
+		const key = keyOf(row);
+		const repeated = seen.has(key);
+		seen.add(key);
 		return repeated ? [index] : [];
 	});
 }
@@ -78,12 +79,12 @@ export const ProfileSchema = z
 	.superRefine((profile, ctx) => {
 		// One figure per year: with two rows for a year every later reading (the form's average,
 		// phase 2's comparisons) would pick one by position, so the repeated year is refused by name.
-		const lists = [
+		const lists: { path: string[]; rows: readonly { year: number }[] }[] = [
 			{ path: ['turnover'], rows: profile.turnover },
 			{ path: ['staff', 'yearlyAverages'], rows: profile.staff.yearlyAverages }
 		];
 		for (const { path, rows } of lists) {
-			for (const index of repeatedYearRows(rows)) {
+			for (const index of repeatedRows(rows, (row) => row.year)) {
 				const { year } = rows[index];
 				ctx.addIssue({
 					code: 'custom',
@@ -92,6 +93,17 @@ export const ProfileSchema = z
 					input: year
 				});
 			}
+		}
+		// One row per certificate: the profile page lists certificates by name, and a name listed
+		// twice stops it drawing (Svelte refuses a repeated key), besides leaving two dates to pick from.
+		for (const index of repeatedRows(profile.certificates, (row) => row.standard)) {
+			const { standard } = profile.certificates[index];
+			ctx.addIssue({
+				code: 'custom',
+				message: `certificate ${standard} is listed twice`,
+				path: ['certificates', index, 'standard'],
+				input: standard
+			});
 		}
 	});
 

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
 	import type { ListRow } from '$lib/tenders/list';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import ReadingTag from './ReadingTag.svelte';
@@ -17,9 +16,8 @@
 		closed?: boolean;
 	} = $props();
 
-	// /example/[notice] has no route until plan 01-15, so Pathname cannot type a path built from
-	// either base; the notice number in the path is one the index schema accepted.
-	const tenderPath = (notice: string) => `${basePath}/${notice}` as Pathname;
+	// The notice number in the path is one the index schema accepted.
+	const tenderPath = (notice: string): `${typeof basePath}/${string}` => `${basePath}/${notice}`;
 </script>
 
 <table class="index">

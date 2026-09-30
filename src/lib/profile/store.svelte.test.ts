@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { canonicalStoredJson } from './canonical';
 import { emptyProfile, type Profile, type StoredProfile } from './schema';
 import {
@@ -6,7 +6,9 @@ import {
 	PROFILE_KEY,
 	browserStorage,
 	createProfileStore,
-	isKeptInMemory
+	getProfileStore,
+	isKeptInMemory,
+	resetProfileStore
 } from './store.svelte';
 
 class CountingStorage implements Storage {
@@ -716,5 +718,35 @@ describe('browserStorage', () => {
 		const storage = browserStorage({ localStorage: null as unknown as Storage });
 		expect(storage).not.toBeNull();
 		expect(isKeptInMemory(storage)).toBe(true);
+	});
+});
+
+describe('getProfileStore', () => {
+	afterEach(() => resetProfileStore());
+
+	it('hands every caller on the page the same store', () => {
+		expect(getProfileStore().store).toBe(getProfileStore().store);
+	});
+
+	// A blocked browser answers each read of localStorage with a new stand-in, so the page keeps its
+	// first one: what was typed on the profile page is still there when the header asks.
+	it('keeps one memory stand-in for the page while storage is blocked', () => {
+		const blocked = {
+			get localStorage(): Storage {
+				throw new DOMException('blocked', 'SecurityError');
+			},
+			addEventListener: () => undefined,
+			removeEventListener: () => undefined
+		} as unknown as Window;
+		const first = getProfileStore(blocked);
+		expect(first.keptInMemory).toBe(true);
+		const profile: Profile = {
+			...emptyProfile(),
+			staff: { total: 19, byRole: [], yearlyAverages: [] }
+		};
+		expect(first.store.saveProfile(profile, new Date('2026-09-29T12:00:00Z'))).toBe('saved');
+		const second = getProfileStore(blocked);
+		expect(second.store).toBe(first.store);
+		expect(second.store.stored?.profile.staff.total).toBe(19);
 	});
 });

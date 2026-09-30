@@ -10,12 +10,14 @@
 	}
 </script>
 
-<!-- Example run joins once /example exists (plan 01-15): no link to a page that is not there. -->
 <nav aria-label="Main">
 	<ul>
 		<li><a href={resolve('/tenders')} aria-current={current(resolve('/tenders'))}>Tenders</a></li>
 		<li>
 			<a href={resolve('/profile')} aria-current={current(resolve('/profile'))}>Firm profile</a>
+		</li>
+		<li>
+			<a href={resolve('/example')} aria-current={current(resolve('/example'))}>Example run</a>
 		</li>
 	</ul>
 </nav>

@@ -238,6 +238,40 @@ export function createProfileStore(storage: Storage) {
 	};
 }
 
+export type ProfileStore = ReturnType<typeof createProfileStore>;
+
+interface SharedStore {
+	readonly store: ProfileStore;
+	// True when the browser blocks storage and the profile lives only in this page's memory.
+	readonly keptInMemory: boolean;
+}
+
+let shared: (SharedStore & { readonly storage: Storage; readonly stop: () => void }) | null = null;
+
+// One store for the whole page, so the header's firm slot and the profile form read the same
+// profile and the same active firm. Created on first use in the browser, never during a server
+// render, and it follows other tabs for as long as the page is open. A blocked storage keeps
+// its memory stand-in for the page's lifetime, so what was entered is not lost between the two.
+export function getProfileStore(source: Window = window): SharedStore {
+	const storage = browserStorage(source);
+	const same =
+		shared !== null &&
+		(storage === shared.storage || (isKeptInMemory(storage) && isKeptInMemory(shared.storage)));
+	if (!same) {
+		shared?.stop();
+		const store = createProfileStore(storage);
+		store.load();
+		shared = { store, storage, keptInMemory: isKeptInMemory(storage), stop: store.listen(source) };
+	}
+	return shared as SharedStore;
+}
+
+// A fresh page for each component test; the app itself never drops the store.
+export function resetProfileStore() {
+	shared?.stop();
+	shared = null;
+}
+
 class MemoryStorage implements Storage {
 	readonly #values = new Map<string, string>();
 	get length() {

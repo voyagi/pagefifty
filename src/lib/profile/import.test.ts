@@ -207,6 +207,25 @@ describe('importProfileFile', () => {
 		]);
 	});
 
+	// The profile page lists certificates by name, and a name listed twice would stop it drawing.
+	it('refuses a file holding one certificate twice, naming the repeated row', async () => {
+		const text = envelopeText(
+			{},
+			{
+				certificates: [
+					{ standard: 'ISO 27001', validUntil: '2027-05-31' },
+					{ standard: 'NEN 7510' },
+					{ standard: ' ISO 27001 ' }
+				]
+			}
+		);
+		const result = refusal(await importProfileFile(fileOf('twice.json', text)));
+		expect(result.reason).toBe('invalid');
+		expect(result.fields).toEqual([
+			{ path: ['profile', 'certificates', 2, 'standard'], problem: 'custom', found: ' ISO 27001 ' }
+		]);
+	});
+
 	it('refuses a file carrying a __proto__ key, naming it, and pollutes nothing', async () => {
 		const text = `{"__proto__":{"polluted":"yes"},${envelopeText({}).slice(1)}`;
 		const result = refusal(await importProfileFile(fileOf('proto.json', text)));

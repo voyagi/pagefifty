@@ -1,8 +1,10 @@
-// The list loader /tenders and /example share. The caller passes "now": the real clock for
-// /tenders, the capture instant for /example (D-06).
+// The list loader /tenders and /example share, and the example's two loaders. The caller passes
+// "now": the real clock for /tenders, the capture instant for /example (D-06).
 import { parseFilters } from '../core/filters';
 import { buildTenderList, captureFacts, type TenderListData } from '../tenders/list';
-import { loadIndex } from './records';
+import type { TenderPageData } from '../tenders/tender-page';
+import { DEFAULT_CAPTURE, instantOf, loadIndex, type Now } from './records';
+import { loadTenderPage } from './tender-page';
 
 export async function loadTenderList({
 	capture,
@@ -11,14 +13,24 @@ export async function loadTenderList({
 }: {
 	capture: string;
 	url: URL;
-	now: Date;
+	now: Now;
 }): Promise<TenderListData> {
 	const index = await loadIndex(capture);
 	const { state, dropped } = parseFilters(url.searchParams);
 	return {
-		list: buildTenderList(index, state, now),
+		list: buildTenderList(index, state, instantOf(now, index)),
 		filters: state,
 		dropped,
 		capture: captureFacts(index.capture)
 	};
+}
+
+// The example replays the tracked capture through the same loaders as the live pages, judged at
+// the instant it was taken, so it is never empty however long after the capture it is opened.
+export function loadExampleList({ url }: { url: URL }): Promise<TenderListData> {
+	return loadTenderList({ capture: DEFAULT_CAPTURE, url, now: 'capture' });
+}
+
+export function loadExamplePage({ notice }: { notice: string }): Promise<TenderPageData> {
+	return loadTenderPage({ capture: DEFAULT_CAPTURE, notice, now: 'capture' });
 }

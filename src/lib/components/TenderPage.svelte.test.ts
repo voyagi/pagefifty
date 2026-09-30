@@ -4,6 +4,7 @@ import { readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { readNotice } from '$lib/ingest/read-notice';
 import type { NoticeRecord } from '$lib/ingest/record';
+import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
 import { buildTenderPage } from '$lib/tenders/tender-page';
 import TenderPage from './TenderPage.svelte';
 
@@ -187,5 +188,28 @@ describe('TenderPage', () => {
 	it('labels the first tab Example on the example run', () => {
 		renderPage(recordOf('one-lot'), BEFORE, 'example');
 		expect(screen.getByRole('link', { name: 'Example' }).getAttribute('href')).toBe('#tender');
+	});
+
+	// Months after the capture a bare "Time left: 15 days" would read as days left today.
+	it('counts the example time left at the capture time, and says so', () => {
+		renderPage(recordOf('one-lot'), BEFORE, 'example');
+		const facts = factsOf(screen.getByRole('complementary', { name: 'Tender facts' }));
+		expect(facts['Time left at the capture time']).toBe('15 days');
+		expect(facts['Time left']).toBeUndefined();
+	});
+
+	// CI runs no browser driver, so this is the footnote's only check there.
+	it('names the capture day and the demo firm under the example tender page', () => {
+		const { container } = renderPage(recordOf('one-lot'), BEFORE, 'example');
+		expect(
+			[...container.querySelectorAll('.demo-note')].map((note) => squash(note.textContent))
+		).toEqual([
+			`Example run from a snapshot captured on 15 Sep 2026. ${DEMO_FIRM_SHORT} is a demo firm with invented figures. Not legal advice.`
+		]);
+	});
+
+	it('shows no demo footnote on a live tender page', () => {
+		const { container } = renderPage(recordOf('one-lot'));
+		expect(container.querySelector('.demo-note')).toBeNull();
 	});
 });

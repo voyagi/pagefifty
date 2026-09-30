@@ -1,13 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Pathname } from '$app/types';
 	import Binder from '$lib/components/Binder.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Leaf from '$lib/components/Leaf.svelte';
-
-	// /example has no route until plan 01-15, so Pathname does not list it yet. The link below renders
-	// only when an /example route itself throws the unknown-notice error, so it never leads nowhere.
-	const EXAMPLE = '/example' as string as Pathname;
 
 	const notFound = $derived(page.status === 404);
 	// Every 4xx but the 404 answered above is the request's fault, never the server's: the built
@@ -74,7 +69,7 @@
 				</p>
 				<div class="actions">
 					{#if onExample}
-						<Button href={EXAMPLE}>Back to the example run</Button>
+						<Button href="/example">Back to the example run</Button>
 						<Button variant="secondary" href="/tenders">Browse open tenders</Button>
 					{:else}
 						<Button href="/tenders">Browse open tenders</Button>

@@ -1,15 +1,17 @@
 import { readFileSync } from 'node:fs';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
-const read = vi.hoisted(() =>
-	vi.fn((url: string) => new Response(readFileSync(url.replace(/^\//, '').replace(/\?.*$/, ''))))
+const fromDisk = vi.hoisted(
+	() => (url: string) => readFileSync(url.replace(/^\//, '').replace(/\?.*$/, ''), 'utf8')
 );
+const read = vi.hoisted(() => vi.fn((url: string) => new Response(fromDisk(url))));
 vi.mock('$app/server', () => ({ read }));
 
 const { DEFAULT_CAPTURE } = await import('./records');
-const { loadTenderList } = await import('./tenders');
+const { loadExampleList, loadExamplePage, loadTenderList } = await import('./tenders');
+const { loadTenderPage } = await import('./tender-page');
 
 const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
 
@@ -75,5 +77,96 @@ describe('loadTenderList', () => {
 				)
 		);
 		await expect(load('')).rejects.toThrow('the 2026-09-15 index could not be read');
+	});
+});
+
+describe('the example run', () => {
+	const exampleList = (search = '') =>
+		loadExampleList({ url: new URL(`http://127.0.0.1/example${search}`) });
+
+	afterEach(() => {
+		vi.useRealTimers();
+		vi.unstubAllEnvs();
+	});
+
+	it('lists the same notices as /tenders judged at the capture instant, reading the index once', async () => {
+		const tenders = await load('');
+		read.mockClear();
+		const example = await exampleList();
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(example).toEqual(tenders);
+		expect(example.list.open.length).toBe(350);
+	});
+
+	it('filters the same way as /tenders', async () => {
+		expect(await exampleList('?country=NL&cpv=72')).toEqual(await load('?country=NL&cpv=72'));
+	});
+
+	it('builds the same tender page for 609955-2026 as /tenders at the capture instant', async () => {
+		const tenders = await loadTenderPage({
+			capture: DEFAULT_CAPTURE,
+			notice: '609955-2026',
+			now: CAPTURE_INSTANT
+		});
+		const example = await loadExamplePage({ notice: '609955-2026' });
+		expect(example).toEqual(tenders);
+		expect(example.tender.deadline.open).toBe(true);
+	});
+
+	it('answers an unknown notice with the unknown-notice 404 before reading the index', async () => {
+		await expect(loadExamplePage({ notice: '999991-2026' })).rejects.toMatchObject({
+			status: 404,
+			body: { kind: 'unknown-notice', notice: '999991-2026' }
+		});
+		expect(read).not.toHaveBeenCalled();
+	});
+
+	it('is still the capture as it stood on 15 Dec 2026, with no PAGEFIFTY variable set', async () => {
+		const atCapture = await exampleList();
+		vi.useFakeTimers({ toFake: ['Date'] });
+		vi.setSystemTime(new Date('2026-12-15T12:00:00Z'));
+		expect(new Date().toISOString()).toBe('2026-12-15T12:00:00.000Z');
+		expect(Object.keys(process.env).filter((name) => name.startsWith('PAGEFIFTY'))).toEqual([]);
+		const judging = await exampleList();
+		expect(judging.list.open.length).toBeGreaterThan(0);
+		expect(judging.capture.capturedOn).toBe('15 Sep 2026');
+		expect(judging).toEqual(atCapture);
+		// The live list judged on the same day has fewer open, so the example is not reading the clock.
+		expect((await load('', new Date())).list.counts.open).toBeLessThan(judging.list.counts.open);
+	});
+
+	it('ignores the live switch: the example reads no environment variable', async () => {
+		const before = await exampleList();
+		vi.stubEnv('PAGEFIFTY_LIVE', '1');
+		expect(await exampleList()).toEqual(before);
+	});
+
+	describe('a lot whose deadline is the capture instant itself', () => {
+		const NOTICE = '609955-2026';
+		function withDeadline(deadline: string) {
+			read.mockImplementationOnce((url: string) => {
+				const index = JSON.parse(fromDisk(url)) as {
+					rows: { noticeNumber: string; lots: { deadlines: unknown }[] }[];
+				};
+				const row = index.rows.find((each) => each.noticeNumber === NOTICE);
+				if (row === undefined) throw new Error(`${NOTICE} is not in the capture index`);
+				for (const lot of row.lots) lot.deadlines = { tender: deadline };
+				return new Response(JSON.stringify(index));
+			});
+		}
+		const where = (data: Awaited<ReturnType<typeof exampleList>>) => ({
+			open: data.list.open.some((row) => row.noticeNumber === NOTICE),
+			closed: data.list.closed.some((row) => row.noticeNumber === NOTICE)
+		});
+
+		it('is closed in the example, since a deadline equal to now has passed', async () => {
+			withDeadline('2026-09-15T21:50:49.157+02:00');
+			expect(where(await exampleList())).toEqual({ open: false, closed: true });
+		});
+
+		it('is open one millisecond later', async () => {
+			withDeadline('2026-09-15T21:50:49.158+02:00');
+			expect(where(await exampleList())).toEqual({ open: true, closed: false });
+		});
 	});
 });

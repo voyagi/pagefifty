@@ -193,6 +193,26 @@ describe('ProfileSchema', () => {
 			'ISO 9001'
 		]);
 	});
+
+	// The profile page draws the certificate list keyed by name; a repeated name would stop it.
+	it('refuses a certificate listed twice, as its name reads once trimmed, on the later row only', () => {
+		const certificates = [
+			{ standard: 'ISO 9001' },
+			{ standard: 'ISO 27001' },
+			{ standard: 'ISO 9001 ', validUntil: '2027-01-31' },
+			{ standard: 'iso 9001' }
+		];
+		const result = ProfileSchema.safeParse({ ...emptyProfile(), certificates });
+		expect(result.success).toBe(false);
+		expect(result.error?.issues).toMatchObject([
+			{
+				code: 'custom',
+				path: ['certificates', 2, 'standard'],
+				message: 'certificate ISO 9001 is listed twice'
+			}
+		]);
+		expect(issuePaths({ ...emptyProfile(), certificates: certificates.slice(0, 2) })).toEqual([]);
+	});
 });
 
 describe('the fixed code lists', () => {
