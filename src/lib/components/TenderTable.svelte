@@ -166,10 +166,13 @@
 		color: var(--ink-2);
 	}
 
-	/* Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
+	/* The five columns need about 970px of leaf, and up to about 1015px when the visitor's zone has no
+	   short name ('GMT+13:45'); the leaf offers that only from about 1340px with a classic scrollbar,
+	   so below it each row stacks as a labelled card.
+	   Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
 	   carries a visible label, and the empty alternative text keeps a screen reader from reading it
 	   twice after the column header. */
-	@media (max-width: 720px) {
+	@media (max-width: 1340px) {
 		thead {
 			position: absolute;
 			width: 1px;
@@ -209,6 +212,12 @@
 			content: attr(data-label) ': ';
 			content: attr(data-label) ': ' / '';
 			color: var(--ink-2);
+		}
+
+		/* A closed row's label, 'Closed' and date are wider than a phone card; DeadlineTime keeps the
+		   date itself on one line. */
+		.deadline {
+			white-space: normal;
 		}
 
 		.deadline .closed-word {

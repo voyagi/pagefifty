@@ -46,7 +46,8 @@
 		max-width: 44ch;
 	}
 
-	@media (max-width: 720px) {
+	/* Follows TenderTable's switch to cards. */
+	@media (max-width: 1340px) {
 		.vcell {
 			min-width: 0;
 			margin-top: 0.5rem;
