@@ -1,6 +1,7 @@
 // example.devbrowser.js - the example run on the built Worker: the 2026-09-15 capture replayed at
 // its own capture instant, labelled for the demo firm without touching the active firm, its filter
-// and title links kept under /example, and a real 404 that leads back to the example.
+// and title links kept under /example, a real 404 that leads back to the example, and the list's
+// layout at every width from 390 to 1440 px.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
 
@@ -11,6 +12,166 @@ const checks = [];
 
 function check(name, ok, detail) {
 	checks.push({ name, ok: Boolean(ok), detail });
+}
+
+const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
+
+const WIDTHS = [390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
+const CARDS_UP_TO = 1340;
+
+// scripts/e2e/tenders.devbrowser.js holds the same read, word for word: drivers cannot import.
+// Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
+// under the tab rail, so each table's right edge is measured against its leaf's content box too.
+// The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
+function readGeometry() {
+	return page.evaluate(() => {
+		const px = (value) => parseFloat(value) || 0;
+		const box = (element) => element.getBoundingClientRect();
+		const name = (element) => {
+			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
+			const row = element.closest('tr[data-notice]');
+			const tag = element.tagName.toLowerCase() + classes.map((each) => `.${each}`).join('');
+			return row ? `${tag} ${row.getAttribute('data-notice')}` : tag;
+		};
+		const rendered = (table) => {
+			const head = table.querySelector('thead');
+			const heads =
+				head && getComputedStyle(head).position !== 'absolute'
+					? Array.from(head.querySelectorAll('th, th *'))
+					: [];
+			return [table, ...table.querySelectorAll('tbody *'), ...heads].filter((element) => {
+				const rect = box(element);
+				return rect.width > 0 || rect.height > 0;
+			});
+		};
+		const cells = [];
+		const tables = [];
+		for (const id of ['open', 'closed']) {
+			const leaf = document.getElementById(id);
+			const table = leaf && leaf.querySelector('table');
+			if (!table) continue;
+			const leafStyle = getComputedStyle(leaf);
+			const contentRight =
+				box(leaf).right - px(leafStyle.borderRightWidth) - px(leafStyle.paddingRight);
+			let right = -Infinity;
+			let worst = '';
+			for (const element of rendered(table)) {
+				const rect = box(element);
+				if (rect.right > right) {
+					right = rect.right;
+					worst = name(element);
+				}
+				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
+			}
+			const reading = table.querySelector('.vcell');
+			tables.push({
+				id,
+				display: getComputedStyle(table).display,
+				readingMin: reading ? getComputedStyle(reading).minWidth : 'none',
+				contentRight,
+				right,
+				worst
+			});
+		}
+		const hits = [];
+		for (const tab of document.querySelectorAll('a.tab')) {
+			const tabRect = box(tab);
+			for (const cell of cells) {
+				const across =
+					Math.min(tabRect.right, cell.rect.right) - Math.max(tabRect.left, cell.rect.left);
+				const down =
+					Math.min(tabRect.bottom, cell.rect.bottom) - Math.max(tabRect.top, cell.rect.top);
+				if (across > 1 && down > 1) {
+					hits.push(`${tab.textContent.replace(/\s+/g, ' ').trim()} over ${name(cell.element)}`);
+				}
+			}
+		}
+		let longest = { text: '', width: 0 };
+		for (const time of document.querySelectorAll('table time')) {
+			const width = box(time).width;
+			if (width > longest.width) longest = { text: time.textContent.trim(), width };
+		}
+		return {
+			theme: document.documentElement.getAttribute('data-theme'),
+			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+			rootPx: px(getComputedStyle(document.documentElement).fontSize),
+			tables,
+			hitCount: hits.length,
+			hits: hits.slice(0, 3),
+			longest
+		};
+	});
+}
+
+function fits(read, theme) {
+	return (
+		read.theme === theme &&
+		read.tables.length > 0 &&
+		read.overflow <= 0 &&
+		read.tables.every((table) => table.right <= table.contentRight + 0.5) &&
+		read.hitCount === 0
+	);
+}
+
+function describe(read) {
+	const tables = read.tables
+		.map(
+			(table) =>
+				`${table.id} right ${table.right.toFixed(1)} of ${table.contentRight.toFixed(1)} (${table.worst})`
+		)
+		.join(', ');
+	const hits = read.hitCount ? `${read.hitCount} tab hits: ${read.hits.join('; ')}` : 'no tab hits';
+	return `${read.theme}: overflow ${read.overflow}, ${tables || 'no table measured'}, ${hits}`;
+}
+
+async function readAtWidths(widths) {
+	const before = page.viewportSize() ?? { width: 1280, height: 720 };
+	const reads = [];
+	for (const width of widths) {
+		await page.setViewportSize({ width, height: 900 });
+		await page.waitForTimeout(150);
+		reads.push(await readGeometry());
+	}
+	await page.setViewportSize(before);
+	return reads;
+}
+
+async function openClosedGroup() {
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.evaluate(() => {
+		const details = document.querySelector('#closed details');
+		if (details) details.open = true;
+	});
+}
+
+function checkSweep(path, light, dark, seconds) {
+	WIDTHS.forEach((width, i) => {
+		const timing = i === 0 ? `, sweep ${seconds.toFixed(1)} s` : '';
+		check(
+			`at ${width}px ${path} does not scroll sideways, keeps its tables inside their leaves and no tab over a header, in Light and Dark`,
+			fits(light[i], 'light') && fits(dark[i], 'dark'),
+			`${describe(light[i])} | ${describe(dark[i])}${timing}`
+		);
+	});
+	const layouts = WIDTHS.map((width, i) => {
+		const read = light[i];
+		const floor = 15 * read.rootPx;
+		const asSwitched = (table) =>
+			width <= CARDS_UP_TO
+				? table.display === 'block' && parseFloat(table.readingMin) === 0
+				: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01;
+		const seen = read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ');
+		return {
+			right: read.tables.length > 0 && read.tables.every(asSwitched),
+			text: `${width} ${seen || 'no table'}`
+		};
+	});
+	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
+	check(
+		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it`,
+		wrong.length === 0,
+		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
+	);
 }
 
 // Links are matched by the address they resolve to: the server writes relative hrefs and the
@@ -169,6 +330,15 @@ try {
 		phoneList.overflow <= 0 && phoneLong.overflow <= 0,
 		`overflow list ${phoneList.overflow}, 600457-2026 ${phoneLong.overflow}`
 	);
+
+	const sweepStart = Date.now();
+	await page.goto('http://127.0.0.1:8788/example?theme=light');
+	await openClosedGroup();
+	const light = await readAtWidths(WIDTHS);
+	await page.goto('http://127.0.0.1:8788/example?theme=dark');
+	await openClosedGroup();
+	const dark = await readAtWidths(WIDTHS);
+	checkSweep('/example', light, dark, (Date.now() - sweepStart) / 1000);
 } finally {
 	await writeFile(config.resultName, JSON.stringify({ driver: 'example', checks }));
 	await browser.closePage(PAGE);
