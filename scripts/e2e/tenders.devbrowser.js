@@ -233,6 +233,24 @@ function expectedClock(instant, zone) {
 	);
 }
 
+// The test browser draws no scrollbar, while Chromium on Windows takes a classic one's 17px (15px in
+// its Fluent style) from the page's width and not from the width the media query reads. Padding on
+// the root takes the same 17px from the layout and leaves the media query and vw alone.
+async function readWithScrollbar(width) {
+	const before = page.viewportSize() ?? { width: 1280, height: 720 };
+	await page.setViewportSize({ width, height: 900 });
+	await page.evaluate(() => {
+		document.documentElement.style.paddingRight = '17px';
+	});
+	await page.waitForTimeout(150);
+	const read = await readGeometry();
+	await page.evaluate(() => {
+		document.documentElement.style.paddingRight = '';
+	});
+	await page.setViewportSize(before);
+	return read;
+}
+
 try {
 	await page.goto('http://127.0.0.1:8788/');
 	await page.evaluate(() => localStorage.clear());
@@ -374,9 +392,10 @@ try {
 
 	// The widest deadline label sets the switch width: a zone with no short name is written as an
 	// offset ('GMT+13:45', five characters past 'CEST'), and the table must still fit its leaf at the
-	// first width that shows it.
+	// first width that shows it, with a classic scrollbar too. Measured at e7ca483: at 1341px the
+	// closed leaf offers 1035px and its table needs 1007.5px, so a 17px scrollbar leaves 10.5px.
 	const widest =
-		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 390px and at 1341px';
+		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 390px and at 1341px, with and without a 17px classic scrollbar';
 	if (!cdp) {
 		check(widest, false, `no zone override in this sandbox, so nothing was measured: ${form}`);
 	} else {
@@ -393,10 +412,14 @@ try {
 				{ timeout: 10000 }
 			);
 			const [phone, first] = await readAtWidths([390, 1341]);
+			const classic = await readWithScrollbar(1341);
 			check(
 				widest,
-				fits(phone, 'light') && fits(first, 'light') && /GMT\+1[23]:45$/.test(first.longest.text),
-				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 390 ${describe(phone)} | 1341 ${describe(first)}`
+				fits(phone, 'light') &&
+					fits(first, 'light') &&
+					fits(classic, 'light') &&
+					/GMT\+1[23]:45$/.test(first.longest.text),
+				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 390 ${describe(phone)} | 1341 ${describe(first)} | 1341 with a 17px scrollbar ${describe(classic)}`
 			);
 		} catch (error) {
 			check(widest, false, `the Chatham run stopped: ${String(error).slice(0, 160)}`);
