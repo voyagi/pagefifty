@@ -151,6 +151,17 @@ try {
 		`${served.clearHrefs.length} links, raw ${JSON.stringify(served.clearHrefs)} to ${JSON.stringify(served.clearTargets)}`
 	);
 
+	// Reading exactly the planted target proves the read found the link, so an empty read can never
+	// pass this refusal.
+	const kept = await readList('<a href="/tenders?country=BE">Clear filters</a>');
+	check(
+		'a Clear filters link that keeps a query (/tenders?country=BE) does not count as leading to /tenders',
+		kept.clearTargets.length === 1 &&
+			kept.clearTargets[0] === '/tenders?country=BE' &&
+			!clearsToAllTenders(kept),
+		`targets ${JSON.stringify(kept.clearTargets)}, counted as /tenders ${clearsToAllTenders(kept)}`
+	);
+
 	await page.goto(`${BASE}?from=2026-11-01&to=2026-10-01`);
 	const inverted = await readList();
 	const swap =
