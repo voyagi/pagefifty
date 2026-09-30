@@ -90,17 +90,19 @@ const AUDITS = [
 		storage: { 'pagefifty-active-firm': 'demo' },
 		expectText: 'Brink Data B.V.'
 	},
+	// The main nav names "Example run" on every page, so the example list is known by its closed
+	// group, which only the example words against the capture time.
 	{
 		slug: 'example',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
-		expectText: 'Example run'
+		expectText: 'Closed at the capture time'
 	},
 	{
 		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
-		expectText: 'Example run'
+		expectText: 'Closed at the capture time'
 	},
 	{
 		slug: 'example-one-lot',
