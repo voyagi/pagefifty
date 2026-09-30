@@ -32,13 +32,26 @@
 	// answer is kept so a write the browser refused is never reported as an import.
 	const enqueue = createImportQueue((stored) => store.replaceFromImport(stored));
 
+	// Picks settle in the order made, so a later import that stored its file makes an earlier pick's
+	// refusal stale, and it goes.
 	async function pick(file: File) {
 		refusal = null;
 		onimport({ kind: 'reading', file: file.name });
-		const result = await enqueue(file);
+		let result: Awaited<ReturnType<typeof enqueue>>;
+		try {
+			result = await enqueue(file);
+		} catch {
+			// Every step of an import catches its own failure, so this is a fault nobody foresaw. The
+			// pick still settles, so the status never stays on reading; the store writes nothing
+			// before it could have thrown.
+			refusal = importAppliedText('failed', file.name);
+			onimport({ kind: 'refused', file: file.name });
+			return;
+		}
 		if (!result.ok) {
 			refusal = importRefusalLines(result);
 		} else if (result.applied === 'saved' || result.applied === 'unchanged') {
+			refusal = null;
 			onimport({ kind: 'imported', file: file.name });
 			store.requestPersistOnce(navigator);
 			return;

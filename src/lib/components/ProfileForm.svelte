@@ -94,10 +94,24 @@
 		drafts = next;
 	}
 
+	// A certificate another tab removed takes its error with it: its field is gone, and an error left
+	// behind would name a field nobody can see or fix.
+	function dropGoneErrors() {
+		const present = new Set(
+			(store?.stored?.profile.certificates ?? []).map((entry) => certificateKey(entry.standard))
+		);
+		for (const key of Object.keys(errors)) {
+			if (key.startsWith('certificate:') && !present.has(key)) clearError(key);
+		}
+	}
+
 	$effect(() => {
 		if (!store) return;
 		untrack(() => syncDrafts(() => false));
-		const onStorage = () => syncDrafts((key) => key in errors || key === focusedKey);
+		const onStorage = () => {
+			dropGoneErrors();
+			syncDrafts((key) => key in errors || key === focusedKey);
+		};
 		window.addEventListener('storage', onStorage);
 		return () => window.removeEventListener('storage', onStorage);
 	});
@@ -174,22 +188,28 @@
 		return { ...current, turnover: rows };
 	}
 
-	function toggleCertificate(standard: string) {
+	// The answer says whether the change is in storage. A removal takes the certificate's date and
+	// error with it only once it is stored: a refused one leaves the certificate held, and its field
+	// must still show the date storage holds.
+	function toggleCertificate(standard: string): boolean {
+		const key = certificateKey(standard);
 		if (held.includes(standard)) {
-			clearError(certificateKey(standard));
-			const rest = { ...drafts };
-			delete rest[certificateKey(standard)];
-			drafts = rest;
-			save(
+			const kept = save(
 				(current) => ({
 					...current,
 					certificates: current.certificates.filter((entry) => entry.standard !== standard)
 				}),
 				COMMON_CERTIFICATES.includes(standard) ? undefined : standard
 			);
-			return;
+			if (kept) {
+				clearError(key);
+				const rest = { ...drafts };
+				delete rest[key];
+				drafts = rest;
+			}
+			return kept;
 		}
-		save((current) =>
+		return save((current) =>
 			current.certificates.some((entry) => entry.standard === standard)
 				? current
 				: { ...current, certificates: [...current.certificates, { standard }] }
@@ -216,9 +236,10 @@
 			return;
 		}
 		nameMissing = false;
+		// A refused save keeps the name typed and the panel open, so nothing is lost.
+		if (!held.includes(name) && !toggleCertificate(name)) return;
 		newName = '';
 		adding = false;
-		if (!held.includes(name)) toggleCertificate(name);
 	}
 
 	function toggleCode(list: 'countries' | 'languages', target: EventTarget | null) {
@@ -327,7 +348,12 @@
 	{#snippet body(tab)}
 		<h1 class="title" id="profile-title">Your firm profile</h1>
 		{@render tab()}
-		{#if store && !store.stored}
+		{#if store && !store.stored && store.newerVersion !== null}
+			<p class="lede">
+				This browser holds a profile saved by a newer version of Pagefifty, which this page cannot
+				read. It stays as it is, and nothing typed here is saved.
+			</p>
+		{:else if store && !store.stored}
 			<p class="lede">
 				Nothing saved yet. Fill in what you can prove with a document, or try the pages with the
 				demo firm.

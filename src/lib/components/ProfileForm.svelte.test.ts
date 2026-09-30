@@ -507,6 +507,73 @@ describe('ProfileForm, another tab', () => {
 	});
 });
 
+describe('ProfileForm, what shows after a refused write or a newer profile', () => {
+	const refuseWrites = () =>
+		vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+			throw new DOMException('full', 'QuotaExceededError');
+		});
+
+	// The status names the newer profile; the lede must not say the browser holds nothing.
+	it('never says nothing is saved while a newer version holds the stored profile', () => {
+		localStorage.setItem(
+			PROFILE_KEY,
+			JSON.stringify({ schemaVersion: 2, savedAt: '2027-01-01T00:00:00.000Z' })
+		);
+		mount();
+		expect(screen.queryByText(/^Nothing saved yet\. Fill in/)).toBeNull();
+		expect(
+			screen.getByText(
+				'This browser holds a profile saved by a newer version of Pagefifty, which this page cannot read. It stays as it is, and nothing typed here is saved.'
+			)
+		).toBeTruthy();
+	});
+
+	// The field is gone, so an error left behind would name a field nobody can see or fix.
+	it('drops the error of a certificate another tab removed', async () => {
+		mount();
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 9001' }));
+		const input = field('ISO 9001 valid until');
+		Object.defineProperty(input, 'value', {
+			configurable: true,
+			get: () => '2027-02-31',
+			set: () => undefined
+		});
+		fireEvent.input(input);
+		expect(status()).toBe(
+			'Not saved: ISO 9001 valid until needs a valid value. The rest is saved.'
+		);
+		otherTabWrites((document) => {
+			document.profile.certificates = [];
+		});
+		await vi.waitFor(() => expect(screen.queryByLabelText('ISO 9001 valid until')).toBeNull());
+		expect(status()).not.toMatch(/^Not saved/);
+	});
+
+	it('keeps a certificate and its date on screen when the browser refuses to remove it', async () => {
+		mount();
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 27001' }));
+		setDate(field('ISO 27001 valid until'), '2027-05-31');
+		refuseWrites();
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 27001' }));
+		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+		expect(stored().profile.certificates).toEqual([
+			{ standard: 'ISO 27001', validUntil: '2027-05-31' }
+		]);
+		expect(field('ISO 27001 valid until').value).toBe('2027-05-31');
+	});
+
+	it('keeps the typed name and the open panel when the browser refuses to add a certificate', async () => {
+		mount();
+		await userEvent.click(screen.getByRole('button', { name: 'Add another' }));
+		await userEvent.type(field('Certificate name'), 'ISO 22301');
+		refuseWrites();
+		await userEvent.click(screen.getByRole('button', { name: 'Add certificate' }));
+		expect(status()).toBe('Not saved: this browser refused to store the profile.');
+		expect(field('Certificate name').value).toBe('ISO 22301');
+		expect(document.getElementById('add-certificate')?.hidden).toBe(false);
+	});
+});
+
 // D-19: phase 1 edits exactly the SPEC R4 subset. Every control the form draws must belong to one
 // of its seven fields, and none may be labelled for a field the schema holds for phase 2.
 describe('ProfileForm, the phase 1 scope', () => {

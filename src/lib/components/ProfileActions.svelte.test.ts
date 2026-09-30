@@ -237,6 +237,53 @@ describe('importing a profile file', () => {
 		expect((await staffField()).value).toBe('7');
 	});
 
+	// Files settle in the order picked, so a refusal of an earlier pick is stale once a later pick
+	// has replaced the profile.
+	it("clears an earlier file's refusal once a later pick replaces the profile", async () => {
+		render(Page);
+		await saveStaff('19');
+		const slow = (name: string) => {
+			let finish: (text: string) => void = () => undefined;
+			const file = jsonFile(name, '');
+			Object.defineProperty(file, 'text', {
+				value: () => new Promise<string>((resolve) => (finish = resolve))
+			});
+			return { file, finish: (text: string) => finish(text) };
+		};
+		const first = slow('first.json');
+		const second = slow('second.json');
+		await userEvent.upload(importInput(), first.file);
+		await userEvent.upload(importInput(), second.file);
+		await vi.waitFor(() => expect(status()).toBe('Reading second.json.'));
+		first.finish('not json');
+		expect(await alertText()).toContain('first.json is not a profile file');
+		second.finish(storedFile(7));
+		await vi.waitFor(() =>
+			expect(status()).toBe(
+				'Imported second.json. It replaced the profile that was in this browser.'
+			)
+		);
+		expect(screen.queryByRole('alert')).toBeNull();
+	});
+
+	// Every step of an import catches its own failure; a fault nobody foresaw must still settle the
+	// pick, so the status never stays on "Reading" and the page says the file was not imported.
+	it('settles a pick whose import throws, with nothing stored', async () => {
+		render(Page);
+		await saveStaff('19');
+		const before = localStorage.getItem(PROFILE_KEY);
+		const { store } = getProfileStore();
+		vi.spyOn(store, 'replaceFromImport').mockImplementation(() => {
+			throw new Error('an unforeseen fault');
+		});
+		await userEvent.upload(importInput(), jsonFile('mine.json', storedFile(42)));
+		expect(await alertText()).toBe(
+			`mine.json was read but not imported: this browser refused to store it, so its storage may be full or blocked. ${NOTHING_CHANGED}`
+		);
+		expect(status()).not.toMatch(/^Reading/);
+		expect(localStorage.getItem(PROFILE_KEY)).toBe(before);
+	});
+
 	it('refuses a file that is not JSON, the empty file included', async () => {
 		render(Page);
 		await staffField();
