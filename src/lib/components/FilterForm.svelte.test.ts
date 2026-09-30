@@ -1,6 +1,7 @@
 import { render, screen, within } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
 import { parseFilters, type FilterState } from '$lib/core/filters';
+import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
 import type { IndexRow } from '$lib/snapshot/index-row';
 import { buildTenderList, type TenderListData } from '$lib/tenders/list';
 import FilterForm from './FilterForm.svelte';
@@ -214,6 +215,23 @@ describe('TenderListPage states', () => {
 			'No tender in this list had closed at the capture time.'
 		);
 		expect(closed.textContent).not.toContain('since the capture');
+	});
+
+	// CI runs no browser driver, so this is the footnote's only check there.
+	it('names the capture day and the demo firm under the example list, and nothing on /tenders', () => {
+		const example = render(TenderListPage, {
+			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
+		});
+		expect(
+			[...example.container.querySelectorAll('.demo-note')].map((note) => squash(note.textContent))
+		).toEqual([
+			`Example run from a snapshot captured on 15 Sep 2026. ${DEMO_FIRM_SHORT} is a demo firm with invented figures. Not legal advice.`
+		]);
+		example.unmount();
+		const live = render(TenderListPage, {
+			props: { data: pageData([OPEN_ROW]), basePath: '/tenders' }
+		});
+		expect(live.container.querySelector('.demo-note')).toBeNull();
 	});
 
 	it('names the closed group by the variant, with its count in Mono', () => {

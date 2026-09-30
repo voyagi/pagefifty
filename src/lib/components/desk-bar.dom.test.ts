@@ -92,4 +92,13 @@ describe('DeskBar', () => {
 		expect(screen.queryByRole('button', { name: /menu/i })).toBeNull();
 		expect(screen.queryAllByRole('button', { expanded: false })).toHaveLength(0);
 	});
+
+	// On a phone the bar orders the theme switch by the switch's own root class, so a renamed or
+	// wrapped root would drop the switch out of its row with no other check noticing.
+	it('holds the theme switch as a direct child with the class its phone order targets', () => {
+		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		expect(container.querySelector('header.deskbar > .theme')).toBe(
+			screen.getByRole('group', { name: 'Theme' })
+		);
+	});
 });
