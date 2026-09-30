@@ -427,6 +427,37 @@ try {
 			check(widest, false, `the Chatham run stopped: ${String(error).slice(0, 160)}`);
 		}
 	}
+
+	// A reader who raises the browser's default font (20px is Chrome's Large) widens every column,
+	// so the switch is written in em and moves with the text: 83.75em is 1340px at 16px and 1675px
+	// at 20px. Before it moved, at 20px and 1341px in the Chatham zone the closed table ran 279.8px
+	// past its leaf and the page scrolled 84px sideways.
+	const larger =
+		'with a 20px default font /tenders shows cards at 1341px and the five-column table at 1680px, each inside its leaf';
+	if (!cdp) {
+		check(larger, false, `no CDP session in this sandbox, so nothing was measured: ${form}`);
+	} else {
+		try {
+			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20, fixed: 13 } });
+			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+			await openClosedGroup();
+			const [cards, table] = await readAtWidths([1341, 1680]);
+			const shows = (read, display) =>
+				read.rootPx === 20 && read.tables.every((each) => each.display === display);
+			check(
+				larger,
+				shows(cards, 'block') &&
+					fits(cards, 'light') &&
+					shows(table, 'table') &&
+					fits(table, 'light'),
+				`root ${cards.rootPx}px | 1341 ${cards.tables.map((each) => each.display).join(' and ')}, ${describe(cards)} | 1680 ${table.tables.map((each) => each.display).join(' and ')}, ${describe(table)}`
+			);
+		} catch (error) {
+			check(larger, false, `the larger-font run stopped: ${String(error).slice(0, 160)}`);
+		} finally {
+			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 16, fixed: 13 } });
+		}
+	}
 } finally {
 	await writeFile(config.resultName, JSON.stringify({ driver: 'tenders', checks }));
 	await browser.closePage(PAGE);

@@ -170,11 +170,12 @@
 	   306px of gutters, rail, binder and leaf padding, so 1035px at 1341px. The five columns need
 	   962.5px there, and 1007.5px when the visitor's zone has no short name ('GMT+13:45'), so a 17px
 	   classic scrollbar still leaves 10.5px (measured at e7ca483; tenders.devbrowser.js holds it).
-	   Below 1341px each row stacks as a labelled card.
+	   Below 1341px each row stacks as a labelled card. The switch is written in em, 1340px at the
+	   default 16px, because a reader's larger default font widens every column with it.
 	   Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
 	   carries a visible label, and the empty alternative text keeps a screen reader from reading it
 	   twice after the column header. */
-	@media (max-width: 1340px) {
+	@media (max-width: 83.75em) {
 		thead {
 			position: absolute;
 			width: 1px;
