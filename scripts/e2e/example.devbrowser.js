@@ -16,7 +16,7 @@ function check(name, ok, detail) {
 
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
-const WIDTHS = [390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
+const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
 const CARDS_UP_TO = 1340;
 
 // scripts/e2e/tenders.devbrowser.js holds the same read, word for word: drivers cannot import.

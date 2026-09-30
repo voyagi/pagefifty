@@ -166,9 +166,11 @@
 		color: var(--ink-2);
 	}
 
-	/* The five columns need about 970px of leaf, and up to about 1015px when the visitor's zone has no
-	   short name ('GMT+13:45'); the leaf offers that only from about 1340px with a classic scrollbar,
-	   so below it each row stacks as a labelled card.
+	/* The closed leaf is the narrower (its second ply indents it): it offers the window width less
+	   306px of gutters, rail, binder and leaf padding, so 1035px at 1341px. The five columns need
+	   962.5px there, and 1007.5px when the visitor's zone has no short name ('GMT+13:45'), so a 17px
+	   classic scrollbar still leaves 10.5px (measured at e7ca483; tenders.devbrowser.js holds it).
+	   Below 1341px each row stacks as a labelled card.
 	   Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
 	   carries a visible label, and the empty alternative text keeps a screen reader from reading it
 	   twice after the column header. */
@@ -200,8 +202,15 @@
 			padding: 0.25rem 0;
 		}
 
+		/* At 320px a billion-euro amount beside its label is wider than a card, so the label may sit
+		   above the amount; the amount itself stays on one line. */
 		.num {
 			text-align: left;
+			white-space: normal;
+		}
+
+		.num .mono {
+			white-space: nowrap;
 		}
 
 		.tender {
@@ -215,8 +224,15 @@
 		}
 
 		/* A closed row's label, 'Closed' and date are wider than a phone card; DeadlineTime keeps the
-		   date itself on one line. */
+		   date itself on one line. A label with an offset zone ('GMT+13:45', 252px) is wider than a
+		   card at 320px (242px) on its own, so there, and only there, it breaks before its zone: as an
+		   inline block it shrinks to the card and moves whole to its own line everywhere else. */
 		.deadline {
+			white-space: normal;
+		}
+
+		.deadline :global(time) {
+			display: inline-block;
 			white-space: normal;
 		}
 

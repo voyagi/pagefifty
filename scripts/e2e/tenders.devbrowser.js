@@ -29,7 +29,7 @@ function check(name, ok, detail) {
 
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
-const WIDTHS = [390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
+const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
 const CARDS_UP_TO = 1340;
 
 // scripts/e2e/example.devbrowser.js holds the same read, word for word: drivers cannot import.
@@ -395,7 +395,7 @@ try {
 	// first width that shows it, with a classic scrollbar too. Measured at e7ca483: at 1341px the
 	// closed leaf offers 1035px and its table needs 1007.5px, so a 17px scrollbar leaves 10.5px.
 	const widest =
-		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 390px and at 1341px, with and without a 17px classic scrollbar';
+		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 320, 390 and 1341px, with and without a 17px classic scrollbar';
 	if (!cdp) {
 		check(widest, false, `no zone override in this sandbox, so nothing was measured: ${form}`);
 	} else {
@@ -411,15 +411,17 @@ try {
 				null,
 				{ timeout: 10000 }
 			);
-			const [phone, first] = await readAtWidths([390, 1341]);
+			// 320px is the reflow width, where the whole label (252px) is wider than a card (242px).
+			const [narrow, phone, first] = await readAtWidths([320, 390, 1341]);
 			const classic = await readWithScrollbar(1341);
 			check(
 				widest,
-				fits(phone, 'light') &&
+				fits(narrow, 'light') &&
+					fits(phone, 'light') &&
 					fits(first, 'light') &&
 					fits(classic, 'light') &&
 					/GMT\+1[23]:45$/.test(first.longest.text),
-				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 390 ${describe(phone)} | 1341 ${describe(first)} | 1341 with a 17px scrollbar ${describe(classic)}`
+				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 320 ${describe(narrow)} | 390 ${describe(phone)} | 1341 ${describe(first)} | 1341 with a 17px scrollbar ${describe(classic)}`
 			);
 		} catch (error) {
 			check(widest, false, `the Chatham run stopped: ${String(error).slice(0, 160)}`);
