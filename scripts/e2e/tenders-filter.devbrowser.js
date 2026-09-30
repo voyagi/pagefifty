@@ -43,6 +43,13 @@ function readList(html) {
 			const clear = Array.from(root.querySelectorAll('a')).filter(
 				(link) => link.textContent.trim() === 'Clear filters'
 			);
+			// Where each link leads, not its raw text: the server writes relative links (./tenders)
+			// and the started app rewrites them, so the raw text depends on whether hydration has
+			// finished. The search part stays in, so a link that kept a filter does not pass.
+			const target = (link) => {
+				const address = new URL(link.href);
+				return address.pathname + address.search;
+			};
 			const params = new URLSearchParams(location.search);
 			return {
 				url: location.href,
@@ -57,6 +64,7 @@ function readList(html) {
 				status: text(root.querySelector('[role="status"]')),
 				emptyHeading: text(root.querySelector('#open h2')),
 				clearHrefs: clear.map((link) => link.getAttribute('href')),
+				clearTargets: clear.map(target),
 				closedLeaf: Boolean(root.querySelector('#closed')),
 				openTable: Boolean(root.querySelector('#open table')),
 				text: root.body ? root.body.textContent.replace(/\s+/g, ' ') : ''
@@ -69,7 +77,7 @@ function readList(html) {
 const numbers = (rows) => rows.map((row) => row.notice).join(' ');
 
 const clearsToAllTenders = (list) =>
-	list.clearHrefs.length > 0 && list.clearHrefs.every((href) => href === '/tenders');
+	list.clearTargets.length > 0 && list.clearTargets.every((target) => target === '/tenders');
 
 try {
 	await page.goto('http://127.0.0.1:8788/');
@@ -128,7 +136,7 @@ try {
 			clearsToAllTenders(empty) &&
 			!empty.openTable &&
 			!empty.closedLeaf,
-		`heading "${empty.emptyHeading}", clear links ${JSON.stringify(empty.clearHrefs)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
+		`heading "${empty.emptyHeading}", clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
 	);
 
 	// The served page is what a reader has before hydration, and its './tenders' is exactly the state
@@ -140,7 +148,7 @@ try {
 		served.clearHrefs.length > 0 &&
 			served.clearHrefs.every((href) => href === './tenders') &&
 			clearsToAllTenders(served),
-		`${served.clearHrefs.length} links, raw ${JSON.stringify(served.clearHrefs)}`
+		`${served.clearHrefs.length} links, raw ${JSON.stringify(served.clearHrefs)} to ${JSON.stringify(served.clearTargets)}`
 	);
 
 	await page.goto(`${BASE}?from=2026-11-01&to=2026-10-01`);
