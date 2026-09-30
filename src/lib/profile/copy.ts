@@ -204,10 +204,17 @@ function problemText(issue: FieldIssue): string {
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 // Counted in the characters a reader sees (graphemes), not UTF-16 units or code points, so an emoji,
 // a flag, a joined emoji or a letter with its combining accent is never cut in half. Only a refusal
-// clips, so the segmenter is made when one is shown, never when the module loads.
+// clips, so the segmenter is made when one is shown, never when the module loads. A browser with no
+// segmenter (Firefox before 125) counts code points instead, since a throw here would leave the
+// import status on "Reading".
 function clip(text: string): string {
-	const graphemes = new Intl.Segmenter('en', { granularity: 'grapheme' });
-	const characters = Array.from(graphemes.segment(text), (part) => part.segment);
+	const characters =
+		typeof Intl.Segmenter === 'function'
+			? Array.from(
+					new Intl.Segmenter('en', { granularity: 'grapheme' }).segment(text),
+					(part) => part.segment
+				)
+			: [...text];
 	return characters.length > MAX_FOUND_LENGTH
 		? `${characters.slice(0, MAX_FOUND_LENGTH - 3).join('')}...`
 		: text;

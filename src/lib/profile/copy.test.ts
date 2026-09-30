@@ -248,6 +248,20 @@ describe('importRefusalLines', () => {
 		expect(LONE_SURROGATE.test(key)).toBe(false);
 	});
 
+	// A browser with no grapheme segmenter (Firefox before 125) must still get a shortened line: a
+	// throw here would leave the import status on "Reading" for good.
+	it('still shortens a value where the browser has no grapheme segmenter', () => {
+		const segmenter = Object.getOwnPropertyDescriptor(Intl, 'Segmenter');
+		Reflect.deleteProperty(Intl, 'Segmenter');
+		try {
+			expect(
+				lineFor({ path: ['extra'], problem: 'unrecognized_keys', found: 'x'.repeat(70) })
+			).toBe(`File field extra: Pagefifty does not know this field. Found "${'x'.repeat(56)}...`);
+		} finally {
+			if (segmenter) Object.defineProperty(Intl, 'Segmenter', segmenter);
+		}
+	});
+
 	// A flag is two code points and a joined family emoji five, yet each is one character on screen;
 	// built from their numbers, so this file holds no joiner itself. The cut falls right after them.
 	it('never cuts a flag or a joined emoji in two when it shortens a value', () => {
