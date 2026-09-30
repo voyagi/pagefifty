@@ -8,9 +8,9 @@ export const VERDICT_WORDS: readonly string[] = [
 	...new Set([...LOT_VERDICTS, ...Object.values(VERDICT_LABELS), 'Partner needed', 'Out alone'])
 ];
 
-// Attributes whose text a reader meets as page text: a screen reader announces the first two, and
-// a pointer shows the third.
-const NAMED_BY = ['aria-label', 'alt', 'title'];
+// Attributes whose text a reader meets as page text: a screen reader announces the first two, a
+// pointer shows the third, and an empty field shows the fourth.
+const NAMED_BY = ['aria-label', 'alt', 'title', 'placeholder'];
 
 // The page's own words: everything except text marked as the notice's (titles, buyers,
 // descriptions), which may say anything, "Go-Live" included. Each text node is its own line, since

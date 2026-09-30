@@ -27,6 +27,12 @@
 	const closedWords = $derived(example ? 'closed at the capture time' : 'closed');
 	const counts = $derived(countsLine(list.counts, list.filtered, closedWords));
 	const closedSummary = $derived(example ? 'Closed at the capture time' : 'Closed');
+	// Open then is not open now, so the example's caption names the capture; closed then stays closed.
+	const openCaption = $derived(
+		example
+			? 'Open at the capture time, soonest deadline first'
+			: 'Open tenders, soonest deadline first'
+	);
 	const noneClosed = $derived(
 		example
 			? 'No tender in this list had closed at the capture time.'
@@ -115,7 +121,7 @@
 			{:else if list.open.length === 0 && list.closed.length > 0}
 				<p class="note">No tender in this list is still open. The closed ones are below.</p>
 			{:else}
-				<TenderTable rows={list.open} caption="Open tenders, soonest deadline first" {basePath} />
+				<TenderTable rows={list.open} caption={openCaption} {basePath} />
 			{/if}
 		{/snippet}
 	</Leaf>

@@ -334,6 +334,8 @@ describe('findVerdictWords', () => {
 		expect(
 			findVerdictWords(mount('<img alt="No-go" src="x.png"><span title="GO">?</span>'))
 		).toEqual(['No-go', 'GO']);
+		// An empty field shows its placeholder as text on the page.
+		expect(findVerdictWords(mount('<input placeholder="GO" aria-label="Staff">'))).toEqual(['GO']);
 	});
 
 	// Elements sit side by side with no space between them in the markup; a word in one is still a

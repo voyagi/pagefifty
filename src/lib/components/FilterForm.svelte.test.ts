@@ -234,6 +234,17 @@ describe('TenderListPage states', () => {
 		expect(live.container.querySelector('.demo-note')).toBeNull();
 	});
 
+	// A screen reader announces the caption; months after the capture a bare "Open tenders" would
+	// read as open today.
+	it('captions the example open table by the capture time', () => {
+		const { container } = render(TenderListPage, {
+			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
+		});
+		expect(container.querySelector('#open caption')?.textContent).toBe(
+			'Open at the capture time, soonest deadline first'
+		);
+	});
+
 	it('names the closed group by the variant, with its count in Mono', () => {
 		const { container } = render(TenderListPage, {
 			props: { data: pageData([OPEN_ROW, CLOSED_ROW]), variant: 'example', basePath: '/example' }
