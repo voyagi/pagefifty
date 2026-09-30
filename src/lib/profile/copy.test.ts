@@ -3,8 +3,10 @@ import {
 	clockTime,
 	fieldErrorText,
 	importAppliedText,
+	importFaultText,
 	importRefusalLines,
 	saveStatusText,
+	shownFileName,
 	type FieldError
 } from './copy';
 import type { ImportRefusal } from './import';
@@ -245,6 +247,19 @@ describe('importRefusalLines', () => {
 		expect(key).toContain('...: Pagefifty does not know this field. Found 1.');
 		expect(LONE_SURROGATE.test(key)).toBe(false);
 	});
+
+	// A flag is two code points and a joined family emoji five, yet each is one character on screen;
+	// built from their numbers, so this file holds no joiner itself. The cut falls right after them.
+	it('never cuts a flag or a joined emoji in two when it shortens a value', () => {
+		const flag = String.fromCodePoint(0x1f1f3, 0x1f1f1);
+		const family = String.fromCodePoint(0x1f468, 0x200d, 0x1f469, 0x200d, 0x1f467);
+		for (const emoji of [flag, family]) {
+			const found = `${'x'.repeat(55)}${emoji}${'y'.repeat(10)}`;
+			expect(lineFor({ path: ['extra'], problem: 'unrecognized_keys', found })).toBe(
+				`File field extra: Pagefifty does not know this field. Found "${'x'.repeat(55)}${emoji}...`
+			);
+		}
+	});
 });
 
 describe('importAppliedText', () => {
@@ -260,6 +275,37 @@ describe('importAppliedText', () => {
 		expect(importAppliedText('newer-version', 'f.json').lead).toBe(
 			'f.json was not imported: this browser holds a profile saved by a newer version of Pagefifty, and this page will not overwrite it.'
 		);
+	});
+});
+
+describe('shownFileName', () => {
+	// Built from their numbers, so this file holds no invisible character itself.
+	const DIRECTION_CODES = [
+		0x61c, 0x200e, 0x200f, 0x202a, 0x202b, 0x202c, 0x202d, 0x202e, 0x2066, 0x2067, 0x2068, 0x2069
+	];
+
+	it('drops every direction control, so a name cannot reorder the sentence around it', () => {
+		for (const code of DIRECTION_CODES) {
+			expect(shownFileName(`evil${String.fromCharCode(code)}nosj.json`)).toBe('evilnosj.json');
+		}
+		const all = String.fromCharCode(...DIRECTION_CODES);
+		expect(shownFileName(`a${all}b.json`)).toBe('ab.json');
+	});
+
+	it('keeps every other character, right-to-left letters included', () => {
+		expect(shownFileName('Übersicht ×2 (kopie).json')).toBe('Übersicht ×2 (kopie).json');
+		const arabic = `${String.fromCharCode(0x645, 0x644, 0x641)}.json`;
+		expect(shownFileName(arabic)).toBe(arabic);
+	});
+});
+
+describe('importFaultText', () => {
+	it('names no cause for a fault no import step foresaw', () => {
+		expect(importFaultText('f.json')).toEqual({
+			lead: 'f.json was not imported: an error Pagefifty did not expect stopped the import. Choose the file again.',
+			fields: [],
+			closing: 'Nothing was changed.'
+		});
 	});
 });
 

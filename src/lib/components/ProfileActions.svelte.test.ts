@@ -267,21 +267,66 @@ describe('importing a profile file', () => {
 	});
 
 	// Every step of an import catches its own failure; a fault nobody foresaw must still settle the
-	// pick, so the status never stays on "Reading" and the page says the file was not imported.
+	// pick, so the status never stays on "Reading" and the page says the file was not imported. Such a
+	// fault is no storage refusal, so the page must not name the browser as its cause.
 	it('settles a pick whose import throws, with nothing stored', async () => {
 		render(Page);
 		await saveStaff('19');
 		const before = localStorage.getItem(PROFILE_KEY);
 		const { store } = getProfileStore();
+		const fault = new Error('an unforeseen fault');
 		vi.spyOn(store, 'replaceFromImport').mockImplementation(() => {
-			throw new Error('an unforeseen fault');
+			throw fault;
 		});
+		// The page names no cause, so the console is the one record of which fault it was.
+		const logged = vi.spyOn(console, 'error').mockImplementation(() => undefined);
 		await userEvent.upload(importInput(), jsonFile('mine.json', storedFile(42)));
 		expect(await alertText()).toBe(
-			`mine.json was read but not imported: this browser refused to store it, so its storage may be full or blocked. ${NOTHING_CHANGED}`
+			`mine.json was not imported: an error Pagefifty did not expect stopped the import. Choose the file again. ${NOTHING_CHANGED}`
 		);
 		expect(status()).not.toMatch(/^Reading/);
 		expect(localStorage.getItem(PROFILE_KEY)).toBe(before);
+		expect(logged).toHaveBeenCalledWith(
+			'Pagefifty: the profile import stopped on an unexpected error',
+			fault
+		);
+	});
+
+	// A right-to-left override in a file name would reorder the rest of the sentence on screen, so a
+	// name could make "not imported" read as something else. Built from their numbers, so this file
+	// holds no invisible character itself.
+	it('shows a picked name without its direction controls, in the status and the refusal', async () => {
+		const override = String.fromCharCode(0x202e);
+		const isolate = String.fromCharCode(0x2067);
+		render(Page);
+		await saveStaff('19');
+		await userEvent.upload(importInput(), jsonFile(`evil${override}nosj.json`, 'not json'));
+		expect(await alertText()).toContain('evilnosj.json is not a profile file');
+		expect(await alertText()).not.toContain(override);
+		await userEvent.upload(importInput(), jsonFile(`mine${isolate}.json`, storedFile(42)));
+		await vi.waitFor(() =>
+			expect(status()).toBe('Imported mine.json. It replaced the profile that was in this browser.')
+		);
+	});
+
+	// A second pick waits on the first in the queue, so a fault in the first must not stop it.
+	it('still imports a later pick after an earlier one throws', async () => {
+		render(Page);
+		await saveStaff('19');
+		const { store } = getProfileStore();
+		const real = store.replaceFromImport;
+		const apply = vi.spyOn(store, 'replaceFromImport').mockImplementationOnce(() => {
+			throw new Error('an unforeseen fault');
+		});
+		apply.mockImplementation(real);
+		await userEvent.upload(importInput(), jsonFile('first.json', storedFile(42)));
+		await userEvent.upload(importInput(), jsonFile('second.json', storedFile(7)));
+		await vi.waitFor(() =>
+			expect(status()).toBe(
+				'Imported second.json. It replaced the profile that was in this browser.'
+			)
+		);
+		expect(JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}').profile.staff.total).toBe(7);
 	});
 
 	it('refuses a file that is not JSON, the empty file included', async () => {

@@ -202,10 +202,12 @@ function problemText(issue: FieldIssue): string {
 }
 
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
-// Counted in characters, not UTF-16 units, so an emoji or any other character outside the basic
-// plane is never cut in half.
+// Counted in the characters a reader sees (graphemes), not UTF-16 units or code points, so an emoji,
+// a flag, a joined emoji or a letter with its combining accent is never cut in half. Only a refusal
+// clips, so the segmenter is made when one is shown, never when the module loads.
 function clip(text: string): string {
-	const characters = [...text];
+	const graphemes = new Intl.Segmenter('en', { granularity: 'grapheme' });
+	const characters = Array.from(graphemes.segment(text), (part) => part.segment);
 	return characters.length > MAX_FOUND_LENGTH
 		? `${characters.slice(0, MAX_FOUND_LENGTH - 3).join('')}...`
 		: text;
@@ -297,6 +299,32 @@ export function importAppliedText(
 		'newer-version': `${file} was not imported: this browser holds a profile saved by a newer version of Pagefifty, and this page will not overwrite it.`
 	}[applied];
 	return { lead, fields: [], closing: NOTHING_CHANGED };
+}
+
+// The direction controls of Unicode (the Arabic letter mark, the two marks, the embeddings and
+// overrides, the isolates), by number so this file holds none itself.
+const DIRECTION_CONTROLS = new Set([
+	0x61c, 0x200e, 0x200f, 0x202a, 0x202b, 0x202c, 0x202d, 0x202e, 0x2066, 0x2067, 0x2068, 0x2069
+]);
+
+// A picked file's name as the page shows it. A direction control in the name would reorder the rest
+// of the sentence around it on screen, so a name could make "was not imported" read as something
+// else; the controls go, every letter stays.
+export function shownFileName(name: string): string {
+	return [...name]
+		.filter((character) => !DIRECTION_CONTROLS.has(character.codePointAt(0) ?? 0))
+		.join('');
+}
+
+// A fault none of the import steps foresaw, so the words name no cause the page cannot know. The
+// store's one write is the last step that could throw, and it catches its own refusal, so such a
+// fault always leaves storage as it was.
+export function importFaultText(file: string): RefusalText {
+	return {
+		lead: `${file} was not imported: an error Pagefifty did not expect stopped the import. Choose the file again.`,
+		fields: [],
+		closing: NOTHING_CHANGED
+	};
 }
 
 // HH:MM in the given zone, 24-hour.

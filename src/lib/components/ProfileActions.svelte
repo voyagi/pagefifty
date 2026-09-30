@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { importAppliedText, importRefusalLines, type RefusalText } from '$lib/profile/copy';
+	import {
+		importAppliedText,
+		importFaultText,
+		importRefusalLines,
+		shownFileName,
+		type RefusalText
+	} from '$lib/profile/copy';
 	import { downloadProfile } from '$lib/profile/export';
 	import { createImportQueue } from '$lib/profile/import';
 	import type { ProfileStore } from '$lib/profile/store.svelte';
@@ -35,30 +41,33 @@
 	// Picks settle in the order made, so a later import that stored its file makes an earlier pick's
 	// refusal stale, and it goes.
 	async function pick(file: File) {
+		const name = shownFileName(file.name);
 		refusal = null;
-		onimport({ kind: 'reading', file: file.name });
+		onimport({ kind: 'reading', file: name });
 		let result: Awaited<ReturnType<typeof enqueue>>;
 		try {
 			result = await enqueue(file);
-		} catch {
-			// Every step of an import catches its own failure, so this is a fault nobody foresaw. The
-			// pick still settles, so the status never stays on reading; the store writes nothing
-			// before it could have thrown.
-			refusal = importAppliedText('failed', file.name);
-			onimport({ kind: 'refused', file: file.name });
+		} catch (fault) {
+			// Every step of an import catches its own failure, so this is a fault nobody foresaw, never
+			// a storage refusal, and the words say so. The pick still settles, so the status never
+			// stays on reading; the store writes nothing before it could have thrown. The page names no
+			// cause, and nothing leaves the browser, so the console is the one record of the fault.
+			console.error('Pagefifty: the profile import stopped on an unexpected error', fault);
+			refusal = importFaultText(name);
+			onimport({ kind: 'refused', file: name });
 			return;
 		}
 		if (!result.ok) {
-			refusal = importRefusalLines(result);
+			refusal = importRefusalLines({ ...result, fileName: name });
 		} else if (result.applied === 'saved' || result.applied === 'unchanged') {
 			refusal = null;
-			onimport({ kind: 'imported', file: file.name });
+			onimport({ kind: 'imported', file: name });
 			store.requestPersistOnce(navigator);
 			return;
 		} else {
-			refusal = importAppliedText(result.applied, file.name);
+			refusal = importAppliedText(result.applied, name);
 		}
-		onimport({ kind: 'refused', file: file.name });
+		onimport({ kind: 'refused', file: name });
 	}
 
 	function exportFile() {
