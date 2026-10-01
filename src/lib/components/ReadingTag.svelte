@@ -57,7 +57,6 @@
 
 		.vtag {
 			white-space: normal;
-			line-height: 1.2;
 		}
 	}
 </style>

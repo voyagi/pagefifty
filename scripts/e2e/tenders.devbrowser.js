@@ -116,12 +116,17 @@ function readGeometry() {
 	});
 }
 
+// A table with nothing rendered (hidden by display: none; a closed details still lays its table
+// out when measured) leaves its right edge at -Infinity, which is below any leaf edge, so a table
+// only fits when something was measured. Planted on the closed group, 14 checks went red.
 function fits(read, theme) {
 	return (
 		read.theme === theme &&
 		read.tables.length > 0 &&
 		read.overflow <= 0 &&
-		read.tables.every((table) => table.right <= table.contentRight + 0.5) &&
+		read.tables.every(
+			(table) => Number.isFinite(table.right) && table.right <= table.contentRight + 0.5
+		) &&
 		read.hitCount === 0
 	);
 }
