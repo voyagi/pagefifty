@@ -1,7 +1,7 @@
 // tenders.devbrowser.js - the tenders list on the built Worker: order, groups, tags, the capture
-// line, the page without scripts, the layout at every width from 390 to 1440 px, and each deadline
-// served in Central European Time, then shown in the browser's own zone after hydration without a
-// hydration warning.
+// line, the page without scripts, the layout at every width from 320 to 1440 px (and with a 20px
+// default font), and each deadline served in Central European Time, then shown in the browser's own
+// zone after hydration without a hydration warning.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
 // The run uses the real clock, so rows move from the open group to the closed one day by day (on

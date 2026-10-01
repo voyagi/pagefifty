@@ -1,7 +1,7 @@
 // example.devbrowser.js - the example run on the built Worker: the 2026-09-15 capture replayed at
 // its own capture instant, labelled for the demo firm without touching the active firm, its filter
 // and title links kept under /example, a real 404 that leads back to the example, and the list's
-// layout at every width from 390 to 1440 px.
+// layout at every width from 320 to 1440 px.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
 

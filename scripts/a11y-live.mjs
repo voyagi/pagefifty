@@ -16,8 +16,8 @@
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
 //             2 the audit did not happen: zero routes or themes, a page that did not load with an
-//               h1 and its theme, a page not audited at the width its entry names, target-size
-//               never ran, or the lock, port or server failed.
+//               h1 and its theme, a page not audited at the width or list layout its entry names,
+//               target-size never ran, or the lock, port or server failed.
 
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -39,6 +39,7 @@ import {
 
 const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
+const DRIVER_SECONDS = 260;
 
 function reportPage(page) {
 	if (page.loadProblem) {
@@ -47,8 +48,9 @@ function reportPage(page) {
 	}
 	const accepted = page.acceptedIncomplete.length;
 	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
+	const layout = page.layout ? ` as ${page.auditedLayout}` : '';
 	console.log(
-		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${status} | ${page.violations.length} violations | ` +
+		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${layout}${status} | ${page.violations.length} violations | ` +
 			`${page.incomplete.length} incomplete (${accepted} accepted) | ${page.screenshot}`
 	);
 	for (const item of [...page.violations, ...page.incomplete]) {
@@ -95,6 +97,12 @@ function verdict(result) {
 		console.error('a11y: a page was not audited at the width its entry names');
 		return 2;
 	}
+	// The width is the means and the layout the claim: a switch that moved past 1440px would leave
+	// both entries of a list on its cards.
+	if (audited.some((page) => page.layout && page.auditedLayout !== page.layout)) {
+		console.error('a11y: a list page did not show the layout its entry names');
+		return 2;
+	}
 	if (audited.some((page) => !page.targetSizeRan)) {
 		console.error('a11y: the target-size rule did not run, so WCAG 2.5.8 went unchecked');
 		return 2;
@@ -118,13 +126,18 @@ async function main() {
 		console.log(`[a11y] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
 		const resultName = `pagefifty-a11y-${runId}-result.json`;
 		writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile: stageAxe() });
+		const started = Date.now();
 		const run = runDriver({
 			browserName: `pagefifty-a11y-${runId}`,
 			driverPath: resolve('scripts/a11y-live.devbrowser.js'),
 			// Eleven routes in two themes, each audited and then shot at three widths; kept under the
-			// run lock's stale age, which runDriver enforces.
-			timeoutSeconds: 260
+			// run lock's stale age, which runDriver enforces, so the cap cannot grow much past this.
+			timeoutSeconds: DRIVER_SECONDS
 		});
+		// The long pages' full-page shots take most of the time (about 206 s of 260 on 2026-10-01,
+		// about 9 s a page), so the margin is printed on every run, before a new route spends it.
+		const seconds = (Date.now() - started) / 1000;
+		console.log(`a11y: the driver took ${seconds.toFixed(0)} s of its ${DRIVER_SECONDS} s limit`);
 		const result = readResult(resultName);
 		if (run.code !== 0 || !result) {
 			throw new HarnessError(

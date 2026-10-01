@@ -12,14 +12,21 @@ const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
 	// A list is a table only above 1340px and cards at the audit width, so each list is audited as
-	// the table in Light and as cards in Dark: both layouts meet axe, at no extra entry.
+	// the table in Light and as cards in Dark: both layouts meet axe, at no extra entry. The layout
+	// each entry names is read from the page, so a moved switch cannot audit one layout twice.
 	{
 		slug: 'tenders',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/tenders?theme=light',
-		width: 1440
+		width: 1440,
+		layout: 'table'
 	},
-	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
+	{
+		slug: 'tenders',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		layout: 'cards'
+	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
 	// The tender page twice: one lot with the face-down Documents leaf, then the capture's largest
@@ -104,13 +111,15 @@ const AUDITS = [
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
 		expectText: 'Closed at the capture time',
-		width: 1440
+		width: 1440,
+		layout: 'table'
 	},
 	{
 		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
-		expectText: 'Closed at the capture time'
+		expectText: 'Closed at the capture time',
+		layout: 'cards'
 	},
 	{
 		slug: 'example-one-lot',
@@ -237,7 +246,17 @@ function isAccepted(item) {
 	);
 }
 
-async function audit({ slug, theme, url, expectStatus, expectText, storage, width }) {
+// The list layout the audited page shows: 'table' or 'cards' by the open table's display, and
+// 'none' on a page without a list table.
+function readLayout() {
+	return page.evaluate(() => {
+		const table = document.querySelector('#open table.index');
+		if (!table) return 'none';
+		return getComputedStyle(table).display === 'table' ? 'table' : 'cards';
+	});
+}
+
+async function audit({ slug, theme, url, expectStatus, expectText, storage, width, layout }) {
 	const entry = {
 		slug,
 		theme,
@@ -245,6 +264,7 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage, widt
 		expectStatus,
 		expectText,
 		storage,
+		layout,
 		width: width ?? AUDIT_VIEWPORT.width,
 		violations: [],
 		incomplete: [],
@@ -254,6 +274,7 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage, widt
 	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
 	entry.auditedWidth = await page.evaluate(() => innerWidth);
+	entry.auditedLayout = await readLayout();
 	if (entry.loadProblem) {
 		await page.setViewportSize(AUDIT_VIEWPORT);
 		return entry;
