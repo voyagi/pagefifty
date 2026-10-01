@@ -16,17 +16,49 @@ function check(name, ok, detail) {
 
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
+// shared-sweep:start. From here to shared-sweep:end, tenders.devbrowser.js and
+// example.devbrowser.js carry the same code word for word, because a driver cannot import;
+// scripts/e2e.mjs refuses to run when the two copies differ.
 const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
 const CARDS_UP_TO = 1340;
 
-// scripts/e2e/tenders.devbrowser.js holds the same read, word for word: drivers cannot import.
 // Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
 // under the tab rail, so each table's right edge is measured against its leaf's content box too.
 // The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
+// Each line of text is measured as well as each box: text that cannot wrap runs past its cell while
+// the cell's own box stays inside (75px past a card read as fitting on 2026-10-01), and only the part
+// no ancestor clips (any overflow other than visible) counts, which is what keeps the clipped header
+// row and caption out.
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
+		const range = document.createRange();
+		const clips = new Map();
+		const clipRight = (element) => {
+			if (!clips.has(element)) {
+				const clipped = getComputedStyle(element).overflowX !== 'visible';
+				clips.set(element, clipped ? box(element).right : Infinity);
+			}
+			return clips.get(element);
+		};
+		const textEdges = (table, leaf) => {
+			const edges = [];
+			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim()) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (rect.width <= 0 && rect.height <= 0) continue;
+				let right = rect.right;
+				for (let element = host; element && element !== leaf; element = element.parentElement) {
+					right = Math.min(right, clipRight(element));
+				}
+				edges.push({ right, host });
+			}
+			return edges;
+		};
 		const name = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
 			const row = element.closest('tr[data-notice]');
@@ -62,6 +94,12 @@ function readGeometry() {
 					worst = name(element);
 				}
 				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
+			}
+			for (const text of textEdges(table, leaf)) {
+				if (text.right > right) {
+					right = text.right;
+					worst = `text in ${name(text.host)}`;
+				}
 			}
 			const reading = table.querySelector('.vcell');
 			tables.push({
@@ -105,7 +143,7 @@ function readGeometry() {
 
 // A table with nothing rendered (hidden by display: none; a closed details still lays its table
 // out when measured) leaves its right edge at -Infinity, which is below any leaf edge, so a table
-// only fits when something was measured. tenders.devbrowser.js holds the same rule.
+// only fits when something was measured. Planted on the closed group, 14 checks went red.
 function fits(read, theme) {
 	return (
 		read.theme === theme &&
@@ -178,6 +216,7 @@ function checkSweep(path, light, dark, seconds) {
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);
 }
+// shared-sweep:end
 
 // Links are matched by the address they resolve to: the server writes relative hrefs and the
 // started app rewrites them, so the attribute text depends on whether hydration has finished.

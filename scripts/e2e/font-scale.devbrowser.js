@@ -42,10 +42,22 @@ const FONTS = [
 
 // What runs past its leaf's content edge, and what past the window's right edge. The card layout
 // clips the header row to 1px on purpose and a tab stands outside its leaf by design, so neither
-// counts; anything 1px or smaller is a visually hidden label.
+// counts; anything 1px or smaller is a visually hidden label. Each line of text is measured as well
+// as each box: text that cannot wrap runs past its block while the block's own box stays inside
+// (75px past a leaf read as no spill on 2026-10-01), and only the part no ancestor clips (any
+// overflow other than visible) counts.
 function readSpill() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
+		const range = document.createRange();
+		const clips = new Map();
+		const clipRight = (element) => {
+			if (!clips.has(element)) {
+				const clipped = getComputedStyle(element).overflowX !== 'visible';
+				clips.set(element, clipped ? element.getBoundingClientRect().right : Infinity);
+			}
+			return clips.get(element);
+		};
 		const label = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
 			const text = (element.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40);
@@ -65,13 +77,27 @@ function readSpill() {
 			const edge =
 				leaf.getBoundingClientRect().right - px(style.borderRightWidth) - px(style.paddingRight);
 			let worst = null;
+			const consider = (right, what) => {
+				const past = right - edge;
+				if (past > 0.5 && (!worst || past > worst.past)) worst = { past, what };
+			};
 			for (const element of leaf.querySelectorAll('*')) {
 				if (skipped(element)) continue;
 				const rect = element.getBoundingClientRect();
-				const past = rect.right - edge;
-				if (shown(rect) && past > 0.5 && (!worst || past > worst.past)) {
-					worst = { past, what: label(element) };
+				if (shown(rect)) consider(rect.right, label(element));
+			}
+			const walker = document.createTreeWalker(leaf, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim() || skipped(host)) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (!shown(rect)) continue;
+				let right = rect.right;
+				for (let element = host; element && element !== leaf; element = element.parentElement) {
+					right = Math.min(right, clipRight(element));
 				}
+				consider(right, `text in ${label(host)}`);
 			}
 			if (worst) spills.push(`${leaf.id || 'a leaf'}: ${worst.what} +${worst.past.toFixed(1)}px`);
 		}
@@ -113,6 +139,25 @@ try {
 			'the spill reader names an element planted wider than its leaf',
 			planted.spills.some((spill) => spill.includes('"planted"')),
 			planted.spills.join('; ') || 'nothing read'
+		);
+
+		// The second shape: text that cannot wrap, in a block whose own box stays inside the leaf.
+		await load(ROUTES[1]);
+		await page.setViewportSize({ width: 768, height: 900 });
+		const blockInside = await page.evaluate(() => {
+			const plant = document.createElement('p');
+			plant.style.whiteSpace = 'nowrap';
+			plant.textContent = 'bare-text-plant '.repeat(60);
+			const leaf = document.querySelector('.leaf');
+			leaf.append(plant);
+			return plant.getBoundingClientRect().right <= leaf.getBoundingClientRect().right;
+		});
+		const plantedText = await readSpill();
+		check(
+			'the spill reader names bare text planted past its leaf while its own block stays inside',
+			blockInside &&
+				plantedText.spills.some((spill) => spill.includes('text in p "bare-text-plant')),
+			`block inside its leaf ${blockInside}; ${plantedText.spills.join('; ') || 'nothing read'}`
 		);
 
 		for (const font of FONTS) {

@@ -29,17 +29,49 @@ function check(name, ok, detail) {
 
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
+// shared-sweep:start. From here to shared-sweep:end, tenders.devbrowser.js and
+// example.devbrowser.js carry the same code word for word, because a driver cannot import;
+// scripts/e2e.mjs refuses to run when the two copies differ.
 const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
 const CARDS_UP_TO = 1340;
 
-// scripts/e2e/example.devbrowser.js holds the same read, word for word: drivers cannot import.
 // Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
 // under the tab rail, so each table's right edge is measured against its leaf's content box too.
 // The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
+// Each line of text is measured as well as each box: text that cannot wrap runs past its cell while
+// the cell's own box stays inside (75px past a card read as fitting on 2026-10-01), and only the part
+// no ancestor clips (any overflow other than visible) counts, which is what keeps the clipped header
+// row and caption out.
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
+		const range = document.createRange();
+		const clips = new Map();
+		const clipRight = (element) => {
+			if (!clips.has(element)) {
+				const clipped = getComputedStyle(element).overflowX !== 'visible';
+				clips.set(element, clipped ? box(element).right : Infinity);
+			}
+			return clips.get(element);
+		};
+		const textEdges = (table, leaf) => {
+			const edges = [];
+			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim()) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (rect.width <= 0 && rect.height <= 0) continue;
+				let right = rect.right;
+				for (let element = host; element && element !== leaf; element = element.parentElement) {
+					right = Math.min(right, clipRight(element));
+				}
+				edges.push({ right, host });
+			}
+			return edges;
+		};
 		const name = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
 			const row = element.closest('tr[data-notice]');
@@ -75,6 +107,12 @@ function readGeometry() {
 					worst = name(element);
 				}
 				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
+			}
+			for (const text of textEdges(table, leaf)) {
+				if (text.right > right) {
+					right = text.right;
+					worst = `text in ${name(text.host)}`;
+				}
 			}
 			const reading = table.querySelector('.vcell');
 			tables.push({
@@ -191,6 +229,7 @@ function checkSweep(path, light, dark, seconds) {
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);
 }
+// shared-sweep:end
 
 // Reads both tables in document order: the open one first, the closed one inside the details.
 function readTables() {
@@ -347,6 +386,34 @@ try {
 	await openClosedGroup();
 	const dark = await readAtWidths(WIDTHS);
 	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000);
+
+	// Positive control for the text measure: text that cannot wrap runs past its card while the
+	// cell's own box stays inside the leaf, so only the text measure can see it.
+	const beforePlant = page.viewportSize() ?? { width: 1280, height: 720 };
+	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.setViewportSize({ width: 1000, height: 900 });
+	const cellInside = await page.evaluate(() => {
+		const cell = document.querySelector('#open tbody tr[data-notice] td[data-label="Country"]');
+		cell.style.whiteSpace = 'nowrap';
+		cell.textContent = 'text-plant '.repeat(40);
+		return (
+			cell.getBoundingClientRect().right <=
+			document.getElementById('open').getBoundingClientRect().right
+		);
+	});
+	await page.waitForTimeout(150);
+	const textPlant = await readGeometry();
+	await page.setViewportSize(beforePlant);
+	const plantedTable = textPlant.tables.find((table) => table.id === 'open');
+	check(
+		'the table measure counts text planted past its card while the cell itself stays inside',
+		cellInside &&
+			Boolean(plantedTable) &&
+			plantedTable.right > plantedTable.contentRight + 0.5 &&
+			plantedTable.worst.startsWith('text in td'),
+		`cell inside its leaf ${cellInside}; ${describe(textPlant)}`
+	);
 
 	// Probe once whether this sandbox can move the page to another zone. When it can, the hydrated
 	// labels must move with it; when it cannot, they must match the zone the browser reports.
