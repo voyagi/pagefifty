@@ -42,8 +42,9 @@
 
 <style>
 	/* The heading takes up to 15rem and the body the rest. The body never narrows below its longest
-	   word: when there is no room for it beside the heading (721px with a 20px default font, where a
-	   grid track shrank to 61px and the documents link ran 55.8px out of the leaf), it moves under it. */
+	   word: when there is no room for it beside the heading it moves under it. (While the switches
+	   were pixels, 721px with a 20px default font left a grid track of 61px and the documents link
+	   ran 55.8px out of the leaf.) */
 	.grid {
 		display: flex;
 		flex-wrap: wrap;
@@ -83,7 +84,7 @@
 		margin-top: 0.5rem;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.head,
 		.body {
 			flex-basis: 100%;

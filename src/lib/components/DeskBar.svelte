@@ -46,7 +46,7 @@
 
 	/* On a phone the demo label (the firm slot's own rule) sits right after the wordmark, so the
 	   spacer and the theme switch follow it; the nav takes the second row. */
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.deskbar {
 			flex-wrap: wrap;
 			gap: 0.5rem 1rem;

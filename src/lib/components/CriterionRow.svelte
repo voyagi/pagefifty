@@ -96,7 +96,7 @@
 		padding-left: 0.75rem;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.clause {
 			grid-template-columns: minmax(0, 1fr);
 			row-gap: 1rem;

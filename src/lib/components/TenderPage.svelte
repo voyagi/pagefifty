@@ -225,7 +225,7 @@
 		color: var(--on-yellow);
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.title {
 			font-size: var(--step-3);
 		}

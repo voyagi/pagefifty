@@ -61,7 +61,7 @@
 				no-repeat;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.binder {
 			margin: 0 0.75rem 2rem;
 			padding: 2.375rem var(--board-pad) var(--board-pad);

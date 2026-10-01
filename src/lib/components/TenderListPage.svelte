@@ -248,7 +248,7 @@
 		margin-bottom: 1rem;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		h1 {
 			font-size: var(--step-3);
 		}

@@ -77,7 +77,7 @@
 		color: var(--ink);
 	}
 
-	@media (max-width: 1100px) {
+	@media (max-width: 68.75em) {
 		.margin-col {
 			grid-column: 1 / -1;
 			margin-bottom: 1.25rem;

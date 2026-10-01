@@ -224,10 +224,10 @@
 			color: var(--ink-2);
 		}
 
-		/* A closed row's label, 'Closed' and date are wider than a phone card; DeadlineTime keeps the
-		   date itself on one line. A label with an offset zone ('GMT+13:45', 252px) is wider than a
-		   card at 320px (242px) on its own, so there, and only there, it breaks before its zone: as an
-		   inline block it shrinks to the card and moves whole to its own line everywhere else. */
+		/* A closed row's label, 'Closed' and date are wider than a phone card. As an inline block the
+		   date moves whole to its own line, and only a label wider than the card on its own wraps at
+		   its spaces (this rule lifts DeadlineTime's nowrap inside a card), as an offset zone does at
+		   320px ('GMT+13:45', 252px against a 242px card). */
 		.deadline {
 			white-space: normal;
 		}

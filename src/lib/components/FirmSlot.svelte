@@ -86,7 +86,7 @@
 
 	/* On a phone the own firm hides, while the demo label stays as one line right after the
 	   wordmark, so nobody reads the invented figures as their own. */
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.firm {
 			display: none;
 		}
