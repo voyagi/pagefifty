@@ -134,8 +134,10 @@ async function main() {
 			// run lock's stale age, which runDriver enforces, so the cap cannot grow much past this.
 			timeoutSeconds: DRIVER_SECONDS
 		});
-		// The long pages' full-page shots take most of the time (about 206 s of 260 on 2026-10-01,
-		// about 9 s a page), so the margin is printed on every run, before a new route spends it.
+		// The long pages' full-page shots take most of the time (206 and 224 s of 260 in two runs on
+		// 2026-10-01, about 10 s a page), so the margin is printed on every run, before a new route
+		// spends it: two more routes in two themes take about 40 s, more than the 36 s the slower run
+		// left.
 		const seconds = (Date.now() - started) / 1000;
 		console.log(`a11y: the driver took ${seconds.toFixed(0)} s of its ${DRIVER_SECONDS} s limit`);
 		const result = readResult(resultName);
