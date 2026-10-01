@@ -41,14 +41,19 @@
 </Leaf>
 
 <style>
+	/* The heading takes up to 15rem and the body the rest. The body never narrows below its longest
+	   word: when there is no room for it beside the heading (721px with a 20px default font, where a
+	   grid track shrank to 61px and the documents link ran 55.8px out of the leaf), it moves under it. */
 	.grid {
-		display: grid;
-		grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
-		column-gap: 1.75rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.75rem;
 		align-items: center;
 	}
 
 	.head {
+		flex: 0 1 15rem;
+		min-width: 12rem;
 		display: flex;
 		gap: 0.5rem;
 		align-items: center;
@@ -64,6 +69,7 @@
 	}
 
 	.body {
+		flex: 1 1 0%;
 		max-width: 72ch;
 	}
 
@@ -78,9 +84,10 @@
 	}
 
 	@media (max-width: 720px) {
-		.grid {
-			grid-template-columns: minmax(0, 1fr);
-			row-gap: 0.75rem;
+		.head,
+		.body {
+			flex-basis: 100%;
+			min-width: 0;
 		}
 	}
 </style>

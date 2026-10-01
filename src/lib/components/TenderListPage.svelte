@@ -94,7 +94,8 @@
 				<div class="capture">
 					{#if example}
 						<p class="mono">
-							Captured from TED on <span class="day">{capture.capturedOn} at {capturedAt}</span>
+							Captured from TED on <span class="day">{capture.capturedOn}</span>
+							<span class="day">at {capturedAt}</span>
 						</p>
 					{:else}
 						<p class="mono">
@@ -202,7 +203,8 @@
 		min-width: 0;
 	}
 
-	/* A date is one piece of evidence, so it never breaks across lines. */
+	/* A date is one piece of evidence, so it never breaks across lines; the capture time is its own
+	   piece, so at 320px with a 20px default font the line breaks between the two, never inside one. */
 	.day {
 		white-space: nowrap;
 	}

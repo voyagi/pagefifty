@@ -46,11 +46,18 @@
 		max-width: 44ch;
 	}
 
-	/* Follows TenderTable's switch to cards, in the same em. */
+	/* Follows TenderTable's switch to cards, in the same em. A card has no 15rem floor, so at 320px
+	   with a 20px default font 'Criteria in the documents' (261px) is wider than the card: there the
+	   tag wraps between its words instead of running out of the card. */
 	@media (max-width: 83.75em) {
 		.vcell {
 			min-width: 0;
 			margin-top: 0.5rem;
+		}
+
+		.vtag {
+			white-space: normal;
+			line-height: 1.2;
 		}
 	}
 </style>
