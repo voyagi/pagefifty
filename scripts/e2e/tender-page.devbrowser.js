@@ -195,8 +195,16 @@ try {
 	);
 
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
-	// status the server gives that address.
+	// status the server gives that address. Once its deadline has passed (6 Oct 2026) the row sits in
+	// the closed group, folded shut, so the group is opened by its summary first, as a visitor would.
 	await page.goto('http://127.0.0.1:8788/tenders');
+	await page.waitForSelector('[role="group"][aria-label="Theme"] [aria-pressed="true"]', {
+		timeout: 10000
+	});
+	const rowGroup = await page.evaluate(() =>
+		document.querySelector('tr[data-notice="609955-2026"]')?.closest('details') ? 'closed' : 'open'
+	);
+	if (rowGroup === 'closed') await page.click('#closed summary');
 	await page.click('tr[data-notice="609955-2026"] a');
 	await page.waitForFunction(() => location.pathname === '/tenders/609955-2026', null, {
 		timeout: 10000
@@ -210,7 +218,7 @@ try {
 	check(
 		"following 609955-2026's row link from /tenders lands on its page with 200",
 		landed.path === '/tenders/609955-2026' && landed.status === 200 && landed.h1.length > 0,
-		`path ${landed.path}, status ${landed.status}, h1 "${landed.h1.slice(0, 60)}"`
+		`row in the ${rowGroup} group; path ${landed.path}, status ${landed.status}, h1 "${landed.h1.slice(0, 60)}"`
 	);
 
 	await notFound(
