@@ -11,9 +11,10 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	// A list is a table only above 1340px and cards at the audit width, so each list is audited as
-	// the table in Light and as cards in Dark: both layouts meet axe, at no extra entry. The layout
-	// each entry names is read from the page, so a moved switch cannot audit one layout twice.
+	// A list is a table only above 1340px and cards at 1280px, so each list is audited as the table
+	// in Light and as cards in Dark: both layouts meet axe, at no extra entry. Each list entry names
+	// the width for its layout, and the layout is read from the page, so a moved switch cannot audit
+	// one layout twice.
 	{
 		slug: 'tenders',
 		theme: 'light',
@@ -25,6 +26,7 @@ const AUDITS = [
 		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		width: 1280,
 		layout: 'cards'
 	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
@@ -119,6 +121,7 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
+		width: 1280,
 		layout: 'cards'
 	},
 	{
@@ -150,11 +153,12 @@ const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
-// axe runs at the browser's own width, as before the width shots existed; they return to it. It is
-// set before the first audit too, so a browser that reports no size of its own (null) still has
-// every page audited at one width, never the first at another. The only other width is one an
-// entry names itself (the list tables above), and the entry records the width it was audited at.
-const AUDIT_VIEWPORT = page.viewportSize() ?? { width: 1280, height: 720 };
+// axe runs at 1280 x 720, the browser's default size, and the width shots return to it. It is a
+// fixed size rather than the page's current one: a run stopped during its width shots leaves this
+// named page open at another width, and the next run would audit every page there. The only other
+// width is one an entry names itself (the list entries above), and the entry records the width it
+// was audited at.
+const AUDIT_VIEWPORT = { width: 1280, height: 720 };
 await page.setViewportSize(AUDIT_VIEWPORT);
 
 // Storage is set on the origin before the audited page loads: addInitScript crashes this sandbox

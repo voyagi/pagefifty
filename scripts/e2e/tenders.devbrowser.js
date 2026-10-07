@@ -388,31 +388,37 @@ try {
 	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000);
 
 	// Positive control for the text measure: text that cannot wrap runs past its card while the
-	// cell's own box stays inside the leaf, so only the text measure can see it.
+	// cell's own box stays inside the leaf, so only the text measure can see it. The cell comes from
+	// the open table while it lists a row, else from the closed one, so the control still runs once
+	// every captured deadline has passed.
 	const beforePlant = page.viewportSize() ?? { width: 1280, height: 720 };
 	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
-	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await openClosedGroup();
 	await page.setViewportSize({ width: 1000, height: 900 });
-	const cellInside = await page.evaluate(() => {
-		const cell = document.querySelector('#open tbody tr[data-notice] td[data-label="Country"]');
-		cell.style.whiteSpace = 'nowrap';
-		cell.textContent = 'text-plant '.repeat(40);
-		return (
-			cell.getBoundingClientRect().right <=
-			document.getElementById('open').getBoundingClientRect().right
-		);
+	const planted = await page.evaluate(() => {
+		for (const id of ['open', 'closed']) {
+			const cell = document.querySelector(`#${id} tbody tr[data-notice] td[data-label="Country"]`);
+			if (!cell) continue;
+			cell.style.whiteSpace = 'nowrap';
+			cell.textContent = 'text-plant '.repeat(40);
+			const inside =
+				cell.getBoundingClientRect().right <=
+				document.getElementById(id).getBoundingClientRect().right;
+			return { id, inside };
+		}
+		return { id: null, inside: false };
 	});
 	await page.waitForTimeout(150);
 	const textPlant = await readGeometry();
 	await page.setViewportSize(beforePlant);
-	const plantedTable = textPlant.tables.find((table) => table.id === 'open');
+	const plantedTable = textPlant.tables.find((table) => table.id === planted.id);
 	check(
 		'the table measure counts text planted past its card while the cell itself stays inside',
-		cellInside &&
+		planted.inside &&
 			Boolean(plantedTable) &&
 			plantedTable.right > plantedTable.contentRight + 0.5 &&
 			plantedTable.worst.startsWith('text in td'),
-		`cell inside its leaf ${cellInside}; ${describe(textPlant)}`
+		`planted in the ${planted.id ?? 'no'} table, cell inside its leaf ${planted.inside}; ${describe(textPlant)}`
 	);
 
 	// Probe once whether this sandbox can move the page to another zone. When it can, the hydrated
