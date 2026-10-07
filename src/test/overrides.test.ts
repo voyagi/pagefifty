@@ -28,14 +28,17 @@ function versionKeyed(key: string): { key: string; name: string; version: string
 	return at > 0 ? [{ key, name: key.slice(0, at), version: key.slice(at + 1) }] : [];
 }
 
-// True when version sorts below floor, comparing major, minor and patch as numbers.
+// True when version sorts below floor (a release), comparing major, minor and patch as numbers. A
+// pre-release sorts below its own release, so 0.35.5-rc.1 is below 0.35.5.
 function sortsBelow(version: string, floor: string): boolean {
-	const parts = version.split('.').map((part) => Number.parseInt(part, 10));
+	const dash = version.indexOf('-');
+	const release = dash === -1 ? version : version.slice(0, dash);
+	const parts = release.split('.').map((part) => Number.parseInt(part, 10));
 	const floorParts = floor.split('.').map((part) => Number.parseInt(part, 10));
 	for (let index = 0; index < 3; index += 1) {
 		if (parts[index] !== floorParts[index]) return parts[index] < floorParts[index];
 	}
-	return false;
+	return dash !== -1;
 }
 
 // The undici advisory covers the 7 line only.
@@ -65,25 +68,17 @@ describe('dependency overrides', () => {
 	});
 
 	it('leaves no undici of the 7 line below 7.29.1 installed (CVE-2026-85024)', () => {
-		expect(['7.29.0', '7.28.9', '6.21.0', '7.29.1', '8.10.2'].map(undiciBelowFixed)).toEqual([
-			true,
-			true,
-			false,
-			false,
-			false
-		]);
+		expect(
+			['7.29.0', '7.28.9', '7.29.1-beta.0', '6.21.0', '7.29.1', '8.10.2'].map(undiciBelowFixed)
+		).toEqual([true, true, true, false, false, false]);
 		expect(installedVersions('undici').length).toBeGreaterThan(0);
 		expect(installedVersions('undici').filter(undiciBelowFixed)).toEqual([]);
 	});
 
 	it('leaves no sharp below 0.35.5 installed (GHSA-wq5f-xc86-pv6w)', () => {
-		expect(['0.35.4', '0.34.9', '0.35.5', '0.36.0', '1.0.0'].map(sharpBelowFixed)).toEqual([
-			true,
-			true,
-			false,
-			false,
-			false
-		]);
+		expect(
+			['0.35.4', '0.34.9', '0.35.5-rc.1', '0.35.5', '0.36.0-rc.1', '1.0.0'].map(sharpBelowFixed)
+		).toEqual([true, true, true, false, false, false]);
 		expect(installedVersions('sharp').length).toBeGreaterThan(0);
 		expect(installedVersions('sharp').filter(sharpBelowFixed)).toEqual([]);
 	});
