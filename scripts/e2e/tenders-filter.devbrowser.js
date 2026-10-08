@@ -55,6 +55,9 @@ function readList(html) {
 			const params = new URLSearchParams(location.search);
 			return {
 				url: location.href,
+				origin: location.origin,
+				pathname: location.pathname,
+				search: location.search,
 				countries: params.getAll('country').join(' '),
 				from: params.get('from'),
 				to: params.get('to'),
@@ -106,11 +109,15 @@ try {
 		page.getByRole('button', { name: 'Apply filters' }).click()
 	]);
 	const submitted = await readList();
-	await page.goto(submitted.url);
-	const shared = await readList();
+	// The address comes from the page, so only its query is reused: the host and path stay the
+	// literal BASE, and nothing is opened unless the form stayed on this list.
+	const onList = submitted.origin === 'http://127.0.0.1:8788' && submitted.pathname === '/tenders';
+	if (onList) await page.goto(`${BASE}${submitted.search}`);
+	const shared = onList ? await readList() : { open: [], closed: [] };
 	check(
 		'ticking Germany and applying makes an address with NL and DE that loads the same rows when opened directly',
-		submitted.countries === 'NL DE' &&
+		onList &&
+			submitted.countries === 'NL DE' &&
 			submitted.open.length + submitted.closed.length > nlRows.length &&
 			numbers(submitted.open) === numbers(shared.open) &&
 			numbers(submitted.closed) === numbers(shared.closed),
