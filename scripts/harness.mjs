@@ -514,16 +514,18 @@ export function readResult(name) {
 	}
 }
 
-// A driver past this share of its limit still passes, but the next route or check it gains may not.
-// verify:ship prints only a pass or a fail per step, so the runners print these lines last, under
-// their verdict, and the margin is seen shrinking before a run fails on it.
-const MARGIN_WARN_SHARE = 0.75;
+// A driver past this share of its limit still passes, but the next route or check it gains, or a busy
+// machine, may not. verify:ship prints only a pass or a fail per step, so the runners print these
+// lines last, under their verdict, and the margin is seen shrinking before a run fails on it. Another
+// program's load slowed the a11y theme runs about 1.5 to 1.7 times on 2026-10-08 (88 to 108 s quiet,
+// 155 and 160 s loaded), and 60% is the share that slowdown still fits inside the limit.
+const MARGIN_WARN_SHARE = 0.6;
 
 export function marginWarnings(times, limitSeconds) {
 	return times
 		.filter(({ seconds }) => seconds > limitSeconds * MARGIN_WARN_SHARE)
 		.map(
 			({ name, seconds }) =>
-				`${name} took ${seconds} s of its ${limitSeconds} s limit, past ${MARGIN_WARN_SHARE * 100}%`
+				`${name} took ${seconds} s of its ${limitSeconds} s limit, past ${Math.round(MARGIN_WARN_SHARE * 100)}%`
 		);
 }

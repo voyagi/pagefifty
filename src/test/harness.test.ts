@@ -204,18 +204,18 @@ describe('the wrangler dev command of the browser runs', () => {
 // verify:ship prints only a pass or a fail per step, so a driver's shrinking margin shows only in
 // these lines, printed under each runner's verdict.
 describe('the time margin warning of the browser runs', () => {
-	it('names a driver past three quarters of its limit, and not one at it', () => {
-		// The fixture sits on the boundary: 195 s is exactly three quarters of 260 s.
-		expect(260 * 0.75).toBe(195);
+	it('names a driver past 60% of its limit, and not one at it', () => {
+		// The fixture sits on the boundary: 156 s is exactly 60% of 260 s.
+		expect(260 * 0.6).toBe(156);
 		expect(
 			marginWarnings(
 				[
-					{ name: 'the light driver', seconds: 195 },
-					{ name: 'the dark driver', seconds: 196 }
+					{ name: 'the light driver', seconds: 156 },
+					{ name: 'the dark driver', seconds: 157 }
 				],
 				260
 			)
-		).toEqual(['the dark driver took 196 s of its 260 s limit, past 75%']);
+		).toEqual(['the dark driver took 157 s of its 260 s limit, past 60%']);
 	});
 
 	it('is silent while every driver keeps its margin', () => {
@@ -223,7 +223,7 @@ describe('the time margin warning of the browser runs', () => {
 			marginWarnings(
 				[
 					{ name: 'canary', seconds: 21 },
-					{ name: 'example', seconds: 44 }
+					{ name: 'example', seconds: 35 }
 				],
 				60
 			)
