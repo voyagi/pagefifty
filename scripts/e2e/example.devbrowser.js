@@ -266,8 +266,10 @@ try {
 
 	const list = await page.goto('http://127.0.0.1:8788/example');
 	// The firm slot's store loads after mount; the example label is written by the server, but the
-	// storage read that must leave the active firm alone happens after hydration.
-	await page.waitForTimeout(1500);
+	// storage read that must leave the active firm alone happens after hydration. So the app must
+	// have started, and the network gone quiet, since the store is fetched as its own script.
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
 	const shown = await readPage();
 	check(
 		'/example answers 200 with h1 "Example run" and the capture line with its time',
@@ -320,7 +322,8 @@ try {
 	});
 	await page.waitForSelector('#tender-title', { timeout: 10000 });
 	const tender = await page.goto('http://127.0.0.1:8788/example/609955-2026');
-	await page.waitForTimeout(1000);
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
 	const notice = await readPage();
 	await saveScreenshot(await page.screenshot(), 'pagefifty-example-609955-1440.png');
 	check(

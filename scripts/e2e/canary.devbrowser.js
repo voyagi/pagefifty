@@ -30,6 +30,8 @@ const CERTIFICATE = 'pf-canary-7c1d';
 const VALID_UNTIL = '2031-07-13';
 const MARKERS = [...TURNOVER.map(([, value]) => value), STAFF, CERTIFICATE, VALID_UNTIL];
 const PROBE = 'pf-probe-5e2a';
+// The theme switch marks its pressed button only once the app has started.
+const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
 const BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -133,16 +135,35 @@ try {
 		await page.waitForSelector('h1', { timeout: 10000 });
 		visited.push(`${url.replace('http://127.0.0.1:8788', '')} ${response.status()}`);
 	}
-	// A client-side hop as well, so a request the started app makes is in the sample too.
+	// A client-side hop as well, so a request the started app makes is in the sample too. Before the
+	// app starts the click is a full page load and samples nothing client-side, so the app must have
+	// started, a flag set on the window (which a page load would drop) must survive the hop, and the
+	// data request the router makes for the next page must be in the capture.
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.evaluate(() => {
+		window.pfCanaryHop = true;
+	});
+	const beforeHop = captured.length;
 	await page.click('nav[aria-label="Main"] a[href$="/tenders"]');
 	await page.waitForFunction(() => location.pathname === '/tenders', null, { timeout: 10000 });
-	await page.waitForTimeout(500);
+	await page.waitForLoadState('networkidle');
+	const hopKept = await page.evaluate(() => window.pfCanaryHop === true);
+	const hopData = captured
+		.slice(beforeHop)
+		.filter(
+			(request) => request.url.split('?')[0] === 'http://127.0.0.1:8788/tenders/__data.json'
+		).length;
 
 	const after = captured.slice(fromProfile);
 	check(
 		'the pages browsed answer 200 and requests were captured while they loaded',
 		visited.every((line) => line.endsWith(' 200')) && after.length > 0,
 		`${visited.join(', ')}; ${after.length} requests captured, ${after.filter((request) => request.method !== 'GET').length} not GET`
+	);
+	check(
+		'the hop to /tenders from the main nav stays on the page and its data request is in the capture',
+		hopKept && hopData > 0,
+		`same page ${hopKept}, ${hopData} /tenders/__data.json requests captured`
 	);
 	const hits = MARKERS.map((marker) => ({ marker, ...hitsIn(after, marker) })).filter(
 		(hit) => hit.url + hit.headers + hit.body > 0

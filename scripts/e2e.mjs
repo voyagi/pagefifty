@@ -44,6 +44,8 @@ const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
 const PLANTED_CHECK = 'planted: unknown path answers 200';
 const DRIVER_SECONDS = 60;
+const CLEANUP_DRIVER = resolve('scripts/e2e/cleanup/close-pages.devbrowser.js');
+const CLEANUP_SECONDS = 20;
 
 const args = new Set(process.argv.slice(2));
 const prove = args.has('--prove');
@@ -156,6 +158,13 @@ function runDrivers(runId) {
 				ok: false,
 				detail: `dev-browser exit ${run.code}${result ? '' : ', no result file'}: ${run.output.trim()}`
 			});
+			// Its named page may still be open, and the next page on the same site would crash.
+			const cleanup = runDriver({
+				browserName: 'pagefifty-e2e',
+				driverPath: CLEANUP_DRIVER,
+				timeoutSeconds: CLEANUP_SECONDS
+			});
+			console.log(`[e2e] after ${basename(driverPath)}: cleanup exit ${cleanup.code}, ${cleanup.output.trim()}`);
 		}
 	}
 	// A driver is stopped at its limit, so each one's time is printed on every run, before a new
