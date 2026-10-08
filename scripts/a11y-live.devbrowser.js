@@ -187,7 +187,8 @@ const ACCEPTED_INCOMPLETE = [];
 
 const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
-// Only the theme this run names; the runner refuses a run that audited none or another theme's.
+// Only the theme this run names. The runner refuses a run that audited none, fewer than its entries
+// or another theme's, and a route list naming a theme it never runs.
 const audits = AUDITS.filter((entry) => entry.theme === config.theme);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
@@ -367,6 +368,12 @@ const pages = [];
 try {
 	for (const entry of audits) pages.push(await audit(entry));
 } finally {
-	await writeFile(config.resultName, JSON.stringify({ driver: 'a11y-live', pages }));
+	// The runner compares both with its own theme list and with the pages it gets back, so an entry
+	// in a theme it never runs, or one this run skipped, cannot drop out unseen.
+	const listedThemes = [...new Set(AUDITS.map((entry) => entry.theme))];
+	await writeFile(
+		config.resultName,
+		JSON.stringify({ driver: 'a11y-live', pages, entries: audits.length, listedThemes })
+	);
 	await browser.closePage(PAGE);
 }

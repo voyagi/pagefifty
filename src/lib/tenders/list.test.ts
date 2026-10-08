@@ -116,6 +116,8 @@ describe('buyer countries', () => {
 
 	// ISO 3166-1 alpha-3 to alpha-2 for the EU and EEA. ICU names only the alpha-2 codes, so each name
 	// is checked against ICU's English name, and the codes against the profile's own country list.
+	// Held under CLDR 48 (Node 24.21): a failure right after a Node update with no change here is a
+	// CLDR rename, so decide whether the list follows it.
 	const ALPHA2_OF: Record<string, string> = {
 		AUT: 'AT',
 		BEL: 'BE',

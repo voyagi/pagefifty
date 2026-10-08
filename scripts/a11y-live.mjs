@@ -15,7 +15,8 @@
 // Usage:  node scripts/a11y-live.mjs [--no-build]
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
-//             2 the audit did not happen: zero routes or themes, a theme's run that audited no page
+//             2 the audit did not happen: zero routes or themes, a route list naming a theme this
+//               runner does not run, a theme's run that audited no page, fewer pages than its entries
 //               or another theme's, a page that did not load with an h1 and its theme, a page not
 //               audited at the width or list layout its entry names, target-size never ran, or the
 //               lock, port or server failed.
@@ -166,11 +167,25 @@ async function main() {
 					`the ${theme} a11y driver did not finish (dev-browser exit ${run.code}): ${run.output.trim()}`
 				);
 			}
-			// A run that audited nothing would leave the verdict reading one theme as the whole audit.
-			if (result.pages.length === 0 || result.pages.some((page) => page.theme !== theme)) {
+			// The driver keeps only the entries of the theme it is given, so an entry in a theme missing
+			// here would never be audited by any run.
+			const listed = Array.isArray(result.listedThemes) ? result.listedThemes : [];
+			const unrun = listed.filter((name) => !THEMES.includes(name));
+			if (listed.length === 0 || unrun.length > 0) {
 				throw new HarnessError(
 					2,
-					`the ${theme} a11y driver audited ${result.pages.length} pages, not exactly the ${theme} ones`
+					`the a11y route list names the themes ${JSON.stringify(listed)}, and this runner runs only ${JSON.stringify(THEMES)}: add each missing one to THEMES`
+				);
+			}
+			// A run that audited nothing would leave the verdict reading one theme as the whole audit.
+			if (
+				result.pages.length === 0 ||
+				result.pages.length !== result.entries ||
+				result.pages.some((page) => page.theme !== theme)
+			) {
+				throw new HarnessError(
+					2,
+					`the ${theme} a11y driver audited ${result.pages.length} pages of its ${result.entries} entries, not exactly the ${theme} ones`
 				);
 			}
 			pages.push(...result.pages);
