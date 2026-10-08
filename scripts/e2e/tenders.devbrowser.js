@@ -1,6 +1,7 @@
 // tenders.devbrowser.js - the tenders list on the built Worker: order, groups, tags, the capture
-// line, the page without scripts, and each deadline served in Central European Time, then shown in
-// the browser's own zone after hydration without a hydration warning.
+// line, the page without scripts, the layout at every width from 320 to 1440 px (and with a 20px
+// default font), and each deadline served in Central European Time, then shown in the browser's own
+// zone after hydration without a hydration warning.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
 // The run uses the real clock, so rows move from the open group to the closed one day by day (on
@@ -27,6 +28,206 @@ function check(name, ok, detail) {
 }
 
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
+
+// shared-sweep:start. From here to shared-sweep:end, tenders.devbrowser.js and
+// example.devbrowser.js carry the same code word for word, because a driver cannot import;
+// scripts/e2e.mjs refuses to run when the two copies differ.
+const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
+const CARDS_UP_TO = 1340;
+
+// Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
+// under the tab rail, so each table's right edge is measured against its leaf's content box too.
+// The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
+// Each line of text is measured as well as each box, at its own edge: text that cannot wrap runs past
+// its cell while the cell's own box stays inside (75px past a card read as fitting on 2026-10-01),
+// and a value clipped inside its cell is cut off, so clipping by any other ancestor does not hide it.
+// Only text inside those two hidden structures is left out.
+function readGeometry() {
+	return page.evaluate(() => {
+		const px = (value) => parseFloat(value) || 0;
+		const box = (element) => element.getBoundingClientRect();
+		const range = document.createRange();
+		const hiddenOnPurpose = (element) => {
+			if (element.closest('.visually-hidden')) return true;
+			const head = element.closest('thead');
+			return Boolean(head) && getComputedStyle(head).position === 'absolute';
+		};
+		const textEdges = (table) => {
+			const edges = [];
+			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim() || hiddenOnPurpose(host)) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (rect.width <= 0 && rect.height <= 0) continue;
+				edges.push({ right: rect.right, host });
+			}
+			return edges;
+		};
+		const name = (element) => {
+			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
+			const row = element.closest('tr[data-notice]');
+			const tag = element.tagName.toLowerCase() + classes.map((each) => `.${each}`).join('');
+			return row ? `${tag} ${row.getAttribute('data-notice')}` : tag;
+		};
+		const rendered = (table) => {
+			const head = table.querySelector('thead');
+			const heads =
+				head && getComputedStyle(head).position !== 'absolute'
+					? Array.from(head.querySelectorAll('th, th *'))
+					: [];
+			return [table, ...table.querySelectorAll('tbody *'), ...heads].filter((element) => {
+				const rect = box(element);
+				return rect.width > 0 || rect.height > 0;
+			});
+		};
+		const cells = [];
+		const tables = [];
+		for (const id of ['open', 'closed']) {
+			const leaf = document.getElementById(id);
+			const table = leaf && leaf.querySelector('table');
+			if (!table) continue;
+			const leafStyle = getComputedStyle(leaf);
+			const contentRight =
+				box(leaf).right - px(leafStyle.borderRightWidth) - px(leafStyle.paddingRight);
+			let right = -Infinity;
+			let worst = '';
+			for (const element of rendered(table)) {
+				const rect = box(element);
+				if (rect.right > right) {
+					right = rect.right;
+					worst = name(element);
+				}
+				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
+			}
+			for (const text of textEdges(table)) {
+				if (text.right > right) {
+					right = text.right;
+					worst = `text in ${name(text.host)}`;
+				}
+			}
+			const reading = table.querySelector('.vcell');
+			tables.push({
+				id,
+				display: getComputedStyle(table).display,
+				readingMin: reading ? getComputedStyle(reading).minWidth : 'none',
+				contentRight,
+				right,
+				worst
+			});
+		}
+		const hits = [];
+		for (const tab of document.querySelectorAll('a.tab')) {
+			const tabRect = box(tab);
+			for (const cell of cells) {
+				const across =
+					Math.min(tabRect.right, cell.rect.right) - Math.max(tabRect.left, cell.rect.left);
+				const down =
+					Math.min(tabRect.bottom, cell.rect.bottom) - Math.max(tabRect.top, cell.rect.top);
+				if (across > 1 && down > 1) {
+					hits.push(`${tab.textContent.replace(/\s+/g, ' ').trim()} over ${name(cell.element)}`);
+				}
+			}
+		}
+		let longest = { text: '', width: 0 };
+		for (const time of document.querySelectorAll('table time')) {
+			const width = box(time).width;
+			if (width > longest.width) longest = { text: time.textContent.trim(), width };
+		}
+		return {
+			theme: document.documentElement.getAttribute('data-theme'),
+			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+			rootPx: px(getComputedStyle(document.documentElement).fontSize),
+			tables,
+			hitCount: hits.length,
+			hits: hits.slice(0, 3),
+			longest
+		};
+	});
+}
+
+// A table with nothing rendered (hidden by display: none; a closed details still lays its table
+// out when measured) leaves its right edge at -Infinity, which is below any leaf edge, so a table
+// only fits when something was measured. Planted on the closed group, 14 checks went red.
+function fits(read, theme) {
+	return (
+		read.theme === theme &&
+		read.tables.length > 0 &&
+		read.overflow <= 0 &&
+		read.tables.every(
+			(table) => Number.isFinite(table.right) && table.right <= table.contentRight + 0.5
+		) &&
+		read.hitCount === 0
+	);
+}
+
+function describe(read) {
+	const tables = read.tables
+		.map(
+			(table) =>
+				`${table.id} right ${table.right.toFixed(1)} of ${table.contentRight.toFixed(1)} (${table.worst})`
+		)
+		.join(', ');
+	const hits = read.hitCount ? `${read.hitCount} tab hits: ${read.hits.join('; ')}` : 'no tab hits';
+	return `${read.theme}: overflow ${read.overflow}, ${tables || 'no table measured'}, ${hits}`;
+}
+
+async function readAtWidths(widths) {
+	const before = page.viewportSize() ?? { width: 1280, height: 720 };
+	const reads = [];
+	for (const width of widths) {
+		await page.setViewportSize({ width, height: 900 });
+		await page.waitForTimeout(150);
+		reads.push(await readGeometry());
+	}
+	await page.setViewportSize(before);
+	return reads;
+}
+
+async function openClosedGroup() {
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.evaluate(() => {
+		const details = document.querySelector('#closed details');
+		if (details) details.open = true;
+	});
+}
+
+function checkSweep(path, light, dark, seconds) {
+	WIDTHS.forEach((width, i) => {
+		const timing = i === 0 ? `, sweep ${seconds.toFixed(1)} s` : '';
+		check(
+			`at ${width}px ${path} does not scroll sideways, keeps its tables inside their leaves and no tab over a header, in Light and Dark`,
+			fits(light[i], 'light') && fits(dark[i], 'dark'),
+			`${describe(light[i])} | ${describe(dark[i])}${timing}`
+		);
+	});
+	// Asserted on both themes' reads, so a rule in one theme alone cannot move the switch unseen.
+	const switched = (read, width) => {
+		const floor = 15 * read.rootPx;
+		return (
+			read.tables.length > 0 &&
+			read.tables.every((table) =>
+				width <= CARDS_UP_TO
+					? table.display === 'block' && parseFloat(table.readingMin) === 0
+					: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01
+			)
+		);
+	};
+	const seen = (read) =>
+		read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ') || 'no table';
+	const layouts = WIDTHS.map((width, i) => ({
+		right: switched(light[i], width) && switched(dark[i], width),
+		text: `${width} light ${seen(light[i])}, dark ${seen(dark[i])}`
+	}));
+	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
+	check(
+		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it, in Light and Dark`,
+		wrong.length === 0,
+		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
+	);
+}
+// shared-sweep:end
 
 // Reads both tables in document order: the open one first, the closed one inside the details.
 function readTables() {
@@ -72,6 +273,24 @@ function expectedClock(instant, zone) {
 			}).format(new Date(at)),
 		[instant, zone]
 	);
+}
+
+// The test browser draws no scrollbar, while Chromium on Windows takes a classic one's 17px (15px in
+// its Fluent style) from the page's width and not from the width the media query reads. Padding on
+// the root takes the same 17px from the layout and leaves the media query and vw alone.
+async function readWithScrollbar(width) {
+	const before = page.viewportSize() ?? { width: 1280, height: 720 };
+	await page.setViewportSize({ width, height: 900 });
+	await page.evaluate(() => {
+		document.documentElement.style.paddingRight = '17px';
+	});
+	await page.waitForTimeout(150);
+	const read = await readGeometry();
+	await page.evaluate(() => {
+		document.documentElement.style.paddingRight = '';
+	});
+	await page.setViewportSize(before);
+	return read;
 }
 
 try {
@@ -157,17 +376,72 @@ try {
 		`${servedLabels.length} served labels, ${notCentral.length} not CET or CEST${notCentral.length ? `: ${notCentral[0][2]}` : ''}`
 	);
 
+	const sweepStart = Date.now();
+	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+	await openClosedGroup();
+	const light = await readAtWidths(WIDTHS);
+	await page.goto('http://127.0.0.1:8788/tenders?theme=dark');
+	await openClosedGroup();
+	const dark = await readAtWidths(WIDTHS);
+	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000);
+
+	// Positive control for the text measure: text that cannot wrap runs past its card while the
+	// cell's own box stays inside the leaf and clips it, so only a text measure that ignores the
+	// clipping can see it. The cell comes from the open table while it lists a row, else from the
+	// closed one, so the control still runs once every captured deadline has passed.
+	const beforePlant = page.viewportSize() ?? { width: 1280, height: 720 };
+	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+	await openClosedGroup();
+	await page.setViewportSize({ width: 1000, height: 900 });
+	const planted = await page.evaluate(() => {
+		for (const id of ['open', 'closed']) {
+			const cell = document.querySelector(`#${id} tbody tr[data-notice] td[data-label="Country"]`);
+			if (!cell) continue;
+			cell.style.whiteSpace = 'nowrap';
+			cell.style.overflow = 'hidden';
+			cell.textContent = 'text-plant '.repeat(40);
+			const inside =
+				cell.getBoundingClientRect().right <=
+				document.getElementById(id).getBoundingClientRect().right;
+			return { id, inside };
+		}
+		return { id: null, inside: false };
+	});
+	await page.waitForTimeout(150);
+	const textPlant = await readGeometry();
+	await page.setViewportSize(beforePlant);
+	const plantedTable = textPlant.tables.find((table) => table.id === planted.id);
+	check(
+		'the table measure counts text planted past its card while the cell itself stays inside and clips it',
+		planted.inside &&
+			Boolean(plantedTable) &&
+			plantedTable.right > plantedTable.contentRight + 0.5 &&
+			plantedTable.worst.startsWith('text in td'),
+		`planted in the ${planted.id ?? 'no'} table, cell inside its leaf ${planted.inside}; ${describe(textPlant)}`
+	);
+
 	// Probe once whether this sandbox can move the page to another zone. When it can, the hydrated
-	// labels must move with it; when it cannot, they must match the zone the browser reports.
+	// labels must move with it; when it cannot, they must match the zone the browser reports. The
+	// browser session is opened on its own, since the larger-font check below needs the session and
+	// not the zone.
 	let form = 'browser zone';
 	let zone = facts.zone;
+	let cdp = null;
+	let zoneRefused = '';
 	try {
-		const cdp = await page.context().newCDPSession(page);
-		await cdp.send('Emulation.setTimezoneOverride', { timezoneId: ZONE });
-		form = 'emulated America/New_York';
-		zone = ZONE;
+		cdp = await page.context().newCDPSession(page);
 	} catch (error) {
-		form = `browser zone (override refused: ${String(error).slice(0, 80)})`;
+		form = `browser zone (no browser session: ${String(error).slice(0, 80)})`;
+	}
+	if (cdp) {
+		try {
+			await cdp.send('Emulation.setTimezoneOverride', { timezoneId: ZONE });
+			form = 'emulated America/New_York';
+			zone = ZONE;
+		} catch (error) {
+			zoneRefused = String(error).slice(0, 80);
+			form = `browser zone (override refused: ${zoneRefused})`;
+		}
 	}
 
 	hydrationMessages.length = 0;
@@ -201,6 +475,76 @@ try {
 		hydrationMessages.length === 1,
 		`${hydrationMessages.length} messages after the planted one`
 	);
+
+	// The widest deadline label sets the switch width: a zone with no short name is written as an
+	// offset ('GMT+13:45', five characters past 'CEST'), and the table must still fit its leaf at the
+	// first width that shows it, with a classic scrollbar too. Measured at e7ca483: at 1341px the
+	// closed leaf offers 1035px and its table needs 1007.5px, so a 17px scrollbar leaves 10.5px.
+	const widest =
+		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 320, 390 and 1341px, with and without a 17px classic scrollbar';
+	if (!cdp || zoneRefused) {
+		check(widest, false, `no zone override in this sandbox, so nothing was measured: ${form}`);
+	} else {
+		try {
+			await cdp.send('Emulation.setTimezoneOverride', { timezoneId: 'Pacific/Chatham' });
+			zone = 'Pacific/Chatham';
+			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+			await openClosedGroup();
+			await page.waitForFunction(
+				() =>
+					Array.from(document.querySelectorAll('table time')).some((time) =>
+						/GMT\+1[23]:45$/.test(time.textContent.trim())
+					),
+				null,
+				{ timeout: 10000 }
+			);
+			// 320px is the reflow width, where the whole label (252px) is wider than a card (242px).
+			const [narrow, phone, first] = await readAtWidths([320, 390, 1341]);
+			const classic = await readWithScrollbar(1341);
+			check(
+				widest,
+				fits(narrow, 'light') &&
+					fits(phone, 'light') &&
+					fits(first, 'light') &&
+					fits(classic, 'light') &&
+					/GMT\+1[23]:45$/.test(first.longest.text),
+				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 320 ${describe(narrow)} | 390 ${describe(phone)} | 1341 ${describe(first)} | 1341 with a 17px scrollbar ${describe(classic)}`
+			);
+		} catch (error) {
+			check(widest, false, `the Chatham run stopped: ${String(error).slice(0, 160)}`);
+		}
+	}
+
+	// A reader who raises the browser's default font (20px is Chrome's Large) widens every column,
+	// so the switch is written in em and moves with the text: 83.75em is 1340px at 16px and 1675px
+	// at 20px, so 1676px is the first table width. Before it moved, at 20px and 1341px in the Chatham
+	// zone the closed table ran 279.8px past its leaf and the page scrolled 84px sideways. The check
+	// runs in whatever zone the run above left, Chatham when the sandbox allows it, and names it.
+	const larger = `with a 20px default font, deadlines in ${zone}, /tenders shows cards at 1341px and the five-column table at 1676px, each inside its leaf`;
+	if (!cdp) {
+		check(larger, false, `no browser session in this sandbox, so nothing was measured: ${form}`);
+	} else {
+		try {
+			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20, fixed: 13 } });
+			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
+			await openClosedGroup();
+			const [cards, table] = await readAtWidths([1341, 1676]);
+			const shows = (read, display) =>
+				read.rootPx === 20 && read.tables.every((each) => each.display === display);
+			check(
+				larger,
+				shows(cards, 'block') &&
+					fits(cards, 'light') &&
+					shows(table, 'table') &&
+					fits(table, 'light'),
+				`root ${cards.rootPx}px | 1341 ${cards.tables.map((each) => each.display).join(' and ')}, ${describe(cards)} | 1676 ${table.tables.map((each) => each.display).join(' and ')}, ${describe(table)}`
+			);
+		} catch (error) {
+			check(larger, false, `the larger-font run stopped: ${String(error).slice(0, 160)}`);
+		} finally {
+			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 16, fixed: 13 } });
+		}
+	}
 } finally {
 	await writeFile(config.resultName, JSON.stringify({ driver: 'tenders', checks }));
 	await browser.closePage(PAGE);

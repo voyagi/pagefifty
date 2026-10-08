@@ -149,7 +149,7 @@
 		margin-bottom: calc(var(--step--1) * 1.5 + 0.35rem);
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.dates {
 			grid-template-columns: minmax(0, 1fr);
 		}

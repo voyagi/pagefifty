@@ -17,42 +17,67 @@ function check(name, ok, detail) {
 	checks.push({ name, ok: Boolean(ok), detail });
 }
 
-function readList() {
-	return page.evaluate(() => {
-		const rowsIn = (selector) =>
-			Array.from(document.querySelectorAll(`${selector} tbody tr[data-notice]`)).map((row) => ({
-				notice: row.getAttribute('data-notice'),
-				country: row.querySelector('td[data-label="Country"]').textContent.trim(),
-				datetime: (row.querySelector('time') || { getAttribute: () => null }).getAttribute(
-					'datetime'
-				)
-			}));
-		const status = document.querySelector('[role="status"]');
-		const clear = Array.from(document.querySelectorAll('a')).filter(
-			(link) => link.textContent.trim() === 'Clear filters'
-		);
-		const params = new URLSearchParams(location.search);
-		return {
-			url: location.href,
-			countries: params.getAll('country').join(' '),
-			from: params.get('from'),
-			to: params.get('to'),
-			open: rowsIn('#open'),
-			closed: rowsIn('#closed'),
-			checked: Array.from(document.querySelectorAll('form[role="search"] input:checked')).map(
-				(box) => `${box.name}=${box.value}`
-			),
-			status: status ? status.textContent.trim() : '',
-			emptyHeading: (document.querySelector('#open h2') || { textContent: '' }).textContent.trim(),
-			clearHrefs: clear.map((link) => link.getAttribute('href')),
-			closedLeaf: Boolean(document.querySelector('#closed')),
-			openTable: Boolean(document.querySelector('#open table')),
-			text: document.body.textContent.replace(/\s+/g, ' ')
-		};
-	});
+// With html, the DOM fields come from that markup parsed by DOMParser, where no script runs; the
+// address fields always come from the live page. The text-scale meta is dropped before parsing
+// because the test browser's renderer hangs parsing it into a document with no frame (a literal
+// holding only that meta hung; the served empty state without it parsed), and it holds no link.
+function readList(html) {
+	return page.evaluate(
+		(markup) => {
+			const root = markup
+				? new DOMParser().parseFromString(
+						markup.replace(/<meta name="text-scale"[^>]*>/g, ''),
+						'text/html'
+					)
+				: document;
+			const text = (node) => (node ? node.textContent.trim() : '');
+			const rowsIn = (selector) =>
+				Array.from(root.querySelectorAll(`${selector} tbody tr[data-notice]`)).map((row) => {
+					const time = row.querySelector('time');
+					return {
+						notice: row.getAttribute('data-notice'),
+						country: text(row.querySelector('td[data-label="Country"]')),
+						datetime: time ? time.getAttribute('datetime') : null
+					};
+				});
+			const clear = Array.from(root.querySelectorAll('a')).filter(
+				(link) => link.textContent.trim() === 'Clear filters'
+			);
+			// Where each link leads, not its raw text: the server writes relative links (./tenders)
+			// and the started app rewrites them, so the raw text depends on whether hydration has
+			// finished. The search part stays in, so a link that kept a filter does not pass.
+			const target = (link) => {
+				const address = new URL(link.href);
+				return address.pathname + address.search;
+			};
+			const params = new URLSearchParams(location.search);
+			return {
+				url: location.href,
+				countries: params.getAll('country').join(' '),
+				from: params.get('from'),
+				to: params.get('to'),
+				open: rowsIn('#open'),
+				closed: rowsIn('#closed'),
+				checked: Array.from(root.querySelectorAll('form[role="search"] input:checked')).map(
+					(box) => `${box.name}=${box.value}`
+				),
+				status: text(root.querySelector('[role="status"]')),
+				emptyHeading: text(root.querySelector('#open h2')),
+				clearHrefs: clear.map((link) => link.getAttribute('href')),
+				clearTargets: clear.map(target),
+				closedLeaf: Boolean(root.querySelector('#closed')),
+				openTable: Boolean(root.querySelector('#open table')),
+				text: root.body ? root.body.textContent.replace(/\s+/g, ' ') : ''
+			};
+		},
+		html === undefined ? null : html
+	);
 }
 
 const numbers = (rows) => rows.map((row) => row.notice).join(' ');
+
+const clearsToAllTenders = (list) =>
+	list.clearTargets.length > 0 && list.clearTargets.every((target) => target === '/tenders');
 
 try {
 	await page.goto('http://127.0.0.1:8788/');
@@ -108,11 +133,33 @@ try {
 			empty.text.includes(
 				'Nothing in the 15 Sep 2026 snapshot matches Belgium, deadline on or after 1 Jan 2027.'
 			) &&
-			empty.clearHrefs.length > 0 &&
-			empty.clearHrefs.every((href) => href === '/tenders') &&
+			clearsToAllTenders(empty) &&
 			!empty.openTable &&
 			!empty.closedLeaf,
-		`heading "${empty.emptyHeading}", clear links ${JSON.stringify(empty.clearHrefs)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
+		`heading "${empty.emptyHeading}", clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
+	);
+
+	// The served page is what a reader has before hydration, and its './tenders' is exactly the state
+	// the live read above can race against, so the same comparison must accept it on every run.
+	const servedHtml = await page.evaluate(async () => (await fetch(location.href)).text());
+	const served = await readList(servedHtml);
+	check(
+		'the served empty state, read before any script runs, has Clear filters links that lead to /tenders',
+		served.clearHrefs.length > 0 &&
+			served.clearHrefs.every((href) => href === './tenders') &&
+			clearsToAllTenders(served),
+		`${served.clearHrefs.length} links, raw ${JSON.stringify(served.clearHrefs)} to ${JSON.stringify(served.clearTargets)}`
+	);
+
+	// Reading exactly the planted target proves the read found the link, so an empty read can never
+	// pass this refusal.
+	const kept = await readList('<a href="/tenders?country=BE">Clear filters</a>');
+	check(
+		'a Clear filters link that keeps a query (/tenders?country=BE) does not count as leading to /tenders',
+		kept.clearTargets.length === 1 &&
+			kept.clearTargets[0] === '/tenders?country=BE' &&
+			!clearsToAllTenders(kept),
+		`targets ${JSON.stringify(kept.clearTargets)}, counted as /tenders ${clearsToAllTenders(kept)}`
 	);
 
 	await page.goto(`${BASE}?from=2026-11-01&to=2026-10-01`);

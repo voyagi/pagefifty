@@ -11,8 +11,42 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	{ slug: 'tenders', theme: 'light', url: 'http://127.0.0.1:8788/tenders?theme=light' },
-	{ slug: 'tenders', theme: 'dark', url: 'http://127.0.0.1:8788/tenders?theme=dark' },
+	// A list is a table only above 1340px and cards at 1280px, so each list is audited in both
+	// layouts in both themes: the cards hide the header row, so only a table entry checks its
+	// contrast in that theme. Each list entry names the width for its layout, and the layout is read
+	// from the page, so a moved switch cannot audit one layout twice. The second entry of a list in
+	// a theme takes no screenshots (shots: false), since its route and theme already have them; the
+	// full-page shots are most of the run's time.
+	{
+		slug: 'tenders',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders?theme=light',
+		width: 1440,
+		layout: 'table'
+	},
+	{
+		slug: 'tenders',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders?theme=light',
+		width: 1280,
+		layout: 'cards',
+		shots: false
+	},
+	{
+		slug: 'tenders',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		width: 1280,
+		layout: 'cards'
+	},
+	{
+		slug: 'tenders',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		width: 1440,
+		layout: 'table',
+		shots: false
+	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
 	// The tender page twice: one lot with the face-down Documents leaf, then the capture's largest
@@ -96,13 +130,35 @@ const AUDITS = [
 		slug: 'example',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
-		expectText: 'Closed at the capture time'
+		expectText: 'Closed at the capture time',
+		width: 1440,
+		layout: 'table'
+	},
+	{
+		slug: 'example',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		expectText: 'Closed at the capture time',
+		width: 1280,
+		layout: 'cards',
+		shots: false
 	},
 	{
 		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
-		expectText: 'Closed at the capture time'
+		expectText: 'Closed at the capture time',
+		width: 1280,
+		layout: 'cards'
+	},
+	{
+		slug: 'example',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		expectText: 'Closed at the capture time',
+		width: 1440,
+		layout: 'table',
+		shots: false
 	},
 	{
 		slug: 'example-one-lot',
@@ -133,10 +189,12 @@ const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
-// axe runs at the browser's own width, as before the width shots existed; they return to it. It is
-// set before the first audit too, so a browser that reports no size of its own (null) still has
-// every page audited at one width, never the first at another.
-const AUDIT_VIEWPORT = page.viewportSize() ?? { width: 1280, height: 720 };
+// axe runs at 1280 x 720, the browser's default size, and the width shots return to it. It is a
+// fixed size rather than the page's current one: a run stopped during its width shots leaves this
+// named page open at another width, and the next run would audit every page there. The only other
+// width is one an entry names itself (the list entries above), and the entry records the width it
+// was audited at.
+const AUDIT_VIEWPORT = { width: 1280, height: 720 };
 await page.setViewportSize(AUDIT_VIEWPORT);
 
 // Storage is set on the origin before the audited page loads: addInitScript crashes this sandbox
@@ -228,7 +286,38 @@ function isAccepted(item) {
 	);
 }
 
-async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
+// The list layout the audited page shows, read from the open table, or from the closed one once no
+// tender is open (after 9 Oct 2027 a note takes the open table's place): 'table' for display table,
+// 'cards' for display block, any other display by its own name, so a hidden or broken table matches
+// neither layout and the runner stops on it. 'none' on a page without a list table. When only the
+// closed group holds rows, it is opened here, so axe audits the named layout and not a folded table.
+function readLayout() {
+	return page.evaluate(() => {
+		const open = document.querySelector('#open table.index');
+		const table = open ?? document.querySelector('#closed table.index');
+		if (!table) return { layout: 'none', group: null };
+		if (!open) {
+			const details = table.closest('details');
+			if (details) details.open = true;
+		}
+		const display = getComputedStyle(table).display;
+		const layout =
+			display === 'table' ? 'table' : display === 'block' ? 'cards' : `display ${display}`;
+		return { layout, group: open ? 'open' : 'closed' };
+	});
+}
+
+async function audit({
+	slug,
+	theme,
+	url,
+	expectStatus,
+	expectText,
+	storage,
+	width,
+	layout,
+	shots
+}) {
 	const entry = {
 		slug,
 		theme,
@@ -236,13 +325,24 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
 		expectStatus,
 		expectText,
 		storage,
+		layout,
+		shots: shots !== false,
+		width: width ?? AUDIT_VIEWPORT.width,
 		violations: [],
 		incomplete: [],
 		acceptedIncomplete: [],
 		widthShots: []
 	};
+	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
-	if (entry.loadProblem) return entry;
+	entry.auditedWidth = await page.evaluate(() => innerWidth);
+	const read = await readLayout();
+	entry.auditedLayout = read.layout;
+	entry.auditedGroup = read.group;
+	if (entry.loadProblem) {
+		await page.setViewportSize(AUDIT_VIEWPORT);
+		return entry;
+	}
 	const result = await runAxe();
 	entry.violations = result.violations;
 	entry.targetSizeRan = result.targetSizeRan;
@@ -250,6 +350,10 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage }) {
 		const accepted = isAccepted(item);
 		if (accepted) entry.acceptedIncomplete.push({ id: item.id, why: accepted.why });
 		else entry.incomplete.push(item);
+	}
+	if (!entry.shots) {
+		await page.setViewportSize(AUDIT_VIEWPORT);
+		return entry;
 	}
 	const shot = await page.screenshot({ fullPage: true });
 	entry.screenshot = await saveScreenshot(shot, `a11y-${slug}-${theme}.png`);

@@ -166,10 +166,16 @@
 		color: var(--ink-2);
 	}
 
-	/* Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
+	/* The closed leaf is the narrower (its second ply indents it): it offers the window width less
+	   306px of gutters, rail, binder and leaf padding, so 1035px at 1341px. The five columns need
+	   962.5px there, and 1007.5px when the visitor's zone has no short name ('GMT+13:45'), so a 17px
+	   classic scrollbar still leaves 10.5px (measured at e7ca483; tenders.devbrowser.js holds it).
+	   Below 1341px each row stacks as a labelled card. The switch is written in em, 1340px at the
+	   default 16px, because a reader's larger default font widens every column with it.
+	   Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
 	   carries a visible label, and the empty alternative text keeps a screen reader from reading it
 	   twice after the column header. */
-	@media (max-width: 720px) {
+	@media (max-width: 83.75em) {
 		thead {
 			position: absolute;
 			width: 1px;
@@ -197,8 +203,15 @@
 			padding: 0.25rem 0;
 		}
 
+		/* At 320px a billion-euro amount beside its label is wider than a card, so the label may sit
+		   above the amount; the amount itself stays on one line. */
 		.num {
 			text-align: left;
+			white-space: normal;
+		}
+
+		.num .mono {
+			white-space: nowrap;
 		}
 
 		.tender {
@@ -209,6 +222,19 @@
 			content: attr(data-label) ': ';
 			content: attr(data-label) ': ' / '';
 			color: var(--ink-2);
+		}
+
+		/* A closed row's label, 'Closed' and date are wider than a phone card. As an inline block the
+		   date moves whole to its own line, and only a label wider than the card on its own wraps at
+		   its spaces (this rule lifts DeadlineTime's nowrap inside a card), as an offset zone does at
+		   320px ('GMT+13:45', 252px against a 242px card). */
+		.deadline {
+			white-space: normal;
+		}
+
+		.deadline :global(time) {
+			display: inline-block;
+			white-space: normal;
 		}
 
 		.deadline .closed-word {

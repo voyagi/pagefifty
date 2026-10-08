@@ -23,7 +23,7 @@
 		color: var(--desk-ink);
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.demo-note {
 			margin: 0 0.75rem 2rem;
 		}

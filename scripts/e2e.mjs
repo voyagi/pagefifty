@@ -19,10 +19,11 @@
 // Usage:  node scripts/e2e.mjs [--no-build] [--prove]
 // Exit codes: 0 every check passed (or, with --prove, the planted check failed),
 //             1 a check failed, dev-browser is missing or the URL is not allowlisted,
-//             2 the run could not run (lock, port, server, zero checks, a crash).
+//             2 the run could not run (lock, port, server, zero checks, a crash, or the two
+//               copies of the shared width-sweep code differ).
 
 import { readdirSync, readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import {
 	DEV_BROWSER_TMP,
@@ -42,6 +43,7 @@ import {
 const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
 const PLANTED_CHECK = 'planted: unknown path answers 200';
+const DRIVER_SECONDS = 60;
 
 const args = new Set(process.argv.slice(2));
 const prove = args.has('--prove');
@@ -52,6 +54,31 @@ function driverPaths() {
 		.filter((name) => name.endsWith('.devbrowser.js'))
 		.sort()
 		.map((name) => resolve('scripts/e2e', name));
+}
+
+// The tenders and example drivers measure their list pages with the same width-sweep code, which
+// a driver cannot import, so each carries a copy between two markers. A run refuses to start when
+// the copies differ, which is what keeps one from changing without the other.
+const TWINS = ['scripts/e2e/tenders.devbrowser.js', 'scripts/e2e/example.devbrowser.js'];
+
+function sharedSweep(path) {
+	const text = readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
+	const start = text.indexOf('// shared-sweep:start');
+	const end = text.indexOf('// shared-sweep:end');
+	if (start < 0 || end < start) {
+		throw new HarnessError(2, `${path} lacks its shared-sweep:start and shared-sweep:end markers`);
+	}
+	return text.slice(start, end);
+}
+
+function checkTwins() {
+	const [first, second] = TWINS.map(sharedSweep);
+	if (first !== second) {
+		throw new HarnessError(
+			2,
+			`the shared width-sweep code in ${TWINS.join(' and ')} differs: make the two blocks identical`
+		);
+	}
 }
 
 function readLog(logFile) {
@@ -99,10 +126,18 @@ function logChecks(log, logRules) {
 function runDrivers(runId) {
 	const checks = [];
 	const logRules = [];
+	const times = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
 		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName });
-		const run = runDriver({ browserName: 'pagefifty-e2e', driverPath, timeoutSeconds: 60 });
+		const started = Date.now();
+		const run = runDriver({
+			browserName: 'pagefifty-e2e',
+			driverPath,
+			timeoutSeconds: DRIVER_SECONDS
+		});
+		const seconds = Math.round((Date.now() - started) / 1000);
+		times.push(`${basename(driverPath, '.devbrowser.js')} ${seconds}`);
 		const result = readResult(resultName);
 		const driver = result?.driver ?? driverPath;
 		for (const check of result?.checks ?? []) checks.push({ driver, ...check });
@@ -123,6 +158,9 @@ function runDrivers(runId) {
 			});
 		}
 	}
+	// A driver is stopped at its limit, so each one's time is printed on every run, before a new
+	// check spends the margin. It is timed around the whole browser call, start-up included.
+	console.log(`[e2e] seconds per driver, each of a ${DRIVER_SECONDS} s limit: ${times.join(', ')}`);
 	return { checks, logRules };
 }
 
@@ -154,6 +192,7 @@ function verdict(checks) {
 async function main() {
 	checkDevBrowser();
 	checkAllowlist(BASE_URL);
+	checkTwins();
 	await acquireRunLock();
 	let worker = null;
 	let code = 2;

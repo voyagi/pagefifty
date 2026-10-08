@@ -52,7 +52,7 @@
 		text-decoration-thickness: 2px;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		ul {
 			gap: 0 1.125rem;
 		}

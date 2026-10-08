@@ -177,9 +177,12 @@
 }
 /* jscpd:ignore-end */
 
-/* Custom properties cannot drive a media query, so each component repeats the 720px breakpoint
-   literally; only the tokens that change on phones are set here. */
-@media (max-width: 720px) {
+/* Custom properties cannot drive a media query, so each component repeats the phone breakpoint
+   literally; only the tokens that change on phones are set here. Every layout switch is in em
+   (45em is 720px and 68.75em is 1100px at the default 16px; the list's is 83.75em), because a
+   reader's larger default font widens everything inside it: with pixel switches, a 24px default
+   font pushed every page 16 to 85px sideways at 721 to 768px. */
+@media (max-width: 45em) {
 	:root {
 		--rail: 0rem;
 		--board-pad: 0.625rem;

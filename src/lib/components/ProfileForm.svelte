@@ -658,7 +658,7 @@
 		font-size: var(--step--1);
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.add > :global(.btn) {
 			margin-bottom: 0;
 		}

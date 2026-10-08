@@ -146,7 +146,7 @@
 		color: var(--ink-2);
 	}
 
-	@media (max-width: 1100px) {
+	@media (max-width: 68.75em) {
 		.cover,
 		.grid {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -158,7 +158,7 @@
 		}
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.cover,
 		.grid,
 		.cover-body {

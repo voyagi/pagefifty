@@ -160,7 +160,7 @@
 		outline-offset: -4px;
 	}
 
-	@media (max-width: 720px) {
+	@media (max-width: 45em) {
 		.leaf,
 		.ply-2 {
 			margin-inline: 0;
