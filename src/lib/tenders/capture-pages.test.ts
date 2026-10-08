@@ -133,6 +133,21 @@ describe('formatValue against a whole-number oracle', () => {
 			expect(decimals).toBe(kept === '' ? '' : kept.padEnd(2, '0'));
 		}
 	);
+
+	// xs:decimal also allows a leading sign and a point with no digits after it, which the oracle
+	// above never writes: a plus sign and a bare point change nothing, and a minus shows no value.
+	test.prop([fc.stringMatching(/^[+-]?\d{1,16}(\.\d{0,6})?$/)])(
+		'writes a signed or bare-point amount as the plain number, and never a negative one',
+		(amount) => {
+			const written = formatValue({ amount, currency: 'EUR' });
+			if (amount.startsWith('-')) {
+				expect(written).toBeNull();
+				return;
+			}
+			const plain = amount.replace(/^\+/, '').replace(/\.$/, '');
+			expect(written).toBe(formatValue({ amount: plain, currency: 'EUR' }));
+		}
+	);
 });
 
 describe('countsLine against its figures', () => {

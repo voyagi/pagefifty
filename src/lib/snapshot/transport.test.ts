@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { fc, test } from '@fast-check/vitest';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
 import { createSnapshotTransport, requestKey, tedNoticeXmlUrl } from './transport';
@@ -68,6 +69,24 @@ describe('requestKey', () => {
 		const search = 'https://api.ted.europa.eu/v3/notices/search';
 		expect(await requestKey(new Request(`${search}?page=2&limit=50`))).toBe(
 			await requestKey(new Request(`${search}?limit=50&page=2`))
+		);
+	});
+
+	// Names that share a prefix ("page", "pages") or differ only in case sort apart, so a recording
+	// made with its parameters in one order replays for every other order.
+	const parameters = fc.uniqueArray(
+		fc.tuple(fc.stringMatching(/^[a-zA-Z]{1,6}$/), fc.stringMatching(/^[a-z0-9]{0,6}$/)),
+		{ selector: ([name]) => name, minLength: 1, maxLength: 6 }
+	);
+	test.prop([
+		parameters.chain((pairs) =>
+			fc.tuple(fc.constant(pairs), fc.shuffledSubarray(pairs, { minLength: pairs.length }))
+		)
+	])('reads distinct query parameters in every order as one key', async ([pairs, shuffled]) => {
+		const search = 'https://api.ted.europa.eu/v3/notices/search';
+		const query = (list: [string, string][]) => new URLSearchParams(list).toString();
+		expect(await requestKey(new Request(`${search}?${query(shuffled)}`))).toBe(
+			await requestKey(new Request(`${search}?${query(pairs)}`))
 		);
 	});
 

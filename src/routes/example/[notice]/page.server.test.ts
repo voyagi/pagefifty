@@ -31,17 +31,23 @@ describe('/example/[notice] load', () => {
 		vi.mocked(loadIndex).mockClear();
 	});
 
-	it.each(['12345', ' ', '000000-0000', '000001-2026', '609955-2026x', '0609955-2026'])(
-		'answers 404 for the malformed number %j without reading anything',
-		async (notice) => {
-			expect(await statusOf(notice)).toEqual({
-				status: 404,
-				body: { message: 'Not Found', kind: 'unknown-notice', notice }
-			});
-			expect(loadRecord).not.toHaveBeenCalled();
-			expect(loadIndex).not.toHaveBeenCalled();
-		}
-	);
+	// A trailing newline arrives as %0A in the address; the pattern must end at the text's end.
+	it.each([
+		'12345',
+		' ',
+		'000000-0000',
+		'000001-2026',
+		'609955-2026x',
+		'0609955-2026',
+		'609955-2026\n'
+	])('answers 404 for the malformed number %j without reading anything', async (notice) => {
+		expect(await statusOf(notice)).toEqual({
+			status: 404,
+			body: { message: 'Not Found', kind: 'unknown-notice', notice }
+		});
+		expect(loadRecord).not.toHaveBeenCalled();
+		expect(loadIndex).not.toHaveBeenCalled();
+	});
 
 	it('looks a well-formed number up in the tracked capture and answers 404 when it is not there', async () => {
 		expect(await statusOf('999991-2026')).toEqual({
