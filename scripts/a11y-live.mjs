@@ -48,10 +48,12 @@ function reportPage(page) {
 	}
 	const accepted = page.acceptedIncomplete.length;
 	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
-	const layout = page.layout ? ` as ${page.auditedLayout}` : '';
+	const group = page.auditedGroup ? ` from the ${page.auditedGroup} group` : '';
+	const layout = page.layout ? ` as ${page.auditedLayout}${group}` : '';
+	const shot = page.shots ? page.screenshot : 'no shots, its route and theme have them';
 	console.log(
 		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${layout}${status} | ${page.violations.length} violations | ` +
-			`${page.incomplete.length} incomplete (${accepted} accepted) | ${page.screenshot}`
+			`${page.incomplete.length} incomplete (${accepted} accepted) | ${shot}`
 	);
 	for (const item of [...page.violations, ...page.incomplete]) {
 		const kind = page.violations.includes(item) ? 'violation' : 'incomplete';
@@ -70,11 +72,15 @@ function verdict(result) {
 	const audited = pages.filter((page) => !page.loadProblem);
 	const violations = audited.reduce((sum, page) => sum + page.violations.length, 0);
 	const incomplete = audited.reduce((sum, page) => sum + page.incomplete.length, 0);
+	// A list is audited in both layouts in each theme, so pages outnumber routes times themes.
 	console.log(
-		`a11y: ${routes} routes x ${themes} themes = ${audited.length} pages audited, ${violations} violations`
+		`a11y: ${routes} routes in ${themes} themes, ${audited.length} pages audited, ${violations} violations`
 	);
-	const shots = audited.reduce((sum, page) => sum + (page.widthShots ?? []).length, 0);
-	console.log(`a11y: ${shots} screenshots at 390, 768 and 1440 px for the visual backstops`);
+	const shooting = audited.filter((page) => page.shots);
+	const shots = shooting.reduce((sum, page) => sum + (page.widthShots ?? []).length, 0);
+	console.log(
+		`a11y: ${shots} screenshots at 390, 768 and 1440 px for the visual backstops, from the ${shooting.length} pages that take them`
+	);
 	if (routes === 0 || themes === 0) {
 		console.error('a11y: zero routes or themes configured, so nothing was audited');
 		return 2;
@@ -85,7 +91,7 @@ function verdict(result) {
 		);
 		return 2;
 	}
-	if (shots !== audited.length * 3) {
+	if (shooting.length === 0 || shots !== shooting.length * 3) {
 		console.error(
 			'a11y: a page is missing a width screenshot, so the visual backstops lack evidence'
 		);
@@ -99,8 +105,12 @@ function verdict(result) {
 	}
 	// The width is the means and the layout the claim: a switch that moved past 1440px would leave
 	// both entries of a list on its cards.
-	if (audited.some((page) => page.layout && page.auditedLayout !== page.layout)) {
-		console.error('a11y: a list page did not show the layout its entry names');
+	const misread = audited.filter((page) => page.layout && page.auditedLayout !== page.layout);
+	if (misread.length > 0) {
+		const named = misread.map(
+			(page) => `${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}`
+		);
+		console.error(`a11y: a list page did not show the layout its entry names: ${named.join(', ')}`);
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {
@@ -130,14 +140,15 @@ async function main() {
 		const run = runDriver({
 			browserName: `pagefifty-a11y-${runId}`,
 			driverPath: resolve('scripts/a11y-live.devbrowser.js'),
-			// Eleven routes in two themes, each audited and then shot at three widths; kept under the
-			// run lock's stale age, which runDriver enforces, so the cap cannot grow much past this.
+			// Eleven routes in two themes, each audited and shot at three widths, and each list audited
+			// a second time in its other layout without shots; kept under the run lock's stale age,
+			// which runDriver enforces, so the cap cannot grow much past this.
 			timeoutSeconds: DRIVER_SECONDS
 		});
 		// The long pages' full-page shots take most of the time (206 and 224 s of 260 in two runs on
 		// 2026-10-01, about 10 s a page), so the margin is printed on every run, before a new route
 		// spends it: two more routes in two themes take about 40 s, more than the 36 s the slower run
-		// left.
+		// left. The run that added the four list entries without shots took 175 s on 2026-10-08.
 		const seconds = (Date.now() - started) / 1000;
 		console.log(`a11y: the driver took ${seconds.toFixed(0)} s of its ${DRIVER_SECONDS} s limit`);
 		const result = readResult(resultName);

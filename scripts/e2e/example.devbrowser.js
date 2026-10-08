@@ -25,37 +25,30 @@ const CARDS_UP_TO = 1340;
 // Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
 // under the tab rail, so each table's right edge is measured against its leaf's content box too.
 // The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
-// Each line of text is measured as well as each box: text that cannot wrap runs past its cell while
-// the cell's own box stays inside (75px past a card read as fitting on 2026-10-01), and only the part
-// no ancestor clips (any overflow other than visible) counts, which is what keeps the clipped header
-// row and caption out.
+// Each line of text is measured as well as each box, at its own edge: text that cannot wrap runs past
+// its cell while the cell's own box stays inside (75px past a card read as fitting on 2026-10-01),
+// and a value clipped inside its cell is cut off, so clipping by any other ancestor does not hide it.
+// Only text inside those two hidden structures is left out.
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
 		const range = document.createRange();
-		const clips = new Map();
-		const clipRight = (element) => {
-			if (!clips.has(element)) {
-				const clipped = getComputedStyle(element).overflowX !== 'visible';
-				clips.set(element, clipped ? box(element).right : Infinity);
-			}
-			return clips.get(element);
+		const hiddenOnPurpose = (element) => {
+			if (element.closest('.visually-hidden')) return true;
+			const head = element.closest('thead');
+			return Boolean(head) && getComputedStyle(head).position === 'absolute';
 		};
-		const textEdges = (table, leaf) => {
+		const textEdges = (table) => {
 			const edges = [];
 			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
 			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
 				const host = node.parentElement;
-				if (!host || !node.data.trim()) continue;
+				if (!host || !node.data.trim() || hiddenOnPurpose(host)) continue;
 				range.selectNodeContents(node);
 				const rect = range.getBoundingClientRect();
 				if (rect.width <= 0 && rect.height <= 0) continue;
-				let right = rect.right;
-				for (let element = host; element && element !== leaf; element = element.parentElement) {
-					right = Math.min(right, clipRight(element));
-				}
-				edges.push({ right, host });
+				edges.push({ right: rect.right, host });
 			}
 			return edges;
 		};
@@ -95,7 +88,7 @@ function readGeometry() {
 				}
 				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
 			}
-			for (const text of textEdges(table, leaf)) {
+			for (const text of textEdges(table)) {
 				if (text.right > right) {
 					right = text.right;
 					worst = `text in ${name(text.host)}`;
@@ -196,22 +189,27 @@ function checkSweep(path, light, dark, seconds) {
 			`${describe(light[i])} | ${describe(dark[i])}${timing}`
 		);
 	});
-	const layouts = WIDTHS.map((width, i) => {
-		const read = light[i];
+	// Asserted on both themes' reads, so a rule in one theme alone cannot move the switch unseen.
+	const switched = (read, width) => {
 		const floor = 15 * read.rootPx;
-		const asSwitched = (table) =>
-			width <= CARDS_UP_TO
-				? table.display === 'block' && parseFloat(table.readingMin) === 0
-				: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01;
-		const seen = read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ');
-		return {
-			right: read.tables.length > 0 && read.tables.every(asSwitched),
-			text: `${width} ${seen || 'no table'}`
-		};
-	});
+		return (
+			read.tables.length > 0 &&
+			read.tables.every((table) =>
+				width <= CARDS_UP_TO
+					? table.display === 'block' && parseFloat(table.readingMin) === 0
+					: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01
+			)
+		);
+	};
+	const seen = (read) =>
+		read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ') || 'no table';
+	const layouts = WIDTHS.map((width, i) => ({
+		right: switched(light[i], width) && switched(dark[i], width),
+		text: `${width} light ${seen(light[i])}, dark ${seen(dark[i])}`
+	}));
 	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
 	check(
-		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it`,
+		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it, in Light and Dark`,
 		wrong.length === 0,
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);

@@ -11,10 +11,12 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	// A list is a table only above 1340px and cards at 1280px, so each list is audited as the table
-	// in Light and as cards in Dark: both layouts meet axe, at no extra entry. Each list entry names
-	// the width for its layout, and the layout is read from the page, so a moved switch cannot audit
-	// one layout twice.
+	// A list is a table only above 1340px and cards at 1280px, so each list is audited in both
+	// layouts in both themes: the cards hide the header row, so only a table entry checks its
+	// contrast in that theme. Each list entry names the width for its layout, and the layout is read
+	// from the page, so a moved switch cannot audit one layout twice. The second entry of a list in
+	// a theme takes no screenshots (shots: false), since its route and theme already have them; the
+	// full-page shots are most of the run's time.
 	{
 		slug: 'tenders',
 		theme: 'light',
@@ -24,10 +26,26 @@ const AUDITS = [
 	},
 	{
 		slug: 'tenders',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/tenders?theme=light',
+		width: 1280,
+		layout: 'cards',
+		shots: false
+	},
+	{
+		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
 		width: 1280,
 		layout: 'cards'
+	},
+	{
+		slug: 'tenders',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		width: 1440,
+		layout: 'table',
+		shots: false
 	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
@@ -118,11 +136,29 @@ const AUDITS = [
 	},
 	{
 		slug: 'example',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		expectText: 'Closed at the capture time',
+		width: 1280,
+		layout: 'cards',
+		shots: false
+	},
+	{
+		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
 		width: 1280,
 		layout: 'cards'
+	},
+	{
+		slug: 'example',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		expectText: 'Closed at the capture time',
+		width: 1440,
+		layout: 'table',
+		shots: false
 	},
 	{
 		slug: 'example-one-lot',
@@ -250,17 +286,38 @@ function isAccepted(item) {
 	);
 }
 
-// The list layout the audited page shows: 'table' or 'cards' by the open table's display, and
-// 'none' on a page without a list table.
+// The list layout the audited page shows, read from the open table, or from the closed one once no
+// tender is open (after 9 Oct 2027 a note takes the open table's place): 'table' for display table,
+// 'cards' for display block, any other display by its own name, so a hidden or broken table matches
+// neither layout and the runner stops on it. 'none' on a page without a list table. When only the
+// closed group holds rows, it is opened here, so axe audits the named layout and not a folded table.
 function readLayout() {
 	return page.evaluate(() => {
-		const table = document.querySelector('#open table.index');
-		if (!table) return 'none';
-		return getComputedStyle(table).display === 'table' ? 'table' : 'cards';
+		const open = document.querySelector('#open table.index');
+		const table = open ?? document.querySelector('#closed table.index');
+		if (!table) return { layout: 'none', group: null };
+		if (!open) {
+			const details = table.closest('details');
+			if (details) details.open = true;
+		}
+		const display = getComputedStyle(table).display;
+		const layout =
+			display === 'table' ? 'table' : display === 'block' ? 'cards' : `display ${display}`;
+		return { layout, group: open ? 'open' : 'closed' };
 	});
 }
 
-async function audit({ slug, theme, url, expectStatus, expectText, storage, width, layout }) {
+async function audit({
+	slug,
+	theme,
+	url,
+	expectStatus,
+	expectText,
+	storage,
+	width,
+	layout,
+	shots
+}) {
 	const entry = {
 		slug,
 		theme,
@@ -269,6 +326,7 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage, widt
 		expectText,
 		storage,
 		layout,
+		shots: shots !== false,
 		width: width ?? AUDIT_VIEWPORT.width,
 		violations: [],
 		incomplete: [],
@@ -278,7 +336,9 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage, widt
 	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
 	entry.auditedWidth = await page.evaluate(() => innerWidth);
-	entry.auditedLayout = await readLayout();
+	const read = await readLayout();
+	entry.auditedLayout = read.layout;
+	entry.auditedGroup = read.group;
 	if (entry.loadProblem) {
 		await page.setViewportSize(AUDIT_VIEWPORT);
 		return entry;
@@ -290,6 +350,10 @@ async function audit({ slug, theme, url, expectStatus, expectText, storage, widt
 		const accepted = isAccepted(item);
 		if (accepted) entry.acceptedIncomplete.push({ id: item.id, why: accepted.why });
 		else entry.incomplete.push(item);
+	}
+	if (!entry.shots) {
+		await page.setViewportSize(AUDIT_VIEWPORT);
+		return entry;
 	}
 	const shot = await page.screenshot({ fullPage: true });
 	entry.screenshot = await saveScreenshot(shot, `a11y-${slug}-${theme}.png`);

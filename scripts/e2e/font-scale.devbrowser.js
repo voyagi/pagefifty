@@ -6,8 +6,10 @@
 // Every layout switch is in em (45em, 68.75em, 83.75em: 720, 1100 and 1340px at 16px), so it
 // moves with the font: at 20px they sit at 900, 1375 and 1675px, at 24px at 1080, 1650 and
 // 2010px. With pixel switches a 24px font pushed every page 16 to 85px sideways at 721 to 768px.
-// 320px at 24px is left out on purpose: it is a 213px window at the default size, below the
-// 320px reflow floor, and some chips, an amount and the deadline lines reach the leaf padding.
+// 320px is below the 320px reflow floor at both sizes: a 256px window at the default size with a
+// 20px font, 213px with 24px. 320px at 20px stays in because it passes clean; 320px at 24px is
+// left out because some chips, an amount and the deadline lines reach the leaf padding there, a
+// design question for the design pass.
 //
 // dev-browser-nav-guard: dynamic-ok the loop below only visits the literal URLs listed in ROUTES
 
@@ -36,35 +38,27 @@ const ROUTES = [
 	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' }
 ];
 const FONTS = [
-	{ px: 20, widths: [320, 768, 901, 1376, 1680] },
+	{ px: 20, widths: [320, 768, 901, 1376, 1676] },
 	{ px: 24, widths: [390, 768, 1081, 1651, 2011] }
 ];
 
 // What runs past its leaf's content edge, and what past the window's right edge. The card layout
-// clips the header row to 1px on purpose and a tab stands outside its leaf by design, so neither
-// counts; anything 1px or smaller is a visually hidden label. Each line of text is measured as well
-// as each box: text that cannot wrap runs past its block while the block's own box stays inside
-// (75px past a leaf read as no spill on 2026-10-01), and only the part no ancestor clips (any
-// overflow other than visible) counts.
+// clips the header row to 1px on purpose, a visually hidden label is clipped to 1px, and a tab
+// stands outside its leaf by design, so none of them counts; any other box 1px or smaller is
+// hidden too. Each line of text is measured as well as each box, at its own edge: text that cannot
+// wrap runs past its block while the block's own box stays inside (75px past a leaf read as no spill
+// on 2026-10-01), and text clipped inside its block is cut off, so clipping does not hide it.
 function readSpill() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const range = document.createRange();
-		const clips = new Map();
-		const clipRight = (element) => {
-			if (!clips.has(element)) {
-				const clipped = getComputedStyle(element).overflowX !== 'visible';
-				clips.set(element, clipped ? element.getBoundingClientRect().right : Infinity);
-			}
-			return clips.get(element);
-		};
 		const label = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
 			const text = (element.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40);
 			return `${element.tagName.toLowerCase()}${classes.map((each) => `.${each}`).join('')} "${text}"`;
 		};
 		const skipped = (element) => {
-			if (element.closest('.tab')) return true;
+			if (element.closest('.tab, .visually-hidden')) return true;
 			const head = element.closest('thead');
 			return Boolean(head) && getComputedStyle(head).position === 'absolute';
 		};
@@ -92,12 +86,7 @@ function readSpill() {
 				if (!host || !node.data.trim() || skipped(host)) continue;
 				range.selectNodeContents(node);
 				const rect = range.getBoundingClientRect();
-				if (!shown(rect)) continue;
-				let right = rect.right;
-				for (let element = host; element && element !== leaf; element = element.parentElement) {
-					right = Math.min(right, clipRight(element));
-				}
-				consider(right, `text in ${label(host)}`);
+				if (shown(rect)) consider(rect.right, `text in ${label(host)}`);
 			}
 			if (worst) spills.push(`${leaf.id || 'a leaf'}: ${worst.what} +${worst.past.toFixed(1)}px`);
 		}
@@ -141,12 +130,14 @@ try {
 			planted.spills.join('; ') || 'nothing read'
 		);
 
-		// The second shape: text that cannot wrap, in a block whose own box stays inside the leaf.
+		// The second shape: text that cannot wrap, in a block whose own box stays inside the leaf and
+		// clips it, so only a text measure that ignores the clipping can see it.
 		await load(ROUTES[1]);
 		await page.setViewportSize({ width: 768, height: 900 });
 		const blockInside = await page.evaluate(() => {
 			const plant = document.createElement('p');
 			plant.style.whiteSpace = 'nowrap';
+			plant.style.overflow = 'hidden';
 			plant.textContent = 'bare-text-plant '.repeat(60);
 			const leaf = document.querySelector('.leaf');
 			leaf.append(plant);
@@ -154,7 +145,7 @@ try {
 		});
 		const plantedText = await readSpill();
 		check(
-			'the spill reader names bare text planted past its leaf while its own block stays inside',
+			'the spill reader names text planted past its leaf while its own block stays inside and clips it',
 			blockInside &&
 				plantedText.spills.some((spill) => spill.includes('text in p "bare-text-plant')),
 			`block inside its leaf ${blockInside}; ${plantedText.spills.join('; ') || 'nothing read'}`

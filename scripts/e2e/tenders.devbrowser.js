@@ -38,37 +38,30 @@ const CARDS_UP_TO = 1340;
 // Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
 // under the tab rail, so each table's right edge is measured against its leaf's content box too.
 // The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
-// Each line of text is measured as well as each box: text that cannot wrap runs past its cell while
-// the cell's own box stays inside (75px past a card read as fitting on 2026-10-01), and only the part
-// no ancestor clips (any overflow other than visible) counts, which is what keeps the clipped header
-// row and caption out.
+// Each line of text is measured as well as each box, at its own edge: text that cannot wrap runs past
+// its cell while the cell's own box stays inside (75px past a card read as fitting on 2026-10-01),
+// and a value clipped inside its cell is cut off, so clipping by any other ancestor does not hide it.
+// Only text inside those two hidden structures is left out.
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
 		const range = document.createRange();
-		const clips = new Map();
-		const clipRight = (element) => {
-			if (!clips.has(element)) {
-				const clipped = getComputedStyle(element).overflowX !== 'visible';
-				clips.set(element, clipped ? box(element).right : Infinity);
-			}
-			return clips.get(element);
+		const hiddenOnPurpose = (element) => {
+			if (element.closest('.visually-hidden')) return true;
+			const head = element.closest('thead');
+			return Boolean(head) && getComputedStyle(head).position === 'absolute';
 		};
-		const textEdges = (table, leaf) => {
+		const textEdges = (table) => {
 			const edges = [];
 			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
 			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
 				const host = node.parentElement;
-				if (!host || !node.data.trim()) continue;
+				if (!host || !node.data.trim() || hiddenOnPurpose(host)) continue;
 				range.selectNodeContents(node);
 				const rect = range.getBoundingClientRect();
 				if (rect.width <= 0 && rect.height <= 0) continue;
-				let right = rect.right;
-				for (let element = host; element && element !== leaf; element = element.parentElement) {
-					right = Math.min(right, clipRight(element));
-				}
-				edges.push({ right, host });
+				edges.push({ right: rect.right, host });
 			}
 			return edges;
 		};
@@ -108,7 +101,7 @@ function readGeometry() {
 				}
 				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
 			}
-			for (const text of textEdges(table, leaf)) {
+			for (const text of textEdges(table)) {
 				if (text.right > right) {
 					right = text.right;
 					worst = `text in ${name(text.host)}`;
@@ -209,22 +202,27 @@ function checkSweep(path, light, dark, seconds) {
 			`${describe(light[i])} | ${describe(dark[i])}${timing}`
 		);
 	});
-	const layouts = WIDTHS.map((width, i) => {
-		const read = light[i];
+	// Asserted on both themes' reads, so a rule in one theme alone cannot move the switch unseen.
+	const switched = (read, width) => {
 		const floor = 15 * read.rootPx;
-		const asSwitched = (table) =>
-			width <= CARDS_UP_TO
-				? table.display === 'block' && parseFloat(table.readingMin) === 0
-				: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01;
-		const seen = read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ');
-		return {
-			right: read.tables.length > 0 && read.tables.every(asSwitched),
-			text: `${width} ${seen || 'no table'}`
-		};
-	});
+		return (
+			read.tables.length > 0 &&
+			read.tables.every((table) =>
+				width <= CARDS_UP_TO
+					? table.display === 'block' && parseFloat(table.readingMin) === 0
+					: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01
+			)
+		);
+	};
+	const seen = (read) =>
+		read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ') || 'no table';
+	const layouts = WIDTHS.map((width, i) => ({
+		right: switched(light[i], width) && switched(dark[i], width),
+		text: `${width} light ${seen(light[i])}, dark ${seen(dark[i])}`
+	}));
 	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
 	check(
-		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it`,
+		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it, in Light and Dark`,
 		wrong.length === 0,
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);
@@ -388,9 +386,9 @@ try {
 	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000);
 
 	// Positive control for the text measure: text that cannot wrap runs past its card while the
-	// cell's own box stays inside the leaf, so only the text measure can see it. The cell comes from
-	// the open table while it lists a row, else from the closed one, so the control still runs once
-	// every captured deadline has passed.
+	// cell's own box stays inside the leaf and clips it, so only a text measure that ignores the
+	// clipping can see it. The cell comes from the open table while it lists a row, else from the
+	// closed one, so the control still runs once every captured deadline has passed.
 	const beforePlant = page.viewportSize() ?? { width: 1280, height: 720 };
 	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
 	await openClosedGroup();
@@ -400,6 +398,7 @@ try {
 			const cell = document.querySelector(`#${id} tbody tr[data-notice] td[data-label="Country"]`);
 			if (!cell) continue;
 			cell.style.whiteSpace = 'nowrap';
+			cell.style.overflow = 'hidden';
 			cell.textContent = 'text-plant '.repeat(40);
 			const inside =
 				cell.getBoundingClientRect().right <=
@@ -413,7 +412,7 @@ try {
 	await page.setViewportSize(beforePlant);
 	const plantedTable = textPlant.tables.find((table) => table.id === planted.id);
 	check(
-		'the table measure counts text planted past its card while the cell itself stays inside',
+		'the table measure counts text planted past its card while the cell itself stays inside and clips it',
 		planted.inside &&
 			Boolean(plantedTable) &&
 			plantedTable.right > plantedTable.contentRight + 0.5 &&
@@ -422,18 +421,27 @@ try {
 	);
 
 	// Probe once whether this sandbox can move the page to another zone. When it can, the hydrated
-	// labels must move with it; when it cannot, they must match the zone the browser reports.
+	// labels must move with it; when it cannot, they must match the zone the browser reports. The
+	// browser session is opened on its own, since the larger-font check below needs the session and
+	// not the zone.
 	let form = 'browser zone';
 	let zone = facts.zone;
 	let cdp = null;
+	let zoneRefused = '';
 	try {
-		const session = await page.context().newCDPSession(page);
-		await session.send('Emulation.setTimezoneOverride', { timezoneId: ZONE });
-		cdp = session;
-		form = 'emulated America/New_York';
-		zone = ZONE;
+		cdp = await page.context().newCDPSession(page);
 	} catch (error) {
-		form = `browser zone (override refused: ${String(error).slice(0, 80)})`;
+		form = `browser zone (no browser session: ${String(error).slice(0, 80)})`;
+	}
+	if (cdp) {
+		try {
+			await cdp.send('Emulation.setTimezoneOverride', { timezoneId: ZONE });
+			form = 'emulated America/New_York';
+			zone = ZONE;
+		} catch (error) {
+			zoneRefused = String(error).slice(0, 80);
+			form = `browser zone (override refused: ${zoneRefused})`;
+		}
 	}
 
 	hydrationMessages.length = 0;
@@ -474,11 +482,12 @@ try {
 	// closed leaf offers 1035px and its table needs 1007.5px, so a 17px scrollbar leaves 10.5px.
 	const widest =
 		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 320, 390 and 1341px, with and without a 17px classic scrollbar';
-	if (!cdp) {
+	if (!cdp || zoneRefused) {
 		check(widest, false, `no zone override in this sandbox, so nothing was measured: ${form}`);
 	} else {
 		try {
 			await cdp.send('Emulation.setTimezoneOverride', { timezoneId: 'Pacific/Chatham' });
+			zone = 'Pacific/Chatham';
 			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
 			await openClosedGroup();
 			await page.waitForFunction(
@@ -508,18 +517,18 @@ try {
 
 	// A reader who raises the browser's default font (20px is Chrome's Large) widens every column,
 	// so the switch is written in em and moves with the text: 83.75em is 1340px at 16px and 1675px
-	// at 20px. Before it moved, at 20px and 1341px in the Chatham zone the closed table ran 279.8px
-	// past its leaf and the page scrolled 84px sideways.
-	const larger =
-		'with a 20px default font /tenders shows cards at 1341px and the five-column table at 1680px, each inside its leaf';
+	// at 20px, so 1676px is the first table width. Before it moved, at 20px and 1341px in the Chatham
+	// zone the closed table ran 279.8px past its leaf and the page scrolled 84px sideways. The check
+	// runs in whatever zone the run above left, Chatham when the sandbox allows it, and names it.
+	const larger = `with a 20px default font, deadlines in ${zone}, /tenders shows cards at 1341px and the five-column table at 1676px, each inside its leaf`;
 	if (!cdp) {
-		check(larger, false, `no CDP session in this sandbox, so nothing was measured: ${form}`);
+		check(larger, false, `no browser session in this sandbox, so nothing was measured: ${form}`);
 	} else {
 		try {
 			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20, fixed: 13 } });
 			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
 			await openClosedGroup();
-			const [cards, table] = await readAtWidths([1341, 1680]);
+			const [cards, table] = await readAtWidths([1341, 1676]);
 			const shows = (read, display) =>
 				read.rootPx === 20 && read.tables.every((each) => each.display === display);
 			check(
@@ -528,7 +537,7 @@ try {
 					fits(cards, 'light') &&
 					shows(table, 'table') &&
 					fits(table, 'light'),
-				`root ${cards.rootPx}px | 1341 ${cards.tables.map((each) => each.display).join(' and ')}, ${describe(cards)} | 1680 ${table.tables.map((each) => each.display).join(' and ')}, ${describe(table)}`
+				`root ${cards.rootPx}px | 1341 ${cards.tables.map((each) => each.display).join(' and ')}, ${describe(cards)} | 1676 ${table.tables.map((each) => each.display).join(' and ')}, ${describe(table)}`
 			);
 		} catch (error) {
 			check(larger, false, `the larger-font run stopped: ${String(error).slice(0, 160)}`);
