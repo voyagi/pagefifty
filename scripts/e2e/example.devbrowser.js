@@ -353,6 +353,19 @@ try {
 		`status ${unknown.status()}, h1 "${missing.h1}", back links ${JSON.stringify(missing.backLinks)}`
 	);
 
+	// Well formed, so the real lookup in the tracked capture runs and misses: the unit test reaches
+	// this 404 only through a mocked reader, and the number above never gets past the format check.
+	const absent = await page.goto('http://127.0.0.1:8788/example/999991-2026');
+	const notHeld = await readPage();
+	check(
+		'/example/999991-2026, well formed but not in the capture, answers 404 leading back to /example',
+		absent.status() === 404 &&
+			notHeld.h1 === 'No tender with this notice number' &&
+			notHeld.backLinks.length === 1 &&
+			notHeld.backLinks[0] === '/example',
+		`status ${absent.status()}, h1 "${notHeld.h1}", back links ${JSON.stringify(notHeld.backLinks)}`
+	);
+
 	const filtered = await page.goto('http://127.0.0.1:8788/example?country=NL');
 	const dutch = await readPage();
 	check(

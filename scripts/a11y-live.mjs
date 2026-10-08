@@ -15,11 +15,11 @@
 // Usage:  node scripts/a11y-live.mjs [--no-build]
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
-//             2 the audit did not happen: zero routes or themes, a route list naming a theme this
-//               runner does not run, a theme's run that audited no page, fewer pages than its entries
-//               or another theme's, a page that did not load with an h1 and its theme, a page not
-//               audited at the width or list layout its entry names, target-size never ran, or the
-//               lock, port or server failed.
+//             2 the audit did not happen: zero routes or themes, a driver result naming no themes, a
+//               route list naming a theme this runner does not run, a theme's run that audited no
+//               page, fewer pages than its entries or another theme's, a page that did not load
+//               with an h1 and its theme, a page not audited at the width or list layout its entry
+//               names, target-size never ran, or the lock, port or server failed.
 
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -30,6 +30,7 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	marginWarnings,
 	readResult,
 	releaseRunLock,
 	runDriver,
@@ -143,6 +144,7 @@ async function main() {
 		console.log(`[a11y] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
 		const axeFile = stageAxe();
 		const pages = [];
+		const times = [];
 		for (const theme of THEMES) {
 			const resultName = `pagefifty-a11y-${runId}-${theme}-result.json`;
 			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme });
@@ -156,10 +158,9 @@ async function main() {
 			});
 			// The long pages' full-page shots take most of the time (about 10 s a page), so the margin
 			// is printed on every run, before a new route spends it.
-			const seconds = (Date.now() - started) / 1000;
-			console.log(
-				`a11y: the ${theme} driver took ${seconds.toFixed(0)} s of its ${DRIVER_SECONDS} s limit`
-			);
+			const seconds = Math.round((Date.now() - started) / 1000);
+			times.push({ name: `the ${theme} driver`, seconds });
+			console.log(`a11y: the ${theme} driver took ${seconds} s of its ${DRIVER_SECONDS} s limit`);
 			const result = readResult(resultName);
 			if (run.code !== 0 || !result) {
 				throw new HarnessError(
@@ -170,8 +171,14 @@ async function main() {
 			// The driver keeps only the entries of the theme it is given, so an entry in a theme missing
 			// here would never be audited by any run.
 			const listed = Array.isArray(result.listedThemes) ? result.listedThemes : [];
+			if (listed.length === 0) {
+				throw new HarnessError(
+					2,
+					`the ${theme} a11y driver's result has no listedThemes, so nothing shows which themes its route list names: the driver must write it beside its pages (scripts/a11y-live.devbrowser.js)`
+				);
+			}
 			const unrun = listed.filter((name) => !THEMES.includes(name));
-			if (listed.length === 0 || unrun.length > 0) {
+			if (unrun.length > 0) {
 				throw new HarnessError(
 					2,
 					`the a11y route list names the themes ${JSON.stringify(listed)}, and this runner runs only ${JSON.stringify(THEMES)}: add each missing one to THEMES`
@@ -191,6 +198,9 @@ async function main() {
 			pages.push(...result.pages);
 		}
 		code = verdict({ pages });
+		for (const line of marginWarnings(times, DRIVER_SECONDS)) {
+			console.warn(`a11y: WARNING ${line}: split the audit further before it gains a route`);
+		}
 	} finally {
 		if (worker && !(await stopWorker(worker.child))) code = 2;
 		releaseRunLock();

@@ -5,7 +5,12 @@ import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
-import { devBrowserStatus, npmCliPath, wranglerDevArgs } from '../../scripts/harness.mjs';
+import {
+	devBrowserStatus,
+	marginWarnings,
+	npmCliPath,
+	wranglerDevArgs
+} from '../../scripts/harness.mjs';
 
 // Stand-ins for dev-browser's status command. The first starts a daemon and exits, as the real one
 // does when none runs: the daemon keeps the output it inherited, and a synchronous spawn that pipes
@@ -193,5 +198,35 @@ describe('the wrangler dev command of the browser runs', () => {
 		expect(wranglerDevArgs({ port: 8788, envFile: 'empty.env' })).not.toContain('--config');
 		const args = wranglerDevArgs({ port: 8788, envFile: 'empty.env', configPath: 'copy.json' });
 		expect(args.slice(-2)).toEqual(['--config', 'copy.json']);
+	});
+});
+
+// verify:ship prints only a pass or a fail per step, so a driver's shrinking margin shows only in
+// these lines, printed under each runner's verdict.
+describe('the time margin warning of the browser runs', () => {
+	it('names a driver past three quarters of its limit, and not one at it', () => {
+		// The fixture sits on the boundary: 195 s is exactly three quarters of 260 s.
+		expect(260 * 0.75).toBe(195);
+		expect(
+			marginWarnings(
+				[
+					{ name: 'the light driver', seconds: 195 },
+					{ name: 'the dark driver', seconds: 196 }
+				],
+				260
+			)
+		).toEqual(['the dark driver took 196 s of its 260 s limit, past 75%']);
+	});
+
+	it('is silent while every driver keeps its margin', () => {
+		expect(
+			marginWarnings(
+				[
+					{ name: 'canary', seconds: 21 },
+					{ name: 'example', seconds: 44 }
+				],
+				60
+			)
+		).toEqual([]);
 	});
 });

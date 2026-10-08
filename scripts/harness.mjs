@@ -513,3 +513,17 @@ export function readResult(name) {
 		unlinkSync(path);
 	}
 }
+
+// A driver past this share of its limit still passes, but the next route or check it gains may not.
+// verify:ship prints only a pass or a fail per step, so the runners print these lines last, under
+// their verdict, and the margin is seen shrinking before a run fails on it.
+const MARGIN_WARN_SHARE = 0.75;
+
+export function marginWarnings(times, limitSeconds) {
+	return times
+		.filter(({ seconds }) => seconds > limitSeconds * MARGIN_WARN_SHARE)
+		.map(
+			({ name, seconds }) =>
+				`${name} took ${seconds} s of its ${limitSeconds} s limit, past ${MARGIN_WARN_SHARE * 100}%`
+		);
+}
