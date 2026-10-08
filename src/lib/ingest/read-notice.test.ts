@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { fc, test } from '@fast-check/vitest';
 import { capturePath, readFixture } from '../../test/fixtures/node';
 import { NoticeRecordSchema } from '../snapshot/index-row';
+import { EU_LANGUAGES } from '../profile/codes';
 import { toBcp47 } from './languages';
 import { toNoticeRecord } from './record';
 import { MAX_NOTICE_BYTES, readNotice, readNoticeXml, type ReadFailure } from './read-notice';
@@ -643,5 +644,48 @@ describe('toBcp47', () => {
 
 	it.each(['XYZ', 'de', '', 'DEUT'])('returns undefined for %j', (code) => {
 		expect(toBcp47(code)).toBeUndefined();
+	});
+
+	// The ISO 639-3 codes of the 24 EU official languages, as TED writes them.
+	const TED_CODES = [
+		'BUL',
+		'CES',
+		'DAN',
+		'DEU',
+		'ELL',
+		'ENG',
+		'EST',
+		'FIN',
+		'FRA',
+		'GLE',
+		'HRV',
+		'HUN',
+		'ITA',
+		'LAV',
+		'LIT',
+		'MLT',
+		'NLD',
+		'POL',
+		'POR',
+		'RON',
+		'SLK',
+		'SLV',
+		'SPA',
+		'SWE'
+	];
+
+	// ICU canonicalises a three-letter code that has a two-letter one to it, so the table is checked
+	// against the runtime's own language data rather than a second hand-typed copy.
+	it('maps each EU official language code to the tag ICU canonicalises it to', () => {
+		for (const code of TED_CODES) {
+			expect(toBcp47(code), code).toBe(Intl.getCanonicalLocales(code.toLowerCase())[0]);
+		}
+	});
+
+	// A notice language and a profile language are then compared as plain text.
+	it('gives exactly the language codes the profile lists, each once', () => {
+		const tags = TED_CODES.map(toBcp47);
+		expect(new Set(tags).size).toBe(TED_CODES.length);
+		expect([...tags].sort()).toEqual(EU_LANGUAGES.map((language) => language.code).sort());
 	});
 });
