@@ -204,26 +204,42 @@ describe('the wrangler dev command of the browser runs', () => {
 // verify:ship prints only a pass or a fail per step, so a driver's shrinking margin shows only in
 // these lines, printed under each runner's verdict.
 describe('the time margin warning of the browser runs', () => {
-	it('names a driver past 60% of its limit, and not one at it', () => {
-		// The fixture sits on the boundary: 156 s is exactly 60% of 260 s.
-		expect(260 * 0.6).toBe(156);
+	it('names a driver past 55% of its limit, and not one at it', () => {
+		// The fixture sits on the boundary: 143 s is exactly 55% of 260 s.
+		expect(143 * 100).toBe(260 * 55);
 		expect(
 			marginWarnings(
 				[
-					{ name: 'the light driver', seconds: 156 },
-					{ name: 'the dark driver', seconds: 157 }
+					{ name: 'the light driver', seconds: 143 },
+					{ name: 'the dark driver', seconds: 144 }
 				],
 				260
 			)
-		).toEqual(['the dark driver took 157 s of its 260 s limit, past 60%']);
+		).toEqual(['the dark driver took 144 s of its 260 s limit, past 55%']);
 	});
 
+	// The loaded a11y theme runs of 2026-10-08 passed with 155 and 160 s of 260, and the share is set
+	// so a run that slow warns.
+	it('names both loaded theme runs that passed on 2026-10-08', () => {
+		expect(
+			marginWarnings(
+				[
+					{ name: 'the light driver', seconds: 155 },
+					{ name: 'the dark driver', seconds: 160 }
+				],
+				260
+			)
+		).toHaveLength(2);
+	});
+
+	// The slowest e2e drivers of the loaded verify:ship run of 2026-10-08 (font-scale 21 s, profile-demo
+	// 19 s, of 60).
 	it('is silent while every driver keeps its margin', () => {
 		expect(
 			marginWarnings(
 				[
-					{ name: 'canary', seconds: 21 },
-					{ name: 'example', seconds: 35 }
+					{ name: 'font-scale', seconds: 21 },
+					{ name: 'profile-demo', seconds: 19 }
 				],
 				60
 			)
