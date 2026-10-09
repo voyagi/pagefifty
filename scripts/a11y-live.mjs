@@ -15,11 +15,11 @@
 // Usage:  node scripts/a11y-live.mjs [--no-build]
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
-//             2 the audit did not happen: zero routes or themes, a driver result naming no themes, a
-//               route list naming a theme this runner does not run, a theme's run that audited no
-//               page, fewer pages than its entries or another theme's, a page that did not load
-//               with an h1 and its theme, a page not audited at the width or list layout its entry
-//               names, target-size never ran, or the lock, port or server failed.
+//             2 the audit did not happen: zero routes or themes, a driver result without its theme
+//               list, a route list naming a theme this runner does not run, a theme's run that left
+//               no result or audited no page, fewer pages than its entries or another theme's, a page
+//               that did not load with an h1 and its theme, a page not audited at the width or list
+//               layout its entry names, target-size never ran, or the lock, port or server failed.
 
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -165,13 +165,14 @@ async function main() {
 			if (run.code !== 0 || !result) {
 				throw new HarnessError(
 					2,
-					`the ${theme} a11y driver did not finish (dev-browser exit ${run.code}): ${run.output.trim()}`
+					`the ${theme} a11y driver did not finish (dev-browser exit ${run.code}${result ? '' : ', no result file'}): ${run.output.trim()}`
 				);
 			}
 			// The driver keeps only the entries of the theme it is given, so an entry in a theme missing
-			// here would never be audited by any run.
-			const listed = Array.isArray(result.listedThemes) ? result.listedThemes : [];
-			if (listed.length === 0) {
+			// here would never be audited by any run. An empty list means an empty route list, which the
+			// page count below refuses by name.
+			const listed = result.listedThemes;
+			if (!Array.isArray(listed)) {
 				throw new HarnessError(
 					2,
 					`the ${theme} a11y driver's result has no listedThemes, so nothing shows which themes its route list names: the driver must write it beside its pages (scripts/a11y-live.devbrowser.js)`
