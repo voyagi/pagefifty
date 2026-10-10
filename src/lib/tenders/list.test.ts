@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { cldrLabel } from '../../test/cldr';
 import { capturePath } from '../../test/fixtures/node';
 import { readNotice } from '../ingest/read-notice';
 import { toIndexRow, type IndexRow } from '../snapshot/index-row';
@@ -115,9 +116,9 @@ describe('buyer countries', () => {
 	});
 
 	// ISO 3166-1 alpha-3 to alpha-2 for the EU and EEA. ICU names only the alpha-2 codes, so each name
-	// is checked against ICU's English name, and the codes against the profile's own country list.
-	// Held under CLDR 48 (Node 24.21): a failure right after a Node update with no change here is a
-	// CLDR rename, so decide whether the list follows it.
+	// is checked against ICU's English name, and the codes against the profile's own country list. A
+	// failure names the CLDR release when it differs from the one the list was checked against
+	// (src/test/cldr.ts).
 	const ALPHA2_OF: Record<string, string> = {
 		AUT: 'AT',
 		BEL: 'BE',
@@ -157,7 +158,7 @@ describe('buyer countries', () => {
 			EU_EEA_COUNTRIES.map(({ code }) => code).sort()
 		);
 		for (const [alpha3, alpha2] of Object.entries(ALPHA2_OF)) {
-			expect(countryName(alpha3), alpha3).toBe(regions.of(alpha2));
+			expect(countryName(alpha3), cldrLabel(alpha3)).toBe(regions.of(alpha2));
 		}
 	});
 
