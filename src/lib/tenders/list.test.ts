@@ -1,10 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { cldrLabel } from '../../test/cldr';
 import { capturePath } from '../../test/fixtures/node';
 import { readNotice } from '../ingest/read-notice';
 import { toIndexRow, type IndexRow } from '../snapshot/index-row';
 import type { FilterState } from '../core/filters';
+import { EU_EEA_COUNTRIES } from '../profile/codes';
 import {
 	buildTenderList,
 	captureFacts,
@@ -113,6 +115,53 @@ describe('buyer countries', () => {
 		expect(['NLD', 'BEL', 'DEU'].map(countryName)).toEqual(['Netherlands', 'Belgium', 'Germany']);
 	});
 
+	// ISO 3166-1 alpha-3 to alpha-2 for the EU and EEA. ICU names only the alpha-2 codes, so each name
+	// is checked against ICU's English name, and the codes against the profile's own country list. A
+	// failure names the CLDR release when it differs from the one the list was checked against
+	// (src/test/cldr.ts).
+	const ALPHA2_OF: Record<string, string> = {
+		AUT: 'AT',
+		BEL: 'BE',
+		BGR: 'BG',
+		HRV: 'HR',
+		CYP: 'CY',
+		CZE: 'CZ',
+		DNK: 'DK',
+		EST: 'EE',
+		FIN: 'FI',
+		FRA: 'FR',
+		DEU: 'DE',
+		GRC: 'GR',
+		HUN: 'HU',
+		ISL: 'IS',
+		IRL: 'IE',
+		ITA: 'IT',
+		LVA: 'LV',
+		LIE: 'LI',
+		LTU: 'LT',
+		LUX: 'LU',
+		MLT: 'MT',
+		NLD: 'NL',
+		NOR: 'NO',
+		POL: 'PL',
+		PRT: 'PT',
+		ROU: 'RO',
+		SVK: 'SK',
+		SVN: 'SI',
+		ESP: 'ES',
+		SWE: 'SE'
+	};
+
+	it('names every EU and EEA buyer country as ICU names it in English', () => {
+		const regions = new Intl.DisplayNames('en', { type: 'region' });
+		expect(Object.values(ALPHA2_OF).sort()).toEqual(
+			EU_EEA_COUNTRIES.map(({ code }) => code).sort()
+		);
+		for (const [alpha3, alpha2] of Object.entries(ALPHA2_OF)) {
+			expect(countryName(alpha3), cldrLabel(alpha3)).toBe(regions.of(alpha2));
+		}
+	});
+
 	// A joint procurement can list buyers from across the EU beside one in scope; every country is
 	// named in English, and only a code outside the EU and the EEA stays as published.
 	it('writes every buyer country of a row in English, and an unknown code as it is', () => {
@@ -188,6 +237,15 @@ describe('formatValue', () => {
 
 	it.each(['999.99', '999', '0.5', '-5000', '-1500000', '+999.99', '1,500', '1.5e6', '', '+', '.'])(
 		'publishes no value for %j',
+		(amount) => {
+			expect(formatValue({ amount, currency: 'EUR' })).toBeNull();
+		}
+	);
+
+	// Only the whole text is an xs:decimal: a number with other text around it is no amount, and a
+	// placeholder stays below the floor however many zeros lead it.
+	it.each(['EUR 2000', '2000 EUR', '2000.00 EUR', '000999.00', '0000999'])(
+		'publishes no value for %j either',
 		(amount) => {
 			expect(formatValue({ amount, currency: 'EUR' })).toBeNull();
 		}

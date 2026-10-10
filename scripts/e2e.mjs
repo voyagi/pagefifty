@@ -32,6 +32,7 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	marginWarnings,
 	readResult,
 	releaseRunLock,
 	runDriver,
@@ -44,6 +45,8 @@ const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
 const PLANTED_CHECK = 'planted: unknown path answers 200';
 const DRIVER_SECONDS = 60;
+const CLEANUP_DRIVER = resolve('scripts/e2e/cleanup/close-pages.devbrowser.js');
+const CLEANUP_SECONDS = 20;
 
 const args = new Set(process.argv.slice(2));
 const prove = args.has('--prove');
@@ -137,7 +140,7 @@ function runDrivers(runId) {
 			timeoutSeconds: DRIVER_SECONDS
 		});
 		const seconds = Math.round((Date.now() - started) / 1000);
-		times.push(`${basename(driverPath, '.devbrowser.js')} ${seconds}`);
+		times.push({ name: basename(driverPath, '.devbrowser.js'), seconds });
 		const result = readResult(resultName);
 		const driver = result?.driver ?? driverPath;
 		for (const check of result?.checks ?? []) checks.push({ driver, ...check });
@@ -156,12 +159,21 @@ function runDrivers(runId) {
 				ok: false,
 				detail: `dev-browser exit ${run.code}${result ? '' : ', no result file'}: ${run.output.trim()}`
 			});
+			// Its named page may still be open, and the next page on the same site would crash.
+			const cleanup = runDriver({
+				browserName: 'pagefifty-e2e',
+				driverPath: CLEANUP_DRIVER,
+				timeoutSeconds: CLEANUP_SECONDS
+			});
+			console.log(`[e2e] after ${basename(driverPath)}: cleanup exit ${cleanup.code}, ${cleanup.output.trim()}`);
 		}
 	}
 	// A driver is stopped at its limit, so each one's time is printed on every run, before a new
 	// check spends the margin. It is timed around the whole browser call, start-up included.
-	console.log(`[e2e] seconds per driver, each of a ${DRIVER_SECONDS} s limit: ${times.join(', ')}`);
-	return { checks, logRules };
+	console.log(
+		`[e2e] seconds per driver, each of a ${DRIVER_SECONDS} s limit: ${times.map(({ name, seconds }) => `${name} ${seconds}`).join(', ')}`
+	);
+	return { checks, logRules, times };
 }
 
 function verdict(checks) {
@@ -202,9 +214,12 @@ async function main() {
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const { checks, logRules } = runDrivers(runId);
+		const { checks, logRules, times } = runDrivers(runId);
 		const log = logRules.length > 0 ? await settledLog(logFile) : '';
 		code = verdict([...checks, ...logChecks(log, logRules)]);
+		for (const line of marginWarnings(times, DRIVER_SECONDS)) {
+			console.warn(`e2e: WARNING driver ${line}: split it before it gains a check`);
+		}
 	} finally {
 		if (worker && !(await stopWorker(worker.child))) code = 2;
 		releaseRunLock();

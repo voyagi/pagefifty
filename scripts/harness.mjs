@@ -513,3 +513,21 @@ export function readResult(name) {
 		unlinkSync(path);
 	}
 }
+
+// A driver past this share of its limit still passes, but the next route or check it gains, or a busy
+// machine, may not. verify:ship prints only a pass or a fail per step, so the runners print these
+// lines last, under their verdict, and the margin is seen shrinking before a run fails on it. Another
+// program's load slowed the a11y theme runs on 2026-10-08: 88 to 108 s quiet, 155 and 160 s loaded,
+// with the quiet times not recorded per theme, so the slowdown may be as much as 160 / 88, about 1.82
+// times. A quiet run at 55% of its limit still fits that inside the limit (60% fits only 1.67 times).
+// Whole percents keep the comparison exact.
+const MARGIN_WARN_PERCENT = 55;
+
+export function marginWarnings(times, limitSeconds) {
+	return times
+		.filter(({ seconds }) => seconds * 100 > limitSeconds * MARGIN_WARN_PERCENT)
+		.map(
+			({ name, seconds }) =>
+				`${name} took ${seconds} s of its ${limitSeconds} s limit, past ${MARGIN_WARN_PERCENT}%`
+		);
+}

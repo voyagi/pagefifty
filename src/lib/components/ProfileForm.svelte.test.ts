@@ -109,6 +109,23 @@ describe('ProfileForm, every phase 1 field', () => {
 		expect(screen.queryByLabelText('ISO 27001 valid until')).toBeNull();
 	});
 
+	it("sets one held certificate's date and leaves the other certificate's date alone", async () => {
+		mount();
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 27001' }));
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 9001' }));
+		setDate(field('ISO 27001 valid until'), '2027-05-31');
+		setDate(field('ISO 9001 valid until'), '2027-11-30');
+		expect(stored().profile.certificates).toEqual([
+			{ standard: 'ISO 27001', validUntil: '2027-05-31' },
+			{ standard: 'ISO 9001', validUntil: '2027-11-30' }
+		]);
+		setDate(field('ISO 9001 valid until'), '');
+		expect(stored().profile.certificates).toEqual([
+			{ standard: 'ISO 27001', validUntil: '2027-05-31' },
+			{ standard: 'ISO 9001' }
+		]);
+	});
+
 	it('fills and clears the country of registration', async () => {
 		mount();
 		const select = screen.getByLabelText('Country of registration');
@@ -547,6 +564,28 @@ describe('ProfileForm, what shows after a refused write or a newer profile', () 
 		});
 		await vi.waitFor(() => expect(screen.queryByLabelText('ISO 9001 valid until')).toBeNull());
 		expect(status()).not.toMatch(/^Not saved/);
+	});
+
+	// Only the removed certificate's error goes: one still held keeps its field, so its error stays.
+	it('keeps the error of a held certificate when another tab removes a different one', async () => {
+		mount();
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 9001' }));
+		await userEvent.click(screen.getByRole('button', { name: 'ISO 27001' }));
+		const input = field('ISO 9001 valid until');
+		Object.defineProperty(input, 'value', {
+			configurable: true,
+			get: () => '2027-02-31',
+			set: () => undefined
+		});
+		fireEvent.input(input);
+		otherTabWrites((document) => {
+			document.profile.certificates = [{ standard: 'ISO 9001' }];
+		});
+		await vi.waitFor(() => expect(screen.queryByLabelText('ISO 27001 valid until')).toBeNull());
+		expect(field('ISO 9001 valid until').getAttribute('aria-invalid')).toBe('true');
+		expect(status()).toBe(
+			'Not saved: ISO 9001 valid until needs a valid value. The rest is saved.'
+		);
 	});
 
 	it('keeps a certificate and its date on screen when the browser refuses to remove it', async () => {

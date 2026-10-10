@@ -266,8 +266,10 @@ try {
 
 	const list = await page.goto('http://127.0.0.1:8788/example');
 	// The firm slot's store loads after mount; the example label is written by the server, but the
-	// storage read that must leave the active firm alone happens after hydration.
-	await page.waitForTimeout(1500);
+	// storage read that must leave the active firm alone happens after hydration. So the app must
+	// have started, and the network gone quiet, since the store is fetched as its own script.
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
 	const shown = await readPage();
 	check(
 		'/example answers 200 with h1 "Example run" and the capture line with its time',
@@ -320,7 +322,8 @@ try {
 	});
 	await page.waitForSelector('#tender-title', { timeout: 10000 });
 	const tender = await page.goto('http://127.0.0.1:8788/example/609955-2026');
-	await page.waitForTimeout(1000);
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
 	const notice = await readPage();
 	await saveScreenshot(await page.screenshot(), 'pagefifty-example-609955-1440.png');
 	check(
@@ -348,6 +351,19 @@ try {
 			missing.backLinks.length === 1 &&
 			missing.backLinks[0] === '/example',
 		`status ${unknown.status()}, h1 "${missing.h1}", back links ${JSON.stringify(missing.backLinks)}`
+	);
+
+	// Well formed, so the real lookup in the tracked capture runs and misses: the unit test reaches
+	// this 404 only through a mocked reader, and the number above never gets past the format check.
+	const absent = await page.goto('http://127.0.0.1:8788/example/999991-2026');
+	const notHeld = await readPage();
+	check(
+		'/example/999991-2026, well formed but not in the capture, answers 404 leading back to /example',
+		absent.status() === 404 &&
+			notHeld.h1 === 'No tender with this notice number' &&
+			notHeld.backLinks.length === 1 &&
+			notHeld.backLinks[0] === '/example',
+		`status ${absent.status()}, h1 "${notHeld.h1}", back links ${JSON.stringify(notHeld.backLinks)}`
 	);
 
 	const filtered = await page.goto('http://127.0.0.1:8788/example?country=NL');

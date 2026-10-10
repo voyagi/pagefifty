@@ -3,10 +3,10 @@
 //
 // The Node layer builds the Worker, serves it with wrangler dev on 127.0.0.1:8788, stages
 // axe-core's minified source as text into the dev-browser tmp folder (the QuickJS driver cannot
-// import it), and runs scripts/a11y-live.devbrowser.js in a browser instance named for this run
-// alone, so a stylesheet cached by an earlier run can never hide a change. The driver owns the
-// literal route list, the theme loop and one screenshot per route and theme; this file owns the
-// verdict.
+// import it), and runs scripts/a11y-live.devbrowser.js once per theme in a browser instance named
+// for this run alone, so a stylesheet cached by an earlier run can never hide a change. The driver
+// owns the literal route list and one screenshot per route and theme; this file owns the theme
+// loop and the verdict.
 //
 // Painted-pixel contrast is not checked here (no pngjs): axe's own contrast rule runs, but a
 // colour it cannot composite comes back incomplete, and incomplete fails unless the driver's
@@ -15,9 +15,11 @@
 // Usage:  node scripts/a11y-live.mjs [--no-build]
 // Exit codes: 0 no violation and no unlisted incomplete result,
 //             1 a violation, an unlisted incomplete result, no dev-browser, or a URL not allowlisted,
-//             2 the audit did not happen: zero routes or themes, a page that did not load with an
-//               h1 and its theme, a page not audited at the width or list layout its entry names,
-//               target-size never ran, or the lock, port or server failed.
+//             2 the audit did not happen: zero routes or themes, a driver result without its theme
+//               list, a route list naming a theme this runner does not run, a theme's run that left
+//               no result or audited no page, fewer pages than its entries or another theme's, a page
+//               that did not load with an h1 and its theme, a page not audited at the width or list
+//               layout its entry names, target-size never ran, or the lock, port or server failed.
 
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -28,6 +30,7 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	marginWarnings,
 	readResult,
 	releaseRunLock,
 	runDriver,
@@ -40,6 +43,11 @@ import {
 const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
 const DRIVER_SECONDS = 260;
+// Each theme runs as its own driver with the whole limit. All 26 pages in one run took 171 to 224 s
+// on a quiet machine, then passed the limit twice on 2026-10-08 (280 s) while another program used
+// about a quarter of the CPU. The limit stays under the run lock's stale age, which runDriver
+// enforces, so an audit that outgrows it is split further rather than given more time.
+const THEMES = ['light', 'dark'];
 
 function reportPage(page) {
 	if (page.loadProblem) {
@@ -134,31 +142,66 @@ async function main() {
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-a11y-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[a11y] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const resultName = `pagefifty-a11y-${runId}-result.json`;
-		writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile: stageAxe() });
-		const started = Date.now();
-		const run = runDriver({
-			browserName: `pagefifty-a11y-${runId}`,
-			driverPath: resolve('scripts/a11y-live.devbrowser.js'),
-			// Eleven routes in two themes, each audited and shot at three widths, and each list audited
-			// a second time in its other layout without shots; kept under the run lock's stale age,
-			// which runDriver enforces, so the cap cannot grow much past this.
-			timeoutSeconds: DRIVER_SECONDS
-		});
-		// The long pages' full-page shots take most of the time (206 and 224 s of 260 in two runs on
-		// 2026-10-01, about 10 s a page), so the margin is printed on every run, before a new route
-		// spends it: two more routes in two themes take about 40 s, more than the 36 s the slower run
-		// left. The run that added the four list entries without shots took 175 s on 2026-10-08.
-		const seconds = (Date.now() - started) / 1000;
-		console.log(`a11y: the driver took ${seconds.toFixed(0)} s of its ${DRIVER_SECONDS} s limit`);
-		const result = readResult(resultName);
-		if (run.code !== 0 || !result) {
-			throw new HarnessError(
-				2,
-				`the a11y driver did not finish (dev-browser exit ${run.code}): ${run.output.trim()}`
-			);
+		const axeFile = stageAxe();
+		const pages = [];
+		const times = [];
+		for (const theme of THEMES) {
+			const resultName = `pagefifty-a11y-${runId}-${theme}-result.json`;
+			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme });
+			const started = Date.now();
+			// Eleven routes, each audited and shot at three widths, and each list audited a second time
+			// in its other layout without shots.
+			const run = runDriver({
+				browserName: `pagefifty-a11y-${runId}`,
+				driverPath: resolve('scripts/a11y-live.devbrowser.js'),
+				timeoutSeconds: DRIVER_SECONDS
+			});
+			// The long pages' full-page shots take most of the time (about 10 s a page), so the margin
+			// is printed on every run, before a new route spends it.
+			const seconds = Math.round((Date.now() - started) / 1000);
+			times.push({ name: `the ${theme} driver`, seconds });
+			console.log(`a11y: the ${theme} driver took ${seconds} s of its ${DRIVER_SECONDS} s limit`);
+			const result = readResult(resultName);
+			if (run.code !== 0 || !result) {
+				throw new HarnessError(
+					2,
+					`the ${theme} a11y driver did not finish (dev-browser exit ${run.code}${result ? '' : ', no result file'}): ${run.output.trim()}`
+				);
+			}
+			// The driver keeps only the entries of the theme it is given, so an entry in a theme missing
+			// here would never be audited by any run. An empty list means an empty route list, which the
+			// page count below refuses by name.
+			const listed = result.listedThemes;
+			if (!Array.isArray(listed)) {
+				throw new HarnessError(
+					2,
+					`the ${theme} a11y driver's result has no listedThemes, so nothing shows which themes its route list names: the driver must write it beside its pages (scripts/a11y-live.devbrowser.js)`
+				);
+			}
+			const unrun = listed.filter((name) => !THEMES.includes(name));
+			if (unrun.length > 0) {
+				throw new HarnessError(
+					2,
+					`the a11y route list names the themes ${JSON.stringify(listed)}, and this runner runs only ${JSON.stringify(THEMES)}: add each missing one to THEMES`
+				);
+			}
+			// A run that audited nothing would leave the verdict reading one theme as the whole audit.
+			if (
+				result.pages.length === 0 ||
+				result.pages.length !== result.entries ||
+				result.pages.some((page) => page.theme !== theme)
+			) {
+				throw new HarnessError(
+					2,
+					`the ${theme} a11y driver audited ${result.pages.length} pages of its ${result.entries} entries, not exactly the ${theme} ones`
+				);
+			}
+			pages.push(...result.pages);
 		}
-		code = verdict(result);
+		code = verdict({ pages });
+		for (const line of marginWarnings(times, DRIVER_SECONDS)) {
+			console.warn(`a11y: WARNING ${line}: split the audit further before it gains a route`);
+		}
 	} finally {
 		if (worker && !(await stopWorker(worker.child))) code = 2;
 		releaseRunLock();

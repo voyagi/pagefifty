@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { cldrLabel } from '../../test/cldr';
 import { canonicalStoredJson } from './canonical';
 import { EU_EEA_COUNTRIES, EU_LANGUAGES } from './codes';
 import { parseCount, parseWholeEuros } from './fields';
@@ -228,6 +229,23 @@ describe('the fixed code lists', () => {
 		expect(codes).toHaveLength(24);
 		expect(new Set(codes).size).toBe(24);
 		expect(codes).toEqual(expect.arrayContaining(['nl', 'fr', 'de', 'en', 'ga', 'mt']));
+	});
+
+	// The pick lists are typed by hand; ICU's English names are an independent copy of the same facts,
+	// so a swapped or misspelled name shows here. A failure names the CLDR release when it differs
+	// from the one the lists were checked against (src/test/cldr.ts).
+	it('names each country as ICU names its ISO 3166-1 code in English', () => {
+		const regions = new Intl.DisplayNames('en', { type: 'region' });
+		for (const { code, name } of EU_EEA_COUNTRIES) {
+			expect(name, cldrLabel(code)).toBe(regions.of(code));
+		}
+	});
+
+	it('names each language as ICU names its ISO 639-1 code in English', () => {
+		const languages = new Intl.DisplayNames('en', { type: 'language' });
+		for (const { code, name } of EU_LANGUAGES) {
+			expect(name, cldrLabel(code)).toBe(languages.of(code));
+		}
 	});
 });
 

@@ -10,6 +10,8 @@ const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tenders-filter';
 const BASE = 'http://127.0.0.1:8788/tenders';
 const DROPPED = 'Some filter values in the address were not recognised and were ignored.';
+// The theme switch marks its pressed button only once the app has started.
+const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 const page = await browser.getPage(PAGE);
 const checks = [];
 
@@ -53,6 +55,9 @@ function readList(html) {
 			const params = new URLSearchParams(location.search);
 			return {
 				url: location.href,
+				origin: location.origin,
+				pathname: location.pathname,
+				search: location.search,
 				countries: params.getAll('country').join(' '),
 				from: params.get('from'),
 				to: params.get('to'),
@@ -95,17 +100,24 @@ try {
 		`${netherlands.open.length} open and ${netherlands.closed.length} closed rows read, ${foreign.length} outside the Netherlands, checked ${netherlands.checked.join(' ')}`
 	);
 
+	// Applied once the app has started, so every run takes the path a reader normally does rather
+	// than the plain form post a slow start would give.
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
 	await page.getByRole('checkbox', { name: 'Germany DE' }).check();
 	await Promise.all([
 		page.waitForURL(/country=DE/, { timeout: 10000 }),
 		page.getByRole('button', { name: 'Apply filters' }).click()
 	]);
 	const submitted = await readList();
-	await page.goto(submitted.url);
-	const shared = await readList();
+	// The address comes from the page, so only its query is reused: the host and path stay the
+	// literal BASE, and nothing is opened unless the form stayed on this list.
+	const onList = submitted.origin === 'http://127.0.0.1:8788' && submitted.pathname === '/tenders';
+	if (onList) await page.goto(`${BASE}${submitted.search}`);
+	const shared = onList ? await readList() : { open: [], closed: [] };
 	check(
 		'ticking Germany and applying makes an address with NL and DE that loads the same rows when opened directly',
-		submitted.countries === 'NL DE' &&
+		onList &&
+			submitted.countries === 'NL DE' &&
 			submitted.open.length + submitted.closed.length > nlRows.length &&
 			numbers(submitted.open) === numbers(shared.open) &&
 			numbers(submitted.closed) === numbers(shared.closed),
@@ -188,8 +200,14 @@ try {
 
 	// The router keeps the page and its form across a filter navigation, so a chip ticked and a date
 	// typed but never applied must not survive Clear filters: the form would then show a filter the
-	// list does not apply.
+	// list does not apply. Before the app starts the click is a full page load, which clears the
+	// form on its own, so the app must have started, and a flag set on the window, which a page
+	// load would drop, must still be there afterwards.
 	await page.goto(`${BASE}?country=NL&cpv=72`);
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	await page.evaluate(() => {
+		window.pfSamePage = true;
+	});
 	await page.getByRole('checkbox', { name: 'Belgium BE' }).check();
 	await page.getByLabel('Deadline on or after').fill('2026-10-05');
 	// The control: the date really is in the field before the click, so an empty field after it
@@ -207,14 +225,16 @@ try {
 		document.getElementById('filter-from').value,
 		document.getElementById('filter-to').value
 	]);
+	const samePage = await page.evaluate(() => window.pfSamePage === true);
 	check(
-		'a chip ticked and a date typed but never applied are gone after Clear filters',
+		'a chip ticked and a date typed but never applied are gone after Clear filters, on the same page',
 		typed === '2026-10-05' &&
+			samePage &&
 			cleared.countries === '' &&
 			cleared.checked.length === 0 &&
 			dates.join('') === '' &&
 			cleared.open.length + cleared.closed.length === 363,
-		`typed "${typed}", then address ${cleared.url}, checked ${cleared.checked.join(' ') || 'none'}, dates "${dates.join('", "')}", ${cleared.open.length + cleared.closed.length} rows read`
+		`typed "${typed}", then same page ${samePage}, address ${cleared.url}, checked ${cleared.checked.join(' ') || 'none'}, dates "${dates.join('", "')}", ${cleared.open.length + cleared.closed.length} rows read`
 	);
 } finally {
 	await writeFile(config.resultName, JSON.stringify({ driver: 'tenders-filter', checks }));

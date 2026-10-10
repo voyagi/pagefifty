@@ -1,6 +1,6 @@
-// a11y-live.devbrowser.js - axe-core over every route in every theme of the built Worker.
+// a11y-live.devbrowser.js - axe-core over every route of the built Worker in one theme.
 // Runs in the dev-browser QuickJS sandbox under scripts/a11y-live.mjs, which stages axe-core as
-// text, owns the verdict and sets the exit code.
+// text, runs this driver once per theme, owns the verdict and sets the exit code.
 //
 // dev-browser-nav-guard: dynamic-ok the loop below only visits the literal URLs listed in AUDITS
 
@@ -187,6 +187,9 @@ const ACCEPTED_INCOMPLETE = [];
 
 const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
+// Only the theme this run names. The runner refuses a run that audited none, fewer than its entries
+// or another theme's, and a route list naming a theme it never runs.
+const audits = AUDITS.filter((entry) => entry.theme === config.theme);
 const PAGE = 'pagefifty-a11y';
 const page = await browser.getPage(PAGE);
 // axe runs at 1280 x 720, the browser's default size, and the width shots return to it. It is a
@@ -363,8 +366,14 @@ async function audit({
 
 const pages = [];
 try {
-	for (const entry of AUDITS) pages.push(await audit(entry));
+	for (const entry of audits) pages.push(await audit(entry));
 } finally {
-	await writeFile(config.resultName, JSON.stringify({ driver: 'a11y-live', pages }));
+	// The runner compares both with its own theme list and with the pages it gets back, so an entry
+	// in a theme it never runs, or one this run skipped, cannot drop out unseen.
+	const listedThemes = [...new Set(AUDITS.map((entry) => entry.theme))];
+	await writeFile(
+		config.resultName,
+		JSON.stringify({ driver: 'a11y-live', pages, entries: audits.length, listedThemes })
+	);
 	await browser.closePage(PAGE);
 }
