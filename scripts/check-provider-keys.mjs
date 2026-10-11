@@ -14,9 +14,9 @@
 // --entry must sit inside a scanned folder, and every relative import reachable from it must
 // resolve inside one too, so a folder list that misses part of the deployed code refuses to run
 // instead of passing over it. Each package those files import by name is scanned whole from
-// node_modules, with every package it lists as a dependency: more than wrangler bundles, so no
-// export condition decides what is read. A package's own node_modules is read only through a
-// dependency it lists.
+// node_modules, with every installed package it lists as a dependency, a peer dependency or an
+// optional one: more than wrangler bundles, so no export condition decides what is read. A
+// package's own node_modules is read only through a package it lists.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
@@ -92,14 +92,19 @@ function readNamed(file, decode = (bytes) => bytes) {
 
 const asText = (bytes) => bytes.toString('utf8');
 
-// A listed dependency that is not installed anywhere above the package could not be bundled either.
+// A package imports its peers by name like its dependencies, and its optional dependencies when they
+// are installed, so wrangler bundles whatever those imports resolve to. A listed package that is not
+// installed anywhere above the package could not be bundled either.
+const DEPENDENCY_FIELDS = ['dependencies', 'peerDependencies', 'optionalDependencies'];
+
 function withDependencies(packages) {
 	const found = new Set(packages);
 	const queue = [...packages];
 	while (queue.length > 0) {
 		const folder = queue.pop();
 		const manifest = readNamed(join(folder, 'package.json'), (bytes) => JSON.parse(asText(bytes)));
-		for (const name of Object.keys(manifest.dependencies ?? {})) {
+		const listed = new Set(DEPENDENCY_FIELDS.flatMap((field) => Object.keys(manifest[field] ?? {})));
+		for (const name of listed) {
 			const dependency = packageFolder(folder, name);
 			if (dependency !== undefined && !found.has(dependency)) {
 				found.add(dependency);

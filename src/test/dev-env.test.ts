@@ -69,8 +69,9 @@ const SHELL_WRAPPING = /^(\$\(|[("'`])+|[)"'`]+$/g;
 
 // With this variable set to anything but false, wrangler adds the whole shell environment to the
 // env files it loads, so a run that names only the empty file still hands the Worker every exported
-// key. A script that runs wrangler may not set it anywhere: a prefix, env, cross-env, export or
-// cmd.exe's set, which can sit in an earlier segment than the run.
+// key. No script may set it anywhere, whether it runs wrangler itself or through another script
+// (npm run build): a prefix, env, cross-env, export or cmd.exe's set, which can sit in an earlier
+// segment than the run.
 const INCLUDES_SHELL = /CLOUDFLARE_INCLUDE_PROCESS_ENV=(?!false\b)/i;
 
 function wranglerRuns(command: string): string[][] {
@@ -111,9 +112,9 @@ function scriptProblems(packageJson: string): string[] {
 			const files = envFilesOf(words);
 			return files.length !== 1 || files[0] !== EMPTY_ENV;
 		});
-		if (loose.length > 0 || (runs.length > 0 && INCLUDES_SHELL.test(command))) {
+		if (loose.length > 0 || INCLUDES_SHELL.test(command)) {
 			problems.push(
-				`wrangler-env-file: scripts.${name} runs wrangler with more than the empty env file`
+				`wrangler-env-file: scripts.${name} can run wrangler with more than the empty env file`
 			);
 		}
 	}
@@ -298,6 +299,11 @@ describe('each planted defect fails only its own rule', () => {
 			"the shell added by cmd.exe's set in an earlier segment",
 			'set CLOUDFLARE_INCLUDE_PROCESS_ENV=1&& wrangler types --env-file env/no-keys.env'
 		],
+		[
+			'the shell added before another script that runs wrangler',
+			'CLOUDFLARE_INCLUDE_PROCESS_ENV=true npm run build'
+		],
+		['the shell added before vite', 'cross-env CLOUDFLARE_INCLUDE_PROCESS_ENV=1 vite dev'],
 		['a second run on its own line', 'wrangler types --env-file env/no-keys.env\nwrangler types'],
 		['a run in a subshell', '(wrangler types)'],
 		['a quoted binary', '"wrangler" dev'],

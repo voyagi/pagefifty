@@ -275,6 +275,40 @@ describe('the --entry coverage rule', () => {
 		]);
 	});
 
+	it.each(['peerDependencies', 'optionalDependencies'])(
+		'finds a key name in a package the imported one lists under %s',
+		(field) => {
+			const root = folder({
+				...importing("import { a } from 'pkg-a';"),
+				...PACKAGES,
+				'node_modules/pkg-a/package.json': JSON.stringify({
+					name: 'pkg-a',
+					[field]: { 'pkg-b': '1.0.0' }
+				}),
+				'node_modules/pkg-b/index.js': 'export const b = env.TAVILY_API_KEY;'
+			});
+			const result = entryRun(root);
+			expect([result.status, result.stdout]).toEqual([
+				1,
+				expect.stringMatching(/node_modules\/pkg-b\/index\.js: TAVILY_API_KEY/)
+			]);
+		}
+	);
+
+	it('passes over a listed package that is not installed, which could not be bundled', () => {
+		const root = folder({
+			...importing("import { a } from 'pkg-a';"),
+			...PACKAGES,
+			'node_modules/pkg-a/package.json':
+				'{ "name": "pkg-a", "dependencies": { "pkg-b": "1.0.0" }, "optionalDependencies": { "pagefifty-not-installed": "1.0.0" } }'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 8 files in 3 folders and 2 packages, no key name or canary value'
+		]);
+	});
+
 	it('finds a scoped package by a subpath import and its dependency in a nested node_modules', () => {
 		const root = folder({
 			...importing("import { s } from '@scope/pkg/sub/x.js';"),
