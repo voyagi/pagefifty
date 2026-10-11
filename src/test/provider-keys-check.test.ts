@@ -123,6 +123,34 @@ describe('the --entry coverage rule', () => {
 		}
 	});
 
+	// The server build carries JSDoc types like import('../../../utils/page_nodes.js'); a scan that
+	// read them as imports refused every real build.
+	it('ignores import paths named only in a JSDoc type, a comment or a string', () => {
+		const entry =
+			"/** @param {import('../../far/t.js').T} t */\n// import x from '../far/x.js'\nconst s = \"import y from '../far/y.js'\";\nexport const f = (t) => [t, s];\n";
+		const root = folder({ 'build/entry.js': entry, 'far/x.js': '' });
+		const result = run(join(root, 'build'), '--entry', join(root, 'build', 'entry.js'));
+		expect([result.status, result.stderr]).toEqual([0, '']);
+	});
+
+	it('follows imports past the entry, so a file two hops down that leaves the folders is refused', () => {
+		const root = folder({
+			...BUILD,
+			'output/server/index.js': 'export { x } from "./chunks/a.js";',
+			'output/server/chunks/a.js': 'import "../../../extra/b.js";',
+			'extra/b.js': ''
+		});
+		const result = run(
+			join(root, 'output'),
+			join(root, 'cloudflare'),
+			join(root, 'cloudflare-tmp'),
+			'--entry',
+			join(root, 'cloudflare', '_worker.js')
+		);
+		expect(result.status).toBe(2);
+		expect(result.stderr).toMatch(/chunks\/a\.js imports \.\.\/\.\.\/\.\.\/extra\/b\.js, outside/);
+	});
+
 	it('refuses an entry outside every scanned folder, a missing entry and --entry without a value', () => {
 		const root = folder({ 'build/a.js': '', 'other/entry.js': '' });
 		expect(run(join(root, 'build'), '--entry', join(root, 'other', 'entry.js')).status).toBe(2);

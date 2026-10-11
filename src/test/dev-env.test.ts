@@ -58,15 +58,18 @@ function isText(node: ts.Node | undefined, value: string): boolean {
 	return node !== undefined && ts.isStringLiteralLike(node) && node.text === value;
 }
 
-// One shell command per segment between &&, ||, ; and |, split into words. A wrangler run is a
-// segment holding the wrangler binary (by name or path) and a dev or types word anywhere after it,
-// so a flag before the command or a second run on the same line is still a run.
+// One shell command per segment between &&, ||, ;, | and & (cmd.exe's separator), split into
+// words. A wrangler run is a segment holding a wrangler binary (any of the package's three names,
+// by name or path, with or without an @version) and a dev or types word anywhere after it, so a
+// flag before the command or a second run on the same line is still a run.
+const WRANGLER_BIN = /(^|[/\\])(cf-wrangler|wrangler2?)(\.js)?(@\S*)?$/;
+
 function wranglerRuns(command: string): string[][] {
 	return command
-		.split(/&&|\|\||[;|]/)
+		.split(/&&|\|\||[;|&]/)
 		.map((segment) => segment.trim().split(/\s+/))
 		.filter((words) => {
-			const at = words.findIndex((word) => /(^|[/\\])wrangler(\.js)?$/.test(word));
+			const at = words.findIndex((word) => WRANGLER_BIN.test(word));
 			return at >= 0 && words.slice(at + 1).some((word) => word === 'dev' || word === 'types');
 		});
 }
@@ -148,14 +151,22 @@ function assignsFalse(source: ts.SourceFile, name: string): boolean {
 	);
 }
 
+// The envFile value itself must name the empty file; the name elsewhere (a comment) proves nothing.
+function namesEmptyFile(node: ts.Expression | undefined): boolean {
+	return (
+		node !== undefined &&
+		(isText(node, EMPTY_ENV) ||
+			nodesOf(node, ts.isStringLiteralLike).some((literal) => literal.text === EMPTY_ENV))
+	);
+}
+
 function previewScriptProblems(previewScript: string): string[] {
 	const source = parse('preview.mjs', previewScript);
-	const passesEnvFile = callsTo(source, 'wranglerDevArgs').some(
-		(call) => property(call.arguments[0], 'envFile') !== undefined
+	const passesEnvFile = callsTo(source, 'wranglerDevArgs').some((call) =>
+		namesEmptyFile(property(call.arguments[0], 'envFile'))
 	);
 	const closed =
 		passesEnvFile &&
-		previewScript.includes(EMPTY_ENV) &&
 		assignsFalse(source, 'CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV') &&
 		assignsFalse(source, 'CLOUDFLARE_INCLUDE_PROCESS_ENV');
 	return closed
@@ -252,7 +263,11 @@ describe('each planted defect fails only its own rule', () => {
 		['the root file named beside it', 'wrangler types --env-file env/no-keys.env --env-file .env'],
 		['another file in the = form', 'wrangler dev --env-file=.env'],
 		['a file that only starts with the name', 'wrangler types --env-file env/no-keys.env.bak'],
-		['the binary by path', 'node node_modules/wrangler/bin/wrangler.js types']
+		['the binary by path', 'node node_modules/wrangler/bin/wrangler.js types'],
+		['a second run after a single &', 'wrangler types --env-file env/no-keys.env & wrangler types'],
+		['the wrangler2 alias', 'wrangler2 types'],
+		['the cf-wrangler alias', 'npx cf-wrangler dev'],
+		['a pinned version', 'npx wrangler@4.131.1 types']
 	])('%s', (_label, command) => {
 		const packageJson = withScript(real.packageJson, 'gen', command);
 		expect(rulesWith({ packageJson })).toEqual(['wrangler-env-file']);
@@ -283,6 +298,15 @@ describe('each planted defect fails only its own rule', () => {
 	it('the env dir option removed', () => {
 		const viteConfig = plant(real.viteConfig, /\benv:\s*\{\s*dir:\s*'env'\s*\},?/, '');
 		expect(rulesWith({ viteConfig })).toEqual(['kit-env-dir']);
+	});
+
+	it('preview.mjs naming another env file while a comment names the empty one', () => {
+		const previewScript = plant(
+			`// ${EMPTY_ENV}\n${real.previewScript}`,
+			/envFile: join\(repository, '[^']+'\)/,
+			"envFile: join(repository, '.dev.vars')"
+		);
+		expect(rulesWith({ previewScript })).toEqual(['preview-script']);
 	});
 
 	it('preview.mjs without CLOUDFLARE_INCLUDE_PROCESS_ENV', () => {
