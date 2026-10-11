@@ -10,7 +10,7 @@
 		"dev": "vite dev",
 		"prebuild": "node scripts/build-records.mjs",
 		"build": "wrangler types --env-file env/no-keys.env && vite build",
-		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+		"preview": "node scripts/preview.mjs",
 		"prepare": "wrangler types --env-file env/no-keys.env && svelte-kit sync",
 		"check": "wrangler types --env-file env/no-keys.env && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

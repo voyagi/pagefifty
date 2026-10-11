@@ -241,7 +241,7 @@ describe('each planted defect fails only its own rule', () => {
 
 	it('preview.mjs without CLOUDFLARE_INCLUDE_PROCESS_ENV', () => {
 		const lines = real.previewScript.split('\n');
-		const kept = lines.filter((line) => !line.includes('CLOUDFLARE_INCLUDE_PROCESS_ENV'));
+		const kept = lines.filter((line) => !line.includes('CLOUDFLARE_INCLUDE_PROCESS_ENV:'));
 		expect(kept.length).toBe(lines.length - 1);
 		expect(rulesWith({ previewScript: kept.join('\n') })).toEqual(['preview-script']);
 	});
