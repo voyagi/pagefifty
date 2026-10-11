@@ -8,28 +8,39 @@
 // given with --canary is searched the same way and never printed, so a build run with made-up key
 // values in its environment can prove no environment value reached the output.
 //
-// Usage:  node scripts/check-provider-keys.mjs DIR... [--canary VALUE]...
+// The Worker that deploys is more than .svelte-kit/cloudflare: its _worker.js imports the server
+// build from .svelte-kit/output/server and a manifest from .svelte-kit/cloudflare-tmp, and wrangler
+// bundles those at deploy. A file given with --entry must sit inside a scanned folder, and every
+// relative import it names must resolve inside one too, so a folder list that misses part of the
+// deployed code refuses to run instead of passing over it.
+//
+// Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
 //             1 a file holds one (one line per file and name found),
-//             2 bad usage, a missing folder, a folder with no file, or a file that could not be read
-//               (nothing scanned is never clean).
+//             2 bad usage, a missing folder, a folder with no file, a file that could not be read, or
+//               an entry or one of its relative imports outside the scanned folders (nothing scanned
+//               is never clean).
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 
 const KEY_NAMES = ['NEBIUS_API_KEY', 'TAVILY_API_KEY'];
+// Static imports and re-exports (`from './x'`) and dynamic imports (`import('./x')`), relative only:
+// a bare specifier names a package wrangler bundles from node_modules, never this build's output.
+const RELATIVE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(['"])(\.{1,2}\/[^'"]+)\1/g;
 
 class UsageError extends Error {}
 
 function parseArgs(argv) {
 	const folders = [];
 	const canaries = [];
+	const entries = [];
 	for (let at = 0; at < argv.length; at++) {
 		const arg = argv[at];
-		if (arg === '--canary') {
+		if (arg === '--canary' || arg === '--entry') {
 			const value = argv[at + 1];
-			if (value === undefined || value === '') throw new UsageError('--canary needs a non-empty value');
-			canaries.push(value);
+			if (value === undefined || value === '') throw new UsageError(`${arg} needs a non-empty value`);
+			(arg === '--canary' ? canaries : entries).push(value);
 			at++;
 		} else if (arg.startsWith('--')) {
 			throw new UsageError(`unknown option ${arg}`);
@@ -38,9 +49,32 @@ function parseArgs(argv) {
 		}
 	}
 	if (folders.length === 0) {
-		throw new UsageError('usage: node scripts/check-provider-keys.mjs DIR... [--canary VALUE]...');
+		throw new UsageError(
+			'usage: node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...'
+		);
 	}
-	return { folders, canaries };
+	return { folders, canaries, entries };
+}
+
+function insideAny(path, folders) {
+	return folders.some((folder) => {
+		const inner = relative(resolve(folder), path);
+		return inner !== '' && !inner.startsWith('..') && !isAbsolute(inner);
+	});
+}
+
+// An entry whose own file, or any relative import of it, lies outside every scanned folder means
+// the folder list misses deployed code; that is a usage error, never a clean scan.
+function assertEntryCovered(entry, folders) {
+	const path = resolve(entry);
+	if (!existsSync(path)) throw new UsageError(`entry ${entry} is missing`);
+	if (!insideAny(path, folders)) throw new UsageError(`entry ${entry} is outside the scanned folders`);
+	for (const match of readFileSync(path, 'utf8').matchAll(RELATIVE_IMPORT)) {
+		const target = resolve(dirname(path), match[2]);
+		if (!insideAny(target, folders)) {
+			throw new UsageError(`entry ${entry} imports ${match[2]}, outside the scanned folders`);
+		}
+	}
 }
 
 function filesUnder(dir) {
@@ -70,7 +104,8 @@ function hitsIn(bytes, names, canaries) {
 }
 
 function main(argv) {
-	const { folders, canaries } = parseArgs(argv);
+	const { folders, canaries, entries } = parseArgs(argv);
+	for (const entry of entries) assertEntryCovered(entry, folders);
 	const names = KEY_NAMES.map((label) => ({ label, needle: Buffer.from(label, 'ascii') }));
 	const canaryBytes = canaries.map((value) => Buffer.from(value, 'utf8'));
 	const hits = [];

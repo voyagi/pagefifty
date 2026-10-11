@@ -1,6 +1,6 @@
 // scripts/check-provider-keys.mjs run as verify:ship runs it, on throwaway folders in the temp folder.
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -73,5 +73,90 @@ describe('the provider key check on built output', () => {
 		expect(run(folder({ 'a.js': '' }), '--canary').status).toBe(2);
 		expect(run(folder({ 'a.js': '' }), '--canary', '').status).toBe(2);
 		expect(run().status).toBe(2);
+	});
+});
+
+// The adapter's _worker.js imports the server build from a sibling folder, the shape that let the
+// first folder list pass over every server module.
+const BUILD = {
+	'cloudflare/_worker.js':
+		'import { Server } from "./../output/server/index.js";\nimport { manifest } from "./../cloudflare-tmp/manifest.js";\nimport { env } from "cloudflare:workers";\n',
+	'cloudflare/app.css': 'p{}',
+	'output/server/index.js': 'export class Server {}',
+	'cloudflare-tmp/manifest.js': 'export const manifest = {};'
+};
+
+describe('the --entry coverage rule', () => {
+	it('refuses a folder list that leaves a relative import of the entry unscanned', () => {
+		const root = folder(BUILD);
+		const result = run(join(root, 'cloudflare'), '--entry', join(root, 'cloudflare', '_worker.js'));
+		expect(result.status).toBe(2);
+		expect(result.stderr).toMatch(
+			/imports \.\/\.\.\/output\/server\/index\.js, outside the scanned folders/
+		);
+	});
+
+	it('passes once every relative import resolves inside a scanned folder, bare ones ignored', () => {
+		const root = folder(BUILD);
+		const result = run(
+			join(root, 'output'),
+			join(root, 'cloudflare'),
+			join(root, 'cloudflare-tmp'),
+			'--entry',
+			join(root, 'cloudflare', '_worker.js')
+		);
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 4 files in 3 folders, no key name or canary value'
+		]);
+	});
+
+	it('reads dynamic imports, side-effect imports and re-exports', () => {
+		for (const line of [
+			"const m = await import('../far/x.js');",
+			"import '../far/x.js';",
+			"export * from '../far/x.js';"
+		]) {
+			const root = folder({ 'build/entry.js': line, 'far/x.js': '' });
+			const result = run(join(root, 'build'), '--entry', join(root, 'build', 'entry.js'));
+			expect([line, result.status]).toEqual([line, 2]);
+		}
+	});
+
+	it('refuses an entry outside every scanned folder, a missing entry and --entry without a value', () => {
+		const root = folder({ 'build/a.js': '', 'other/entry.js': '' });
+		expect(run(join(root, 'build'), '--entry', join(root, 'other', 'entry.js')).status).toBe(2);
+		expect(run(join(root, 'build'), '--entry', join(root, 'build', 'gone.js')).status).toBe(2);
+		expect(run(join(root, 'build'), '--entry').status).toBe(2);
+	});
+
+	it('runs with the same folders and entry in verify:ship and in CI', () => {
+		const command =
+			'node scripts/check-provider-keys.mjs .svelte-kit/output .svelte-kit/cloudflare .svelte-kit/cloudflare-tmp --entry .svelte-kit/cloudflare/_worker.js';
+		const shipStep = readFileSync('verify-ship.mjs', 'utf8')
+			.split('\n')
+			.filter((line) => line.includes("name: 'provider-keys'"));
+		const ciSteps = readFileSync(join('.github', 'workflows', 'gates.yml'), 'utf8')
+			.split('\n')
+			.filter((line) => line.includes('check-provider-keys.mjs'))
+			.map((line) => line.trim());
+		expect(shipStep).toHaveLength(1);
+		expect(shipStep[0]).toContain(`cmd: '${command}'`);
+		expect(ciSteps).toEqual([`- run: ${command}`]);
+	});
+
+	it('still finds a key name in a file the entry imports', () => {
+		const root = folder({ ...BUILD, 'output/server/index.js': 'env.TAVILY_API_KEY' });
+		const result = run(
+			join(root, 'output'),
+			join(root, 'cloudflare'),
+			join(root, 'cloudflare-tmp'),
+			'--entry',
+			join(root, 'cloudflare', '_worker.js')
+		);
+		expect([result.status, result.stdout]).toEqual([
+			1,
+			expect.stringMatching(/output\/server\/index\.js: TAVILY_API_KEY/)
+		]);
 	});
 });

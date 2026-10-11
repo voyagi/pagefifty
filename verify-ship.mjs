@@ -97,7 +97,7 @@ const STEPS = [
   { name: 'repo', cmd: 'npm run gate:repo', script: 'gate:repo', appliesWhen: 'the repo-hygiene gates (goals, gitignore, hookspath, license, identity, artifact metadata, compliance, icon decision, human-todo classification) are installed with their gate:repo script' },
   { name: 'build', cmd: 'npm run build --if-present' },
   { name: 'client-secrets', cmd: 'node scripts/check-client-secrets.mjs .svelte-kit/output/client' },
-  { name: 'provider-keys', cmd: 'node scripts/check-provider-keys.mjs .svelte-kit/output/client .svelte-kit/cloudflare' },
+  { name: 'provider-keys', cmd: 'node scripts/check-provider-keys.mjs .svelte-kit/output .svelte-kit/cloudflare .svelte-kit/cloudflare-tmp --entry .svelte-kit/cloudflare/_worker.js' },
   { name: 'coverage', cmd: 'npm run test:coverage', script: 'test:coverage', appliesWhen: 'a test:coverage script with floors exists' },
   { name: 'e2e', cmd: 'npm run test:e2e', script: 'test:e2e', appliesWhen: 'a test:e2e script exists' },
   { name: 'a11y', cmd: 'npm run a11y:live', script: 'a11y:live', appliesWhen: 'the product renders HTML and a11y-live.mjs is installed' },
