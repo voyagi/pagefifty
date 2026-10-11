@@ -33,11 +33,30 @@ import ts from 'typescript';
 
 const KEY_NAMES = ['NEBIUS_API_KEY', 'TAVILY_API_KEY'];
 
-// TypeScript's import scanner returns static imports, re-exports, side-effect imports and dynamic
-// import() calls, and skips comments and strings: the server build carries JSDoc types such as
-// import('../../../utils/page_nodes.js') that a regex reads as an import.
-function importsOf(text) {
-	return ts.preProcessFile(text, true, true).importedFiles.map(({ fileName }) => fileName);
+const isImportOrRequire = (callee) =>
+	callee.kind === ts.SyntaxKind.ImportKeyword ||
+	(ts.isIdentifier(callee) && callee.text === 'require');
+
+// A full parse, so comments, strings and regular expressions never read as an import: the server
+// build carries JSDoc types such as import('../../../utils/page_nodes.js'), and TypeScript's lighter
+// import scanner (preProcessFile) misses export * as ns from and loses an import that follows a
+// regular expression holding a backtick. Static imports, re-exports and import() or require() calls
+// with a string argument count; a computed import() is passed over, as a bundler passes it over.
+function importsOf(file, text) {
+	const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, false, ts.ScriptKind.JS);
+	const found = [];
+	const visit = (node) => {
+		const specifier =
+			ts.isImportDeclaration(node) || ts.isExportDeclaration(node)
+				? node.moduleSpecifier
+				: ts.isCallExpression(node) && isImportOrRequire(node.expression)
+					? node.arguments[0]
+					: undefined;
+		if (specifier !== undefined && ts.isStringLiteralLike(specifier)) found.push(specifier.text);
+		ts.forEachChild(node, visit);
+	};
+	visit(source);
+	return found;
 }
 
 const isRelative = (specifier) => specifier.startsWith('./') || specifier.startsWith('../');
@@ -139,7 +158,7 @@ function entryPackages(entry, folders) {
 	const queue = [start];
 	while (queue.length > 0) {
 		const file = queue.pop();
-		for (const specifier of importsOf(readNamed(file, asText))) {
+		for (const specifier of importsOf(file, readNamed(file, asText))) {
 			if (!isRelative(specifier)) {
 				if (isRuntimeModule(specifier)) continue;
 				const folder = packageFolder(dirname(file), packageName(specifier));

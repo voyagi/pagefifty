@@ -36,10 +36,12 @@ const child = spawn(process.execPath, args, {
 	stdio: 'inherit'
 });
 child.on('exit', (code, signal) => process.exit(code ?? (signal ? 1 : 0)));
-// npm passes a SIGTERM on to this process, and a SIGHUP can reach it alone. Ending here would leave
-// wrangler dev serving the port, so off Windows each is passed on and this process exits when
-// wrangler does. A terminal's Ctrl+C already reaches wrangler, and Windows sends console events to
-// every process attached to the console.
+// npm passes a SIGINT or a SIGTERM it receives on to this process (npm's run-script signal
+// manager), and a SIGHUP can reach it alone. Ending here would leave wrangler dev serving the port,
+// so off Windows each is passed on and this process exits when wrangler does. A terminal's Ctrl+C
+// reaches wrangler directly as well, so it gets two; its exit hooks (signal-exit) end it on either.
+// Windows sends console events to every process attached to the console.
 if (process.platform !== 'win32') {
-	for (const signal of ['SIGTERM', 'SIGHUP']) process.on(signal, () => child.kill(signal));
+	for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'])
+		process.on(signal, () => child.kill(signal));
 }

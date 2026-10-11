@@ -152,11 +152,16 @@ describe('the --entry coverage rule', () => {
 		]);
 	});
 
-	it('reads dynamic imports, side-effect imports and re-exports', () => {
+	// TypeScript's lighter import scanner returned nothing for the namespace re-export and lost the
+	// import after a regular expression holding a backtick, reading the backtick as a template start.
+	it('reads dynamic imports, side-effect imports, re-exports and require calls', () => {
 		for (const line of [
 			"const m = await import('../far/x.js');",
 			"import '../far/x.js';",
-			"export * from '../far/x.js';"
+			"export * from '../far/x.js';",
+			"export * as ns from '../far/x.js';",
+			"const re = /`/g;\nconst m = await import('../far/x.js');",
+			"const x = require('../far/x.js');"
 		]) {
 			const root = folder({ 'build/entry.js': line, 'far/x.js': '' });
 			const result = run(join(root, 'build'), '--entry', join(root, 'build', 'entry.js'));

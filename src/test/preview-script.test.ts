@@ -22,10 +22,12 @@ const FAKE_WRANGLER = `import { writeFileSync } from 'node:fs';
 const record = process.env.PREVIEW_RECORD;
 const mode = process.env.PREVIEW_FAKE ?? '0';
 if (mode === 'wait') {
-	process.on('SIGTERM', () => {
-		writeFileSync(record + '.sigterm', '');
-		process.exit(0);
-	});
+	for (const signal of ['SIGINT', 'SIGTERM']) {
+		process.on(signal, () => {
+			writeFileSync(record + '.' + signal, '');
+			process.exit(0);
+		});
+	}
 	setInterval(() => {}, 1000);
 }
 const seen = ['CLOUDFLARE_INCLUDE_PROCESS_ENV', 'CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV', 'WRANGLER_SEND_METRICS'];
@@ -164,22 +166,23 @@ describe('npm run preview', () => {
 		expect(readRecord(root)).toBeDefined();
 	});
 
-	// Windows has no SIGTERM to send: process.kill there ends the process outright.
-	it.skipIf(process.platform === 'win32')(
-		'passes a SIGTERM sent to it alone on to wrangler and exits when wrangler does',
-		async () => {
+	// npm passes on both signals to the script it runs. Windows has neither to send: process.kill there
+	// ends the process outright.
+	it.skipIf(process.platform === 'win32').each(['SIGINT', 'SIGTERM'] as const)(
+		'passes a %s sent to it alone on to wrangler and exits when wrangler does',
+		async (signal) => {
 			const root = repository({ built: true });
 			const child = spawn(process.execPath, [join(root, 'scripts', 'preview.mjs')], {
 				env: envFor(root, 'wait'),
 				stdio: 'ignore'
 			});
 			const exited = new Promise<[number | null, string | null]>((resolve) => {
-				child.on('exit', (code, signal) => resolve([code, signal]));
+				child.on('exit', (code, endedBy) => resolve([code, endedBy]));
 			});
 			await until(() => readRecord(root) !== undefined);
-			child.kill('SIGTERM');
+			child.kill(signal);
 			expect(await exited).toEqual([0, null]);
-			expect(existsSync(`${recordPath(root)}.sigterm`)).toBe(true);
+			expect(existsSync(`${recordPath(root)}.${signal}`)).toBe(true);
 		}
 	);
 });
