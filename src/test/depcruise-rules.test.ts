@@ -1,5 +1,6 @@
 // The import rules are proven on planted trees rather than on src, because src does not yet hold
-// a profile module, a parser importer or a raw network import for them to catch. The trees live under
+// a profile module, a parser importer, a raw network import or a site import of the capture command
+// for them to catch. The trees live under
 // .stryker-tmp (ignored, inside the repo) so fast-xml-parser resolves from the repo's
 // node_modules exactly as it would from src.
 import { spawnSync } from 'node:child_process';
@@ -18,6 +19,15 @@ const READER =
 const TEST_SERVER =
 	"import { createServer } from 'node:http';\nexport const serve = () => createServer();\n";
 const SETUP_SOCKET = "import net from 'node:net';\nexport const socket = net.Socket;\n";
+// The command, its own tests and the test helpers may import the command; the site may not.
+const CAPTURE_SIDE: Record<string, string> = {
+	'src/lib/capture/run.ts': "export const run = () => 'capture';\n",
+	'src/lib/capture/helper.ts': "import { run } from './run';\nexport const helper = () => run();\n",
+	'src/lib/capture-user.test.ts':
+		"import { run } from './capture/run';\nexport const used = run;\n",
+	'src/test/capture-stub.ts':
+		"import { run } from '../lib/capture/run';\nexport const stub = run;\n"
+};
 
 const PLANTED: Record<string, string> = {
 	'src/lib/profile/schema.ts': PROFILE,
@@ -35,7 +45,12 @@ const PLANTED: Record<string, string> = {
 	'src/lib/raw-network.ts':
 		"import { connect } from 'cloudflare:sockets';\nimport { request } from 'node:https';\nimport { lookup } from 'node:dns/promises';\nexport const open = [connect, request, lookup];\n",
 	'src/lib/raw-network.test.ts': TEST_SERVER,
-	'src/test/setup-socket.ts': SETUP_SOCKET
+	'src/test/setup-socket.ts': SETUP_SOCKET,
+	...CAPTURE_SIDE,
+	'src/routes/capture-planted/+page.server.ts':
+		"import { run } from '../../lib/capture/run';\nexport const load = () => ({ run: run() });\n",
+	'src/lib/capture-planted.ts':
+		"import { run } from './capture/run';\nexport const planted = () => run();\n"
 };
 
 const CLEAN: Record<string, string> = {
@@ -50,7 +65,10 @@ const CLEAN: Record<string, string> = {
 		"import { reader } from './ingest/read-notice';\nexport const parser = reader;\n",
 	'src/lib/raw-network.ts': 'export const open = (url: string) => fetch(url);\n',
 	'src/lib/raw-network.test.ts': TEST_SERVER,
-	'src/test/setup-socket.ts': SETUP_SOCKET
+	'src/test/setup-socket.ts': SETUP_SOCKET,
+	...CAPTURE_SIDE,
+	'src/routes/capture-planted/+page.server.ts': "export const load = () => ({ run: 'served' });\n",
+	'src/lib/capture-planted.ts': "export const planted = () => 'served';\n"
 };
 
 interface Cruise {
@@ -135,9 +153,17 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		]);
 	});
 
+	it('reports no-site-reaches-capture for a route and a library module, never a test, a test helper or the command itself', () => {
+		expect(violators(planted, 'no-site-reaches-capture')).toEqual([
+			'src/lib/capture-planted.ts',
+			'src/routes/capture-planted/+page.server.ts'
+		]);
+	});
+
 	it('reports no rule on the clean control tree', () => {
 		expect(violators(clean, 'no-server-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
 		expect(violators(clean, 'fetch-only-network')).toEqual([]);
+		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
 	});
 });
