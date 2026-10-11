@@ -54,6 +54,14 @@ module.exports = {
 			}
 		},
 		{
+			name: 'no-site-reaches-capture',
+			severity: 'error',
+			comment:
+				'The capture command holds the TED client and, from plan 01.1-14, the provider key loader, while the site serves a capture and never calls TED or a provider. A direct import is enough: any route to the command passes through a site module that imports it.',
+			from: { path: '^src/', pathNot: ['^src/lib/capture/', '^src/test/', '\\.test\\.ts$'] },
+			to: { path: '^src/lib/capture/' }
+		},
+		{
 			// An import the cruiser cannot resolve is invisible to every rule above, so it fails here.
 			name: 'no-unresolvable',
 			severity: 'error',
