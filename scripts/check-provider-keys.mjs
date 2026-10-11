@@ -10,18 +10,24 @@
 //
 // The Worker that deploys is more than .svelte-kit/cloudflare: its _worker.js imports the server
 // build from .svelte-kit/output/server and a manifest from .svelte-kit/cloudflare-tmp, and wrangler
-// bundles those at deploy. A file given with --entry must sit inside a scanned folder, and every
-// relative import reachable from it must resolve inside one too, so a folder list that misses part
-// of the deployed code refuses to run instead of passing over it.
+// bundles those at deploy together with every package they import by name. A file given with
+// --entry must sit inside a scanned folder, and every relative import reachable from it must
+// resolve inside one too, so a folder list that misses part of the deployed code refuses to run
+// instead of passing over it. Each package those files import by name is scanned whole from
+// node_modules, with every package it lists as a dependency: more than wrangler bundles, so no
+// export condition decides what is read. A package's own node_modules is read only through a
+// dependency it lists.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
 //             1 a file holds one (one line per file and name found),
-//             2 bad usage, a missing folder, a folder with no file, a file that could not be read, or
-//               an entry or one of its relative imports outside the scanned folders (nothing scanned
-//               is never clean).
+//             2 bad usage, a missing folder, a folder with no file, a file that could not be read,
+//               an entry or one of its relative imports outside the scanned folders, or an import by
+//               name that is neither a builtin nor an installed package (nothing scanned is never
+//               clean).
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { isBuiltin } from 'node:module';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import ts from 'typescript';
 
@@ -29,13 +35,47 @@ const KEY_NAMES = ['NEBIUS_API_KEY', 'TAVILY_API_KEY'];
 
 // TypeScript's import scanner returns static imports, re-exports, side-effect imports and dynamic
 // import() calls, and skips comments and strings: the server build carries JSDoc types such as
-// import('../../../utils/page_nodes.js') that a regex reads as an import. Relative only: a bare
-// specifier names a package wrangler bundles from node_modules, never this build's output.
-function relativeImports(text) {
-	return ts
-		.preProcessFile(text, true, true)
-		.importedFiles.map(({ fileName }) => fileName)
-		.filter((name) => name.startsWith('./') || name.startsWith('../'));
+// import('../../../utils/page_nodes.js') that a regex reads as an import.
+function importsOf(text) {
+	return ts.preProcessFile(text, true, true).importedFiles.map(({ fileName }) => fileName);
+}
+
+const isRelative = (specifier) => specifier.startsWith('./') || specifier.startsWith('../');
+
+// node:async_hooks and async_hooks are both Node's; cloudflare:workers and its siblings are the
+// runtime's own.
+const isRuntimeModule = (specifier) => isBuiltin(specifier) || specifier.startsWith('cloudflare:');
+
+function packageName(specifier) {
+	const parts = specifier.split('/');
+	return specifier.startsWith('@') ? parts.slice(0, 2).join('/') : parts[0];
+}
+
+// Node's lookup: the nearest node_modules folder holding the package, from the importer upward.
+function packageFolder(from, name) {
+	for (let dir = from; ; dir = dirname(dir)) {
+		const candidate = join(dir, 'node_modules', name);
+		if (existsSync(join(candidate, 'package.json'))) return candidate;
+		if (dirname(dir) === dir) return undefined;
+	}
+}
+
+// A listed dependency that is not installed anywhere above the package could not be bundled either.
+function withDependencies(packages) {
+	const found = new Set(packages);
+	const queue = [...packages];
+	while (queue.length > 0) {
+		const folder = queue.pop();
+		const manifest = JSON.parse(readFileSync(join(folder, 'package.json'), 'utf8'));
+		for (const name of Object.keys(manifest.dependencies ?? {})) {
+			const dependency = packageFolder(folder, name);
+			if (dependency !== undefined && !found.has(dependency)) {
+				found.add(dependency);
+				queue.push(dependency);
+			}
+		}
+	}
+	return found;
 }
 
 class UsageError extends Error {}
@@ -72,19 +112,34 @@ function insideAny(path, folders) {
 	});
 }
 
+const shownPath = (file) => relative(process.cwd(), file).replaceAll('\\', '/');
+
 // An entry whose own file, or any relative import reachable from it, lies outside every scanned
 // folder means the folder list misses deployed code; that is a usage error, never a clean scan. The
 // walk follows each imported .js or .mjs file that exists; a target it cannot read is not followed.
-function assertEntryCovered(entry, folders) {
+// Returns the folders of the packages those files import by name.
+function entryPackages(entry, folders) {
 	const start = resolve(entry);
 	if (!existsSync(start)) throw new UsageError(`entry ${entry} is missing`);
 	if (!insideAny(start, folders)) throw new UsageError(`entry ${entry} is outside the scanned folders`);
-	const shown = (file) => (file === start ? `entry ${entry}` : relative(process.cwd(), file).replaceAll('\\', '/'));
+	const shown = (file) => (file === start ? `entry ${entry}` : shownPath(file));
+	const packages = new Set();
 	const seen = new Set([start]);
 	const queue = [start];
 	while (queue.length > 0) {
 		const file = queue.pop();
-		for (const specifier of relativeImports(readFileSync(file, 'utf8'))) {
+		for (const specifier of importsOf(readFileSync(file, 'utf8'))) {
+			if (!isRelative(specifier)) {
+				if (isRuntimeModule(specifier)) continue;
+				const folder = packageFolder(dirname(file), packageName(specifier));
+				if (folder === undefined) {
+					throw new UsageError(
+						`${shown(file)} imports ${specifier}, which is neither a builtin nor an installed package`
+					);
+				}
+				packages.add(folder);
+				continue;
+			}
 			const target = resolve(dirname(file), specifier);
 			if (!insideAny(target, folders)) {
 				throw new UsageError(`${shown(file)} imports ${specifier}, outside the scanned folders`);
@@ -95,12 +150,15 @@ function assertEntryCovered(entry, folders) {
 			}
 		}
 	}
+	return packages;
 }
 
-function filesUnder(dir) {
+// A package's own node_modules holds other packages, read only when listed as dependencies.
+function filesUnder(dir, { skipNodeModules = false } = {}) {
 	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
 		const path = join(dir, entry.name);
-		return entry.isDirectory() ? filesUnder(path) : [path];
+		if (!entry.isDirectory()) return [path];
+		return skipNodeModules && entry.name === 'node_modules' ? [] : filesUnder(path, { skipNodeModules });
 	});
 }
 
@@ -125,26 +183,31 @@ function hitsIn(bytes, names, canaries) {
 
 function main(argv) {
 	const { folders, canaries, entries } = parseArgs(argv);
-	for (const entry of entries) assertEntryCovered(entry, folders);
+	const imported = new Set(entries.flatMap((entry) => [...entryPackages(entry, folders)]));
+	const packages = withDependencies(imported);
 	const names = KEY_NAMES.map((label) => ({ label, needle: Buffer.from(label, 'ascii') }));
 	const canaryBytes = canaries.map((value) => Buffer.from(value, 'utf8'));
+	const targets = [
+		...folders.flatMap((folder) =>
+			folderFiles(folder).map((file) => [file, `${folder}/${relative(folder, file)}`.replaceAll('\\', '/')])
+		),
+		...[...packages].flatMap((folder) =>
+			filesUnder(folder, { skipNodeModules: true }).map((file) => [file, shownPath(file)])
+		)
+	];
 	const hits = [];
-	let scanned = 0;
-	for (const folder of folders) {
-		for (const file of folderFiles(folder)) {
-			scanned++;
-			const shown = `${folder}/${relative(folder, file)}`.replaceAll('\\', '/');
-			for (const hit of hitsIn(readFileSync(file), names, canaryBytes)) {
-				hits.push(`provider-keys: ${shown}: ${hit}`);
-			}
+	for (const [file, shown] of targets) {
+		for (const hit of hitsIn(readFileSync(file), names, canaryBytes)) {
+			hits.push(`provider-keys: ${shown}: ${hit}`);
 		}
 	}
 	if (hits.length > 0) {
 		for (const line of hits) console.log(line);
 		return 1;
 	}
+	const inPackages = packages.size > 0 ? ` and ${packages.size} packages` : '';
 	console.log(
-		`provider-keys: scanned ${scanned} files in ${folders.length} folders, no key name or canary value`
+		`provider-keys: scanned ${targets.length} files in ${folders.length} folders${inPackages}, no key name or canary value`
 	);
 	return 0;
 }

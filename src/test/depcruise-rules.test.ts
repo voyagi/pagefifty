@@ -1,6 +1,6 @@
 // The import rules are proven on planted trees rather than on src, because src does not yet hold
-// a profile module, a parser importer, a raw network import, a site import of the capture command
-// or a site import of a test for them to catch. The trees live under
+// a profile module, a parser importer, a raw network import, a site import of the capture command,
+// a site import of a test or a site import of a file outside src for them to catch. The trees live under
 // .stryker-tmp (ignored, inside the repo) so fast-xml-parser resolves from the repo's
 // node_modules exactly as it would from src.
 import { spawnSync } from 'node:child_process';
@@ -47,6 +47,24 @@ const TEST_IMPORTS_CLEAN: Record<string, string> = {
 	'src/lib/via-test-helper.ts': "export const viaHelper = () => 'none';\n",
 	'src/routes/test-planted/+page.ts': 'export const load = () => ({});\n'
 };
+// Files outside src/ that import the command and a raw socket. The rules above judge the importing
+// module, so a hop through one of these is never theirs to judge. A test may reach them.
+const OUTSIDE_SRC_SIDE: Record<string, string> = {
+	'tools/relay.ts': "import { run } from '../src/lib/capture/run';\nexport const relay = run;\n",
+	'tools/net-relay.ts': "import net from 'node:net';\nexport const sock = net.Socket;\n",
+	'src/lib/tools-user.test.ts':
+		"import { relay } from '../../tools/relay';\nexport const used = relay;\n"
+};
+const OUTSIDE_SRC_PLANTED: Record<string, string> = {
+	'src/lib/via-tools.ts':
+		"import { relay } from '../../tools/relay';\nexport const viaTools = relay;\n",
+	'src/routes/outside-planted/+page.server.ts':
+		"import { sock } from '../../../tools/net-relay';\nexport const load = () => ({ s: typeof sock });\n"
+};
+const OUTSIDE_SRC_CLEAN: Record<string, string> = {
+	'src/lib/via-tools.ts': "export const viaTools = 'none';\n",
+	'src/routes/outside-planted/+page.server.ts': 'export const load = () => ({});\n'
+};
 
 const PLANTED: Record<string, string> = {
 	'src/lib/profile/schema.ts': PROFILE,
@@ -75,7 +93,9 @@ const PLANTED: Record<string, string> = {
 		"import { PLANTED_SECRET } from '$env/static/private';\nexport const load = () => ({ k: PLANTED_SECRET.length });\n",
 	'src/lib/env-planted.ts':
 		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n",
-	...TEST_IMPORTS_PLANTED
+	...TEST_IMPORTS_PLANTED,
+	...OUTSIDE_SRC_SIDE,
+	...OUTSIDE_SRC_PLANTED
 };
 
 const CLEAN: Record<string, string> = {
@@ -97,7 +117,9 @@ const CLEAN: Record<string, string> = {
 	...PRIVATE_ENV_SIDE,
 	'src/routes/env-planted/+page.server.ts': 'export const load = () => ({ k: 0 });\n',
 	'src/lib/env-planted.ts': 'export const key = () => undefined;\n',
-	...TEST_IMPORTS_CLEAN
+	...TEST_IMPORTS_CLEAN,
+	...OUTSIDE_SRC_SIDE,
+	...OUTSIDE_SRC_CLEAN
 };
 
 interface Cruise {
@@ -207,6 +229,19 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		]);
 	});
 
+	// Each hop below reaches the command or a raw socket, and no rule above fires on it, since the
+	// file making the forbidden import sits outside src/.
+	it('reports no-site-imports-outside-src for site code reaching a file outside src, never a test', () => {
+		expect(violators(planted, 'no-site-imports-outside-src')).toEqual([
+			'src/lib/via-tools.ts',
+			'src/routes/outside-planted/+page.server.ts'
+		]);
+		expect(violators(planted, 'no-site-reaches-capture')).not.toContain('src/lib/via-tools.ts');
+		expect(violators(planted, 'fetch-only-network')).not.toContain(
+			'src/routes/outside-planted/+page.server.ts'
+		);
+	});
+
 	it('reports no rule on the clean control tree', () => {
 		expect(violators(clean, 'no-server-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
@@ -214,5 +249,6 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
 		expect(violators(clean, 'no-private-env')).toEqual([]);
 		expect(violators(clean, 'no-site-imports-tests')).toEqual([]);
+		expect(violators(clean, 'no-site-imports-outside-src')).toEqual([]);
 	});
 });

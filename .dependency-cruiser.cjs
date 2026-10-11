@@ -57,7 +57,7 @@ module.exports = {
 			name: 'no-site-reaches-capture',
 			severity: 'error',
 			comment:
-				'The capture command holds the TED client and, from plan 01.1-14, the provider key loader, while the site serves a capture and never calls TED or a provider. A direct import is enough: any route to the command passes through a site module that imports it, because no-site-imports-tests keeps site code off the test helpers this rule exempts.',
+				'The capture command holds the TED client and, from plan 01.1-14, the provider key loader, while the site serves a capture and never calls TED or a provider. A direct import is enough: any route to the command passes through a site module that imports it, because no-site-imports-tests keeps site code off the test helpers this rule exempts and no-site-imports-outside-src keeps it off files outside src/.',
 			from: { path: '^src/', pathNot: ['^src/lib/capture/', '^src/test/', '\\.test\\.ts$'] },
 			to: { path: '^src/lib/capture/' }
 		},
@@ -68,6 +68,18 @@ module.exports = {
 				'fetch-only-network, no-site-reaches-capture and no-private-env exempt tests and their helpers, which may open a socket, call the command or read private env. That exemption is safe only while no site module imports a test file or a helper under src/test/.',
 			from: { path: '^src/', pathNot: ['^src/test/', '\\.test\\.ts$'] },
 			to: { path: '(^src/test/|\\.test\\.ts$)' }
+		},
+		{
+			name: 'no-site-imports-outside-src',
+			severity: 'error',
+			comment:
+				"fetch-only-network, no-site-reaches-capture and no-private-env judge the module that makes an import, and only modules under src/. A hop through a file outside src/ (a script, a root config) would carry site code to the command, a raw socket or private env with none of them firing. Site code imports src/, packages, Node's modules and the framework's own; tests may reach scripts and fixtures.",
+			from: { path: '^src/', pathNot: ['^src/test/', '\\.test\\.ts$'] },
+			to: {
+				couldNotResolve: false,
+				pathNot: ['^src/', '(^|/)node_modules/'],
+				dependencyTypesNot: ['core']
+			}
 		},
 		{
 			name: 'no-private-env',

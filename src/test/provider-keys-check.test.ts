@@ -133,7 +133,7 @@ describe('the --entry coverage rule', () => {
 		);
 	});
 
-	it('passes once every relative import resolves inside a scanned folder, bare ones ignored', () => {
+	it('passes once every relative import resolves inside a scanned folder, runtime modules passed over', () => {
 		const root = folder(BUILD);
 		const result = run(
 			join(root, 'output'),
@@ -221,6 +221,83 @@ describe('the --entry coverage rule', () => {
 		expect(shipStep).toHaveLength(1);
 		expect(shipStep[0]).toContain(`cmd: '${command}'`);
 		expect(ciSteps).toEqual([`- run: ${command}`]);
+	});
+
+	// wrangler bundles every package the build imports by name into the Worker, so those folders, and
+	// the packages they list as dependencies, are deployed code too.
+	const entryRun = (root: string) =>
+		run(
+			join(root, 'output'),
+			join(root, 'cloudflare'),
+			join(root, 'cloudflare-tmp'),
+			'--entry',
+			join(root, 'cloudflare', '_worker.js')
+		);
+	const PACKAGES = {
+		'node_modules/pkg-a/package.json': '{ "name": "pkg-a", "dependencies": { "pkg-b": "1.0.0" } }',
+		'node_modules/pkg-a/index.js': "import 'pkg-b';\nexport const a = 1;",
+		'node_modules/pkg-b/package.json': '{ "name": "pkg-b" }',
+		'node_modules/pkg-b/index.js': 'export const b = 2;'
+	};
+	const importing = (line: string) => ({
+		...BUILD,
+		'output/server/index.js': `${line}\nexport class Server {}`
+	});
+
+	it('scans each package the build imports by name and the packages it depends on', () => {
+		const root = folder({ ...importing("import { a } from 'pkg-a';"), ...PACKAGES });
+		const result = entryRun(root);
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 8 files in 3 folders and 2 packages, no key name or canary value'
+		]);
+	});
+
+	it('finds a key name in a package one dependency down from the build', () => {
+		const root = folder({
+			...importing("import { a } from 'pkg-a';"),
+			...PACKAGES,
+			'node_modules/pkg-b/index.js': 'export const b = env.NEBIUS_API_KEY;'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout]).toEqual([
+			1,
+			expect.stringMatching(/node_modules\/pkg-b\/index\.js: NEBIUS_API_KEY/)
+		]);
+	});
+
+	it('finds a scoped package by a subpath import and its dependency in a nested node_modules', () => {
+		const root = folder({
+			...importing("import { s } from '@scope/pkg/sub/x.js';"),
+			'node_modules/@scope/pkg/package.json': '{ "dependencies": { "nested": "1.0.0" } }',
+			'node_modules/@scope/pkg/sub/x.js': 'export const s = 1;',
+			'node_modules/@scope/pkg/node_modules/nested/package.json': '{}',
+			'node_modules/@scope/pkg/node_modules/nested/index.js': 'TAVILY_API_KEY'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout]).toEqual([
+			1,
+			expect.stringMatching(/@scope\/pkg\/node_modules\/nested\/index\.js: TAVILY_API_KEY/)
+		]);
+	});
+
+	it('refuses an import by name that is neither a builtin nor an installed package', () => {
+		const result = entryRun(folder(importing("import 'pagefifty-no-such-package';")));
+		expect([result.status, result.stderr]).toEqual([
+			2,
+			expect.stringMatching(
+				/imports pagefifty-no-such-package, which is neither a builtin nor an installed package/
+			)
+		]);
+	});
+
+	it('passes over builtins in either spelling and the cloudflare: modules', () => {
+		const lines = "import 'node:async_hooks';\nimport 'async_hooks';\nimport 'cloudflare:sockets';";
+		const result = entryRun(folder(importing(lines)));
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 4 files in 3 folders, no key name or canary value'
+		]);
 	});
 
 	it('still finds a key name in a file the entry imports', () => {
