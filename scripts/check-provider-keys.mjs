@@ -60,13 +60,26 @@ function packageFolder(from, name) {
 	}
 }
 
+const shownPath = (file) => relative(process.cwd(), file).replaceAll('\\', '/');
+
+// Node names no file when the read meets a folder (EISDIR) and only a position when JSON fails.
+function readNamed(file, decode = (bytes) => bytes) {
+	try {
+		return decode(readFileSync(file));
+	} catch (error) {
+		throw new Error(`${shownPath(file)} could not be read (${error.message})`);
+	}
+}
+
+const asText = (bytes) => bytes.toString('utf8');
+
 // A listed dependency that is not installed anywhere above the package could not be bundled either.
 function withDependencies(packages) {
 	const found = new Set(packages);
 	const queue = [...packages];
 	while (queue.length > 0) {
 		const folder = queue.pop();
-		const manifest = JSON.parse(readFileSync(join(folder, 'package.json'), 'utf8'));
+		const manifest = readNamed(join(folder, 'package.json'), (bytes) => JSON.parse(asText(bytes)));
 		for (const name of Object.keys(manifest.dependencies ?? {})) {
 			const dependency = packageFolder(folder, name);
 			if (dependency !== undefined && !found.has(dependency)) {
@@ -112,8 +125,6 @@ function insideAny(path, folders) {
 	});
 }
 
-const shownPath = (file) => relative(process.cwd(), file).replaceAll('\\', '/');
-
 // An entry whose own file, or any relative import reachable from it, lies outside every scanned
 // folder means the folder list misses deployed code; that is a usage error, never a clean scan. The
 // walk follows each imported .js or .mjs file that exists; a target it cannot read is not followed.
@@ -128,7 +139,7 @@ function entryPackages(entry, folders) {
 	const queue = [start];
 	while (queue.length > 0) {
 		const file = queue.pop();
-		for (const specifier of importsOf(readFileSync(file, 'utf8'))) {
+		for (const specifier of importsOf(readNamed(file, asText))) {
 			if (!isRelative(specifier)) {
 				if (isRuntimeModule(specifier)) continue;
 				const folder = packageFolder(dirname(file), packageName(specifier));
@@ -197,7 +208,7 @@ function main(argv) {
 	];
 	const hits = [];
 	for (const [file, shown] of targets) {
-		for (const hit of hitsIn(readFileSync(file), names, canaryBytes)) {
+		for (const hit of hitsIn(readNamed(file), names, canaryBytes)) {
 			hits.push(`provider-keys: ${shown}: ${hit}`);
 		}
 	}

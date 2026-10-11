@@ -103,7 +103,11 @@ describe('the provider key check on built output', () => {
 	it('refuses a linked folder inside a scanned folder rather than passing over it', () => {
 		const dir = folder({ 'app/a.js': '', 'elsewhere/b.js': 'TAVILY_API_KEY' });
 		symlinkSync(join(dir, 'elsewhere'), join(dir, 'app', 'linked'), 'junction');
-		expect(run(join(dir, 'app')).status).not.toBe(0);
+		const result = run(join(dir, 'app'));
+		expect([result.status, result.stderr]).toEqual([
+			2,
+			expect.stringMatching(/app\/linked could not be read/)
+		]);
 	});
 
 	it('refuses --canary without a value, and no folder at all', () => {
@@ -288,6 +292,19 @@ describe('the --entry coverage rule', () => {
 			expect.stringMatching(
 				/imports pagefifty-no-such-package, which is neither a builtin nor an installed package/
 			)
+		]);
+	});
+
+	it('refuses a package whose package.json does not parse, naming the file', () => {
+		const root = folder({
+			...importing("import { a } from 'pkg-a';"),
+			...PACKAGES,
+			'node_modules/pkg-a/package.json': '{ "dependencies": '
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stderr]).toEqual([
+			2,
+			expect.stringMatching(/node_modules\/pkg-a\/package\.json could not be read/)
 		]);
 	});
 
