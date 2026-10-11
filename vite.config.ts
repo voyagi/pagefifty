@@ -17,9 +17,12 @@ function projectTest(name: keyof typeof PROJECTS) {
 }
 
 export default defineConfig(({ command }) => {
-	// Wrangler's platform proxy would hand vite dev, vite preview, the build's prerender and the
-	// workerd tests every key in a dotenv file beside wrangler.jsonc, real provider keys included.
-	// The switch does not cover .dev.vars, which the envFiles list below closes.
+	// Wrangler would hand vite dev, vite preview, the build's prerender (all three through the
+	// platform proxy) and the workerd tests every key in a dotenv file beside wrangler.jsonc, real
+	// provider keys included. The switch closes the dotenv files for all four. A .dev.vars file is read
+	// whenever no env file list is given: the envFiles list below closes it for the platform proxy, but
+	// the workerd project's plugin passes no list, so there env-bindings.worker.test.ts fails on any
+	// binding it would add.
 	process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';
 	// Vite dev injects each component's styles as a style element, so dev needs inline styles. The
 	// built Worker links every stylesheet, so production keeps style-src to 'self' and the nonce.

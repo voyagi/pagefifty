@@ -1,6 +1,6 @@
 // The import rules are proven on planted trees rather than on src, because src does not yet hold
-// a profile module, a parser importer, a raw network import or a site import of the capture command
-// for them to catch. The trees live under
+// a profile module, a parser importer, a raw network import, a site import of the capture command
+// or a site import of a test for them to catch. The trees live under
 // .stryker-tmp (ignored, inside the repo) so fast-xml-parser resolves from the repo's
 // node_modules exactly as it would from src.
 import { spawnSync } from 'node:child_process';
@@ -35,6 +35,18 @@ const PRIVATE_ENV_SIDE: Record<string, string> = {
 	'src/lib/public-env.ts':
 		"import { env } from '$env/dynamic/public';\nimport { PUBLIC_X } from '$env/static/public';\nexport const pub = [env, PUBLIC_X];\n"
 };
+// Site code reaching the command through the helper the capture rule exempts, and a route importing
+// a test file: neither import is a direct one into src/lib/capture.
+const TEST_IMPORTS_PLANTED: Record<string, string> = {
+	'src/lib/via-test-helper.ts':
+		"import { stub } from '../test/capture-stub';\nexport const viaHelper = () => stub();\n",
+	'src/routes/test-planted/+page.ts':
+		"import { used } from '../../lib/capture-user.test';\nexport const load = () => ({ used: typeof used });\n"
+};
+const TEST_IMPORTS_CLEAN: Record<string, string> = {
+	'src/lib/via-test-helper.ts': "export const viaHelper = () => 'none';\n",
+	'src/routes/test-planted/+page.ts': 'export const load = () => ({});\n'
+};
 
 const PLANTED: Record<string, string> = {
 	'src/lib/profile/schema.ts': PROFILE,
@@ -62,7 +74,8 @@ const PLANTED: Record<string, string> = {
 	'src/routes/env-planted/+page.server.ts':
 		"import { PLANTED_SECRET } from '$env/static/private';\nexport const load = () => ({ k: PLANTED_SECRET.length });\n",
 	'src/lib/env-planted.ts':
-		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n"
+		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n",
+	...TEST_IMPORTS_PLANTED
 };
 
 const CLEAN: Record<string, string> = {
@@ -83,7 +96,8 @@ const CLEAN: Record<string, string> = {
 	'src/lib/capture-planted.ts': "export const planted = () => 'served';\n",
 	...PRIVATE_ENV_SIDE,
 	'src/routes/env-planted/+page.server.ts': 'export const load = () => ({ k: 0 });\n',
-	'src/lib/env-planted.ts': 'export const key = () => undefined;\n'
+	'src/lib/env-planted.ts': 'export const key = () => undefined;\n',
+	...TEST_IMPORTS_CLEAN
 };
 
 interface Cruise {
@@ -184,11 +198,21 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		]);
 	});
 
+	// The fences above exempt tests and helpers, so a site import of either is its own violation;
+	// the capture rule alone passes over the helper route, as its first test shows.
+	it('reports no-site-imports-tests for a site import of a helper and of a test file, never a test or a helper', () => {
+		expect(violators(planted, 'no-site-imports-tests')).toEqual([
+			'src/lib/via-test-helper.ts',
+			'src/routes/test-planted/+page.ts'
+		]);
+	});
+
 	it('reports no rule on the clean control tree', () => {
 		expect(violators(clean, 'no-server-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
 		expect(violators(clean, 'fetch-only-network')).toEqual([]);
 		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
 		expect(violators(clean, 'no-private-env')).toEqual([]);
+		expect(violators(clean, 'no-site-imports-tests')).toEqual([]);
 	});
 });

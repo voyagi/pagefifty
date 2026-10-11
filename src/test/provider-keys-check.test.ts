@@ -49,6 +49,25 @@ describe('the provider key check on built output', () => {
 		expect([result.status, result.stdout]).toEqual([1, expect.stringMatching(/TAVILY_API_KEY/)]);
 	});
 
+	// The scan keeps its own list of key names. Every variable the env template declares, less the
+	// go-live switch, is a provider key, so a key added there and not to the list fails here instead
+	// of shipping unscanned.
+	it('fails on every key the env template declares', () => {
+		const keys = readFileSync('.env.example', 'utf8')
+			.split(/\r?\n/)
+			.map((line) => /^([A-Z][A-Z0-9_]*)=/.exec(line)?.[1])
+			.filter((name): name is string => name !== undefined && name !== 'PAGEFIFTY_LIVE');
+		expect(keys.length).toBeGreaterThanOrEqual(2);
+		for (const key of keys) {
+			const result = run(folder({ 'worker.js': `env.${key}` }));
+			expect([key, result.status, result.stdout]).toEqual([
+				key,
+				1,
+				expect.stringContaining(`worker.js: ${key}`)
+			]);
+		}
+	});
+
 	it('fails on a canary value among binary bytes without printing it', () => {
 		const bytes = Buffer.concat([
 			Buffer.from([0, 255, 1, 254]),

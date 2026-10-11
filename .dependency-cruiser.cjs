@@ -57,9 +57,17 @@ module.exports = {
 			name: 'no-site-reaches-capture',
 			severity: 'error',
 			comment:
-				'The capture command holds the TED client and, from plan 01.1-14, the provider key loader, while the site serves a capture and never calls TED or a provider. A direct import is enough: any route to the command passes through a site module that imports it.',
+				'The capture command holds the TED client and, from plan 01.1-14, the provider key loader, while the site serves a capture and never calls TED or a provider. A direct import is enough: any route to the command passes through a site module that imports it, because no-site-imports-tests keeps site code off the test helpers this rule exempts.',
 			from: { path: '^src/', pathNot: ['^src/lib/capture/', '^src/test/', '\\.test\\.ts$'] },
 			to: { path: '^src/lib/capture/' }
+		},
+		{
+			name: 'no-site-imports-tests',
+			severity: 'error',
+			comment:
+				'fetch-only-network, no-site-reaches-capture and no-private-env exempt tests and their helpers, which may open a socket, call the command or read private env. That exemption is safe only while no site module imports a test file or a helper under src/test/.',
+			from: { path: '^src/', pathNot: ['^src/test/', '\\.test\\.ts$'] },
+			to: { path: '(^src/test/|\\.test\\.ts$)' }
 		},
 		{
 			name: 'no-private-env',
