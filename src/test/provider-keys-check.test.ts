@@ -1,6 +1,6 @@
 // scripts/check-provider-keys.mjs run as verify:ship runs it, on throwaway folders in the temp folder.
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -88,6 +88,24 @@ describe('the provider key check on built output', () => {
 		expect(run(join(folder({ 'a.js': '' }), 'missing')).status).toBe(2);
 	});
 
+	it('refuses a file given in place of a folder', () => {
+		const result = run(join(folder({ 'a.js': '' }), 'a.js'));
+		expect([result.status, result.stderr]).toEqual([2, expect.stringMatching(/is not a folder/)]);
+	});
+
+	it('finds a key name in the last bytes of a file with no newline after it', () => {
+		const bytes = Buffer.concat([Buffer.alloc(70_000, 0x61), Buffer.from('NEBIUS_API_KEY')]);
+		const result = run(folder({ 'tail.bin': bytes }));
+		expect([result.status, result.stdout]).toEqual([1, expect.stringMatching(/tail\.bin: NEBIUS/)]);
+	});
+
+	// A folder reached through a link is not a file: reading it fails, and a failure is never clean.
+	it('refuses a linked folder inside a scanned folder rather than passing over it', () => {
+		const dir = folder({ 'app/a.js': '', 'elsewhere/b.js': 'TAVILY_API_KEY' });
+		symlinkSync(join(dir, 'elsewhere'), join(dir, 'app', 'linked'), 'junction');
+		expect(run(join(dir, 'app')).status).not.toBe(0);
+	});
+
 	it('refuses --canary without a value, and no folder at all', () => {
 		expect(run(folder({ 'a.js': '' }), '--canary').status).toBe(2);
 		expect(run(folder({ 'a.js': '' }), '--canary', '').status).toBe(2);
@@ -168,6 +186,19 @@ describe('the --entry coverage rule', () => {
 		);
 		expect(result.status).toBe(2);
 		expect(result.stderr).toMatch(/chunks\/a\.js imports \.\.\/\.\.\/\.\.\/extra\/b\.js, outside/);
+	});
+
+	it('ends on an import cycle and still refuses an import that leaves the folders', () => {
+		const cycle = {
+			'build/entry.js': "import './a.js';",
+			'build/a.js': "import './b.js';",
+			'build/b.js': "import './a.js';\nimport './entry.js';"
+		};
+		const clean = folder(cycle);
+		expect(run(join(clean, 'build'), '--entry', join(clean, 'build', 'entry.js')).status).toBe(0);
+		const leaving = folder({ ...cycle, 'build/b.js': "import './a.js';\nimport '../far/x.js';" });
+		const result = run(join(leaving, 'build'), '--entry', join(leaving, 'build', 'entry.js'));
+		expect([result.status, result.stderr]).toEqual([2, expect.stringMatching(/b\.js imports/)]);
 	});
 
 	it('refuses an entry outside every scanned folder, a missing entry and --entry without a value', () => {

@@ -58,12 +58,14 @@ function isText(node: ts.Node | undefined, value: string): boolean {
 	return node !== undefined && ts.isStringLiteralLike(node) && node.text === value;
 }
 
-// One shell command per segment between &&, ||, ;, | and & (cmd.exe's separator), split into
-// words. A wrangler run is a segment holding a wrangler binary (any of the package's three names,
-// by name or path, as its .js file or npm's Windows .cmd and .ps1 launchers, with or without an
-// @version) and a dev or types word anywhere after it, so a flag before the command or a second
-// run on the same line is still a run.
+// One shell command per segment between line breaks, &&, ||, ;, | and & (cmd.exe's separator),
+// split into words, each stripped of the shell's grouping and quoting at its ends, so a subshell, a
+// command substitution or a quoted word reads as the bare word. A wrangler run is a segment holding
+// a wrangler binary (any of the package's three names, by name or path, as its .js file or npm's
+// Windows .cmd and .ps1 launchers, with or without an @version) and a dev or types word anywhere
+// after it, so a flag before the command or a second run on the same line is still a run.
 const WRANGLER_BIN = /(^|[/\\])(cf-wrangler|wrangler2?)(\.js|\.cmd|\.ps1)?(@\S*)?$/i;
+const SHELL_WRAPPING = /^(\$\(|[("'`])+|[)"'`]+$/g;
 
 // With this variable set to anything but false, wrangler adds the whole shell environment to the
 // env files it loads, so a run that names only the empty file still hands the Worker every exported
@@ -73,8 +75,13 @@ const INCLUDES_SHELL = /CLOUDFLARE_INCLUDE_PROCESS_ENV=(?!false\b)/i;
 
 function wranglerRuns(command: string): string[][] {
 	return command
-		.split(/&&|\|\||[;|&]/)
-		.map((segment) => segment.trim().split(/\s+/))
+		.split(/\r?\n|&&|\|\||[;|&]/)
+		.map((segment) =>
+			segment
+				.trim()
+				.split(/\s+/)
+				.map((word) => word.replace(SHELL_WRAPPING, ''))
+		)
 		.filter((words) => {
 			const at = words.findIndex((word) => WRANGLER_BIN.test(word));
 			return at >= 0 && words.slice(at + 1).some((word) => word === 'dev' || word === 'types');
@@ -84,7 +91,9 @@ function wranglerRuns(command: string): string[][] {
 function envFilesOf(words: readonly string[]): string[] {
 	return words.flatMap((word, at) => {
 		if (word === '--env-file') return [words[at + 1] ?? ''];
-		return word.startsWith('--env-file=') ? [word.slice('--env-file='.length)] : [];
+		return word.startsWith('--env-file=')
+			? [word.slice('--env-file='.length).replace(SHELL_WRAPPING, '')]
+			: [];
 	});
 }
 
@@ -288,7 +297,11 @@ describe('each planted defect fails only its own rule', () => {
 		[
 			"the shell added by cmd.exe's set in an earlier segment",
 			'set CLOUDFLARE_INCLUDE_PROCESS_ENV=1&& wrangler types --env-file env/no-keys.env'
-		]
+		],
+		['a second run on its own line', 'wrangler types --env-file env/no-keys.env\nwrangler types'],
+		['a run in a subshell', '(wrangler types)'],
+		['a quoted binary', '"wrangler" dev'],
+		['a run in a command substitution', 'echo $(wrangler types)']
 	])('%s', (_label, command) => {
 		const packageJson = withScript(real.packageJson, 'gen', command);
 		expect(rulesWith({ packageJson })).toEqual(['wrangler-env-file']);
@@ -300,7 +313,9 @@ describe('each planted defect fails only its own rule', () => {
 		[
 			'the shell variable set to false',
 			'CLOUDFLARE_INCLUDE_PROCESS_ENV=false wrangler types --env-file env/no-keys.env'
-		]
+		],
+		['a quoted empty file', 'wrangler types --env-file "env/no-keys.env"'],
+		['a quoted empty file in the = form', 'wrangler types --env-file="env/no-keys.env"']
 	])('accepts %s', (_label, command) => {
 		const packageJson = withScript(real.packageJson, 'gen', command);
 		expect(rulesWith({ packageJson })).toEqual([]);
