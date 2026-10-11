@@ -28,6 +28,13 @@ const CAPTURE_SIDE: Record<string, string> = {
 	'src/test/capture-stub.ts':
 		"import { run } from '../lib/capture/run';\nexport const stub = run;\n"
 };
+// A test may read private env and site code may read public env; site code may not read private env.
+const PRIVATE_ENV_SIDE: Record<string, string> = {
+	'src/lib/env-user.test.ts':
+		"import { env } from '$env/dynamic/private';\nexport const used = env;\n",
+	'src/lib/public-env.ts':
+		"import { env } from '$env/dynamic/public';\nimport { PUBLIC_X } from '$env/static/public';\nexport const pub = [env, PUBLIC_X];\n"
+};
 
 const PLANTED: Record<string, string> = {
 	'src/lib/profile/schema.ts': PROFILE,
@@ -50,7 +57,12 @@ const PLANTED: Record<string, string> = {
 	'src/routes/capture-planted/+page.server.ts':
 		"import { run } from '../../lib/capture/run';\nexport const load = () => ({ run: run() });\n",
 	'src/lib/capture-planted.ts':
-		"import { run } from './capture/run';\nexport const planted = () => run();\n"
+		"import { run } from './capture/run';\nexport const planted = () => run();\n",
+	...PRIVATE_ENV_SIDE,
+	'src/routes/env-planted/+page.server.ts':
+		"import { PLANTED_SECRET } from '$env/static/private';\nexport const load = () => ({ k: PLANTED_SECRET.length });\n",
+	'src/lib/env-planted.ts':
+		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n"
 };
 
 const CLEAN: Record<string, string> = {
@@ -68,7 +80,10 @@ const CLEAN: Record<string, string> = {
 	'src/test/setup-socket.ts': SETUP_SOCKET,
 	...CAPTURE_SIDE,
 	'src/routes/capture-planted/+page.server.ts': "export const load = () => ({ run: 'served' });\n",
-	'src/lib/capture-planted.ts': "export const planted = () => 'served';\n"
+	'src/lib/capture-planted.ts': "export const planted = () => 'served';\n",
+	...PRIVATE_ENV_SIDE,
+	'src/routes/env-planted/+page.server.ts': 'export const load = () => ({ k: 0 });\n',
+	'src/lib/env-planted.ts': 'export const key = () => undefined;\n'
 };
 
 interface Cruise {
@@ -160,10 +175,20 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		]);
 	});
 
+	// Vite's loadEnv, called with an empty prefix, returns every shell variable as well as the env
+	// files, so pointing env.dir at env/ keeps the root env file out but not an exported key.
+	it('reports no-private-env for a static and a dynamic private import, never a test or public env', () => {
+		expect(violators(planted, 'no-private-env')).toEqual([
+			'src/lib/env-planted.ts',
+			'src/routes/env-planted/+page.server.ts'
+		]);
+	});
+
 	it('reports no rule on the clean control tree', () => {
 		expect(violators(clean, 'no-server-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
 		expect(violators(clean, 'fetch-only-network')).toEqual([]);
 		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
+		expect(violators(clean, 'no-private-env')).toEqual([]);
 	});
 });

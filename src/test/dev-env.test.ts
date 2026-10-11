@@ -10,6 +10,8 @@ import { describe, expect, it } from 'vitest';
 // wrangler's dotenv step (the variable), a .dev.vars file (skipped once an env file list is given)
 // and SvelteKit's own loadEnv into $env/dynamic/private (closed by pointing env.dir at env/). The
 // rules read the files that set each closure, so removing one fails here before any key moves.
+// loadEnv also returns every variable of the shell that runs Vite, which no env file setting can
+// close; the probe below leaves those out, and the no-private-env import rule covers that route.
 const EMPTY_ENV = 'env/no-keys.env';
 const PREVIEW = 'node scripts/preview.mjs';
 
@@ -56,6 +58,26 @@ function isText(node: ts.Node | undefined, value: string): boolean {
 	return node !== undefined && ts.isStringLiteralLike(node) && node.text === value;
 }
 
+// One shell command per segment between &&, ||, ; and |, split into words. A wrangler run is a
+// segment holding the wrangler binary (by name or path) and a dev or types word anywhere after it,
+// so a flag before the command or a second run on the same line is still a run.
+function wranglerRuns(command: string): string[][] {
+	return command
+		.split(/&&|\|\||[;|]/)
+		.map((segment) => segment.trim().split(/\s+/))
+		.filter((words) => {
+			const at = words.findIndex((word) => /(^|[/\\])wrangler(\.js)?$/.test(word));
+			return at >= 0 && words.slice(at + 1).some((word) => word === 'dev' || word === 'types');
+		});
+}
+
+function envFilesOf(words: readonly string[]): string[] {
+	return words.flatMap((word, at) => {
+		if (word === '--env-file') return [words[at + 1] ?? ''];
+		return word.startsWith('--env-file=') ? [word.slice('--env-file='.length)] : [];
+	});
+}
+
 function scriptProblems(packageJson: string): string[] {
 	const scripts = (JSON.parse(packageJson) as { scripts: Record<string, string> }).scripts;
 	const problems: string[] = [];
@@ -65,11 +87,11 @@ function scriptProblems(packageJson: string): string[] {
 	// scripts.preview has its own exact rule above, so a planted wrangler dev there is one problem.
 	for (const [name, command] of Object.entries(scripts)) {
 		if (name === 'preview') continue;
-		const bare = command
-			.split('&&')
-			.filter((part) => /wrangler (dev|types)\b/.test(part))
-			.filter((part) => !part.includes(`--env-file ${EMPTY_ENV}`));
-		if (bare.length > 0)
+		const loose = wranglerRuns(command).filter((words) => {
+			const files = envFilesOf(words);
+			return files.length !== 1 || files[0] !== EMPTY_ENV;
+		});
+		if (loose.length > 0)
 			problems.push(`wrangler-env-file: scripts.${name} runs wrangler without it`);
 	}
 	return problems;
@@ -218,6 +240,30 @@ describe('each planted defect fails only its own rule', () => {
 	it('a wrangler types script without the empty env file', () => {
 		const packageJson = withScript(real.packageJson, 'gen', 'wrangler types');
 		expect(rulesWith({ packageJson })).toEqual(['wrangler-env-file']);
+	});
+
+	// Each spelling runs a wrangler dev or types that loads more than the empty file.
+	it.each([
+		['a second run after ;', 'wrangler types --env-file env/no-keys.env; wrangler types'],
+		['a second run after ||', 'wrangler types --env-file env/no-keys.env || wrangler types'],
+		['a second run after a pipe', 'wrangler types --env-file env/no-keys.env | wrangler dev'],
+		['two spaces before the command', 'wrangler  types'],
+		['a flag before the command', 'wrangler --cwd . types'],
+		['the root file named beside it', 'wrangler types --env-file env/no-keys.env --env-file .env'],
+		['another file in the = form', 'wrangler dev --env-file=.env'],
+		['a file that only starts with the name', 'wrangler types --env-file env/no-keys.env.bak'],
+		['the binary by path', 'node node_modules/wrangler/bin/wrangler.js types']
+	])('%s', (_label, command) => {
+		const packageJson = withScript(real.packageJson, 'gen', command);
+		expect(rulesWith({ packageJson })).toEqual(['wrangler-env-file']);
+	});
+
+	it.each([
+		['the = form of the empty file', 'wrangler types --env-file=env/no-keys.env && vite build'],
+		['a wrangler command that reads no env file', 'wrangler deploy --dry-run']
+	])('accepts %s', (_label, command) => {
+		const packageJson = withScript(real.packageJson, 'gen', command);
+		expect(rulesWith({ packageJson })).toEqual([]);
 	});
 
 	it('the vite variable set only inside an if block', () => {

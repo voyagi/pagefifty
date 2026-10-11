@@ -62,6 +62,14 @@ module.exports = {
 			to: { path: '^src/lib/capture/' }
 		},
 		{
+			name: 'no-private-env',
+			severity: 'error',
+			comment:
+				"The site reads no provider key. env.dir keeps the root env file out of $env, but Vite's loadEnv with an empty prefix also returns every variable of the shell that runs vite dev or vite build, and $env/static/private would inline it into the server bundle. Public env stays open; tests may read private env. An unresolved import keeps its written name, which this path matches.",
+			from: { path: '^src/', pathNot: ['^src/test/', '\\.test\\.ts$'] },
+			to: { path: '^\\$env/(static|dynamic)/private$' }
+		},
+		{
 			// An import the cruiser cannot resolve is invisible to every rule above, so it fails here.
 			name: 'no-unresolvable',
 			severity: 'error',
