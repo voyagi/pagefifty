@@ -8,6 +8,7 @@ import tseslint from 'typescript-eslint';
 
 const TEST_FILES = ['**/*.{test,spec}.{ts,js}'];
 const SERVER_FILES = ['src/lib/server/**', 'src/**/+server.ts', 'src/**/+*.server.ts', 'src/hooks.server.ts'];
+const CLI_FILES = ['src/lib/capture/**'];
 const FETCH_ONLY = 'App code makes its calls through fetch, the seam the snapshot transport and the test guards wrap.';
 
 export default defineConfig([
@@ -41,10 +42,12 @@ export default defineConfig([
 			'vitest/no-identical-title': 'error'
 		}
 	},
-	// Browser API support is checked only where code reaches the browser; server modules run on workerd.
+	// Browser API support is checked only where code reaches the browser; server modules run on workerd,
+	// and the capture command runs under Node and never reaches a browser, which the depcruise rule
+	// no-site-reaches-capture proves.
 	{
 		files: ['src/**/*.{ts,svelte}'],
-		ignores: [...TEST_FILES, ...SERVER_FILES],
+		ignores: [...TEST_FILES, ...SERVER_FILES, ...CLI_FILES],
 		plugins: { compat },
 		rules: { 'compat/compat': 'error' }
 	},
