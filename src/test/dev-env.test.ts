@@ -60,9 +60,16 @@ function isText(node: ts.Node | undefined, value: string): boolean {
 
 // One shell command per segment between &&, ||, ;, | and & (cmd.exe's separator), split into
 // words. A wrangler run is a segment holding a wrangler binary (any of the package's three names,
-// by name or path, with or without an @version) and a dev or types word anywhere after it, so a
-// flag before the command or a second run on the same line is still a run.
-const WRANGLER_BIN = /(^|[/\\])(cf-wrangler|wrangler2?)(\.js)?(@\S*)?$/;
+// by name or path, as its .js file or npm's Windows .cmd and .ps1 launchers, with or without an
+// @version) and a dev or types word anywhere after it, so a flag before the command or a second
+// run on the same line is still a run.
+const WRANGLER_BIN = /(^|[/\\])(cf-wrangler|wrangler2?)(\.js|\.cmd|\.ps1)?(@\S*)?$/i;
+
+// With this variable set to anything but false, wrangler adds the whole shell environment to the
+// env files it loads, so a run that names only the empty file still hands the Worker every exported
+// key. A script that runs wrangler may not set it anywhere: a prefix, env, cross-env, export or
+// cmd.exe's set, which can sit in an earlier segment than the run.
+const INCLUDES_SHELL = /CLOUDFLARE_INCLUDE_PROCESS_ENV=(?!false\b)/i;
 
 function wranglerRuns(command: string): string[][] {
 	return command
@@ -90,12 +97,16 @@ function scriptProblems(packageJson: string): string[] {
 	// scripts.preview has its own exact rule above, so a planted wrangler dev there is one problem.
 	for (const [name, command] of Object.entries(scripts)) {
 		if (name === 'preview') continue;
-		const loose = wranglerRuns(command).filter((words) => {
+		const runs = wranglerRuns(command);
+		const loose = runs.filter((words) => {
 			const files = envFilesOf(words);
 			return files.length !== 1 || files[0] !== EMPTY_ENV;
 		});
-		if (loose.length > 0)
-			problems.push(`wrangler-env-file: scripts.${name} runs wrangler without it`);
+		if (loose.length > 0 || (runs.length > 0 && INCLUDES_SHELL.test(command))) {
+			problems.push(
+				`wrangler-env-file: scripts.${name} runs wrangler with more than the empty env file`
+			);
+		}
 	}
 	return problems;
 }
@@ -267,7 +278,17 @@ describe('each planted defect fails only its own rule', () => {
 		['a second run after a single &', 'wrangler types --env-file env/no-keys.env & wrangler types'],
 		['the wrangler2 alias', 'wrangler2 types'],
 		['the cf-wrangler alias', 'npx cf-wrangler dev'],
-		['a pinned version', 'npx wrangler@4.131.1 types']
+		['a pinned version', 'npx wrangler@4.131.1 types'],
+		['the npm Windows launcher', 'node_modules\\.bin\\wrangler.cmd types'],
+		['the npm PowerShell launcher', 'node_modules/.bin/wrangler.ps1 dev'],
+		[
+			'the shell added by a prefix',
+			'CLOUDFLARE_INCLUDE_PROCESS_ENV=true wrangler dev --env-file env/no-keys.env'
+		],
+		[
+			"the shell added by cmd.exe's set in an earlier segment",
+			'set CLOUDFLARE_INCLUDE_PROCESS_ENV=1&& wrangler types --env-file env/no-keys.env'
+		]
 	])('%s', (_label, command) => {
 		const packageJson = withScript(real.packageJson, 'gen', command);
 		expect(rulesWith({ packageJson })).toEqual(['wrangler-env-file']);
@@ -275,7 +296,11 @@ describe('each planted defect fails only its own rule', () => {
 
 	it.each([
 		['the = form of the empty file', 'wrangler types --env-file=env/no-keys.env && vite build'],
-		['a wrangler command that reads no env file', 'wrangler deploy --dry-run']
+		['a wrangler command that reads no env file', 'wrangler deploy --dry-run'],
+		[
+			'the shell variable set to false',
+			'CLOUDFLARE_INCLUDE_PROCESS_ENV=false wrangler types --env-file env/no-keys.env'
+		]
 	])('accepts %s', (_label, command) => {
 		const packageJson = withScript(real.packageJson, 'gen', command);
 		expect(rulesWith({ packageJson })).toEqual([]);
