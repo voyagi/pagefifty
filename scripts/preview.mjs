@@ -9,7 +9,7 @@
 //
 // Usage:  node scripts/preview.mjs   (after npm run build)
 // Exit codes: the exit code of wrangler dev,
-//             1 the built Worker is missing.
+//             1 the built Worker is missing, or wrangler dev ended on a signal.
 
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -36,3 +36,10 @@ const child = spawn(process.execPath, args, {
 	stdio: 'inherit'
 });
 child.on('exit', (code, signal) => process.exit(code ?? (signal ? 1 : 0)));
+// npm passes a SIGTERM on to this process, and a SIGHUP can reach it alone. Ending here would leave
+// wrangler dev serving the port, so off Windows each is passed on and this process exits when
+// wrangler does. A terminal's Ctrl+C already reaches wrangler, and Windows sends console events to
+// every process attached to the console.
+if (process.platform !== 'win32') {
+	for (const signal of ['SIGTERM', 'SIGHUP']) process.on(signal, () => child.kill(signal));
+}

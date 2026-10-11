@@ -229,7 +229,13 @@ function wranglerDeclaresProcessEnv(date: string, flags: readonly string[]): boo
 			}
 		);
 		if (run.status !== 0) {
-			throw new Error(`wrangler ${WRANGLER_VERSION} types exited ${run.status}: ${run.stderr}`);
+			// A run that never started or ended on a signal has no status; say which.
+			const how = run.error
+				? `could not run (${run.error.message})`
+				: run.signal
+					? `ended on ${run.signal}`
+					: `exited ${run.status}`;
+			throw new Error(`wrangler ${WRANGLER_VERSION} types ${how}: ${run.stderr}`);
 		}
 		return readFileSync(join(folder, 'probe.d.ts'), 'utf8').includes('interface ProcessEnv');
 	} finally {
