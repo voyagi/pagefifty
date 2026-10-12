@@ -14,12 +14,14 @@
 // --entry must sit inside a scanned folder, and every relative import reachable from it must
 // resolve inside one too, so a folder list that misses part of the deployed code refuses to run
 // instead of passing over it. A relative import resolves as esbuild resolves one by default: the
-// path itself, then with each implicit extension, then a folder's package.json entries and its index
-// file (resolveRelative names what is left out). Each package those files import by name is
-// scanned whole from node_modules, with every installed package it lists as a dependency, a peer
-// dependency or an optional one, and every installed package its JavaScript files import by name,
-// listed or not: more than wrangler bundles, so no export condition decides what is read. A
-// package's own node_modules is read only through a package found one of those ways.
+// path itself, then with each implicit extension, then a named .js, .jsx, .mjs or .cjs path as its
+// TypeScript source, then a folder's package.json entries and its index file (resolveRelative names
+// what is left out). Each package those files import by name is scanned whole from node_modules,
+// with every installed package it lists as a dependency, a peer dependency or an optional one, and
+// every installed package its JavaScript files, or the TypeScript entries its package.json names and
+// the TypeScript files those reach, import by name, listed or not: more than wrangler bundles, so no
+// export condition decides what is read. A package's own node_modules is read only through a package
+// found one of those ways.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
@@ -32,7 +34,7 @@
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { isBuiltin } from 'node:module';
-import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
+import { dirname, extname, isAbsolute, join, relative, resolve } from 'node:path';
 import ts from 'typescript';
 
 const KEY_NAMES = ['NEBIUS_API_KEY', 'TAVILY_API_KEY'];
@@ -81,10 +83,13 @@ const IMPLICIT_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'];
 const isScriptFile = (file) =>
 	/\.(?:[cm]?[jt]s|[jt]sx)$/.test(file) && !/\.d\.[cm]?ts$/.test(file);
 
-// Inside a package only JavaScript is parsed for imports: its entry points and exports name
-// JavaScript, and esbuild tries .js before .ts in node_modules. The TypeScript sources many packages
-// ship beside their build import their own dev tooling, which esbuild never reaches from the build.
+// Inside a package all JavaScript is parsed for imports, and TypeScript only from an entry its
+// package.json names (typeScriptEntries): esbuild tries .js before .ts in node_modules, and the
+// TypeScript sources many packages ship beside their build import their own dev tooling, which
+// esbuild never reaches from the build. Parsing every one took the real scan from 58 packages to 200.
 const isPackageScript = (file) => /\.(?:[cm]?js|jsx)$/.test(file);
+
+const isTypeScriptFile = (file) => isScriptFile(file) && !isPackageScript(file);
 
 function isFile(path) {
 	try {
@@ -94,8 +99,32 @@ function isFile(path) {
 	}
 }
 
-const withExtension = (base) =>
-	isFile(base) ? base : IMPLICIT_EXTENSIONS.map((extension) => base + extension).find(isFile);
+function isFolder(path) {
+	try {
+		return statSync(path).isDirectory();
+	} catch {
+		return false;
+	}
+}
+
+// TypeScript's rule, which esbuild applies after the implicit extensions (its changelog, 0.13.4,
+// added .mjs and .cjs beside .js): an import naming the output file reaches the TypeScript source of
+// that name when the named file is missing.
+const TYPESCRIPT_SOURCES = new Map([
+	['.js', ['.ts', '.tsx']],
+	['.jsx', ['.ts', '.tsx']],
+	['.mjs', ['.mts']],
+	['.cjs', ['.cts']]
+]);
+
+function withExtension(base) {
+	if (isFile(base)) return base;
+	const appended = IMPLICIT_EXTENSIONS.map((extension) => base + extension).find(isFile);
+	if (appended !== undefined) return appended;
+	const named = extname(base);
+	const stem = base.slice(0, base.length - named.length);
+	return (TYPESCRIPT_SOURCES.get(named) ?? []).map((extension) => stem + extension).find(isFile);
+}
 
 const asFileOrIndex = (base) => withExtension(base) ?? withExtension(join(base, 'index'));
 
@@ -104,11 +133,11 @@ const asFileOrIndex = (base) => withExtension(base) ?? withExtension(join(base, 
 // can only add packages to the scan.
 const ENTRY_FIELDS = ['browser', 'module', 'main'];
 
-// The files a relative import can reach: the path itself or with an implicit extension, else a
-// folder's package.json entries and its index file. What a full bundler adds beyond these (tsconfig
-// paths, a browser field that maps files, a package's imports field) is out of scope: SvelteKit's
-// adapter writes plain ES modules with explicit relative paths, and this walk exists to catch a
-// folder list that misses deployed code, not to rebuild the bundle.
+// The files a relative import can reach: the path itself, with an implicit extension or as its
+// TypeScript source, else a folder's package.json entries and its index file. What a full bundler
+// adds beyond these (tsconfig paths, a browser field that maps files, a package's imports field) is
+// out of scope: SvelteKit's adapter writes plain ES modules with explicit relative paths, and this
+// walk exists to catch a folder list that misses deployed code, not to rebuild the bundle.
 function resolveRelative(target) {
 	const file = withExtension(target);
 	if (file !== undefined) return [file];
@@ -159,16 +188,66 @@ const asText = (bytes) => bytes.toString('utf8');
 // installed anywhere above the package could not be bundled either.
 const DEPENDENCY_FIELDS = ['dependencies', 'peerDependencies', 'optionalDependencies'];
 
+// Every string a package.json exports value names, through any depth of conditions and fallbacks.
+const exportTargets = (value) =>
+	typeof value === 'string'
+		? [value]
+		: value !== null && typeof value === 'object'
+			? Object.values(value).flatMap(exportTargets)
+			: [];
+
+// The files an exports target with a * names: those under its fixed part that end as it ends. A
+// fixed part that leaves the package names nothing here.
+function patternFiles(folder, target) {
+	const star = target.indexOf('*');
+	const fixed = target.slice(0, star);
+	const prefix = resolve(folder, fixed);
+	const suffix = target.slice(star + 1);
+	const base = fixed.endsWith('/') ? prefix : dirname(prefix);
+	if (relative(folder, base).startsWith('..') || !isFolder(base)) return [];
+	return filesUnder(base, { skipNodeModules: true }).filter(
+		(file) => file.startsWith(prefix) && file.replaceAll('\\', '/').endsWith(suffix)
+	);
+}
+
+// The TypeScript files a package's manifest names as an entry: esbuild bundles a .ts entry the way it
+// bundles a .js one.
+function typeScriptEntries(folder, manifest) {
+	return [...exportTargets(manifest.exports), ...ENTRY_FIELDS.map((field) => manifest[field])]
+		.filter((target) => typeof target === 'string')
+		.flatMap((target) =>
+			target.includes('*') ? patternFiles(folder, target) : resolveRelative(resolve(folder, target))
+		)
+		.filter((file) => isTypeScriptFile(file) && insideAny(file, [folder]));
+}
+
 // A package's code can import an installed package that none of those fields lists, and esbuild
-// bundles whatever the import resolves to, so each JavaScript file's imports by name count too,
-// resolved from that file's folder. One that resolves to no installed package is passed over.
-function importedPackages(folder) {
+// bundles whatever the import resolves to, so the imports by name of each JavaScript file count too,
+// and of each TypeScript entry and the TypeScript files its relative imports reach in the package,
+// each resolved from that file's folder. One that resolves to no installed package is passed over.
+function importedPackages(folder, manifest) {
+	const queue = [
+		...filesUnder(folder, { skipNodeModules: true }).filter(isPackageScript),
+		...typeScriptEntries(folder, manifest)
+	];
+	const seen = new Set(queue);
 	const found = [];
-	for (const file of filesUnder(folder, { skipNodeModules: true })) {
-		if (!isPackageScript(file)) continue;
+	while (queue.length > 0) {
+		const file = queue.pop();
+		const followsRelative = isTypeScriptFile(file);
 		for (const specifier of importsOf(file, readNamed(file, asText))) {
-			if (isRelative(specifier) || isRuntimeModule(specifier)) continue;
-			found.push(packageFolder(dirname(file), packageName(specifier)));
+			if (isRuntimeModule(specifier)) continue;
+			if (!isRelative(specifier)) {
+				found.push(packageFolder(dirname(file), packageName(specifier)));
+				continue;
+			}
+			if (!followsRelative) continue;
+			for (const reached of resolveRelative(resolve(dirname(file), specifier))) {
+				if (isTypeScriptFile(reached) && insideAny(reached, [folder]) && !seen.has(reached)) {
+					seen.add(reached);
+					queue.push(reached);
+				}
+			}
 		}
 	}
 	return found;
@@ -183,7 +262,7 @@ function withDependencies(packages) {
 		const listed = new Set(DEPENDENCY_FIELDS.flatMap((field) => Object.keys(manifest[field] ?? {})));
 		const dependencies = [
 			...[...listed].map((name) => packageFolder(folder, name)),
-			...importedPackages(folder)
+			...importedPackages(folder, manifest)
 		];
 		for (const dependency of dependencies) {
 			if (dependency !== undefined && !found.has(dependency)) {

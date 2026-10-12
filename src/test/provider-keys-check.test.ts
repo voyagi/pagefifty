@@ -351,6 +351,51 @@ describe('the --entry coverage rule', () => {
 		]);
 	});
 
+	// A package can point its entry at TypeScript, and esbuild bundles that entry and the files it
+	// imports like JavaScript ones. Its other .ts files stay unparsed: the sources many packages ship
+	// beside their build import their own dev tooling, and parsing all of them took the real scan from
+	// 58 packages to 200.
+	const typeScriptPackage = (fields: object, files: Record<string, string> = {}) => ({
+		...importing("import { a } from 'pkg-a';"),
+		...PACKAGES,
+		...UNLISTED,
+		'node_modules/pkg-a/package.json': JSON.stringify({
+			name: 'pkg-a',
+			dependencies: { 'pkg-b': '1.0.0' },
+			...fields
+		}),
+		'node_modules/pkg-a/src/index.ts': "export { c } from './util.js';",
+		'node_modules/pkg-a/src/util.ts':
+			"import { c } from 'pkg-c';\nconst n = <number>(c as unknown);\nexport { c, n };",
+		'node_modules/pkg-c/index.js': 'export const c = env.NEBIUS_API_KEY;',
+		...files
+	});
+
+	it.each([
+		['its exports conditions', { exports: { '.': { import: './src/index.ts' } } }],
+		['an exports subpath pattern', { exports: { './*': './src/*.ts' } }],
+		['an exports fallback array', { exports: { '.': ['./src/index.ts'] } }],
+		['its main field', { main: './src/index.ts' }],
+		['its module field without an extension', { module: './src/index' }]
+	])(
+		'finds a key name in a package the TypeScript entry named by %s reaches through its imports',
+		(_label, fields) => {
+			const result = entryRun(folder(typeScriptPackage(fields)));
+			expect([result.status, result.stdout]).toEqual([
+				1,
+				expect.stringMatching(/node_modules\/pkg-c\/index\.js: NEBIUS_API_KEY/)
+			]);
+		}
+	);
+
+	it('leaves a package TypeScript file that no entry field names unparsed', () => {
+		const result = entryRun(folder(typeScriptPackage({ exports: { '.': './index.js' } })));
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 10 files in 3 folders and 2 packages, no key name or canary value'
+		]);
+	});
+
 	// esbuild tries .tsx, .ts, .jsx, .js, .css and .json after a path with no extension, then a
 	// folder's package.json entry and its index file, and takes .mjs and .cjs only when named. A chunk
 	// the walk passed over could import a package that would then go unscanned. The .ts chunk holds a
@@ -372,6 +417,12 @@ describe('the --entry coverage rule', () => {
 			)
 		],
 		['a .tsx file with no extension', "import './view';", chunk('view.tsx')],
+		// TypeScript's own spelling: the import names the output file, the source on disk is TypeScript.
+		['a .ts file imported by its .js name', "import './chunk.js';", chunk('chunk.ts')],
+		['a .tsx file imported by its .js name', "import './view.js';", chunk('view.tsx')],
+		['a .tsx file imported by its .jsx name', "import './view.jsx';", chunk('view.tsx')],
+		['a .mts file imported by its .mjs name', "import './chunk.mjs';", chunk('chunk.mts')],
+		['a .cts file imported by its .cjs name', "require('./chunk.cjs');", chunk('chunk.cts')],
 		[
 			'an import-equals require in a .ts file',
 			"import './chunk';",
