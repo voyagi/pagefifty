@@ -351,32 +351,50 @@ describe('the --entry coverage rule', () => {
 		]);
 	});
 
-	// esbuild tries .tsx, .ts, .jsx, .js, .css and .json after a path with no extension, the same list
-	// for a folder's index file, and takes .mjs and .cjs only when named. A chunk the walk passed over
-	// could import a package that would then go unscanned. The .ts chunk holds a type assertion, which
-	// a parse as JavaScript reads as the start of a JSX element, losing the require after it.
+	// esbuild tries .tsx, .ts, .jsx, .js, .css and .json after a path with no extension, then a
+	// folder's package.json entry and its index file, and takes .mjs and .cjs only when named. A chunk
+	// the walk passed over could import a package that would then go unscanned. The .ts chunk holds a
+	// type assertion, which a parse as JavaScript reads as the start of a JSX element, losing the
+	// require after it.
 	const REQUIRE_K = "require('pkg-k');";
+	const chunk = (file: string, code = REQUIRE_K) => ({ [`output/server/${file}`]: code });
 	it.each([
-		['a path with no extension', "import './chunk';", 'output/server/chunk.js', REQUIRE_K],
-		[
-			'a folder with an index file',
-			"import './chunks';",
-			'output/server/chunks/index.js',
-			REQUIRE_K
-		],
-		['a named .cjs file', "require('./chunk.cjs');", 'output/server/chunk.cjs', REQUIRE_K],
-		['a .jsx file with no extension', "import './view';", 'output/server/view.jsx', REQUIRE_K],
+		['a path with no extension', "import './chunk';", chunk('chunk.js')],
+		['a folder with an index file', "import './chunks';", chunk('chunks/index.js')],
+		['a named .cjs file', "require('./chunk.cjs');", chunk('chunk.cjs')],
+		['a .jsx file with no extension', "import './view';", chunk('view.jsx')],
 		[
 			'a .ts file with no extension',
 			"import './chunk';",
-			'output/server/chunk.ts',
-			`const value: unknown = 1;\nconst n = <number>value;\n${REQUIRE_K}\nexport { n };`
+			chunk(
+				'chunk.ts',
+				`const value: unknown = 1;\nconst n = <number>value;\n${REQUIRE_K}\nexport { n };`
+			)
 		],
-		['a .tsx file with no extension', "import './view';", 'output/server/view.tsx', REQUIRE_K]
-	])('follows %s to the packages it imports', (_label, line, file, code) => {
+		['a .tsx file with no extension', "import './view';", chunk('view.tsx')],
+		[
+			'an import-equals require in a .ts file',
+			"import './chunk';",
+			chunk('chunk.ts', "import k = require('pkg-k');\nexport { k };")
+		],
+		[
+			'a folder whose package.json names its main entry',
+			"import './lib';",
+			{ ...chunk('lib/package.json', '{ "main": "./entry.js" }'), ...chunk('lib/entry.js') }
+		],
+		[
+			'a folder whose package.json names its module entry beside main',
+			"import './lib';",
+			{
+				...chunk('lib/package.json', '{ "main": "./cjs.js", "module": "./esm/index" }'),
+				...chunk('lib/cjs.js', 'export {};'),
+				...chunk('lib/esm/index.js')
+			}
+		]
+	])('follows %s to the packages it imports', (_label, line, files) => {
 		const root = folder({
 			...importing(line),
-			[file]: code,
+			...files,
 			'node_modules/pkg-k/package.json': '{ "name": "pkg-k" }',
 			'node_modules/pkg-k/index.js': 'TAVILY_API_KEY'
 		});
@@ -384,6 +402,21 @@ describe('the --entry coverage rule', () => {
 		expect([result.status, result.stdout]).toEqual([
 			1,
 			expect.stringMatching(/node_modules\/pkg-k\/index\.js: TAVILY_API_KEY/)
+		]);
+	});
+
+	it('refuses a folder entry that its package.json names outside the scanned folders', () => {
+		const root = folder({
+			...importing("import './lib';"),
+			'output/server/lib/package.json': '{ "main": "../../../extra/entry.js" }',
+			'extra/entry.js': 'export {};'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stderr]).toEqual([
+			2,
+			expect.stringMatching(
+				/imports \.\/lib, whose entry .*extra\/entry\.js is outside the scanned folders/
+			)
 		]);
 	});
 

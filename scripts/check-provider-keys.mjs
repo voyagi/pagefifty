@@ -13,12 +13,13 @@
 // bundles those at deploy together with every package they import by name. A file given with
 // --entry must sit inside a scanned folder, and every relative import reachable from it must
 // resolve inside one too, so a folder list that misses part of the deployed code refuses to run
-// instead of passing over it. A relative import resolves the way esbuild resolves it: the path
-// itself, then the path with each implicit extension, then a folder's index file. Each package those
-// files import by name is scanned whole from node_modules, with every installed package it lists as
-// a dependency, a peer dependency or an optional one, and every installed package its JavaScript
-// files import by name, listed or not: more than wrangler bundles, so no export condition decides
-// what is read. A package's own node_modules is read only through a package found one of those ways.
+// instead of passing over it. A relative import resolves as esbuild resolves one by default: the
+// path itself, then with each implicit extension, then a folder's package.json entries and its index
+// file (resolveRelative names what is left out). Each package those files import by name is
+// scanned whole from node_modules, with every installed package it lists as a dependency, a peer
+// dependency or an optional one, and every installed package its JavaScript files import by name,
+// listed or not: more than wrangler bundles, so no export condition decides what is read. A
+// package's own node_modules is read only through a package found one of those ways.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
@@ -43,20 +44,25 @@ const isImportOrRequire = (callee) =>
 // A full parse, so comments, strings and regular expressions never read as an import: the server
 // build carries JSDoc types such as import('../../../utils/page_nodes.js'), and TypeScript's lighter
 // import scanner (preProcessFile) misses export * as ns from and loses an import that follows a
-// regular expression holding a backtick. Static imports, re-exports and import() or require() calls
-// with a string argument count; a computed import() is passed over, as a bundler passes it over.
-// TypeScript picks the parse from the file name: TS for .ts, .mts and .cts, TSX, JSX, JS for the
-// rest. Parsed as JavaScript, a .ts type assertion reads as the start of a JSX element.
+// regular expression holding a backtick. Static imports, re-exports, TypeScript's import x =
+// require() and import() or require() calls with a string argument count; a computed import() is
+// passed over, as a bundler passes it over. TypeScript picks the parse from the file name: TS for
+// .ts, .mts and .cts, TSX, JSX, JS for the rest. Parsed as JavaScript, a .ts type assertion reads as
+// the start of a JSX element.
+function specifierOf(node) {
+	if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) return node.moduleSpecifier;
+	if (ts.isImportEqualsDeclaration(node) && ts.isExternalModuleReference(node.moduleReference)) {
+		return node.moduleReference.expression;
+	}
+	if (ts.isCallExpression(node) && isImportOrRequire(node.expression)) return node.arguments[0];
+	return undefined;
+}
+
 function importsOf(file, text) {
 	const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, false);
 	const found = [];
 	const visit = (node) => {
-		const specifier =
-			ts.isImportDeclaration(node) || ts.isExportDeclaration(node)
-				? node.moduleSpecifier
-				: ts.isCallExpression(node) && isImportOrRequire(node.expression)
-					? node.arguments[0]
-					: undefined;
+		const specifier = specifierOf(node);
 		if (specifier !== undefined && ts.isStringLiteralLike(specifier)) found.push(specifier.text);
 		ts.forEachChild(node, visit);
 	};
@@ -88,14 +94,33 @@ function isFile(path) {
 	}
 }
 
-// The path itself, then with each implicit extension, then a folder's index file the same way.
+const withExtension = (base) =>
+	isFile(base) ? base : IMPLICIT_EXTENSIONS.map((extension) => base + extension).find(isFile);
+
+const asFileOrIndex = (base) => withExtension(base) ?? withExtension(join(base, 'index'));
+
+// A folder's package.json can name its entry, which esbuild takes before the index file. Every entry
+// named is followed, whichever of these fields wrangler's build would pick: following one more file
+// can only add packages to the scan.
+const ENTRY_FIELDS = ['browser', 'module', 'main'];
+
+// The files a relative import can reach: the path itself or with an implicit extension, else a
+// folder's package.json entries and its index file. What a full bundler adds beyond these (tsconfig
+// paths, a browser field that maps files, a package's imports field) is out of scope: SvelteKit's
+// adapter writes plain ES modules with explicit relative paths, and this walk exists to catch a
+// folder list that misses deployed code, not to rebuild the bundle.
 function resolveRelative(target) {
-	if (isFile(target)) return target;
-	for (const base of [target, join(target, 'index')]) {
-		const found = IMPLICIT_EXTENSIONS.map((extension) => base + extension).find(isFile);
-		if (found !== undefined) return found;
-	}
-	return undefined;
+	const file = withExtension(target);
+	if (file !== undefined) return [file];
+	const manifest = join(target, 'package.json');
+	const fields = isFile(manifest)
+		? readNamed(manifest, (bytes) => JSON.parse(asText(bytes)))
+		: {};
+	const entries = ENTRY_FIELDS.map((field) => fields[field])
+		.filter((value) => typeof value === 'string')
+		.map((value) => asFileOrIndex(resolve(target, value)));
+	const index = withExtension(join(target, 'index'));
+	return [...new Set([...entries, index].filter((found) => found !== undefined))];
 }
 
 // node:async_hooks and async_hooks are both Node's; cloudflare:workers and its siblings are the
@@ -235,10 +260,16 @@ function entryPackages(entry, folders) {
 			if (!insideAny(target, folders)) {
 				throw new UsageError(`${shown(file)} imports ${specifier}, outside the scanned folders`);
 			}
-			const resolved = resolveRelative(target);
-			if (resolved !== undefined && isScriptFile(resolved) && !seen.has(resolved)) {
-				seen.add(resolved);
-				queue.push(resolved);
+			for (const reached of resolveRelative(target)) {
+				if (!insideAny(reached, folders)) {
+					throw new UsageError(
+						`${shown(file)} imports ${specifier}, whose entry ${shownPath(reached)} is outside the scanned folders`
+					);
+				}
+				if (isScriptFile(reached) && !seen.has(reached)) {
+					seen.add(reached);
+					queue.push(reached);
+				}
 			}
 		}
 	}
