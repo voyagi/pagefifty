@@ -121,7 +121,12 @@ function scriptProblems(packageJson: string): string[] {
 	return problems;
 }
 
-function setsVariableDirectly(source: ts.SourceFile): boolean {
+// The installed wrangler reads the include switch only inside its dotenv branch, which the first
+// switch closes, so the second is a margin against a release that reads it elsewhere, as preview.mjs
+// and the harness already set both.
+const VITE_VARIABLES = ['CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV', 'CLOUDFLARE_INCLUDE_PROCESS_ENV'];
+
+function setsVariableDirectly(source: ts.SourceFile, name: string): boolean {
 	const callback = callsTo(source, 'defineConfig')[0]?.arguments[0];
 	if (callback === undefined || !ts.isArrowFunction(callback) || !ts.isBlock(callback.body)) {
 		return false;
@@ -132,7 +137,7 @@ function setsVariableDirectly(source: ts.SourceFile): boolean {
 		return (
 			ts.isBinaryExpression(expression) &&
 			expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
-			expression.left.getText() === 'process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV' &&
+			expression.left.getText() === `process.env.${name}` &&
 			isText(expression.right, 'false')
 		);
 	});
@@ -150,9 +155,10 @@ function namesOnlyTheEmptyFile(node: ts.Expression | undefined): boolean {
 function viteProblems(viteConfig: string): string[] {
 	const source = parse('vite.config.ts', viteConfig);
 	const problems: string[] = [];
-	if (!setsVariableDirectly(source)) {
+	const unset = VITE_VARIABLES.filter((name) => !setsVariableDirectly(source, name));
+	if (unset.length > 0) {
 		problems.push(
-			"vite-variable: the defineConfig callback does not set CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV to 'false' as a direct statement"
+			`vite-variable: the defineConfig callback does not set ${unset.join(' and ')} to 'false' as a direct statement`
 		);
 	}
 	const platformProxy = property(callsTo(source, 'adapter')[0]?.arguments[0], 'platformProxy');
@@ -332,6 +338,15 @@ describe('each planted defect fails only its own rule', () => {
 			real.viteConfig,
 			"process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';",
 			"if (mode === 'test') {\n\t\tprocess.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';\n\t}"
+		);
+		expect(rulesWith({ viteConfig })).toEqual(['vite-variable']);
+	});
+
+	it('the vite include switch removed', () => {
+		const viteConfig = plant(
+			real.viteConfig,
+			/\n[ \t]*process\.env\.CLOUDFLARE_INCLUDE_PROCESS_ENV = 'false';/,
+			''
 		);
 		expect(rulesWith({ viteConfig })).toEqual(['vite-variable']);
 	});

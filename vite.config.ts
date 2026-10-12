@@ -22,8 +22,11 @@ export default defineConfig(({ command }) => {
 	// provider keys included. The switch closes the dotenv files for all four. A .dev.vars file is read
 	// whenever no env file list is given: the envFiles list below closes it for the platform proxy, but
 	// the workerd project's plugin passes no list, so there env-bindings.worker.test.ts fails on any
-	// binding it would add.
+	// binding it would add. The include switch, when true, adds the whole shell environment to those
+	// dotenv files. The installed wrangler reads it only while they load, so it is closed too as a
+	// margin, as scripts/preview.mjs and the browser harness close it.
 	process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';
+	process.env.CLOUDFLARE_INCLUDE_PROCESS_ENV = 'false';
 	// Vite dev injects each component's styles as a style element, so dev needs inline styles. The
 	// built Worker links every stylesheet, so production keeps style-src to 'self' and the nonce.
 	const styleSrc: ('self' | 'unsafe-inline')[] =
