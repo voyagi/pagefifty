@@ -41,11 +41,24 @@ const TEST_IMPORTS_PLANTED: Record<string, string> = {
 	'src/lib/via-test-helper.ts':
 		"import { stub } from '../test/capture-stub';\nexport const viaHelper = () => stub();\n",
 	'src/routes/test-planted/+page.ts':
-		"import { used } from '../../lib/capture-user.test';\nexport const load = () => ({ used: typeof used });\n"
+		"import { used } from '../../lib/capture-user.test';\nexport const load = () => ({ used: typeof used });\n",
+	'src/lib/via-spec.ts':
+		"import { used } from './capture-user.spec';\nexport const viaSpec = used;\n",
+	'src/lib/via-test-js.ts':
+		"import { sock } from './net-user.test.js';\nexport const viaTestJs = sock;\n"
 };
 const TEST_IMPORTS_CLEAN: Record<string, string> = {
 	'src/lib/via-test-helper.ts': "export const viaHelper = () => 'none';\n",
-	'src/routes/test-planted/+page.ts': 'export const load = () => ({});\n'
+	'src/routes/test-planted/+page.ts': 'export const load = () => ({});\n',
+	'src/lib/via-spec.ts': "export const viaSpec = 'none';\n",
+	'src/lib/via-test-js.ts': "export const viaTestJs = 'none';\n"
+};
+// ESLint's test names are *.{test,spec}.{ts,js}, so a spec file and a JavaScript test get the same
+// exemptions as a .test.ts file: the command, private env, a test helper and a raw socket.
+const OTHER_TEST_NAMES: Record<string, string> = {
+	'src/lib/capture-user.spec.ts':
+		"import { run } from './capture/run';\nimport { env } from '$env/dynamic/private';\nimport { stub } from '../test/capture-stub';\nexport const used = [run, env, stub];\n",
+	'src/lib/net-user.test.js': "import net from 'node:net';\nexport const sock = net.Socket;\n"
 };
 // Files outside src/ that import the command and a raw socket. The rules above judge the importing
 // module, so a hop through one of these is never theirs to judge. A test may reach them.
@@ -94,6 +107,7 @@ const PLANTED: Record<string, string> = {
 	'src/lib/env-planted.ts':
 		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n",
 	...TEST_IMPORTS_PLANTED,
+	...OTHER_TEST_NAMES,
 	...OUTSIDE_SRC_SIDE,
 	...OUTSIDE_SRC_PLANTED
 };
@@ -118,6 +132,7 @@ const CLEAN: Record<string, string> = {
 	'src/routes/env-planted/+page.server.ts': 'export const load = () => ({ k: 0 });\n',
 	'src/lib/env-planted.ts': 'export const key = () => undefined;\n',
 	...TEST_IMPORTS_CLEAN,
+	...OTHER_TEST_NAMES,
 	...OUTSIDE_SRC_SIDE,
 	...OUTSIDE_SRC_CLEAN
 };
@@ -222,9 +237,11 @@ describe('dependency-cruiser rules on planted import trees', () => {
 
 	// The fences above exempt tests and helpers, so a site import of either is its own violation;
 	// the capture rule alone passes over the helper route, as its first test shows.
-	it('reports no-site-imports-tests for a site import of a helper and of a test file, never a test or a helper', () => {
+	it('reports no-site-imports-tests for a site import of a helper and of each test name, never a test or a helper', () => {
 		expect(violators(planted, 'no-site-imports-tests')).toEqual([
+			'src/lib/via-spec.ts',
 			'src/lib/via-test-helper.ts',
+			'src/lib/via-test-js.ts',
 			'src/routes/test-planted/+page.ts'
 		]);
 	});
