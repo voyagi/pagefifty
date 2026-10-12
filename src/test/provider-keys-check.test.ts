@@ -309,6 +309,69 @@ describe('the --entry coverage rule', () => {
 		]);
 	});
 
+	// A package's code can import an installed package that none of its fields lists, and esbuild
+	// bundles it all the same.
+	const UNLISTED = {
+		'node_modules/pkg-c/package.json': '{ "name": "pkg-c" }',
+		'node_modules/pkg-c/index.js': 'export const c = 3;'
+	};
+
+	it.each([
+		['index.js', "import 'pkg-b';\nimport { c } from 'pkg-c';\nexport const a = c;"],
+		['lib/load.cjs', "module.exports = require('pkg-c');"],
+		['lib/load.mjs', "export const c = await import('pkg-c');"]
+	])('finds a key name in a package that %s of an imported one imports unlisted', (file, code) => {
+		const root = folder({
+			...importing("import { a } from 'pkg-a';"),
+			...PACKAGES,
+			...UNLISTED,
+			[`node_modules/pkg-a/${file}`]: code,
+			'node_modules/pkg-c/index.js': 'export const c = env.NEBIUS_API_KEY;'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout]).toEqual([
+			1,
+			expect.stringMatching(/node_modules\/pkg-c\/index\.js: NEBIUS_API_KEY/)
+		]);
+	});
+
+	it('counts a package found only through an import, and passes over one that is not installed', () => {
+		const root = folder({
+			...importing("import { a } from 'pkg-a';"),
+			...PACKAGES,
+			...UNLISTED,
+			'node_modules/pkg-a/index.js':
+				"import 'pkg-b';\nimport 'pkg-c';\ntry { require('pagefifty-not-installed'); } catch {}\nexport const a = 1;"
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout.trim()]).toEqual([
+			0,
+			'provider-keys: scanned 10 files in 3 folders and 3 packages, no key name or canary value'
+		]);
+	});
+
+	// esbuild tries .tsx, .ts, .jsx, .js, .css and .json after a path with no extension, the same list
+	// for a folder's index file, and takes .mjs and .cjs only when named. A chunk the walk passed over
+	// could import a package that would then go unscanned.
+	it.each([
+		['a path with no extension', "import './chunk';", 'output/server/chunk.js'],
+		['a folder with an index file', "import './chunks';", 'output/server/chunks/index.js'],
+		['a named .cjs file', "require('./chunk.cjs');", 'output/server/chunk.cjs'],
+		['a .jsx file with no extension', "import './view';", 'output/server/view.jsx']
+	])('follows %s to the packages it imports', (_label, line, file) => {
+		const root = folder({
+			...importing(line),
+			[file]: "require('pkg-k');",
+			'node_modules/pkg-k/package.json': '{ "name": "pkg-k" }',
+			'node_modules/pkg-k/index.js': 'TAVILY_API_KEY'
+		});
+		const result = entryRun(root);
+		expect([result.status, result.stdout]).toEqual([
+			1,
+			expect.stringMatching(/node_modules\/pkg-k\/index\.js: TAVILY_API_KEY/)
+		]);
+	});
+
 	it('finds a scoped package by a subpath import and its dependency in a nested node_modules', () => {
 		const root = folder({
 			...importing("import { s } from '@scope/pkg/sub/x.js';"),

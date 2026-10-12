@@ -13,18 +13,21 @@
 // bundles those at deploy together with every package they import by name. A file given with
 // --entry must sit inside a scanned folder, and every relative import reachable from it must
 // resolve inside one too, so a folder list that misses part of the deployed code refuses to run
-// instead of passing over it. Each package those files import by name is scanned whole from
-// node_modules, with every installed package it lists as a dependency, a peer dependency or an
-// optional one: more than wrangler bundles, so no export condition decides what is read. A
-// package's own node_modules is read only through a package it lists.
+// instead of passing over it. A relative import resolves the way esbuild resolves it: the path
+// itself, then the path with each implicit extension, then a folder's index file. Each package those
+// files import by name is scanned whole from node_modules, with every installed package it lists as
+// a dependency, a peer dependency or an optional one, and every installed package its script files
+// import by name, listed or not: more than wrangler bundles, so no export condition decides what is
+// read. A package's own node_modules is read only through a package found one of those ways.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
 //             1 a file holds one (one line per file and name found),
 //             2 bad usage, a missing folder, a folder with no file, a file that could not be read,
 //               an entry or one of its relative imports outside the scanned folders, or an import by
-//               name that is neither a builtin nor an installed package (nothing scanned is never
-//               clean).
+//               name in the build that is neither a builtin nor an installed package (nothing scanned
+//               is never clean). Inside a package such an import is passed over: an optional require
+//               in a try is common there, and a package that is not installed cannot be bundled.
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { isBuiltin } from 'node:module';
@@ -60,6 +63,31 @@ function importsOf(file, text) {
 }
 
 const isRelative = (specifier) => specifier.startsWith('./') || specifier.startsWith('../');
+
+// esbuild's default implicit extensions (its changelog, 0.9.0 and 0.20.0); wrangler sets no list of
+// its own. .mjs and .cjs count only when an import names them.
+const IMPLICIT_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'];
+
+// The files esbuild's js and jsx loaders read, the only ones that import anything here.
+const SCRIPT_FILE = /\.(?:[cm]?js|jsx)$/;
+
+function isFile(path) {
+	try {
+		return statSync(path).isFile();
+	} catch {
+		return false;
+	}
+}
+
+// The path itself, then with each implicit extension, then a folder's index file the same way.
+function resolveRelative(target) {
+	if (isFile(target)) return target;
+	for (const base of [target, join(target, 'index')]) {
+		const found = IMPLICIT_EXTENSIONS.map((extension) => base + extension).find(isFile);
+		if (found !== undefined) return found;
+	}
+	return undefined;
+}
 
 // node:async_hooks and async_hooks are both Node's; cloudflare:workers and its siblings are the
 // runtime's own.
@@ -97,6 +125,21 @@ const asText = (bytes) => bytes.toString('utf8');
 // installed anywhere above the package could not be bundled either.
 const DEPENDENCY_FIELDS = ['dependencies', 'peerDependencies', 'optionalDependencies'];
 
+// A package's code can import an installed package that none of those fields lists, and esbuild
+// bundles whatever the import resolves to, so each script file's imports by name count too, resolved
+// from that file's folder. One that resolves to no installed package is passed over.
+function importedPackages(folder) {
+	const found = [];
+	for (const file of filesUnder(folder, { skipNodeModules: true })) {
+		if (!SCRIPT_FILE.test(file)) continue;
+		for (const specifier of importsOf(file, readNamed(file, asText))) {
+			if (isRelative(specifier) || isRuntimeModule(specifier)) continue;
+			found.push(packageFolder(dirname(file), packageName(specifier)));
+		}
+	}
+	return found;
+}
+
 function withDependencies(packages) {
 	const found = new Set(packages);
 	const queue = [...packages];
@@ -104,8 +147,11 @@ function withDependencies(packages) {
 		const folder = queue.pop();
 		const manifest = readNamed(join(folder, 'package.json'), (bytes) => JSON.parse(asText(bytes)));
 		const listed = new Set(DEPENDENCY_FIELDS.flatMap((field) => Object.keys(manifest[field] ?? {})));
-		for (const name of listed) {
-			const dependency = packageFolder(folder, name);
+		const dependencies = [
+			...[...listed].map((name) => packageFolder(folder, name)),
+			...importedPackages(folder)
+		];
+		for (const dependency of dependencies) {
 			if (dependency !== undefined && !found.has(dependency)) {
 				found.add(dependency);
 				queue.push(dependency);
@@ -151,7 +197,8 @@ function insideAny(path, folders) {
 
 // An entry whose own file, or any relative import reachable from it, lies outside every scanned
 // folder means the folder list misses deployed code; that is a usage error, never a clean scan. The
-// walk follows each imported .js or .mjs file that exists; a target it cannot read is not followed.
+// walk follows each relative import that resolves to a script file; a stylesheet, a JSON file or a
+// path that resolves to nothing is not followed, and its bytes are scanned with its folder.
 // Returns the folders of the packages those files import by name.
 function entryPackages(entry, folders) {
 	const start = resolve(entry);
@@ -179,16 +226,17 @@ function entryPackages(entry, folders) {
 			if (!insideAny(target, folders)) {
 				throw new UsageError(`${shown(file)} imports ${specifier}, outside the scanned folders`);
 			}
-			if (!seen.has(target) && /\.m?js$/.test(target) && existsSync(target)) {
-				seen.add(target);
-				queue.push(target);
+			const resolved = resolveRelative(target);
+			if (resolved !== undefined && SCRIPT_FILE.test(resolved) && !seen.has(resolved)) {
+				seen.add(resolved);
+				queue.push(resolved);
 			}
 		}
 	}
 	return packages;
 }
 
-// A package's own node_modules holds other packages, read only when listed as dependencies.
+// A package's own node_modules holds other packages, read only when found as packages themselves.
 function filesUnder(dir, { skipNodeModules = false } = {}) {
 	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
 		const path = join(dir, entry.name);
