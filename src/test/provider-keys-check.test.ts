@@ -319,7 +319,8 @@ describe('the --entry coverage rule', () => {
 	it.each([
 		['index.js', "import 'pkg-b';\nimport { c } from 'pkg-c';\nexport const a = c;"],
 		['lib/load.cjs', "module.exports = require('pkg-c');"],
-		['lib/load.mjs', "export const c = await import('pkg-c');"]
+		['lib/load.mjs', "export const c = await import('pkg-c');"],
+		['lib/view.jsx', "import { c } from 'pkg-c';\nexport const View = () => <p>{c}</p>;"]
 	])('finds a key name in a package that %s of an imported one imports unlisted', (file, code) => {
 		const root = folder({
 			...importing("import { a } from 'pkg-a';"),
@@ -352,16 +353,30 @@ describe('the --entry coverage rule', () => {
 
 	// esbuild tries .tsx, .ts, .jsx, .js, .css and .json after a path with no extension, the same list
 	// for a folder's index file, and takes .mjs and .cjs only when named. A chunk the walk passed over
-	// could import a package that would then go unscanned.
+	// could import a package that would then go unscanned. The .ts chunk holds a type assertion, which
+	// a parse as JavaScript reads as the start of a JSX element, losing the require after it.
+	const REQUIRE_K = "require('pkg-k');";
 	it.each([
-		['a path with no extension', "import './chunk';", 'output/server/chunk.js'],
-		['a folder with an index file', "import './chunks';", 'output/server/chunks/index.js'],
-		['a named .cjs file', "require('./chunk.cjs');", 'output/server/chunk.cjs'],
-		['a .jsx file with no extension', "import './view';", 'output/server/view.jsx']
-	])('follows %s to the packages it imports', (_label, line, file) => {
+		['a path with no extension', "import './chunk';", 'output/server/chunk.js', REQUIRE_K],
+		[
+			'a folder with an index file',
+			"import './chunks';",
+			'output/server/chunks/index.js',
+			REQUIRE_K
+		],
+		['a named .cjs file', "require('./chunk.cjs');", 'output/server/chunk.cjs', REQUIRE_K],
+		['a .jsx file with no extension', "import './view';", 'output/server/view.jsx', REQUIRE_K],
+		[
+			'a .ts file with no extension',
+			"import './chunk';",
+			'output/server/chunk.ts',
+			`const value: unknown = 1;\nconst n = <number>value;\n${REQUIRE_K}\nexport { n };`
+		],
+		['a .tsx file with no extension', "import './view';", 'output/server/view.tsx', REQUIRE_K]
+	])('follows %s to the packages it imports', (_label, line, file, code) => {
 		const root = folder({
 			...importing(line),
-			[file]: "require('pkg-k');",
+			[file]: code,
 			'node_modules/pkg-k/package.json': '{ "name": "pkg-k" }',
 			'node_modules/pkg-k/index.js': 'TAVILY_API_KEY'
 		});

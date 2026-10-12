@@ -16,9 +16,9 @@
 // instead of passing over it. A relative import resolves the way esbuild resolves it: the path
 // itself, then the path with each implicit extension, then a folder's index file. Each package those
 // files import by name is scanned whole from node_modules, with every installed package it lists as
-// a dependency, a peer dependency or an optional one, and every installed package its script files
-// import by name, listed or not: more than wrangler bundles, so no export condition decides what is
-// read. A package's own node_modules is read only through a package found one of those ways.
+// a dependency, a peer dependency or an optional one, and every installed package its JavaScript
+// files import by name, listed or not: more than wrangler bundles, so no export condition decides
+// what is read. A package's own node_modules is read only through a package found one of those ways.
 //
 // Usage:  node scripts/check-provider-keys.mjs DIR... [--entry FILE]... [--canary VALUE]...
 // Exit codes: 0 no key name or canary value in any file,
@@ -45,8 +45,10 @@ const isImportOrRequire = (callee) =>
 // import scanner (preProcessFile) misses export * as ns from and loses an import that follows a
 // regular expression holding a backtick. Static imports, re-exports and import() or require() calls
 // with a string argument count; a computed import() is passed over, as a bundler passes it over.
+// TypeScript picks the parse from the file name: TS for .ts, .mts and .cts, TSX, JSX, JS for the
+// rest. Parsed as JavaScript, a .ts type assertion reads as the start of a JSX element.
 function importsOf(file, text) {
-	const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, false, ts.ScriptKind.JS);
+	const source = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, false);
 	const found = [];
 	const visit = (node) => {
 		const specifier =
@@ -68,8 +70,15 @@ const isRelative = (specifier) => specifier.startsWith('./') || specifier.starts
 // its own. .mjs and .cjs count only when an import names them.
 const IMPLICIT_EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'];
 
-// The files esbuild's js and jsx loaders read, the only ones that import anything here.
-const SCRIPT_FILE = /\.(?:[cm]?js|jsx)$/;
+// The files esbuild's js, jsx, ts and tsx loaders read, the only ones that import anything here. A
+// declaration file is never bundled.
+const isScriptFile = (file) =>
+	/\.(?:[cm]?[jt]s|[jt]sx)$/.test(file) && !/\.d\.[cm]?ts$/.test(file);
+
+// Inside a package only JavaScript is parsed for imports: its entry points and exports name
+// JavaScript, and esbuild tries .js before .ts in node_modules. The TypeScript sources many packages
+// ship beside their build import their own dev tooling, which esbuild never reaches from the build.
+const isPackageScript = (file) => /\.(?:[cm]?js|jsx)$/.test(file);
 
 function isFile(path) {
 	try {
@@ -126,12 +135,12 @@ const asText = (bytes) => bytes.toString('utf8');
 const DEPENDENCY_FIELDS = ['dependencies', 'peerDependencies', 'optionalDependencies'];
 
 // A package's code can import an installed package that none of those fields lists, and esbuild
-// bundles whatever the import resolves to, so each script file's imports by name count too, resolved
-// from that file's folder. One that resolves to no installed package is passed over.
+// bundles whatever the import resolves to, so each JavaScript file's imports by name count too,
+// resolved from that file's folder. One that resolves to no installed package is passed over.
 function importedPackages(folder) {
 	const found = [];
 	for (const file of filesUnder(folder, { skipNodeModules: true })) {
-		if (!SCRIPT_FILE.test(file)) continue;
+		if (!isPackageScript(file)) continue;
 		for (const specifier of importsOf(file, readNamed(file, asText))) {
 			if (isRelative(specifier) || isRuntimeModule(specifier)) continue;
 			found.push(packageFolder(dirname(file), packageName(specifier)));
@@ -227,7 +236,7 @@ function entryPackages(entry, folders) {
 				throw new UsageError(`${shown(file)} imports ${specifier}, outside the scanned folders`);
 			}
 			const resolved = resolveRelative(target);
-			if (resolved !== undefined && SCRIPT_FILE.test(resolved) && !seen.has(resolved)) {
+			if (resolved !== undefined && isScriptFile(resolved) && !seen.has(resolved)) {
 				seen.add(resolved);
 				queue.push(resolved);
 			}
