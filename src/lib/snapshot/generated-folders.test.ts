@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
-import { SnapshotIndexSchema } from './index-row';
+import { CaptureLineSchema, SnapshotIndexSchema } from './index-row';
 
 // globalSetup has run scripts/build-records.mjs before this file, so these read its real output.
 const GENERATED = join('src', 'lib', 'snapshot', 'generated');
@@ -45,6 +45,14 @@ describe('generated record folders', () => {
 	it.each(folders(GENERATED))('%s: its index names this capture and parses', (id) => {
 		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
 		expect(index.capture.id).toBe(id);
+	});
+
+	// The server bundles capture.json so a 404 names the days; it must be the index's own line.
+	it.each(folders(GENERATED))('%s: writes capture.json as the index capture line', (id) => {
+		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
+		expect(CaptureLineSchema.parse(readJson(join(GENERATED, id, 'capture.json')))).toEqual(
+			index.capture
+		);
 	});
 
 	it.each(folders(GENERATED))(

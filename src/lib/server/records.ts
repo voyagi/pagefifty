@@ -5,11 +5,13 @@ import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
 import { newestCapture } from '../snapshot/capture-id';
 import {
+	CaptureLineSchema,
 	NOTICE_NUMBER,
 	NoticeRecordSchema,
 	SnapshotIndexSchema,
 	type SnapshotIndex
 } from '../snapshot/index-row';
+import { captureFacts, type CaptureFacts } from '../tenders/list';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
 // the snapshot was taken, read from the index the page already loads, so the example reads no
@@ -23,13 +25,14 @@ export function instantOf(now: Now, index: SnapshotIndex): Date {
 // The build names each record file after a notice number the index schema accepted, so the file
 // name is read back as written and loadRecord checks the number itself before any lookup.
 const INDEX_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/index\.json$/;
+const CAPTURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/capture\.json$/;
 const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 
-function byMatch(urls: Record<string, string>, pattern: RegExp): ReadonlyMap<string, string> {
-	const found = new Map<string, string>();
-	for (const [path, url] of Object.entries(urls)) {
+function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
+	const found = new Map<string, T>();
+	for (const [path, file] of Object.entries(files)) {
 		const match = pattern.exec(path);
-		if (match) found.set(match.slice(1).join('/'), url);
+		if (match) found.set(match.slice(1).join('/'), file);
 	}
 	return found;
 }
@@ -51,6 +54,16 @@ const RECORD_URLS = byMatch(
 		eager: true
 	}),
 	RECORD_PATH
+);
+// The capture lines themselves, a few hundred bytes each, are bundled rather than read, so a 404
+// names its snapshot's days with no read at all. The index is too large to bundle this way: Vite
+// inlines a JSON file over 10 kB whole, rows included.
+const CAPTURE_LINES = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/capture.json', {
+		import: 'default',
+		eager: true
+	}),
+	CAPTURE_PATH
 );
 // Stryker restore all
 
@@ -92,6 +105,25 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 		throw new Error(`the ${capture} index does not match its schema: ${parsed.error.message}`);
 	}
 	return parsed.data;
+}
+
+// The days a 404 names, from the bundled line of the capture the route reads, so a newer capture
+// never leaves the page naming an older one's days. A missing or damaged line is a broken build
+// and fails the page like a damaged index does.
+export function snapshotDays(capture: string): CaptureFacts {
+	const line = CAPTURE_LINES.get(capture);
+	if (line === undefined) {
+		throw new Error(
+			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it, and npm run dev, npm run build and the test run each call it first`
+		);
+	}
+	const parsed = CaptureLineSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} capture line does not match its schema: ${parsed.error.message}`
+		);
+	}
+	return captureFacts(parsed.data);
 }
 
 // An unknown or malformed notice number is answered before any read, so the tender page can 404.

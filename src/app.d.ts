@@ -9,12 +9,15 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		// The tender pages throw error(404, { message, kind: 'unknown-notice', notice }) so the error
-		// page can name the notice; every other error carries the message alone.
+		// The tender pages throw error(404, { message, kind: 'unknown-notice', notice, capturedOn,
+		// firstPublished }) so the error page can name the notice and the days of the snapshot it is
+		// missing from; every other error carries the message alone.
 		interface Error {
 			message: string;
 			kind?: 'unknown-notice';
 			notice?: string;
+			capturedOn?: string;
+			firstPublished?: string;
 		}
 		// interface Locals {}
 		// interface PageData {}

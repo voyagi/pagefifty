@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { CAPTURE_ID } from '../snapshot/capture-id';
+import { captureFacts } from '../tenders/list';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -9,7 +10,7 @@ const read = vi.hoisted(() =>
 );
 vi.mock('$app/server', () => ({ read }));
 
-const { EXAMPLE_CAPTURE, LATEST_CAPTURE, loadIndex, loadRecord, newestCapture } =
+const { EXAMPLE_CAPTURE, LATEST_CAPTURE, loadIndex, loadRecord, newestCapture, snapshotDays } =
 	await import('./records');
 
 // The shapes SvelteKit's read() really produces on the Worker. Its answer is always status 200: the
@@ -81,6 +82,31 @@ describe('the captures the pages read', () => {
 
 	it('keeps the example on the 2026-09-15 capture', () => {
 		expect(EXAMPLE_CAPTURE).toBe('2026-09-15');
+	});
+});
+
+describe('snapshotDays', () => {
+	it.each([
+		['the example', EXAMPLE_CAPTURE],
+		['the newest', LATEST_CAPTURE]
+	])('gives %s capture the same days as its built index, with no read', async (_label, capture) => {
+		const days = snapshotDays(capture);
+		expect(read).not.toHaveBeenCalled();
+		const index = await loadIndex(capture);
+		expect(days).toEqual(captureFacts(index.capture));
+	});
+
+	it('names 15 Sep 2026 and 1 Sep 2026 for the example capture', () => {
+		expect(snapshotDays(EXAMPLE_CAPTURE)).toMatchObject({
+			capturedOn: '15 Sep 2026',
+			firstPublished: '1 Sep 2026'
+		});
+	});
+
+	it('names the step that writes the line when a capture was never built', () => {
+		expect(() => snapshotDays('2026-02-01')).toThrow(
+			'no built capture line for capture 2026-02-01: scripts/build-records.mjs writes it'
+		);
 	});
 });
 

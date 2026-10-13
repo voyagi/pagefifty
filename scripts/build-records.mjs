@@ -8,10 +8,11 @@
 // (src/lib/ingest/read-notice.ts). The records then pass the active and latest rule
 // (src/lib/ingest/latest.ts), so a listed notice it leaves out gets no row and no record file and
 // is named with its reason in the index's leftOut; the capture folder itself is never changed.
-// The result is <out>/<capture date>/index.json (one row per kept notice) and
-// records/<notice>.json, written compact into a temp folder and moved into place only when every
-// notice of every capture was read. This script is a thin caller: the reading rules live in src,
-// where the import rules and tests see them.
+// The result is <out>/<capture date>/index.json (one row per kept notice), capture.json (the
+// index's capture line alone, which the server bundles so a 404 names the snapshot's days without
+// reading an index) and records/<notice>.json, written compact into a temp folder and moved into
+// place only when every notice of every capture was read. This script is a thin caller: the
+// reading rules live in src, where the import rules and tests see them.
 //
 // Runs as predev, prebuild, premutate and vitest globalSetup, so the gitignored output never drifts
 // from the tracked capture. Two runs writing one folder at the same moment can collide on Windows
@@ -205,6 +206,8 @@ function writeCapture(out, capture) {
 		mkdirSync(join(temp, 'records'), { recursive: true });
 		step = 'write index.json';
 		writeFileSync(join(temp, 'index.json'), JSON.stringify(capture.index));
+		step = 'write capture.json';
+		writeFileSync(join(temp, 'capture.json'), JSON.stringify(capture.index.capture));
 		step = 'write the notice records';
 		for (const record of capture.records) {
 			writeFileSync(join(temp, 'records', `${record.noticeNumber}.json`), JSON.stringify(record));

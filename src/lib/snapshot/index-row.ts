@@ -145,15 +145,19 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	lots: z.array(LotRecordSchema).min(1)
 });
 
+// The build also writes this line on its own, as capture.json beside the index, so a 404 can name
+// the snapshot's days without reading the index.
+export const CaptureLineSchema = z.strictObject({
+	id: z.string().regex(CAPTURE_ID),
+	fetchedAt: z.iso.datetime(),
+	// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
+	// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
+	total: z.number().int().nonnegative(),
+	query: z.string()
+});
+
 export const SnapshotIndexSchema = z.strictObject({
-	capture: z.strictObject({
-		id: z.string().regex(CAPTURE_ID),
-		fetchedAt: z.iso.datetime(),
-		// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
-		// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
-		total: z.number().int().nonnegative(),
-		query: z.string()
-	}),
+	capture: CaptureLineSchema,
 	// Listed notices the active and latest rule kept off the list, each with its reason. Required,
 	// so an index built before the rule existed fails the load instead of serving a replaced version.
 	leftOut: z.array(

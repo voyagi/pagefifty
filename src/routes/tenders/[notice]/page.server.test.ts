@@ -1,16 +1,37 @@
 import { isHttpError } from '@sveltejs/kit';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { loadIndex, loadRecord } from '$lib/server/records';
+import { loadIndex, loadRecord, snapshotDays } from '$lib/server/records';
 import { load } from './+page.server';
 
+// The live route reads the newest capture, named apart from the example's so a swap shows.
 vi.mock('$lib/server/records', () => ({
-	LATEST_CAPTURE: '2026-09-15',
+	LATEST_CAPTURE: '2026-10-11',
 	EXAMPLE_CAPTURE: '2026-09-15',
 	loadRecord: vi.fn(async () => undefined),
 	loadIndex: vi.fn(async () => {
 		throw new Error('the index must not be read for a notice the snapshot does not hold');
-	})
+	}),
+	snapshotDays: vi.fn((capture: string) =>
+		capture === '2026-10-11'
+			? {
+					capturedOn: '11 Oct 2026',
+					fetchedAt: '2026-10-11T09:00:00.000Z',
+					firstPublished: '27 Sep 2026'
+				}
+			: {
+					capturedOn: '15 Sep 2026',
+					fetchedAt: '2026-09-15T19:50:49.157Z',
+					firstPublished: '1 Sep 2026'
+				}
+	)
 }));
+
+const UNKNOWN = {
+	message: 'Not Found',
+	kind: 'unknown-notice',
+	capturedOn: '11 Oct 2026',
+	firstPublished: '27 Sep 2026'
+};
 
 type LoadEvent = Parameters<typeof load>[0];
 
@@ -28,6 +49,7 @@ describe('/tenders/[notice] load', () => {
 	beforeEach(() => {
 		vi.mocked(loadRecord).mockClear();
 		vi.mocked(loadIndex).mockClear();
+		vi.mocked(snapshotDays).mockClear();
 	});
 
 	// A trailing newline arrives as %0A in the address; the pattern must end at the text's end.
@@ -40,21 +62,20 @@ describe('/tenders/[notice] load', () => {
 		'0609955-2026',
 		'609955-2026\n'
 	])('answers 404 for the malformed number %j without reading anything', async (notice) => {
-		expect(await statusOf(notice)).toEqual({
-			status: 404,
-			body: { message: 'Not Found', kind: 'unknown-notice', notice }
-		});
+		expect(await statusOf(notice)).toEqual({ status: 404, body: { ...UNKNOWN, notice } });
 		expect(loadRecord).not.toHaveBeenCalled();
 		expect(loadIndex).not.toHaveBeenCalled();
+		expect(snapshotDays).toHaveBeenCalledWith('2026-10-11');
 	});
 
 	it('answers 404 with kind unknown-notice for a well-formed number the snapshot does not hold', async () => {
 		expect(await statusOf('999991-2026')).toEqual({
 			status: 404,
-			body: { message: 'Not Found', kind: 'unknown-notice', notice: '999991-2026' }
+			body: { ...UNKNOWN, notice: '999991-2026' }
 		});
-		expect(loadRecord).toHaveBeenCalledWith('2026-09-15', '999991-2026');
+		expect(loadRecord).toHaveBeenCalledWith('2026-10-11', '999991-2026');
 		expect(loadIndex).not.toHaveBeenCalled();
+		expect(snapshotDays).toHaveBeenCalledWith('2026-10-11');
 	});
 
 	it('answers each of several parallel unknown notices with its own 404', async () => {

@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { render, screen } from '@testing-library/svelte';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { captureDay, SnapshotIndexSchema } from '$lib/snapshot/index-row';
+import { captureFacts } from '$lib/tenders/list';
 import { CAPTURE_ID } from '../test/fixtures/roles';
 
 const state = vi.hoisted(() => ({
@@ -125,7 +126,9 @@ describe('error page', () => {
 		at(404, '/tenders/999999-2026', {
 			message: 'Not Found',
 			kind: 'unknown-notice',
-			notice: '999999-2026'
+			notice: '999999-2026',
+			capturedOn: '15 Sep 2026',
+			firstPublished: '1 Sep 2026'
 		});
 		render(ErrorPage);
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(
@@ -138,28 +141,54 @@ describe('error page', () => {
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
 	});
 
-	// The copy writes both days out; a new capture must fail here rather than leave the page naming
-	// the old snapshot or the old publication window.
-	it('names the capture day and the first publication day the built index records', () => {
+	// The live route reads the newest capture, so the days are the ones its loader sent, never the
+	// example's: a fixed date here would outlive the capture it named.
+	it('names the days the 404 carries, and no first day when its capture names none', () => {
+		at(404, '/tenders/999999-2026', {
+			message: 'Not Found',
+			kind: 'unknown-notice',
+			notice: '999999-2026',
+			capturedOn: '11 Oct 2026',
+			firstPublished: '27 Sep 2026'
+		});
+		const { unmount } = render(ErrorPage);
+		const lede = () => squash(document.querySelector('.lede')?.textContent);
+		expect(lede()).toContain('is not in the 11 Oct 2026 snapshot.');
+		expect(lede()).toContain('published before 27 Sep 2026 or after the capture,');
+		expect(lede()).not.toContain('Sep 2026 snapshot');
+		unmount();
+		at(404, '/tenders/999999-2026', {
+			message: 'Not Found',
+			kind: 'unknown-notice',
+			notice: '999999-2026',
+			capturedOn: '11 Oct 2026'
+		});
+		render(ErrorPage);
+		expect(lede()).toContain('scope, published after the capture, not a call');
+	});
+
+	// The scope the copy claims is checked against the built index, and the days come through the
+	// same captureFacts every other page uses.
+	it('states the scope and the days the built index records', () => {
 		const index = SnapshotIndexSchema.parse(
 			JSON.parse(
 				readFileSync(join('src', 'lib', 'snapshot', 'generated', CAPTURE_ID, 'index.json'), 'utf8')
 			)
 		);
-		const from = /publication-date>=(\d{4})(\d{2})(\d{2})/.exec(index.capture.query);
-		if (!from)
+		const { capturedOn, firstPublished } = captureFacts(index.capture);
+		if (!firstPublished)
 			throw new Error(`the capture query names no first publication day: ${index.capture.query}`);
 		at(404, '/tenders/999999-2026', {
 			message: 'Not Found',
 			kind: 'unknown-notice',
-			notice: '999999-2026'
+			notice: '999999-2026',
+			capturedOn,
+			firstPublished
 		});
 		render(ErrorPage);
 		const lede = squash(document.querySelector('.lede')?.textContent);
 		expect(lede).toContain(`not in the ${captureDay(index.capture.fetchedAt)} snapshot`);
-		expect(lede).toContain(
-			`published before ${captureDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`)} or after the capture,`
-		);
+		expect(lede).toContain(`published before ${firstPublished} or after the capture,`);
 		// Only calls for tenders are in the capture (the query's notice type), and only those TED
 		// listed as active (scope ACTIVE, recorded in examples/2026-09-15/README.md): 10 notices of
 		// the same query were in scope and window but no longer active (spike 001, 373 against 363).
