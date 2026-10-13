@@ -408,7 +408,7 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 			const index = SnapshotIndexSchema.parse(
 				JSON.parse(readFileSync(join(folder, 'index.json'), 'utf8'))
 			);
-			expect(index.rows).toHaveLength(363);
+			expect(index.rows).toHaveLength(362);
 			const census: Record<string, { pointing: number; plain: number }> = {};
 			const tags: Record<string, number> = {};
 			for (const row of index.rows) {
@@ -430,7 +430,7 @@ describe(`the records built from the ${CAPTURE_ID} capture`, () => {
 				}
 			}
 			// The tag counts the build spec and the pitch quote.
-			expect(tags).toEqual({ 'criteria-in-documents': 313, 'criteria-not-read': 50 });
+			expect(tags).toEqual({ 'criteria-in-documents': 312, 'criteria-not-read': 50 });
 			expect(Object.keys(census).sort()).toEqual(['de', 'fr', 'nl']);
 			for (const tally of Object.values(census)) {
 				expect(tally.pointing).toBeGreaterThan(0);

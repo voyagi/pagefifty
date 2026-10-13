@@ -84,8 +84,19 @@ export interface LotRecord {
 	documents?: DocumentsLink;
 }
 
+// Every version of one notice shares its identifier (BT-701) and carries a rising VersionID
+// (BT-757); a change notice names each version it changes (BT-758) as "<identifier>-<VersionID>".
+// The version stays the published digit string; the filter compares it as an integer.
+export interface NoticeIdentity {
+	id: string;
+	version: string;
+	procedure: string;
+	changes: string[];
+}
+
 export interface NoticeRecord {
 	noticeNumber: string;
+	notice: NoticeIdentity;
 	sdkVersion: string;
 	noticeSubtype: string;
 	legalBasis: string;
@@ -440,7 +451,27 @@ function cpvCodes(projects: unknown[], classification: string): string[] {
 	return unique(codes.map(textOf).filter((text) => text !== ''));
 }
 
+// A version that is not plain digits cannot be ordered against another, so it is refused rather
+// than guessed: a guess could serve a replaced version as the open tender.
+function toIdentity(root: XmlNode): NoticeIdentity {
+	const id = walk(root, ['cbc:ID']).find(
+		(each) => attribute(each, 'schemeName') === 'notice-id' && textOf(each)
+	);
+	if (id === undefined) throw missing(`${ROOT}/cbc:ID with schemeName notice-id`);
+	const version = requiredText(root, ['cbc:VersionID'], ROOT);
+	if (!/^\d+$/.test(version)) {
+		throw new RecordFault(`malformed ${ROOT}/cbc:VersionID ${JSON.stringify(version)}`);
+	}
+	return {
+		id: textOf(id),
+		version,
+		procedure: requiredText(root, ['cbc:ContractFolderID'], ROOT),
+		changes: texts(root, [...EFORMS_EXTENSION, 'efac:Changes', 'efbc:ChangedNoticeIdentifier'])
+	};
+}
+
 function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
+	const notice = toIdentity(root);
 	const sdkVersion = requiredText(root, ['cbc:CustomizationID'], ROOT);
 	const extension = [...EFORMS_EXTENSION, 'efac:NoticeSubType', 'cbc:SubTypeCode'];
 	const noticeSubtype = requiredText(root, extension, ROOT);
@@ -456,6 +487,7 @@ function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
 	const documents = toDocuments(walk(root, ['cac:TenderingTerms']));
 	return {
 		noticeNumber,
+		notice,
 		sdkVersion,
 		noticeSubtype,
 		legalBasis,

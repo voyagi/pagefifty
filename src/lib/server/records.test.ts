@@ -35,7 +35,7 @@ describe('loadIndex', () => {
 	it('reads every notice of the default capture through read()', async () => {
 		const index = await loadIndex(DEFAULT_CAPTURE);
 		expect(index.capture.id).toBe('2026-09-15');
-		expect(index.rows).toHaveLength(363);
+		expect(index.rows).toHaveLength(362);
 		expect(read).toHaveBeenCalledTimes(1);
 	});
 
@@ -85,6 +85,10 @@ describe('loadRecord', () => {
 		const record = await loadRecord(DEFAULT_CAPTURE, '609955-2026');
 		expect(record?.noticeNumber).toBe('609955-2026');
 		expect(record?.lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
+	});
+
+	it('answers nothing for 601147-2026, the version 600367-2026 superseded', async () => {
+		expect(await loadRecord(DEFAULT_CAPTURE, '601147-2026')).toBeUndefined();
 	});
 
 	it('fails the load when a record does not match its schema', async () => {

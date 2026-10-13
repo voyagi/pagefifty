@@ -5,7 +5,7 @@
 // Every address is a literal, as the navigation allowlist requires.
 //
 // The run uses the real clock, so the captured tenders close day by day (on 1 Dec 2026 two of the
-// 363 are still open), and no check here depends on a notice being open.
+// 362 are still open), and no check here depends on a notice being open.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tender-page';

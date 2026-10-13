@@ -12,6 +12,12 @@ const GERMAN = (text: string) => ({ text, lang: 'de', rawLang: 'DEU' });
 
 const RECORD: NoticeRecord = {
 	noticeNumber: '609955-2026',
+	notice: {
+		id: '38c19032-e327-4ae0-b618-31b349376b36',
+		version: '01',
+		procedure: 'd3ec00fd-56a4-4251-8674-8297cf1736d8',
+		changes: []
+	},
 	sdkVersion: 'eforms-sdk-1.13',
 	noticeSubtype: '16',
 	legalBasis: '32014L0024',
@@ -57,6 +63,7 @@ const index = (rows: unknown[]) => ({
 		total: rows.length,
 		query: 'q'
 	},
+	leftOut: [],
 	rows
 });
 

@@ -15,6 +15,7 @@ import type {
 	LegislationReference,
 	LotDeadlines,
 	LotRecord,
+	NoticeIdentity,
 	NoticeRecord
 } from '../ingest/record.ts';
 
@@ -116,8 +117,16 @@ const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
 	documents: DocumentsLinkSchema.optional()
 });
 
+const NoticeIdentitySchema: z.ZodType<NoticeIdentity> = z.strictObject({
+	id: z.string().min(1),
+	version: z.string().regex(/^\d+$/),
+	procedure: z.string().min(1),
+	changes: z.array(z.string())
+});
+
 export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	noticeNumber: z.string().regex(NOTICE_NUMBER),
+	notice: NoticeIdentitySchema,
 	sdkVersion: z.string(),
 	noticeSubtype: z.string(),
 	legalBasis: z.string(),
@@ -139,6 +148,11 @@ export const SnapshotIndexSchema = z.strictObject({
 		total: z.number().int().nonnegative(),
 		query: z.string()
 	}),
+	// Listed notices the active and latest rule kept off the list, each with its reason. Required,
+	// so an index built before the rule existed fails the load instead of serving a replaced version.
+	leftOut: z.array(
+		z.strictObject({ notice: z.string().regex(NOTICE_NUMBER), reason: z.string().min(1) })
+	),
 	rows: z.array(IndexRowSchema)
 });
 
