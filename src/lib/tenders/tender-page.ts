@@ -96,6 +96,7 @@ export interface TenderPageModel {
 	lotIndex: LotIndexEntry[];
 	lots: LotView[];
 	documentsUnread: boolean;
+	cancelIntent: boolean;
 }
 
 // What the loader hands the page. It lives here, not beside the loader, because components may not
@@ -267,6 +268,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 				: [],
 		lots,
 		// The same facts that give the list its "Criteria in the documents" tag.
-		documentsUnread: readingStatus(record.lots.map(summarizeLot)).tag === 'criteria-in-documents'
+		documentsUnread: readingStatus(record.lots.map(summarizeLot)).tag === 'criteria-in-documents',
+		cancelIntent: record.cancelIntent === true
 	};
 }

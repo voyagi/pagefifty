@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { CANCEL_INTENT_LINE } from '$lib/tenders/list';
 	import type { TenderPageData } from '$lib/tenders/tender-page';
 	import Binder from './Binder.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
@@ -102,6 +103,10 @@
 					{tender.title.text}
 				</h1>
 				{@render tab()}
+				<!-- After the tab, so the tab still follows its heading in DOM order. -->
+				{#if tender.cancelIntent}
+					<p class="sub" data-cancel-intent>{CANCEL_INTENT_LINE}</p>
+				{/if}
 				<UnreadStrip />
 				<SourceLinks tedUrl={tender.tedUrl} documents={tender.documents} />
 				{#if tender.lotIndex.length > 0}
