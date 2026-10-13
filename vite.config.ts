@@ -16,15 +16,17 @@ function projectTest(name: keyof typeof PROJECTS) {
 	};
 }
 
-export default defineConfig(({ command, mode }) => {
-	// Under vitest, wrangler's local config reader would hand the workerd project every key in a
-	// dotenv file beside wrangler.jsonc as a binding, real provider keys included. Tests never see
-	// a key. The vitest command sets VITEST, but a run started through vitest's API (an editor
-	// plugin) sets nothing and passes only the mode, so both are read. This switch does not cover a
-	// .dev.vars file, so env-bindings.worker.test.ts fails on any binding the config does not declare.
-	if (mode === 'test' || process.env.VITEST) {
-		process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';
-	}
+export default defineConfig(({ command }) => {
+	// Wrangler would hand vite dev, vite preview, the build's prerender (all three through the
+	// platform proxy) and the workerd tests every key in a dotenv file beside wrangler.jsonc, real
+	// provider keys included. The switch closes the dotenv files for all four. A .dev.vars file is read
+	// whenever no env file list is given: the envFiles list below closes it for the platform proxy, but
+	// the workerd project's plugin passes no list, so there env-bindings.worker.test.ts fails on any
+	// binding it would add. The include switch, when true, adds the whole shell environment to those
+	// dotenv files. The installed wrangler reads it only while they load, so it is closed too as a
+	// margin, as scripts/preview.mjs and the browser harness close it.
+	process.env.CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV = 'false';
+	process.env.CLOUDFLARE_INCLUDE_PROCESS_ENV = 'false';
 	// Vite dev injects each component's styles as a style element, so dev needs inline styles. The
 	// built Worker links every stylesheet, so production keeps style-src to 'self' and the nonce.
 	const styleSrc: ('self' | 'unsafe-inline')[] =
@@ -37,7 +39,10 @@ export default defineConfig(({ command, mode }) => {
 					runes: ({ filename }) =>
 						filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 				},
-				adapter: adapter(),
+				adapter: adapter({ platformProxy: { envFiles: ['env/no-keys.env'] } }),
+				// SvelteKit reads every key of the env files in this folder into $env/dynamic/private,
+				// and env/ holds only the empty no-keys.env.
+				env: { dir: 'env' },
 				// Pages render on request, so auto mode means a fresh nonce per response; the head
 				// script in src/app.html carries it through %sveltekit.nonce%.
 				csp: {

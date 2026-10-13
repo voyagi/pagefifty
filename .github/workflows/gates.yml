@@ -31,6 +31,9 @@ jobs:
       - run: npm run gate:repo
       # Its own step: the check needs a built bundle, which the pre-commit hook never has.
       - run: node scripts/check-client-secrets.mjs .svelte-kit/output/client
+      # Every folder the deployed Worker is built from; --entry refuses a list that misses one and
+      # adds the packages the Worker imports by name, which wrangler bundles at deploy.
+      - run: node scripts/check-provider-keys.mjs .svelte-kit/output .svelte-kit/cloudflare .svelte-kit/cloudflare-tmp --entry .svelte-kit/cloudflare/_worker.js
       # Vulnerability and license scans run on main only, so pull request logs never list open CVEs.
       # Most packages here are devDependencies, and trivy leaves those out unless told, so the flag
       # below is what makes these scans see the tree. The action has no input for it; its README

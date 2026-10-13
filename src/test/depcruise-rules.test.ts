@@ -1,5 +1,6 @@
 // The import rules are proven on planted trees rather than on src, because src does not yet hold
-// a profile module, a parser importer or a raw network import for them to catch. The trees live under
+// a profile module, a parser importer, a raw network import, a site import of the capture command,
+// a site import of a test or a site import of a file outside src for them to catch. The trees live under
 // .stryker-tmp (ignored, inside the repo) so fast-xml-parser resolves from the repo's
 // node_modules exactly as it would from src.
 import { spawnSync } from 'node:child_process';
@@ -18,6 +19,65 @@ const READER =
 const TEST_SERVER =
 	"import { createServer } from 'node:http';\nexport const serve = () => createServer();\n";
 const SETUP_SOCKET = "import net from 'node:net';\nexport const socket = net.Socket;\n";
+// The command, its own tests and the test helpers may import the command; the site may not.
+const CAPTURE_SIDE: Record<string, string> = {
+	'src/lib/capture/run.ts': "export const run = () => 'capture';\n",
+	'src/lib/capture/helper.ts': "import { run } from './run';\nexport const helper = () => run();\n",
+	'src/lib/capture-user.test.ts':
+		"import { run } from './capture/run';\nexport const used = run;\n",
+	'src/test/capture-stub.ts':
+		"import { run } from '../lib/capture/run';\nexport const stub = run;\n"
+};
+// A test may read private env and site code may read public env; site code may not read private env.
+const PRIVATE_ENV_SIDE: Record<string, string> = {
+	'src/lib/env-user.test.ts':
+		"import { env } from '$env/dynamic/private';\nexport const used = env;\n",
+	'src/lib/public-env.ts':
+		"import { env } from '$env/dynamic/public';\nimport { PUBLIC_X } from '$env/static/public';\nexport const pub = [env, PUBLIC_X];\n"
+};
+// Site code reaching the command through the helper the capture rule exempts, and a route importing
+// a test file: neither import is a direct one into src/lib/capture.
+const TEST_IMPORTS_PLANTED: Record<string, string> = {
+	'src/lib/via-test-helper.ts':
+		"import { stub } from '../test/capture-stub';\nexport const viaHelper = () => stub();\n",
+	'src/routes/test-planted/+page.ts':
+		"import { used } from '../../lib/capture-user.test';\nexport const load = () => ({ used: typeof used });\n",
+	'src/lib/via-spec.ts':
+		"import { used } from './capture-user.spec';\nexport const viaSpec = used;\n",
+	'src/lib/via-test-js.ts':
+		"import { sock } from './net-user.test.js';\nexport const viaTestJs = sock;\n"
+};
+const TEST_IMPORTS_CLEAN: Record<string, string> = {
+	'src/lib/via-test-helper.ts': "export const viaHelper = () => 'none';\n",
+	'src/routes/test-planted/+page.ts': 'export const load = () => ({});\n',
+	'src/lib/via-spec.ts': "export const viaSpec = 'none';\n",
+	'src/lib/via-test-js.ts': "export const viaTestJs = 'none';\n"
+};
+// ESLint's test names are *.{test,spec}.{ts,js}, so a spec file and a JavaScript test get the same
+// exemptions as a .test.ts file: the command, private env, a test helper and a raw socket.
+const OTHER_TEST_NAMES: Record<string, string> = {
+	'src/lib/capture-user.spec.ts':
+		"import { run } from './capture/run';\nimport { env } from '$env/dynamic/private';\nimport { stub } from '../test/capture-stub';\nexport const used = [run, env, stub];\n",
+	'src/lib/net-user.test.js': "import net from 'node:net';\nexport const sock = net.Socket;\n"
+};
+// Files outside src/ that import the command and a raw socket. The rules above judge the importing
+// module, so a hop through one of these is never theirs to judge. A test may reach them.
+const OUTSIDE_SRC_SIDE: Record<string, string> = {
+	'tools/relay.ts': "import { run } from '../src/lib/capture/run';\nexport const relay = run;\n",
+	'tools/net-relay.ts': "import net from 'node:net';\nexport const sock = net.Socket;\n",
+	'src/lib/tools-user.test.ts':
+		"import { relay } from '../../tools/relay';\nexport const used = relay;\n"
+};
+const OUTSIDE_SRC_PLANTED: Record<string, string> = {
+	'src/lib/via-tools.ts':
+		"import { relay } from '../../tools/relay';\nexport const viaTools = relay;\n",
+	'src/routes/outside-planted/+page.server.ts':
+		"import { sock } from '../../../tools/net-relay';\nexport const load = () => ({ s: typeof sock });\n"
+};
+const OUTSIDE_SRC_CLEAN: Record<string, string> = {
+	'src/lib/via-tools.ts': "export const viaTools = 'none';\n",
+	'src/routes/outside-planted/+page.server.ts': 'export const load = () => ({});\n'
+};
 
 const PLANTED: Record<string, string> = {
 	'src/lib/profile/schema.ts': PROFILE,
@@ -35,7 +95,21 @@ const PLANTED: Record<string, string> = {
 	'src/lib/raw-network.ts':
 		"import { connect } from 'cloudflare:sockets';\nimport { request } from 'node:https';\nimport { lookup } from 'node:dns/promises';\nexport const open = [connect, request, lookup];\n",
 	'src/lib/raw-network.test.ts': TEST_SERVER,
-	'src/test/setup-socket.ts': SETUP_SOCKET
+	'src/test/setup-socket.ts': SETUP_SOCKET,
+	...CAPTURE_SIDE,
+	'src/routes/capture-planted/+page.server.ts':
+		"import { run } from '../../lib/capture/run';\nexport const load = () => ({ run: run() });\n",
+	'src/lib/capture-planted.ts':
+		"import { run } from './capture/run';\nexport const planted = () => run();\n",
+	...PRIVATE_ENV_SIDE,
+	'src/routes/env-planted/+page.server.ts':
+		"import { PLANTED_SECRET } from '$env/static/private';\nexport const load = () => ({ k: PLANTED_SECRET.length });\n",
+	'src/lib/env-planted.ts':
+		"import { env } from '$env/dynamic/private';\nexport const key = () => env.PLANTED_SECRET;\n",
+	...TEST_IMPORTS_PLANTED,
+	...OTHER_TEST_NAMES,
+	...OUTSIDE_SRC_SIDE,
+	...OUTSIDE_SRC_PLANTED
 };
 
 const CLEAN: Record<string, string> = {
@@ -50,7 +124,17 @@ const CLEAN: Record<string, string> = {
 		"import { reader } from './ingest/read-notice';\nexport const parser = reader;\n",
 	'src/lib/raw-network.ts': 'export const open = (url: string) => fetch(url);\n',
 	'src/lib/raw-network.test.ts': TEST_SERVER,
-	'src/test/setup-socket.ts': SETUP_SOCKET
+	'src/test/setup-socket.ts': SETUP_SOCKET,
+	...CAPTURE_SIDE,
+	'src/routes/capture-planted/+page.server.ts': "export const load = () => ({ run: 'served' });\n",
+	'src/lib/capture-planted.ts': "export const planted = () => 'served';\n",
+	...PRIVATE_ENV_SIDE,
+	'src/routes/env-planted/+page.server.ts': 'export const load = () => ({ k: 0 });\n',
+	'src/lib/env-planted.ts': 'export const key = () => undefined;\n',
+	...TEST_IMPORTS_CLEAN,
+	...OTHER_TEST_NAMES,
+	...OUTSIDE_SRC_SIDE,
+	...OUTSIDE_SRC_CLEAN
 };
 
 interface Cruise {
@@ -135,9 +219,53 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		]);
 	});
 
+	it('reports no-site-reaches-capture for a route and a library module, never a test, a test helper or the command itself', () => {
+		expect(violators(planted, 'no-site-reaches-capture')).toEqual([
+			'src/lib/capture-planted.ts',
+			'src/routes/capture-planted/+page.server.ts'
+		]);
+	});
+
+	// Vite's loadEnv, called with an empty prefix, returns every shell variable as well as the env
+	// files, so pointing env.dir at env/ keeps the root env file out but not an exported key.
+	it('reports no-private-env for a static and a dynamic private import, never a test or public env', () => {
+		expect(violators(planted, 'no-private-env')).toEqual([
+			'src/lib/env-planted.ts',
+			'src/routes/env-planted/+page.server.ts'
+		]);
+	});
+
+	// The fences above exempt tests and helpers, so a site import of either is its own violation;
+	// the capture rule alone passes over the helper route, as its first test shows.
+	it('reports no-site-imports-tests for a site import of a helper and of each test name, never a test or a helper', () => {
+		expect(violators(planted, 'no-site-imports-tests')).toEqual([
+			'src/lib/via-spec.ts',
+			'src/lib/via-test-helper.ts',
+			'src/lib/via-test-js.ts',
+			'src/routes/test-planted/+page.ts'
+		]);
+	});
+
+	// Each hop below reaches the command or a raw socket, and no rule above fires on it, since the
+	// file making the forbidden import sits outside src/.
+	it('reports no-site-imports-outside-src for site code reaching a file outside src, never a test', () => {
+		expect(violators(planted, 'no-site-imports-outside-src')).toEqual([
+			'src/lib/via-tools.ts',
+			'src/routes/outside-planted/+page.server.ts'
+		]);
+		expect(violators(planted, 'no-site-reaches-capture')).not.toContain('src/lib/via-tools.ts');
+		expect(violators(planted, 'fetch-only-network')).not.toContain(
+			'src/routes/outside-planted/+page.server.ts'
+		);
+	});
+
 	it('reports no rule on the clean control tree', () => {
 		expect(violators(clean, 'no-server-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
 		expect(violators(clean, 'fetch-only-network')).toEqual([]);
+		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
+		expect(violators(clean, 'no-private-env')).toEqual([]);
+		expect(violators(clean, 'no-site-imports-tests')).toEqual([]);
+		expect(violators(clean, 'no-site-imports-outside-src')).toEqual([]);
 	});
 });

@@ -3,7 +3,8 @@
 	"name": "pagefifty",
 	"compatibility_date": "2026-09-16",
 	"compatibility_flags": [
-		"nodejs_als"
+		"nodejs_als",
+		"nodejs_compat_do_not_populate_process_env"
 	],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
