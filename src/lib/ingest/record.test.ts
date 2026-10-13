@@ -5,7 +5,7 @@ import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { NoticeRecordSchema } from '../snapshot/index-row';
 import { toBcp47 } from './languages';
 import { readNotice } from './read-notice';
-import { safeLink, type LotRecord, type NoticeRecord } from './record';
+import { hasCancelIntent, safeLink, type LotRecord, type NoticeRecord } from './record';
 
 function noticeOf(role: RoleName, which: number): string {
 	const entry = FIXTURE_ROLES[role];
@@ -293,6 +293,27 @@ describe('legal basis, change reasons and SDK versions', () => {
 
 	it('reads the change reason cancel of the synthetic cancel notice', () => {
 		expect(readRole('cancel-notice').changeReasons).toEqual(['cancel']);
+	});
+
+	it('marks the synthetic cancel-intent notice with cancelIntent', () => {
+		const record = readRole('cancel-intent-notice');
+		expect([record.changeReasons, record.cancelIntent]).toEqual([['cancel-intent'], true]);
+	});
+
+	it('leaves 600017-2026, its source, without a cancelIntent key', () => {
+		const record = readRole('change-notice', 1);
+		expect(record.noticeNumber).toBe('600017-2026');
+		expect(Object.hasOwn(record, 'cancelIntent')).toBe(false);
+	});
+
+	it.each([
+		['cancel-intent alone', true, ['cancel-intent']],
+		['cancel-intent after update-add', true, ['update-add', 'cancel-intent']],
+		['cancel alone', false, ['cancel']],
+		['update-add alone', false, ['update-add']],
+		['no reason', false, []]
+	])('hasCancelIntent reads %s as %s', (_label, expected, reasons) => {
+		expect(hasCancelIntent(reasons)).toBe(expected);
 	});
 
 	it('reads the version 600017-2026 changes as <identifier>-<VersionID>', () => {
