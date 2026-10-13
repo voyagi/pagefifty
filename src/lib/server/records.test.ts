@@ -46,6 +46,10 @@ describe('newestCapture', () => {
 		expect(newestCapture(['2026-09-15', 'notes', '.tmp-2026-12-01-4'])).toBe('2026-09-15');
 	});
 
+	it('never chooses 2026-1-5, a real day written without its zeros, which would sort last', () => {
+		expect(newestCapture(['2026-09-15', '2026-1-5'])).toBe('2026-09-15');
+	});
+
 	it('never chooses 2026-02-30, a date with no such day', () => {
 		expect(newestCapture(['2026-01-15', '2026-02-30'])).toBe('2026-01-15');
 	});
