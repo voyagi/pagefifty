@@ -94,10 +94,11 @@ function overlapProblem(from, to) {
 }
 
 // Notices and JSON files a capture folder holds that its source does not. A copy into a folder used
-// before leaves such a file in place, and a person who commits the folder commits it too.
-function filesNotInSource(dir, sourceXmlNames) {
+// before leaves such a file in place, and a person who commits the folder commits it too. An xml
+// entry the check refused is never listed, since listing it would follow the refused link.
+function filesNotInSource(dir, sourceXmlNames, isRefused = () => false) {
 	const expected = new Set(sourceXmlNames);
-	const xml = existsSync(join(dir, 'xml'))
+	const xml = existsSync(join(dir, 'xml')) && !isRefused('xml')
 		? xmlNames(dir)
 				.filter((name) => !expected.has(name))
 				.map((name) => join('xml', name))
@@ -182,12 +183,12 @@ function jsonRemainders(source, copy, counts) {
 }
 
 // The check has already named every refused entry, and reading one here would read through the link
-// it refused (or block on a pipe), so a file at or under a refused path is never compared.
+// it refused (or block on a pipe), so a file at or under a refused path is never listed or compared.
 function compareAgainst(dir, against, refused) {
 	const counts = {};
 	const sourceXml = xmlNames(against);
-	const problems = filesNotInSource(dir, sourceXml).map((file) => `${file}: not in the source capture`);
 	const isRefused = (file) => refused.some((entry) => file === entry || file.startsWith(`${entry}${sep}`));
+	const problems = filesNotInSource(dir, sourceXml, isRefused).map((file) => `${file}: not in the source capture`);
 	const expected = [...JSON_FILES, ...sourceXml.map((name) => join('xml', name))].filter((file) => !isRefused(file));
 	for (const file of expected) {
 		let copy;
