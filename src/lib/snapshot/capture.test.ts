@@ -9,6 +9,7 @@ import {
 	isUnreadableCaptureFile
 } from './capture-files';
 import { EMAIL_PATTERN, SCRUB_PLACEHOLDER } from './scrub';
+import { folderProblems } from '../../test/capture-detectors.ts';
 
 const CAPTURE = 'examples/2026-09-15';
 
@@ -357,6 +358,40 @@ describe('every capture folder under examples', () => {
 		},
 		30_000
 	);
+});
+
+describe('one verdict over a capture folder', () => {
+	it.each(CAPTURES)(
+		'%s has no problem in the folder-wide verdict',
+		(capture) => {
+			expect(folderProblems(capture)).toEqual([]);
+		},
+		30_000
+	);
+
+	it('names the copy of a tracked notice with an address planted in its email element', () => {
+		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
+		try {
+			const folder = join(root, '2026-10-13');
+			const file = join(folder, 'xml', '600367-2026.xml');
+			const tracked = readFileSync(join(xmlDir, '600367-2026.xml'), 'utf8');
+			const element = `<cbc:ElectronicMail>${SCRUB_PLACEHOLDER}</cbc:ElectronicMail>`;
+			const at = tracked.indexOf(element);
+			expect(at).toBeGreaterThan(0);
+			const address = ['vergabe', 'buyer.example'].join('@');
+			mkdirSync(join(folder, 'xml'), { recursive: true });
+			writeFileSync(
+				file,
+				tracked.replace(element, `<cbc:ElectronicMail>${address}</cbc:ElectronicMail>`)
+			);
+			expect(folderProblems(folder)).toEqual([
+				`${file}: ${address}`,
+				`${file} cbc:ElectronicMail at ${at}`
+			]);
+		} finally {
+			rmSync(root, { recursive: true, force: true });
+		}
+	});
 });
 
 describe(`the tracked capture ${CAPTURE}`, () => {
