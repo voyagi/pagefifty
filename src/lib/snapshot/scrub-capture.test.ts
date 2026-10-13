@@ -143,6 +143,26 @@ describe('scrub-capture.mjs', () => {
 		expect(checked.status).toBe(1);
 	});
 
+	// The comparison reads files by name, so it must skip what the check refused, or it reads through
+	// the link after all: here the junction leads to the unscrubbed source notice.
+	it('never compares through a link the check refused when given --against', () => {
+		const linked = join(root, 'linked-xml-copy');
+		mkdirSync(linked);
+		for (const name of ['notices.json', 'fetch-log.json']) {
+			writeFileSync(join(linked, name), readFileSync(join(copy, name)));
+		}
+		symlinkSync(
+			join(source, 'xml'),
+			join(linked, 'xml'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).not.toContain('000001-2026.xml');
+		expect(checked.stdout).toContain('compared 2 files');
+		expect(checked.status).toBe(1);
+	});
+
 	it('exits 1, not 2, on a folder whose only entry is a link', () => {
 		const onlyLink = join(root, 'only-link');
 		mkdirSync(onlyLink);
