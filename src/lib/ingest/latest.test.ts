@@ -123,6 +123,52 @@ describe('selectLatest', () => {
 		expect(selectLatest([record])).toEqual({ kept: [record], leftOut: [], sameProcedure: [] });
 	});
 
+	// TED's eForms schema documents BT-758 in a second form, schemeName ojs-notice-id: the changed
+	// notice's publication number, padded to eight digits ("XXXXXXXX-YYYY").
+	it.each(['00600147-2026', '600147-2026'])(
+		'leaves out a notice another names by its publication number, %s (override: notice block)',
+		(link) => {
+			const earlier = variant('600147-2026', {
+				id: 'a1b2-c3d4-e5',
+				version: '03',
+				procedure: 'p1'
+			});
+			const change = variant('600200-2026', {
+				id: 'f6a7',
+				version: '01',
+				procedure: 'p2',
+				changes: [link]
+			});
+			const { kept, leftOut } = selectLatest([change, earlier]);
+			expect(numbers(kept)).toEqual(['600200-2026']);
+			expect(leftOut).toEqual([{ notice: '600147-2026', reason: 'superseded by 600200-2026' }]);
+		}
+	);
+
+	it('drops both a cancelling notice and the notice it names by publication number (override: notice block)', () => {
+		const predecessor = variant('599990-2026', { id: 'a1b2-c3d4-e5', version: '01' });
+		const cancel = variant(
+			'600300-2026',
+			{ id: 'f6a7', version: '01', changes: ['00599990-2026'] },
+			['cancel']
+		);
+		const { kept, leftOut } = selectLatest([cancel, predecessor]);
+		expect(kept).toEqual([]);
+		expect(leftOut).toEqual([
+			{ notice: '599990-2026', reason: 'superseded by 600300-2026' },
+			{ notice: '600300-2026', reason: 'cancelled' }
+		]);
+	});
+
+	it('never leaves out a notice for naming its own publication number, or one outside the run (override: notice block)', () => {
+		const record = variant('600001-2026', {
+			id: 'own-id',
+			version: '02',
+			changes: ['00600001-2026', '00600999-2026']
+		});
+		expect(selectLatest([record])).toEqual({ kept: [record], leftOut: [], sameProcedure: [] });
+	});
+
 	it('leaves out a notice whose change reasons include cancel as cancelled', () => {
 		const { kept, leftOut } = selectLatest([CANCEL]);
 		expect(kept).toEqual([]);
@@ -224,10 +270,14 @@ describe('selectLatest', () => {
 
 	// D-16 read straight off, one notice at a time against every other, so it shares no map or
 	// ordering with the rule it checks. Identifiers carry a hyphen, so a link is read at its last one.
+	// A publication-number link names the version of the notice published under that number; the
+	// draws below write one exactly as "00" before the listing number.
 	const intOf = (digits: string) => Number.parseInt(digits, 10);
 	const keyText = (id: string, version: string) => `${id}#${intOf(version)}`;
 	const ownKey = (record: NoticeRecord) => keyText(record.notice.id, record.notice.version);
-	const linkText = (link: string) => {
+	const linkText = (link: string, all: readonly NoticeRecord[]) => {
+		const published = all.find((record) => `00${record.noticeNumber}` === link);
+		if (published !== undefined) return ownKey(published);
 		const at = link.lastIndexOf('-');
 		return keyText(link.slice(0, at), link.slice(at + 1));
 	};
@@ -239,7 +289,7 @@ describe('selectLatest', () => {
 		const named = all.some(
 			(other) =>
 				ownKey(other) !== ownKey(record) &&
-				other.notice.changes.some((link) => linkText(link) === ownKey(record))
+				other.notice.changes.some((link) => linkText(link, all) === ownKey(record))
 		);
 		if (named) return 'superseded';
 		const laterTwin = sameId.some(
@@ -252,15 +302,17 @@ describe('selectLatest', () => {
 	}
 
 	const IDS = ['id-a', 'id-b', 'id-c'];
+	const versionLink = fc
+		.record({ id: fc.constantFrom(...IDS), version: fc.integer({ min: 1, max: 3 }) })
+		.map((link) => `${link.id}-0${link.version}`);
+	// Up to eight notices are drawn, so the ninth number names one outside the run.
+	const publicationLink = fc.integer({ min: 0, max: 8 }).map((at) => `00${600001 + at}-2026`);
 	const draws = fc.array(
 		fc.record({
 			id: fc.constantFrom(...IDS),
 			version: fc.integer({ min: 1, max: 3 }),
 			padded: fc.boolean(),
-			links: fc.array(
-				fc.record({ id: fc.constantFrom(...IDS), version: fc.integer({ min: 1, max: 3 }) }),
-				{ maxLength: 2 }
-			),
+			links: fc.array(fc.oneof(versionLink, publicationLink), { maxLength: 2 }),
 			cancel: fc.boolean()
 		}),
 		{ maxLength: 8 }
@@ -276,7 +328,7 @@ describe('selectLatest', () => {
 						id: draw.id,
 						version: draw.padded ? `0${draw.version}` : String(draw.version),
 						procedure: `procedure-${at}`,
-						changes: draw.links.map((link) => `${link.id}-0${link.version}`)
+						changes: draw.links
 					},
 					draw.cancel ? ['cancel'] : []
 				)
