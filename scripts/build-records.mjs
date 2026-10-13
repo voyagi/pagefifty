@@ -5,10 +5,13 @@
 // For each examples/<YYYY-MM-DD>/ holding a notices.json, the capture's xml/ files become the
 // recorded responses of a snapshot transport, keyed by the TED address each was fetched from, and
 // every notice the listing names is read through that transport and the one notice reader
-// (src/lib/ingest/read-notice.ts). The result is <out>/<capture date>/index.json (one row per
-// notice) and records/<notice>.json, written compact into a temp folder and moved into place only
-// when every notice of every capture was read. This script is a thin caller: the reading rules
-// live in src, where the import rules and tests see them.
+// (src/lib/ingest/read-notice.ts). The records then pass the active and latest rule
+// (src/lib/ingest/latest.ts), so a listed notice it leaves out gets no row and no record file and
+// is named with its reason in the index's leftOut; the capture folder itself is never changed.
+// The result is <out>/<capture date>/index.json (one row per kept notice) and
+// records/<notice>.json, written compact into a temp folder and moved into place only when every
+// notice of every capture was read. This script is a thin caller: the reading rules live in src,
+// where the import rules and tests see them.
 //
 // Runs as predev, prebuild, premutate and vitest globalSetup, so the gitignored output never drifts
 // from the tracked capture. Two runs writing one folder at the same moment can collide on Windows
@@ -25,6 +28,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, w
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { selectLatest } from '../src/lib/ingest/latest.ts';
 import { readNotice } from '../src/lib/ingest/read-notice.ts';
 import {
 	NoticeRecordSchema,
@@ -157,15 +161,20 @@ async function buildCapture(examples, id) {
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
 	}
+	const { kept, leftOut } = selectLatest(records);
+	// capture.total is the count TED stated for its search, which a capture made by the command
+	// records as searchTotal; the listed-count check above stays on the notices actually listed.
+	const total = listing.searchTotal ?? listing.total;
 	const index = SnapshotIndexSchema.safeParse({
-		capture: { id, fetchedAt: listing.fetchedAt, total: listing.total, query: listing.query },
-		rows: records.map(toIndexRow)
+		capture: { id, fetchedAt: listing.fetchedAt, total, query: listing.query },
+		leftOut,
+		rows: kept.map(toIndexRow)
 	});
 	if (!index.success && failures.length === 0) {
 		failures.push({ number: '(index)', kind: 'index', detail: index.error.message });
 	}
 	const ms = Math.round(performance.now() - started);
-	return { id, index: index.data, records, failures, listed: numbers.length, ms };
+	return { id, index: index.data, records: kept, failures, listed: numbers.length, ms };
 }
 
 // Cleanup after a failed write must not replace the error that says which step failed, so a temp
@@ -269,7 +278,13 @@ async function main() {
 	mkdirSync(out, { recursive: true });
 	for (const capture of captures) {
 		writeCapture(out, capture);
-		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms`);
+		// A notice the rule left out has no row and no page, so the line names each one: a wrong
+		// leftOut on a new capture shows here, not only as a smaller count.
+		const { leftOut } = capture.index;
+		const left = leftOut.length === 0
+			? ''
+			: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
+		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`);
 	}
 	pruneStale(out, ids);
 	return 0;

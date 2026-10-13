@@ -4,18 +4,20 @@
 import { z } from 'zod';
 import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
 import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
-import type {
-	Amount,
-	Buyer,
-	Criterion,
-	CriterionParameter,
-	DocumentsLink,
-	GroupLegalForm,
-	LangText,
-	LegislationReference,
-	LotDeadlines,
-	LotRecord,
-	NoticeRecord
+import {
+	VERSION_ID,
+	type Amount,
+	type Buyer,
+	type Criterion,
+	type CriterionParameter,
+	type DocumentsLink,
+	type GroupLegalForm,
+	type LangText,
+	type LegislationReference,
+	type LotDeadlines,
+	type LotRecord,
+	type NoticeIdentity,
+	type NoticeRecord
 } from '../ingest/record.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
@@ -116,8 +118,16 @@ const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
 	documents: DocumentsLinkSchema.optional()
 });
 
+const NoticeIdentitySchema: z.ZodType<NoticeIdentity> = z.strictObject({
+	id: z.string().min(1),
+	version: z.string().regex(VERSION_ID),
+	procedure: z.string().min(1),
+	changes: z.array(z.string())
+});
+
 export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	noticeNumber: z.string().regex(NOTICE_NUMBER),
+	notice: NoticeIdentitySchema,
 	sdkVersion: z.string(),
 	noticeSubtype: z.string(),
 	legalBasis: z.string(),
@@ -136,9 +146,16 @@ export const SnapshotIndexSchema = z.strictObject({
 	capture: z.strictObject({
 		id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
 		fetchedAt: z.iso.datetime(),
+		// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
+		// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
 		total: z.number().int().nonnegative(),
 		query: z.string()
 	}),
+	// Listed notices the active and latest rule kept off the list, each with its reason. Required,
+	// so an index built before the rule existed fails the load instead of serving a replaced version.
+	leftOut: z.array(
+		z.strictObject({ notice: z.string().regex(NOTICE_NUMBER), reason: z.string().min(1) })
+	),
 	rows: z.array(IndexRowSchema)
 });
 

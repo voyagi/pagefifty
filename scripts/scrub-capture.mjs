@@ -4,16 +4,20 @@
 //
 // A capture that is committed stays in git history, so contact names, email addresses and
 // telephone and fax numbers are replaced before the first commit that tracks the files, never
-// after. The scrub itself lives in src/lib/snapshot/scrub.ts, imported here under Node's type
-// stripping, so the script and the tests run exactly the same code.
+// after. The scrub itself lives in src/lib/snapshot/scrub.ts and the folder check in
+// src/lib/snapshot/scrub-check.ts, imported here under Node's type stripping, so the script, the
+// capture command and the tests run exactly the same code.
 //
 // Usage:
 //   node scripts/scrub-capture.mjs --from <capture dir> --to <dir>
 //       copies notices.json, fetch-log.json and xml/*.xml through the scrub, then checks the copy
 //       as --check does and exits 1 when anything is left
 //   node scripts/scrub-capture.mjs --check <dir> [--against <capture dir>]
-//       lists every file under <dir> that still holds contact data; with --against, also proves
-//       that the scrub changed nothing else and prints how many spans of each kind it replaced
+//       lists every file under <dir> that still holds contact data, every link, which it never
+//       reads because git keeps a link and not what it points at, and every entry that is not a
+//       regular file (a pipe, a socket, a device), which git cannot keep and it never opens; with
+//       --against, also proves that the scrub changed nothing else and prints how many spans of
+//       each kind it replaced
 //
 // --against removes every span the scrub may replace from the source, and every placeholder from
 // the copy, then requires the two remainders to be identical after CRLF becomes LF and one final
@@ -23,13 +27,13 @@
 // A non-empty file that is not text (a PDF, a ZIP) is named rather than read: no pattern sees
 // inside it, so it goes into a capture only as extracted, scrubbed text.
 //
-// Exit codes: 0 clean, 1 contact data, a file that is not text or an unexpected difference found
-// (or a usage error),
+// Exit codes: 0 clean, 1 contact data, a file that is not text, a link, an entry that is not a
+// regular file or an unexpected difference found (or a usage error),
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
-import { decodeCharacterReferences, isUnreadableCaptureFile } from '../src/lib/snapshot/capture-files.ts';
+import { checkCaptureFolder, naming, walkJson } from '../src/lib/snapshot/scrub-check.ts';
 import {
 	SCRUB_PLACEHOLDER,
 	findNoticeSpans,
@@ -90,10 +94,11 @@ function overlapProblem(from, to) {
 }
 
 // Notices and JSON files a capture folder holds that its source does not. A copy into a folder used
-// before leaves such a file in place, and a person who commits the folder commits it too.
-function filesNotInSource(dir, sourceXmlNames) {
+// before leaves such a file in place, and a person who commits the folder commits it too. An xml
+// entry the check refused is never listed, since listing it would follow the refused link.
+function filesNotInSource(dir, sourceXmlNames, isRefused = () => false) {
 	const expected = new Set(sourceXmlNames);
-	const xml = existsSync(join(dir, 'xml'))
+	const xml = existsSync(join(dir, 'xml')) && !isRefused('xml')
 		? xmlNames(dir)
 				.filter((name) => !expected.has(name))
 				.map((name) => join('xml', name))
@@ -149,66 +154,6 @@ function copyScrubbed(from, to) {
 	return extras.length;
 }
 
-function listFiles(dir) {
-	return readdirSync(dir, { recursive: true, withFileTypes: true })
-		.filter((entry) => entry.isFile())
-		.map((entry) => join(entry.parentPath, entry.name))
-		.sort();
-}
-
-// A leaf is judged by the nearest contact key above it, however deep, because scrubJsonValue
-// replaces everything under such a key; TED sends multilingual fields as objects keyed by language.
-function walkJson(value, visit, key = '') {
-	if (Array.isArray(value)) return value.map((item) => walkJson(item, visit, key));
-	if (value && typeof value === 'object') {
-		return Object.fromEntries(
-			Object.entries(value).map(([inner, child]) => [inner, walkJson(child, visit, isContactKey(key) ? key : inner)])
-		);
-	}
-	return visit(value, key);
-}
-
-function jsonLeftovers(value) {
-	const kinds = [];
-	walkJson(value, (leaf, key) => {
-		if (isContactKey(key) && leaf !== null && typeof leaf !== 'boolean' && leaf !== SCRUB_PLACEHOLDER) {
-			kinds.push('json-contact-key');
-		} else if (typeof leaf === 'string') {
-			kinds.push(...findTextSpans(leaf).map((span) => span.kind));
-			kinds.push(...encodedKinds(leaf));
-		}
-		return leaf;
-	});
-	return kinds;
-}
-
-const unscrubbedKinds = (text, spans) =>
-	spans.filter((span) => text.slice(span.start, span.end) !== SCRUB_PLACEHOLDER).map((span) => span.kind);
-
-// What a copy with its character references decoded still shows, named as encoded.
-function encodedKinds(text) {
-	const decoded = decodeCharacterReferences(text);
-	return decoded === text ? [] : unscrubbedKinds(decoded, findTextSpans(decoded)).map((kind) => `encoded ${kind}`);
-}
-
-// JSON.parse decodes a JSON escape itself. XML and HTML write characters as references (&#64; is an
-// at sign), which the scrub does not decode, so an address written that way is found in a decoded
-// copy and named as encoded: the scrub itself would leave it in place.
-function leftovers(path, text) {
-	if (path.endsWith('.json')) return jsonLeftovers(JSON.parse(text));
-	const kinds = unscrubbedKinds(text, path.endsWith('.xml') ? findNoticeSpans(text) : findTextSpans(text));
-	return [...kinds, ...encodedKinds(text)];
-}
-
-// Puts the file's name on an error that would otherwise not say which file broke.
-function naming(file, work) {
-	try {
-		return work();
-	} catch (error) {
-		throw new Error(`${file}: ${error.message}`);
-	}
-}
-
 const normalize = (text) => text.replace(/\r\n/g, '\n').replace(/\n$/, '');
 const dropPlaceholders = (text) => text.split(SCRUB_PLACEHOLDER).join('');
 
@@ -237,11 +182,14 @@ function jsonRemainders(source, copy, counts) {
 	return [JSON.stringify(reducedSource, null, 2), JSON.stringify(reducedCopy, null, 2)];
 }
 
-function compareAgainst(dir, against) {
+// The check has already named every refused entry, and reading one here would read through the link
+// it refused (or block on a pipe), so a file at or under a refused path is never listed or compared.
+function compareAgainst(dir, against, refused) {
 	const counts = {};
 	const sourceXml = xmlNames(against);
-	const problems = filesNotInSource(dir, sourceXml).map((file) => `${file}: not in the source capture`);
-	const expected = [...JSON_FILES, ...sourceXml.map((name) => join('xml', name))];
+	const isRefused = (file) => refused.some((entry) => file === entry || file.startsWith(`${entry}${sep}`));
+	const problems = filesNotInSource(dir, sourceXml, isRefused).map((file) => `${file}: not in the source capture`);
+	const expected = [...JSON_FILES, ...sourceXml.map((name) => join('xml', name))].filter((file) => !isRefused(file));
 	for (const file of expected) {
 		let copy;
 		try {
@@ -260,32 +208,20 @@ function compareAgainst(dir, against) {
 }
 
 function check(dir, against) {
-	const files = listFiles(dir);
-	if (files.length === 0) {
+	const { files, dirty, notText, links, special } = checkCaptureFolder(dir);
+	for (const line of links) console.error(`a link, not a file, so git would keep the link and not what it points at: ${line}`);
+	for (const line of special) console.error(`not a regular file, so git cannot keep it: ${line}`);
+	if (files === 0 && links.length === 0 && special.length === 0) {
 		console.error(`no files under ${dir}`);
 		return 2;
 	}
-	const dirty = [];
-	// A PDF or an archive read as text shows no pattern anything, so it is named, never passed.
-	const notText = [];
-	for (const path of files) {
-		const bytes = readFileSync(path);
-		if (isUnreadableCaptureFile(path, bytes)) {
-			notText.push(relative(dir, path));
-			continue;
-		}
-		const kinds = naming(relative(dir, path), () => leftovers(path, bytes.toString('utf8')));
-		if (kinds.length > 0) dirty.push(`${relative(dir, path)}: ${[...new Set(kinds)].join(', ')}`);
-	}
 	for (const line of dirty) console.error(`contact data: ${line}`);
 	for (const line of notText) console.error(`not text, so no pattern can read it: ${line}`);
-	console.log(
-		`checked ${files.length} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text`
-	);
-	const found = dirty.length + notText.length;
+	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text, ${links.length} links refused, ${special.length} not regular files`);
+	const found = dirty.length + notText.length + links.length + special.length;
 	if (!against) return found > 0 ? 1 : 0;
 
-	const { counts, problems, compared } = compareAgainst(dir, against);
+	const { counts, problems, compared } = compareAgainst(dir, against, [...links, ...special]);
 	for (const line of problems) console.error(line);
 	console.log(`compared ${compared} files against ${against}, ${problems.length} unexpected differences`);
 	for (const kind of Object.keys(counts).sort()) console.log(`replaced ${kind}: ${counts[kind]}`);

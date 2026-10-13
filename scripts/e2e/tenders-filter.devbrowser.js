@@ -133,7 +133,7 @@ try {
 	const junk = await readList();
 	check(
 		'?country=XX shows the dropped-values line and still lists rows',
-		junk.status === DROPPED && junk.open.length + junk.closed.length === 363,
+		junk.status === DROPPED && junk.open.length + junk.closed.length === 362,
 		`status "${junk.status}", ${junk.open.length} open and ${junk.closed.length} closed rows read`
 	);
 
@@ -233,7 +233,7 @@ try {
 			cleared.countries === '' &&
 			cleared.checked.length === 0 &&
 			dates.join('') === '' &&
-			cleared.open.length + cleared.closed.length === 363,
+			cleared.open.length + cleared.closed.length === 362,
 		`typed "${typed}", then same page ${samePage}, address ${cleared.url}, checked ${cleared.checked.join(' ') || 'none'}, dates "${dates.join('", "')}", ${cleared.open.length + cleared.closed.length} rows read`
 	);
 } finally {

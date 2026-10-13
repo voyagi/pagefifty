@@ -12,6 +12,12 @@ const GERMAN = (text: string) => ({ text, lang: 'de', rawLang: 'DEU' });
 
 const RECORD: NoticeRecord = {
 	noticeNumber: '609955-2026',
+	notice: {
+		id: '38c19032-e327-4ae0-b618-31b349376b36',
+		version: '01',
+		procedure: 'd3ec00fd-56a4-4251-8674-8297cf1736d8',
+		changes: []
+	},
 	sdkVersion: 'eforms-sdk-1.13',
 	noticeSubtype: '16',
 	legalBasis: '32014L0024',
@@ -57,6 +63,7 @@ const index = (rows: unknown[]) => ({
 		total: rows.length,
 		query: 'q'
 	},
+	leftOut: [],
 	rows
 });
 
@@ -194,6 +201,13 @@ describe('toIndexRow and the index schema', () => {
 		expect(extra.success).toBe(false);
 		const lotWithout = { ...RECORD, lots: [BARE_LOT] };
 		expect(NoticeRecordSchema.parse(lotWithout)).toEqual(lotWithout);
+	});
+
+	// The reader's bound: versions are compared as integers, which stay exact to 15 digits.
+	it('takes a version of 15 digits and refuses one of 16, as the reader does', () => {
+		const withVersion = (version: string) => ({ ...RECORD, notice: { ...RECORD.notice, version } });
+		expect(NoticeRecordSchema.safeParse(withVersion('123456789012345')).success).toBe(true);
+		expect(NoticeRecordSchema.safeParse(withVersion('1234567890123456')).success).toBe(false);
 	});
 
 	it.each([

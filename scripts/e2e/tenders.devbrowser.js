@@ -5,7 +5,7 @@
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
 // The run uses the real clock, so rows move from the open group to the closed one day by day (on
-// 1 Dec 2026 two of the 363 notices are still open; the last lot closes 9 Oct 2027), and no check
+// 1 Dec 2026 two of the 362 notices are still open; the last lot closes 9 Oct 2027), and no check
 // assumes a given notice is open: each one reads which group a row sits in first.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
@@ -337,7 +337,7 @@ try {
 	const untagged = all.filter((row) => !row.tag || !row.reason);
 	check(
 		'every row carries a reading-status tag and its reason',
-		all.length === 363 && untagged.length === 0,
+		all.length === 362 && untagged.length === 0,
 		`${all.length} rows, ${untagged.length} without a tag or reason`
 	);
 
@@ -367,7 +367,7 @@ try {
 	const notCentral = servedLabels.filter((match) => !/ (CEST|CET)$/.test(match[2]));
 	check(
 		'without scripts the served page holds every row and the closed group',
-		servedRows === 363 && served.includes('<details') && served.includes('<summary'),
+		servedRows === 362 && served.includes('<details') && served.includes('<summary'),
 		`${servedRows} rows in the served HTML, details ${served.includes('<details')}`
 	);
 	check(

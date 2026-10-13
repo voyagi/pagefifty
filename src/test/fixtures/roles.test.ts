@@ -11,7 +11,9 @@ const REQUIRED_ROLES = [
 	'before-dst',
 	'bom-crlf',
 	'both-deadlines',
+	'cancel-intent-notice',
 	'cancel-notice',
+	'change-no-reason',
 	'change-notice',
 	'decimal-in-text',
 	'doctype-entity',
@@ -41,6 +43,7 @@ const REQUIRED_ROLES = [
 	'same-code-in-two-lots',
 	'sdk-1.13',
 	'sdk-1.14',
+	'superseded-pair',
 	'truncated',
 	'value-under-floor'
 ];
@@ -176,6 +179,24 @@ describe('synthetic roles', () => {
 		const { output } = synthetic('cancel-notice');
 		expect(output).toContain('listName="change-corrig-justification">cancel</cbc:ReasonCode>');
 		expect(output).not.toContain('>update-add<');
+	});
+
+	it('cancel-intent-notice carries the cancel-intent change reason', () => {
+		const { output } = synthetic('cancel-intent-notice');
+		expect(output).toContain(
+			'listName="change-corrig-justification">cancel-intent</cbc:ReasonCode>'
+		);
+		expect(output).not.toContain('>update-add<');
+	});
+
+	it('change-no-reason keeps the changed notice identifier and drops the change reason', () => {
+		const { source, output } = synthetic('change-no-reason');
+		expect(source).toContain('<efac:ChangeReason>');
+		expect(output).not.toContain('<efac:ChangeReason>');
+		expect(output).not.toContain('change-corrig-justification');
+		expect(output).toContain(
+			'<efbc:ChangedNoticeIdentifier>54426929-1700-4c06-bc98-4f41506ab64f-01</efbc:ChangedNoticeIdentifier>'
+		);
 	});
 
 	it('reserved-participation reserves the lot for sheltered workshops', () => {

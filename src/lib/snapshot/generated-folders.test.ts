@@ -13,11 +13,15 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
+import { CAPTURE_ID } from '../../test/fixtures/roles';
 import { SnapshotIndexSchema } from './index-row';
 
 // globalSetup has run scripts/build-records.mjs before this file, so these read its real output.
 const GENERATED = join('src', 'lib', 'snapshot', 'generated');
 const EXAMPLES = 'examples';
+// Two versions of notice ad28f539 in the capture: 600367-2026 is VersionID 02, 601147-2026 is 01.
+const LATEST = '600367-2026';
+const SUPERSEDED = '601147-2026';
 
 const folders = (dir: string) =>
 	readdirSync(dir, { withFileTypes: true })
@@ -43,11 +47,30 @@ describe('generated record folders', () => {
 		expect(index.capture.id).toBe(id);
 	});
 
-	it.each(folders(GENERATED))("%s: has one row per notice in the capture's total", (id) => {
-		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
-		const listing = readJson(join(EXAMPLES, id, 'notices.json')) as { total: number };
-		expect(index.rows).toHaveLength(listing.total);
-		expect(index.capture.total).toBe(listing.total);
+	it.each(folders(GENERATED))(
+		"%s: has one row per listed notice it kept, and TED's stated total",
+		(id) => {
+			const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
+			const listing = readJson(join(EXAMPLES, id, 'notices.json')) as {
+				total: number;
+				searchTotal?: number;
+			};
+			expect(index.rows).toHaveLength(listing.total - index.leftOut.length);
+			expect(index.capture.total).toBe(listing.searchTotal ?? listing.total);
+		}
+	);
+
+	it(`${CAPTURE_ID}: leaves out 601147-2026, superseded by 600367-2026, and keeps the listed total`, () => {
+		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, CAPTURE_ID, 'index.json')));
+		const listing = readJson(join(EXAMPLES, CAPTURE_ID, 'notices.json')) as {
+			notices: { 'publication-number': string }[];
+		};
+		const listed = listing.notices.map((notice) => notice['publication-number']);
+		const served = index.rows.map((row) => row.noticeNumber);
+		expect(served.sort()).toEqual(listed.filter((notice) => notice !== SUPERSEDED).sort());
+		expect(index.leftOut).toEqual([{ notice: SUPERSEDED, reason: `superseded by ${LATEST}` }]);
+		expect(index.capture.total).toBe(363);
+		expect(existsSync(join(GENERATED, CAPTURE_ID, 'records', `${SUPERSEDED}.json`))).toBe(false);
 	});
 
 	it.each(folders(GENERATED))('%s: writes one compact record file per row', (id) => {
@@ -91,7 +114,7 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		writeCapture(['609955-2026']);
 		const run = build();
 		expect(run.status, run.stderr).toBe(0);
-		expect(run.stdout).toMatch(/^records: 2026-01-02: 1 notices in \d+ ms/);
+		expect(run.stdout).toMatch(/^records: 2026-01-02: 1 notices in \d+ ms\r?\n/);
 		expect(existsSync(join(out, '2026-01-02', 'records', '609955-2026.json'))).toBe(true);
 	});
 
@@ -181,6 +204,25 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		const run = build();
 		expect(run.status, run.stderr).toBe(0);
 		expect(readdirSync(out).filter((name) => name.startsWith('.'))).toEqual([]);
+	});
+
+	it.each([
+		['newer first', [LATEST, SUPERSEDED]],
+		['older first', [SUPERSEDED, LATEST]]
+	])('keeps only the latest version of a notice listed %s', (_order, listed) => {
+		writeCapture(listed);
+		for (const notice of listed) {
+			copyFileSync(capturePath(notice), join(capture, 'xml', `${notice}.xml`));
+		}
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		const index = SnapshotIndexSchema.parse(readJson(join(out, '2026-01-02', 'index.json')));
+		expect(index.rows.map((row) => row.noticeNumber)).toEqual([LATEST]);
+		expect(index.leftOut).toEqual([{ notice: SUPERSEDED, reason: `superseded by ${LATEST}` }]);
+		expect(existsSync(join(out, '2026-01-02', 'records', `${SUPERSEDED}.json`))).toBe(false);
+		expect(run.stdout).toMatch(
+			/^records: 2026-01-02: 1 notices in \d+ ms, 1 left out: 601147-2026 \(superseded by 600367-2026\)\r?\n/
+		);
 	});
 
 	it('names the notice when reading its recorded response fails', () => {

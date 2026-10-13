@@ -12,9 +12,11 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { canLinkFiles, NO_FILE_LINKS, NO_PIPES } from '../../test/fixtures/node.ts';
 import { SCRUB_PLACEHOLDER } from './scrub';
 
 const SCRIPT = join('scripts', 'scrub-capture.mjs');
+const FILE_LINKS = canLinkFiles();
 const run = (...args: string[]) =>
 	spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' });
 
@@ -68,6 +70,7 @@ describe('scrub-capture.mjs', () => {
 	it('finds the copy clean and equal to its source outside the scrubbed spans', () => {
 		const checked = run('--check', copy, '--against', source);
 		expect(checked.stdout).toContain('0 with contact data');
+		expect(checked.stdout).toContain('0 links refused, 0 not regular files');
 		expect(checked.stdout).toContain('0 unexpected differences');
 		expect(checked.stdout).toContain('replaced json-contact-key: 2');
 		expect(checked.status, checked.stderr).toBe(0);
@@ -118,6 +121,103 @@ describe('scrub-capture.mjs', () => {
 		const checked = run('--check', packed);
 		expect(checked.stderr).toContain('not text, so no pattern can read it');
 		expect(checked.stderr).toContain('000003-2026.xml');
+		expect(checked.status).toBe(1);
+	});
+
+	// Git keeps a link as the path it points at, so a link in a capture is refused, never read through.
+	it('names a link in the folder and exits 1, without reading what it points at', () => {
+		const linked = join(root, 'link-in-capture');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notes.txt'), 'no contact data here');
+		symlinkSync(
+			join(source, 'xml'),
+			join(linked, 'more'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', linked);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).toContain('more');
+		expect(checked.stderr).not.toContain('contact-name');
+		expect(checked.stdout).toContain('checked 1 files');
+		expect(checked.stdout).toContain('1 links refused');
+		expect(checked.status).toBe(1);
+	});
+
+	// The comparison reads files by name, so it must skip what the check refused, or it reads through
+	// the link after all: here the junction leads to the unscrubbed source notice.
+	it('never compares through a link the check refused when given --against', () => {
+		const linked = join(root, 'linked-xml-copy');
+		mkdirSync(linked);
+		for (const name of ['notices.json', 'fetch-log.json']) {
+			writeFileSync(join(linked, name), readFileSync(join(copy, name)));
+		}
+		symlinkSync(
+			join(source, 'xml'),
+			join(linked, 'xml'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).not.toContain('000001-2026.xml');
+		expect(checked.stdout).toContain('compared 2 files');
+		expect(checked.status).toBe(1);
+	});
+
+	it('never lists extra notices through a refused xml folder link when given --against', () => {
+		const target = join(root, 'extra-xml-target');
+		mkdirSync(target);
+		writeFileSync(join(target, '000777-2026.xml'), '<ContractNotice/>\n');
+		const linked = join(root, 'linked-extra-copy');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notices.json'), readFileSync(join(copy, 'notices.json')));
+		symlinkSync(target, join(linked, 'xml'), process.platform === 'win32' ? 'junction' : 'dir');
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).not.toContain('000777-2026.xml');
+		expect(checked.status).toBe(1);
+	});
+
+	// A link named xml that leads to a file is refused like any link, so listing it as a folder must
+	// not turn the finding into a read error and exit 2.
+	it('exits 1, not 2, when the refused xml entry links to a file and --against is given', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
+		const linked = join(root, 'xml-file-link-copy');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notices.json'), readFileSync(join(copy, 'notices.json')));
+		symlinkSync(join(copy, 'notices.json'), join(linked, 'xml'), 'file');
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.status, checked.stderr).toBe(1);
+	});
+
+	it('exits 1, not 2, on a folder whose only entry is a link', () => {
+		const onlyLink = join(root, 'only-link');
+		mkdirSync(onlyLink);
+		symlinkSync(
+			join(source, 'xml'),
+			join(onlyLink, 'more'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', onlyLink);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.status).toBe(1);
+	});
+
+	// The timeout turns a check that opened the pipe and blocked into a failure instead of a hang.
+	it('names a named pipe in the folder and exits 1, without opening it', (context) => {
+		context.skip(process.platform === 'win32', NO_PIPES);
+		const piped = join(root, 'pipe-in-capture');
+		mkdirSync(piped);
+		writeFileSync(join(piped, 'notes.txt'), 'no contact data here');
+		expect(spawnSync('mkfifo', [join(piped, 'pipe')]).status).toBe(0);
+		const checked = spawnSync(process.execPath, [SCRIPT, '--check', piped], {
+			encoding: 'utf8',
+			timeout: 20_000
+		});
+		expect(checked.stderr).toContain('not a regular file');
+		expect(checked.stderr).toContain('pipe');
+		expect(checked.stdout).toContain('checked 1 files');
+		expect(checked.stdout).toContain('0 links refused, 1 not regular files');
 		expect(checked.status).toBe(1);
 	});
 
@@ -186,9 +286,8 @@ describe('scrub-capture.mjs', () => {
 		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 	});
 
-	it('refuses to write through a link inside the copy that leads back into the source', () => {
+	it('refuses to write through a folder link inside the copy that leads back into the source', () => {
 		const before = readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8');
-		const beforeJson = readFileSync(join(source, 'notices.json'), 'utf8');
 		const linkedFolder = join(root, 'linked-xml');
 		mkdirSync(linkedFolder);
 		symlinkSync(
@@ -199,13 +298,18 @@ describe('scrub-capture.mjs', () => {
 		const throughFolder = run('--from', source, '--to', linkedFolder);
 		expect(throughFolder.stderr).toContain('a link, so the copy would write through it');
 		expect(throughFolder.status).toBe(1);
+		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
+	});
+
+	it('refuses to write through a file link inside the copy that leads back into the source', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
+		const beforeJson = readFileSync(join(source, 'notices.json'), 'utf8');
 		const linkedFile = join(root, 'linked-json');
 		mkdirSync(linkedFile);
 		symlinkSync(join(source, 'notices.json'), join(linkedFile, 'notices.json'), 'file');
 		const throughFile = run('--from', source, '--to', linkedFile);
 		expect(throughFile.stderr).toContain('a link, so the copy would write through it');
 		expect(throughFile.status).toBe(1);
-		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 		expect(readFileSync(join(source, 'notices.json'), 'utf8')).toBe(beforeJson);
 	});
 

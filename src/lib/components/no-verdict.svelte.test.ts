@@ -356,8 +356,8 @@ describe('the no-verdict property (SPEC R3)', () => {
 		return () => vi.unstubAllGlobals();
 	});
 
-	it('renders all 363 capture notices and every synthetic fixture the reader accepts', () => {
-		expect(captured).toHaveLength(363);
+	it('renders all 362 served capture notices and every synthetic fixture the reader accepts', () => {
+		expect(captured).toHaveLength(362);
 		expect(refused).toEqual({
 			'doctype-entity': 'doctype',
 			truncated: 'malformed',
@@ -365,7 +365,7 @@ describe('the no-verdict property (SPEC R3)', () => {
 		});
 		expect(synthetic).toHaveLength(SYNTHETIC_ROLES.length - 3);
 		expect(synthetic.length).toBeGreaterThan(0);
-		expect(subjects).toHaveLength(363 + SYNTHETIC_ROLES.length - 3);
+		expect(subjects).toHaveLength(362 + SYNTHETIC_ROLES.length - 3);
 	});
 
 	it('checks the page copy: the rendered 609955-2026 page says "Not read:" outside notice text', async () => {

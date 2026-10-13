@@ -29,7 +29,7 @@ beforeEach(() => {
 describe('loadTenderList', () => {
 	it('lists every captured notice against the instant it is given, reading the index once', async () => {
 		const data = await load('');
-		expect(data.list.counts).toEqual({ total: 363, shown: 363, open: 350, closed: 13 });
+		expect(data.list.counts).toEqual({ total: 362, shown: 362, open: 349, closed: 13 });
 		expect(data.list.filtered).toBe(false);
 		expect(data.dropped).toBe(false);
 		expect(data.capture).toEqual({
@@ -42,7 +42,7 @@ describe('loadTenderList', () => {
 
 	it('judges open and closed by the "now" it is given, not by the capture', async () => {
 		const later = await load('', new Date('2028-01-01T00:00:00Z'));
-		expect(later.list.counts).toMatchObject({ total: 363, open: 0, closed: 363 });
+		expect(later.list.counts).toMatchObject({ total: 362, open: 0, closed: 362 });
 	});
 
 	it('reads the filters from the address and lists only the rows they match', async () => {
@@ -53,7 +53,7 @@ describe('loadTenderList', () => {
 		const rows = [...data.list.open, ...data.list.closed];
 		expect(rows.length).toBe(data.list.counts.shown);
 		expect(rows.length).toBeGreaterThan(0);
-		expect(rows.length).toBeLessThan(363);
+		expect(rows.length).toBeLessThan(data.list.counts.total);
 		expect(rows.every((row) => row.countries.includes('Netherlands'))).toBe(true);
 	});
 
@@ -62,7 +62,7 @@ describe('loadTenderList', () => {
 		expect(data.dropped).toBe(true);
 		expect(data.filters).toEqual({ countries: [], cpv: [] });
 		expect(data.list.filtered).toBe(false);
-		expect(data.list.counts.shown).toBe(363);
+		expect(data.list.counts.shown).toBe(362);
 	});
 
 	it('fails the whole load, never a partial list, when the index cannot be read', async () => {
@@ -95,7 +95,7 @@ describe('the example run', () => {
 		const example = await exampleList();
 		expect(read).toHaveBeenCalledTimes(1);
 		expect(example).toEqual(tenders);
-		expect(example.list.open.length).toBe(350);
+		expect(example.list.open.length).toBe(349);
 	});
 
 	it('filters the same way as /tenders', async () => {

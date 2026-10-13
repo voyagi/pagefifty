@@ -1,5 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { readFixture } from '../../test/fixtures/node';
+import { capturePath, readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { NoticeRecordSchema } from '../snapshot/index-row';
 import { toBcp47 } from './languages';
@@ -294,6 +295,57 @@ describe('legal basis, change reasons and SDK versions', () => {
 		expect(readRole('cancel-notice').changeReasons).toEqual(['cancel']);
 	});
 
+	it('reads the version 600017-2026 changes as <identifier>-<VersionID>', () => {
+		expect(readRole('change-notice', 1).notice.changes).toEqual([
+			'54426929-1700-4c06-bc98-4f41506ab64f-01'
+		]);
+	});
+
+	// Some change links in the capture carry schemeName="notice-id-ref", which puts their text under
+	// #text, so the rule depends on this shape as much as on the bare one above.
+	it('reads a change link written with its schemeName attribute, as 601468-2026 writes it', () => {
+		const text = readFileSync(capturePath('601468-2026'), 'utf8');
+		expect(text).toContain('<efbc:ChangedNoticeIdentifier schemeName="notice-id-ref">');
+		expect(readText(text, '601468-2026').notice.changes).toEqual([
+			'403524b3-64a2-4a3d-95ca-ac90600cb5c8-02'
+		]);
+	});
+
+	it('reads both versions of notice ad28f539 with their one procedure', () => {
+		const identity = (version: string) => ({
+			id: 'ad28f539-52a7-4def-81b0-b09c8a77968a',
+			version,
+			procedure: '86110bd2-4c2d-47f9-aa36-0fa9447a0dd7',
+			changes: []
+		});
+		expect(readRole('superseded-pair', 0).notice).toEqual(identity('02'));
+		expect(readRole('superseded-pair', 1).notice).toEqual(identity('01'));
+	});
+
+	const withVersion = (version: string) => {
+		const text = readFixture('one-lot').replace(
+			'<cbc:VersionID>01</cbc:VersionID>',
+			`<cbc:VersionID>${version}</cbc:VersionID>`
+		);
+		expect(text).toContain(`<cbc:VersionID>${version}</cbc:VersionID>`);
+		return readNotice(new TextEncoder().encode(text), { noticeNumber: '609955-2026' });
+	};
+
+	// Versions are compared as integers, which stay exact to 15 digits.
+	it.each([
+		['is not digits', 'v2'],
+		['runs past 15 digits', '1234567890123456']
+	])('refuses a VersionID that %s, naming cbc:VersionID', (_why, version) => {
+		const result = withVersion(version);
+		expect(result).toMatchObject({ ok: false, kind: 'malformed' });
+		expect(result.ok ? '' : result.detail).toContain('cbc:VersionID');
+	});
+
+	it('reads a VersionID of 15 digits', () => {
+		const result = withVersion('123456789012345');
+		expect(result.ok ? result.record.notice.version : result.detail).toBe('123456789012345');
+	});
+
 	it.each([
 		['sdk-1.13', 'eforms-sdk-1.13'],
 		['sdk-1.14', 'eforms-sdk-1.14']
@@ -426,6 +478,32 @@ describe('refusals of incomplete fields, each naming its element', () => {
 			(text: string) =>
 				text.replace('<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>', ''),
 			'efac:NoticeSubType/cbc:SubTypeCode'
+		],
+		[
+			'its notice identifier',
+			'one-lot',
+			(text: string) =>
+				text.replace(
+					'<cbc:ID schemeName="notice-id">38c19032-e327-4ae0-b618-31b349376b36</cbc:ID>',
+					''
+				),
+			'ContractNotice/cbc:ID with schemeName notice-id'
+		],
+		[
+			'its VersionID',
+			'one-lot',
+			(text: string) => text.replace('<cbc:VersionID>01</cbc:VersionID>', ''),
+			'ContractNotice/cbc:VersionID'
+		],
+		[
+			'its procedure identifier',
+			'one-lot',
+			(text: string) =>
+				text.replace(
+					'<cbc:ContractFolderID>d3ec00fd-56a4-4251-8674-8297cf1736d8</cbc:ContractFolderID>',
+					''
+				),
+			'ContractNotice/cbc:ContractFolderID'
 		]
 	] as const)('refuses a notice without %s', (_what, role, edit, named) => {
 		const source = readFixture(role);

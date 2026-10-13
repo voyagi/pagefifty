@@ -32,8 +32,8 @@ try {
 	});
 
 	checks.push({
-		name: 'lists all 363 notices of the capture, each once',
-		ok: facts.rows === 363 && facts.distinct === 363,
+		name: 'lists all 362 notices of the capture, each once',
+		ok: facts.rows === 362 && facts.distinct === 362,
 		detail: `${facts.rows} rows, ${facts.distinct} distinct notice numbers`
 	});
 	checks.push({

@@ -8,5 +8,6 @@
 		"scripts/**/*.devbrowser.js"
 	],
 	"ignore": ["design/**"],
+	"ignoreBinaries": ["mkfifo"],
 	"ignoreDependencies": ["cloudflare"]
 }
