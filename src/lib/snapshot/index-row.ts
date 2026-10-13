@@ -101,6 +101,7 @@ const IndexRowSchema = z.strictObject({
 	country: z.array(z.string()),
 	cpvCodes: z.array(z.string()),
 	estimatedValue: AmountSchema.optional(),
+	cancelIntent: z.literal(true).optional(),
 	// The build refuses a notice with no lot, so an empty list means a damaged file.
 	lots: z.array(LotRowSchema).min(1)
 });
@@ -139,6 +140,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
 	documents: DocumentsLinkSchema.optional(),
 	changeReasons: z.array(z.string()),
+	cancelIntent: z.literal(true).optional(),
 	lots: z.array(LotRecordSchema).min(1)
 });
 
@@ -183,6 +185,7 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 		country: unique(record.buyers.map((buyer) => buyer.country)),
 		cpvCodes: unique([...record.cpv.main, ...record.cpv.additional]),
 		...(estimatedValue && { estimatedValue }),
+		...(record.cancelIntent && { cancelIntent: record.cancelIntent }),
 		lots: record.lots.map((lot) => ({
 			id: lot.id,
 			deadlines: lot.deadlines,

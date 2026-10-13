@@ -59,6 +59,9 @@ const WORK_OF_FILTER: Readonly<Record<string, string>> = {
 	'48': 'software packages'
 };
 
+export const CANCEL_INTENT_LINE =
+	'The buyer has announced that it intends to cancel this procedure.';
+
 export interface ListRow {
 	noticeNumber: string;
 	title: LangText;
@@ -70,6 +73,7 @@ export interface ListRow {
 	value: string | null;
 	deadline: NoticeDeadline;
 	reading: ReadingStatus;
+	cancelIntent: boolean;
 }
 
 export interface ListCounts {
@@ -146,7 +150,8 @@ function toListRow(row: IndexRow, now: Date): ListRow {
 		countries: row.country.map(countryName),
 		value: formatValue(row.estimatedValue),
 		deadline: noticeDeadline(row.lots, now),
-		reading: readingStatus(row.lots.map((lot) => lot.coverage))
+		reading: readingStatus(row.lots.map((lot) => lot.coverage)),
+		cancelIntent: row.cancelIntent === true
 	};
 }
 
