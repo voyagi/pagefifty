@@ -203,6 +203,13 @@ describe('toIndexRow and the index schema', () => {
 		expect(NoticeRecordSchema.parse(lotWithout)).toEqual(lotWithout);
 	});
 
+	// The reader's bound: versions are compared as integers, which stay exact to 15 digits.
+	it('takes a version of 15 digits and refuses one of 16, as the reader does', () => {
+		const withVersion = (version: string) => ({ ...RECORD, notice: { ...RECORD.notice, version } });
+		expect(NoticeRecordSchema.safeParse(withVersion('123456789012345')).success).toBe(true);
+		expect(NoticeRecordSchema.safeParse(withVersion('1234567890123456')).success).toBe(false);
+	});
+
 	it.each([
 		[
 			'a criterion',

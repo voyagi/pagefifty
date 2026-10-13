@@ -452,14 +452,18 @@ function cpvCodes(projects: unknown[], classification: string): string[] {
 }
 
 // A version that is not plain digits cannot be ordered against another, so it is refused rather
-// than guessed: a guess could serve a replaced version as the open tender.
+// than guessed: a guess could serve a replaced version as the open tender. Versions are compared as
+// integers, which stay exact to 15 digits, so a longer one is refused on the same grounds. The
+// record schema (index-row.ts) checks a stored version with this same pattern.
+export const VERSION_ID = /^\d{1,15}$/;
+
 function toIdentity(root: XmlNode): NoticeIdentity {
 	const id = walk(root, ['cbc:ID']).find(
 		(each) => attribute(each, 'schemeName') === 'notice-id' && textOf(each)
 	);
 	if (id === undefined) throw missing(`${ROOT}/cbc:ID with schemeName notice-id`);
 	const version = requiredText(root, ['cbc:VersionID'], ROOT);
-	if (!/^\d+$/.test(version)) {
+	if (!VERSION_ID.test(version)) {
 		throw new RecordFault(`malformed ${ROOT}/cbc:VersionID ${JSON.stringify(version)}`);
 	}
 	return {

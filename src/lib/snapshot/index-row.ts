@@ -4,19 +4,20 @@
 import { z } from 'zod';
 import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
 import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
-import type {
-	Amount,
-	Buyer,
-	Criterion,
-	CriterionParameter,
-	DocumentsLink,
-	GroupLegalForm,
-	LangText,
-	LegislationReference,
-	LotDeadlines,
-	LotRecord,
-	NoticeIdentity,
-	NoticeRecord
+import {
+	VERSION_ID,
+	type Amount,
+	type Buyer,
+	type Criterion,
+	type CriterionParameter,
+	type DocumentsLink,
+	type GroupLegalForm,
+	type LangText,
+	type LegislationReference,
+	type LotDeadlines,
+	type LotRecord,
+	type NoticeIdentity,
+	type NoticeRecord
 } from '../ingest/record.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
@@ -119,7 +120,7 @@ const LotRecordSchema: z.ZodType<LotRecord> = z.strictObject({
 
 const NoticeIdentitySchema: z.ZodType<NoticeIdentity> = z.strictObject({
 	id: z.string().min(1),
-	version: z.string().regex(/^\d+$/),
+	version: z.string().regex(VERSION_ID),
 	procedure: z.string().min(1),
 	changes: z.array(z.string())
 });

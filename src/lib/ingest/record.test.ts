@@ -322,14 +322,28 @@ describe('legal basis, change reasons and SDK versions', () => {
 		expect(readRole('superseded-pair', 1).notice).toEqual(identity('01'));
 	});
 
-	it('refuses a VersionID that is not digits, naming cbc:VersionID', () => {
+	const withVersion = (version: string) => {
 		const text = readFixture('one-lot').replace(
 			'<cbc:VersionID>01</cbc:VersionID>',
-			'<cbc:VersionID>v2</cbc:VersionID>'
+			`<cbc:VersionID>${version}</cbc:VersionID>`
 		);
-		expect(text).toContain('<cbc:VersionID>v2</cbc:VersionID>');
-		const result = readNotice(new TextEncoder().encode(text), { noticeNumber: '609955-2026' });
+		expect(text).toContain(`<cbc:VersionID>${version}</cbc:VersionID>`);
+		return readNotice(new TextEncoder().encode(text), { noticeNumber: '609955-2026' });
+	};
+
+	// Versions are compared as integers, which stay exact to 15 digits.
+	it.each([
+		['is not digits', 'v2'],
+		['runs past 15 digits', '1234567890123456']
+	])('refuses a VersionID that %s, naming cbc:VersionID', (_why, version) => {
+		const result = withVersion(version);
+		expect(result).toMatchObject({ ok: false, kind: 'malformed' });
 		expect(result.ok ? '' : result.detail).toContain('cbc:VersionID');
+	});
+
+	it('reads a VersionID of 15 digits', () => {
+		const result = withVersion('123456789012345');
+		expect(result.ok ? result.record.notice.version : result.detail).toBe('123456789012345');
 	});
 
 	it.each([
