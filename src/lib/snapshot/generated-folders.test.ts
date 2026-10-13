@@ -114,7 +114,7 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		writeCapture(['609955-2026']);
 		const run = build();
 		expect(run.status, run.stderr).toBe(0);
-		expect(run.stdout).toMatch(/^records: 2026-01-02: 1 notices in \d+ ms/);
+		expect(run.stdout).toMatch(/^records: 2026-01-02: 1 notices in \d+ ms\r?\n/);
 		expect(existsSync(join(out, '2026-01-02', 'records', '609955-2026.json'))).toBe(true);
 	});
 
@@ -220,7 +220,9 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(index.rows.map((row) => row.noticeNumber)).toEqual([LATEST]);
 		expect(index.leftOut).toEqual([{ notice: SUPERSEDED, reason: `superseded by ${LATEST}` }]);
 		expect(existsSync(join(out, '2026-01-02', 'records', `${SUPERSEDED}.json`))).toBe(false);
-		expect(run.stdout).toMatch(/^records: 2026-01-02: 1 notices in \d+ ms/);
+		expect(run.stdout).toMatch(
+			/^records: 2026-01-02: 1 notices in \d+ ms, 1 left out: 601147-2026 \(superseded by 600367-2026\)\r?\n/
+		);
 	});
 
 	it('names the notice when reading its recorded response fails', () => {

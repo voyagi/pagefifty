@@ -30,9 +30,19 @@ function byPublication(a: NoticeRecord, b: NoticeRecord): number {
 
 const versionOf = (record: NoticeRecord) => Number.parseInt(record.notice.version, 10);
 
-// How a change notice names this version (BT-758). Compared whole, since the identifier is a UUID
-// whose own hyphens make any split ambiguous.
-const linkOf = (record: NoticeRecord) => `${record.notice.id}-${record.notice.version}`;
+const versionKey = (id: string, version: string) => `${id}#${Number.parseInt(version, 10)}`;
+
+const keyOf = (record: NoticeRecord) => versionKey(record.notice.id, record.notice.version);
+
+// A change notice names each version it changes (BT-758) as "<identifier>-<VersionID>". The
+// identifier's own hyphens never matter: the version is the digits after the last hyphen, read as
+// an integer like every other version here, so "-1" and "-01" name the same version. A link with
+// no digits there names no version a record can hold (the reader refuses such a VersionID).
+function linkKey(change: string): string | undefined {
+	const at = change.lastIndexOf('-');
+	const version = change.slice(at + 1);
+	return at > 0 && /^\d+$/.test(version) ? versionKey(change.slice(0, at), version) : undefined;
+}
 
 // Walking in publication order, a later record of an equal version replaces the earlier one, so of
 // two duplicates the higher publication number wins.
@@ -54,7 +64,8 @@ function successorsByLink(ordered: readonly NoticeRecord[]): Map<string, NoticeR
 	const successors = new Map<string, NoticeRecord>();
 	for (const record of ordered) {
 		for (const change of record.notice.changes) {
-			if (change !== linkOf(record)) successors.set(change, record);
+			const key = linkKey(change);
+			if (key !== undefined && key !== keyOf(record)) successors.set(key, record);
 		}
 	}
 	return successors;
@@ -67,7 +78,7 @@ function reasonLeftOut(
 ): string | undefined {
 	const winner = winners.get(record.notice.id) ?? record;
 	if (versionOf(winner) > versionOf(record)) return `superseded by ${winner.noticeNumber}`;
-	const successor = successors.get(linkOf(record));
+	const successor = successors.get(keyOf(record));
 	if (successor !== undefined) return `superseded by ${successor.noticeNumber}`;
 	if (winner !== record) return `duplicate of ${winner.noticeNumber}`;
 	return record.changeReasons.includes('cancel') ? 'cancelled' : undefined;

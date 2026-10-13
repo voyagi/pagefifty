@@ -278,7 +278,13 @@ async function main() {
 	mkdirSync(out, { recursive: true });
 	for (const capture of captures) {
 		writeCapture(out, capture);
-		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms`);
+		// A notice the rule left out has no row and no page, so the line names each one: a wrong
+		// leftOut on a new capture shows here, not only as a smaller count.
+		const { leftOut } = capture.index;
+		const left = leftOut.length === 0
+			? ''
+			: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
+		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`);
 	}
 	pruneStale(out, ids);
 	return 0;

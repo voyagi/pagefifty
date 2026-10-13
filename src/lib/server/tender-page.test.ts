@@ -65,6 +65,16 @@ describe('loadTenderPage', () => {
 		expect(read).not.toHaveBeenCalled();
 	});
 
+	// The capture lists 601147-2026, but the build leaves it out as the version 600367-2026 replaced.
+	it('answers 601147-2026, the version 600367-2026 replaced, with the unknown-notice 404', async () => {
+		const error = await failureOf(load('601147-2026'));
+		expect(isHttpError(error) && { status: error.status, body: error.body }).toEqual({
+			status: 404,
+			body: { message: 'Not Found', kind: 'unknown-notice', notice: '601147-2026' }
+		});
+		expect(read).not.toHaveBeenCalled();
+	});
+
 	// The snapshot holds these notices, so a failed read is the server's fault: the 404 would tell the
 	// visitor the notice is not in the snapshot, which is false.
 	it('fails with a server error, never the 404, when a record the snapshot holds cannot be read', async () => {

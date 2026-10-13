@@ -67,10 +67,29 @@ module.exports = {
 			to: { path: '^src/lib/capture/' }
 		},
 		{
+			name: 'no-site-reads-disk',
+			severity: 'error',
+			comment:
+				'The site runs as a Worker and serves the records the build wrote, so no site module reads the disk. The capture check (src/lib/snapshot/scrub-check.ts) reads a capture folder for scripts/scrub-capture.mjs and the capture command, and no-site-reaches-scrub-check keeps site code off it.',
+			from: {
+				path: '^src/',
+				pathNot: ['^src/lib/capture/', '^src/test/', TEST_FILE, '^src/lib/snapshot/scrub-check\\.ts$']
+			},
+			to: { path: '^(node:)?fs(/promises)?$' }
+		},
+		{
+			name: 'no-site-reaches-scrub-check',
+			severity: 'error',
+			comment:
+				'The capture check reads the disk, so only the capture command, tests and scripts outside src/ import it. A direct import is enough, for the reason no-site-reaches-capture gives.',
+			from: { path: '^src/', pathNot: ['^src/lib/capture/', '^src/test/', TEST_FILE] },
+			to: { path: '^src/lib/snapshot/scrub-check\\.ts$' }
+		},
+		{
 			name: 'no-site-imports-tests',
 			severity: 'error',
 			comment:
-				'fetch-only-network, no-site-reaches-capture and no-private-env exempt tests and their helpers, which may open a socket, call the command or read private env. That exemption is safe only while no site module imports a test file or a helper under src/test/.',
+				'fetch-only-network, no-site-reaches-capture, no-site-reads-disk, no-site-reaches-scrub-check and no-private-env exempt tests and their helpers, which may open a socket, call the command, read the disk or read private env. That exemption is safe only while no site module imports a test file or a helper under src/test/.',
 			from: { path: '^src/', pathNot: ['^src/test/', TEST_FILE] },
 			to: { path: `(^src/test/|${TEST_FILE})` }
 		},
@@ -78,7 +97,7 @@ module.exports = {
 			name: 'no-site-imports-outside-src',
 			severity: 'error',
 			comment:
-				"fetch-only-network, no-site-reaches-capture and no-private-env judge the module that makes an import, and only modules under src/. A hop through a file outside src/ (a script, a root config) would carry site code to the command, a raw socket or private env with none of them firing. Site code imports src/, packages, Node's modules and the framework's own; tests may reach scripts and fixtures.",
+				"fetch-only-network, no-site-reaches-capture, no-site-reads-disk, no-site-reaches-scrub-check and no-private-env judge the module that makes an import, and only modules under src/. A hop through a file outside src/ (a script, a root config) would carry site code to the command, a raw socket, the disk or private env with none of them firing. Site code imports src/, packages, Node's modules and the framework's own; tests may reach scripts and fixtures.",
 			from: { path: '^src/', pathNot: ['^src/test/', TEST_FILE] },
 			to: {
 				couldNotResolve: false,

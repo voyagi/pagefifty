@@ -132,7 +132,7 @@ describe('error page', () => {
 			'No tender with this notice number'
 		);
 		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
-			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after the capture, or not a call for tenders TED listed as active that day.'
+			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after the capture, not a call for tenders TED listed as active that day, or an earlier version of a notice TED published again.'
 		);
 		expect(hrefs()).toContain('/tenders');
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
@@ -164,7 +164,10 @@ describe('error page', () => {
 		// listed as active (scope ACTIVE, recorded in examples/2026-09-15/README.md): 10 notices of
 		// the same query were in scope and window but no longer active (spike 001, 373 against 363).
 		expect(index.capture.query).toContain('notice-type=cn-standard');
-		expect(lede).toContain('not a call for tenders TED listed as active that day.');
+		expect(lede).toContain('not a call for tenders TED listed as active that day,');
+		// The build leaves a replaced version out of the index (leftOut), so its own page is this 404.
+		expect(index.leftOut.length).toBeGreaterThan(0);
+		expect(lede).toContain('or an earlier version of a notice TED published again.');
 	});
 
 	it('shows control and direction characters in an unknown notice as the replacement mark', () => {

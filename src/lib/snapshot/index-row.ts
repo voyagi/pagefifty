@@ -145,6 +145,8 @@ export const SnapshotIndexSchema = z.strictObject({
 	capture: z.strictObject({
 		id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
 		fetchedAt: z.iso.datetime(),
+		// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
+		// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
 		total: z.number().int().nonnegative(),
 		query: z.string()
 	}),

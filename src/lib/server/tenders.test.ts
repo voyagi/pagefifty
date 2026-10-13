@@ -53,7 +53,7 @@ describe('loadTenderList', () => {
 		const rows = [...data.list.open, ...data.list.closed];
 		expect(rows.length).toBe(data.list.counts.shown);
 		expect(rows.length).toBeGreaterThan(0);
-		expect(rows.length).toBeLessThan(363);
+		expect(rows.length).toBeLessThan(data.list.counts.total);
 		expect(rows.every((row) => row.countries.includes('Netherlands'))).toBe(true);
 	});
 

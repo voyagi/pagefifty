@@ -92,6 +92,32 @@ describe('selectLatest', () => {
 		expect(leftOut).toEqual([]);
 	});
 
+	it('reads the VersionID in a successor link as an integer, so -3 names VersionID 03 (override: notice block)', () => {
+		const earlier = variant('600001-2026', { id: 'a1b2-c3d4-e5', version: '03', procedure: 'p1' });
+		const change = variant('600002-2026', {
+			id: 'f6a7',
+			version: '01',
+			procedure: 'p2',
+			changes: ['a1b2-c3d4-e5-3']
+		});
+		const { kept, leftOut } = selectLatest([earlier, change]);
+		expect(numbers(kept)).toEqual(['600002-2026']);
+		expect(leftOut).toEqual([{ notice: '600001-2026', reason: 'superseded by 600002-2026' }]);
+	});
+
+	it('names no notice with a successor link that has no digits after its last hyphen (override: notice block)', () => {
+		const earlier = variant('600001-2026', { id: 'a1b2-c3d4-e5', version: '03', procedure: 'p1' });
+		const change = variant('600002-2026', {
+			id: 'f6a7',
+			version: '01',
+			procedure: 'p2',
+			changes: ['a1b2-c3d4-e5', 'a1b2-c3d4-e5-', 'a1b2-c3d4-e5-v3']
+		});
+		const { kept, leftOut } = selectLatest([earlier, change]);
+		expect(numbers(kept)).toEqual(['600001-2026', '600002-2026']);
+		expect(leftOut).toEqual([]);
+	});
+
 	it('never leaves out a notice for naming its own version as the one it changes (override: notice block)', () => {
 		const record = variant('600001-2026', { id: 'own-id', version: '02', changes: ['own-id-02'] });
 		expect(selectLatest([record])).toEqual({ kept: [record], leftOut: [], sameProcedure: [] });
