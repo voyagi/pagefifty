@@ -162,8 +162,12 @@ export function touchedCriteria(capture: string): string[] {
 		.map((path) => `${path}: a selection criterion holds the placeholder`);
 }
 
+// A folder with no file passes every check above, so it is named: scrub-capture.mjs --check exits 2
+// on the same folder.
 export function folderProblems(folder: string): string[] {
+	const empty = captureFiles(folder).length === 0;
 	return [
+		...(empty ? [`${folder}: no files, so nothing was checked`] : []),
 		...captureLinks(folder).map((path) => `${path}: a link, not a file`),
 		...unreadableFiles(folder),
 		...contactOffenders(folder),

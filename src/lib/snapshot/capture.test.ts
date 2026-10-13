@@ -321,6 +321,18 @@ describe('one verdict over a capture folder', () => {
 		}
 	});
 
+	// A command test over a folder that was never written would otherwise pass on four empty lists.
+	it('names a folder that holds no files instead of calling it clean', () => {
+		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
+		try {
+			const folder = join(root, '2026-10-13');
+			mkdirSync(join(folder, 'xml'), { recursive: true });
+			expect(folderProblems(folder)).toEqual([`${folder}: no files, so nothing was checked`]);
+		} finally {
+			rmSync(root, { recursive: true, force: true });
+		}
+	});
+
 	it('throws naming a JSON file in the folder that does not parse', () => {
 		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
 		try {
