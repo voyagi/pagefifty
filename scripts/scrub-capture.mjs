@@ -13,9 +13,11 @@
 //       copies notices.json, fetch-log.json and xml/*.xml through the scrub, then checks the copy
 //       as --check does and exits 1 when anything is left
 //   node scripts/scrub-capture.mjs --check <dir> [--against <capture dir>]
-//       lists every file under <dir> that still holds contact data, and every link, which it never
-//       reads because git keeps a link and not what it points at; with --against, also proves
-//       that the scrub changed nothing else and prints how many spans of each kind it replaced
+//       lists every file under <dir> that still holds contact data, every link, which it never
+//       reads because git keeps a link and not what it points at, and every entry that is not a
+//       regular file (a pipe, a socket, a device), which git cannot keep and it never opens; with
+//       --against, also proves that the scrub changed nothing else and prints how many spans of
+//       each kind it replaced
 //
 // --against removes every span the scrub may replace from the source, and every placeholder from
 // the copy, then requires the two remainders to be identical after CRLF becomes LF and one final
@@ -25,8 +27,8 @@
 // A non-empty file that is not text (a PDF, a ZIP) is named rather than read: no pattern sees
 // inside it, so it goes into a capture only as extracted, scrubbed text.
 //
-// Exit codes: 0 clean, 1 contact data, a file that is not text, a link or an unexpected difference
-// found (or a usage error),
+// Exit codes: 0 clean, 1 contact data, a file that is not text, a link, an entry that is not a
+// regular file or an unexpected difference found (or a usage error),
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
@@ -211,7 +213,7 @@ function check(dir, against) {
 	}
 	for (const line of dirty) console.error(`contact data: ${line}`);
 	for (const line of notText) console.error(`not text, so no pattern can read it: ${line}`);
-	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text, ${links.length} links refused`);
+	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text, ${links.length} links refused, ${special.length} not regular files`);
 	const found = dirty.length + notText.length + links.length + special.length;
 	if (!against) return found > 0 ? 1 : 0;
 
