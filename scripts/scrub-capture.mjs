@@ -4,8 +4,9 @@
 //
 // A capture that is committed stays in git history, so contact names, email addresses and
 // telephone and fax numbers are replaced before the first commit that tracks the files, never
-// after. The scrub itself lives in src/lib/snapshot/scrub.ts, imported here under Node's type
-// stripping, so the script and the tests run exactly the same code.
+// after. The scrub itself lives in src/lib/snapshot/scrub.ts and the folder check in
+// src/lib/snapshot/scrub-check.ts, imported here under Node's type stripping, so the script, the
+// capture command and the tests run exactly the same code.
 //
 // Usage:
 //   node scripts/scrub-capture.mjs --from <capture dir> --to <dir>
@@ -29,7 +30,7 @@
 
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
-import { decodeCharacterReferences, isUnreadableCaptureFile } from '../src/lib/snapshot/capture-files.ts';
+import { checkCaptureFolder, naming, walkJson } from '../src/lib/snapshot/scrub-check.ts';
 import {
 	SCRUB_PLACEHOLDER,
 	findNoticeSpans,
@@ -149,66 +150,6 @@ function copyScrubbed(from, to) {
 	return extras.length;
 }
 
-function listFiles(dir) {
-	return readdirSync(dir, { recursive: true, withFileTypes: true })
-		.filter((entry) => entry.isFile())
-		.map((entry) => join(entry.parentPath, entry.name))
-		.sort();
-}
-
-// A leaf is judged by the nearest contact key above it, however deep, because scrubJsonValue
-// replaces everything under such a key; TED sends multilingual fields as objects keyed by language.
-function walkJson(value, visit, key = '') {
-	if (Array.isArray(value)) return value.map((item) => walkJson(item, visit, key));
-	if (value && typeof value === 'object') {
-		return Object.fromEntries(
-			Object.entries(value).map(([inner, child]) => [inner, walkJson(child, visit, isContactKey(key) ? key : inner)])
-		);
-	}
-	return visit(value, key);
-}
-
-function jsonLeftovers(value) {
-	const kinds = [];
-	walkJson(value, (leaf, key) => {
-		if (isContactKey(key) && leaf !== null && typeof leaf !== 'boolean' && leaf !== SCRUB_PLACEHOLDER) {
-			kinds.push('json-contact-key');
-		} else if (typeof leaf === 'string') {
-			kinds.push(...findTextSpans(leaf).map((span) => span.kind));
-			kinds.push(...encodedKinds(leaf));
-		}
-		return leaf;
-	});
-	return kinds;
-}
-
-const unscrubbedKinds = (text, spans) =>
-	spans.filter((span) => text.slice(span.start, span.end) !== SCRUB_PLACEHOLDER).map((span) => span.kind);
-
-// What a copy with its character references decoded still shows, named as encoded.
-function encodedKinds(text) {
-	const decoded = decodeCharacterReferences(text);
-	return decoded === text ? [] : unscrubbedKinds(decoded, findTextSpans(decoded)).map((kind) => `encoded ${kind}`);
-}
-
-// JSON.parse decodes a JSON escape itself. XML and HTML write characters as references (&#64; is an
-// at sign), which the scrub does not decode, so an address written that way is found in a decoded
-// copy and named as encoded: the scrub itself would leave it in place.
-function leftovers(path, text) {
-	if (path.endsWith('.json')) return jsonLeftovers(JSON.parse(text));
-	const kinds = unscrubbedKinds(text, path.endsWith('.xml') ? findNoticeSpans(text) : findTextSpans(text));
-	return [...kinds, ...encodedKinds(text)];
-}
-
-// Puts the file's name on an error that would otherwise not say which file broke.
-function naming(file, work) {
-	try {
-		return work();
-	} catch (error) {
-		throw new Error(`${file}: ${error.message}`);
-	}
-}
-
 const normalize = (text) => text.replace(/\r\n/g, '\n').replace(/\n$/, '');
 const dropPlaceholders = (text) => text.split(SCRUB_PLACEHOLDER).join('');
 
@@ -260,28 +201,14 @@ function compareAgainst(dir, against) {
 }
 
 function check(dir, against) {
-	const files = listFiles(dir);
-	if (files.length === 0) {
+	const { files, dirty, notText } = checkCaptureFolder(dir);
+	if (files === 0) {
 		console.error(`no files under ${dir}`);
 		return 2;
 	}
-	const dirty = [];
-	// A PDF or an archive read as text shows no pattern anything, so it is named, never passed.
-	const notText = [];
-	for (const path of files) {
-		const bytes = readFileSync(path);
-		if (isUnreadableCaptureFile(path, bytes)) {
-			notText.push(relative(dir, path));
-			continue;
-		}
-		const kinds = naming(relative(dir, path), () => leftovers(path, bytes.toString('utf8')));
-		if (kinds.length > 0) dirty.push(`${relative(dir, path)}: ${[...new Set(kinds)].join(', ')}`);
-	}
 	for (const line of dirty) console.error(`contact data: ${line}`);
 	for (const line of notText) console.error(`not text, so no pattern can read it: ${line}`);
-	console.log(
-		`checked ${files.length} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text`
-	);
+	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text`);
 	const found = dirty.length + notText.length;
 	if (!against) return found > 0 ? 1 : 0;
 
