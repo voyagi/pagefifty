@@ -181,11 +181,14 @@ function jsonRemainders(source, copy, counts) {
 	return [JSON.stringify(reducedSource, null, 2), JSON.stringify(reducedCopy, null, 2)];
 }
 
-function compareAgainst(dir, against) {
+// The check has already named every refused entry, and reading one here would read through the link
+// it refused (or block on a pipe), so a file at or under a refused path is never compared.
+function compareAgainst(dir, against, refused) {
 	const counts = {};
 	const sourceXml = xmlNames(against);
 	const problems = filesNotInSource(dir, sourceXml).map((file) => `${file}: not in the source capture`);
-	const expected = [...JSON_FILES, ...sourceXml.map((name) => join('xml', name))];
+	const isRefused = (file) => refused.some((entry) => file === entry || file.startsWith(`${entry}${sep}`));
+	const expected = [...JSON_FILES, ...sourceXml.map((name) => join('xml', name))].filter((file) => !isRefused(file));
 	for (const file of expected) {
 		let copy;
 		try {
@@ -217,7 +220,7 @@ function check(dir, against) {
 	const found = dirty.length + notText.length + links.length + special.length;
 	if (!against) return found > 0 ? 1 : 0;
 
-	const { counts, problems, compared } = compareAgainst(dir, against);
+	const { counts, problems, compared } = compareAgainst(dir, against, [...links, ...special]);
 	for (const line of problems) console.error(line);
 	console.log(`compared ${compared} files against ${against}, ${problems.length} unexpected differences`);
 	for (const kind of Object.keys(counts).sort()) console.log(`replaced ${kind}: ${counts[kind]}`);
