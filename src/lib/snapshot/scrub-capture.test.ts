@@ -163,6 +163,33 @@ describe('scrub-capture.mjs', () => {
 		expect(checked.status).toBe(1);
 	});
 
+	it('never lists extra notices through a refused xml folder link when given --against', () => {
+		const target = join(root, 'extra-xml-target');
+		mkdirSync(target);
+		writeFileSync(join(target, '000777-2026.xml'), '<ContractNotice/>\n');
+		const linked = join(root, 'linked-extra-copy');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notices.json'), readFileSync(join(copy, 'notices.json')));
+		symlinkSync(target, join(linked, 'xml'), process.platform === 'win32' ? 'junction' : 'dir');
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).not.toContain('000777-2026.xml');
+		expect(checked.status).toBe(1);
+	});
+
+	// A link named xml that leads to a file is refused like any link, so listing it as a folder must
+	// not turn the finding into a read error and exit 2.
+	it('exits 1, not 2, when the refused xml entry links to a file and --against is given', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
+		const linked = join(root, 'xml-file-link-copy');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notices.json'), readFileSync(join(copy, 'notices.json')));
+		symlinkSync(join(copy, 'notices.json'), join(linked, 'xml'), 'file');
+		const checked = run('--check', linked, '--against', source);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.status, checked.stderr).toBe(1);
+	});
+
 	it('exits 1, not 2, on a folder whose only entry is a link', () => {
 		const onlyLink = join(root, 'only-link');
 		mkdirSync(onlyLink);
