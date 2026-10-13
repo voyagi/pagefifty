@@ -208,6 +208,19 @@ describe('the detectors (positive controls)', () => {
 			)
 		).toEqual({ criteria: 2, touched: 1 });
 	});
+
+	// The tracked capture writes every opening tag bare (1375 of 1375), so only a planted one proves
+	// a later capture's attributed criterion is still read.
+	it('the criterion check counts a criterion whose opening tag carries an attribute', () => {
+		const attributed =
+			'<efac:SelectionCriteria xmlns:efac="urn:x">\n<cbc:Description>Referenz ' +
+			`${SCRUB_PLACEHOLDER}</cbc:Description></efac:SelectionCriteria>`;
+		expect(criterionCensus(attributed)).toEqual({ criteria: 1, touched: 1 });
+		expect(criterionCensus('<efac:SelectionCriteriaList></efac:SelectionCriteriaList>')).toEqual({
+			criteria: 0,
+			touched: 0
+		});
+	});
 });
 
 describe('every capture folder under examples', () => {

@@ -50,6 +50,12 @@ function openTags(text: string, tag: string, from = 0, to = text.length): number
 	return found;
 }
 
+// A block that never closes runs to the end of the text, so what it holds is still read.
+function closeOf(text: string, tag: string, from: number): number {
+	const end = text.indexOf(tag, from);
+	return end < 0 ? text.length : end;
+}
+
 function elementText(text: string, at: number): string {
 	const open = text.indexOf('>', at);
 	return text.slice(open + 1, text.indexOf('<', open));
@@ -68,17 +74,12 @@ export function censusElements(text: string): ElementCensus {
 		if (elementText(text, at) !== SCRUB_PLACEHOLDER) unscrubbed.push(`${tag} at ${at}`);
 	};
 	for (const tag of CONTACT_ELEMENTS) for (const at of openTags(text, tag)) visit(tag, at);
-	// A block that never closes runs to the end of the text, so its names are still read.
-	const closeOf = (tag: string, from: number) => {
-		const end = text.indexOf(tag, from);
-		return end < 0 ? text.length : end;
-	};
 	for (const block of openTags(text, 'cac:Contact')) {
-		const end = closeOf('</cac:Contact>', block);
+		const end = closeOf(text, '</cac:Contact>', block);
 		for (const at of openTags(text, 'cbc:Name', block, end)) visit('contact cbc:Name', at);
 	}
 	for (const block of openTags(text, 'efac:TouchPoint')) {
-		const end = closeOf('</efac:TouchPoint>', block);
+		const end = closeOf(text, '</efac:TouchPoint>', block);
 		for (const at of openTags(text, 'cbc:Name', block, end)) visit('touchpoint cbc:Name', at);
 	}
 	return { checked, unscrubbed };
@@ -98,13 +99,14 @@ const BRACKETED_AT_EMAIL = /[A-Za-z0-9._%+-]+ ?[([{]at[)\]}] ?[A-Za-z0-9.-]+[.][
 const NAME_AFTER_ADDRESS_FORM =
 	/(?<![\p{L}\p{N}])(?:Frau|Herrn?|Hr\.|Fr\.|[Mm]evrouw|[Mm]evr\.|[Mm]w\.|[Mm]eneer|[Mm]ijnheer|[Dd]hr\.|[Dd]e heer|[Mm]adame|[Mm]onsieur|Mme\.?|Mlle\.?|Mrs?\.?|Ms\.?|Miss)(?:\s+(?:Dr\.|Prof\.|dr\.|ir\.|mr\.|drs\.|ing\.|Dipl\.-\p{L}+\.?)){0,3}\s+\p{Lu}(?:[\p{L}'’-]+|\.)/u;
 
-// Criterion text is what the product quotes, so the scrub must never have touched it.
+// Criterion text is what the product quotes, so the scrub must never have touched it. Blocks are
+// found by their opening tag, attributes or not, and read to their close as contact blocks are.
 export function criterionCensus(text: string): { criteria: number; touched: number } {
-	const blocks = text.match(/<efac:SelectionCriteria>[\s\S]*?<\/efac:SelectionCriteria>/g) ?? [];
-	return {
-		criteria: blocks.length,
-		touched: blocks.filter((block) => block.includes(SCRUB_PLACEHOLDER)).length
-	};
+	const blocks = openTags(text, 'efac:SelectionCriteria');
+	const touched = blocks.filter((at) =>
+		text.slice(at, closeOf(text, '</efac:SelectionCriteria>', at)).includes(SCRUB_PLACEHOLDER)
+	);
+	return { criteria: blocks.length, touched: touched.length };
 }
 
 export function contactStrings(text: string): string[] {
