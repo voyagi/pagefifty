@@ -27,11 +27,11 @@ export function captureFiles(capture: string): string[] {
 	return listCaptureEntries(capture).files;
 }
 
-export function captureLinks(capture: string): string[] {
+function captureLinks(capture: string): string[] {
 	return listCaptureEntries(capture).links;
 }
 
-export function captureSpecial(capture: string): string[] {
+function captureSpecial(capture: string): string[] {
 	return listCaptureEntries(capture).special;
 }
 
