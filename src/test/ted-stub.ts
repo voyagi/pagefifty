@@ -1,14 +1,27 @@
 // TED's side of the wire for every capture test. A search answers the named notices' listing entries
-// from the tracked 2026-09-15 capture, and a notice XML GET answers its tracked file, both read by
-// notice number and never copied. A test scripts anything else per URL, and every call is recorded
-// on the fake clock the capture code paces itself with.
+// from the tracked 2026-09-15 capture, and a notice XML GET answers its tracked file with contact
+// data planted back in, both read by notice number and never copied. A test scripts anything else
+// per URL, and every call is recorded on the fake clock the capture code paces itself with.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { SCRUB_PLACEHOLDER } from '../lib/snapshot/scrub.ts';
 import { tedNoticeXmlUrl, type Transport } from '../lib/snapshot/transport.ts';
 import { capturePath } from './fixtures/node.ts';
 import { CAPTURE_ID } from './fixtures/roles.ts';
 
 const TED_SEARCH_URL = 'https://api.ted.europa.eu/v3/notices/search';
+
+// Built rather than written out, so no literal in this file reads as someone's address.
+export const PLANTED_ADDRESS = ['vergabe', 'buyer.example'].join('@');
+
+// The tracked files are already scrubbed, and TED is not. Served as tracked, a capture run that
+// never scrubbed would still write a clean folder and pass every contact check, so each placeholder
+// is filled with an address: skipping the scrub leaves it for the detectors, and the scrub turns all
+// 363 files back into their tracked bytes (ted-stub.test.ts pins both).
+function servedNotice(notice: string): Uint8Array<ArrayBuffer> {
+	const tracked = readFileSync(capturePath(notice), 'utf8');
+	return new TextEncoder().encode(tracked.split(SCRUB_PLACEHOLDER).join(PLANTED_ADDRESS));
+}
 
 type ScriptedBody = string | Uint8Array<ArrayBuffer> | ReadableStream<Uint8Array>;
 
@@ -120,7 +133,7 @@ export function createScriptedTed(options: {
 		}
 		const notice = xmlNotices.get(url);
 		if (method === 'GET' && notice !== undefined) {
-			return new Response(readFileSync(capturePath(notice)), { status: 200 });
+			return new Response(servedNotice(notice), { status: 200 });
 		}
 		return unscripted(method, url);
 	};

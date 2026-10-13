@@ -453,6 +453,32 @@ describe('refusals of incomplete fields, each naming its element', () => {
 			(text: string) =>
 				text.replace('<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>', ''),
 			'efac:NoticeSubType/cbc:SubTypeCode'
+		],
+		[
+			'its notice identifier',
+			'one-lot',
+			(text: string) =>
+				text.replace(
+					'<cbc:ID schemeName="notice-id">38c19032-e327-4ae0-b618-31b349376b36</cbc:ID>',
+					''
+				),
+			'ContractNotice/cbc:ID with schemeName notice-id'
+		],
+		[
+			'its VersionID',
+			'one-lot',
+			(text: string) => text.replace('<cbc:VersionID>01</cbc:VersionID>', ''),
+			'ContractNotice/cbc:VersionID'
+		],
+		[
+			'its procedure identifier',
+			'one-lot',
+			(text: string) =>
+				text.replace(
+					'<cbc:ContractFolderID>d3ec00fd-56a4-4251-8674-8297cf1736d8</cbc:ContractFolderID>',
+					''
+				),
+			'ContractNotice/cbc:ContractFolderID'
 		]
 	] as const)('refuses a notice without %s', (_what, role, edit, named) => {
 		const source = readFixture(role);

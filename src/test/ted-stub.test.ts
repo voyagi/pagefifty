@@ -3,9 +3,11 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { SCRUB_PLACEHOLDER, scrubNoticeXml } from '../lib/snapshot/scrub.ts';
 import { tedNoticeXmlUrl } from '../lib/snapshot/transport.ts';
+import { contactStringsInFile } from './capture-detectors.ts';
 import { capturePath } from './fixtures/node.ts';
-import { createFakeClock, createScriptedTed } from './ted-stub.ts';
+import { createFakeClock, createScriptedTed, PLANTED_ADDRESS } from './ted-stub.ts';
 
 const SEARCH = 'https://api.ted.europa.eu/v3/notices/search';
 const START = Date.UTC(2026, 9, 13, 6, 0, 0);
@@ -111,14 +113,36 @@ describe('createScriptedTed', () => {
 		expect(third.json.notices).toEqual([]);
 	});
 
-	it('answers a notice XML GET with the bytes of its tracked file', async () => {
+	it('answers a notice XML GET with its tracked file, each placeholder filled with the planted address', async () => {
 		const ted = createScriptedTed({ clock: createFakeClock(START), notices: ['600367-2026'] });
 		const response = await ted(xml('600367-2026'));
 		expect(response.status).toBe(200);
-		expect(new Uint8Array(await response.arrayBuffer())).toEqual(
-			new Uint8Array(readFileSync(capturePath('600367-2026')))
-		);
+		const served = await response.text();
+		const tracked = readFileSync(capturePath('600367-2026'), 'utf8');
+		expect(tracked).toContain(SCRUB_PLACEHOLDER);
+		expect(served).not.toContain(SCRUB_PLACEHOLDER);
+		expect(served).toContain(PLANTED_ADDRESS);
+		expect(scrubNoticeXml(served)).toBe(tracked);
 	});
+
+	// A capture run that skipped the scrub would write what TED served, so every default answer must
+	// carry contact data the capture detectors name, and the scrub must give back the tracked file.
+	it('serves every tracked notice with contact data the detectors name, which the scrub turns back into the tracked file', async () => {
+		const notices = LISTING.map((entry) => entry['publication-number']);
+		expect(notices).toHaveLength(363);
+		const ted = createScriptedTed({ clock: createFakeClock(START), notices });
+		const wrong: string[] = [];
+		for (const notice of notices) {
+			const served = await (await ted(xml(notice))).text();
+			if (contactStringsInFile(`${notice}.xml`, served).length === 0) {
+				wrong.push(`${notice}: served without contact data`);
+			}
+			if (scrubNoticeXml(served) !== readFileSync(capturePath(notice), 'utf8')) {
+				wrong.push(`${notice}: the scrub does not give back the tracked file`);
+			}
+		}
+		expect(wrong).toEqual([]);
+	}, 30_000);
 
 	it("answers 599 naming the URL for an unnamed notice's XML", async () => {
 		const ted = createScriptedTed({ clock: createFakeClock(START), notices: ['600367-2026'] });
@@ -153,7 +177,9 @@ describe('createScriptedTed', () => {
 		expect(first.headers.get('retry-after')).toBe('3');
 		const second = await ted(xml('600367-2026'));
 		expect(second.status).toBe(200);
-		expect(await second.text()).toBe(readFileSync(capturePath('600367-2026'), 'utf8'));
+		expect(scrubNoticeXml(await second.text())).toBe(
+			readFileSync(capturePath('600367-2026'), 'utf8')
+		);
 	});
 
 	it('rejects a call scripted to throw, and still records it', async () => {
