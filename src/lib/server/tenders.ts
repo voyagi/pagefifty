@@ -3,7 +3,7 @@
 import { parseFilters } from '../core/filters';
 import { buildTenderList, captureFacts, type TenderListData } from '../tenders/list';
 import type { TenderPageData } from '../tenders/tender-page';
-import { DEFAULT_CAPTURE, instantOf, loadIndex, type Now } from './records';
+import { EXAMPLE_CAPTURE, instantOf, loadIndex, type Now } from './records';
 import { loadTenderPage } from './tender-page';
 
 export async function loadTenderList({
@@ -28,9 +28,9 @@ export async function loadTenderList({
 // The example replays the tracked capture through the same loaders as the live pages, judged at
 // the instant it was taken, so it is never empty however long after the capture it is opened.
 export function loadExampleList({ url }: { url: URL }): Promise<TenderListData> {
-	return loadTenderList({ capture: DEFAULT_CAPTURE, url, now: 'capture' });
+	return loadTenderList({ capture: EXAMPLE_CAPTURE, url, now: 'capture' });
 }
 
 export function loadExamplePage({ notice }: { notice: string }): Promise<TenderPageData> {
-	return loadTenderPage({ capture: DEFAULT_CAPTURE, notice, now: 'capture' });
+	return loadTenderPage({ capture: EXAMPLE_CAPTURE, notice, now: 'capture' });
 }

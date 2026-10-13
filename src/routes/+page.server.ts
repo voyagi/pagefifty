@@ -1,8 +1,9 @@
-import { DEFAULT_CAPTURE, loadIndex } from '$lib/server/records';
-import { captureDay } from '$lib/snapshot/index-row';
+import { LATEST_CAPTURE, loadIndex } from '$lib/server/records';
+import { captureFacts } from '$lib/tenders/list';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const { capture } = await loadIndex(DEFAULT_CAPTURE);
-	return { total: capture.total, capturedOn: captureDay(capture.fetchedAt) };
+	const { capture } = await loadIndex(LATEST_CAPTURE);
+	const { capturedOn, firstPublished } = captureFacts(capture);
+	return { total: capture.total, capturedOn, ...(firstPublished && { firstPublished }) };
 };

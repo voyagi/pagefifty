@@ -3,14 +3,13 @@
 // binding on the Worker, so no notice XML is parsed while a page is served.
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
+import { newestCapture } from '../snapshot/capture-id';
 import {
 	NOTICE_NUMBER,
 	NoticeRecordSchema,
 	SnapshotIndexSchema,
 	type SnapshotIndex
 } from '../snapshot/index-row';
-
-export const DEFAULT_CAPTURE = '2026-09-15';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
 // the snapshot was taken, read from the index the page already loads, so the example reads no
@@ -54,6 +53,13 @@ const RECORD_URLS = byMatch(
 	RECORD_PATH
 );
 // Stryker restore all
+
+// Both are fixed when the module loads, from the glob the build already expanded, so no request
+// ever chooses which capture it reads. The example stays on the capture its copy describes until
+// the final capture replaces it (DEMO-04).
+export const LATEST_CAPTURE = newestCapture(INDEX_URLS.keys());
+export const EXAMPLE_CAPTURE = '2026-09-15';
+export { newestCapture };
 
 // SvelteKit's read() always answers status 200. On the Worker the adapter fetches the file through
 // ASSETS while the body is read and throws there when ASSETS answers 404, and a path the manifest

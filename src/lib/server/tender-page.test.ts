@@ -11,7 +11,7 @@ const { fromDisk, read } = vi.hoisted(() => {
 });
 vi.mock('$app/server', () => ({ read }));
 
-const { DEFAULT_CAPTURE } = await import('./records');
+const { EXAMPLE_CAPTURE } = await import('./records');
 const { loadTenderPage } = await import('./tender-page');
 
 const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
@@ -39,7 +39,7 @@ async function failureOf(load: Promise<unknown>): Promise<unknown> {
 }
 
 const load = (notice: string) =>
-	loadTenderPage({ capture: DEFAULT_CAPTURE, notice, now: CAPTURE_INSTANT });
+	loadTenderPage({ capture: EXAMPLE_CAPTURE, notice, now: CAPTURE_INSTANT });
 
 beforeEach(() => {
 	read.mockClear();

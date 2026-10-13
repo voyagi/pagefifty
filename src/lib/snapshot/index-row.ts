@@ -19,6 +19,7 @@ import {
 	type NoticeIdentity,
 	type NoticeRecord
 } from '../ingest/record.ts';
+import { CAPTURE_ID } from './capture-id.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
 // writes cannot drift apart without a type error.
@@ -146,7 +147,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 
 export const SnapshotIndexSchema = z.strictObject({
 	capture: z.strictObject({
-		id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+		id: z.string().regex(CAPTURE_ID),
 		fetchedAt: z.iso.datetime(),
 		// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
 		// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.

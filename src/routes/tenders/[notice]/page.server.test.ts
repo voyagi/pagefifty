@@ -4,7 +4,8 @@ import { loadIndex, loadRecord } from '$lib/server/records';
 import { load } from './+page.server';
 
 vi.mock('$lib/server/records', () => ({
-	DEFAULT_CAPTURE: '2026-09-15',
+	LATEST_CAPTURE: '2026-09-15',
+	EXAMPLE_CAPTURE: '2026-09-15',
 	loadRecord: vi.fn(async () => undefined),
 	loadIndex: vi.fn(async () => {
 		throw new Error('the index must not be read for a notice the snapshot does not hold');

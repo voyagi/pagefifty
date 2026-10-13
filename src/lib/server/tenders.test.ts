@@ -9,7 +9,7 @@ const fromDisk = vi.hoisted(
 const read = vi.hoisted(() => vi.fn((url: string) => new Response(fromDisk(url))));
 vi.mock('$app/server', () => ({ read }));
 
-const { DEFAULT_CAPTURE } = await import('./records');
+const { EXAMPLE_CAPTURE } = await import('./records');
 const { loadExampleList, loadExamplePage, loadTenderList } = await import('./tenders');
 const { loadTenderPage } = await import('./tender-page');
 
@@ -17,7 +17,7 @@ const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
 
 const load = (search: string, now = CAPTURE_INSTANT) =>
 	loadTenderList({
-		capture: DEFAULT_CAPTURE,
+		capture: EXAMPLE_CAPTURE,
 		url: new URL(`http://127.0.0.1/tenders${search}`),
 		now
 	});
@@ -104,7 +104,7 @@ describe('the example run', () => {
 
 	it('builds the same tender page for 609955-2026 as /tenders at the capture instant', async () => {
 		const tenders = await loadTenderPage({
-			capture: DEFAULT_CAPTURE,
+			capture: EXAMPLE_CAPTURE,
 			notice: '609955-2026',
 			now: CAPTURE_INSTANT
 		});
