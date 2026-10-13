@@ -1,5 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { readFixture } from '../../test/fixtures/node';
+import { capturePath, readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { NoticeRecordSchema } from '../snapshot/index-row';
 import { toBcp47 } from './languages';
@@ -297,6 +298,16 @@ describe('legal basis, change reasons and SDK versions', () => {
 	it('reads the version 600017-2026 changes as <identifier>-<VersionID>', () => {
 		expect(readRole('change-notice', 1).notice.changes).toEqual([
 			'54426929-1700-4c06-bc98-4f41506ab64f-01'
+		]);
+	});
+
+	// Some change links in the capture carry schemeName="notice-id-ref", which puts their text under
+	// #text, so the rule depends on this shape as much as on the bare one above.
+	it('reads a change link written with its schemeName attribute, as 601468-2026 writes it', () => {
+		const text = readFileSync(capturePath('601468-2026'), 'utf8');
+		expect(text).toContain('<efbc:ChangedNoticeIdentifier schemeName="notice-id-ref">');
+		expect(readText(text, '601468-2026').notice.changes).toEqual([
+			'403524b3-64a2-4a3d-95ca-ac90600cb5c8-02'
 		]);
 	});
 
