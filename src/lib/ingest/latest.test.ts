@@ -92,6 +92,11 @@ describe('selectLatest', () => {
 		expect(leftOut).toEqual([]);
 	});
 
+	it('never leaves out a notice for naming its own version as the one it changes (override: notice block)', () => {
+		const record = variant('600001-2026', { id: 'own-id', version: '02', changes: ['own-id-02'] });
+		expect(selectLatest([record])).toEqual({ kept: [record], leftOut: [], sameProcedure: [] });
+	});
+
 	it('leaves out a notice whose change reasons include cancel as cancelled', () => {
 		const { kept, leftOut } = selectLatest([CANCEL]);
 		expect(kept).toEqual([]);
