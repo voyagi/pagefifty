@@ -13,7 +13,8 @@
 //       copies notices.json, fetch-log.json and xml/*.xml through the scrub, then checks the copy
 //       as --check does and exits 1 when anything is left
 //   node scripts/scrub-capture.mjs --check <dir> [--against <capture dir>]
-//       lists every file under <dir> that still holds contact data; with --against, also proves
+//       lists every file under <dir> that still holds contact data, and every link, which it never
+//       reads because git keeps a link and not what it points at; with --against, also proves
 //       that the scrub changed nothing else and prints how many spans of each kind it replaced
 //
 // --against removes every span the scrub may replace from the source, and every placeholder from
@@ -24,8 +25,8 @@
 // A non-empty file that is not text (a PDF, a ZIP) is named rather than read: no pattern sees
 // inside it, so it goes into a capture only as extracted, scrubbed text.
 //
-// Exit codes: 0 clean, 1 contact data, a file that is not text or an unexpected difference found
-// (or a usage error),
+// Exit codes: 0 clean, 1 contact data, a file that is not text, a link or an unexpected difference
+// found (or a usage error),
 // 2 nothing was checked: the folder holds no files, or a folder or file could not be read or parsed.
 
 import { existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
@@ -201,15 +202,16 @@ function compareAgainst(dir, against) {
 }
 
 function check(dir, against) {
-	const { files, dirty, notText } = checkCaptureFolder(dir);
-	if (files === 0) {
+	const { files, dirty, notText, links } = checkCaptureFolder(dir);
+	for (const line of links) console.error(`a link, not a file, so git would keep the link and not what it points at: ${line}`);
+	if (files === 0 && links.length === 0) {
 		console.error(`no files under ${dir}`);
 		return 2;
 	}
 	for (const line of dirty) console.error(`contact data: ${line}`);
 	for (const line of notText) console.error(`not text, so no pattern can read it: ${line}`);
-	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text`);
-	const found = dirty.length + notText.length;
+	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text, ${links.length} links refused`);
+	const found = dirty.length + notText.length + links.length;
 	if (!against) return found > 0 ? 1 : 0;
 
 	const { counts, problems, compared } = compareAgainst(dir, against);

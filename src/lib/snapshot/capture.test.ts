@@ -283,7 +283,8 @@ describe('one verdict over a capture folder', () => {
 		}
 	});
 
-	it('reads a file through a link in the folder and names the link when its target holds an address', () => {
+	// Git keeps a link as the path it points at, so the bytes behind it are never what a commit holds.
+	it('names a link to a file in the folder as a link and never reads the address behind it', () => {
 		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
 		try {
 			const target = join(root, 'link-target.txt');
@@ -291,9 +292,30 @@ describe('one verdict over a capture folder', () => {
 			writeFileSync(target, `Contact ${address}\n`);
 			const folder = join(root, '2026-10-13');
 			mkdirSync(folder);
+			writeFileSync(join(folder, 'notices.json'), '{}');
 			const link = join(folder, 'notes.txt');
 			symlinkSync(target, link, 'file');
-			expect(folderProblems(folder)).toEqual([`${link}: ${address}`]);
+			expect(folderProblems(folder)).toEqual([`${link}: a link, not a file`]);
+		} finally {
+			rmSync(root, { recursive: true, force: true });
+		}
+	});
+
+	it('names a link to a folder as a link and reads none of the files behind it', () => {
+		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
+		try {
+			const outside = join(root, 'outside');
+			mkdirSync(outside);
+			writeFileSync(
+				join(outside, 'notes.txt'),
+				`Contact ${['vergabe', 'buyer.example'].join('@')}`
+			);
+			const folder = join(root, '2026-10-13');
+			mkdirSync(folder);
+			writeFileSync(join(folder, 'notices.json'), '{}');
+			const link = join(folder, 'more');
+			symlinkSync(outside, link, process.platform === 'win32' ? 'junction' : 'dir');
+			expect(folderProblems(folder)).toEqual([`${link}: a link, not a file`]);
 		} finally {
 			rmSync(root, { recursive: true, force: true });
 		}

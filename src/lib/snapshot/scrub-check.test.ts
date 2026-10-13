@@ -41,6 +41,7 @@ describe('checkCaptureFolder', () => {
 		expect(result.files).toBeGreaterThanOrEqual(365);
 		expect(result.dirty).toEqual([]);
 		expect(result.notText).toEqual([]);
+		expect(result.links).toEqual([]);
 	});
 
 	it('names notices.json and its kinds when an address sits under a nested contact key', () => {
@@ -57,7 +58,8 @@ describe('checkCaptureFolder', () => {
 		expect(checkCaptureFolder(dir)).toEqual({
 			files: 1,
 			dirty: ['notices.json: json-contact-key'],
-			notText: []
+			notText: [],
+			links: []
 		});
 	});
 
@@ -96,7 +98,8 @@ describe('checkCaptureFolder', () => {
 		expect(checkCaptureFolder(dir)).toEqual({
 			files: 1,
 			dirty: [`${nested}: email`],
-			notText: []
+			notText: [],
+			links: []
 		});
 	});
 
@@ -109,37 +112,47 @@ describe('checkCaptureFolder', () => {
 		expect(checkCaptureFolder(dir)).toEqual({
 			files: 1,
 			dirty: [],
-			notText: [join('xml', '000003-2026.xml')]
+			notText: [join('xml', '000003-2026.xml')],
+			links: []
 		});
 	});
 
-	// The records build reads a link's target as the notice, so the check reads it too.
-	it('reads a file through a link and names the link when its target holds an address', () => {
+	// Git keeps a link as the path it points at, never the bytes behind it, so the check would judge
+	// bytes no commit holds. A link is named and its target never read.
+	it('names a link to a file as a link and never reads the address behind it', () => {
 		const target = join(root, 'link-target.xml');
 		writeFileSync(target, `<cbc:Description>Contact ${address('vergabe')}</cbc:Description>\n`);
-		const dir = join(root, 'linked');
-		mkdirSync(join(dir, 'xml'), { recursive: true });
+		const dir = folder('linked', { 'notices.json': '{}' });
+		mkdirSync(join(dir, 'xml'));
 		symlinkSync(target, join(dir, 'xml', '000006-2026.xml'), 'file');
 		expect(checkCaptureFolder(dir)).toEqual({
 			files: 1,
-			dirty: [`${join('xml', '000006-2026.xml')}: email`],
-			notText: []
+			dirty: [],
+			notText: [],
+			links: [join('xml', '000006-2026.xml')]
 		});
 	});
 
-	it('throws naming a link that points at nothing', () => {
+	it('names a link that points at nothing as a link instead of failing on its read', () => {
 		const dir = join(root, 'dangling');
 		mkdirSync(dir);
 		symlinkSync(join(root, 'no-such-target.xml'), join(dir, 'gone.xml'), 'file');
-		expect(() => checkCaptureFolder(dir)).toThrow(/^gone\.xml: /);
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 0,
+			dirty: [],
+			notText: [],
+			links: ['gone.xml']
+		});
 	});
 
-	it('throws naming a link to a folder, whose files the listing does not reach', () => {
-		const outside = folder('link-folder-target', { 'notes.txt': 'plain text' });
+	it('names a link to a folder as a link and reads none of the files behind it', () => {
+		const outside = folder('link-folder-target', {
+			'notes.txt': `Contact ${address('vergabe')}`
+		});
 		const dir = join(root, 'folder-link');
 		mkdirSync(dir);
 		symlinkSync(outside, join(dir, 'more'), process.platform === 'win32' ? 'junction' : 'dir');
-		expect(() => checkCaptureFolder(dir)).toThrow(/^more: /);
+		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [], links: ['more'] });
 	});
 
 	it('throws naming the file when a JSON file does not parse', () => {
@@ -154,6 +167,6 @@ describe('checkCaptureFolder', () => {
 	it('reports no files for an empty folder rather than calling it clean', () => {
 		const dir = join(root, 'empty');
 		mkdirSync(dir);
-		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [] });
+		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [], links: [] });
 	});
 });

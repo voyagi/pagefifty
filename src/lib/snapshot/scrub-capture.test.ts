@@ -121,6 +121,38 @@ describe('scrub-capture.mjs', () => {
 		expect(checked.status).toBe(1);
 	});
 
+	// Git keeps a link as the path it points at, so a link in a capture is refused, never read through.
+	it('names a link in the folder and exits 1, without reading what it points at', () => {
+		const linked = join(root, 'link-in-capture');
+		mkdirSync(linked);
+		writeFileSync(join(linked, 'notes.txt'), 'no contact data here');
+		symlinkSync(
+			join(source, 'xml'),
+			join(linked, 'more'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', linked);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.stderr).toContain('more');
+		expect(checked.stderr).not.toContain('contact-name');
+		expect(checked.stdout).toContain('checked 1 files');
+		expect(checked.stdout).toContain('1 links refused');
+		expect(checked.status).toBe(1);
+	});
+
+	it('exits 1, not 2, on a folder whose only entry is a link', () => {
+		const onlyLink = join(root, 'only-link');
+		mkdirSync(onlyLink);
+		symlinkSync(
+			join(source, 'xml'),
+			join(onlyLink, 'more'),
+			process.platform === 'win32' ? 'junction' : 'dir'
+		);
+		const checked = run('--check', onlyLink);
+		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.status).toBe(1);
+	});
+
 	it('exits 2 on a folder that holds no files', () => {
 		const empty = join(root, 'empty');
 		mkdirSync(empty);

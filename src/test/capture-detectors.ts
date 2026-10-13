@@ -1,13 +1,12 @@
 // The capture test's own contact detectors, shared with the capture command's tests so a folder the
 // command writes goes through exactly the checks the tracked captures pass.
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import {
 	decodeCharacterReferences,
 	isCaptureText,
 	isUnreadableCaptureFile
 } from '../lib/snapshot/capture-files.ts';
-import { naming } from '../lib/snapshot/scrub-check.ts';
+import { listCaptureEntries, naming } from '../lib/snapshot/scrub-check.ts';
 import { EMAIL_PATTERN, SCRUB_PLACEHOLDER } from '../lib/snapshot/scrub.ts';
 
 export { isCaptureText };
@@ -21,12 +20,15 @@ export function captureFolders(root: string): string[] {
 		.sort();
 }
 
-// Every entry but a folder, so a link is read through as the records build reads it, never skipped.
+// Every entry but a folder or a link, listed by the capture check's own walk. Git keeps a link as
+// the path it points at, never the bytes behind it, so a link is never read through: captureLinks
+// lists it and folderProblems names it.
 export function captureFiles(capture: string): string[] {
-	return readdirSync(capture, { recursive: true, withFileTypes: true })
-		.filter((entry) => !entry.isDirectory())
-		.map((entry) => join(entry.parentPath, entry.name))
-		.sort();
+	return listCaptureEntries(capture).files;
+}
+
+export function captureLinks(capture: string): string[] {
+	return listCaptureEntries(capture).links;
 }
 
 const CONTACT_ELEMENTS = ['cbc:ElectronicMail', 'cbc:Telephone', 'cbc:Telefax'] as const;
@@ -162,6 +164,7 @@ export function touchedCriteria(capture: string): string[] {
 
 export function folderProblems(folder: string): string[] {
 	return [
+		...captureLinks(folder).map((path) => `${path}: a link, not a file`),
 		...unreadableFiles(folder),
 		...contactOffenders(folder),
 		...unscrubbedElements(folder),

@@ -2,7 +2,7 @@
 // command runs it on its staged folder before the rename into examples/, so the two never judge a
 // folder differently. Imported by the script under Node type stripping: erasable syntax only.
 
-import { readdirSync, readFileSync } from 'node:fs';
+import { lstatSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { decodeCharacterReferences, isUnreadableCaptureFile } from './capture-files.ts';
 import {
@@ -17,17 +17,30 @@ interface CaptureCheck {
 	files: number;
 	dirty: string[];
 	notText: string[];
+	links: string[];
 }
 
 type JsonVisit = (leaf: unknown, key: string) => unknown;
 
-// Every entry but a folder. The records build reads a notice through a link, so a link is read
-// through here too; one that points at nothing or at a folder fails its read and is named.
-function listFiles(dir: string): string[] {
-	return readdirSync(dir, { recursive: true, withFileTypes: true })
-		.filter((entry) => !entry.isDirectory())
-		.map((entry) => join(entry.parentPath, entry.name))
-		.sort();
+// Every entry but a folder, with the links set apart. Git keeps a link as the path it points at,
+// never the bytes behind it, and a checkout without link support writes that path as a text file,
+// so a link is named and never read: the check judges only bytes a commit can hold. Walked by
+// hand, because a recursive readdirSync descends a junction and lists the files behind it. The
+// capture test's detectors list a folder through this too, so the two never disagree on its files.
+export function listCaptureEntries(dir: string): { files: string[]; links: string[] } {
+	const files: string[] = [];
+	const links: string[] = [];
+	const walk = (folder: string) => {
+		for (const name of readdirSync(folder)) {
+			const path = join(folder, name);
+			const entry = lstatSync(path);
+			if (entry.isSymbolicLink()) links.push(path);
+			else if (entry.isDirectory()) walk(path);
+			else files.push(path);
+		}
+	};
+	walk(dir);
+	return { files: files.sort(), links: links.sort() };
 }
 
 // A leaf is judged by the nearest contact key above it, however deep, because scrubJsonValue
@@ -101,7 +114,7 @@ export function naming<T>(file: string, work: () => T): T {
 }
 
 export function checkCaptureFolder(dir: string): CaptureCheck {
-	const files = listFiles(dir);
+	const { files, links } = listCaptureEntries(dir);
 	const dirty: string[] = [];
 	// A PDF or an archive read as text shows no pattern anything, so it is named, never passed.
 	const notText: string[] = [];
@@ -115,5 +128,10 @@ export function checkCaptureFolder(dir: string): CaptureCheck {
 		const kinds = naming(file, () => leftovers(path, bytes.toString('utf8')));
 		if (kinds.length > 0) dirty.push(`${file}: ${[...new Set(kinds)].join(', ')}`);
 	}
-	return { files: files.length, dirty, notText };
+	return {
+		files: files.length,
+		dirty,
+		notText,
+		links: links.map((path) => relative(dir, path))
+	};
 }
