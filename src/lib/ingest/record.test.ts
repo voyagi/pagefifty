@@ -294,6 +294,33 @@ describe('legal basis, change reasons and SDK versions', () => {
 		expect(readRole('cancel-notice').changeReasons).toEqual(['cancel']);
 	});
 
+	it('reads the version 600017-2026 changes as <identifier>-<VersionID>', () => {
+		expect(readRole('change-notice', 1).notice.changes).toEqual([
+			'54426929-1700-4c06-bc98-4f41506ab64f-01'
+		]);
+	});
+
+	it('reads both versions of notice ad28f539 with their one procedure', () => {
+		const identity = (version: string) => ({
+			id: 'ad28f539-52a7-4def-81b0-b09c8a77968a',
+			version,
+			procedure: '86110bd2-4c2d-47f9-aa36-0fa9447a0dd7',
+			changes: []
+		});
+		expect(readRole('superseded-pair', 0).notice).toEqual(identity('02'));
+		expect(readRole('superseded-pair', 1).notice).toEqual(identity('01'));
+	});
+
+	it('refuses a VersionID that is not digits, naming cbc:VersionID', () => {
+		const text = readFixture('one-lot').replace(
+			'<cbc:VersionID>01</cbc:VersionID>',
+			'<cbc:VersionID>v2</cbc:VersionID>'
+		);
+		expect(text).toContain('<cbc:VersionID>v2</cbc:VersionID>');
+		const result = readNotice(new TextEncoder().encode(text), { noticeNumber: '609955-2026' });
+		expect(result.ok ? '' : result.detail).toContain('cbc:VersionID');
+	});
+
 	it.each([
 		['sdk-1.13', 'eforms-sdk-1.13'],
 		['sdk-1.14', 'eforms-sdk-1.14']

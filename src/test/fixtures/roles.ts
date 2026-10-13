@@ -88,6 +88,18 @@ export const FIXTURE_ROLES = {
 		{ notice: '607074-2026', note: 'change reason cor-buy', evidence: '>cor-buy<' },
 		{ notice: '600017-2026', note: 'change reason update-add', evidence: '>update-add<' }
 	),
+	'superseded-pair': capture(
+		{
+			notice: '600367-2026',
+			note: 'notice ad28f539 at VersionID 02, the latest version',
+			evidence: '<cbc:VersionID>02</cbc:VersionID>'
+		},
+		{
+			notice: '601147-2026',
+			note: 'notice ad28f539 at VersionID 01, superseded by 600367-2026',
+			evidence: '<cbc:VersionID>01</cbc:VersionID>'
+		}
+	),
 	'sdk-1.13': capture({
 		notice: '609955-2026',
 		note: 'eForms SDK 1.13',
@@ -249,6 +261,8 @@ export const FIXTURE_ROLES = {
 		'adds a Dutch description to its first criterion'
 	),
 	'cancel-notice': synthetic('600017-2026', 'sets the change reason code to cancel'),
+	'cancel-intent-notice': synthetic('600017-2026', 'sets the change reason code to cancel-intent'),
+	'change-no-reason': synthetic('600017-2026', 'removes its efac:ChangeReason element'),
 	'reserved-participation': synthetic(
 		'609955-2026',
 		'reserves the lot with code res-ws, checked on the eForms reserved-procurement code list 2026-09-24'
@@ -301,6 +315,14 @@ function afterNth(role: string, text: string, marker: string, nth: number): numb
 	}
 	return at;
 }
+
+const withChangeReason = (role: string, source: string, code: string) =>
+	replaceOnce(
+		role,
+		source,
+		'listName="change-corrig-justification">update-add<',
+		`listName="change-corrig-justification">${code}<`
+	);
 
 function englishCriteria(): string {
 	const criterion = (code: string, text: string) =>
@@ -358,13 +380,11 @@ const BUILDERS: { [K in SyntheticRoleName]: (source: string) => string } = {
 			'$1<cbc:Description languageID="NLD">Een lijst van de belangrijkste leveringen in de laatste drie jaar, ' +
 				'te rekenen vanaf de datum van opening van de offertes.</cbc:Description>'
 		),
-	'cancel-notice': (source) =>
-		replaceOnce(
-			'cancel-notice',
-			source,
-			'listName="change-corrig-justification">update-add<',
-			'listName="change-corrig-justification">cancel<'
-		),
+	'cancel-notice': (source) => withChangeReason('cancel-notice', source, 'cancel'),
+	'cancel-intent-notice': (source) =>
+		withChangeReason('cancel-intent-notice', source, 'cancel-intent'),
+	'change-no-reason': (source) =>
+		replaceOnce('change-no-reason', source, /<efac:ChangeReason>[\s\S]*?<\/efac:ChangeReason>/, ''),
 	'reserved-participation': (source) =>
 		replaceOnce(
 			'reserved-participation',
