@@ -211,4 +211,94 @@ describe('selectLatest', () => {
 			expect(selectLatest(shuffled)).toEqual(selectLatest(ORDER_SET));
 		}
 	);
+
+	it('keeps nothing and leaves nothing out of an empty run', () => {
+		expect(selectLatest([])).toEqual({ kept: [], leftOut: [], sameProcedure: [] });
+	});
+
+	it('names no notice with a link that has no identifier before its hyphen (override: notice block)', () => {
+		const record = variant('600001-2026', { id: 'own-id', version: '01' });
+		const change = variant('600002-2026', { id: 'other-id', version: '01', changes: ['-01'] });
+		expect(numbers(selectLatest([record, change]).kept)).toEqual(['600001-2026', '600002-2026']);
+	});
+
+	// D-16 read straight off, one notice at a time against every other, so it shares no map or
+	// ordering with the rule it checks. Identifiers carry a hyphen, so a link is read at its last one.
+	const intOf = (digits: string) => Number.parseInt(digits, 10);
+	const keyText = (id: string, version: string) => `${id}#${intOf(version)}`;
+	const ownKey = (record: NoticeRecord) => keyText(record.notice.id, record.notice.version);
+	const linkText = (link: string) => {
+		const at = link.lastIndexOf('-');
+		return keyText(link.slice(0, at), link.slice(at + 1));
+	};
+
+	function expectedKind(record: NoticeRecord, all: readonly NoticeRecord[]): string {
+		const sameId = all.filter((other) => other.notice.id === record.notice.id);
+		const version = intOf(record.notice.version);
+		if (sameId.some((other) => intOf(other.notice.version) > version)) return 'superseded';
+		const named = all.some(
+			(other) =>
+				ownKey(other) !== ownKey(record) &&
+				other.notice.changes.some((link) => linkText(link) === ownKey(record))
+		);
+		if (named) return 'superseded';
+		const laterTwin = sameId.some(
+			(other) =>
+				intOf(other.notice.version) === version &&
+				intOf(other.noticeNumber) > intOf(record.noticeNumber)
+		);
+		if (laterTwin) return 'duplicate';
+		return record.changeReasons.includes('cancel') ? 'cancelled' : 'kept';
+	}
+
+	const IDS = ['id-a', 'id-b', 'id-c'];
+	const draws = fc.array(
+		fc.record({
+			id: fc.constantFrom(...IDS),
+			version: fc.integer({ min: 1, max: 3 }),
+			padded: fc.boolean(),
+			links: fc.array(
+				fc.record({ id: fc.constantFrom(...IDS), version: fc.integer({ min: 1, max: 3 }) }),
+				{ maxLength: 2 }
+			),
+			cancel: fc.boolean()
+		}),
+		{ maxLength: 8 }
+	);
+
+	test.prop([draws])(
+		'keeps exactly the notices no rule leaves out, and names each other one once with its rule (override: notice block)',
+		(drawn) => {
+			const records = drawn.map((draw, at) =>
+				variant(
+					`${600001 + at}-2026`,
+					{
+						id: draw.id,
+						version: draw.padded ? `0${draw.version}` : String(draw.version),
+						procedure: `procedure-${at}`,
+						changes: draw.links.map((link) => `${link.id}-0${link.version}`)
+					},
+					draw.cancel ? ['cancel'] : []
+				)
+			);
+			const { kept, leftOut } = selectLatest(records);
+			const kindOf = (reason: string) => reason.split(' ')[0];
+			const got = new Map([
+				...kept.map((record) => [record.noticeNumber, 'kept'] as const),
+				...leftOut.map(({ notice, reason }) => [notice, kindOf(reason)] as const)
+			]);
+			expect(kept.length + leftOut.length).toBe(records.length);
+			expect(got).toEqual(
+				new Map(records.map((record) => [record.noticeNumber, expectedKind(record, records)]))
+			);
+			for (const { notice, reason } of leftOut) {
+				const named = /^(?:superseded by|duplicate of) (\S+)$/.exec(reason)?.[1];
+				if (named === undefined) expect(reason).toBe('cancelled');
+				else
+					expect(
+						records.map((record) => record.noticeNumber).filter((n) => n !== notice)
+					).toContain(named);
+			}
+		}
+	);
 });

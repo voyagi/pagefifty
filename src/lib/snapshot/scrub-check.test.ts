@@ -71,6 +71,35 @@ describe('checkCaptureFolder', () => {
 		]);
 	});
 
+	it('names an XML file whose free text writes the at sign as a hex reference', () => {
+		const dir = folder('hex-xml', {
+			[join('xml', '000004-2026.xml')]:
+				`<cbc:Description>Contact ${address('vergabe', '&#x40;')}</cbc:Description>\n`
+		});
+		expect(checkCaptureFolder(dir).dirty).toEqual([
+			`${join('xml', '000004-2026.xml')}: encoded email`
+		]);
+	});
+
+	it('names notices.json when a contact key holds a number rather than the placeholder', () => {
+		const dir = folder('number-contact', {
+			'notices.json': JSON.stringify({ notices: [{ 'contact-phone': 31205550100 }] })
+		});
+		expect(checkCaptureFolder(dir).dirty).toEqual(['notices.json: json-contact-key']);
+	});
+
+	it('reads a file in a nested folder and names it by its path inside the capture', () => {
+		const nested = join('xml', 'more', '000005-2026.xml');
+		const dir = folder('nested-folder', {
+			[nested]: `<cbc:Description>Contact ${address('vergabe')}</cbc:Description>\n`
+		});
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 1,
+			dirty: [`${nested}: email`],
+			notText: []
+		});
+	});
+
 	it('lists a file under a text name whose bytes are not text as not text', () => {
 		const dir = folder('packed', {
 			[join('xml', '000003-2026.xml')]: Uint8Array.from([
