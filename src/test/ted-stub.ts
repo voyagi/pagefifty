@@ -25,8 +25,11 @@ function servedNotice(notice: string): Uint8Array<ArrayBuffer> {
 
 type ScriptedBody = string | Uint8Array<ArrayBuffer> | ReadableStream<Uint8Array>;
 
-type ScriptedAnswer =
-	{ status: number; headers?: Record<string, string>; body?: ScriptedBody } | { throws: Error };
+// An answer is served to POST at the search address and to GET anywhere else, unless it names its
+// own method.
+type ScriptedAnswer = { method?: string } & (
+	{ status: number; headers?: Record<string, string>; body?: ScriptedBody } | { throws: Error }
+);
 
 type QueuedAnswer = Response | { throws: Error };
 
@@ -129,12 +132,17 @@ export function createScriptedTed(options: {
 		return entry;
 	});
 	const xmlNotices = new Map(options.notices.map((notice) => [tedNoticeXmlUrl(notice), notice]));
-	const queues = new Map(
-		Object.entries(options.script ?? {}).map(([key, answers]) => {
-			const url = new URL(key).href;
-			return [url, answers.map((answer, place) => queuedAnswer(url, place, answer))];
-		})
-	);
+	// One queue per method and address, so a call with another method takes nothing from it and
+	// falls to the default answer, which serves no method but POST to a search and GET to a notice.
+	const queues = new Map<string, QueuedAnswer[]>();
+	for (const [key, answers] of Object.entries(options.script ?? {})) {
+		const url = new URL(key).href;
+		answers.forEach((answer, place) => {
+			const method = (answer.method ?? (url === TED_SEARCH_URL ? 'POST' : 'GET')).toUpperCase();
+			const slot = `${method} ${url}`;
+			queues.set(slot, [...(queues.get(slot) ?? []), queuedAnswer(url, place, answer)]);
+		});
+	}
 	const log: StubCall[] = [];
 	let inFlight = 0;
 	let mostInFlight = 0;
@@ -169,9 +177,11 @@ export function createScriptedTed(options: {
 		log.push(call);
 		inFlight += 1;
 		mostInFlight = Math.max(mostInFlight, inFlight);
+		// Taken as the call arrives, before its body is read: a streamed body can finish after a later
+		// call's, and the answers must still go out in the order the calls started.
+		const queued = queues.get(`${request.method} ${request.url}`)?.shift();
 		try {
 			call.body = parsedBody(await request.text());
-			const queued = queues.get(request.url)?.shift();
 			if (queued === undefined) return defaultAnswer(request.method, request.url, call.body);
 			if ('throws' in queued) throw queued.throws;
 			return queued;

@@ -182,6 +182,71 @@ describe('createScriptedTed', () => {
 		);
 	});
 
+	it('serves a scripted answer only to the method its address is served with, consuming nothing on another', async () => {
+		const url = tedNoticeXmlUrl('600367-2026');
+		const ted = createScriptedTed({
+			clock: createFakeClock(START),
+			notices: ['600367-2026'],
+			script: { [url]: [{ status: 429 }], [SEARCH]: [{ status: 503 }] }
+		});
+		const posted = await ted(new Request(url, { method: 'POST', body: '{}' }));
+		expect(posted.status).toBe(599);
+		expect((await ted(xml('600367-2026'))).status).toBe(429);
+		expect((await ted(new Request(SEARCH))).status).toBe(599);
+		expect((await ted(search({ query: 'q', limit: 1, page: 1 }))).status).toBe(503);
+	});
+
+	it('serves an answer that names its own method to that method alone', async () => {
+		const pdf = 'https://ted.europa.eu/en/notice/600367-2026/pdf';
+		const ted = createScriptedTed({
+			clock: createFakeClock(START),
+			notices: [],
+			script: { [pdf]: [{ method: 'HEAD', status: 200, headers: { 'content-length': '2048' } }] }
+		});
+		expect((await ted(new Request(pdf))).status).toBe(599);
+		const head = await ted(new Request(pdf, { method: 'HEAD' }));
+		expect(head.status).toBe(200);
+		expect(head.headers.get('content-length')).toBe('2048');
+	});
+
+	// A streamed request body can finish after a later call's body, so an answer taken once the body
+	// is read would go to whichever call finished reading first.
+	it('gives two calls to one address their answers in the order they started', async () => {
+		const ted = createScriptedTed({
+			clock: createFakeClock(START),
+			notices: [],
+			script: {
+				[SEARCH]: [
+					{ status: 200, body: 'first' },
+					{ status: 200, body: 'second' }
+				]
+			}
+		});
+		const encoder = new TextEncoder();
+		let finish = () => {};
+		const slow = new ReadableStream<Uint8Array>({
+			start(controller) {
+				controller.enqueue(encoder.encode('{"query":"q",'));
+				finish = () => {
+					controller.enqueue(encoder.encode('"limit":1,"page":1}'));
+					controller.close();
+				};
+			}
+		});
+		const started = ted(
+			new Request(SEARCH, { method: 'POST', body: slow, duplex: 'half' } as RequestInit)
+		);
+		const later = await ted(search({ query: 'q', limit: 1, page: 2 }));
+		finish();
+		const earlier = await started;
+		expect(await earlier.text()).toBe('first');
+		expect(await later.text()).toBe('second');
+		expect(ted.calls().map((call) => call.body)).toEqual([
+			{ query: 'q', limit: 1, page: 1 },
+			{ query: 'q', limit: 1, page: 2 }
+		]);
+	});
+
 	it('rejects a call scripted to throw, and still records it', async () => {
 		const url = tedNoticeXmlUrl('600367-2026');
 		const reset = new TypeError('fetch failed: connection reset');
