@@ -34,11 +34,32 @@ const versionKey = (id: string, version: string) => `${id}#${Number.parseInt(ver
 
 const keyOf = (record: NoticeRecord) => versionKey(record.notice.id, record.notice.version);
 
-// A change notice names each version it changes (BT-758) as "<identifier>-<VersionID>". The
-// identifier's own hyphens never matter: the version is the digits after the last hyphen, read as
-// an integer like every other version here, so "-1" and "-01" name the same version. A link with
-// no digits there names no version a record can hold (the reader refuses such a VersionID).
-function linkKey(change: string): string | undefined {
+// TED's eForms schema gives a change link (BT-758) two forms: "<identifier>-<VersionID>" under
+// schemeName notice-id-ref, or the changed notice's publication number padded to eight digits,
+// "XXXXXXXX-YYYY", under ojs-notice-id. Most links in the capture carry no schemeName, so the form
+// is read from the text. An identifier is a UUID, four hyphens of its own, so a link of digits, one
+// hyphen and a four-digit year can only be a publication number.
+const PUBLICATION_LINK = /^(\d{1,8})-(\d{4})$/;
+
+// A publication number names whichever notice of the run was published under it, and stands for
+// that notice's own version, so the rest of the rule treats both forms alike. A number outside the
+// run names nothing here.
+function publishedKey(
+	running: string,
+	year: string,
+	published: ReadonlyMap<string, NoticeRecord>
+): string | undefined {
+	const named = published.get(`${Number.parseInt(running, 10)}-${year}`);
+	return named === undefined ? undefined : keyOf(named);
+}
+
+// In the identifier form, the identifier's own hyphens never matter: the version is the digits after
+// the last hyphen, read as an integer like every other version here, so "-1" and "-01" name the same
+// version. A link with no digits there names no version a record can hold (the reader refuses such
+// a VersionID).
+function linkKey(change: string, published: ReadonlyMap<string, NoticeRecord>): string | undefined {
+	const publication = PUBLICATION_LINK.exec(change);
+	if (publication !== null) return publishedKey(publication[1], publication[2], published);
 	const at = change.lastIndexOf('-');
 	const version = change.slice(at + 1);
 	return at > 0 && /^\d+$/.test(version) ? versionKey(change.slice(0, at), version) : undefined;
@@ -61,10 +82,11 @@ function winnersById(ordered: readonly NoticeRecord[]): Map<string, NoticeRecord
 // that way a cancelling change notice, itself left out, would leave its predecessor listed as an
 // open tender, which DATA-02 forbids.
 function successorsByLink(ordered: readonly NoticeRecord[]): Map<string, NoticeRecord> {
+	const published = new Map(ordered.map((record) => [record.noticeNumber, record]));
 	const successors = new Map<string, NoticeRecord>();
 	for (const record of ordered) {
 		for (const change of record.notice.changes) {
-			const key = linkKey(change);
+			const key = linkKey(change, published);
 			if (key !== undefined && key !== keyOf(record)) successors.set(key, record);
 		}
 	}

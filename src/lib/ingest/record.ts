@@ -85,8 +85,10 @@ export interface LotRecord {
 }
 
 // Every version of one notice shares its identifier (BT-701) and carries a rising VersionID
-// (BT-757); a change notice names each version it changes (BT-758) as "<identifier>-<VersionID>".
-// The version stays the published digit string; the filter compares it as an integer.
+// (BT-757); a change notice names each version it changes (BT-758) as "<identifier>-<VersionID>",
+// or as that notice's publication number "XXXXXXXX-YYYY". The links keep their published text, and
+// the filter (latest.ts) tells the two forms apart. The version stays the published digit string;
+// the filter compares it as an integer.
 export interface NoticeIdentity {
 	id: string;
 	version: string;
