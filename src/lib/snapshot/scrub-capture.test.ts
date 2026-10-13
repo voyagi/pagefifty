@@ -70,6 +70,7 @@ describe('scrub-capture.mjs', () => {
 	it('finds the copy clean and equal to its source outside the scrubbed spans', () => {
 		const checked = run('--check', copy, '--against', source);
 		expect(checked.stdout).toContain('0 with contact data');
+		expect(checked.stdout).toContain('0 links refused, 0 not regular files');
 		expect(checked.stdout).toContain('0 unexpected differences');
 		expect(checked.stdout).toContain('replaced json-contact-key: 2');
 		expect(checked.status, checked.stderr).toBe(0);
@@ -169,6 +170,7 @@ describe('scrub-capture.mjs', () => {
 		expect(checked.stderr).toContain('not a regular file');
 		expect(checked.stderr).toContain('pipe');
 		expect(checked.stdout).toContain('checked 1 files');
+		expect(checked.stdout).toContain('0 links refused, 1 not regular files');
 		expect(checked.status).toBe(1);
 	});
 
