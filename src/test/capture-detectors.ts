@@ -20,15 +20,19 @@ export function captureFolders(root: string): string[] {
 		.sort();
 }
 
-// Every entry but a folder or a link, listed by the capture check's own walk. Git keeps a link as
-// the path it points at, never the bytes behind it, so a link is never read through: captureLinks
-// lists it and folderProblems names it.
+// Every regular file, listed by the capture check's own walk. Git keeps a link as the path it
+// points at, never the bytes behind it, and holds no pipe, socket or device at all, so neither is
+// ever read: captureLinks and captureSpecial list them and folderProblems names them.
 export function captureFiles(capture: string): string[] {
 	return listCaptureEntries(capture).files;
 }
 
 export function captureLinks(capture: string): string[] {
 	return listCaptureEntries(capture).links;
+}
+
+export function captureSpecial(capture: string): string[] {
+	return listCaptureEntries(capture).special;
 }
 
 const CONTACT_ELEMENTS = ['cbc:ElectronicMail', 'cbc:Telephone', 'cbc:Telefax'] as const;
@@ -171,6 +175,7 @@ export function folderProblems(folder: string): string[] {
 	return [
 		...(empty ? [`${folder}: no files, so nothing was checked`] : []),
 		...captureLinks(folder).map((path) => `${path}: a link, not a file`),
+		...captureSpecial(folder).map((path) => `${path}: not a regular file`),
 		...unreadableFiles(folder),
 		...contactOffenders(folder),
 		...unscrubbedElements(folder),

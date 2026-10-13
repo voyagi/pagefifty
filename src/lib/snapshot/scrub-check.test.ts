@@ -45,6 +45,7 @@ describe('checkCaptureFolder', () => {
 		expect(result.dirty).toEqual([]);
 		expect(result.notText).toEqual([]);
 		expect(result.links).toEqual([]);
+		expect(result.special).toEqual([]);
 	});
 
 	it('names notices.json and its kinds when an address sits under a nested contact key', () => {
@@ -62,7 +63,8 @@ describe('checkCaptureFolder', () => {
 			files: 1,
 			dirty: ['notices.json: json-contact-key'],
 			notText: [],
-			links: []
+			links: [],
+			special: []
 		});
 	});
 
@@ -102,7 +104,8 @@ describe('checkCaptureFolder', () => {
 			files: 1,
 			dirty: [`${nested}: email`],
 			notText: [],
-			links: []
+			links: [],
+			special: []
 		});
 	});
 
@@ -116,7 +119,8 @@ describe('checkCaptureFolder', () => {
 			files: 1,
 			dirty: [],
 			notText: [join('xml', '000003-2026.xml')],
-			links: []
+			links: [],
+			special: []
 		});
 	});
 
@@ -133,7 +137,8 @@ describe('checkCaptureFolder', () => {
 			files: 1,
 			dirty: [],
 			notText: [],
-			links: [join('xml', '000006-2026.xml')]
+			links: [join('xml', '000006-2026.xml')],
+			special: []
 		});
 	});
 
@@ -146,7 +151,8 @@ describe('checkCaptureFolder', () => {
 			files: 0,
 			dirty: [],
 			notText: [],
-			links: ['gone.xml']
+			links: ['gone.xml'],
+			special: []
 		});
 	});
 
@@ -157,7 +163,13 @@ describe('checkCaptureFolder', () => {
 		const dir = join(root, 'folder-link');
 		mkdirSync(dir);
 		symlinkSync(outside, join(dir, 'more'), process.platform === 'win32' ? 'junction' : 'dir');
-		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [], links: ['more'] });
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 0,
+			dirty: [],
+			notText: [],
+			links: ['more'],
+			special: []
+		});
 	});
 
 	// Opening a pipe with no writer blocks for good, so it is named and never read. Only a POSIX
@@ -187,6 +199,12 @@ describe('checkCaptureFolder', () => {
 	it('reports no files for an empty folder rather than calling it clean', () => {
 		const dir = join(root, 'empty');
 		mkdirSync(dir);
-		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [], links: [] });
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 0,
+			dirty: [],
+			notText: [],
+			links: [],
+			special: []
+		});
 	});
 });

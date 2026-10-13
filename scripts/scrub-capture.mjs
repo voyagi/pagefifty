@@ -202,16 +202,17 @@ function compareAgainst(dir, against) {
 }
 
 function check(dir, against) {
-	const { files, dirty, notText, links } = checkCaptureFolder(dir);
+	const { files, dirty, notText, links, special } = checkCaptureFolder(dir);
 	for (const line of links) console.error(`a link, not a file, so git would keep the link and not what it points at: ${line}`);
-	if (files === 0 && links.length === 0) {
+	for (const line of special) console.error(`not a regular file, so git cannot keep it: ${line}`);
+	if (files === 0 && links.length === 0 && special.length === 0) {
 		console.error(`no files under ${dir}`);
 		return 2;
 	}
 	for (const line of dirty) console.error(`contact data: ${line}`);
 	for (const line of notText) console.error(`not text, so no pattern can read it: ${line}`);
 	console.log(`checked ${files} files under ${dir}, ${dirty.length} with contact data, ${notText.length} not text, ${links.length} links refused`);
-	const found = dirty.length + notText.length + links.length;
+	const found = dirty.length + notText.length + links.length + special.length;
 	if (!against) return found > 0 ? 1 : 0;
 
 	const { counts, problems, compared } = compareAgainst(dir, against);
