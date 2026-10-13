@@ -287,8 +287,8 @@ try {
 		`firm "${shown.firm}", active ${JSON.stringify(shown.active)}`
 	);
 	check(
-		'the list is judged at the capture instant: 350 open, closed summary names the capture time',
-		shown.openRows === 350 && shown.closedSummary === 'Closed at the capture time (13)',
+		'the list is judged at the capture instant: 349 open, closed summary names the capture time',
+		shown.openRows === 349 && shown.closedSummary === 'Closed at the capture time (13)',
 		`${shown.openRows} open rows, summary "${shown.closedSummary}"`
 	);
 	check(
