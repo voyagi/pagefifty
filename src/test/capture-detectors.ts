@@ -7,6 +7,7 @@ import {
 	isCaptureText,
 	isUnreadableCaptureFile
 } from '../lib/snapshot/capture-files.ts';
+import { naming } from '../lib/snapshot/scrub-check.ts';
 import { EMAIL_PATTERN, SCRUB_PLACEHOLDER } from '../lib/snapshot/scrub.ts';
 
 export { isCaptureText };
@@ -20,9 +21,10 @@ export function captureFolders(root: string): string[] {
 		.sort();
 }
 
+// Every entry but a folder, so a link is read through as the records build reads it, never skipped.
 export function captureFiles(capture: string): string[] {
 	return readdirSync(capture, { recursive: true, withFileTypes: true })
-		.filter((entry) => entry.isFile())
+		.filter((entry) => !entry.isDirectory())
 		.map((entry) => join(entry.parentPath, entry.name))
 		.sort();
 }
@@ -121,7 +123,9 @@ export function contactStrings(text: string): string[] {
 // XML character reference (&#64; is an at sign) or a JSON unicode escape (@), so each file is
 // read as written and again decoded: an escaped address or number is found as surely as a plain one.
 export function contactStringsInFile(path: string, text: string): string[] {
-	const unescaped = path.endsWith('.json') ? JSON.stringify(JSON.parse(text), null, 2) : text;
+	const unescaped = path.endsWith('.json')
+		? naming(path, () => JSON.stringify(JSON.parse(text), null, 2))
+		: text;
 	const decoded = decodeCharacterReferences(unescaped);
 	return [...new Set([...contactStrings(text), ...contactStrings(decoded)])];
 }

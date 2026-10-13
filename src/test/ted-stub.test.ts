@@ -258,6 +258,23 @@ describe('createScriptedTed', () => {
 		expect(together.maxInFlight()).toBe(2);
 	});
 
+	// Built at call time, such an answer would throw inside the call and pass for a scripted network
+	// failure, so a test of that failure would pass on the stub's own mistake.
+	it('refuses at construction an answer a Response cannot carry, naming its URL and place', () => {
+		const url = tedNoticeXmlUrl('600367-2026');
+		const withSecond = (second: { status: number; body?: string }) => () =>
+			createScriptedTed({
+				clock: createFakeClock(START),
+				notices: ['600367-2026'],
+				script: { [url]: [{ status: 200 }, second] }
+			});
+		const named = new RegExp(`answer 2 for ${url.replace(/[.?]/g, '\\$&')}`);
+		expect(withSecond({ status: 0 })).toThrow(named);
+		expect(withSecond({ status: 600 })).toThrow(named);
+		expect(withSecond({ status: 204, body: 'gone' })).toThrow(named);
+		expect(withSecond({ status: 204 })).not.toThrow();
+	});
+
 	it('refuses at construction a notice the 2026-09-15 listing does not hold', () => {
 		expect(() =>
 			createScriptedTed({ clock: createFakeClock(START), notices: ['999901-2026'] })

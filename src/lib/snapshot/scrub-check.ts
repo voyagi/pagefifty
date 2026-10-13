@@ -21,9 +21,11 @@ interface CaptureCheck {
 
 type JsonVisit = (leaf: unknown, key: string) => unknown;
 
+// Every entry but a folder. The records build reads a notice through a link, so a link is read
+// through here too; one that points at nothing or at a folder fails its read and is named.
 function listFiles(dir: string): string[] {
 	return readdirSync(dir, { recursive: true, withFileTypes: true })
-		.filter((entry) => entry.isFile())
+		.filter((entry) => !entry.isDirectory())
 		.map((entry) => join(entry.parentPath, entry.name))
 		.sort();
 }

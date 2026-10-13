@@ -1,6 +1,6 @@
 // The one capture check scripts/scrub-capture.mjs and the capture command both run, called as a
 // function on the tracked capture and on planted folders in the temp folder.
-import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -111,6 +111,35 @@ describe('checkCaptureFolder', () => {
 			dirty: [],
 			notText: [join('xml', '000003-2026.xml')]
 		});
+	});
+
+	// The records build reads a link's target as the notice, so the check reads it too.
+	it('reads a file through a link and names the link when its target holds an address', () => {
+		const target = join(root, 'link-target.xml');
+		writeFileSync(target, `<cbc:Description>Contact ${address('vergabe')}</cbc:Description>\n`);
+		const dir = join(root, 'linked');
+		mkdirSync(join(dir, 'xml'), { recursive: true });
+		symlinkSync(target, join(dir, 'xml', '000006-2026.xml'), 'file');
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 1,
+			dirty: [`${join('xml', '000006-2026.xml')}: email`],
+			notText: []
+		});
+	});
+
+	it('throws naming a link that points at nothing', () => {
+		const dir = join(root, 'dangling');
+		mkdirSync(dir);
+		symlinkSync(join(root, 'no-such-target.xml'), join(dir, 'gone.xml'), 'file');
+		expect(() => checkCaptureFolder(dir)).toThrow(/^gone\.xml: /);
+	});
+
+	it('throws naming a link to a folder, whose files the listing does not reach', () => {
+		const outside = folder('link-folder-target', { 'notes.txt': 'plain text' });
+		const dir = join(root, 'folder-link');
+		mkdirSync(dir);
+		symlinkSync(outside, join(dir, 'more'), process.platform === 'win32' ? 'junction' : 'dir');
+		expect(() => checkCaptureFolder(dir)).toThrow(/^more: /);
 	});
 
 	it('throws naming the file when a JSON file does not parse', () => {

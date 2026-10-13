@@ -1,4 +1,12 @@
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	mkdirSync,
+	mkdtempSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+	symlinkSync,
+	writeFileSync
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -270,6 +278,34 @@ describe('one verdict over a capture folder', () => {
 				`${file}: ${address}`,
 				`${file} cbc:ElectronicMail at ${at}`
 			]);
+		} finally {
+			rmSync(root, { recursive: true, force: true });
+		}
+	});
+
+	it('reads a file through a link in the folder and names the link when its target holds an address', () => {
+		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
+		try {
+			const target = join(root, 'link-target.txt');
+			const address = ['vergabe', 'buyer.example'].join('@');
+			writeFileSync(target, `Contact ${address}\n`);
+			const folder = join(root, '2026-10-13');
+			mkdirSync(folder);
+			const link = join(folder, 'notes.txt');
+			symlinkSync(target, link, 'file');
+			expect(folderProblems(folder)).toEqual([`${link}: ${address}`]);
+		} finally {
+			rmSync(root, { recursive: true, force: true });
+		}
+	});
+
+	it('throws naming a JSON file in the folder that does not parse', () => {
+		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
+		try {
+			const folder = join(root, '2026-10-13');
+			mkdirSync(folder);
+			writeFileSync(join(folder, 'notices.json'), '{ "total": ');
+			expect(() => folderProblems(folder)).toThrow(/notices\.json: /);
 		} finally {
 			rmSync(root, { recursive: true, force: true });
 		}

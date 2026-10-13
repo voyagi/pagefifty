@@ -28,6 +28,8 @@ type ScriptedBody = string | Uint8Array<ArrayBuffer> | ReadableStream<Uint8Array
 type ScriptedAnswer =
 	{ status: number; headers?: Record<string, string>; body?: ScriptedBody } | { throws: Error };
 
+type QueuedAnswer = Response | { throws: Error };
+
 interface StubCall {
 	at: number;
 	method: string;
@@ -96,6 +98,22 @@ function unscripted(method: string, url: string, detail = ''): Response {
 	});
 }
 
+// Each answer is served once, so it is built when the stub is made. An answer a Response cannot
+// carry (a status outside 200 to 599, a body on 204) then fails the test's setup, never the call,
+// where it would pass for a scripted network failure.
+function queuedAnswer(url: string, place: number, answer: ScriptedAnswer): QueuedAnswer {
+	if ('throws' in answer) return answer;
+	try {
+		return new Response(answer.body ?? null, { status: answer.status, headers: answer.headers });
+	} catch (error) {
+		const reason = error instanceof Error ? error.message : String(error);
+		throw new Error(
+			`ted stub: answer ${place + 1} for ${url} cannot be served (${reason}); script { throws } for a call that fails`,
+			{ cause: error }
+		);
+	}
+}
+
 export function createScriptedTed(options: {
 	clock: { now(): number };
 	notices: readonly string[];
@@ -112,7 +130,10 @@ export function createScriptedTed(options: {
 	});
 	const xmlNotices = new Map(options.notices.map((notice) => [tedNoticeXmlUrl(notice), notice]));
 	const queues = new Map(
-		Object.entries(options.script ?? {}).map(([url, answers]) => [new URL(url).href, [...answers]])
+		Object.entries(options.script ?? {}).map(([key, answers]) => {
+			const url = new URL(key).href;
+			return [url, answers.map((answer, place) => queuedAnswer(url, place, answer))];
+		})
 	);
 	const log: StubCall[] = [];
 	let inFlight = 0;
@@ -153,7 +174,7 @@ export function createScriptedTed(options: {
 			const queued = queues.get(request.url)?.shift();
 			if (queued === undefined) return defaultAnswer(request.method, request.url, call.body);
 			if ('throws' in queued) throw queued.throws;
-			return new Response(queued.body ?? null, { status: queued.status, headers: queued.headers });
+			return queued;
 		} finally {
 			inFlight -= 1;
 		}
