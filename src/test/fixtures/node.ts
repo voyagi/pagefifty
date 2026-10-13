@@ -22,6 +22,8 @@ type FileLinker = (target: string, path: string, kind: 'file') => unknown;
 export const NO_FILE_LINKS =
 	'this machine cannot make a file link (Windows needs Developer Mode or elevation)';
 
+export const NO_PIPES = 'Windows cannot make a named pipe inside a folder';
+
 // Windows makes a file link only with Developer Mode or elevation, while a junction needs neither,
 // so a test that links a file asks here first and skips with NO_FILE_LINKS where it cannot. Only a
 // refused right answers no: any other failure throws, so a broken temp folder is never a skip.

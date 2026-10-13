@@ -12,7 +12,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { canLinkFiles, NO_FILE_LINKS } from '../../test/fixtures/node.ts';
+import { canLinkFiles, NO_FILE_LINKS, NO_PIPES } from '../../test/fixtures/node.ts';
 import { SCRUB_PLACEHOLDER } from './scrub';
 
 const SCRIPT = join('scripts', 'scrub-capture.mjs');
@@ -152,6 +152,23 @@ describe('scrub-capture.mjs', () => {
 		);
 		const checked = run('--check', onlyLink);
 		expect(checked.stderr).toContain('a link, not a file');
+		expect(checked.status).toBe(1);
+	});
+
+	// The timeout turns a check that opened the pipe and blocked into a failure instead of a hang.
+	it('names a named pipe in the folder and exits 1, without opening it', (context) => {
+		context.skip(process.platform === 'win32', NO_PIPES);
+		const piped = join(root, 'pipe-in-capture');
+		mkdirSync(piped);
+		writeFileSync(join(piped, 'notes.txt'), 'no contact data here');
+		expect(spawnSync('mkfifo', [join(piped, 'pipe')]).status).toBe(0);
+		const checked = spawnSync(process.execPath, [SCRIPT, '--check', piped], {
+			encoding: 'utf8',
+			timeout: 20_000
+		});
+		expect(checked.stderr).toContain('not a regular file');
+		expect(checked.stderr).toContain('pipe');
+		expect(checked.stdout).toContain('checked 1 files');
 		expect(checked.status).toBe(1);
 	});
 

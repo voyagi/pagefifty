@@ -1,10 +1,11 @@
 // The one capture check scripts/scrub-capture.mjs and the capture command both run, called as a
 // function on the tracked capture and on planted folders in the temp folder.
+import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { canLinkFiles, NO_FILE_LINKS } from '../../test/fixtures/node.ts';
+import { canLinkFiles, NO_FILE_LINKS, NO_PIPES } from '../../test/fixtures/node.ts';
 import { checkCaptureFolder } from './scrub-check.ts';
 
 const TRACKED = join('examples', '2026-09-15');
@@ -157,6 +158,21 @@ describe('checkCaptureFolder', () => {
 		mkdirSync(dir);
 		symlinkSync(outside, join(dir, 'more'), process.platform === 'win32' ? 'junction' : 'dir');
 		expect(checkCaptureFolder(dir)).toEqual({ files: 0, dirty: [], notText: [], links: ['more'] });
+	});
+
+	// Opening a pipe with no writer blocks for good, so it is named and never read. Only a POSIX
+	// system makes one; scrub-check-special.test.ts covers the same entry on every machine.
+	it('names a named pipe as not a regular file and never opens it', (context) => {
+		context.skip(process.platform === 'win32', NO_PIPES);
+		const dir = folder('piped', { 'notices.json': '{}' });
+		expect(spawnSync('mkfifo', [join(dir, 'pipe')]).status).toBe(0);
+		expect(checkCaptureFolder(dir)).toEqual({
+			files: 1,
+			dirty: [],
+			notText: [],
+			links: [],
+			special: ['pipe']
+		});
 	});
 
 	it('throws naming the file when a JSON file does not parse', () => {
