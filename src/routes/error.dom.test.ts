@@ -132,7 +132,7 @@ describe('error page', () => {
 			'No tender with this notice number'
 		);
 		expect(squash(document.querySelector('.lede')?.textContent)).toBe(
-			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after the capture, not a call for tenders TED listed as active that day, or an earlier version of a notice TED published again.'
+			'Notice 999999-2026 is not in the 15 Sep 2026 snapshot. It may be outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after the capture, not a call for tenders TED listed as active that day, an earlier version or a copy of a notice TED published again, or cancelled by its buyer.'
 		);
 		expect(hrefs()).toContain('/tenders');
 		expect(hrefs().some((href) => href?.startsWith('/example'))).toBe(false);
@@ -166,8 +166,12 @@ describe('error page', () => {
 		expect(index.capture.query).toContain('notice-type=cn-standard');
 		expect(lede).toContain('not a call for tenders TED listed as active that day,');
 		// The build leaves a replaced version out of the index (leftOut), so its own page is this 404.
+		// The same rule (src/lib/ingest/latest.ts) leaves out a same-version copy and a cancelled
+		// notice, and the capture command drops them before a capture is written, so both are named.
 		expect(index.leftOut.length).toBeGreaterThan(0);
-		expect(lede).toContain('or an earlier version of a notice TED published again.');
+		expect(lede).toContain(
+			'an earlier version or a copy of a notice TED published again, or cancelled by its buyer.'
+		);
 	});
 
 	it('shows control and direction characters in an unknown notice as the replacement mark', () => {

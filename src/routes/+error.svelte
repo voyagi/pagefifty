@@ -65,8 +65,8 @@
 				<p class="lede">
 					Notice <span class="mono echo">{notice}</span> is not in the 15 Sep 2026 snapshot. It may be
 					outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after
-					the capture, not a call for tenders TED listed as active that day, or an earlier version of
-					a notice TED published again.
+					the capture, not a call for tenders TED listed as active that day, an earlier version or a copy
+					of a notice TED published again, or cancelled by its buyer.
 				</p>
 				<div class="actions">
 					{#if onExample}
