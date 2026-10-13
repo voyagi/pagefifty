@@ -30,8 +30,10 @@ import {
 	unreadableFiles,
 	unscrubbedElements
 } from '../../test/capture-detectors.ts';
+import { canLinkFiles, NO_FILE_LINKS } from '../../test/fixtures/node.ts';
 
 const CAPTURE = 'examples/2026-09-15';
+const FILE_LINKS = canLinkFiles();
 
 // The counts further down belong to the 2026-09-15 capture alone.
 const CAPTURES = captureFolders('examples');
@@ -297,7 +299,8 @@ describe('one verdict over a capture folder', () => {
 	});
 
 	// Git keeps a link as the path it points at, so the bytes behind it are never what a commit holds.
-	it('names a link to a file in the folder as a link and never reads the address behind it', () => {
+	it('names a link to a file in the folder as a link and never reads the address behind it', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
 		const root = mkdtempSync(join(tmpdir(), 'pagefifty-verdict-'));
 		try {
 			const target = join(root, 'link-target.txt');

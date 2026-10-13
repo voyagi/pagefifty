@@ -4,9 +4,11 @@ import { mkdirSync, mkdtempSync, readdirSync, rmSync, symlinkSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { canLinkFiles, NO_FILE_LINKS } from '../../test/fixtures/node.ts';
 import { checkCaptureFolder } from './scrub-check.ts';
 
 const TRACKED = join('examples', '2026-09-15');
+const FILE_LINKS = canLinkFiles();
 
 // Built rather than written out, so no literal in this file reads as someone's address.
 const address = (local: string, at = '@') => `${local}${at}buyer.example`;
@@ -119,7 +121,8 @@ describe('checkCaptureFolder', () => {
 
 	// Git keeps a link as the path it points at, never the bytes behind it, so the check would judge
 	// bytes no commit holds. A link is named and its target never read.
-	it('names a link to a file as a link and never reads the address behind it', () => {
+	it('names a link to a file as a link and never reads the address behind it', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
 		const target = join(root, 'link-target.xml');
 		writeFileSync(target, `<cbc:Description>Contact ${address('vergabe')}</cbc:Description>\n`);
 		const dir = folder('linked', { 'notices.json': '{}' });
@@ -133,7 +136,8 @@ describe('checkCaptureFolder', () => {
 		});
 	});
 
-	it('names a link that points at nothing as a link instead of failing on its read', () => {
+	it('names a link that points at nothing as a link instead of failing on its read', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
 		const dir = join(root, 'dangling');
 		mkdirSync(dir);
 		symlinkSync(join(root, 'no-such-target.xml'), join(dir, 'gone.xml'), 'file');

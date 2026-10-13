@@ -12,9 +12,11 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { canLinkFiles, NO_FILE_LINKS } from '../../test/fixtures/node.ts';
 import { SCRUB_PLACEHOLDER } from './scrub';
 
 const SCRIPT = join('scripts', 'scrub-capture.mjs');
+const FILE_LINKS = canLinkFiles();
 const run = (...args: string[]) =>
 	spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' });
 
@@ -218,9 +220,8 @@ describe('scrub-capture.mjs', () => {
 		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 	});
 
-	it('refuses to write through a link inside the copy that leads back into the source', () => {
+	it('refuses to write through a folder link inside the copy that leads back into the source', () => {
 		const before = readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8');
-		const beforeJson = readFileSync(join(source, 'notices.json'), 'utf8');
 		const linkedFolder = join(root, 'linked-xml');
 		mkdirSync(linkedFolder);
 		symlinkSync(
@@ -231,13 +232,18 @@ describe('scrub-capture.mjs', () => {
 		const throughFolder = run('--from', source, '--to', linkedFolder);
 		expect(throughFolder.stderr).toContain('a link, so the copy would write through it');
 		expect(throughFolder.status).toBe(1);
+		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
+	});
+
+	it('refuses to write through a file link inside the copy that leads back into the source', (context) => {
+		context.skip(!FILE_LINKS, NO_FILE_LINKS);
+		const beforeJson = readFileSync(join(source, 'notices.json'), 'utf8');
 		const linkedFile = join(root, 'linked-json');
 		mkdirSync(linkedFile);
 		symlinkSync(join(source, 'notices.json'), join(linkedFile, 'notices.json'), 'file');
 		const throughFile = run('--from', source, '--to', linkedFile);
 		expect(throughFile.stderr).toContain('a link, so the copy would write through it');
 		expect(throughFile.status).toBe(1);
-		expect(readFileSync(join(source, 'xml', '000001-2026.xml'), 'utf8')).toBe(before);
 		expect(readFileSync(join(source, 'notices.json'), 'utf8')).toBe(beforeJson);
 	});
 
