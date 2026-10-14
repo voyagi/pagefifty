@@ -3,7 +3,6 @@
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
 import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
-import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
 import {
 	VERSION_ID,
 	type Amount,
@@ -201,7 +200,5 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 	};
 }
 
-// The capture's day as the buyers in scope count it, in the zone and the words every deadline uses.
-export function captureDay(fetchedAt: string): string {
-	return formatDay(fetchedAt, SERVER_TIME_ZONE);
-}
+// One writer of the capture's day for the pages and the tests, kept where the browser can import it.
+export { captureDay } from './capture-id.ts';

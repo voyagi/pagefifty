@@ -3,8 +3,8 @@
 // judged against the one instant its loader was given (D-06).
 import type { LangText, Amount } from '../ingest/record';
 import type { IndexRow, SnapshotIndex } from '../snapshot/index-row';
-import { firstPublishedDay } from '../snapshot/capture-id';
-import { formatDay, noticeDeadline, SERVER_TIME_ZONE, type NoticeDeadline } from '../core/deadline';
+import { captureDay, dayText, firstPublishedDay } from '../snapshot/capture-id';
+import { noticeDeadline, type NoticeDeadline } from '../core/deadline';
 import { applyFilters, isActive, rangeInverted, type FilterState } from '../core/filters';
 import { readingStatus, type ReadingStatus } from '../core/reading';
 
@@ -235,15 +235,13 @@ export function countsLine(
 	];
 }
 
-// A filter day and a capture day are both written as the buyers in scope count days.
-export function dayText(day: string): string {
-	return formatDay(`${day}T12:00:00Z`, SERVER_TIME_ZONE);
-}
+// The page components read it from here, beside the other list words.
+export { dayText };
 
 export function captureFacts(capture: SnapshotIndex['capture']): CaptureFacts {
 	const firstPublished = firstPublishedDay(capture.query);
 	return {
-		capturedOn: formatDay(capture.fetchedAt, SERVER_TIME_ZONE),
+		capturedOn: captureDay(capture.fetchedAt),
 		fetchedAt: capture.fetchedAt,
 		...(firstPublished && { firstPublished })
 	};

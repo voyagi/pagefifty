@@ -12,11 +12,22 @@ function firstPublishedId(query: string): string | undefined {
 	return from ? `${from[1]}-${from[2]}-${from[3]}` : undefined;
 }
 
+// A filter day, a capture's first publication day and the capture's own day are all written as the
+// buyers in scope count days, in the zone and the words every deadline uses. Noon UTC is the same
+// calendar day in every zone in scope.
+export function dayText(day: string): string {
+	return formatDay(`${day}T12:00:00Z`, SERVER_TIME_ZONE);
+}
+
+export function captureDay(fetchedAt: string): string {
+	return formatDay(fetchedAt, SERVER_TIME_ZONE);
+}
+
 // The first publication day is read from the query the capture ran, so a new capture cannot leave a
-// page naming the old one's window. Noon UTC is the same calendar day in every zone in scope.
+// page naming the old one's window.
 export function firstPublishedDay(query: string): string | undefined {
 	const id = firstPublishedId(query);
-	return id ? formatDay(`${id}T12:00:00Z`, SERVER_TIME_ZONE) : undefined;
+	return id ? dayText(id) : undefined;
 }
 
 // Every live page formats this day, and formatDay throws on an impossible month while 30 February
