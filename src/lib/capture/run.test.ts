@@ -49,13 +49,15 @@ function tempRoot(): string {
 
 interface RunOptions {
 	script?: Parameters<typeof createScriptedTed>[0]['script'];
+	// A root an earlier run used, so its cache is there.
+	root?: string;
 	prepare?: (root: string) => void;
 	// Called with the run's root as each request reaches TED, before the stub answers.
 	onRequest?: (root: string) => void;
 }
 
 async function captureRun(notices: readonly string[], options: RunOptions = {}) {
-	const root = tempRoot();
+	const root = options.root ?? tempRoot();
 	options.prepare?.(root);
 	const clock = createFakeClock(START);
 	const ted = createScriptedTed({ clock, notices, script: options.script });
@@ -346,6 +348,24 @@ describe.each([
 			const raw = readFileSync(join(run.root, '.capture-cache', 'xml', `${id}.xml`));
 			expect(fetchLog.log[index + 1].bytes).toBe(raw.byteLength);
 		}
+	});
+});
+
+describe('a run over a cache an earlier run filled', () => {
+	it('asks TED only for the search, counts its cache hits and writes the same XML', async () => {
+		const listing = ['600367-2026', '601147-2026'];
+		const first = await captureRun(listing);
+		const xmlOf = (folder: string) => readFileSync(join(folder, 'xml', '600367-2026.xml'));
+		const firstXml = xmlOf(first.folder);
+		rmSync(first.folder, { recursive: true });
+		const second = await captureRun(listing, { root: first.root });
+		expect(second.code, second.lines.join('\n')).toBe(0);
+		expect(second.ted.calls().map(({ method, url }) => `${method} ${url}`)).toEqual([
+			`POST ${SEARCH}`
+		]);
+		const record = readJson(join(second.folder, 'run.json'));
+		expect(record.ted).toMatchObject({ searchPages: 1, xmlRequests: 0, cacheHits: 2 });
+		expect(Buffer.compare(xmlOf(second.folder), firstXml)).toBe(0);
 	});
 });
 

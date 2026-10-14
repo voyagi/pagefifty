@@ -4,6 +4,7 @@
 // Node type stripping: erasable syntax only, relative .ts imports.
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { selectLatest } from '../ingest/latest.ts';
 import { readNotice, MAX_NOTICE_BYTES } from '../ingest/read-notice.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
 import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot/index-row.ts';
@@ -18,7 +19,8 @@ import {
 	writeJsonFile
 } from './capture-folder.ts';
 import { captureReadme } from './readme.ts';
-import { createTedClient, type Clock, type TedClient } from './ted-client.ts';
+import { buildRunRecord } from './run-record.ts';
+import { createTedClient, type Clock, type FetchLogEntry, type TedClient } from './ted-client.ts';
 import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from './ted-search.ts';
 import { createXmlCache } from './xml-cache.ts';
 
@@ -47,9 +49,29 @@ interface ReadOne {
 
 type XmlCache = ReturnType<typeof createXmlCache>;
 
-type Fetched = { ok: true; raw: Uint8Array } | { ok: false; reason: string };
+type Fetched = { ok: true; raw: Uint8Array; cached: boolean } | { ok: false; reason: string };
 
 type Outcome = { ok: true; notice: ReadOne } | { ok: false; failure: Failure };
+
+type Selection = ReturnType<typeof selectLatest>;
+
+// Everything the staged folder is written from, fixed before the first file is written.
+interface Capture {
+	date: string;
+	startedAt: string;
+	finishedAt: string;
+	since: string;
+	command: string;
+	head: string;
+	listed: number;
+	searchTotal: number;
+	cacheHits: number;
+	kept: readonly ReadOne[];
+	leftOut: Selection['leftOut'];
+	sameProcedure: Selection['sameProcedure'];
+	ted: ReturnType<TedClient['stats']>;
+	fetchLog: readonly FetchLogEntry[];
+}
 
 // The BOM is kept, so a scrubbed file differs from TED's bytes only where the scrub replaced text.
 const UTF8 = new TextDecoder('utf-8', { ignoreBOM: true });
@@ -67,13 +89,13 @@ async function fetchRaw(
 	number: string,
 	url: string
 ): Promise<Fetched> {
-	if (cache.has(number)) return { ok: true, raw: cache.read(number) };
+	if (cache.has(number)) return { ok: true, raw: cache.read(number), cached: true };
 	const answer = await client.send('xml', () => new Request(url), { id: number }, MAX_NOTICE_BYTES);
 	if (!answer.ok) return answer;
 	const accepted = readNotice(answer.body, { noticeNumber: number });
 	if (!accepted.ok) return { ok: false, reason: `${accepted.kind}: ${accepted.detail}` };
 	cache.write(number, answer.body);
-	return { ok: true, raw: answer.body };
+	return { ok: true, raw: answer.body, cached: false };
 }
 
 // The record is read from the scrubbed bytes, the ones the records build reads from the published
@@ -96,10 +118,11 @@ function readScrubbed(number: string, hit: SearchHit, raw: Uint8Array): Outcome 
 async function readHits(hits: readonly SearchHit[], client: TedClient, cache: XmlCache) {
 	const notices: ReadOne[] = [];
 	const failed: Failure[] = [];
-	const targets = hits.map((hit) => ({ hit, target: xmlTarget(hit) }));
+	let cacheHits = 0;
 	const valid: { hit: SearchHit; number: string; url: string }[] = [];
-	for (const { hit, target } of targets) {
-		if (target.ok) valid.push({ hit, ...target });
+	for (const hit of hits) {
+		const target = xmlTarget(hit);
+		if (target.ok) valid.push({ hit, number: target.number, url: target.url });
 		else failed.push({ notice: target.notice, reason: target.reason });
 	}
 	valid.sort((a, b) => publicationOrder(a.number, b.number));
@@ -109,50 +132,76 @@ async function readHits(hits: readonly SearchHit[], client: TedClient, cache: Xm
 			failed.push({ notice: number, reason: fetched.reason });
 			continue;
 		}
+		if (fetched.cached) cacheHits += 1;
 		const outcome = readScrubbed(number, hit, fetched.raw);
 		if (outcome.ok) notices.push(outcome.notice);
 		else failed.push(outcome.failure);
 	}
-	return { notices, failed };
+	return { notices, failed, cacheHits };
 }
 
-interface Listing {
-	date: string;
-	fetchedAt: string;
-	since: string;
-	searchTotal: number;
-	notices: readonly ReadOne[];
+// TED's onlyLatestVersions flag did not deliver latest versions in the 2026-09-15 capture, and the
+// records build applies this same rule to every capture, so the command keeps what the build keeps.
+function keepLatest(notices: readonly ReadOne[]) {
+	const byNumber = new Map(notices.map((notice) => [notice.number, notice]));
+	const selection = selectLatest(notices.map((notice) => notice.record));
+	const kept = selection.kept.map((record) => byNumber.get(record.noticeNumber) as ReadOne);
+	return { kept, leftOut: selection.leftOut, sameProcedure: selection.sameProcedure };
 }
 
-function stage(staging: string, listing: Listing): void {
-	rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
+function writeListing(staging: string, capture: Capture): void {
 	mkdirSync(join(staging, 'xml'), { recursive: true });
-	for (const notice of listing.notices) {
+	for (const notice of capture.kept) {
 		writeFileSync(join(staging, 'xml', `${notice.number}.xml`), notice.text);
 	}
-	const { query, scope, onlyLatestVersions } = searchBody(listing.since, 1);
+	const { query, scope, onlyLatestVersions } = searchBody(capture.since, 1);
 	writeJsonFile(
 		join(staging, 'notices.json'),
 		scrubJsonValue({
-			fetchedAt: listing.fetchedAt,
+			fetchedAt: capture.startedAt,
 			query,
 			scope,
 			onlyLatestVersions,
-			since: listing.since,
-			total: listing.notices.length,
-			searchTotal: listing.searchTotal,
-			notices: listing.notices.map((notice) => notice.hit)
+			since: capture.since,
+			total: capture.kept.length,
+			searchTotal: capture.searchTotal,
+			notices: capture.kept.map((notice) => notice.hit)
+		})
+	);
+}
+
+function writeRecords(staging: string, capture: Capture): void {
+	const { query, fields, scope, onlyLatestVersions } = searchBody(capture.since, 1);
+	writeJsonFile(join(staging, 'fetch-log.json'), { log: capture.fetchLog, failures: [] });
+	writeJsonFile(
+		join(staging, 'run.json'),
+		buildRunRecord({
+			startedAt: capture.startedAt,
+			finishedAt: capture.finishedAt,
+			captureDate: capture.date,
+			command: capture.command,
+			head: capture.head,
+			query: { query, fields, scope, onlyLatestVersions, since: capture.since },
+			ted: { ...capture.ted, cacheHits: capture.cacheHits },
+			notices: {
+				listed: capture.listed,
+				written: capture.kept.length,
+				leftOut: capture.leftOut,
+				failed: [],
+				sameProcedure: capture.sameProcedure
+			}
 		})
 	);
 	writeFileSync(
 		join(staging, 'README.md'),
 		captureReadme({
-			captureDate: listing.date,
-			fetchedAt: listing.fetchedAt,
+			captureDate: capture.date,
+			fetchedAt: capture.startedAt,
 			query,
-			since: listing.since,
-			written: listing.notices.length,
-			searchTotal: listing.searchTotal
+			since: capture.since,
+			written: capture.kept.length,
+			searchTotal: capture.searchTotal,
+			leftOut: capture.leftOut
 		})
 	);
 }
@@ -160,16 +209,16 @@ function stage(staging: string, listing: Listing): void {
 // The records build refuses a whole capture on one record or index it rejects
 // (build-records.mjs buildCapture), which would turn npm test, dev and build red, so the command
 // applies the same two checks before it publishes, and then the one contact check the scrub script runs.
-function stagedProblems(staging: string, listing: Listing): string[] {
+function stagedProblems(staging: string, capture: Capture): string[] {
 	const index = SnapshotIndexSchema.safeParse({
 		capture: {
-			id: listing.date,
-			fetchedAt: listing.fetchedAt,
-			total: listing.searchTotal,
-			query: searchQuery(listing.since)
+			id: capture.date,
+			fetchedAt: capture.startedAt,
+			total: capture.searchTotal,
+			query: searchQuery(capture.since)
 		},
-		leftOut: [],
-		rows: listing.notices.map((notice) => toIndexRow(notice.record))
+		leftOut: capture.leftOut,
+		rows: capture.kept.map((notice) => toIndexRow(notice.record))
 	});
 	if (!index.success) {
 		return index.error.issues.map(
@@ -185,12 +234,37 @@ function stagedProblems(staging: string, listing: Listing): string[] {
 	];
 }
 
+async function stageAndPublish(deps: CaptureDeps, capture: Capture): Promise<0 | 1> {
+	const { root, log } = deps;
+	const staging = stagingPath(root, capture.date, deps.pid);
+	rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
+	writeListing(staging, capture);
+	writeRecords(staging, capture);
+	const problems = stagedProblems(staging, capture);
+	if (problems.length > 0) {
+		rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
+		for (const problem of problems) log(`capture: ${problem}`);
+		log('capture: the staged folder failed its checks; nothing was written');
+		return 1;
+	}
+	try {
+		await publish(staging, join(root, 'examples', capture.date), deps.clock);
+	} catch (error) {
+		log(`capture: ${error instanceof Error ? error.message : String(error)}`);
+		return 1;
+	}
+	const count = capture.kept.length;
+	log(
+		`capture: wrote examples/${capture.date} with ${count} ${count === 1 ? 'notice' : 'notices'}`
+	);
+	return 0;
+}
+
 export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 	const { root, clock, log } = deps;
-	const startedAt = clock.now();
-	const date = captureDate(startedAt);
-	const target = join(root, 'examples', date);
-	if (existsSync(target)) {
+	const started = clock.now();
+	const date = captureDate(started);
+	if (existsSync(join(root, 'examples', date))) {
 		log(
 			`capture: examples/${date} already exists, and a capture folder is never written again in place`
 		);
@@ -204,34 +278,24 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		return 1;
 	}
 	const cache = createXmlCache(join(root, '.capture-cache'), deps.pid);
-	const { notices, failed } = await readHits(search.hits, client, cache);
+	const { notices, failed, cacheHits } = await readHits(search.hits, client, cache);
 	if (failed.length > 0) {
 		for (const { notice, reason } of failed) log(`capture: ${notice}: ${reason}`);
 		log(`capture: ${failed.length} notices failed; nothing was written`);
 		return 1;
 	}
-	const listing: Listing = {
+	return stageAndPublish(deps, {
 		date,
-		fetchedAt: new Date(startedAt).toISOString(),
+		startedAt: new Date(started).toISOString(),
+		finishedAt: new Date(clock.now()).toISOString(),
 		since,
+		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
+		head: deps.head,
+		listed: search.hits.length,
 		searchTotal: search.searchTotal,
-		notices
-	};
-	const staging = stagingPath(root, date, deps.pid);
-	stage(staging, listing);
-	const problems = stagedProblems(staging, listing);
-	if (problems.length > 0) {
-		rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
-		for (const problem of problems) log(`capture: ${problem}`);
-		log('capture: the staged folder failed its checks; nothing was written');
-		return 1;
-	}
-	try {
-		await publish(staging, target, clock);
-	} catch (error) {
-		log(`capture: ${error instanceof Error ? error.message : String(error)}`);
-		return 1;
-	}
-	log(`capture: wrote examples/${date} with ${notices.length} notices`);
-	return 0;
+		cacheHits,
+		...keepLatest(notices),
+		ted: client.stats(),
+		fetchLog: client.log()
+	});
 }

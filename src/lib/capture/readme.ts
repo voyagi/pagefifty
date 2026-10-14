@@ -11,7 +11,10 @@ interface ReadmeParts {
 	since: string;
 	written: number;
 	searchTotal: number;
+	leftOut: readonly { notice: string; reason: string }[];
 }
+
+const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
 
 const SOURCE_AND_TERMS = [
 	'## Source and reuse terms',
@@ -33,7 +36,22 @@ function whenAndWhat(parts: ReadmeParts): string[] {
 		`- Query, as recorded in \`notices.json\`: \`${parts.query}\`. The search sent \`scope: ACTIVE\` and asked for only the latest version of each notice, and \`notices.json\` records both settings.`,
 		`- The window runs from ${first}, the first publication day the query names, to the capture day, ${captured}. A tender published before ${first} and still open is not in this capture.`,
 		'- The search reads competition notices only, so a procedure its buyer ended through a later result notice is not detected here.',
-		`- ${parts.written} notices written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`
+		`- ${counted(parts.written, 'notice')} written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`,
+		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.'
+	];
+}
+
+// TED's search flag does not deliver latest versions alone, so a capture can hold fewer notices than
+// TED listed, and each one left out is named with its reason.
+function leftOutSection(leftOut: ReadmeParts['leftOut']): string[] {
+	if (leftOut.length === 0) return [];
+	return [
+		'## Left out',
+		'',
+		'These notices were in the search answer and are not in this capture:',
+		'',
+		...leftOut.map(({ notice, reason }) => `- ${notice}: ${reason}`),
+		''
 	];
 }
 
@@ -55,6 +73,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		'',
 		...whenAndWhat(parts),
 		'',
+		...leftOutSection(parts.leftOut),
 		...SOURCE_AND_TERMS,
 		'',
 		...WHAT_WAS_CHANGED,
