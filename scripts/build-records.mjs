@@ -31,6 +31,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { selectLatest } from '../src/lib/ingest/latest.ts';
 import { readNotice } from '../src/lib/ingest/read-notice.ts';
+import { CAPTURE_ID } from '../src/lib/snapshot/capture-id.ts';
 import {
 	NoticeRecordSchema,
 	SnapshotIndexSchema,
@@ -43,7 +44,6 @@ import {
 } from '../src/lib/snapshot/transport.ts';
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const CAPTURE_ID = /^\d{4}-\d{2}-\d{2}$/;
 const TEMP_PREFIX = '.tmp-';
 const OLD_PREFIX = '.old-';
 

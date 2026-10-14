@@ -103,9 +103,10 @@ describe('snapshotDays', () => {
 		});
 	});
 
-	it('names the step that writes the line when a capture was never built', () => {
+	// The folder is named because a capture gone from examples/ is not fixed by running the build.
+	it('names the step and the folder that write the line when a capture was never built', () => {
 		expect(() => snapshotDays('2026-02-01')).toThrow(
-			'no built capture line for capture 2026-02-01: scripts/build-records.mjs writes it'
+			'no built capture line for capture 2026-02-01: scripts/build-records.mjs writes it from examples/2026-02-01/notices.json'
 		);
 	});
 });
@@ -129,8 +130,10 @@ describe('loadIndex', () => {
 		await expect(loadIndex(EXAMPLE_CAPTURE)).rejects.toThrow('does not match its schema');
 	});
 
-	it('names the step that writes the records when a capture was never built', async () => {
-		await expect(loadIndex('2000-01-01')).rejects.toThrow('scripts/build-records.mjs writes them');
+	it('names the step and the folder that write the records when a capture was never built', async () => {
+		await expect(loadIndex('2000-01-01')).rejects.toThrow(
+			'scripts/build-records.mjs writes them from examples/2000-01-01/notices.json'
+		);
 	});
 
 	it('names the index and the cause when the Worker cannot fetch its file', async () => {

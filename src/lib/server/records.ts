@@ -97,7 +97,7 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 	const url = INDEX_URLS.get(capture);
 	if (url === undefined) {
 		throw new Error(
-			`no built records for capture ${capture}: scripts/build-records.mjs writes them, and npm run dev, npm run build and the test run each call it first`
+			`no built records for capture ${capture}: scripts/build-records.mjs writes them from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
 		);
 	}
 	const parsed = SnapshotIndexSchema.safeParse(await readJson(url, `the ${capture} index`));
@@ -114,7 +114,7 @@ export function snapshotDays(capture: string): CaptureFacts {
 	const line = CAPTURE_LINES.get(capture);
 	if (line === undefined) {
 		throw new Error(
-			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it, and npm run dev, npm run build and the test run each call it first`
+			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
 		);
 	}
 	const parsed = CaptureLineSchema.safeParse(line);

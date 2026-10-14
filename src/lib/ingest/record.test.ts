@@ -300,6 +300,17 @@ describe('legal basis, change reasons and SDK versions', () => {
 		expect([record.changeReasons, record.cancelIntent]).toEqual([['cancel-intent'], true]);
 	});
 
+	// hasCancelIntent and the cancel rule in latest.ts compare codes exactly, so they lean on the
+	// parser trimming the whitespace a publisher may leave around a code.
+	it('marks a cancel-intent code written with whitespace around it', () => {
+		const text = readFixture('cancel-intent-notice', 0);
+		const anchor = '>cancel-intent</cbc:ReasonCode>';
+		if (!text.includes(anchor)) throw new Error(`the fixture has no ${anchor}`);
+		const padded = text.replace(anchor, '>\n\t\t\t cancel-intent \n\t\t</cbc:ReasonCode>');
+		const record = readText(padded, noticeOf('cancel-intent-notice', 0));
+		expect([record.changeReasons, record.cancelIntent]).toEqual([['cancel-intent'], true]);
+	});
+
 	it('leaves 600017-2026, its source, without a cancelIntent key', () => {
 		const record = readRole('change-notice', 1);
 		expect(record.noticeNumber).toBe('600017-2026');
