@@ -1,5 +1,5 @@
 import { fc, test } from '@fast-check/vitest';
-import { describe, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { firstPublishedDay, namesRealFirstDay, newestCapture } from './capture-id';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -41,6 +41,25 @@ describe('the first publication day of a capture query', () => {
 			expect(firstPublishedDay(query)).toBeUndefined();
 		}
 	);
+
+	// The operator is found whatever follows it, so a value that is not a day, or a second lower
+	// bound the page could not name as the window's start, is refused rather than skipped.
+	it.each([
+		['a word', 'cpv AND publication-date>=invalid AND x'],
+		['nothing', 'cpv AND publication-date>= AND x'],
+		['a space and then no real day', 'cpv AND publication-date>= 20260230 AND x'],
+		['a second clause', 'publication-date>=20260901 AND publication-date>=20261340'],
+		['two real days', 'publication-date>=20260901 AND publication-date>=20260910']
+	])('is refused when the clause holds %s, and no day is written for it', (_label, query) => {
+		expect(namesRealFirstDay(query)).toBe(false);
+		expect(firstPublishedDay(query)).toBeUndefined();
+	});
+
+	it('reads one real day written with spaces around the operator', () => {
+		const query = 'cpv AND (publication-date >= 20260901) AND x';
+		expect(namesRealFirstDay(query)).toBe(true);
+		expect(firstPublishedDay(query)).toBe('1 Sep 2026');
+	});
 });
 
 describe('newestCapture', () => {

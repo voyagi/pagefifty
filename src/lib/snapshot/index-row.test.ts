@@ -68,9 +68,9 @@ const index = (rows: unknown[]) => ({
 	rows
 });
 
-// Every live page formats the query's first publication day, where an impossible month throws and
-// 30 February reads as 2 March, so the line that carries such a day is refused where the build
-// reads it.
+// Every live page names the query's first publication day, and a dated clause that yields no day
+// (an impossible date, a value not written as YYYYMMDD, a second clause) would silently drop it, so
+// the line that carries one is refused where the build reads it.
 describe('CaptureLineSchema', () => {
 	const line = (query: string) => ({
 		id: '2026-09-15',
@@ -92,7 +92,9 @@ describe('CaptureLineSchema', () => {
 		['30 February', 'publication-date>=20260230'],
 		['29 February in a common year', 'publication-date>=20270229'],
 		['seven digits', 'publication-date>=2026134'],
-		['nine digits whose first eight are a real day', 'publication-date>=202609011']
+		['nine digits whose first eight are a real day', 'publication-date>=202609011'],
+		['a word', 'publication-date>=invalid'],
+		['one of two clauses', 'publication-date>=20260901 AND publication-date>=20261340']
 	])('refuses a query whose first day is %s, naming the day', (_label, query) => {
 		const result = CaptureLineSchema.safeParse(line(query));
 		expect(result.success).toBe(false);
