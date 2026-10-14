@@ -68,8 +68,9 @@ const index = (rows: unknown[]) => ({
 	rows
 });
 
-// Every live page formats the query's first publication day, and a day that does not exist throws
-// there, so the line that carries it is refused where the build reads it.
+// Every live page formats the query's first publication day, where an impossible month throws and
+// 30 February reads as 2 March, so the line that carries such a day is refused where the build
+// reads it.
 describe('CaptureLineSchema', () => {
 	const line = (query: string) => ({
 		id: '2026-09-15',
@@ -94,6 +95,24 @@ describe('CaptureLineSchema', () => {
 		const result = CaptureLineSchema.safeParse(line(query));
 		expect(result.success).toBe(false);
 		expect(result.error?.message).toContain('publication-date>= names no calendar day');
+	});
+
+	// The live pages never choose such a folder, so the build refuses it rather than write a capture
+	// no page would serve.
+	it.each([
+		['30 February', '2026-02-30'],
+		['month 13', '2026-13-01'],
+		['a day written without its zeros', '2026-9-15']
+	])('refuses a capture named %s', (_label, id) => {
+		const result = CaptureLineSchema.safeParse({ ...line('buyer-country IN (NLD)'), id });
+		expect(result.success).toBe(false);
+		expect(result.error?.message).toContain('a capture is named by a calendar day');
+	});
+
+	it('accepts a capture named 29 February in a leap year', () => {
+		expect(
+			CaptureLineSchema.safeParse({ ...line('buyer-country IN (NLD)'), id: '2028-02-29' }).success
+		).toBe(true);
 	});
 });
 

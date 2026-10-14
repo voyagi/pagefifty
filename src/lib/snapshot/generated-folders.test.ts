@@ -192,6 +192,26 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(kept.capture.query).toBe('test capture');
 	});
 
+	// The live pages skip a folder named for a day that does not exist, so the build names it rather
+	// than write a capture no page would serve, or, as the only one, leave every page failing.
+	it('refuses a capture folder named for a day that does not exist, and writes nothing', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const mistyped = join(root, 'examples', '2026-02-30');
+		try {
+			mkdirSync(join(mistyped, 'xml'), { recursive: true });
+			copyFileSync(join(capture, 'notices.json'), join(mistyped, 'notices.json'));
+			copyFileSync(capturePath('609955-2026'), join(mistyped, 'xml', '609955-2026.xml'));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-02-30: (index): index:');
+			expect(run.stderr).toContain('a capture is named by a calendar day');
+			expect(existsSync(join(out, '2026-02-30'))).toBe(false);
+		} finally {
+			rmSync(mistyped, { recursive: true, force: true });
+		}
+	});
+
 	it.each([
 		['absent', {}],
 		['empty', { 'publication-number': '' }]

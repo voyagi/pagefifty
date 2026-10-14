@@ -19,7 +19,7 @@ import {
 	type NoticeIdentity,
 	type NoticeRecord
 } from '../ingest/record.ts';
-import { CAPTURE_ID, namesRealFirstDay } from './capture-id.ts';
+import { isCaptureId, namesRealFirstDay } from './capture-id.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
 // writes cannot drift apart without a type error.
@@ -148,7 +148,7 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 // The build also writes this line on its own, as capture.json beside the index, so a 404 can name
 // the snapshot's days without reading the index.
 export const CaptureLineSchema = z.strictObject({
-	id: z.string().regex(CAPTURE_ID),
+	id: z.string().refine(isCaptureId, { error: 'a capture is named by a calendar day, YYYY-MM-DD' }),
 	fetchedAt: z.iso.datetime(),
 	// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
 	// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.

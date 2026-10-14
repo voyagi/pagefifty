@@ -19,15 +19,20 @@ export function firstPublishedDay(query: string): string | undefined {
 	return id ? formatDay(`${id}T12:00:00Z`, SERVER_TIME_ZONE) : undefined;
 }
 
-// formatDay throws on a day that does not exist, and every live page reads this one, so the
-// capture line's schema refuses such a query where the build reads it.
+// Every live page formats this day, and formatDay throws on an impossible month while 30 February
+// reads as 2 March, so the capture line's schema refuses such a query where the build reads it.
 export function namesRealFirstDay(query: string): boolean {
 	const id = firstPublishedId(query);
 	return id === undefined || isCalendarDay(id);
 }
 
 // A name like 2026-02-30 matches the pattern but names no day, and sorting it in would let a
-// mistyped folder win over every real capture.
+// mistyped folder win over every real capture. The build's capture line schema and the live pages'
+// choice of capture both ask this, so the build refuses a folder the pages would never serve.
+export function isCaptureId(id: string): boolean {
+	return CAPTURE_ID.test(id) && isCalendarDay(id);
+}
+
 function isCalendarDay(id: string): boolean {
 	const [year, month, day] = id.split('-').map(Number);
 	const date = new Date(Date.UTC(year, month - 1, day));
@@ -37,7 +42,7 @@ function isCalendarDay(id: string): boolean {
 }
 
 export function newestCapture(ids: Iterable<string>): string {
-	const dated = [...ids].filter((id) => CAPTURE_ID.test(id) && isCalendarDay(id)).sort();
+	const dated = [...ids].filter(isCaptureId).sort();
 	if (dated.length === 0) {
 		throw new Error(
 			'no built capture: scripts/build-records.mjs writes them, and npm run dev, npm run build and the test run each call it first'
