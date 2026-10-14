@@ -30,6 +30,9 @@ const FIELDS = [
 	'links'
 ];
 
+const HEAD = '0123456789abcdef0123456789abcdef01234567';
+const FOLDER_ENTRIES = ['README.md', 'fetch-log.json', 'notices.json', 'run.json', 'xml'];
+
 const roots: string[] = [];
 
 afterAll(() => {
@@ -66,7 +69,7 @@ async function captureRun(notices: readonly string[], options: RunOptions = {}) 
 		clock,
 		argv: [],
 		env: {},
-		head: '0123456789abcdef0123456789abcdef01234567',
+		head: HEAD,
 		pid: 4242,
 		log: (line) => lines.push(line)
 	});
@@ -86,7 +89,7 @@ describe('a capture run against the stub TED', () => {
 
 	it('returns 0 and writes notices.json, README.md and one XML file per notice', () => {
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(readdirSync(run.folder).sort()).toEqual(['README.md', 'notices.json', 'xml']);
+		expect(readdirSync(run.folder).sort()).toEqual(FOLDER_ENTRIES);
 		expect(readdirSync(join(run.folder, 'xml')).sort()).toEqual(sorted.map((n) => `${n}.xml`));
 		const notices = readJson(join(run.folder, 'notices.json'));
 		expect(notices).toMatchObject({
@@ -166,7 +169,7 @@ describe('a capture run against the stub TED', () => {
 		const staging = join(run.root, '.capture-cache', 'staging');
 		expect(existsSync(staging) ? readdirSync(staging) : []).toEqual([]);
 		expect(checkCaptureFolder(run.folder)).toEqual({
-			files: 5,
+			files: 7,
 			dirty: [],
 			notText: [],
 			links: [],
@@ -213,6 +216,153 @@ describe('a capture run against the stub TED', () => {
 	});
 });
 
+const RECORD_KEYS = {
+	top: [
+		'schemaVersion',
+		'startedAt',
+		'finishedAt',
+		'captureDate',
+		'command',
+		'head',
+		'query',
+		'ted',
+		'notices'
+	],
+	query: ['query', 'fields', 'scope', 'onlyLatestVersions', 'since'],
+	ted: [
+		'searchPages',
+		'xmlRequests',
+		'cacheHits',
+		'status429',
+		'waited429Ms',
+		'retries502',
+		'failures'
+	],
+	notices: ['listed', 'written', 'leftOut', 'failed', 'sameProcedure']
+};
+
+describe.each([
+	['601147-2026 listed first', ['601147-2026', '600367-2026']],
+	['600367-2026 listed first', ['600367-2026', '601147-2026']]
+])('a capture of a notice and the version that replaced it (%s)', (_order, listing) => {
+	let run: Awaited<ReturnType<typeof captureRun>>;
+
+	beforeAll(async () => {
+		run = await captureRun(listing);
+	});
+
+	it('writes only 600367-2026 and lists 601147-2026 in run.json as superseded by it', () => {
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readdirSync(join(run.folder, 'xml'))).toEqual(['600367-2026.xml']);
+		const notices = readJson(join(run.folder, 'notices.json'));
+		expect(notices.total).toBe(1);
+		expect(notices.searchTotal).toBe(2);
+		expect(
+			notices.notices.map((hit: Record<string, unknown>) => hit['publication-number'])
+		).toEqual(['600367-2026']);
+		const record = readJson(join(run.folder, 'run.json'));
+		expect(record.notices).toEqual({
+			listed: 2,
+			written: 1,
+			leftOut: [{ notice: '601147-2026', reason: 'superseded by 600367-2026' }],
+			failed: [],
+			sameProcedure: []
+		});
+		expect(run.lines).toContain('capture: wrote examples/2026-10-11 with 1 notice');
+	});
+
+	it('names the left-out notice and its reason in the README', () => {
+		const readme = readFileSync(join(run.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('## Left out');
+		expect(readme).toContain('- 601147-2026: superseded by 600367-2026');
+		expect(readme).toContain('1 notice written, of the 2 TED stated for the search');
+	});
+
+	it('writes run.json as two-space JSON in its fixed key order, ending in one newline', () => {
+		const text = readFileSync(join(run.folder, 'run.json'), 'utf8');
+		const record = JSON.parse(text);
+		expect(text).toBe(`${JSON.stringify(record, null, 2)}\n`);
+		expect(Object.keys(record)).toEqual(RECORD_KEYS.top);
+		expect(Object.keys(record.query)).toEqual(RECORD_KEYS.query);
+		expect(Object.keys(record.ted)).toEqual(RECORD_KEYS.ted);
+		expect(Object.keys(record.notices)).toEqual(RECORD_KEYS.notices);
+		expect(record).toMatchObject({
+			schemaVersion: 1,
+			startedAt: '2026-10-11T08:00:00.000Z',
+			finishedAt: '2026-10-11T08:00:02.000Z',
+			captureDate: '2026-10-11',
+			command: 'node scripts/capture.mjs',
+			head: HEAD,
+			query: {
+				query: QUERY,
+				fields: FIELDS,
+				scope: 'ACTIVE',
+				onlyLatestVersions: true,
+				since: '20260927'
+			},
+			ted: {
+				searchPages: 1,
+				xmlRequests: 2,
+				cacheHits: 0,
+				status429: 0,
+				waited429Ms: 0,
+				retries502: 0,
+				failures: 0
+			}
+		});
+	});
+
+	it('logs every request of the run in fetch-log.json, in order and in one entry shape', () => {
+		const fetchLog = readJson(join(run.folder, 'fetch-log.json'));
+		expect(Object.keys(fetchLog)).toEqual(['log', 'failures']);
+		expect(fetchLog.failures).toEqual([]);
+		const calls = run.ted.calls();
+		expect(fetchLog.log).toHaveLength(calls.length);
+		const ids = ['600367-2026', '601147-2026'];
+		fetchLog.log.forEach((entry: Record<string, unknown>, index: number) => {
+			const first = index === 0;
+			expect(Object.keys(entry)).toEqual([
+				'at',
+				'category',
+				first ? 'page' : 'id',
+				'attempt',
+				'status',
+				'bytes',
+				'headers',
+				'url'
+			]);
+			expect(entry).toMatchObject({
+				at: new Date(calls[index].at).toISOString(),
+				category: first ? 'search' : 'xml',
+				...(first ? { page: 1 } : { id: ids[index - 1] }),
+				attempt: 0,
+				status: 200,
+				headers: {},
+				url: first ? 'api.ted.europa.eu' : 'ted.europa.eu'
+			});
+		});
+		expect(fetchLog.log[0].bytes).toBeGreaterThan(0);
+		for (const [index, id] of ids.entries()) {
+			const raw = readFileSync(join(run.root, '.capture-cache', 'xml', `${id}.xml`));
+			expect(fetchLog.log[index + 1].bytes).toBe(raw.byteLength);
+		}
+	});
+});
+
+describe('two runs over the same responses under the same clock', () => {
+	it('write byte-identical notices.json, fetch-log.json, run.json and README.md', async () => {
+		const listing = ['601147-2026', '609955-2026', '600367-2026'];
+		const first = await captureRun(listing);
+		const second = await captureRun(listing);
+		expect([first.code, second.code]).toEqual([0, 0]);
+		for (const file of ['notices.json', 'fetch-log.json', 'run.json', 'README.md']) {
+			const a = readFileSync(join(first.folder, file));
+			const b = readFileSync(join(second.folder, file));
+			expect(Buffer.compare(a, b), file).toBe(0);
+		}
+	});
+});
+
 describe('a capture run that must not publish', () => {
 	const stagingOf = (root: string) => join(root, '.capture-cache', 'staging');
 
@@ -256,7 +406,7 @@ describe('a capture run that must not publish', () => {
 		expect(run.code).toBe(1);
 		expect(readdirSync(run.folder)).toEqual([]);
 		const staged = join(stagingOf(run.root), '2026-10-11-4242');
-		expect(readdirSync(staged).sort()).toEqual(['README.md', 'notices.json', 'xml']);
+		expect(readdirSync(staged).sort()).toEqual(FOLDER_ENTRIES);
 		expect(run.lines.at(-1)).toBe(
 			`capture: ${run.folder} appeared during the run; the capture is complete in ${staged}`
 		);
