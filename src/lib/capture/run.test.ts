@@ -1,5 +1,13 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -10,8 +18,9 @@ import { firstPublishedDay } from '../snapshot/capture-id.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { captureDate, defaultSince } from './capture-folder.ts';
+import { runRecordName } from './run-record.ts';
 import { runCapture } from './run.ts';
-import { createTedClient, GAP_MS } from './ted-client.ts';
+import { createTedClient, GAP_MS, type Clock } from './ted-client.ts';
 import { SEARCH_FIELDS, searchBody, TED_SEARCH_URL } from './ted-search.ts';
 
 const START = Date.parse('2026-10-11T08:00:00Z');
@@ -54,31 +63,66 @@ interface RunOptions {
 	prepare?: (root: string) => void;
 	// Called with the run's root as each request reaches TED, before the stub answers.
 	onRequest?: (root: string) => void;
+	clock?: Clock;
+	pid?: number;
+	isAlive?: (pid: number) => boolean;
 }
 
+const RUN_PID = 4242;
+
+// A run that rejects still leaves its root, its log and the stub's calls to read.
 async function captureRun(notices: readonly string[], options: RunOptions = {}) {
 	const root = options.root ?? tempRoot();
 	options.prepare?.(root);
-	const clock = createFakeClock(START);
+	const clock = options.clock ?? createFakeClock(START);
+	const pid = options.pid ?? RUN_PID;
 	const ted = createScriptedTed({ clock, notices, script: options.script });
 	const lines: string[] = [];
-	const code = await runCapture({
-		root,
-		transport: async (request) => {
-			options.onRequest?.(root);
-			return ted(request);
-		},
-		clock,
-		argv: [],
-		env: {},
-		head: HEAD,
-		pid: 4242,
-		log: (line) => lines.push(line)
-	});
-	return { root, ted, lines, code, folder: join(root, 'examples', '2026-10-11') };
+	const result = { root, ted, lines, folder: join(root, 'examples', '2026-10-11') };
+	try {
+		const code = await runCapture({
+			root,
+			transport: async (request) => {
+				options.onRequest?.(root);
+				return ted(request);
+			},
+			clock,
+			argv: [],
+			env: {},
+			head: HEAD,
+			pid,
+			// No test signals a process it did not start, so liveness is always injected.
+			isAlive: options.isAlive ?? ((candidate) => candidate === pid),
+			log: (line) => lines.push(line)
+		});
+		return { ...result, code, error: undefined };
+	} catch (error) {
+		return { ...result, code: undefined, error };
+	}
 }
 
 const readJson = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
+
+const runsOf = (root: string) => join(root, '.capture-cache', 'runs');
+
+function runRecords(root: string): string[] {
+	const runs = runsOf(root);
+	return existsSync(runs) ? readdirSync(runs).sort() : [];
+}
+
+// Stands in for a process killed mid-run: the clock refuses the wait with the given number, and the
+// search waits for nothing, so wait 4 is the one before the fourth notice download.
+function clockInterruptedAt(waitNumber: number): Clock {
+	const clock = createFakeClock(START);
+	let waits = 0;
+	return {
+		now: clock.now,
+		sleep(ms: number): Promise<void> {
+			waits += 1;
+			return waits === waitNumber ? Promise.reject(new Error('interrupted')) : clock.sleep(ms);
+		}
+	};
+}
 
 describe('a capture run against the stub TED', () => {
 	const listed = ['609955-2026', '600779-2026', '600457-2026'];
@@ -224,6 +268,8 @@ const RECORD_KEYS = {
 		'startedAt',
 		'finishedAt',
 		'captureDate',
+		'outcome',
+		'reason',
 		'command',
 		'head',
 		'query',
@@ -293,6 +339,8 @@ describe.each([
 			startedAt: '2026-10-11T08:00:00.000Z',
 			finishedAt: '2026-10-11T08:00:02.000Z',
 			captureDate: '2026-10-11',
+			outcome: 'written',
+			reason: null,
 			command: 'node scripts/capture.mjs',
 			head: HEAD,
 			query: {
@@ -430,6 +478,145 @@ describe('a capture run that must not publish', () => {
 		expect(run.lines.at(-1)).toBe(
 			`capture: ${run.folder} appeared during the run; the capture is complete in ${staged}`
 		);
+	});
+});
+
+describe('a run interrupted before its fourth notice download, then run again', () => {
+	const six = [
+		'609955-2026',
+		'600779-2026',
+		'605563-2026',
+		'600457-2026',
+		'601783-2026',
+		'600554-2026'
+	];
+	const downloaded = ['600457-2026', '600554-2026', '600779-2026'];
+	const rest = ['601783-2026', '605563-2026', '609955-2026'];
+	let first: Awaited<ReturnType<typeof captureRun>>;
+	let second: Awaited<ReturnType<typeof captureRun>>;
+	let recordsAfterFirst: string[];
+
+	beforeAll(async () => {
+		first = await captureRun(six, { clock: clockInterruptedAt(4) });
+		recordsAfterFirst = runRecords(first.root);
+		second = await captureRun(six, { root: first.root });
+	});
+
+	it('rejects, writes no folder and leaves only whole notices in the cache', () => {
+		expect(first.error).toBeInstanceOf(Error);
+		expect((first.error as Error).message).toBe('interrupted');
+		expect(first.ted.calls().map(({ method, url }) => `${method} ${url}`)).toEqual([
+			`POST ${SEARCH}`,
+			...downloaded.map((n) => `GET ${tedNoticeXmlUrl(n)}`)
+		]);
+		expect(recordsAfterFirst).toHaveLength(1);
+		const xml = readdirSync(join(first.root, '.capture-cache', 'xml')).sort();
+		expect(xml).toEqual(downloaded.map((n) => `${n}.xml`));
+	});
+
+	it('records the interrupted run as failed, with the error as its reason', () => {
+		expect(recordsAfterFirst).toHaveLength(1);
+		const record = readJson(join(runsOf(first.root), recordsAfterFirst[0]));
+		expect(Object.keys(record)).toEqual(RECORD_KEYS.top);
+		expect(record).toMatchObject({
+			startedAt: '2026-10-11T08:00:00.000Z',
+			captureDate: '2026-10-11',
+			outcome: 'failed',
+			reason: 'interrupted',
+			ted: { searchPages: 1, xmlRequests: 3 }
+		});
+	});
+
+	it('asks TED again only for the search and the three notices not yet cached', () => {
+		expect(second.code, second.lines.join('\n')).toBe(0);
+		expect(second.ted.calls().map(({ method, url }) => `${method} ${url}`)).toEqual([
+			`POST ${SEARCH}`,
+			...rest.map((n) => `GET ${tedNoticeXmlUrl(n)}`)
+		]);
+		expect(readdirSync(join(second.folder, 'xml')).sort()).toEqual(
+			[...downloaded, ...rest].map((n) => `${n}.xml`)
+		);
+	});
+
+	it("keeps one record per run, the written one equal to its folder's run.json", () => {
+		const names = runRecords(second.root);
+		expect(names).toHaveLength(2);
+		const written = names.filter((name) => !recordsAfterFirst.includes(name));
+		expect(written).toHaveLength(1);
+		const record = readFileSync(join(runsOf(second.root), written[0]), 'utf8');
+		expect(record).toBe(readFileSync(join(second.folder, 'run.json'), 'utf8'));
+		expect(JSON.parse(record)).toMatchObject({ outcome: 'written', reason: null });
+	});
+});
+
+describe('the run record of every run', () => {
+	it('is named by the start instant without a colon and the pid', async () => {
+		expect(runRecordName(START, 1234)).toBe('20261011T080000000Z-1234.json');
+		const run = await captureRun(['600457-2026'], { pid: 1234 });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readdirSync(runsOf(run.root))).toEqual(['20261011T080000000Z-1234.json']);
+	});
+
+	it('keeps both records of two runs started at one instant in one process', async () => {
+		const first = await captureRun(['600457-2026'], { pid: 1234 });
+		rmSync(first.folder, { recursive: true });
+		const second = await captureRun(['600457-2026'], { root: first.root, pid: 1234 });
+		expect([first.code, second.code]).toEqual([0, 0]);
+		expect(runRecords(first.root)).toEqual([
+			'20261011T080000000Z-1234-2.json',
+			'20261011T080000000Z-1234.json'
+		]);
+	});
+});
+
+describe('the start of a run', () => {
+	const xmlOf = (root: string) => join(root, '.capture-cache', 'xml');
+	const stagingOf = (root: string) => join(root, '.capture-cache', 'staging');
+
+	it('deletes a half-written cache file before any request, and asks TED for that notice', async () => {
+		const notice = '600779-2026';
+		const temp = (root: string) => join(xmlOf(root), `${notice}.xml.4242.tmp`);
+		const half = readFileSync(capturePath(notice)).subarray(0, 2000);
+		const seen: boolean[] = [];
+		const run = await captureRun([notice], {
+			pid: 1234,
+			prepare: (root) => {
+				mkdirSync(xmlOf(root), { recursive: true });
+				writeFileSync(temp(root), half);
+			},
+			onRequest: (root) => seen.push(existsSync(temp(root)))
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(seen[0]).toBe(false);
+		expect(run.ted.calls().map(({ url }) => url)).toContain(tedNoticeXmlUrl(notice));
+		expect(readdirSync(xmlOf(run.root))).toEqual([`${notice}.xml`]);
+		expect(run.lines).toContain('capture: removed 1 stale temp file from the cache');
+	});
+
+	it('removes the staging folder of a run whose process is gone, and keeps a live one', async () => {
+		const names = ['2026-10-11-4242', '2026-10-11-5555', 'kept-by-name'];
+		const presentAtFirstRequest: string[][] = [];
+		const run = await captureRun(['600457-2026'], {
+			pid: 1234,
+			isAlive: (pid) => pid === 1234 || pid === 5555,
+			prepare: (root) => {
+				for (const name of names) {
+					mkdirSync(join(stagingOf(root), name), { recursive: true });
+					writeFileSync(join(stagingOf(root), name, 'notices.json'), '{}');
+				}
+			},
+			onRequest: (root) => presentAtFirstRequest.push(readdirSync(stagingOf(root)).sort())
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(presentAtFirstRequest[0]).toEqual(['2026-10-11-5555', 'kept-by-name']);
+		expect(readdirSync(stagingOf(run.root)).sort()).toEqual(['2026-10-11-5555', 'kept-by-name']);
+		expect(run.lines).toContain('capture: removed 1 stale staging folder');
+	});
+
+	it('logs no cleanup line when there was nothing to remove', async () => {
+		const run = await captureRun(['600457-2026']);
+		expect(run.code).toBe(0);
+		expect(run.lines.filter((line) => line.includes('removed'))).toEqual([]);
 	});
 });
 
