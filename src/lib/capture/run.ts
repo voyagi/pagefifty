@@ -11,14 +11,15 @@ import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
+import { parseCaptureArgs } from './args.ts';
 import {
 	captureDate,
-	defaultSince,
 	publish,
 	removeDeadStaging,
 	stagingPath,
 	writeJsonFile
 } from './capture-folder.ts';
+import { acquireLock, isAlive } from './lock.ts';
 import { captureReadme } from './readme.ts';
 import { buildRunRecord, writeRunRecord, type RunOutcome, type RunRecord } from './run-record.ts';
 import { createTedClient, type Clock, type TedClient } from './ted-client.ts';
@@ -81,6 +82,7 @@ interface Run {
 	failed: Failure[];
 	selection?: Selection;
 	end?: RunEnd;
+	releaseLock?: () => void;
 	// The record the staged folder holds as run.json, kept so the runs folder gets the same bytes.
 	staged?: RunRecord;
 }
@@ -303,22 +305,35 @@ async function stageAndPublish(
 
 // Leftovers of runs that died: a half-written cache file is never read as a notice, but it is
 // deleted so it cannot pile up, and a dead run's staging folder holds a whole unchecked capture.
+// This runs only once the lock is held, so every temp file in the cache, whatever pid wrote it,
+// belongs to a run that has ended.
 function removeLeftovers(deps: CaptureDeps, cache: XmlCache): void {
 	const temps = cache.removeTemp();
 	if (temps > 0) deps.log(`capture: removed ${counted(temps, 'stale temp file')} from the cache`);
-	const staged = removeDeadStaging(deps.root, deps.isAlive ?? processRuns);
+	const staged = removeDeadStaging(deps.root, deps.isAlive ?? isAlive);
 	if (staged > 0) deps.log(`capture: removed ${counted(staged, 'stale staging folder')}`);
 }
 
-// process.kill with signal 0 sends nothing and throws when the pid is gone; EPERM means it exists
-// under another user (scripts/harness.mjs reads it the same way).
-function processRuns(pid: number): boolean {
-	try {
-		process.kill(pid, 0);
-		return true;
-	} catch (error) {
-		return error instanceof Error && 'code' in error && error.code === 'EPERM';
+// Returns the refusal, or undefined once this run holds the lock.
+function takeLock(deps: CaptureDeps, run: Run): string | undefined {
+	const path = join(deps.root, '.capture-cache', 'capture.lock');
+	const holder = { pid: deps.pid, startedAt: iso(run.started), argv: deps.argv };
+	const lock = acquireLock(path, holder, deps.isAlive ?? isAlive);
+	if (!lock.ok && 'unreadable' in lock) {
+		return `${path} cannot be read as a capture lock (${lock.unreadable}); if no capture is running, delete it and run again`;
 	}
+	if (!lock.ok) {
+		const { pid, startedAt } = lock.holder;
+		return `another capture run holds ${path} (pid ${pid}, started ${startedAt}); wait for it to end. A lock whose process has ended is replaced on its own, and when no capture is running, delete ${path}, since Windows can give a finished run's pid to another process`;
+	}
+	run.releaseLock = lock.release;
+	if (lock.replaced) {
+		const { pid, startedAt } = lock.replaced;
+		deps.log(
+			`capture: replaced the lock of pid ${pid}, started ${startedAt}, whose process has ended`
+		);
+	}
+	return undefined;
 }
 
 async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
@@ -330,12 +345,15 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 			`examples/${run.date} already exists, and a capture folder is never written again in place`
 		);
 	}
+	const refusal = takeLock(deps, run);
+	if (refusal !== undefined) return ended(deps, 'refused', refusal);
 	const cache = createXmlCache(join(root, '.capture-cache'), deps.pid);
 	removeLeftovers(deps, cache);
 	const search = await searchAll(run.client, run.since);
 	stopIfInterrupted(deps);
 	if (!search.ok)
 		return ended(deps, 'failed', search.reason, `${search.reason}; nothing was written`);
+	if (search.hits.length === 0) return ended(deps, 'failed', 'TED listed 0 notices');
 	run.listed = search.hits.length;
 	run.searchTotal = search.searchTotal;
 	const notices = await readHits(search.hits, run, cache);
@@ -356,13 +374,20 @@ function finalRecord(deps: CaptureDeps, run: Run): RunRecord {
 	return recordOf(deps, run, end, iso(deps.clock.now()));
 }
 
+// Order before the first request: the start instant and day from the clock, the flags (no record:
+// a run refused here never started), the existing-folder refusal, the lock, the cleanup.
 export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 	const started = deps.clock.now();
 	const date = captureDate(started);
+	const args = parseCaptureArgs(deps.argv, date);
+	if (!args.ok) {
+		deps.log(`capture: ${args.message}`);
+		return 2;
+	}
 	const run: Run = {
 		started,
 		date,
-		since: defaultSince(date),
+		since: args.since,
 		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
 		client: createTedClient({ transport: deps.transport, clock: deps.clock }),
 		listed: 0,
@@ -380,7 +405,11 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		run.end = { outcome: 'failed', reason: deps.signal?.aborted ? INTERRUPTED : messageOf(error) };
 		throw error;
 	} finally {
-		const runs = join(deps.root, '.capture-cache', 'runs');
-		writeRunRecord(runs, started, deps.pid, finalRecord(deps, run));
+		try {
+			const runs = join(deps.root, '.capture-cache', 'runs');
+			writeRunRecord(runs, started, deps.pid, finalRecord(deps, run));
+		} finally {
+			run.releaseLock?.();
+		}
 	}
 }
