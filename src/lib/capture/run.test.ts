@@ -10,6 +10,7 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { folderProblems } from '../../test/capture-detectors.ts';
 import { capturePath } from '../../test/fixtures/node.ts';
@@ -67,6 +68,7 @@ interface RunOptions {
 	pid?: number;
 	isAlive?: (pid: number) => boolean;
 	signal?: AbortSignal;
+	argv?: readonly string[];
 }
 
 const RUN_PID = 4242;
@@ -88,7 +90,7 @@ async function captureRun(notices: readonly string[], options: RunOptions = {}) 
 				return ted(request);
 			},
 			clock,
-			argv: [],
+			argv: options.argv ?? [],
 			env: {},
 			head: HEAD,
 			pid,
@@ -438,13 +440,25 @@ describe('a capture run that must not publish', () => {
 
 	it('refuses with 2 before any request when examples/<date> already exists', async () => {
 		const run = await captureRun(['600457-2026'], {
-			prepare: (root) => mkdirSync(join(root, 'examples', '2026-10-11'))
+			prepare: (root) => {
+				mkdirSync(join(root, 'examples', '2026-10-11'));
+				writeFileSync(join(root, 'examples', '2026-10-11', 'notices.json'), '{"kept":true}\n');
+			}
 		});
 		expect(run.code).toBe(2);
 		expect(run.ted.calls()).toEqual([]);
 		expect(run.lines).toEqual([
 			'capture: examples/2026-10-11 already exists, and a capture folder is never written again in place'
 		]);
+		expect(readdirSync(run.folder)).toEqual(['notices.json']);
+		expect(readFileSync(join(run.folder, 'notices.json'), 'utf8')).toBe('{"kept":true}\n');
+		const names = runRecords(run.root);
+		expect(names).toHaveLength(1);
+		expect(readJson(join(runsOf(run.root), names[0]))).toMatchObject({
+			outcome: 'refused',
+			reason:
+				'examples/2026-10-11 already exists, and a capture folder is never written again in place'
+		});
 	});
 
 	it('writes no folder when the staged check finds an address the scrub cannot see', async () => {
@@ -648,6 +662,180 @@ describe('the start of a run', () => {
 		const run = await captureRun(['600457-2026']);
 		expect(run.code).toBe(0);
 		expect(run.lines.filter((line) => line.includes('removed'))).toEqual([]);
+	});
+});
+
+const lockOf = (root: string) => join(root, '.capture-cache', 'capture.lock');
+
+const HELD = { pid: 777, startedAt: '2026-10-11T07:30:00.000Z', argv: [] };
+
+function plantLock(root: string, text: string): void {
+	mkdirSync(join(root, '.capture-cache'), { recursive: true });
+	writeFileSync(lockOf(root), text);
+}
+
+describe('a run refused before any request', () => {
+	it('refuses an unknown flag with 2, naming it, and writes no record and no lock', async () => {
+		const run = await captureRun(['600457-2026'], { argv: ['--folder', 'x'] });
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines).toHaveLength(1);
+		expect(run.lines[0]).toMatch(/^capture: /);
+		expect(run.lines[0]).toContain('"--folder"');
+		expect(runRecords(run.root)).toEqual([]);
+		expect(existsSync(lockOf(run.root))).toBe(false);
+	});
+
+	it('refuses a --since after the capture day with 2', async () => {
+		const run = await captureRun(['600457-2026'], { argv: ['--since', '20261012'] });
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines[0]).toContain('"20261012"');
+	});
+
+	it('searches from the --since day when one is given', async () => {
+		const run = await captureRun(['600457-2026'], { argv: ['--since', '20260920'] });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect((run.ted.calls()[0].body as { query: string }).query).toContain(
+			'publication-date>=20260920 '
+		);
+		expect(readJson(join(run.folder, 'run.json'))).toMatchObject({
+			command: 'node scripts/capture.mjs --since 20260920',
+			query: { since: '20260920' }
+		});
+	});
+
+	it('refuses with 2 while another run holds the lock, naming its pid and start time', async () => {
+		const held = JSON.stringify(HELD);
+		const run = await captureRun(['600457-2026'], {
+			prepare: (root) => plantLock(root, held),
+			isAlive: (pid) => pid === HELD.pid || pid === RUN_PID
+		});
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines).toHaveLength(1);
+		expect(run.lines[0]).toMatch(/^capture: /);
+		expect(run.lines[0]).toContain('pid 777');
+		expect(run.lines[0]).toContain('2026-10-11T07:30:00.000Z');
+		expect(run.lines[0]).toContain(`delete ${lockOf(run.root)}`);
+		expect(readFileSync(lockOf(run.root), 'utf8')).toBe(held);
+		const names = runRecords(run.root);
+		expect(names).toHaveLength(1);
+		expect(readJson(join(runsOf(run.root), names[0]))).toMatchObject({ outcome: 'refused' });
+	});
+
+	it('reports and replaces a lock whose process has ended, and removes it when done', async () => {
+		const run = await captureRun(['600457-2026'], {
+			prepare: (root) => plantLock(root, JSON.stringify(HELD))
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.lines[0]).toBe(
+			'capture: replaced the lock of pid 777, started 2026-10-11T07:30:00.000Z, whose process has ended'
+		);
+		expect(existsSync(lockOf(run.root))).toBe(false);
+	});
+
+	it('refuses with 2 and keeps a lock it cannot read, naming the file and the remedy', async () => {
+		const run = await captureRun(['600457-2026'], { prepare: (root) => plantLock(root, '') });
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines).toHaveLength(1);
+		expect(run.lines[0]).toMatch(/^capture: /);
+		expect(run.lines[0]).toContain(lockOf(run.root));
+		expect(run.lines[0]).toContain('delete it');
+		expect(readFileSync(lockOf(run.root), 'utf8')).toBe('');
+	});
+
+	it('holds the lock while it runs and leaves none after a failed or an interrupted run', async () => {
+		const held: boolean[] = [];
+		const written = await captureRun(['600457-2026'], {
+			onRequest: (root) => held.push(existsSync(lockOf(root)))
+		});
+		expect(written.code).toBe(0);
+		expect(held).toEqual([true, true]);
+		expect(existsSync(lockOf(written.root))).toBe(false);
+		const failed = await captureRun(['600457-2026'], {
+			script: { [SEARCH]: [{ status: 500 }] }
+		});
+		expect(failed.code).toBe(1);
+		expect(existsSync(lockOf(failed.root))).toBe(false);
+		const interrupted = await captureRun(['600457-2026', '600779-2026'], {
+			clock: clockInterruptedAt(2)
+		});
+		expect((interrupted.error as Error).message).toBe('interrupted');
+		expect(existsSync(lockOf(interrupted.root))).toBe(false);
+	});
+
+	it('ends with 1 and writes no folder when TED lists 0 notices', async () => {
+		const run = await captureRun([]);
+		expect(run.code).toBe(1);
+		expect(run.lines).toContain('capture: TED listed 0 notices');
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		const staging = join(run.root, '.capture-cache', 'staging');
+		expect(existsSync(staging) ? readdirSync(staging) : []).toEqual([]);
+		expect(run.ted.calls()).toHaveLength(1);
+	});
+
+	it('writes a one-notice capture when TED lists one notice', async () => {
+		const run = await captureRun(['600457-2026']);
+		expect(run.code).toBe(0);
+		expect(readdirSync(join(run.folder, 'xml'))).toEqual(['600457-2026.xml']);
+		expect(readJson(join(run.folder, 'notices.json'))).toMatchObject({ total: 1, searchTotal: 1 });
+	});
+});
+
+// The child process runs outside this suite's outbound guard, so it loads a preload that replaces
+// fetch, the command's only network path, with a function that throws: a regression in the flag
+// check then fails this test instead of calling TED.
+describe('the command script', () => {
+	const BLOCKED = 'FETCH_BLOCKED_BY_THE_CAPTURE_TEST';
+	let preload: string;
+	let folder: string;
+
+	beforeAll(() => {
+		folder = mkdtempSync(join(tmpdir(), 'pagefifty-capture-preload-'));
+		roots.push(folder);
+		preload = join(folder, 'block-fetch.mjs');
+		writeFileSync(
+			preload,
+			[
+				'globalThis.captureTestPreloadLoaded = true;',
+				`globalThis.fetch = () => { throw new Error('${BLOCKED}'); };`,
+				''
+			].join('\n')
+		);
+		writeFileSync(
+			join(folder, 'probe.mjs'),
+			[
+				"if (!globalThis.captureTestPreloadLoaded) { console.error('the preload did not load'); process.exit(3); }",
+				'await fetch(process.argv[2]);',
+				"console.log('fetch returned');",
+				''
+			].join('\n')
+		);
+	});
+
+	const node = (args: readonly string[]) =>
+		spawnSync(process.execPath, ['--import', pathToFileURL(preload).href, ...args], {
+			encoding: 'utf8'
+		});
+
+	it("the preload stops a fetch to TED's search address (the control)", () => {
+		const probe = node([join(folder, 'probe.mjs'), TED_SEARCH_URL]);
+		expect(probe.status, probe.stdout + probe.stderr).not.toBe(0);
+		expect(probe.status).not.toBe(3);
+		expect(probe.stderr).toContain(BLOCKED);
+		expect(probe.stdout).not.toContain('fetch returned');
+	});
+
+	it('refuses an unknown flag with 2 before any request', () => {
+		const lockBefore = existsSync(lockOf('.'));
+		const command = node(['scripts/capture.mjs', '--no-such-flag']);
+		expect(command.status, command.stdout + command.stderr).toBe(2);
+		const line = command.stdout.split('\n').find((each) => each.startsWith('capture:'));
+		expect(line).toContain('--no-such-flag');
+		expect(command.stderr).not.toContain(BLOCKED);
+		expect(existsSync(lockOf('.'))).toBe(lockBefore);
 	});
 });
 
