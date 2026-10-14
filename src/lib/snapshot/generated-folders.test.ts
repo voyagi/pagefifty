@@ -178,6 +178,20 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(kept.capture.total).toBe(1);
 	});
 
+	it('refuses a listing whose query names a first publication day that does not exist', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const listing = readJson(join(capture, 'notices.json')) as Record<string, unknown>;
+		const query = 'publication-date>=20261340';
+		writeFileSync(join(capture, 'notices.json'), JSON.stringify({ ...listing, query }));
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain('records: 2026-01-02: (index): index:');
+		expect(run.stderr).toContain('publication-date>= names no calendar day');
+		const kept = readJson(join(out, '2026-01-02', 'index.json')) as { capture: { query: string } };
+		expect(kept.capture.query).toBe('test capture');
+	});
+
 	it.each([
 		['absent', {}],
 		['empty', { 'publication-number': '' }]

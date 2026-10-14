@@ -19,7 +19,7 @@ import {
 	type NoticeIdentity,
 	type NoticeRecord
 } from '../ingest/record.ts';
-import { CAPTURE_ID } from './capture-id.ts';
+import { CAPTURE_ID, namesRealFirstDay } from './capture-id.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
 // writes cannot drift apart without a type error.
@@ -153,7 +153,9 @@ export const CaptureLineSchema = z.strictObject({
 	// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
 	// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
 	total: z.number().int().nonnegative(),
-	query: z.string()
+	query: z
+		.string()
+		.refine(namesRealFirstDay, { error: 'its publication-date>= names no calendar day' })
 });
 
 export const SnapshotIndexSchema = z.strictObject({

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { NoticeRecord } from '../ingest/record';
 import {
+	CaptureLineSchema,
 	NOTICE_NUMBER,
 	NoticeRecordSchema,
 	SnapshotIndexSchema,
@@ -65,6 +66,35 @@ const index = (rows: unknown[]) => ({
 	},
 	leftOut: [],
 	rows
+});
+
+// Every live page formats the query's first publication day, and a day that does not exist throws
+// there, so the line that carries it is refused where the build reads it.
+describe('CaptureLineSchema', () => {
+	const line = (query: string) => ({
+		id: '2026-09-15',
+		fetchedAt: '2026-09-15T19:50:49.157Z',
+		total: 1,
+		query
+	});
+
+	it.each([
+		['a real first day', 'buyer-country IN (NLD) AND publication-date>=20260901'],
+		['29 February in a leap year', 'publication-date>=20280229'],
+		['no first day', 'buyer-country IN (NLD)']
+	])('accepts a query with %s', (_label, query) => {
+		expect(CaptureLineSchema.safeParse(line(query)).success).toBe(true);
+	});
+
+	it.each([
+		['month 13', 'publication-date>=20261340'],
+		['30 February', 'publication-date>=20260230'],
+		['29 February in a common year', 'publication-date>=20270229']
+	])('refuses a query whose first day is %s, naming the day', (_label, query) => {
+		const result = CaptureLineSchema.safeParse(line(query));
+		expect(result.success).toBe(false);
+		expect(result.error?.message).toContain('publication-date>= names no calendar day');
+	});
 });
 
 describe('captureDay', () => {

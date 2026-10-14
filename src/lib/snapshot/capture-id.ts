@@ -7,13 +7,23 @@ export const CAPTURE_ID = /^\d{4}-\d{2}-\d{2}$/;
 
 const FIRST_PUBLISHED = /publication-date>=(\d{4})(\d{2})(\d{2})/;
 
+function firstPublishedId(query: string): string | undefined {
+	const from = FIRST_PUBLISHED.exec(query);
+	return from ? `${from[1]}-${from[2]}-${from[3]}` : undefined;
+}
+
 // The first publication day is read from the query the capture ran, so a new capture cannot leave a
 // page naming the old one's window. Noon UTC is the same calendar day in every zone in scope.
 export function firstPublishedDay(query: string): string | undefined {
-	const from = FIRST_PUBLISHED.exec(query);
-	return from
-		? formatDay(`${from[1]}-${from[2]}-${from[3]}T12:00:00Z`, SERVER_TIME_ZONE)
-		: undefined;
+	const id = firstPublishedId(query);
+	return id ? formatDay(`${id}T12:00:00Z`, SERVER_TIME_ZONE) : undefined;
+}
+
+// formatDay throws on a day that does not exist, and every live page reads this one, so the
+// capture line's schema refuses such a query where the build reads it.
+export function namesRealFirstDay(query: string): boolean {
+	const id = firstPublishedId(query);
+	return id === undefined || isCalendarDay(id);
 }
 
 // A name like 2026-02-30 matches the pattern but names no day, and sorting it in would let a
