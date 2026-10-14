@@ -11,10 +11,17 @@ const { fromDisk, read } = vi.hoisted(() => {
 });
 vi.mock('$app/server', () => ({ read }));
 
-const { DEFAULT_CAPTURE } = await import('./records');
+const { EXAMPLE_CAPTURE } = await import('./records');
 const { loadTenderPage } = await import('./tender-page');
 
 const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
+// The days the error page names for the example's capture, from its built capture line.
+const UNKNOWN = {
+	message: 'Not Found',
+	kind: 'unknown-notice',
+	capturedOn: '15 Sep 2026',
+	firstPublished: '1 Sep 2026'
+};
 
 // The Worker's own failure shape: read() answers at once and the body stream fails when ASSETS
 // answers 404 (records.test.ts holds the other shapes).
@@ -39,7 +46,7 @@ async function failureOf(load: Promise<unknown>): Promise<unknown> {
 }
 
 const load = (notice: string) =>
-	loadTenderPage({ capture: DEFAULT_CAPTURE, notice, now: CAPTURE_INSTANT });
+	loadTenderPage({ capture: EXAMPLE_CAPTURE, notice, now: CAPTURE_INSTANT });
 
 beforeEach(() => {
 	read.mockClear();
@@ -60,7 +67,7 @@ describe('loadTenderPage', () => {
 		const error = await failureOf(load('999991-2026'));
 		expect(isHttpError(error) && { status: error.status, body: error.body }).toEqual({
 			status: 404,
-			body: { message: 'Not Found', kind: 'unknown-notice', notice: '999991-2026' }
+			body: { ...UNKNOWN, notice: '999991-2026' }
 		});
 		expect(read).not.toHaveBeenCalled();
 	});
@@ -70,9 +77,17 @@ describe('loadTenderPage', () => {
 		const error = await failureOf(load('601147-2026'));
 		expect(isHttpError(error) && { status: error.status, body: error.body }).toEqual({
 			status: 404,
-			body: { message: 'Not Found', kind: 'unknown-notice', notice: '601147-2026' }
+			body: { ...UNKNOWN, notice: '601147-2026' }
 		});
 		expect(read).not.toHaveBeenCalled();
+	});
+
+	it('fails with a server error, never a 404 naming no days, when a capture has no built line', async () => {
+		const error = await failureOf(
+			loadTenderPage({ capture: '2026-02-01', notice: '999991-2026', now: CAPTURE_INSTANT })
+		);
+		expect(isHttpError(error)).toBe(false);
+		expect(String(error)).toContain('no built capture line for capture 2026-02-01');
 	});
 
 	// The snapshot holds these notices, so a failed read is the server's fault: the 404 would tell the

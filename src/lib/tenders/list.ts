@@ -3,7 +3,8 @@
 // judged against the one instant its loader was given (D-06).
 import type { LangText, Amount } from '../ingest/record';
 import type { IndexRow, SnapshotIndex } from '../snapshot/index-row';
-import { formatDay, noticeDeadline, SERVER_TIME_ZONE, type NoticeDeadline } from '../core/deadline';
+import { captureDay, dayText, firstPublishedDay } from '../snapshot/capture-id';
+import { noticeDeadline, type NoticeDeadline } from '../core/deadline';
 import { applyFilters, isActive, rangeInverted, type FilterState } from '../core/filters';
 import { readingStatus, type ReadingStatus } from '../core/reading';
 
@@ -59,6 +60,9 @@ const WORK_OF_FILTER: Readonly<Record<string, string>> = {
 	'48': 'software packages'
 };
 
+export const CANCEL_INTENT_LINE =
+	'The buyer has announced that it intends to cancel this procedure.';
+
 export interface ListRow {
 	noticeNumber: string;
 	title: LangText;
@@ -70,6 +74,7 @@ export interface ListRow {
 	value: string | null;
 	deadline: NoticeDeadline;
 	reading: ReadingStatus;
+	cancelIntent: boolean;
 }
 
 export interface ListCounts {
@@ -146,7 +151,8 @@ function toListRow(row: IndexRow, now: Date): ListRow {
 		countries: row.country.map(countryName),
 		value: formatValue(row.estimatedValue),
 		deadline: noticeDeadline(row.lots, now),
-		reading: readingStatus(row.lots.map((lot) => lot.coverage))
+		reading: readingStatus(row.lots.map((lot) => lot.coverage)),
+		cancelIntent: row.cancelIntent === true
 	};
 }
 
@@ -229,21 +235,15 @@ export function countsLine(
 	];
 }
 
-const FIRST_PUBLISHED = /publication-date>=(\d{4})(\d{2})(\d{2})/;
+// The page components read it from here, beside the other list words.
+export { dayText };
 
-// A filter day and a capture day are both written as the buyers in scope count days.
-export function dayText(day: string): string {
-	return formatDay(`${day}T12:00:00Z`, SERVER_TIME_ZONE);
-}
-
-// The caveat's first day is read from the query the capture ran, so a new capture cannot leave the
-// page naming the old one's days.
 export function captureFacts(capture: SnapshotIndex['capture']): CaptureFacts {
-	const from = FIRST_PUBLISHED.exec(capture.query);
+	const firstPublished = firstPublishedDay(capture.query);
 	return {
-		capturedOn: formatDay(capture.fetchedAt, SERVER_TIME_ZONE),
+		capturedOn: captureDay(capture.fetchedAt),
 		fetchedAt: capture.fetchedAt,
-		...(from && { firstPublished: dayText(`${from[1]}-${from[2]}-${from[3]}`) })
+		...(firstPublished && { firstPublished })
 	};
 }
 

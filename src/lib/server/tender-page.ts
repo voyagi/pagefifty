@@ -3,10 +3,19 @@
 import { error } from '@sveltejs/kit';
 import { captureFacts } from '../tenders/list';
 import { buildTenderPage, type TenderPageData } from '../tenders/tender-page';
-import { instantOf, loadIndex, loadRecord, type Now } from './records';
+import { instantOf, loadIndex, loadRecord, snapshotDays, type Now } from './records';
 
-export function unknownNotice(notice: string): never {
-	error(404, { message: 'Not Found', kind: 'unknown-notice', notice });
+// The error page names the snapshot the notice is missing from, so the 404 carries the days of the
+// capture this route reads: /tenders the newest, /example its pinned one.
+export function unknownNotice(notice: string, capture: string): never {
+	const { capturedOn, firstPublished } = snapshotDays(capture);
+	error(404, {
+		message: 'Not Found',
+		kind: 'unknown-notice',
+		notice,
+		capturedOn,
+		...(firstPublished && { firstPublished })
+	});
 }
 
 // The record is looked up first, so a notice the snapshot does not hold answers 404 before the
@@ -21,7 +30,7 @@ export async function loadTenderPage({
 	now: Now;
 }): Promise<TenderPageData> {
 	const record = await loadRecord(capture, notice);
-	if (record === undefined) unknownNotice(notice);
+	if (record === undefined) unknownNotice(notice, capture);
 	const index = await loadIndex(capture);
 	return {
 		tender: buildTenderPage(record, instantOf(now, index)),

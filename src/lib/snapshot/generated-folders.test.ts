@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
-import { SnapshotIndexSchema } from './index-row';
+import { CaptureLineSchema, SnapshotIndexSchema } from './index-row';
 
 // globalSetup has run scripts/build-records.mjs before this file, so these read its real output.
 const GENERATED = join('src', 'lib', 'snapshot', 'generated');
@@ -45,6 +45,14 @@ describe('generated record folders', () => {
 	it.each(folders(GENERATED))('%s: its index names this capture and parses', (id) => {
 		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
 		expect(index.capture.id).toBe(id);
+	});
+
+	// The server bundles capture.json so a 404 names the days; it must be the index's own line.
+	it.each(folders(GENERATED))('%s: writes capture.json as the index capture line', (id) => {
+		const index = SnapshotIndexSchema.parse(readJson(join(GENERATED, id, 'index.json')));
+		expect(CaptureLineSchema.parse(readJson(join(GENERATED, id, 'capture.json')))).toEqual(
+			index.capture
+		);
 	});
 
 	it.each(folders(GENERATED))(
@@ -168,6 +176,40 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		);
 		const kept = readJson(join(out, '2026-01-02', 'index.json')) as { capture: { total: number } };
 		expect(kept.capture.total).toBe(1);
+	});
+
+	it('refuses a listing whose query names a first publication day that does not exist', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const listing = readJson(join(capture, 'notices.json')) as Record<string, unknown>;
+		const query = 'publication-date>=20261340';
+		writeFileSync(join(capture, 'notices.json'), JSON.stringify({ ...listing, query }));
+		const run = build();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain('records: 2026-01-02: (index): index:');
+		expect(run.stderr).toContain('publication-date>= names no calendar day');
+		const kept = readJson(join(out, '2026-01-02', 'index.json')) as { capture: { query: string } };
+		expect(kept.capture.query).toBe('test capture');
+	});
+
+	// The live pages skip a folder named for a day that does not exist, so the build names it rather
+	// than write a capture no page would serve, or, as the only one, leave every page failing.
+	it('refuses a capture folder named for a day that does not exist, and writes nothing', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const mistyped = join(root, 'examples', '2026-02-30');
+		try {
+			mkdirSync(join(mistyped, 'xml'), { recursive: true });
+			copyFileSync(join(capture, 'notices.json'), join(mistyped, 'notices.json'));
+			copyFileSync(capturePath('609955-2026'), join(mistyped, 'xml', '609955-2026.xml'));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-02-30: (index): index:');
+			expect(run.stderr).toContain('a capture is named by a calendar day');
+			expect(existsSync(join(out, '2026-02-30'))).toBe(false);
+		} finally {
+			rmSync(mistyped, { recursive: true, force: true });
+		}
 	});
 
 	it.each([

@@ -3,7 +3,6 @@
 // Imported by scripts/build-records.mjs under Node type stripping: erasable syntax only.
 import { z } from 'zod';
 import { summarizeLot, type LotCoverageInput } from '../core/coverage-facts.ts';
-import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
 import {
 	VERSION_ID,
 	type Amount,
@@ -19,6 +18,7 @@ import {
 	type NoticeIdentity,
 	type NoticeRecord
 } from '../ingest/record.ts';
+import { isCaptureId, namesRealFirstDay } from './capture-id.ts';
 
 // Each part is typed with the record type it reads back, so the schema and the record the build
 // writes cannot drift apart without a type error.
@@ -101,6 +101,7 @@ const IndexRowSchema = z.strictObject({
 	country: z.array(z.string()),
 	cpvCodes: z.array(z.string()),
 	estimatedValue: AmountSchema.optional(),
+	cancelIntent: z.literal(true).optional(),
 	// The build refuses a notice with no lot, so an empty list means a damaged file.
 	lots: z.array(LotRowSchema).min(1)
 });
@@ -139,18 +140,25 @@ export const NoticeRecordSchema: z.ZodType<NoticeRecord> = z.strictObject({
 	cpv: z.strictObject({ main: z.array(z.string()), additional: z.array(z.string()) }),
 	documents: DocumentsLinkSchema.optional(),
 	changeReasons: z.array(z.string()),
+	cancelIntent: z.literal(true).optional(),
 	lots: z.array(LotRecordSchema).min(1)
 });
 
+// The build also writes this line on its own, as capture.json beside the index, so a 404 can name
+// the snapshot's days without reading the index.
+export const CaptureLineSchema = z.strictObject({
+	id: z.string().refine(isCaptureId, { error: 'a capture is named by a calendar day, YYYY-MM-DD' }),
+	fetchedAt: z.iso.datetime(),
+	// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
+	// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
+	total: z.number().int().nonnegative(),
+	query: z.string().refine(namesRealFirstDay, {
+		error: 'its publication-date>= names no calendar day as one YYYYMMDD clause'
+	})
+});
+
 export const SnapshotIndexSchema = z.strictObject({
-	capture: z.strictObject({
-		id: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-		fetchedAt: z.iso.datetime(),
-		// The count TED stated for its search, never the number of rows: rows leave out leftOut, so
-		// the 2026-09-15 capture states 363 and serves 362. The entry page quotes it as TED's count.
-		total: z.number().int().nonnegative(),
-		query: z.string()
-	}),
+	capture: CaptureLineSchema,
 	// Listed notices the active and latest rule kept off the list, each with its reason. Required,
 	// so an index built before the rule existed fails the load instead of serving a replaced version.
 	leftOut: z.array(
@@ -183,6 +191,7 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 		country: unique(record.buyers.map((buyer) => buyer.country)),
 		cpvCodes: unique([...record.cpv.main, ...record.cpv.additional]),
 		...(estimatedValue && { estimatedValue }),
+		...(record.cancelIntent && { cancelIntent: record.cancelIntent }),
 		lots: record.lots.map((lot) => ({
 			id: lot.id,
 			deadlines: lot.deadlines,
@@ -191,7 +200,5 @@ export function toIndexRow(record: NoticeRecord): IndexRow {
 	};
 }
 
-// The capture's day as the buyers in scope count it, in the zone and the words every deadline uses.
-export function captureDay(fetchedAt: string): string {
-	return formatDay(fetchedAt, SERVER_TIME_ZONE);
-}
+// One writer of the capture's day for the pages and the tests, kept where the browser can import it.
+export { captureDay } from './capture-id.ts';

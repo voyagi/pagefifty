@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { ListRow } from '$lib/tenders/list';
+	import { CANCEL_INTENT_LINE, type ListRow } from '$lib/tenders/list';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import ReadingTag from './ReadingTag.svelte';
 
@@ -65,6 +65,11 @@
 						>
 					{/if}
 					<span class="b mono">{row.noticeNumber}</span>
+					<!-- Phase 2's ASK FIRST overlay will read this mark; until then the sentence is what keeps
+					     a notice whose buyer means to cancel from reading as an ordinary open tender. -->
+					{#if row.cancelIntent}
+						<span class="b" data-cancel-intent>{CANCEL_INTENT_LINE}</span>
+					{/if}
 				</td>
 				<td data-label="Country">{row.countries.join(', ')}</td>
 				<td class="num" data-label="Estimated value">

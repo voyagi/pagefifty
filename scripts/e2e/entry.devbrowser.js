@@ -49,8 +49,9 @@ try {
 		desk.body.includes(PURPOSE) ? 'present' : 'missing'
 	);
 	check(
-		'the capture line counts 363 IT notices from the snapshot',
-		desk.capture === 'Snapshot: 363 IT notices TED listed as active on 15 Sep 2026.',
+		'the capture line counts 363 IT notices published from 1 Sep 2026',
+		desk.capture ===
+			'Snapshot: 363 IT notices published from 1 Sep 2026 that TED listed as active on 15 Sep 2026.',
 		`capture "${desk.capture}"`
 	);
 	check(

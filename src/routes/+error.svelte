@@ -22,6 +22,16 @@
 	const onExample = $derived(path === '/example' || path.startsWith('/example/'));
 	// / and /tenders read the same index, so on either one the list is no way out of the failure.
 	const readsIndex = $derived(path === '/' || path === '/tenders');
+	// The loader that refused the notice names the days of the snapshot its route reads, so /tenders
+	// and /example each name their own capture.
+	const snapshot = $derived(
+		page.error?.capturedOn ? `the ${page.error.capturedOn} snapshot` : 'the snapshot'
+	);
+	const publication = $derived(
+		page.error?.firstPublished
+			? `published before ${page.error.firstPublished} or after the capture`
+			: 'published after the capture'
+	);
 
 	const REPLACEMENT_MARK = String.fromCodePoint(0xfffd);
 
@@ -61,12 +71,11 @@
 			{#if notice !== undefined}
 				<h1 id="error-title">No tender with this notice number</h1>
 				{@render tab()}
-				<!-- Both days are the snapshot's; error.dom.test.ts fails when the built index disagrees. -->
 				<p class="lede">
-					Notice <span class="mono echo">{notice}</span> is not in the 15 Sep 2026 snapshot. It may be
-					outside the IT, Netherlands, Belgium and Germany scope, published before 1 Sep 2026 or after
-					the capture, not a call for tenders TED listed as active that day, an earlier version or a copy
-					of a notice TED published again, or cancelled by its buyer.
+					Notice <span class="mono echo">{notice}</span> is not in {snapshot}. It may be outside the
+					IT, Netherlands, Belgium and Germany scope, {publication}, not a call for tenders TED
+					listed as active that day, an earlier version or a copy of a notice TED published again,
+					or cancelled by its buyer.
 				</p>
 				<div class="actions">
 					{#if onExample}

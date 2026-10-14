@@ -37,7 +37,12 @@
 							as published.
 						</p>
 						<p class="capture mono">
-							Snapshot: {data.total} IT notices TED listed as active on {data.capturedOn}.
+							{#if data.firstPublished}
+								Snapshot: {data.total} IT notices published from {data.firstPublished} that TED listed
+								as active on {data.capturedOn}.
+							{:else}
+								Snapshot: {data.total} IT notices TED listed as active on {data.capturedOn}.
+							{/if}
 						</p>
 					</div>
 					<div class="cover-foot">
@@ -124,6 +129,7 @@
 		margin-top: 0.5rem;
 		font-size: var(--step--1);
 		color: var(--ink-2);
+		text-wrap: pretty;
 	}
 
 	.cover-foot {

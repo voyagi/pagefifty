@@ -5,6 +5,7 @@ import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { readNotice } from '$lib/ingest/read-notice';
 import type { NoticeRecord } from '$lib/ingest/record';
 import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
+import { CANCEL_INTENT_LINE } from '$lib/tenders/list';
 import { buildTenderPage } from '$lib/tenders/tender-page';
 import TenderPage from './TenderPage.svelte';
 
@@ -211,5 +212,33 @@ describe('TenderPage', () => {
 	it('shows no demo footnote on a live tender page', () => {
 		const { container } = renderPage(recordOf('one-lot'));
 		expect(container.querySelector('.demo-note')).toBeNull();
+	});
+
+	it('states the cancel-intent sentence after the title and before the unread strip', () => {
+		const record = recordOf('cancel-intent-notice');
+		expect(buildTenderPage(record, BEFORE).cancelIntent).toBe(true);
+		const { container } = renderPage(record);
+		const marks = [...container.querySelectorAll('[data-cancel-intent]')];
+		expect(marks.map((mark) => [mark.tagName, squash(mark.textContent)])).toEqual([
+			['P', CANCEL_INTENT_LINE]
+		]);
+		const [mark] = marks;
+		const title = screen.getByRole('heading', { level: 1 });
+		const strip = container.querySelector('.unread-strip');
+		expect(title.compareDocumentPosition(mark) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+		expect(
+			strip && mark.compareDocumentPosition(strip) & Node.DOCUMENT_POSITION_FOLLOWING
+		).toBeTruthy();
+		expect(mark.closest('[aria-hidden], .visually-hidden')).toBeNull();
+	});
+
+	it('shows no cancel-intent sentence on 600017-2026, the notice it was derived from', () => {
+		const record = recordOf('change-notice', 1);
+		expect([record.noticeNumber, buildTenderPage(record, BEFORE).cancelIntent]).toEqual([
+			'600017-2026',
+			false
+		]);
+		const { container } = renderPage(record);
+		expect(container.querySelector('[data-cancel-intent]')).toBeNull();
 	});
 });

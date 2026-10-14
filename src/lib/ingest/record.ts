@@ -110,6 +110,7 @@ export interface NoticeRecord {
 	cpv: { main: string[]; additional: string[] };
 	documents?: DocumentsLink;
 	changeReasons: string[];
+	cancelIntent?: true;
 	lots: LotRecord[];
 }
 
@@ -476,6 +477,13 @@ function toIdentity(root: XmlNode): NoticeIdentity {
 	};
 }
 
+// BT-140 "cancel-intent" (eForms change-corrig-justification) means the buyer has announced it
+// intends to cancel while the notice stays active on TED, so the selection rule keeps it listed. The
+// record and its index row carry this one mark, and nothing else re-reads the reasons for it.
+export function hasCancelIntent(changeReasons: readonly string[]): boolean {
+	return changeReasons.includes('cancel-intent');
+}
+
 function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
 	const notice = toIdentity(root);
 	const sdkVersion = requiredText(root, ['cbc:CustomizationID'], ROOT);
@@ -491,6 +499,12 @@ function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
 	const projects = [...procedure, ...walk(lots, ['cac:ProcurementProject'])];
 	const estimatedValue = toAmount(procedure, `${ROOT}/cac:ProcurementProject`);
 	const documents = toDocuments(walk(root, ['cac:TenderingTerms']));
+	const changeReasons = texts(root, [
+		...EFORMS_EXTENSION,
+		'efac:Changes',
+		'efac:ChangeReason',
+		'cbc:ReasonCode'
+	]);
 	return {
 		noticeNumber,
 		notice,
@@ -507,12 +521,8 @@ function buildRecord(root: XmlNode, noticeNumber: string): NoticeRecord {
 			additional: cpvCodes(projects, 'cac:AdditionalCommodityClassification')
 		},
 		...(documents && { documents }),
-		changeReasons: texts(root, [
-			...EFORMS_EXTENSION,
-			'efac:Changes',
-			'efac:ChangeReason',
-			'cbc:ReasonCode'
-		]),
+		changeReasons,
+		...(hasCancelIntent(changeReasons) && { cancelIntent: true as const }),
 		lots: lots.map((lot) => toLot(lot, noticeLanguage))
 	};
 }
