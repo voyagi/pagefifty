@@ -20,7 +20,7 @@ import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { captureDate, defaultSince } from './capture-folder.ts';
 import { runRecordName } from './run-record.ts';
-import { runCapture } from './run.ts';
+import { MAX_FAILED_NOTICES, runCapture } from './run.ts';
 import { createTedClient, GAP_MS, type Clock } from './ted-client.ts';
 import { SEARCH_FIELDS, searchBody, TED_SEARCH_URL } from './ted-search.ts';
 
@@ -781,6 +781,160 @@ describe('a run refused before any request', () => {
 		expect(run.code).toBe(0);
 		expect(readdirSync(join(run.folder, 'xml'))).toEqual(['600457-2026.xml']);
 		expect(readJson(join(run.folder, 'notices.json'))).toMatchObject({ total: 1, searchTotal: 1 });
+	});
+});
+
+const EIGHT = [
+	'600059-2026',
+	'600338-2026',
+	'600457-2026',
+	'600554-2026',
+	'600779-2026',
+	'601783-2026',
+	'605563-2026',
+	'609955-2026'
+];
+
+const notFound = (notices: readonly string[]) =>
+	Object.fromEntries(notices.map((n) => [tedNoticeXmlUrl(n), [{ status: 404 }]]));
+
+const xmlCacheOf = (root: string) => join(root, '.capture-cache', 'xml');
+
+describe('a run where two of eight notices fail', () => {
+	const failing = ['600338-2026', '601783-2026'];
+	let run: Awaited<ReturnType<typeof captureRun>>;
+
+	beforeAll(async () => {
+		run = await captureRun(EIGHT, { script: notFound(failing) });
+	});
+
+	it('writes the six it read and lists the two in run.json and fetch-log.json', () => {
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const written = EIGHT.filter((n) => !failing.includes(n));
+		expect(readdirSync(join(run.folder, 'xml')).sort()).toEqual(written.map((n) => `${n}.xml`));
+		expect(readJson(join(run.folder, 'notices.json'))).toMatchObject({ total: 6, searchTotal: 8 });
+		const failed = failing.map((notice) => ({ notice, reason: 'status 404' }));
+		expect(readJson(join(run.folder, 'run.json')).notices).toMatchObject({
+			listed: 8,
+			written: 6,
+			failed
+		});
+		expect(readJson(join(run.folder, 'fetch-log.json')).failures).toEqual(failed);
+		expect(run.lines).toContain('capture: 600338-2026: status 404');
+	});
+
+	it('names both under Not captured in the README, with what a failure can leave listed', () => {
+		const readme = readFileSync(join(run.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('## Not captured');
+		expect(readme).toContain('- 600338-2026: status 404');
+		expect(readme).toContain('- 601783-2026: status 404');
+		expect(readme).toContain('an earlier version of it may still be listed here as open');
+		expect(readme).toContain('6 notices written, of the 8 TED stated for the search');
+	});
+});
+
+describe('a run with too many failed notices', () => {
+	it(`allows at most ${MAX_FAILED_NOTICES} failed notices`, () => {
+		expect(MAX_FAILED_NOTICES).toBe(5);
+	});
+
+	it('writes no folder when every notice failed', async () => {
+		const three = ['600457-2026', '600554-2026', '600779-2026'];
+		const run = await captureRun(three, { script: notFound(three) });
+		expect(run.code).toBe(1);
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		expect(run.lines).toContain(
+			'capture: 3 of 3 notices failed (half or more); nothing was written'
+		);
+	});
+
+	it('writes no folder when half or more of the listed notices failed', async () => {
+		const five = ['600457-2026', '600554-2026', '600779-2026', '601783-2026', '605563-2026'];
+		const run = await captureRun(five, { script: notFound(five.slice(0, 3)) });
+		expect(run.code).toBe(1);
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		expect(run.lines).toContain(
+			'capture: 3 of 5 notices failed (half or more); nothing was written'
+		);
+	});
+
+	it('writes no folder when more than five failed, and keeps the downloads cached', async () => {
+		const read = ['600457-2026', '600554-2026'];
+		const run = await captureRun(EIGHT, {
+			script: notFound(EIGHT.filter((n) => !read.includes(n)))
+		});
+		expect(run.code).toBe(1);
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		expect(run.lines).toContain('capture: 6 notices failed (more than 5); nothing was written');
+		expect(readdirSync(xmlCacheOf(run.root)).sort()).toEqual(read.map((n) => `${n}.xml`));
+		const names = runRecords(run.root);
+		expect(readJson(join(runsOf(run.root), names[0])).notices).toMatchObject({
+			listed: 8,
+			written: 0
+		});
+	});
+});
+
+describe('a notice body the reader refuses', () => {
+	const MAINTENANCE = '<html><body>Wartungsarbeiten</body></html>';
+
+	it('fails that notice with the reader kind, never caches it, and asks for it again next run', async () => {
+		const three = ['600457-2026', '600554-2026', '600779-2026'];
+		const script = { [tedNoticeXmlUrl('600779-2026')]: [{ status: 200, body: MAINTENANCE }] };
+		const first = await captureRun(three, { script });
+		expect(first.code, first.lines.join('\n')).toBe(0);
+		const failed = readJson(join(first.folder, 'run.json')).notices.failed;
+		expect(failed).toHaveLength(1);
+		expect(failed[0].notice).toBe('600779-2026');
+		expect(failed[0].reason).toMatch(/^malformed: /);
+		expect(failed[0].reason).not.toContain('Wartungsarbeiten');
+		expect(readdirSync(xmlCacheOf(first.root))).not.toContain('600779-2026.xml');
+		rmSync(first.folder, { recursive: true });
+		const second = await captureRun(three, { root: first.root, script });
+		expect(second.ted.calls().map(({ method, url }) => `${method} ${url}`)).toEqual([
+			`POST ${SEARCH}`,
+			`GET ${tedNoticeXmlUrl('600779-2026')}`
+		]);
+	});
+
+	it('deletes a cached file the reader refuses and asks TED for that notice in the same run', async () => {
+		const notice = '600457-2026';
+		const run = await captureRun([notice], {
+			prepare: (root) => {
+				mkdirSync(xmlCacheOf(root), { recursive: true });
+				writeFileSync(join(xmlCacheOf(root), `${notice}.xml`), MAINTENANCE);
+			}
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.ted.calls().map(({ url }) => url)).toContain(tedNoticeXmlUrl(notice));
+		const cached = readFileSync(join(xmlCacheOf(run.root), `${notice}.xml`), 'utf8');
+		expect(cached).toContain(PLANTED_ADDRESS);
+	});
+});
+
+describe('the cache after a run', () => {
+	it('drops the notices a successful run no longer finds listed, and says how many', async () => {
+		const first = await captureRun(['600457-2026', '600554-2026']);
+		rmSync(first.folder, { recursive: true });
+		const second = await captureRun(['600457-2026'], { root: first.root });
+		expect(second.code).toBe(0);
+		expect(readdirSync(xmlCacheOf(second.root))).toEqual(['600457-2026.xml']);
+		expect(second.lines).toContain('capture: pruned 1 cached notice TED no longer lists');
+	});
+
+	it('keeps every cached notice after a failed run', async () => {
+		const first = await captureRun(['600457-2026', '600554-2026']);
+		rmSync(first.folder, { recursive: true });
+		const second = await captureRun(['600779-2026'], {
+			root: first.root,
+			script: notFound(['600779-2026'])
+		});
+		expect(second.code).toBe(1);
+		expect(readdirSync(xmlCacheOf(second.root)).sort()).toEqual([
+			'600457-2026.xml',
+			'600554-2026.xml'
+		]);
+		expect(second.lines.filter((line) => line.includes('pruned'))).toEqual([]);
 	});
 });
 
