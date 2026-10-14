@@ -66,6 +66,7 @@ interface RunOptions {
 	clock?: Clock;
 	pid?: number;
 	isAlive?: (pid: number) => boolean;
+	signal?: AbortSignal;
 }
 
 const RUN_PID = 4242;
@@ -93,6 +94,7 @@ async function captureRun(notices: readonly string[], options: RunOptions = {}) 
 			pid,
 			// No test signals a process it did not start, so liveness is always injected.
 			isAlive: options.isAlive ?? ((candidate) => candidate === pid),
+			signal: options.signal,
 			log: (line) => lines.push(line)
 		});
 		return { ...result, code, error: undefined };
@@ -495,10 +497,14 @@ describe('a run interrupted before its fourth notice download, then run again', 
 	let first: Awaited<ReturnType<typeof captureRun>>;
 	let second: Awaited<ReturnType<typeof captureRun>>;
 	let recordsAfterFirst: string[];
+	let examplesAfterFirst: string[];
+	let cacheAfterFirst: string[];
 
 	beforeAll(async () => {
 		first = await captureRun(six, { clock: clockInterruptedAt(4) });
 		recordsAfterFirst = runRecords(first.root);
+		examplesAfterFirst = readdirSync(join(first.root, 'examples'));
+		cacheAfterFirst = readdirSync(join(first.root, '.capture-cache', 'xml')).sort();
 		second = await captureRun(six, { root: first.root });
 	});
 
@@ -510,8 +516,8 @@ describe('a run interrupted before its fourth notice download, then run again', 
 			...downloaded.map((n) => `GET ${tedNoticeXmlUrl(n)}`)
 		]);
 		expect(recordsAfterFirst).toHaveLength(1);
-		const xml = readdirSync(join(first.root, '.capture-cache', 'xml')).sort();
-		expect(xml).toEqual(downloaded.map((n) => `${n}.xml`));
+		expect(examplesAfterFirst).toEqual([]);
+		expect(cacheAfterFirst).toEqual(downloaded.map((n) => `${n}.xml`));
 	});
 
 	it('records the interrupted run as failed, with the error as its reason', () => {
@@ -546,6 +552,31 @@ describe('a run interrupted before its fourth notice download, then run again', 
 		const record = readFileSync(join(runsOf(second.root), written[0]), 'utf8');
 		expect(record).toBe(readFileSync(join(second.folder, 'run.json'), 'utf8'));
 		expect(JSON.parse(record)).toMatchObject({ outcome: 'written', reason: null });
+	});
+});
+
+describe('a run whose signal is aborted during its last download', () => {
+	it('publishes nothing and records itself as interrupted', async () => {
+		const interrupt = new AbortController();
+		let requests = 0;
+		const run = await captureRun(['600457-2026', '600779-2026'], {
+			signal: interrupt.signal,
+			onRequest: () => {
+				requests += 1;
+				if (requests === 3) interrupt.abort();
+			}
+		});
+		expect(run.code, run.lines.join('\n')).toBeUndefined();
+		expect(run.error).toBeInstanceOf(Error);
+		expect((run.error as Error).message).toBe('interrupted');
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		const names = runRecords(run.root);
+		expect(names).toHaveLength(1);
+		expect(readJson(join(runsOf(run.root), names[0]))).toMatchObject({
+			outcome: 'failed',
+			reason: 'interrupted',
+			notices: { listed: 2, written: 0 }
+		});
 	});
 });
 
