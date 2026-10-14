@@ -9,7 +9,10 @@ import { createFakeClock, createScriptedTed, PLANTED_ADDRESS } from '../../test/
 import { firstPublishedDay } from '../snapshot/capture-id.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
+import { captureDate, defaultSince } from './capture-folder.ts';
 import { runCapture } from './run.ts';
+import { createTedClient, GAP_MS } from './ted-client.ts';
+import { SEARCH_FIELDS, searchBody, TED_SEARCH_URL } from './ted-search.ts';
 
 const START = Date.parse('2026-10-11T08:00:00Z');
 const SEARCH = 'https://api.ted.europa.eu/v3/notices/search';
@@ -41,14 +44,25 @@ function tempRoot(): string {
 	return root;
 }
 
-async function captureRun(notices: readonly string[]) {
+interface RunOptions {
+	script?: Parameters<typeof createScriptedTed>[0]['script'];
+	prepare?: (root: string) => void;
+	// Called with the run's root as each request reaches TED, before the stub answers.
+	onRequest?: (root: string) => void;
+}
+
+async function captureRun(notices: readonly string[], options: RunOptions = {}) {
 	const root = tempRoot();
+	options.prepare?.(root);
 	const clock = createFakeClock(START);
-	const ted = createScriptedTed({ clock, notices });
+	const ted = createScriptedTed({ clock, notices, script: options.script });
 	const lines: string[] = [];
 	const code = await runCapture({
 		root,
-		transport: ted,
+		transport: async (request) => {
+			options.onRequest?.(root);
+			return ted(request);
+		},
 		clock,
 		argv: [],
 		env: {},
@@ -114,10 +128,26 @@ describe('a capture run against the stub TED', () => {
 			scope: 'ACTIVE',
 			onlyLatestVersions: true
 		});
+		expect(GAP_MS).toBe(1000);
 		for (let index = 1; index < calls.length; index += 1) {
-			expect(calls[index].at - calls[index - 1].at).toBeGreaterThanOrEqual(1000);
+			expect(calls[index].at - calls[index - 1].at).toBeGreaterThanOrEqual(GAP_MS);
 		}
 		expect(run.ted.maxInFlight()).toBe(1);
+	});
+
+	it("asks for scope ACTIVE and latest versions only on every search page, at TED's search address", () => {
+		expect(TED_SEARCH_URL).toBe(SEARCH);
+		expect(SEARCH_FIELDS).toEqual(FIELDS);
+		for (const page of [1, 2, 3]) {
+			expect(searchBody('20260927', page)).toEqual({
+				query: QUERY,
+				fields: FIELDS,
+				limit: 250,
+				page,
+				scope: 'ACTIVE',
+				onlyLatestVersions: true
+			});
+		}
 	});
 
 	it('writes each XML as the tracked file after the scrub and keeps the raw notice in the cache', () => {
@@ -180,5 +210,88 @@ describe('a capture run against the stub TED', () => {
 			}
 		);
 		expect(check.status, check.stdout + check.stderr).toBe(0);
+	});
+});
+
+describe('a capture run that must not publish', () => {
+	const stagingOf = (root: string) => join(root, '.capture-cache', 'staging');
+
+	it('refuses with 2 before any request when examples/<date> already exists', async () => {
+		const run = await captureRun(['600457-2026'], {
+			prepare: (root) => mkdirSync(join(root, 'examples', '2026-10-11'))
+		});
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines).toEqual([
+			'capture: examples/2026-10-11 already exists, and a capture folder is never written again in place'
+		]);
+	});
+
+	it('writes no folder when the staged check finds an address the scrub cannot see', async () => {
+		const notice = '600457-2026';
+		const served = readFileSync(capturePath(notice), 'utf8')
+			.split('[removed]')
+			.join(PLANTED_ADDRESS)
+			.replace(
+				'<cbc:Description languageID="DEU">',
+				`<cbc:Description languageID="DEU">Kontakt ${PLANTED_ADDRESS.replace('@', '&#64;')} `
+			);
+		const run = await captureRun([notice], {
+			script: { [tedNoticeXmlUrl(notice)]: [{ status: 200, body: served }] }
+		});
+		expect(run.code).toBe(1);
+		expect(existsSync(run.folder)).toBe(false);
+		expect(readdirSync(stagingOf(run.root))).toEqual([]);
+		const named = run.lines.filter((line) =>
+			line.startsWith(`capture: contact data left in ${join('xml', `${notice}.xml`)}: `)
+		);
+		expect(named, run.lines.join('\n')).toHaveLength(1);
+		expect(named[0]).toContain('encoded email');
+	});
+
+	it('keeps the staged folder and names it when examples/<date> appears during the run', async () => {
+		const run = await captureRun(['600457-2026'], {
+			onRequest: (root) => mkdirSync(join(root, 'examples', '2026-10-11'), { recursive: true })
+		});
+		expect(run.code).toBe(1);
+		expect(readdirSync(run.folder)).toEqual([]);
+		const staged = join(stagingOf(run.root), '2026-10-11-4242');
+		expect(readdirSync(staged).sort()).toEqual(['README.md', 'notices.json', 'xml']);
+		expect(run.lines.at(-1)).toBe(
+			`capture: ${run.folder} appeared during the run; the capture is complete in ${staged}`
+		);
+	});
+});
+
+describe('the TED client', () => {
+	it('refuses an address that is not plain https on a TED host, and sends nothing', async () => {
+		const clock = createFakeClock(START);
+		const ted = createScriptedTed({ clock, notices: [] });
+		const client = createTedClient({ transport: ted, clock });
+		for (const url of [
+			'http://ted.europa.eu/en/notice/600457-2026/xml',
+			'https://ted.europa.eu:8443/en/notice/600457-2026/xml',
+			'https://ted.europa.eu.example.org/en/notice/600457-2026/xml',
+			'https://example.org/en/notice/600457-2026/xml'
+		]) {
+			const answer = await client.send('xml', () => new Request(url), { id: '600457-2026' }, 1000);
+			expect(answer, url).toEqual({ ok: false, reason: `refused ${url}: not https on a TED host` });
+		}
+		expect(ted.calls()).toEqual([]);
+		expect(client.log()).toEqual([]);
+	});
+});
+
+describe('the capture day and its window', () => {
+	it('names the folder by the day in Amsterdam, so 22:30 UTC on 10 Oct is 11 Oct', () => {
+		expect(captureDate(Date.parse('2026-10-10T22:30:00Z'))).toBe('2026-10-11');
+		expect(captureDate(Date.parse('2026-10-10T21:59:59Z'))).toBe('2026-10-10');
+		expect(captureDate(Date.parse('2026-12-31T23:30:00Z'))).toBe('2027-01-01');
+	});
+
+	it('opens the window 14 days before the capture day, across a month and a year', () => {
+		expect(defaultSince('2026-10-11')).toBe('20260927');
+		expect(defaultSince('2026-03-05')).toBe('20260219');
+		expect(defaultSince('2027-01-03')).toBe('20261220');
 	});
 });
