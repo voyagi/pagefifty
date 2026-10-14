@@ -14,6 +14,7 @@ import { pathToFileURL } from 'node:url';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { folderProblems } from '../../test/capture-detectors.ts';
 import { capturePath } from '../../test/fixtures/node.ts';
+import { buildSynthetic } from '../../test/fixtures/roles.ts';
 import { createFakeClock, createScriptedTed, PLANTED_ADDRESS } from '../../test/ted-stub.ts';
 import { firstPublishedDay } from '../snapshot/capture-id.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
@@ -856,6 +857,17 @@ describe('a run with too many failed notices', () => {
 		expect(run.lines).toContain(
 			'capture: 3 of 5 notices failed (half or more); nothing was written'
 		);
+	});
+
+	it('writes no folder when no notice is left to write', async () => {
+		const notice = '600017-2026';
+		const cancelled = buildSynthetic('cancel-notice', readFileSync(capturePath(notice), 'utf8'));
+		const run = await captureRun([notice], {
+			script: { [tedNoticeXmlUrl(notice)]: [{ status: 200, body: cancelled }] }
+		});
+		expect(run.code).toBe(1);
+		expect(readdirSync(join(run.root, 'examples'))).toEqual([]);
+		expect(run.lines).toContain('capture: no notice was left to write; nothing was written');
 	});
 
 	it('writes no folder when more than five failed, and keeps the downloads cached', async () => {

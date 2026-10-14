@@ -90,6 +90,10 @@ interface Run {
 const EXIT: Readonly<Record<RunOutcome, 0 | 1 | 2>> = { written: 0, failed: 1, refused: 2 };
 const INTERRUPTED = 'interrupted';
 
+// Spike 001's worst run met 3 transient 502s among 363 notices: room for a bad minute, not for a
+// broken run.
+export const MAX_FAILED_NOTICES = 5;
+
 // The BOM is kept, so a scrubbed file differs from TED's bytes only where the scrub replaced text.
 const UTF8 = new TextDecoder('utf-8', { ignoreBOM: true });
 
@@ -116,14 +120,24 @@ function publicationOrder(a: string, b: string): number {
 	return yearA - yearB || runningA - runningB;
 }
 
-// A body the reader refuses is never cached, so the next run asks TED for it again.
+// A failure reason lands in the run record, fetch-log.json and the README, one line each.
+const oneLine = (text: string) => text.replace(/\s+/g, ' ').trim();
+
+// A body the reader refuses is never cached, so the next run asks TED for it again. A cached body is
+// read again before use: the cache never asks TED again for a notice it holds, so a body the reader
+// refuses there (one cached before a reader fix, or damaged on disk) would otherwise fail that
+// notice on every later run until someone cleared the cache by hand.
 async function fetchRaw(
 	client: TedClient,
 	cache: XmlCache,
 	number: string,
 	url: string
 ): Promise<Fetched> {
-	if (cache.has(number)) return { ok: true, raw: cache.read(number), cached: true };
+	if (cache.has(number)) {
+		const raw = cache.read(number);
+		if (readNotice(raw, { noticeNumber: number }).ok) return { ok: true, raw, cached: true };
+		cache.remove(number);
+	}
 	const answer = await client.send('xml', () => new Request(url), { id: number }, MAX_NOTICE_BYTES);
 	if (!answer.ok) return answer;
 	const accepted = readNotice(answer.body, { noticeNumber: number });
@@ -151,25 +165,49 @@ function readScrubbed(number: string, hit: SearchHit, raw: Uint8Array): NoticeOu
 
 async function readHits(hits: readonly SearchHit[], run: Run, cache: XmlCache) {
 	const notices: ReadOne[] = [];
+	const failedOne = (notice: string, reason: string) =>
+		run.failed.push({ notice, reason: oneLine(reason) });
 	const valid: { hit: SearchHit; number: string; url: string }[] = [];
 	for (const hit of hits) {
 		const target = xmlTarget(hit);
 		if (target.ok) valid.push({ hit, number: target.number, url: target.url });
-		else run.failed.push({ notice: target.notice, reason: target.reason });
+		else failedOne(target.notice, target.reason);
 	}
 	valid.sort((a, b) => publicationOrder(a.number, b.number));
 	for (const { hit, number, url } of valid) {
 		const fetched = await fetchRaw(run.client, cache, number, url);
 		if (!fetched.ok) {
-			run.failed.push({ notice: number, reason: fetched.reason });
+			failedOne(number, fetched.reason);
 			continue;
 		}
 		if (fetched.cached) run.cacheHits += 1;
 		const outcome = readScrubbed(number, hit, fetched.raw);
 		if (outcome.ok) notices.push(outcome.notice);
-		else run.failed.push(outcome.failure);
+		else failedOne(outcome.failure.notice, outcome.failure.reason);
 	}
-	return notices;
+	return { notices, listed: new Set(valid.map(({ number }) => number)) };
+}
+
+// An allowance of failed notices alone would publish an empty or mostly missing capture from a small
+// search, so fewer than half of the listed notices may fail and at least one must be written.
+function failureRefusal(failed: number, listed: number, written: number): string | undefined {
+	if (failed > MAX_FAILED_NOTICES) {
+		return `${counted(failed, 'notice')} failed (more than ${MAX_FAILED_NOTICES})`;
+	}
+	if (failed * 2 >= listed)
+		return `${failed} of ${counted(listed, 'notice')} failed (half or more)`;
+	return written === 0 ? 'no notice was left to write' : undefined;
+}
+
+// Best effort once the folder is in place: a cache file still held open is pruned by a later run.
+function pruneCache(deps: CaptureDeps, cache: XmlCache, listed: ReadonlySet<string>): void {
+	try {
+		const pruned = cache.prune(listed).length;
+		if (pruned > 0)
+			deps.log(`capture: pruned ${counted(pruned, 'cached notice')} TED no longer lists`);
+	} catch (error) {
+		deps.log(`capture: the cache was not pruned (${messageOf(error)}); the next run tries again`);
+	}
 }
 
 // TED's onlyLatestVersions flag did not deliver latest versions in the 2026-09-15 capture, and the
@@ -226,7 +264,8 @@ function writeListing(staging: string, run: Run, selection: Selection): void {
 }
 
 function writeRecords(staging: string, run: Run, selection: Selection, record: RunRecord): void {
-	writeJsonFile(join(staging, 'fetch-log.json'), { log: run.client.log(), failures: [] });
+	const failures = run.failed.map(({ notice, reason }) => ({ notice, reason }));
+	writeJsonFile(join(staging, 'fetch-log.json'), { log: run.client.log(), failures });
 	writeJsonFile(join(staging, 'run.json'), record);
 	writeFileSync(
 		join(staging, 'README.md'),
@@ -237,7 +276,8 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			since: run.since,
 			written: selection.kept.length,
 			searchTotal: run.searchTotal,
-			leftOut: selection.leftOut
+			leftOut: selection.leftOut,
+			failed: failures
 		})
 	);
 }
@@ -356,15 +396,17 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	if (search.hits.length === 0) return ended(deps, 'failed', 'TED listed 0 notices');
 	run.listed = search.hits.length;
 	run.searchTotal = search.searchTotal;
-	const notices = await readHits(search.hits, run, cache);
+	const { notices, listed } = await readHits(search.hits, run, cache);
 	stopIfInterrupted(deps);
-	if (run.failed.length > 0) {
-		for (const { notice, reason } of run.failed) log(`capture: ${notice}: ${reason}`);
-		const failed = `${counted(run.failed.length, 'notice')} failed`;
-		return ended(deps, 'failed', failed, `${failed}; nothing was written`);
-	}
+	for (const { notice, reason } of run.failed) log(`capture: ${notice}: ${reason}`);
 	run.selection = keepLatest(notices);
-	return stageAndPublish(deps, run, run.selection, iso(deps.clock.now()));
+	const tooMany = failureRefusal(run.failed.length, run.listed, run.selection.kept.length);
+	if (tooMany !== undefined) {
+		return ended(deps, 'failed', tooMany, `${tooMany}; nothing was written`);
+	}
+	const end = await stageAndPublish(deps, run, run.selection, iso(deps.clock.now()));
+	if (end.outcome === 'written') pruneCache(deps, cache, listed);
+	return end;
 }
 
 // The written run's record is the run.json it published; any other run's is built as it ends.

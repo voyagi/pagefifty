@@ -12,6 +12,7 @@ interface ReadmeParts {
 	written: number;
 	searchTotal: number;
 	leftOut: readonly { notice: string; reason: string }[];
+	failed: readonly { notice: string; reason: string }[];
 }
 
 const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -55,6 +56,23 @@ function leftOutSection(leftOut: ReadmeParts['leftOut']): string[] {
 	];
 }
 
+// The latest-version rule only sees notices that were read, so a failed notice that was a newer
+// version of one this capture keeps leaves that older version listed. TED's search could name each
+// hit's version, but the request asks only for the fields the list cards read, so the README says so.
+function notCapturedSection(failed: ReadmeParts['failed']): string[] {
+	if (failed.length === 0) return [];
+	return [
+		'## Not captured',
+		'',
+		'These notices were in the search answer, but their XML could not be downloaded or read, so they are not in this capture:',
+		'',
+		...failed.map(({ notice, reason }) => `- ${notice}: ${reason}`),
+		'',
+		'A notice listed here may be a newer version of a notice this capture holds, and then an earlier version of it may still be listed here as open.',
+		''
+	];
+}
+
 const WHAT_WAS_CHANGED = [
 	'## What was changed',
 	'',
@@ -74,6 +92,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		...whenAndWhat(parts),
 		'',
 		...leftOutSection(parts.leftOut),
+		...notCapturedSection(parts.failed),
 		...SOURCE_AND_TERMS,
 		'',
 		...WHAT_WAS_CHANGED,

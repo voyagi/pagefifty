@@ -38,6 +38,9 @@ export function createXmlCache(dir: string, pid: number) {
 			writeFileSync(temp, bytes, { flag: 'wx' });
 			renameSync(temp, path);
 		},
+		remove(number: string): void {
+			rmSync(pathOf(number), { force: true });
+		},
 		removeTemp(): number {
 			if (!existsSync(xmlDir)) return 0;
 			const temps = readdirSync(xmlDir).filter((name) => name.endsWith(TEMP));
