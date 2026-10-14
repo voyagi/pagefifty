@@ -78,6 +78,23 @@ describe('/tenders/[notice] load', () => {
 		expect(snapshotDays).toHaveBeenCalledWith('2026-10-11');
 	});
 
+	// toStrictEqual, because a firstPublished key holding undefined would pass a plain toEqual.
+	it('leaves firstPublished out of the 404 when its capture names no first day', async () => {
+		vi.mocked(snapshotDays).mockReturnValueOnce({
+			capturedOn: '11 Oct 2026',
+			fetchedAt: '2026-10-11T09:00:00.000Z'
+		});
+		expect(await statusOf('999991-2026')).toStrictEqual({
+			status: 404,
+			body: {
+				message: 'Not Found',
+				kind: 'unknown-notice',
+				notice: '999991-2026',
+				capturedOn: '11 Oct 2026'
+			}
+		});
+	});
+
 	it('answers each of several parallel unknown notices with its own 404', async () => {
 		const notices = ['999991-2026', '999992-2026', '999993-2026'];
 		const results = await Promise.all(notices.map(statusOf));
