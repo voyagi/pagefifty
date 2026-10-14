@@ -30,6 +30,17 @@ describe('the first publication day of a capture query', () => {
 			if (real) expect(firstPublishedDay(query)).toBe(`${day} ${MONTHS[month - 1]} ${year}`);
 		}
 	);
+
+	// Digits that are not exactly YYYYMMDD name no day, so the clause is refused, and a longer run is
+	// never read as the day its first eight digits spell.
+	test.prop([fc.stringMatching(/^\d{1,12}$/).filter((digits) => digits.length !== 8)])(
+		'is refused for any other number of digits, and no day is written for it',
+		(digits) => {
+			const query = `cpv AND publication-date>=${digits} AND x`;
+			expect(namesRealFirstDay(query)).toBe(false);
+			expect(firstPublishedDay(query)).toBeUndefined();
+		}
+	);
 });
 
 describe('newestCapture', () => {

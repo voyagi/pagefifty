@@ -5,11 +5,15 @@ import { formatDay, SERVER_TIME_ZONE } from '../core/deadline.ts';
 
 export const CAPTURE_ID = /^\d{4}-\d{2}-\d{2}$/;
 
-const FIRST_PUBLISHED = /publication-date>=(\d{4})(\d{2})(\d{2})/;
+// The whole digit run is read, so a run longer or shorter than YYYYMMDD is seen whole, never read as
+// the day its first eight digits spell.
+const FIRST_PUBLISHED = /publication-date>=(\d+)/;
 
 function firstPublishedId(query: string): string | undefined {
-	const from = FIRST_PUBLISHED.exec(query);
-	return from ? `${from[1]}-${from[2]}-${from[3]}` : undefined;
+	const digits = FIRST_PUBLISHED.exec(query)?.[1];
+	return digits?.length === 8
+		? `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6)}`
+		: undefined;
 }
 
 // A filter day, a capture's first publication day and the capture's own day are all written as the
@@ -31,10 +35,13 @@ export function firstPublishedDay(query: string): string | undefined {
 }
 
 // Every live page formats this day, and formatDay throws on an impossible month while 30 February
-// reads as 2 March, so the capture line's schema refuses such a query where the build reads it.
+// reads as 2 March, so the capture line's schema refuses such a query where the build reads it. A
+// clause whose digits are not YYYYMMDD names no day at all and is refused the same way; a query with
+// no dated clause names no first day and is fine.
 export function namesRealFirstDay(query: string): boolean {
+	if (!FIRST_PUBLISHED.test(query)) return true;
 	const id = firstPublishedId(query);
-	return id === undefined || isCalendarDay(id);
+	return id !== undefined && isCalendarDay(id);
 }
 
 // A name like 2026-02-30 matches the pattern but names no day, and sorting it in would let a

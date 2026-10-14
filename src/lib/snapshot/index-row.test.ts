@@ -90,7 +90,9 @@ describe('CaptureLineSchema', () => {
 	it.each([
 		['month 13', 'publication-date>=20261340'],
 		['30 February', 'publication-date>=20260230'],
-		['29 February in a common year', 'publication-date>=20270229']
+		['29 February in a common year', 'publication-date>=20270229'],
+		['seven digits', 'publication-date>=2026134'],
+		['nine digits whose first eight are a real day', 'publication-date>=202609011']
 	])('refuses a query whose first day is %s, naming the day', (_label, query) => {
 		const result = CaptureLineSchema.safeParse(line(query));
 		expect(result.success).toBe(false);
