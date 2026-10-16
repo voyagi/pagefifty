@@ -426,6 +426,9 @@ function takeLock(deps: CaptureDeps, run: Run): string | undefined {
 	if (!lock.ok && 'unreadable' in lock) {
 		return `${path} cannot be read as a capture lock (${lock.unreadable}); if no capture is running, delete it and run again`;
 	}
+	if (!lock.ok && 'replacing' in lock) {
+		return `another capture run is replacing the ended lock ${path}; run again once it is done, and if no capture is running, delete ${lock.replacing} and run again`;
+	}
 	if (!lock.ok) {
 		const { pid, startedAt } = lock.holder;
 		return `another capture run holds ${path} (pid ${pid}, started ${startedAt}); wait for it to end. A lock whose process has ended is replaced on its own, and when no capture is running, delete ${path}, since Windows can give a finished run's pid to another process`;

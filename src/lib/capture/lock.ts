@@ -15,7 +15,8 @@ type Holder = Pick<LockHolder, 'pid' | 'startedAt'>;
 type LockResult =
 	| { ok: true; release(): void; replaced?: Holder }
 	| { ok: false; holder: Holder }
-	| { ok: false; unreadable: string };
+	| { ok: false; unreadable: string }
+	| { ok: false; replacing: string };
 
 type ReadHolder = { ok: true; holder: Holder } | { ok: false; detail: string };
 
@@ -55,6 +56,35 @@ function readHolder(path: string): ReadHolder {
 	return { ok: true, holder: { pid, startedAt } };
 }
 
+const sameHolder = (a: Holder, b: Holder) => a.pid === b.pid && a.startedAt === b.startedAt;
+
+// Two runs can read the same ended holder; if each then removed the lock, the later removal would
+// delete the lock the earlier run had just taken, and both would run. So a run first claims the
+// replacement with a second 'wx' file and removes the lock only while it still names the holder read.
+// A run that finds the claim taken is refused: the claimant is about to hold the lock, and a claim
+// left by a run killed in that moment is left for a person, like a lock this command cannot read.
+function removeEnded(
+	path: string,
+	ended: Holder,
+	holder: LockHolder
+): 'removed' | 'moved' | 'claimed' {
+	const claim = `${path}.replacing`;
+	try {
+		writeFileSync(claim, JSON.stringify(holder), { flag: 'wx' });
+	} catch (error) {
+		if (errorCode(error) === 'EEXIST') return 'claimed';
+		throw error;
+	}
+	try {
+		const now = readHolder(path);
+		if (!now.ok || !sameHolder(now.holder, ended)) return 'moved';
+		rmSync(path, { force: true });
+		return 'removed';
+	} finally {
+		rmSync(claim, { force: true });
+	}
+}
+
 // The file is created with 'wx' and written after, so a second run can find it empty for a moment;
 // a lock this command cannot read is therefore refused and left for a person, never replaced.
 export function acquireLock(
@@ -77,7 +107,8 @@ export function acquireLock(
 		if (replaced !== undefined || alive(found.holder.pid)) {
 			return { ok: false, holder: found.holder };
 		}
-		rmSync(path, { force: true });
-		replaced = found.holder;
+		const removal = removeEnded(path, found.holder, holder);
+		if (removal === 'claimed') return { ok: false, replacing: `${path}.replacing` };
+		if (removal === 'removed') replaced = found.holder;
 	}
 }
