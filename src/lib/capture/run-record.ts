@@ -3,6 +3,7 @@
 // Imported under Node type stripping: erasable syntax only.
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import type { Modes } from '../server/transport-mode.ts';
 import { errorCode, writeJsonFile } from './capture-folder.ts';
 
 const RUN_RECORD_VERSION = 1;
@@ -22,6 +23,7 @@ interface RunRecordParts {
 	reason: string | null;
 	command: string;
 	head: string;
+	modes: Modes;
 	query: {
 		query: string;
 		fields: readonly string[];
@@ -50,7 +52,7 @@ interface RunRecordParts {
 // Every key is written out rather than spread, so a part built in another order still lands in
 // this order.
 export function buildRunRecord(parts: RunRecordParts) {
-	const { query, ted, notices } = parts;
+	const { modes, query, ted, notices } = parts;
 	return {
 		schemaVersion: RUN_RECORD_VERSION,
 		startedAt: parts.startedAt,
@@ -60,6 +62,7 @@ export function buildRunRecord(parts: RunRecordParts) {
 		reason: parts.reason,
 		command: parts.command,
 		head: parts.head,
+		modes: { ted: modes.ted, tokenFactory: modes.tokenFactory, tavily: modes.tavily },
 		query: {
 			query: query.query,
 			fields: [...query.fields],

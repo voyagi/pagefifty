@@ -8,6 +8,7 @@ import { selectLatest } from '../ingest/latest.ts';
 import { readNotice, MAX_NOTICE_BYTES } from '../ingest/read-notice.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
 import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot/index-row.ts';
+import { resolveModes, type Modes } from '../server/transport-mode.ts';
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
@@ -80,6 +81,7 @@ interface Run {
 	started: number;
 	date: string;
 	since: string;
+	modes: Modes;
 	command: string;
 	client: TedClient;
 	listed: number;
@@ -260,6 +262,7 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 		reason: end.reason,
 		command: run.command,
 		head: deps.head,
+		modes: run.modes,
 		query: { query, fields, scope, onlyLatestVersions, since: run.since },
 		ted: { ...run.client.stats(), cacheHits: run.cacheHits },
 		notices: {
@@ -447,8 +450,19 @@ function finalRecord(deps: CaptureDeps, run: Run): RunRecord {
 	return recordOf(deps, run, end, iso(deps.clock.now()));
 }
 
-// Order before the first request: the start instant and day from the clock, the flags (no record:
-// a run refused here never started), the existing-folder refusal, the lock, the cleanup.
+const modesLine = (modes: Modes) =>
+	`capture: modes ted=${modes.ted} tokenFactory=${modes.tokenFactory} tavily=${modes.tavily}`;
+
+// JSON-quoted, so " 1" shows its space. PAGEFIFTY_LIVE is read from the shell that runs the command
+// only, never from a file, which is why the message points at the shell.
+function liveRefusal(value: string | undefined): string {
+	const found = value === undefined ? 'unset' : JSON.stringify(value);
+	return `--live was given, but PAGEFIFTY_LIVE is ${found}, not "1", so no metered call may run; set PAGEFIFTY_LIVE=1 in the shell for this one command, beside --live and --cap`;
+}
+
+// Order before the first request: the start instant and day from the clock, the flags and the
+// switch (no record: a run refused here never started), the existing-folder refusal, the lock, the
+// cleanup.
 export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 	const started = deps.clock.now();
 	const date = captureDate(started);
@@ -457,10 +471,19 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		deps.log(`capture: ${args.message}`);
 		return 2;
 	}
+	// The run's only read of its environment (D-22): a value changed mid-run changes nothing.
+	const switchValue = deps.env.PAGEFIFTY_LIVE;
+	const modes = resolveModes(args.live, { PAGEFIFTY_LIVE: switchValue });
+	deps.log(modesLine(modes));
+	if (args.live && (modes.tokenFactory !== 'live' || modes.tavily !== 'live')) {
+		deps.log(`capture: ${liveRefusal(switchValue)}`);
+		return 2;
+	}
 	const run: Run = {
 		started,
 		date,
 		since: args.since,
+		modes,
 		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
 		client: createTedClient({ transport: deps.transport, clock: deps.clock }),
 		listed: 0,
