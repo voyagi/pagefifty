@@ -503,6 +503,23 @@ describe('a capture run that must not publish', () => {
 			`capture: ${run.folder} appeared during the run; the capture is complete in ${staged}`
 		);
 	});
+
+	it("records the failed publish in the kept staged run.json, the same bytes as the run's record", async () => {
+		const run = await captureRun(['600457-2026'], {
+			onRequest: (root) => mkdirSync(join(root, 'examples', '2026-10-11'), { recursive: true })
+		});
+		expect(run.code).toBe(1);
+		const staged = join(stagingOf(run.root), '2026-10-11-4242');
+		const text = readFileSync(join(staged, 'run.json'), 'utf8');
+		expect(JSON.parse(text)).toMatchObject({
+			outcome: 'failed',
+			reason: `${run.folder} appeared during the run; the capture is complete in ${staged}`,
+			notices: { listed: 1, written: 0 }
+		});
+		const names = runRecords(run.root);
+		expect(names).toHaveLength(1);
+		expect(readFileSync(join(runsOf(run.root), names[0]), 'utf8')).toBe(text);
+	});
 });
 
 describe('a run interrupted before its fourth notice download, then run again', () => {
