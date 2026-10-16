@@ -489,6 +489,12 @@ describe('a capture run that must not publish', () => {
 		);
 		expect(named, run.lines.join('\n')).toHaveLength(1);
 		expect(named[0]).toContain('encoded email');
+		const names = runRecords(run.root);
+		expect(names).toHaveLength(1);
+		expect(readJson(join(runsOf(run.root), names[0]))).toMatchObject({
+			outcome: 'failed',
+			reason: 'the staged folder failed its checks'
+		});
 	});
 
 	it('keeps the staged folder and names it when examples/<date> appears during the run', async () => {

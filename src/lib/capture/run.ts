@@ -400,7 +400,13 @@ async function stageAndPublish(
 	try {
 		await publish(staging, join(root, 'examples', run.date), deps.clock);
 	} catch (error) {
-		return ended(deps, 'failed', messageOf(error));
+		// A failed move keeps the staged folder for a person to recover the capture from, so its run.json
+		// is rewritten to say the run failed and why, as the run's own record does.
+		const end = ended(deps, 'failed', messageOf(error));
+		const record = recordOf(deps, run, end, finishedAt);
+		writeJsonFile(join(staging, 'run.json'), record);
+		run.staged = record;
+		return end;
 	}
 	const count = selection.kept.length;
 	log(`capture: wrote examples/${run.date} with ${counted(count, 'notice')}`);
@@ -522,9 +528,10 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	return end;
 }
 
-// The written run's record is the run.json it published; any other run's is built as it ends.
+// A run whose staged folder is kept, published or not, has the record that folder's run.json holds;
+// any other run's is built as it ends.
 function finalRecord(deps: CaptureDeps, run: Run): RunRecord {
-	if (run.end?.outcome === 'written' && run.staged) return run.staged;
+	if (run.staged && run.staged.outcome === run.end?.outcome) return run.staged;
 	const end = run.end ?? { outcome: 'failed', reason: 'the run ended without an outcome' };
 	return recordOf(deps, run, end, iso(deps.clock.now()));
 }
