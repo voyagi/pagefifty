@@ -2,6 +2,7 @@
 // The reuse terms are TED's and are quoted as that README quotes them. Imported under Node type
 // stripping: erasable syntax only.
 import { SERVER_TIME_ZONE, formatDeadline } from '../core/deadline.ts';
+import type { Modes } from '../server/transport-mode.ts';
 import { dayText } from '../snapshot/capture-id.ts';
 
 interface ReadmeParts {
@@ -9,6 +10,7 @@ interface ReadmeParts {
 	fetchedAt: string;
 	query: string;
 	since: string;
+	modes: Modes;
 	written: number;
 	searchTotal: number;
 	leftOut: readonly { notice: string; reason: string }[];
@@ -40,7 +42,8 @@ function whenAndWhat(parts: ReadmeParts): string[] {
 		`- The window runs from ${first}, the first publication day the query names, to the capture day, ${captured}. A tender published before ${first} and still open is not in this capture.`,
 		'- The search reads competition notices only, so a procedure its buyer ended through a later result notice is not detected here.',
 		`- ${counted(parts.written, 'notice')} written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`,
-		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.'
+		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.',
+		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`
 	];
 }
 

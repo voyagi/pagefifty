@@ -22,11 +22,20 @@ import {
 } from './capture-folder.ts';
 import { hitVersion, outdatedByFailed } from './failed-versions.ts';
 import { acquireLock, isAlive } from './lock.ts';
+import { createMeteredGate, type MeteredGate } from './metered.ts';
 import { captureReadme } from './readme.ts';
 import { buildRunRecord, writeRunRecord, type RunOutcome, type RunRecord } from './run-record.ts';
 import { createTedClient, type Clock, type TedClient } from './ted-client.ts';
 import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from './ted-search.ts';
 import { createXmlCache } from './xml-cache.ts';
+
+// The seam phase 2's model read and Tavily search plug into. A step reaches a provider only through
+// gate.attempt; its context never holds a key (the gate does), so a call that skips the gate has
+// none to send.
+export type MeteredStep = (context: {
+	gate: MeteredGate;
+	records: readonly NoticeRecord[];
+}) => Promise<void>;
 
 export interface CaptureDeps {
 	root: string;
@@ -40,6 +49,7 @@ export interface CaptureDeps {
 	isAlive?: (pid: number) => boolean;
 	// Aborted by the command on Ctrl+C.
 	signal?: AbortSignal;
+	meteredSteps?: readonly MeteredStep[];
 }
 
 interface Failure {
@@ -84,6 +94,7 @@ interface Run {
 	modes: Modes;
 	command: string;
 	client: TedClient;
+	gate: MeteredGate;
 	listed: number;
 	searchTotal: number;
 	cacheHits: number;
@@ -271,7 +282,8 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 			leftOut: selection?.leftOut ?? [],
 			failed: run.failed,
 			sameProcedure: selection?.sameProcedure ?? []
-		}
+		},
+		metered: run.gate.record()
 	});
 }
 
@@ -307,6 +319,7 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			fetchedAt: iso(run.started),
 			query: searchQuery(run.since),
 			since: run.since,
+			modes: run.modes,
 			written: selection.kept.length,
 			searchTotal: run.searchTotal,
 			leftOut: selection.leftOut,
@@ -410,6 +423,14 @@ function takeLock(deps: CaptureDeps, run: Run): string | undefined {
 	return undefined;
 }
 
+// After the notices are read and filtered, so no metered call is spent on a run that will publish
+// nothing, and before staging, so the run.json it publishes counts every attempt.
+async function runMeteredSteps(deps: CaptureDeps, run: Run, selection: Selection): Promise<void> {
+	const records = selection.kept.map((notice) => notice.record);
+	for (const step of deps.meteredSteps ?? []) await step({ gate: run.gate, records });
+	stopIfInterrupted(deps);
+}
+
 async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	const { root, log } = deps;
 	if (existsSync(join(root, 'examples', run.date))) {
@@ -438,6 +459,7 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	if (tooMany !== undefined) {
 		return ended(deps, 'failed', tooMany, `${tooMany}; nothing was written`);
 	}
+	await runMeteredSteps(deps, run, run.selection);
 	const end = await stageAndPublish(deps, run, run.selection, iso(deps.clock.now()));
 	if (end.outcome === 'written') pruneCache(deps, cache, listed);
 	return end;
@@ -486,6 +508,8 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		modes,
 		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
 		client: createTedClient({ transport: deps.transport, clock: deps.clock }),
+		// No provider key is loaded yet, so the gate refuses every live call with "no key loaded".
+		gate: createMeteredGate({ modes, cap: args.cap, log: deps.log }),
 		listed: 0,
 		searchTotal: 0,
 		cacheHits: 0,

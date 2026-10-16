@@ -5,6 +5,7 @@ import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Modes } from '../server/transport-mode.ts';
 import { errorCode, writeJsonFile } from './capture-folder.ts';
+import type { MeteredRecord } from './metered.ts';
 
 const RUN_RECORD_VERSION = 1;
 
@@ -47,12 +48,13 @@ interface RunRecordParts {
 		failed: readonly NoticeReason[];
 		sameProcedure: readonly (readonly string[])[];
 	};
+	metered: MeteredRecord;
 }
 
 // Every key is written out rather than spread, so a part built in another order still lands in
 // this order.
 export function buildRunRecord(parts: RunRecordParts) {
-	const { modes, query, ted, notices } = parts;
+	const { modes, query, ted, notices, metered } = parts;
 	return {
 		schemaVersion: RUN_RECORD_VERSION,
 		startedAt: parts.startedAt,
@@ -85,6 +87,26 @@ export function buildRunRecord(parts: RunRecordParts) {
 			leftOut: notices.leftOut.map(({ notice, reason }) => ({ notice, reason })),
 			failed: notices.failed.map(({ notice, reason }) => ({ notice, reason })),
 			sameProcedure: notices.sameProcedure.map((group) => [...group])
+		},
+		metered: {
+			cap: metered.cap,
+			attempts: metered.attempts,
+			perProvider: {
+				tokenFactory: metered.perProvider.tokenFactory,
+				tavily: metered.perProvider.tavily
+			},
+			refusals: metered.refusals.map(({ provider, operation, reason }) => ({
+				provider,
+				operation,
+				reason
+			})),
+			// usage goes in as the provider sent it, whatever its keys and number forms.
+			responses: metered.responses.map(({ provider, operation, id, usage }) => ({
+				provider,
+				operation,
+				id,
+				usage
+			}))
 		}
 	};
 }
