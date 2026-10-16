@@ -756,6 +756,23 @@ describe('a run refused before any request', () => {
 		expect(readFileSync(lockOf(run.root), 'utf8')).toBe('');
 	});
 
+	it('refuses with 2 while another run replaces an ended lock, naming its claim file', async () => {
+		const replacing = (root: string) => `${lockOf(root)}.replacing`;
+		const run = await captureRun(['600457-2026'], {
+			prepare: (root) => {
+				plantLock(root, JSON.stringify(HELD));
+				writeFileSync(replacing(root), '{}');
+			}
+		});
+		expect(run.code).toBe(2);
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.lines).toHaveLength(2);
+		expect(run.lines[1]).toMatch(/^capture: another capture run is replacing the ended lock /);
+		expect(run.lines[1]).toContain(`delete ${replacing(run.root)}`);
+		expect(readFileSync(lockOf(run.root), 'utf8')).toBe(JSON.stringify(HELD));
+		expect(readFileSync(replacing(run.root), 'utf8')).toBe('{}');
+	});
+
 	it('holds the lock while it runs and leaves none after a failed or an interrupted run', async () => {
 		const held: boolean[] = [];
 		const written = await captureRun(['600457-2026'], {

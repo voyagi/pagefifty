@@ -19,6 +19,7 @@ function lockPath(): string {
 
 const HOLDER = { pid: 1234, startedAt: '2026-10-11T08:00:00.000Z', argv: ['--since', '20260920'] };
 const OTHER = { pid: 5678, startedAt: '2026-10-11T07:00:00.000Z', argv: [] };
+const FIRST = { pid: 9012, startedAt: '2026-10-11T08:00:01.000Z', argv: [] };
 
 function plant(path: string, text: string): void {
 	mkdirSync(join(path, '..'), { recursive: true });
@@ -59,6 +60,37 @@ describe('acquireLock', () => {
 			replaced: { pid: 5678, startedAt: '2026-10-11T07:00:00.000Z' }
 		});
 		expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(HOLDER);
+	});
+
+	it('never removes a lock another run took after both found the same ended holder', () => {
+		const path = lockPath();
+		plant(path, JSON.stringify(OTHER));
+		let first: ReturnType<typeof acquireLock> | undefined;
+		// This run has read the ended holder and asks whether it lives; meanwhile another run that read
+		// the same holder replaces it and takes the lock.
+		const alive = (pid: number) => {
+			if (pid !== OTHER.pid) return true;
+			first ??= acquireLock(path, FIRST, (candidate) => candidate !== OTHER.pid);
+			return false;
+		};
+		const second = acquireLock(path, HOLDER, alive);
+		expect(first).toMatchObject({ ok: true, replaced: { pid: 5678 } });
+		expect(second).toEqual({
+			ok: false,
+			holder: { pid: FIRST.pid, startedAt: FIRST.startedAt }
+		});
+		expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(FIRST);
+		expect(existsSync(`${path}.replacing`)).toBe(false);
+	});
+
+	it('refuses and keeps an ended lock while another run is replacing it', () => {
+		const path = lockPath();
+		plant(path, JSON.stringify(OTHER));
+		writeFileSync(`${path}.replacing`, JSON.stringify(FIRST));
+		const result = acquireLock(path, HOLDER, () => false);
+		expect(result).toEqual({ ok: false, replacing: `${path}.replacing` });
+		expect(JSON.parse(readFileSync(path, 'utf8'))).toEqual(OTHER);
+		expect(JSON.parse(readFileSync(`${path}.replacing`, 'utf8'))).toEqual(FIRST);
 	});
 
 	it.each([
