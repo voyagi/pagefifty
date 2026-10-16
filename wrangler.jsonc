@@ -12,5 +12,7 @@
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": true
+	// Off on purpose: each uploaded version would otherwise get its own public address that stays
+	// reachable after later deploys. Leaving the key out keeps whatever the dashboard last had.
+	"preview_urls": false
 }
