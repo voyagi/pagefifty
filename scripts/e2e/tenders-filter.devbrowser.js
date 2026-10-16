@@ -133,22 +133,22 @@ try {
 	const junk = await readList();
 	check(
 		'?country=XX shows the dropped-values line and still lists rows',
-		junk.status === DROPPED && junk.open.length + junk.closed.length === 362,
-		`status "${junk.status}", ${junk.open.length} open and ${junk.closed.length} closed rows read`
+		junk.status === DROPPED && junk.open.length + junk.closed.length === config.latest.rows,
+		`status "${junk.status}", ${junk.open.length} open and ${junk.closed.length} closed rows read of ${config.latest.rows}`
 	);
 
-	await page.goto(`${BASE}?country=BE&from=2027-01-01`);
+	// No captured deadline lies in 2099, so this filter is empty whichever capture is served.
+	await page.goto(`${BASE}?country=BE&from=2099-01-01`);
 	const empty = await readList();
+	const emptyLine = `Nothing in the ${config.latest.capturedOn} snapshot matches Belgium, deadline on or after 1 Jan 2099.`;
 	check(
-		'?country=BE&from=2027-01-01 shows the named empty state with a Clear filters link to /tenders',
+		'?country=BE&from=2099-01-01 shows the named empty state with a Clear filters link to /tenders',
 		empty.emptyHeading === 'No tenders match these filters' &&
-			empty.text.includes(
-				'Nothing in the 15 Sep 2026 snapshot matches Belgium, deadline on or after 1 Jan 2027.'
-			) &&
+			empty.text.includes(emptyLine) &&
 			clearsToAllTenders(empty) &&
 			!empty.openTable &&
 			!empty.closedLeaf,
-		`heading "${empty.emptyHeading}", clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
+		`heading "${empty.emptyHeading}", line ${empty.text.includes(emptyLine)}, clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
 	);
 
 	// The served page is what a reader has before hydration, and its './tenders' is exactly the state
@@ -184,18 +184,19 @@ try {
 		`message present ${inverted.text.includes(swap)}, heading "${inverted.emptyHeading}"`
 	);
 
-	await page.goto(`${BASE}?to=2026-09-23`);
+	const before = config.latest.dayBefore;
+	await page.goto(`${BASE}?to=${before.date}`);
 	const past = await readList();
-	const lastDay = Date.parse('2026-09-24T00:00:00+02:00');
-	const lateRows = past.closed.filter((row) => Date.parse(row.datetime) >= lastDay);
+	const lastDay = Date.parse(before.endsAt);
+	const lateRows = past.closed.filter((row) => Date.parse(row.datetime) > lastDay);
 	check(
-		'?to=2026-09-23 shows the open zero note above a non-empty closed group',
+		`?to=${before.date}, the day before the capture, shows the open zero note above a non-empty closed group`,
 		past.text.includes('No tender in this list is still open. The closed ones are below.') &&
 			!past.openTable &&
 			past.open.length === 0 &&
 			past.closed.length > 0 &&
 			lateRows.length === 0,
-		`${past.open.length} open and ${past.closed.length} closed rows read, open table ${past.openTable}, ${lateRows.length} closed rows after 23 Sep 2026`
+		`${past.open.length} open and ${past.closed.length} closed rows read, open table ${past.openTable}, ${lateRows.length} closed rows after ${before.date}`
 	);
 
 	// The router keeps the page and its form across a filter navigation, so a chip ticked and a date
@@ -233,7 +234,7 @@ try {
 			cleared.countries === '' &&
 			cleared.checked.length === 0 &&
 			dates.join('') === '' &&
-			cleared.open.length + cleared.closed.length === 362,
+			cleared.open.length + cleared.closed.length === config.latest.rows,
 		`typed "${typed}", then same page ${samePage}, address ${cleared.url}, checked ${cleared.checked.join(' ') || 'none'}, dates "${dates.join('", "')}", ${cleared.open.length + cleared.closed.length} rows read`
 	);
 } finally {

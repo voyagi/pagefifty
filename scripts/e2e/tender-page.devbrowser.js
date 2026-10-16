@@ -4,8 +4,10 @@
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
 //
-// The run uses the real clock, so the captured tenders close day by day (on 1 Dec 2026 two of the
-// 362 are still open), and no check here depends on a notice being open.
+// The run uses the real clock, so the captured tenders close day by day, and no check here depends
+// on a notice being open. The live routes serve the newest capture, so the checks about particular
+// notices of 2026-09-15 read them on /example, which stays on that capture, and /tenders is reached
+// through its first row's link, never a typed notice number.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tender-page';
@@ -54,6 +56,7 @@ function readTender() {
 			coverage: Array.from(document.querySelectorAll('.coverage')).map(text),
 			strip: text(document.querySelector('.unread-strip')),
 			links,
+			tab: text(document.querySelector('a.tab[aria-current="true"]')),
 			documentsLeaf: Boolean(document.querySelector('section#documents')),
 			documentsText: text(document.querySelector('section#documents')),
 			foot: text(document.querySelector('.leaf-foot')),
@@ -83,10 +86,10 @@ try {
 	await page.goto('http://127.0.0.1:8788/');
 	await page.evaluate(() => localStorage.clear());
 
-	const response = await page.goto('http://127.0.0.1:8788/tenders/609955-2026');
+	const response = await page.goto('http://127.0.0.1:8788/example/609955-2026');
 	const facts = await readPage();
 	check(
-		'/tenders/609955-2026 answers 200 with its German title',
+		'/example/609955-2026 answers 200 with its German title',
 		response.status() === 200 && facts.h1Lang === 'de' && facts.h1.length > 0,
 		`status ${response.status()}, h1 lang ${facts.h1Lang}, title "${facts.title}"`
 	);
@@ -108,8 +111,8 @@ try {
 		verdict ? `found "${verdict[0]}"` : `${facts.ownCopy.length} characters of page copy read`
 	);
 	check(
-		'the page title names the tender and its notice',
-		facts.title.endsWith('(609955-2026) - Pagefifty'),
+		'the page title names the tender, its notice and the example run',
+		facts.title.endsWith('(609955-2026), example run - Pagefifty'),
 		`"${facts.title}"`
 	);
 
@@ -134,14 +137,15 @@ try {
 		`strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}`
 	);
 	check(
-		'609955-2026 ends with the face-down Documents leaf and the leaf foot naming the capture day',
-		tender.documentsLeaf &&
+		'609955-2026 sits on the Example tab and ends with the face-down Documents leaf and the leaf foot naming the 15 Sep 2026 snapshot',
+		tender.tab.startsWith('Example') &&
+			tender.documentsLeaf &&
 			tender.foot ===
 				"Criteria as published in TED notice 609955-2026. Source: TED, the EU's Tenders Electronic Daily, snapshot captured 15 Sep 2026. Not legal advice.",
-		`documents leaf ${tender.documentsLeaf}, foot "${tender.foot}"`
+		`tab "${tender.tab}", documents leaf ${tender.documentsLeaf}, foot "${tender.foot}"`
 	);
 	const served = await page.evaluate(async () =>
-		(await fetch('http://127.0.0.1:8788/tenders/609955-2026')).text()
+		(await fetch('http://127.0.0.1:8788/example/609955-2026')).text()
 	);
 	check(
 		'without scripts the served page holds the criteria, the coverage list and the Documents leaf',
@@ -156,7 +160,7 @@ try {
 		facts.ownCopy
 	);
 
-	await page.goto('http://127.0.0.1:8788/tenders/600954-2026');
+	await page.goto('http://127.0.0.1:8788/example/600954-2026');
 	const restricted = await readTender();
 	check(
 		'600954-2026 words its restricted documents link as access on request',
@@ -166,7 +170,7 @@ try {
 		JSON.stringify(restricted.links)
 	);
 
-	await page.goto('http://127.0.0.1:8788/tenders/600367-2026');
+	await page.goto('http://127.0.0.1:8788/example/600367-2026');
 	const documentsOnly = await readTender();
 	const documentsCopy = await readPage();
 	check(
@@ -195,18 +199,24 @@ try {
 	);
 
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
-	// status the server gives that address. Once its deadline has passed (6 Oct 2026) the row sits in
-	// the closed group, folded shut, so the group is opened by its summary first, as a visitor would.
+	// status the server gives that address. The first row sits in the closed group, folded shut, only
+	// once no tender is open, so the group is then opened by its summary first, as a visitor would.
 	await page.goto('http://127.0.0.1:8788/tenders');
 	await page.waitForSelector('[role="group"][aria-label="Theme"] [aria-pressed="true"]', {
 		timeout: 10000
 	});
-	const rowGroup = await page.evaluate(() =>
-		document.querySelector('tr[data-notice="609955-2026"]')?.closest('details') ? 'closed' : 'open'
-	);
-	if (rowGroup === 'closed') await page.click('#closed summary');
-	await page.click('tr[data-notice="609955-2026"] a');
-	await page.waitForFunction(() => location.pathname === '/tenders/609955-2026', null, {
+	const firstRow = await page.evaluate(() => {
+		const row = document.querySelector('tbody tr[data-notice]');
+		return row
+			? {
+					notice: row.getAttribute('data-notice'),
+					group: row.closest('details') ? 'closed' : 'open'
+				}
+			: { notice: null, group: null };
+	});
+	if (firstRow.group === 'closed') await page.click('#closed summary');
+	await page.click('tbody tr[data-notice] a');
+	await page.waitForFunction((path) => location.pathname === path, `/tenders/${firstRow.notice}`, {
 		timeout: 10000
 	});
 	await page.waitForSelector('#tender-title', { timeout: 10000 });
@@ -216,9 +226,12 @@ try {
 		h1: document.querySelector('h1').textContent.trim()
 	}));
 	check(
-		"following 609955-2026's row link from /tenders lands on its page with 200",
-		landed.path === '/tenders/609955-2026' && landed.status === 200 && landed.h1.length > 0,
-		`row in the ${rowGroup} group; path ${landed.path}, status ${landed.status}, h1 "${landed.h1.slice(0, 60)}"`
+		"following the first row's link from /tenders lands on that notice's page with 200",
+		firstRow.notice !== null &&
+			landed.path === `/tenders/${firstRow.notice}` &&
+			landed.status === 200 &&
+			landed.h1.length > 0,
+		`row ${firstRow.notice} in the ${firstRow.group} group; path ${landed.path}, status ${landed.status}, h1 "${landed.h1.slice(0, 60)}"`
 	);
 
 	await notFound(
@@ -243,10 +256,11 @@ try {
 	const unknownLede = await page.evaluate(() =>
 		document.querySelector('.lede').textContent.replace(/\s+/g, ' ').trim()
 	);
+	const unknownStart = `Notice 999991-2026 is not in the ${config.latest.capturedOn} snapshot.`;
 	check(
-		'/tenders/999991-2026 names the number back and the snapshot day',
-		unknownLede.startsWith('Notice 999991-2026 is not in the 15 Sep 2026 snapshot.'),
-		`"${unknownLede.slice(0, 90)}"`
+		"/tenders/999991-2026 names the number back and the newest capture's day",
+		unknownLede.startsWith(unknownStart),
+		`"${unknownLede.slice(0, 90)}", expected to start "${unknownStart}"`
 	);
 
 	const trailing = await page.goto('http://127.0.0.1:8788/tenders/');

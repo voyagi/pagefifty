@@ -125,9 +125,47 @@ try {
 	);
 
 	const visited = [];
+	const listed = await page.goto('http://127.0.0.1:8788/tenders');
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	visited.push(`/tenders ${listed.status()}`);
+	// The live list serves the newest capture, so its tender page is reached by the link of the row
+	// e2e.mjs picked from the built index, and the page is held to the facts written for that notice.
+	const built = config.latest.probe;
+	const builtPath = `/tenders/${built.notice}`;
+	const builtGroup = await page.evaluate(
+		(notice) =>
+			document.querySelector(`tr[data-notice="${notice}"]`)?.closest('details') ? 'closed' : 'open',
+		built.notice
+	);
+	if (builtGroup === 'closed') await page.click('#closed summary');
+	await page.click(`tr[data-notice="${built.notice}"] a`);
+	await page.waitForFunction((path) => location.pathname === path, builtPath, { timeout: 10000 });
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	const shown = await page.evaluate(async () => {
+		const term = (name) =>
+			Array.from(document.querySelectorAll('dt')).find((dt) => dt.textContent.trim() === name);
+		const value = (name) => {
+			const dt = term(name);
+			return dt && dt.nextElementSibling ? dt.nextElementSibling.textContent.trim() : '';
+		};
+		return {
+			status: (await fetch(location.href)).status,
+			notice: value('TED notice'),
+			country: value('Country'),
+			lots: Array.from(document.querySelectorAll('[id^="lot-"]')).filter((leaf) =>
+				/^lot-\d+$/.test(leaf.id)
+			).length
+		};
+	});
+	visited.push(`${builtPath} ${shown.status}`);
+	check(
+		"a listed notice's page, reached from its row, shows the built index's number, lots and buyer country",
+		shown.notice === built.notice &&
+			shown.lots === built.lots &&
+			shown.country === built.countries.join(', '),
+		`notice "${shown.notice}", ${shown.lots} lots, country "${shown.country}"; built index: ${built.notice}, ${built.lots} lots, ${built.countries.join(', ')}`
+	);
 	for (const url of [
-		'http://127.0.0.1:8788/tenders',
-		'http://127.0.0.1:8788/tenders/609955-2026',
 		'http://127.0.0.1:8788/example',
 		'http://127.0.0.1:8788/example/609955-2026'
 	]) {

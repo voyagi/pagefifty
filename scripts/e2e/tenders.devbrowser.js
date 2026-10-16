@@ -4,9 +4,9 @@
 // zone after hydration without a hydration warning.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
-// The run uses the real clock, so rows move from the open group to the closed one day by day (on
-// 1 Dec 2026 two of the 362 notices are still open; the last lot closes 9 Oct 2027), and no check
-// assumes a given notice is open: each one reads which group a row sits in first.
+// The run uses the real clock, so rows move from the open group to the closed one day by day, and
+// no check assumes a given notice is open: each one reads which group a row sits in first. The
+// list serves the newest capture, so its counts and days come from config.latest.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tenders';
@@ -336,26 +336,31 @@ try {
 	const all = facts.open.concat(facts.closed);
 	const untagged = all.filter((row) => !row.tag || !row.reason);
 	check(
-		'every row carries a reading-status tag and its reason',
-		all.length === 362 && untagged.length === 0,
-		`${all.length} rows, ${untagged.length} without a tag or reason`
+		'every row of the newest capture carries a reading-status tag and its reason',
+		all.length === config.latest.rows && untagged.length === 0,
+		`${all.length} rows of ${config.latest.rows} in the built index, ${untagged.length} without a tag or reason`
 	);
 
-	const documents = all.find((row) => row.notice === '609955-2026');
+	// A notice whose criterion points at the documents is a fact of the 2026-09-15 capture, which the
+	// example keeps serving, so its tag is read from the example list as served.
+	const exampleList = await page.evaluate(async () =>
+		(await fetch('http://127.0.0.1:8788/example')).text()
+	);
+	const rowStart = exampleList.indexOf('<tr data-notice="609955-2026"');
+	const exampleRow =
+		rowStart < 0 ? '' : exampleList.slice(rowStart, exampleList.indexOf('</tr>', rowStart));
 	check(
-		'609955-2026 reads "Criteria in the documents"',
-		documents && documents.tag === 'Criteria in the documents',
-		documents
-			? `in the ${facts.open.includes(documents) ? 'open' : 'closed'} group, tag "${documents.tag}"`
-			: 'row not found'
+		'609955-2026 reads "Criteria in the documents" on the served example list',
+		exampleRow.includes('Criteria in the documents'),
+		rowStart < 0 ? 'row not found in /example' : `row of ${exampleRow.length} characters read`
 	);
 
-	const caveat =
-		'A snapshot, not live: tenders published before 1 Sep 2026 or after 15 Sep 2026 are missing.';
+	const captureLine = `Snapshot captured from TED on ${config.latest.capturedOn}`;
+	const caveat = `A snapshot, not live: tenders published before ${config.latest.firstPublished} or after ${config.latest.capturedOn} are missing.`;
 	check(
-		'shows the capture line and the snapshot caveat',
-		facts.body.includes('Snapshot captured from TED on 15 Sep 2026') && facts.body.includes(caveat),
-		`capture line ${facts.body.includes('Snapshot captured from TED on 15 Sep 2026')}, caveat ${facts.body.includes(caveat)}`
+		"shows the newest capture's capture line and snapshot caveat",
+		facts.body.includes(captureLine) && facts.body.includes(caveat),
+		`capture line ${facts.body.includes(captureLine)}, caveat ${facts.body.includes(caveat)}, expected "${caveat}"`
 	);
 
 	// The page as a browser with scripts off receives it: fetched inside the page, never run.
@@ -367,8 +372,8 @@ try {
 	const notCentral = servedLabels.filter((match) => !/ (CEST|CET)$/.test(match[2]));
 	check(
 		'without scripts the served page holds every row and the closed group',
-		servedRows === 362 && served.includes('<details') && served.includes('<summary'),
-		`${servedRows} rows in the served HTML, details ${served.includes('<details')}`
+		servedRows === config.latest.rows && served.includes('<details') && served.includes('<summary'),
+		`${servedRows} rows in the served HTML of ${config.latest.rows} in the built index, details ${served.includes('<details')}`
 	);
 	check(
 		'the served HTML writes every deadline in Central European Time',

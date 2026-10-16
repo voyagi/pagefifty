@@ -24,16 +24,17 @@ function check(name, ok, detail) {
 }
 
 // One route per layout: the start page, both lists, the largest notice, the filled profile, the
-// empty filter state and the error page.
+// empty filter state and the error page. The largest notice, 600457-2026 with its 17 lots, is read on
+// the example, which stays on the 2026-09-15 capture that holds it; no deadline lies in 2099.
 const ROUTES = [
 	{ path: '/', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ path: '/tenders', url: 'http://127.0.0.1:8788/tenders?theme=light' },
 	{ path: '/example', url: 'http://127.0.0.1:8788/example?theme=light' },
-	{ path: '/tenders/600457-2026', url: 'http://127.0.0.1:8788/tenders/600457-2026?theme=light' },
+	{ path: '/example/600457-2026', url: 'http://127.0.0.1:8788/example/600457-2026?theme=light' },
 	{ path: '/profile (demo firm)', url: 'http://127.0.0.1:8788/profile?theme=light', demo: true },
 	{
 		path: '/tenders with no match',
-		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2027-01-01&theme=light'
+		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2099-01-01&theme=light'
 	},
 	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' }
 ];

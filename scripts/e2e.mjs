@@ -26,6 +26,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { cetDayEnd } from '../src/lib/core/deadline.ts';
 import { captureDay, firstPublishedDay, newestCapture } from '../src/lib/snapshot/capture-id.ts';
 import { SnapshotIndexSchema } from '../src/lib/snapshot/index-row.ts';
 import {
@@ -99,6 +100,14 @@ function countryNames() {
 	);
 }
 
+// A deadline filter that ends the day before the capture day keeps only tenders closed before the
+// capture, so it is closed under the real clock whichever capture is served.
+function dayBefore(id) {
+	const [year, month, day] = id.split('-').map(Number);
+	const date = new Date(Date.UTC(year, month - 1, day - 1)).toISOString().slice(0, 10);
+	return { date, endsAt: cetDayEnd(date).toISOString() };
+}
+
 function noticeOrder(left, right) {
 	const [leftRunning, leftYear] = left.noticeNumber.split('-').map(Number);
 	const [rightRunning, rightYear] = right.noticeNumber.split('-').map(Number);
@@ -143,6 +152,7 @@ function latestCapture() {
 		total: capture.total,
 		capturedOn: captureDay(capture.fetchedAt),
 		firstPublished: firstPublishedDay(capture.query),
+		dayBefore: dayBefore(id),
 		probe: {
 			notice: first.noticeNumber,
 			lots: first.lots.length,
