@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { fc, test } from '@fast-check/vitest';
-import { resolveTransportMode } from './transport-mode';
+import { resolveModes, resolveTransportMode } from './transport-mode';
 
 describe('resolveTransportMode', () => {
 	it('replays snapshots when the switch is absent', () => {
@@ -39,4 +39,42 @@ describe('resolveTransportMode', () => {
 		};
 		expect(resolveTransportMode(config.vars ?? {})).toBe('snapshot');
 	});
+});
+
+describe('resolveModes', () => {
+	const SNAPSHOT = { ted: 'live', tokenFactory: 'snapshot', tavily: 'snapshot' };
+	const LIVE = { ted: 'live', tokenFactory: 'live', tavily: 'live' };
+
+	it('the default configuration resolves Token Factory and Tavily to snapshot', () => {
+		const withoutSwitch = { ...process.env };
+		delete withoutSwitch.PAGEFIFTY_LIVE;
+		for (const env of [{}, undefined, withoutSwitch, { PATH: '/usr/bin', HOME: '/home/owner' }]) {
+			const modes = resolveModes(false, env);
+			expect(modes).toEqual(SNAPSHOT);
+			expect(Object.isFrozen(modes)).toBe(true);
+			// Every metered upstream the object names, so one added later is held to the same rule.
+			for (const [upstream, mode] of Object.entries(modes)) {
+				if (upstream !== 'ted') expect(mode, upstream).toBe('snapshot');
+			}
+		}
+	});
+
+	it('goes live for both metered upstreams only with --live and PAGEFIFTY_LIVE exactly 1', () => {
+		const modes = resolveModes(true, { PAGEFIFTY_LIVE: '1' });
+		expect(modes).toEqual(LIVE);
+		expect(Object.isFrozen(modes)).toBe(true);
+	});
+
+	it('stays snapshot when PAGEFIFTY_LIVE is 1 but --live was not given', () => {
+		expect(resolveModes(false, { PAGEFIFTY_LIVE: '1' })).toEqual(SNAPSHOT);
+	});
+
+	it.each([undefined, '0', 'true', ' 1', '1 ', '01'])(
+		'stays snapshot with --live when PAGEFIFTY_LIVE is %j',
+		(value) => {
+			expect(resolveModes(true, value === undefined ? {} : { PAGEFIFTY_LIVE: value })).toEqual(
+				SNAPSHOT
+			);
+		}
+	);
 });
