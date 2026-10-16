@@ -95,7 +95,8 @@ function pageRefusal(page: SearchPage, hits: SearchHit[], seen: Set<string>): st
 		: undefined;
 }
 
-export async function searchAll(client: TedClient, since: string): Promise<SearchResult> {
+// One reading of every page; the label opens each reason, so a failure names the reading and page.
+async function readListing(client: TedClient, since: string, label: string): Promise<SearchResult> {
 	const hits: SearchHit[] = [];
 	const seen = new Set<string>();
 	let searchTotal = 0;
@@ -109,12 +110,12 @@ export async function searchAll(client: TedClient, since: string): Promise<Searc
 			{ page },
 			MAX_SEARCH_PAGE_BYTES
 		);
-		if (!answer.ok) return { ok: false, reason: `search page ${page}: ${answer.reason}` };
+		if (!answer.ok) return { ok: false, reason: `${label} ${page}: ${answer.reason}` };
 		const parsed = parsePage(answer.body);
 		if (parsed === undefined) {
 			return {
 				ok: false,
-				reason: `search page ${page}: not an object with a notices list and a numeric totalNoticeCount`
+				reason: `${label} ${page}: not an object with a notices list and a numeric totalNoticeCount`
 			};
 		}
 		// A notice that leaves the listing between pages can shift another past the page edge unseen,
@@ -123,13 +124,45 @@ export async function searchAll(client: TedClient, since: string): Promise<Searc
 		else if (parsed.totalNoticeCount !== searchTotal) {
 			return {
 				ok: false,
-				reason: `search page ${page}: the stated total changed from ${searchTotal} to ${parsed.totalNoticeCount}, so the listing moved while it was read`
+				reason: `${label} ${page}: the stated total changed from ${searchTotal} to ${parsed.totalNoticeCount}, so the listing moved while it was read`
 			};
 		}
 		const refusal = pageRefusal(parsed, hits, seen);
-		if (refusal !== undefined) return { ok: false, reason: `search page ${page}: ${refusal}` };
+		if (refusal !== undefined) return { ok: false, reason: `${label} ${page}: ${refusal}` };
 	} while (hits.length < searchTotal);
 	return { ok: true, hits, searchTotal, pages: page };
+}
+
+// A hit with no publication number never becomes a notice (xmlTarget fails it), so only numbers count.
+function numbersOf(hits: readonly SearchHit[]): Set<string> {
+	const numbers = new Set<string>();
+	for (const hit of hits) {
+		const number = hit['publication-number'];
+		if (typeof number === 'string') numbers.add(number);
+	}
+	return numbers;
+}
+
+function listingChange(first: readonly SearchHit[], second: readonly SearchHit[]) {
+	const [a, b] = [numbersOf(first), numbersOf(second)];
+	const onlyFirst = [...a].filter((number) => !b.has(number));
+	const onlySecond = [...b].filter((number) => !a.has(number));
+	if (onlyFirst.length === 0 && onlySecond.length === 0) return undefined;
+	const named = (numbers: string[]) => (numbers.length > 0 ? numbers.join(', ') : 'none');
+	return `search: a second reading of the listing names other notices (only in the first: ${named(onlyFirst)}; only in the second: ${named(onlySecond)}), so the listing moved while it was read`;
+}
+
+// TED pages by offset, so when one notice leaves a page already read and another joins further on,
+// the total holds while a notice shifts across a page edge unseen, and no count or repeat check can
+// tell. A listing of more than one page is therefore read twice, and two readings that name other
+// notices end the search. One page is one answer, so it cannot shift within itself.
+export async function searchAll(client: TedClient, since: string): Promise<SearchResult> {
+	const first = await readListing(client, since, 'search page');
+	if (!first.ok || first.pages === 1) return first;
+	const second = await readListing(client, since, 'second reading, search page');
+	if (!second.ok) return second;
+	const change = listingChange(first.hits, second.hits);
+	return change === undefined ? first : { ok: false, reason: change };
 }
 
 function namesXml(hit: SearchHit): boolean {
