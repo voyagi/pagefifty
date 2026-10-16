@@ -1049,6 +1049,39 @@ describe('a notice body the reader refuses', () => {
 	});
 });
 
+// TED's 694786-2026 (16 Oct 2026) names a mailbox inside a selection criterion. The address may not
+// be kept and the criterion may not be quoted other than as published, so neither scrubbed nor
+// unscrubbed can be served.
+describe('a notice whose selection criterion holds contact data', () => {
+	it('fails that notice, writes the others, and leaves no address and no changed criterion', async () => {
+		const three = ['600457-2026', '600554-2026', '600779-2026'];
+		const notice = '600457-2026';
+		const tracked = readFileSync(capturePath(notice), 'utf8')
+			.split('[removed]')
+			.join(PLANTED_ADDRESS);
+		const criterion = tracked.indexOf('<efac:SelectionCriteria>');
+		const description = tracked.indexOf('<cbc:Description', criterion);
+		const textStart = tracked.indexOf('>', description) + 1;
+		expect(criterion).toBeGreaterThan(0);
+		expect(description).toBeGreaterThan(criterion);
+		expect(description).toBeLessThan(tracked.indexOf('</efac:SelectionCriteria>', criterion));
+		const served = `${tracked.slice(0, textStart)}Auszug bei ${PLANTED_ADDRESS} anfordern. ${tracked.slice(textStart)}`;
+		const run = await captureRun(three, {
+			script: { [tedNoticeXmlUrl(notice)]: [{ status: 200, body: served }] }
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readJson(join(run.folder, 'run.json')).notices.failed).toEqual([
+			{
+				notice,
+				reason:
+					'scrub: contact data stands inside a selection criterion, which is served only as published'
+			}
+		]);
+		expect(readdirSync(join(run.folder, 'xml'))).toEqual(['600554-2026.xml', '600779-2026.xml']);
+		expect(folderProblems(run.folder)).toEqual([]);
+	});
+});
+
 describe('the cache after a run', () => {
 	it('drops the notices a successful run no longer finds listed, and says how many', async () => {
 		const first = await captureRun(['600457-2026', '600554-2026']);
