@@ -117,9 +117,17 @@ export async function searchAll(client: TedClient, since: string): Promise<Searc
 				reason: `search page ${page}: not an object with a notices list and a numeric totalNoticeCount`
 			};
 		}
+		// A notice that leaves the listing between pages can shift another past the page edge unseen,
+		// and the collected count would then match the new total; so page 1's total stands for the run.
+		if (page === 1) searchTotal = parsed.totalNoticeCount;
+		else if (parsed.totalNoticeCount !== searchTotal) {
+			return {
+				ok: false,
+				reason: `search page ${page}: the stated total changed from ${searchTotal} to ${parsed.totalNoticeCount}, so the listing moved while it was read`
+			};
+		}
 		const refusal = pageRefusal(parsed, hits, seen);
 		if (refusal !== undefined) return { ok: false, reason: `search page ${page}: ${refusal}` };
-		searchTotal = parsed.totalNoticeCount;
 	} while (hits.length < searchTotal);
 	return { ok: true, hits, searchTotal, pages: page };
 }
