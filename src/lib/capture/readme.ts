@@ -13,6 +13,8 @@ interface ReadmeParts {
 	searchTotal: number;
 	leftOut: readonly { notice: string; reason: string }[];
 	failed: readonly { notice: string; reason: string }[];
+	// Failed notices whose search hit named no usable notice identifier and version.
+	unversioned: number;
 }
 
 const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -56,20 +58,28 @@ function leftOutSection(leftOut: ReadmeParts['leftOut']): string[] {
 	];
 }
 
-// The latest-version rule only sees notices that were read, so a failed notice that was a newer
-// version of one this capture keeps leaves that older version listed. TED's search could name each
-// hit's version, but the request asks only for the fields the list cards read, so the README says so.
-function notCapturedSection(failed: ReadmeParts['failed']): string[] {
-	if (failed.length === 0) return [];
+// A failed notice whose search hit named its version has already taken any older version of it out
+// (Left out). Only one that named none could still leave an older version listed, so the README
+// warns about those alone.
+function versionWarning(unversioned: number): string[] {
+	if (unversioned === 0) return [];
+	const which = unversioned === 1 ? 'it' : 'one of them';
+	return [
+		`TED named no version for ${counted(unversioned, 'notice')} listed here, so an earlier version of ${which} may still be listed here as open.`,
+		''
+	];
+}
+
+function notCapturedSection(parts: ReadmeParts): string[] {
+	if (parts.failed.length === 0) return [];
 	return [
 		'## Not captured',
 		'',
 		'These notices were in the search answer, but their XML could not be downloaded or read, so they are not in this capture:',
 		'',
-		...failed.map(({ notice, reason }) => `- ${notice}: ${reason}`),
+		...parts.failed.map(({ notice, reason }) => `- ${notice}: ${reason}`),
 		'',
-		'A notice listed here may be a newer version of a notice this capture holds, and then an earlier version of it may still be listed here as open.',
-		''
+		...versionWarning(parts.unversioned)
 	];
 }
 
@@ -92,7 +102,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		...whenAndWhat(parts),
 		'',
 		...leftOutSection(parts.leftOut),
-		...notCapturedSection(parts.failed),
+		...notCapturedSection(parts),
 		...SOURCE_AND_TERMS,
 		'',
 		...WHAT_WAS_CHANGED,

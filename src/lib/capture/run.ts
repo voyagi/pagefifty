@@ -19,6 +19,7 @@ import {
 	stagingPath,
 	writeJsonFile
 } from './capture-folder.ts';
+import { hitVersion, outdatedByFailed } from './failed-versions.ts';
 import { acquireLock, isAlive } from './lock.ts';
 import { captureReadme } from './readme.ts';
 import { buildRunRecord, writeRunRecord, type RunOutcome, type RunRecord } from './run-record.ts';
@@ -43,6 +44,11 @@ export interface CaptureDeps {
 interface Failure {
 	notice: string;
 	reason: string;
+}
+
+interface FailedHit {
+	notice: string;
+	hit: SearchHit;
 }
 
 interface ReadOne {
@@ -80,6 +86,7 @@ interface Run {
 	searchTotal: number;
 	cacheHits: number;
 	failed: Failure[];
+	failedHits: FailedHit[];
 	selection?: Selection;
 	end?: RunEnd;
 	releaseLock?: () => void;
@@ -165,25 +172,27 @@ function readScrubbed(number: string, hit: SearchHit, raw: Uint8Array): NoticeOu
 
 async function readHits(hits: readonly SearchHit[], run: Run, cache: XmlCache) {
 	const notices: ReadOne[] = [];
-	const failedOne = (notice: string, reason: string) =>
+	const failedOne = (hit: SearchHit, notice: string, reason: string) => {
 		run.failed.push({ notice, reason: oneLine(reason) });
+		run.failedHits.push({ notice, hit });
+	};
 	const valid: { hit: SearchHit; number: string; url: string }[] = [];
 	for (const hit of hits) {
 		const target = xmlTarget(hit);
 		if (target.ok) valid.push({ hit, number: target.number, url: target.url });
-		else failedOne(target.notice, target.reason);
+		else failedOne(hit, target.notice, target.reason);
 	}
 	valid.sort((a, b) => publicationOrder(a.number, b.number));
 	for (const { hit, number, url } of valid) {
 		const fetched = await fetchRaw(run.client, cache, number, url);
 		if (!fetched.ok) {
-			failedOne(number, fetched.reason);
+			failedOne(hit, number, fetched.reason);
 			continue;
 		}
 		if (fetched.cached) run.cacheHits += 1;
 		const outcome = readScrubbed(number, hit, fetched.raw);
 		if (outcome.ok) notices.push(outcome.notice);
-		else failedOne(outcome.failure.notice, outcome.failure.reason);
+		else failedOne(hit, outcome.failure.notice, outcome.failure.reason);
 	}
 	return { notices, listed: new Set(valid.map(({ number }) => number)) };
 }
@@ -217,6 +226,27 @@ function keepLatest(notices: readonly ReadOne[]): Selection {
 	const selection = selectLatest(notices.map((notice) => notice.record));
 	const kept = selection.kept.map((record) => byNumber.get(record.noticeNumber) as ReadOne);
 	return { kept, leftOut: selection.leftOut, sameProcedure: selection.sameProcedure };
+}
+
+// The latest-version rule only sees notices that were read, so an older version would be served as
+// open while its newer version failed. The search names every hit's version, failed ones included,
+// so that older version is left out before the run counts what it writes.
+function leaveOutOutdated(selection: Selection, failed: readonly FailedHit[]): Selection {
+	const outdated = outdatedByFailed(
+		selection.kept.map((notice) => notice.record),
+		failed
+	);
+	if (outdated.length === 0) return selection;
+	const out = new Set(outdated.map(({ notice }) => notice));
+	return {
+		kept: selection.kept.filter((notice) => !out.has(notice.number)),
+		leftOut: [...selection.leftOut, ...outdated].sort((a, b) =>
+			publicationOrder(a.notice, b.notice)
+		),
+		sameProcedure: selection.sameProcedure
+			.map((group) => group.filter((notice) => !out.has(notice)))
+			.filter((group) => group.length > 1)
+	};
 }
 
 function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string): RunRecord {
@@ -277,7 +307,8 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			written: selection.kept.length,
 			searchTotal: run.searchTotal,
 			leftOut: selection.leftOut,
-			failed: failures
+			failed: failures,
+			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length
 		})
 	);
 }
@@ -399,7 +430,7 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	const { notices, listed } = await readHits(search.hits, run, cache);
 	stopIfInterrupted(deps);
 	for (const { notice, reason } of run.failed) log(`capture: ${notice}: ${reason}`);
-	run.selection = keepLatest(notices);
+	run.selection = leaveOutOutdated(keepLatest(notices), run.failedHits);
 	const tooMany = failureRefusal(run.failed.length, run.listed, run.selection.kept.length);
 	if (tooMany !== undefined) {
 		return ended(deps, 'failed', tooMany, `${tooMany}; nothing was written`);
@@ -435,7 +466,8 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		listed: 0,
 		searchTotal: 0,
 		cacheHits: 0,
-		failed: []
+		failed: [],
+		failedHits: []
 	};
 	// Every run that got this far leaves a record, a thrown one included: in phase 2 it is the
 	// account of a live run's paid attempts.

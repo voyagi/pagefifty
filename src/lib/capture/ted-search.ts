@@ -6,7 +6,8 @@ import type { TedClient } from './ted-client.ts';
 
 export const TED_SEARCH_URL = 'https://api.ted.europa.eu/v3/notices/search';
 
-// The fields the list cards read, in the spike's order.
+// The fields the list cards read, in the spike's order, then each hit's notice identifier and version,
+// which say whether a notice whose XML failed was a newer version of one the run read.
 export const SEARCH_FIELDS: readonly string[] = [
 	'publication-number',
 	'buyer-country',
@@ -16,7 +17,9 @@ export const SEARCH_FIELDS: readonly string[] = [
 	'selection-criterion-lot',
 	'selection-criterion-description-lot',
 	'document-url-lot',
-	'links'
+	'links',
+	'notice-identifier',
+	'notice-version'
 ];
 
 const PAGE_LIMIT = 250;
