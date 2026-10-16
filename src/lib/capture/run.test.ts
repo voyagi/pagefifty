@@ -38,7 +38,9 @@ const FIELDS = [
 	'selection-criterion-lot',
 	'selection-criterion-description-lot',
 	'document-url-lot',
-	'links'
+	'links',
+	'notice-identifier',
+	'notice-version'
 ];
 
 const HEAD = '0123456789abcdef0123456789abcdef01234567';
@@ -829,7 +831,9 @@ describe('a run where two of eight notices fail', () => {
 		expect(readme).toContain('## Not captured');
 		expect(readme).toContain('- 600338-2026: status 404');
 		expect(readme).toContain('- 601783-2026: status 404');
-		expect(readme).toContain('an earlier version of it may still be listed here as open');
+		expect(readme).toContain(
+			'TED named no version for 2 notices listed here, so an earlier version of one of them may still be listed here as open.'
+		);
 		expect(readme).toContain('6 notices written, of the 8 TED stated for the search');
 	});
 });
@@ -884,6 +888,120 @@ describe('a run with too many failed notices', () => {
 			listed: 8,
 			written: 0
 		});
+	});
+});
+
+// TRAP 85's real pair: both carry notice identifier ad28f539, 600367-2026 as version 02 and
+// 601147-2026 as version 01. The tracked listing never asked for the two version fields, so the
+// search answer here is the listing with them added.
+const PAIR_ID = 'ad28f539-52a7-4def-81b0-b09c8a77968a';
+
+function versionedSearch(hits: readonly [notice: string, id?: string, version?: unknown][]) {
+	const listing = new Map(
+		(
+			readJson(join('examples', '2026-09-15', 'notices.json')).notices as Record<string, unknown>[]
+		).map((hit) => [hit['publication-number'], hit])
+	);
+	const notices = hits.map(([notice, id, version]) => ({
+		...(listing.get(notice) as Record<string, unknown>),
+		...(id === undefined ? {} : { 'notice-identifier': id }),
+		...(version === undefined ? {} : { 'notice-version': version })
+	}));
+	const body = JSON.stringify({ notices, totalNoticeCount: notices.length, timedOut: false });
+	return { [SEARCH]: [{ status: 200, body }] };
+}
+
+describe('a run whose failed notice is a newer version of one it read', () => {
+	let run: Awaited<ReturnType<typeof captureRun>>;
+
+	beforeAll(async () => {
+		run = await captureRun(['600367-2026', '600457-2026', '600779-2026', '601147-2026'], {
+			script: {
+				...versionedSearch([
+					['600457-2026'],
+					['601147-2026', PAIR_ID, 1],
+					['600367-2026', PAIR_ID, '02'],
+					['600779-2026']
+				]),
+				[tedNoticeXmlUrl('600367-2026')]: [{ status: 404 }]
+			}
+		});
+	});
+
+	it('a failed newer version leaves its older version out of the capture', () => {
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readdirSync(join(run.folder, 'xml')).sort()).toEqual([
+			'600457-2026.xml',
+			'600779-2026.xml'
+		]);
+		expect(readJson(join(run.folder, 'run.json')).notices).toEqual({
+			listed: 4,
+			written: 2,
+			leftOut: [
+				{ notice: '601147-2026', reason: 'a newer version (600367-2026, version 2) failed' }
+			],
+			failed: [{ notice: '600367-2026', reason: 'status 404' }],
+			sameProcedure: []
+		});
+	});
+
+	it('names the older version under Left out and adds no version warning', () => {
+		const readme = readFileSync(join(run.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('- 601147-2026: a newer version (600367-2026, version 2) failed');
+		expect(readme).toContain('- 600367-2026: status 404');
+		expect(readme).not.toContain('TED named no version');
+		expect(readme).not.toContain('may still be listed here as open');
+	});
+
+	it('still refuses a capture the rule leaves with no notice to write', async () => {
+		const cancelled = buildSynthetic(
+			'cancel-notice',
+			readFileSync(capturePath('600017-2026'), 'utf8')
+		);
+		const empty = await captureRun(['600017-2026', '600367-2026', '601147-2026'], {
+			script: {
+				...versionedSearch([
+					['600017-2026'],
+					['601147-2026', PAIR_ID, '01'],
+					['600367-2026', PAIR_ID, 2]
+				]),
+				[tedNoticeXmlUrl('600367-2026')]: [{ status: 404 }],
+				[tedNoticeXmlUrl('600017-2026')]: [{ status: 200, body: cancelled }]
+			}
+		});
+		expect(empty.code).toBe(1);
+		expect(readdirSync(join(empty.root, 'examples'))).toEqual([]);
+		expect(empty.lines).toContain('capture: no notice was left to write; nothing was written');
+	});
+
+	it('counts the failed notices TED named no version for in the README', async () => {
+		const six = [
+			'600367-2026',
+			'600457-2026',
+			'600554-2026',
+			'600779-2026',
+			'601783-2026',
+			'609955-2026'
+		];
+		const mixed = await captureRun(six, {
+			script: {
+				...versionedSearch([
+					['600367-2026', PAIR_ID, 2],
+					['600457-2026'],
+					['600554-2026'],
+					['600779-2026', PAIR_ID, 'two'],
+					['601783-2026'],
+					['609955-2026']
+				]),
+				[tedNoticeXmlUrl('600367-2026')]: [{ status: 404 }],
+				[tedNoticeXmlUrl('600779-2026')]: [{ status: 404 }]
+			}
+		});
+		expect(mixed.code, mixed.lines.join('\n')).toBe(0);
+		const readme = readFileSync(join(mixed.folder, 'README.md'), 'utf8');
+		expect(readme).toContain(
+			'TED named no version for 1 notice listed here, so an earlier version of it may still be listed here as open.'
+		);
 	});
 });
 
