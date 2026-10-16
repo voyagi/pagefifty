@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.uni-stuttgart.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Universität Stuttgart</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Keplerstraße 7</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70174</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 147 794 196</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.uni-stuttgart.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Universität Stuttgart, Zentrale Beschaffungsstelle</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Keplerstraße 7</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70174</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE147794196</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.rp-karlsruhe.de/servlet/PB/menu/1159131/index.html</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg im Regierungspräsidium Karlsruhe</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Durlacher Allee 100</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76137</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE811469974</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00678248-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">e863f995-8452-4183-8e69-c1220f6e67b1</cbc:ID>
+	<cbc:ContractFolderID>d7faa4e7-0bd3-44c6-8bd2-925aec90d138</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+	<cbc:IssueTime>14:01:52+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-01+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://www.beschaeftigte.uni-stuttgart.de/uni-services/finanzen/beschaffung/</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB).
+Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet:
+(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+ 
+(3) Der Antrag ist unzulässig, soweit
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat;
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+ 
+Hinsichtlich der Information nicht berücksichtigter Bieter und Bewerber gelten die §§ 134, 135 GWB. Insbesondere gilt: Bieter deren Angebote für den Zuschlag nicht berücksichtigt werden sollen, werden vor dem Zuschlag gemäß § 134 GWB darüber informiert. Das gilt auch für Bewerber, denen keine Information über die Ablehnung ihrer Bewerbung zur Verfügung gestellt wurde, bevor die Mitteilung über die Zuschlagsentscheidung an die betroffenen Bieter ergangen ist.
+Ein Vertrag darf erst 15 Kalendertage nach Absendung dieser Information durch den Auftraggeber geschlossen werden; bei Übermittlung per Telefax oder auf elektronischem Wege beträgt diese Frist 10 Kalendertage.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY8YTUX67ZGK</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">25-150</cbc:ID>
+		<cbc:Name languageID="DEU">Beschaffung und Implementierung einer Bewerbermangementsoftware</cbc:Name>
+		<cbc:Description languageID="DEU">Beschaffung und Implementierung einer Bewerbermanagementsoftware für die Universität Stuttgart</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXUEYY8YTUX67ZGK#
+
+
+Zuschlagskriterien für diese Ausschreibung: 
+Preis: 4.000 Punkte (40 %) 
+
+Die Kosten sind in der Anlage A05 Preisblatt einzutragen. Etwaige Erläuterungen des Bieters können in den dort vorgesehenen Feldern angegeben werden.
+
+Im Preisblatt sind insbesondere folgende Kostenbestandteile auszuweisen:
+- Lizenzen
+- Übergreifende Module und Funktionspakete
+- Konfiguration und Einrichtung der BMS-Lösung
+- Schnittstellen und technische Integrationen
+- Projektabwicklung und Einführung
+- Betrieb, Wartung, Service und Support
+Der für die Wertung maßgebliche Gesamtangebotspreis ergibt sich aus der im Preisblatt ausgewiesenen "Gesamtsumme Positionen netto". Der Wertungszeitraum beträgt fünf Jahre. Wiederkehrende jährliche Kosten werden für diesen Zeitraum berücksichtigt; einmalige Kosten fließen einmalig in die Wertung ein.
+
+Das Angebot mit dem niedrigsten Gesamtpreis erhält die Höchstpunktzahl. Ist der Gesamtpreis eines Angebots z. B. um 100 % höher im Vergleich zum Angebot mit dem niedrigsten Gesamtpreis, dann erhält dieses Angebot 0 Punkte. 0 Punkte stellen die Untergrenze dar, es werden keine Negativpunkte vergeben. Die Berechnungsformel entnehmen Sie der Verfahrensbeschreibung A00.
+
+Leistung: 6.000 Punkte (60%)
+
+Die Bewertung der Leistung erfolgt anhand der nachfolgend dargestellten Kriteriengruppen. Für die qualitativen Zuschlagskriterien gilt dabei ein absoluter und kein relativer Bewertungsmaßstab. Das im Vergleich mit anderen Angeboten jeweils beste Angebot erhält daher nicht automatisch die maximal erreichbare Punktzahl. Die Bewertung erfolgt durch ein heterogen zusammengesetztes Bewertungsgremium.
+
+Bewerbungsmanagement-Software
+max. 3.000 Leistungspunkte, Gewichtung innerhalb des Kriteriums Leistung: 50 %
+
+- Funktionale Anforderungen: max. 1.800 Leistungspunkte
+- Nicht-funktionale Anforderungen: max. 1.200 Leistungspunkte
+
+Bewertet werden die in der Anlage A04 Prüf- und Bewertungsmatrix für Ausschluss- und Zuschlagskriterien als Zuschlagskriterien ausgewiesenen funktionalen und nicht-funktionalen Anforderungen. Maßgeblich sind die dort festgelegten Bewertungs- und Gewichtungsregeln.
+
+Konzept
+max. 1.200 Leistungspunkte, Gewichtung innerhalb des Kriteriums Leistung: 20 %
+Mit dem Angebot ist ein Konzept einzureichen, das die folgenden vier Themenbereiche abdeckt. Die Gewichtung innerhalb der Konzeptbewertung verteilt sich wie folgt:
+- Implementierung: 50 %
+- Lösung, Betrieb und Weiterentwicklung: 20 %
+- Organisation und Zusammenarbeit: 15 %
+- Schulung und Enablement: 15 %
+Maßgeblich sind die in der Anlage A06 Leitfaden zur Konzeptabfrage und in der Anlage A09 Wertungsmatrix für die Zuschlagskriterien festgelegten inhaltlichen Erwartungen und Bewertungsmaßstäbe. 
+
+Bieterpräsentation
+max. 1.200 Leistungspunkte, Gewichtung innerhalb des Kriteriums Leistung: 20 %
+
+Bewertet wird die im Rahmen der Bieterpräsentation live demonstrierte Unterstützung der vorgegebenen Use Cases. Die Einzelheiten zu Ablauf, Bewertungsdimensionen, Punkteskala und Berechnung der Wertungspunkte ergeben sich aus der Anlage A07 Leitfaden zur Bieterpräsentation.
+
+Teststellung
+max. 600 Leistungspunkte, Gewichtung innerhalb des Kriteriums Leistung: 10 %
+
+Sofern eine Teststellung durchgeführt wird, erfolgt die Bewertung nach Maßgabe der in Anlage A08 Leitfaden zur Teststellung festgelegten Bewertungsdimensionen.
+
+ -------------------------------------------------------------------- 
+Zahlungsbedingungen sind in § 7 der AGB der Universität Stuttgart geregelt. Zahlungen der Universität an den Auftragnehmer vor Erhalt des Gegenstandes/der Dienstleistung sind nach der Landeshaushaltsordnung für Baden-Württemberg (§56 LHO) grundsätzlich verboten. Ist eine Vorleistung im Ausnahmefall erforderlich, weil der Gegenstand/die Dienstleistung ansonsten nicht beschafft werden könnte, so muss die Vorleistung mittels einer selbstschuldnerische Bankbürgschaft (§§ 232, 1113 ff., 1191 ff. BGB) abgesichert werden.
+-------------------------------------------------------------------- 
+Information zur Umsetzung der datenschutzrechtlichen Vorgaben nach der Datenschutzgrundverordnung (DSGVO) an der Universität Stuttgart.
+ -------------------------------------------------------------------- 
+Fragen sind ausschließlich elektronisch über das Vergabeportal unter Bezugnahme auf den jeweiligen Anhang sowie unter Nennung des jeweiligen Abschnitts bzw. des Paragraphen zu stellen. Verbindlicher Bestandteil der Vergabeunterlagen werden nur die über das Vergabeportal erteilten Antworten. Mündliche Auskünfte und Erklärungen haben keine Gültigkeit.
+-------------------------------------------------------------------- 
+Support und Beratung zum Vergabeportal: Anleitungen und Tutorials: https://support.cosinex.de/ Beratung: [removed]</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Universität Stuttgart
+Dezernat 4 / Abteilung Personal und Recht</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Keplerstraße 7</cbc:StreetName>
+				<cbc:CityName>Stuttgart</cbc:CityName>
+				<cbc:PostalZone>70174</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung zur Berufsausübung einschließlich Auflagen hinsichtlich der Eintragung in einem Berufs- oder Handelsregister (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Eigenerklärung zu Ausschlussgründen gemäß § 123 GWB, Eigenerklärung zu Ausschlussgründen gemäß § 124 GWB, Eigenerklärung gemäß § 19 Abs. 3 Mindestlohngesetz (MiLoG), Eigenerklärung EU RUS Sanktionen Einhaltung der Exportkontrollvorschriften. Wenn nach dem Recht des Herkunftsstaates des Bewerbers/Bieters für die Ausübung der ausgeschriebenen Tätigkeit eine Zulassung (Erlaubnis, Genehmigung, Konzession, oder Eintragung in einem Register) erforderlich ist, ist dies mit dem Teilnahmeantrag mitzuteilen. Der entsprechende Nachweis ist nach der Wahl des Bewerbers/Bieters mit einer Eigenerklärung oder dem nach dem Recht des Herkunftsstaates des Unternehmens maßgeblichen Dokument zu führen (z. B. Eintragung des Unternehmens in das Berufs- oder Handelsregister).</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und berufliche Leistungsfähigkeit (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): gemäß Verfahrensbeschreibung (A00) ,Teilnahmeformular (A01), Eignungskriterien (A02) sowie dem Anhang A03 - Leistungsbeschreibung. 
+
+Eigenerklärung über erbrachte Leistungen, die mit der zu vergebenden Leistung vergleichbar sind aus den letzten fünf Jahren .  Weitere Referenzen sind nicht einzureichen. 
+
+Jede der drei Referenzen wird nur dann als geeignet gewertet, wenn sie folgende Anforderungen erfüllt:
+- Gegenstand der Referenz ist die Einführung einer Bewerbungsmanagement-Software einschließlich deren Implementierung.
+
+- Die Software unterstützt mindestens die durchgängige Prozesskette von der Stellenausschreibung über die Bewerbung und das Auswahlverfahren bis zur Zusage.
+
+Für die Beurteilung der Referenz ist die Leistung des Auftragnehmers insgesamt maßgeblich. Der Auftragnehmer kann ein Einzelunternehmen oder eine Bewerbergemeinschaft (Arbeitsgemeinschaft) gewesen sein. Die interne Verteilung der Leistungen innerhalb einer Bewerbergemeinschaft (Arbeitsgemeinschaft) sowie die Einbindung weiterer Unternehmen in die Leistungserbringung sind nicht Gegenstand der Eignungsbewertung.
+
+Erfüllt eine der drei eingereichten Referenzen die vorgenannten Grundanforderungen nicht, ist die geforderte Mindestanzahl von drei geeigneten Referenzen nicht erfüllt.
+
+1.2 Weitere Mindestanforderungen an die geeigneten Referenzen (Ausschlusskriterien)
+Zusätzlich zu den Grundanforderungen nach Abschnitt 1.1 gelten für die drei geeigneten Referenzen die folgenden Mindestanforderungen:
+
+1.2.1 Hochschulreferenzen mit Produktivbetrieb und SaaS-Bereitstellung
+Mindestens zwei der geeigneten Referenzen erfüllen jeweils kumulativ diese Mindestanforderungen:
+
+- Auftraggeber ist eine Hochschule (einschließlich Universitäten).
+- Die Implementierung war spätestens zum Ablauf der Teilnahmefrist abgeschlossen und das System befand sich zu diesem Zeitpunkt im produktiven Einsatz. Ein Probe-, Pilot- oder Testbetrieb sowie eine noch nicht abgeschlossene Implementierung genügen nicht.
+- Die Bewerbungsmanagement-Software wurde als Software-as-a-Service (SaaS) bereitgestellt.
+
+1.2.2 Weitere Mindestanforderungen an die geeigneten Referenzen
+- Mindestens eine Referenz weist im produktiven Betrieb ein durchschnittliches Bewerbungsvolumen von mindestens 15.000 Bewerbungen pro Jahr auf.
+
+- Bei mindestens einer Referenz wurde eine Schnittstelle zur strukturierten Übergabe von Bewerbungs-, Verfahrens- und/oder Einstellungsdaten an ein nachgelagertes HR- oder Personalverwaltungssystem realisiert und produktiv genutzt. Eine lediglich geplante oder konzipierte Schnittstelle genügt nicht.
+
+Die Nichterfüllung dieser Mindestanforderungen führt zum Ausschluss vom Vergabeverfahren, siehe Anlage A02 Eignungskriterien.
+
+1.3 Zusätzlich bewertete Funktionsumfänge der Referenzen (keine Ausschlusskriterien)
+Neben der Erfüllung der Mindestanforderungen nach den Abschnitten 1.1 bis 1.2.2 werden im Rahmen der Eignungsbewertung die nachfolgend genannten zusätzlichen Funktionsumfänge bewertet. 
+Bewertet wird, ob die in den Referenzen eingesetzte Bewerbungsmanagement-Software im Produktivbetrieb über den in Abschnitt 1.1 beschriebenen Funktionsumfang hinaus die folgenden Module umfasst:
+- Stellenantragsmanagement / Requisition Management
+- Einstellungsmanagement / Offer-to-Hire
+Die Angaben hierzu sind für jede Referenz in Anlage A02 Eignungskriterien zu machen. Die genannten Funktionsumfänge sind keine Mindestanforderungen an die Eignung.
+
+1.4 Nachweise
+Für jede Referenz ist die Anlage C des Teilnahmeformulars vollständig auszufüllen und dem Teilnahmeantrag beizufügen. 
+
+Die Angaben zur jeweiligen Referenz und zur Erfüllung der hierfür maßgeblichen Anforderungen sind durch einen der folgenden Belege zu bestätigen:
+
+- ein Bestätigungsschreiben des jeweiligen Auftraggebers oder
+- eine rechtsverbindlich unterzeichnete Eigenerklärung des Auftragnehmers.
+Unklare, widersprüchliche oder unvollständige Angaben können zur Nichtberücksichtigung der jeweiligen Referenz führen. 
+
+2. Nachweis zur Informationssicherheit (Mindestanforderung / Ausschlusskriterium)
+
+Der Bewerber muss nachweisen, dass für den relevanten Bereich der ausgeschriebenen Leistung ein angemessenes Informationssicherheitsmanagement besteht.
+Hierzu ist entweder eine zum Ablauf der Teilnahmefrist gültige Zertifizierung nach DIN EN ISO/IEC 27001 oder ein gleichwertiger Nachweis vorzulegen. Gleichwertige Nachweise müssen zeigen, dass ein geregeltes Informationssicherheitsmanagement mit geeigneten technischen und organisatorischen Schutzmaßnahmen umgesetzt ist.
+
+Die Nichterfüllung dieser Mindestanforderung führt zum Ausschluss vom Vergabeverfahren, siehe Anlage A02 Eignungskriterien.
+?</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Wirtschaftliche , finanzielle und personelle Leistungsfähigkeit (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): gemäß Verfahrensbeschreibung, sowie dem Anhang A01 - Teilnahmeformular.
+
+1.
+Eigenerklärung über den Jahresumsatz in den vergangenen drei abgeschlossenen Geschäftsjahren (2023, 2024, 2025) in BMS- und Recruiting-relevanten Unternehmensbereichen. Handelt es sich bei dem Bewerber um eine Bewerbergemeinschaft, ist diese Tabelle von jedem Mitglied der Gemeinschaft gesondert auszufüllen. Bei Bewerbergemeinschaften sind die entsprechenden Jahresumsätze für die Eintragung in der Anlage A02 unter B.1 anschließend zu addieren.
+
+Voraussetzung für die Teilnahme ist ein durchschnittlicher Jahresumsatz der letzten drei Geschäftsjahre in BMS- und Recruiting-relevanten Unternehmensbereichen in Höhe von mindestens 900.000 EUR netto. 
+Die Nichterfüllung dieser Mindestanforderung führt zum Ausschluss vom Vergabeverfahren, siehe Anlage A02 Eignungskriterien unter B.1. 
+
+2. 
+Erklärung, aus der die durchschnittlichen jährlichen Vollzeitäquivalente (VZÄ) in BMS- und Recruiting-relevanten Unternehmensbereichen in den letzten drei abgeschlossenen Geschäftsjahren ersichtlich sind (2023, 2024, 2025)
+
+Die vorstehenden Angaben dienen dem Nachweis der geforderten personellen Leistungsfähigkeit. Es müssen in den letzten drei abgeschlossenen Geschäftsjahren durchschnittlich mindestens 5 VZÄ in BMS- und Recruiting-relevanten Unternehmensbereichen eingesetzt worden sein. Bei Bewerbergemeinschaften wird diese Anzahl in der Anlage A02 Eignungskriterien addiert. 
+
+Bewerber/Bewerbergemeinschaften, die diese Mindestanzahl nicht erfüllen, werden gemäß den Eignungskriterien, Anlage A02 unter B.2 vom Vergabeverfahren ausgeschlossen</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY8YTUX67ZGK/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">AGB der Universität Stuttgart</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, bei Angebotsabgabe nicht beiliegende bzw. den Anforderungen
+formal nicht genügende Dokumente und Erklärungen unter Fristsetzung nachzufordern. Gleiches gilt für Preisangaben zu unwesentlichen Einzelpositionen, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen. Ein Anspruch der Bieter auf Nachforderung besteht nicht.
+Sollte ein Bieter der Nachforderung nicht oder nicht fristgerecht nachkommen, wird das Angebot ausgeschlossen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Nein</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY8YTUX67ZGK</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB).
+Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet:
+(1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.
+(2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht.
+ 
+(3) Der Antrag ist unzulässig, soweit
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat;
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+ 
+Hinsichtlich der Information nicht berücksichtigter Bieter und Bewerber gelten die §§ 134, 135 GWB. Insbesondere gilt: Bieter deren Angebote für den Zuschlag nicht berücksichtigt werden sollen, werden vor dem Zuschlag gemäß § 134 GWB darüber informiert. Das gilt auch für Bewerber, denen keine Information über die Ablehnung ihrer Bewerbung zur Verfügung gestellt wurde, bevor die Mitteilung über die Zuschlagsentscheidung an die betroffenen Bieter ergangen ist.
+Ein Vertrag darf erst 15 Kalendertage nach Absendung dieser Information durch den Auftraggeber geschlossen werden; bei Übermittlung per Telefax oder auf elektronischem Wege beträgt diese Frist 10 Kalendertage.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY8YTUX67ZGK</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-16+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-03+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-26+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>5</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">25-150</cbc:ID>
+			<cbc:Name languageID="DEU">Beschaffung und Implementierung einer Bewerbermangementsoftware</cbc:Name>
+			<cbc:Description languageID="DEU">Die Universität Stuttgart (im Folgenden "Auftraggeber") verfolgt das Ziel, ihre Personalgewinnung mit Ausnahme der Berufungsverfahren für Professuren zu digitalisieren.
+
+Die Personalgewinnung läuft derzeit noch weitgehend manuell und mit Medienbrüchen. Das verursacht zusätzlichen Aufwand, erschwert eine einheitliche Dokumentation und macht die Verfahren weniger nachvollziehbar. Für Bewerbende ist der Einstieg in den Prozess oft umständlich und nicht mehr zeitgemäß. Das kann die Candidate Experience und die Arbeitgeberattraktivität des Auftraggebers beeinträchtigen.
+
+Für einzelne Zielgruppen ist bereits eine digitale Lösung im Einsatz. Der Auftraggeber verfolgt jedoch eine einheitliche BMS-Strategie für die gesamte Universität. Deshalb soll eine Bewerbungsmanagement-Software (BMS) als zentrale Lösung eingeführt werden. Ziel ist eine durchgängig digitale Unterstützung vom Stellenantrag bis zur Einstellungsvorbereitung. Zugleich soll sie barrierefreie, einfache und transparente Abläufe sowie eine strukturierte, fristgerechte und dokumentationssichere Verfahrensdurchführung gewährleisten.
+
+Für die Zentrale Verwaltung und die Zentralen Einrichtungen ist ein einheitlicher digitaler Standard vorgesehen. Fakultäten und Institute können das BMS zunächst optional nutzen</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Universität Stuttgart
+Dezernat 4 / Abteilung Personal und Recht</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Keplerstraße 7</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70174</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">72</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

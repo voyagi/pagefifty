@@ -1,0 +1,2893 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://www.steinburg.de</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="DEU">Kreis Steinburg</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+                  <cbc:Department>Der Landrat</cbc:Department>
+                  <cbc:CityName>Itzehoe</cbc:CityName>
+                  <cbc:PostalZone>25524</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="eforms-country">DEU</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>01061-0000-66</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://www.schleswig-holstein.de</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="DEU">Vergabekammer Schleswig-Holstein</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Düsternbrooker Weg 94</cbc:StreetName>
+                  <cbc:Department>beim Ministerium für Wirtschaft, Verkehr, Arbeit, Technologie und Tourismus</cbc:Department>
+                  <cbc:CityName>Kiel</cbc:CityName>
+                  <cbc:PostalZone>24105</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">DEF02</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>keine Angabe</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:Telefax>[removed]</cbc:Telefax>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+        <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00685987-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">193/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-06+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+  <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+  <cbc:ID schemeName="notice-id">4081f255-0049-4896-a2a0-7eba33baf07f</cbc:ID>
+  <cbc:ContractFolderID>b1000000-c0de-4000-a000-00d462944270</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-10-05+02:00</cbc:IssueDate>
+  <cbc:IssueTime>09:05:46+02:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RequestedPublicationDate>2026-10-05+02:00</cbc:RequestedPublicationDate>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-la</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID>ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:ProcurementLegislationDocumentReference>
+      <cbc:ID>vgv</cbc:ID>
+    </cac:ProcurementLegislationDocumentReference>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="DEU">Es gelten die gesetzlichen Ausschlussvoraussetzungen nach §§ 123 bis 126 GWB. Der Bieter hat anzugeben, ob Ausschlussgründe nach §§ 123, 124 GWB vorliegen und ob er selbst bzw. ein nach Satzung oder Gesetz für den Bieter Vertretungsberechtigter in den letzten zwei Jahren 
+• gem. § 21 Abs. 1 Satz 1 oder 2 Schwarzarbeitsbekämpfungsgesetz oder 
+• gem. § 98c des Aufenthaltsgesetzes 
+• gem. § 21 Abs. 1 Arbeitnehmerentsendegesetz oder 
+• gem. § 19 Abs. 1 Mindestlohngesetz mit einer Freiheitsstrafe von mehr als drei Monaten oder einer Geldstrafe von mehr als 90 Tagessätzen oder einer Geldbuße von mehr als 2.500 Euro belegt worden ist. 
+Es können weitere Ausschlussgründe in den Vergabeunterlagen genannt sein.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    <cac:LotDistribution>
+      <cbc:MaximumLotsAwardedNumeric>12</cbc:MaximumLotsAwardedNumeric>
+      <cbc:MaximumLotsSubmittedNumeric>12</cbc:MaximumLotsSubmittedNumeric>
+    </cac:LotDistribution>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <ext:UBLExtensions>
+      <ext:UBLExtension>
+        <ext:ExtensionContent>
+          <efext:EformsExtension>
+            <efbc:ProcedureRelaunchIndicator>false</efbc:ProcedureRelaunchIndicator>
+          </efext:EformsExtension>
+        </ext:ExtensionContent>
+      </ext:UBLExtension>
+    </ext:UBLExtensions>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>I21-4/2026-124/I401</cbc:ID>
+    <cbc:Name languageID="DEU">EDV-Ausstattung - Diverse Hard- und Softwarekomponenten zur Ausstattung des 1.BA des Kreishausneubaus | Kreis Steinburg</cbc:Name>
+    <cbc:Description languageID="DEU">Der erste Bauabschnitt des Kreishausneubaus der Kreisverwaltung Steinburg in Itzehoe ist mit EDV auszustatten. Ausgeschrieben wird daher die Lieferung diverser Hard -und Softwarekomponenten zur Ausstattung des ersten Bauabschnitts.</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+    <cbc:Note languageID="DEU">Der Bieter hat anzugeben, inwieweit sein Unternehmen einen Bezug zu Russland hat. Dafür ist die “Eigenerklärung zum 5. EU-Sanktionspaket (RUS-Sanktionen) auszufüllen und als Teil des Angebotes abzugeben.  Diese Erklärung ist auch für Unterauftragnehmer, Lieferanten oder Eignungsverleiher gem. den Bedingungen der Erklärung abzugeben.
+
+Angebote können ausschließlich von registrierten Bewerbern über die Vergabeplattform (www.bi-medien.de) in Textform eingereicht werden.
+
+Die Kommunikation (Fragen, Auskünfte) erfolgt ausschließlich über die Vergabeplattform. </cbc:Note>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">30000000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:RealizedLocation>
+      <cbc:Description languageID="DEU">siehe Vergabeunterlagen</cbc:Description>
+      <cac:Address>
+        <cbc:CityName>Itzehoe</cbc:CityName>
+        <cbc:PostalZone>25524</cbc:PostalZone>
+        <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall
+erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist,
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt,
+- dass alle Mitglieder als Gesamtschuldner haften.</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB  unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des
+Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.  </cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:00+01:00</cbc:EndTime>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 1</cbc:ID>
+      <cbc:Name languageID="DEU">Computer und Zubehör für Arbeitsplätze, Beratungs- und Besprechungsräume sowie Sitzungssäle</cbc:Name>
+      <cbc:Description languageID="DEU">o Notebooks
+o Dockingstations
+o Notebooktaschen
+o Hardware-Token
+o Arbeitsplatzrechner
+o Tastaturen und Mäuse</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32420000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">38652120</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32232000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32321200</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Karlstraße 13</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-02-26+01:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben,
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist,
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist,
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt,
+- dass alle Mitglieder als Gesamtschuldner haften.</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf
+der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des
+Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. </cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 2</cbc:ID>
+      <cbc:Name languageID="DEU">Monitore für Arbeitsplätze und Beratungsräume</cbc:Name>
+      <cbc:Description languageID="DEU">25-Zoll-Monitore</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30231300</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32323100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30231310</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-04-05+02:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist,
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist,
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber
+dem Auftraggeber rechtsverbindlich vertritt,
+- dass alle Mitglieder als Gesamtschuldner haften.</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium. </cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des
+Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. </cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 3</cbc:ID>
+      <cbc:Name languageID="DEU">Monitore für Eingangs- und Wartebereich, Beratungs- und Besprechungsräume sowie Sitzungssäle</cbc:Name>
+      <cbc:Description languageID="DEU">o 43-Zoll-Monitore
+o 55-Zoll-Monitore
+o 65-Zoll-Monitore
+o 75-Zoll-Monitore
+o 75-Zoll-Touchdisplay</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30231300</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32323100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30231310</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32323500</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32321200</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-04-05+02:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften
+</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 4</cbc:ID>
+      <cbc:Name languageID="DEU">Wandhalterungen und mobile Monitorständer für Monitore in Wartebereichen des Foyers, Beratungs- und Besprechungsräumen...</cbc:Name>
+      <cbc:Description languageID="DEU">o Wandhalterungen für 43-Zoll-Monitore
+o Wandhalterung für 55-Zoll-Monitor im Hochformat
+o Wandhalterungen für 55-Zoll-Monitore
+o Wandhalterungen für 65-Zoll-Monitore
+o Wandhalterungen für 75-Zoll-Monitore und 75-Zoll-Touchdisplay
+o Mobile Monitorständer für 75-Zoll-Monitor und 75-Zoll-Touchdisplay</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30237260</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30237000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32351000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">39151000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">39130000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-04-05+02:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0005</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 5</cbc:ID>
+      <cbc:Name languageID="DEU">Scanner und Drucker für Arbeitsplätze</cbc:Name>
+      <cbc:Description languageID="DEU">o Arbeitsplatzscanner
+o Dokumentendrucker
+o Nadeldrucker</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30216100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30216120</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30121100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-04-05+02:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0006</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften
+</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 6</cbc:ID>
+      <cbc:Name languageID="DEU">Zentrale Multifunktionssysteme zur Miete</cbc:Name>
+      <cbc:Description languageID="DEU">A3-Farb-Multifunktionssysteme zur Miete</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30121100</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30216120</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2027-04-05+02:00</cbc:StartDate>
+        <cbc:EndDate>2027-04-30+02:00</cbc:EndDate>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0007</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften
+</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 7</cbc:ID>
+      <cbc:Name languageID="DEU">Videokonferenzsysteme für Besprechungsräume und Sitzungssäle</cbc:Name>
+      <cbc:Description languageID="DEU">o Videokonferenzkameras 
+o TV-Halterung für Konferenzlautsprecher/-mikrofone</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">32232000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-04-05+02:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0008</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften
+</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 8</cbc:ID>
+      <cbc:Name languageID="DEU">Spezialsoftware-Lizenzen</cbc:Name>
+      <cbc:Description languageID="DEU">o Bitdefender Gravity Zone Advanced Business Lizenzen
+o WatchGuard AuthPoint Lizenzen</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48732000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">50313100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Karlstraße 13</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-02-26+01:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0009</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften
+</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 9</cbc:ID>
+      <cbc:Name languageID="DEU">Unified-Endpoint-Management-Lizenzen</cbc:Name>
+      <cbc:Description languageID="DEU">o Baramundi Management Suite Lizenzen
+o Baramundi Defense Control Lizenzen</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48730000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Karlstraße 13</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-02-26+01:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0010</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften.</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 10</cbc:ID>
+      <cbc:Name languageID="DEU">Headsets für Arbeitsplätze</cbc:Name>
+      <cbc:Description languageID="DEU">Headsets</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30237000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Karlstraße 13</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:EndDate>2027-02-26+01:00</cbc:EndDate>
+        <cbc:DescriptionCode listName="timeperiod">UNKNOWN</cbc:DescriptionCode>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0011</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+      <cac:SecurityClearanceTerm>
+        <cbc:Code listName="required">false</cbc:Code>
+      </cac:SecurityClearanceTerm>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 11</cbc:ID>
+      <cbc:Name languageID="DEU">Montage Wandhalterungen und mobile Monitorständer sowie Monitore</cbc:Name>
+      <cbc:Description languageID="DEU">Montage Monitore</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30237260</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">39151000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">39151000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2027-04-05+02:00</cbc:StartDate>
+        <cbc:EndDate>2027-04-16+02:00</cbc:EndDate>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0012</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="DEU">Die Eignungskriterien und die geforderten Nachweise, Bescheinigungen sind in der Eigenerklärung (Formblatt 124), in der Aufforderung zur Angebotsabgabe (Formblatt 211), im Verzeichnis vorzulegender Unterlagen (Formblatt 216) aufgelistet. Hier finden Sie auch den Zeitpunkt, zu der die Nachweise/Bescheinigungen einzureichen sind.</cbc:Description>
+              </efac:SelectionCriteria>
+              <efac:StrategicProcurement>
+                <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+              </efac:StrategicProcurement>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+      <cac:RequiredFinancialGuarantee>
+        <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+      </cac:RequiredFinancialGuarantee>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>DEU</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>entfällt</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://bi-medien.de/ausschreibungsdienste/ausschreibungen/D462944270</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+        <cbc:CompanyLegalForm languageID="DEU">Eine Bietergemeinschaft hat mit ihrem Angebot eine Erklärung aller Mitglieder in Textform abzugeben, 
+- in der die Bildung einer Arbeitsgemeinschaft im Auftragsfall erklärt ist, 
+- in der alle Mitglieder aufgeführt sind und der für die Durchführung des Vertrags bevollmächtigte Vertreter bezeichnet ist, 
+- dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Auftraggeber rechtsverbindlich vertritt, 
+- dass alle Mitglieder als Gesamtschuldner haften</cbc:CompanyLegalForm>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+          <cbc:Description languageID="DEU">Unterlagen werden gem. § 56 VgV nachgefordert.</cbc:Description>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+        <cbc:Description languageID="DEU">Siehe Vergabeunterlagen.</cbc:Description>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>100</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Name languageID="DEU">Preis</cbc:Name>
+            <cbc:Description languageID="DEU">Der Preis ist das einzige Zuschlagskriterium.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:AdditionalInformationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:AdditionalInformationParty>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://bi-medien.de</cbc:EndpointID>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderRecipientParty>
+      <cac:TenderEvaluationParty>
+        <cac:PartyIdentification>
+          <cbc:ID>ORG-0001</cbc:ID>
+        </cac:PartyIdentification>
+      </cac:TenderEvaluationParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">70</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:PresentationPeriod>
+          <cbc:Description languageID="DEU">Der Nachprüfungsantrag ist nach § 160 Abs. 3 GWB unzulässig, soweit der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe. Der Nachprüfungsantrag ist ebenfalls unzulässig, wenn mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+        </cac:PresentationPeriod>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-10-29+01:00</cbc:EndDate>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-06+01:00</cbc:OccurrenceDate>
+        <cbc:Description languageID="DEU">Nur Vertreter des Auftraggebers.</cbc:Description>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>Los 12</cbc:ID>
+      <cbc:Name languageID="DEU">Einrichtung von Monitoren</cbc:Name>
+      <cbc:Description languageID="DEU">Einrichtung Monitore</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+      <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">39151000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30237260</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>Viktoriastraße 16-18</cbc:StreetName>
+          <cbc:CityName>Itzehoe</cbc:CityName>
+          <cbc:PostalZone>25524</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">DEF0E</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2027-04-19+02:00</cbc:StartDate>
+        <cbc:EndDate>2027-04-30+02:00</cbc:EndDate>
+      </cac:PlannedPeriod>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

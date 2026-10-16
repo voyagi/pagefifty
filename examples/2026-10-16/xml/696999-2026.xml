@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>3e59f3a2-44ef-421e-b868-f68c982ad657-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Redaktionelle Korrektur des Höchstwerts sowie damit zusammenhängender Angaben zum Verfahren</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-06+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Zweites Deutsches Fernsehen</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55127</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 149 065 327</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.mwvlw.rlp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Ministerium für Wirtschaft, Verkehr, Landwirtschaft und Weinbau</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00696999-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">196/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-09+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">b27d06c4-215e-475a-9e79-c7f4522864a9</cbc:ID>
+	<cbc:ContractFolderID>355c6f9a-fa58-4603-824c-9a41319d8c91</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-07+02:00</cbc:IssueDate>
+	<cbc:IssueTime>15:39:22+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-07+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">rcr</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Gemäß Eigenerklärung Nichtvorliegen Ausschlussgründe (siehe Vergabeunterlagen)</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">ZDF-121-VV-26-015</cbc:ID>
+		<cbc:Name languageID="DEU">Streaming Portal und ZDFheute</cbc:Name>
+		<cbc:Description languageID="DEU">Das ZDF beabsichtigt, die Weiterentwicklung des ZDF Streaming-Portals und dessen Mandanten 3sat-Mediathek sowie die Weiterentwicklung des Nachrichtenportals ZDFheute neu auszuschreiben. Die bestehenden Portale sollen für die Geräteklassen Desktop, Smartphone, Tablet und Smart TV in ihrer aktuellen Konzeption und Realisierung zunächst übernommen und im Fortlauf weiterentwickelt werden. Dazu soll mit den jeweiligen Auftragnehmern pro Los ein Rahmenvertrag für die Dauer von zwei Jahren samt dreimaliger Option zur Verlängerung um jeweils ein weiteres Jahr geschlossen werden.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXVHYMUDY6EC8WZA#
+
+
+Siehe Vergabeunterlagen</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:FrameworkMaximumAmount currencyID="EUR">127500000.00</efbc:FrameworkMaximumAmount>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+				<cbc:CityName>Mainz</cbc:CityName>
+				<cbc:PostalZone>55127</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vertraulichkeitserklärung (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Teile der Vergabeunterlagen unterliegen besonderen Vertraulichkeitsanforderungen. Der Bewerber ist daher verpflichtet, die vom Auftraggeber bereitgestellte Vertraulichkeitserklärung zu unterzeichnen und seinem Teilnahmeantrag beizufügen. Die von den Vertraulichkeitsanforderungen betroffenen Dokumente und Unterlagen werden den ausgewählten Bewerbern in der zweiten Phase des Verfahrens zur Verfügung gestellt.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungskriterien und einzureichende Referenzen (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Die Eignungs- und Auswahlkriterien sind den jeweiligen Eignungslisten pro Los zu entnehmen. Gleiches gilt für die geforderten Referenzen des Unternehmens.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und fachliche Eignung - Der Bewerber weißt anhand von eingereichten Referenzen seine fachliche und technische Expertise im relevanten Technologieumfeld nach. Die eingereichten Referenzen werden gem. den Angaben in der veröffentlichten Eignungsliste je Los bewertet.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es erfolgt eine pflichtgemäße Ermessensentscheidung, ob fehlende Angaben und Unterlagen von der Vergabestelle nachgefordert werden. Im Fall der Nachforderung müssen diese innerhalb einer durch die Vergabestelle kommunizierten Frist nach Aufforderung bei der Vergabestelle eingegangen sein; nach fruchtlosem Fristablauf erfolgt  ein Ausschluss des Angebots.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+* Auf Anforderung der Vergabestelle
+** Keine oder anderweitige Formerfordernis:
+- Auftragsverarbeitungsvereinbarung gem. DSGVO: Der Bewerber verpflichtet sich, im weiteren Verlauf des Verfahrens, spätestens jedoch im Falle der Auftragserteilung vor Aufnahme der Tätigkeiten eine Auftragsverarbeitungsvereinbarung nach dem durch das ZDF veröffentlichten und im Laufe des Verfahrens vervollständigten Musters abzuschließen. Der Abschluss inkludiert die Beschreibung der technisch-organisatorischen Maßnahmen.
+
+* Mit dem Teilnahmeantrag
+** Keine oder anderweitige Formerfordernis:
+- ZDF-Bieterformblatt: Die im Dokument ZDF-Bieterformblatt genannten Kriterien/Bedingungen/Vorgaben sind entsprechend den im Dokument gemachten Angaben zu erfüllen. Das Dokument ist vollständig ausgefüllt dem Teilnahmeantrag beizufügen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-28+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Los 1a: Streaming Portal Frontend - Web und Apps</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der in Los 1a ausgeschriebenen Leistungen sind folgende Ausspielwege des ZDF Streaming-Portals: 
+- Responsive Website (mit PWA-Funktionalitäten wie Download und Installation auf dem Homescreen)
+- Native Apps für Phone/Tablet (Android, iOS), inkl. CarPlay, Android Auto und Automotive-Unterstützung
+- Native Apps für SmartTV (Android-basiert und tvOS von Apple) 
+
+Gegenstand der in Los 1a ausgeschriebenen Leistungen sind folgende Ausspielwege der 3sat-Mediathek:
+- Responsive Website 
+- Wrapper Apps für Phone/Tablet (Android, iOS) 
+
+Die im Rahmen von Los 1a zu erbringenden Weiterentwicklungsleistungen umfassen:
+- Erstellung von Konzept &amp; Design für die Weiterentwicklung der oben beschriebenen Frontend-Clients für die Streaming-Portale von ZDF und 3sat
+- Technische Umsetzung der Weiterentwicklung dieser Frontends gemäß Konzeption für Features und weiteren Spezifikationen
+- Anbindung GQL-API, Anbindung weitere Backend-Schnittstellen 
+- Manuelle und automatisierte Qualitätssicherung aller Anwendungen auf den relevanten Devices
+- Nutzung, Dokumentation und kontinuierliche Pflege des Designsystems
+- Entwicklungs-Dokumentation nach ZDF-Vorgaben (siehe Vergabeunterlagen)
+- Planung und Durchführung von regelmäßigen Deployments für Updates der Web-Anwendungen und nativen Apps</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der festgelegte Höchstwert berücksichtigt einen umfangreichen Puffer für unvorhergesehene Leistungsbedarfe und ist nicht als Prognose des tatsächlichen Leistungsumfangs zu verstehen. Hieraus kann keine Verpflichtung zur Abnahme von Leistungen abgeleitet werden. Für das ZDF sowie gegebenenfalls weitere Auftraggeber besteht keine Abnahmeverpflichtung.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55127</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Das ZDF hat das Recht, die Rahmenvereinbarung gem. Vergabeunterlagen um dreimal ein Jahr zu verlängern.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Siehe Optionen</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vertraulichkeitserklärung (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Teile der Vergabeunterlagen unterliegen besonderen Vertraulichkeitsanforderungen. Der Bewerber ist daher verpflichtet, die vom Auftraggeber bereitgestellte Vertraulichkeitserklärung zu unterzeichnen und seinem Teilnahmeantrag beizufügen. Die von den Vertraulichkeitsanforderungen betroffenen Dokumente und Unterlagen werden den ausgewählten Bewerbern in der zweiten Phase des Verfahrens zur Verfügung gestellt.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungskriterien und einzureichende Referenzen (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Die Eignungs- und Auswahlkriterien sind den jeweiligen Eignungslisten pro Los zu entnehmen. Gleiches gilt für die geforderten Referenzen des Unternehmens.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und fachliche Eignung - Der Bewerber weißt anhand von eingereichten Referenzen seine fachliche und technische Expertise im relevanten Technologieumfeld nach. Die eingereichten Referenzen werden gem. den Angaben in der veröffentlichten Eignungsliste je Los bewertet.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es erfolgt eine pflichtgemäße Ermessensentscheidung, ob fehlende Angaben und Unterlagen von der Vergabestelle nachgefordert werden. Im Fall der Nachforderung müssen diese innerhalb einer durch die Vergabestelle kommunizierten Frist nach Aufforderung bei der Vergabestelle eingegangen sein; nach fruchtlosem Fristablauf erfolgt  ein Ausschluss des Angebots.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+* Auf Anforderung der Vergabestelle
+** Keine oder anderweitige Formerfordernis:
+- Auftragsverarbeitungsvereinbarung gem. DSGVO: Der Bewerber verpflichtet sich, im weiteren Verlauf des Verfahrens, spätestens jedoch im Falle der Auftragserteilung vor Aufnahme der Tätigkeiten eine Auftragsverarbeitungsvereinbarung nach dem durch das ZDF veröffentlichten und im Laufe des Verfahrens vervollständigten Musters abzuschließen. Der Abschluss inkludiert die Beschreibung der technisch-organisatorischen Maßnahmen.
+
+* Mit dem Teilnahmeantrag
+** Keine oder anderweitige Formerfordernis:
+- ZDF-Bieterformblatt: Die im Dokument ZDF-Bieterformblatt genannten Kriterien/Bedingungen/Vorgaben sind entsprechend den im Dokument gemachten Angaben zu erfüllen. Das Dokument ist vollständig ausgefüllt dem Teilnahmeantrag beizufügen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-28+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Los 1b: HbbTV und SmartTV</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der in Los 1b ausgeschriebenen Leistungen ist das ZDF Streaming-Portal auf folgenden Ausspielwegen: 
+- HbbTV via Red Button
+- Als Wrapper-App für Fire TV/Vega OS sowie verschiedene Herstellerportale (z.B. LG, Samsung, Sky)
+Gegenstand der in Los 1b ausgeschriebenen Leistung ist darüber hinaus das 3sat Streaming-Portal, das als Mandant des ZDF Streaming-Portals auf folgenden Ausspielwegen erreichbar ist:
+- HbbTV via Red Button
+- Wrapper-App für Fire TV/Vega OS sowie verschiedene Herstellerportale (z.B. LG, Samsung)
+Gegenstand der in Los 1b ausgeschriebenen Leistung ist außerdem die TV-Anwendung für ZDFheute. Diese Anwendung ist ebenfalls ein technischer Mandant des ZDF Streaming Portals, das heißt: Frontend-Technologie und Backend-Anbindung beziehen sich auf die vorhandene Architektur bzw. Design-Vorgaben. Die Anwendung ist erreichbar via:
+- HbbTV via Red Button
+- Als Wrapper-App für Plattformen wie Amazon Fire TV/Vega OS, Google TV oder für Herstellerportale wie die von Samsung oder LG
+
+Los 1b umfasst folgende Leistungen für die Streaming-Portale von ZDF und 3sat sowie die HbbTV-Anwendung von ZDFheute:
+- Erstellung von Konzept und Design für die Weiterentwicklung der Frontends
+- Technische Weiterentwicklung gemäß Konzept und HbbTV-Spezifikation sowie Anforderungen der auf dem deutschen Markt verbreiteten Hersteller (siehe Abschnitt "Testdevice-Setup")  
+- Übernahme und Weiterentwicklung der Wrapper-Apps für Herstellerportale (siehe Umfang der HbbTV-Applikation) 
+- Weiterentwicklung des Frontends sowie der HbbTV-spezifischen Middleware für neue Features und Funktionen
+- Weiterentwicklung der Startleiste sowie Buttoneinblendungen
+- Übernahme und Weiterentwicklung der HbbTV-Autostart-Applikation (ADB2/TA)
+- Übernahme und Weiterentwicklung der bestehenden Redaktionssysteme (CTA-Manager, Stream Events) 
+- Instandhaltung der Legacy-Applikation 
+- Anbindung an die entsprechende API
+- Ggf. Anbindung an weitere ZDF-Services, z.B. für Login, Suche etc. 
+- Händische und automatisierte Qualitätssicherung aller Anwendungen auf den relevanten Devices (siehe Abschnitt "Testdevice-Setup")
+- Berücksichtigung und kontinuierliche Pflege der bestehenden Designsysteme 
+- Dokumentation nach ZDF-Vorgaben
+- Durchführung von Deployments und Portal-Updates
+- Betrieb der HbbTV-Anwendungen inkl. Betreuung der HbbTV-spezifischen Middleware (siehe Dokument Leistungsbeschreibung Los 1b Betrieb HbbTV-Apps und -Plattform)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der festgelegte Höchstwert berücksichtigt einen umfangreichen Puffer für unvorhergesehene Leistungsbedarfe und ist nicht als Prognose des tatsächlichen Leistungsumfangs zu verstehen. Hieraus kann keine Verpflichtung zur Abnahme von Leistungen abgeleitet werden. Für das ZDF sowie gegebenenfalls weitere Auftraggeber besteht keine Abnahmeverpflichtung.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55127</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Das ZDF hat das Recht, die Rahmenvereinbarung gem. Vergabeunterlagen um dreimal ein Jahr zu verlängern.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Siehe Optionen</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vertraulichkeitserklärung (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Teile der Vergabeunterlagen unterliegen besonderen Vertraulichkeitsanforderungen. Der Bewerber ist daher verpflichtet, die vom Auftraggeber bereitgestellte Vertraulichkeitserklärung zu unterzeichnen und seinem Teilnahmeantrag beizufügen. Die von den Vertraulichkeitsanforderungen betroffenen Dokumente und Unterlagen werden den ausgewählten Bewerbern in der zweiten Phase des Verfahrens zur Verfügung gestellt.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungskriterien und einzureichende Referenzen (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Die Eignungs- und Auswahlkriterien sind den jeweiligen Eignungslisten pro Los zu entnehmen. Gleiches gilt für die geforderten Referenzen des Unternehmens.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und fachliche Eignung - Der Bewerber weißt anhand von eingereichten Referenzen seine fachliche und technische Expertise im relevanten Technologieumfeld nach. Die eingereichten Referenzen werden gem. den Angaben in der veröffentlichten Eignungsliste je Los bewertet.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es erfolgt eine pflichtgemäße Ermessensentscheidung, ob fehlende Angaben und Unterlagen von der Vergabestelle nachgefordert werden. Im Fall der Nachforderung müssen diese innerhalb einer durch die Vergabestelle kommunizierten Frist nach Aufforderung bei der Vergabestelle eingegangen sein; nach fruchtlosem Fristablauf erfolgt  ein Ausschluss des Angebots.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+* Auf Anforderung der Vergabestelle
+** Keine oder anderweitige Formerfordernis:
+- Auftragsverarbeitungsvereinbarung gem. DSGVO: Der Bewerber verpflichtet sich, im weiteren Verlauf des Verfahrens, spätestens jedoch im Falle der Auftragserteilung vor Aufnahme der Tätigkeiten eine Auftragsverarbeitungsvereinbarung nach dem durch das ZDF veröffentlichten und im Laufe des Verfahrens vervollständigten Musters abzuschließen. Der Abschluss inkludiert die Beschreibung der technisch-organisatorischen Maßnahmen.
+
+* Mit dem Teilnahmeantrag
+** Keine oder anderweitige Formerfordernis:
+- ZDF-Bieterformblatt: Die im Dokument ZDF-Bieterformblatt genannten Kriterien/Bedingungen/Vorgaben sind entsprechend den im Dokument gemachten Angaben zu erfüllen. Das Dokument ist vollständig ausgefüllt dem Teilnahmeantrag beizufügen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-28+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Los 2a: ZDFheute Frontend-Entwicklung, UX/UI, Konzeption</cbc:Name>
+			<cbc:Description languageID="DEU">Der Scope umfasst die Übernahme, die Wartung und die Weiterentwicklung der Frontend-Clients von ZDFheute (native Apps für iOS und Android sowie Web-Frontends) inklusive der Web-Mandanten logo.de und der ZDF-Unternehmensseite (unternehmen.zdf.de) im Web-Bereich. Gegenstand der Beauftragung sind die Frontend-Entwicklung für die Geräteklassen Smartphone, Tablet, Desktop sowie für externe Plattformen und Screens:
+- Web: Responsive Website basierend auf modernen Frameworks (React, Next.js), die auch mit Funktionen einer Progressive Web App (PWA) zur Verfügung steht.
+- Mobile &amp; Tablet: Native Applikationen für iOS/iPadOS (unter Nutzung von SwiftUI) und Android sowie native Applikationen für Google TV und andere Android-basierte Plattformen.
+- Weitere Screens &amp; Plattformen: Einbindung in Automotive-Systeme (z.B. CarPlay/Android Auto, Android Automotive)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der festgelegte Höchstwert berücksichtigt einen umfangreichen Puffer für unvorhergesehene Leistungsbedarfe und ist nicht als Prognose des tatsächlichen Leistungsumfangs zu verstehen. Hieraus kann keine Verpflichtung zur Abnahme von Leistungen abgeleitet werden. Für das ZDF sowie gegebenenfalls weitere Auftraggeber besteht keine Abnahmeverpflichtung.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55127</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Das ZDF hat das Recht, die Rahmenvereinbarung gem. Vergabeunterlagen um dreimal ein Jahr zu verlängern.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Siehe Optionen</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vertraulichkeitserklärung (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Teile der Vergabeunterlagen unterliegen besonderen Vertraulichkeitsanforderungen. Der Bewerber ist daher verpflichtet, die vom Auftraggeber bereitgestellte Vertraulichkeitserklärung zu unterzeichnen und seinem Teilnahmeantrag beizufügen. Die von den Vertraulichkeitsanforderungen betroffenen Dokumente und Unterlagen werden den ausgewählten Bewerbern in der zweiten Phase des Verfahrens zur Verfügung gestellt.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungskriterien und einzureichende Referenzen (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Die Eignungs- und Auswahlkriterien sind den jeweiligen Eignungslisten pro Los zu entnehmen. Gleiches gilt für die geforderten Referenzen des Unternehmens.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und fachliche Eignung - Der Bewerber weißt anhand von eingereichten Referenzen seine fachliche und technische Expertise im relevanten Technologieumfeld nach. Die eingereichten Referenzen werden gem. den Angaben in der veröffentlichten Eignungsliste je Los bewertet.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es erfolgt eine pflichtgemäße Ermessensentscheidung, ob fehlende Angaben und Unterlagen von der Vergabestelle nachgefordert werden. Im Fall der Nachforderung müssen diese innerhalb einer durch die Vergabestelle kommunizierten Frist nach Aufforderung bei der Vergabestelle eingegangen sein; nach fruchtlosem Fristablauf erfolgt  ein Ausschluss des Angebots.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+* Auf Anforderung der Vergabestelle
+** Keine oder anderweitige Formerfordernis:
+- Auftragsverarbeitungsvereinbarung gem. DSGVO: Der Bewerber verpflichtet sich, im weiteren Verlauf des Verfahrens, spätestens jedoch im Falle der Auftragserteilung vor Aufnahme der Tätigkeiten eine Auftragsverarbeitungsvereinbarung nach dem durch das ZDF veröffentlichten und im Laufe des Verfahrens vervollständigten Musters abzuschließen. Der Abschluss inkludiert die Beschreibung der technisch-organisatorischen Maßnahmen.
+
+* Mit dem Teilnahmeantrag
+** Keine oder anderweitige Formerfordernis:
+- ZDF-Bieterformblatt: Die im Dokument ZDF-Bieterformblatt genannten Kriterien/Bedingungen/Vorgaben sind entsprechend den im Dokument gemachten Angaben zu erfüllen. Das Dokument ist vollständig ausgefüllt dem Teilnahmeantrag beizufügen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-28+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">Los 2b: ZDFheute Backend-Entwicklung und Workflows</cbc:Name>
+			<cbc:Description languageID="DEU">Der Bereich Backend-Entwicklung und Workflows bildet das technologische Rückgrat für die digitale Berichterstattung von ZDFheute sowie für die angeschlossenen Mandanten logo.de und die ZDF-Unternehmensseite. Der Scope umfasst die Bereitstellung und Weiterentwicklung einer sicheren und performanten Infrastruktur, die eine strikte Trennung von Inhalt und Ausspielung sicherstellt.
+
+Vom Auftragnehmer werden folgende Leistungen erwartet:
+- CMS-Auswahl und -Implementierung: Schwerpunkt für den Auftragnehmer in diesem Los ist nach Zuschlag die Verbesserung redaktioneller Workflows. Ausgehend von einer Workflow-Analyse (Beistellung ZDF) und eigener Expertise in diesem Umfeld wird vom Auftragnehmer nach Übernahme des Bestandssystems ein Vorschlag erwartet, mit dem das ZDF die Entscheidung für ein neues CMS treffen kann.
+
+Der Vorschlag umfasst sowohl ein fachliches Konzept inkl. CMS-Shortlist als auch die finanzielle Betrachtung (Lizenzen, Anschaffung etc.) sowie ein Migrations- und Launchkonzept. Zu den aktuellen Workflows zählt ebenso die Bearbeitung und Ausspielung von Teletext-Meldungen. Der Auftragnehmer übernimmt die vorhandene Architektur und macht Vorschläge für eine mögliche technische Migration in ein neues System bzw. beschreibt ein technisches Exit-Szenario.
+
+Wenn das ZDF auf Basis dieses Konzepts eine Entscheidung getroffen hat, wird der Auftragnehmer mit der Implementierung des neuen CMS beauftragt.
+
+- Backend-Architektur: Eine skalierbare und ausfallsichere Umgebung ist in der Google Cloud Platform (GCP) zu realisieren und nach Maßgaben des ZDF-Betriebs einzurichten und fortzuentwickeln (siehe Los 2c - Betrieb ZDFheute).
+
+- Systemintegration: Die technische Kopplung mit dem zentralen ZDF-Streamingportal zum Austausch von Video-Assets und Metadaten sowie die Integration zentraler Services wie Suche (Elasticsearch), Personalisierung (P/A-Service) und Tracking (ZDFtracking/Piano) sind Bestandteil der Leistung. Der Auftragnehmer übernimmt die vorhandene Struktur und entwickelt sie in Zusammenarbeit mit dem ZDF und den gemeinsam entwickelten Maßgaben fort.
+
+- API-Bereitstellung: Entwicklung und Wartung einer hoch performanten GraphQL- oder JSON/REST-Schnittstelle, die als zentrale Datenquelle für alle Frontend-Clients dient. Außerdem wird die Bereitstellung von Katalog-Exporten immer wichtiger. Der Auftragnehmer muss hier entsprechende technische Maßnahmen vorsehen, die eine flexible Bereitstellung von Exporten bzw. Feeds zu gewährleisten</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der festgelegte Höchstwert berücksichtigt einen umfangreichen Puffer für unvorhergesehene Leistungsbedarfe und ist nicht als Prognose des tatsächlichen Leistungsumfangs zu verstehen. Hieraus kann keine Verpflichtung zur Abnahme von Leistungen abgeleitet werden. Für das ZDF sowie gegebenenfalls weitere Auftraggeber besteht keine Abnahmeverpflichtung.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55127</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Das ZDF hat das Recht, die Rahmenvereinbarung gem. Vergabeunterlagen um dreimal ein Jahr zu verlängern.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Siehe Optionen</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0005</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vertraulichkeitserklärung (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Teile der Vergabeunterlagen unterliegen besonderen Vertraulichkeitsanforderungen. Der Bewerber ist daher verpflichtet, die vom Auftraggeber bereitgestellte Vertraulichkeitserklärung zu unterzeichnen und seinem Teilnahmeantrag beizufügen. Die von den Vertraulichkeitsanforderungen betroffenen Dokumente und Unterlagen werden den ausgewählten Bewerbern in der zweiten Phase des Verfahrens zur Verfügung gestellt.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eignungskriterien und einzureichende Referenzen (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Die Eignungs- und Auswahlkriterien sind den jeweiligen Eignungslisten pro Los zu entnehmen. Gleiches gilt für die geforderten Referenzen des Unternehmens.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und fachliche Eignung - Der Bewerber weißt anhand von eingereichten Referenzen seine fachliche und technische Expertise im relevanten Technologieumfeld nach. Die eingereichten Referenzen werden gem. den Angaben in der veröffentlichten Eignungsliste je Los bewertet.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es erfolgt eine pflichtgemäße Ermessensentscheidung, ob fehlende Angaben und Unterlagen von der Vergabestelle nachgefordert werden. Im Fall der Nachforderung müssen diese innerhalb einer durch die Vergabestelle kommunizierten Frist nach Aufforderung bei der Vergabestelle eingegangen sein; nach fruchtlosem Fristablauf erfolgt  ein Ausschluss des Angebots.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+* Auf Anforderung der Vergabestelle
+** Keine oder anderweitige Formerfordernis:
+- Auftragsverarbeitungsvereinbarung gem. DSGVO: Der Bewerber verpflichtet sich, im weiteren Verlauf des Verfahrens, spätestens jedoch im Falle der Auftragserteilung vor Aufnahme der Tätigkeiten eine Auftragsverarbeitungsvereinbarung nach dem durch das ZDF veröffentlichten und im Laufe des Verfahrens vervollständigten Musters abzuschließen. Der Abschluss inkludiert die Beschreibung der technisch-organisatorischen Maßnahmen.
+
+* Mit dem Teilnahmeantrag
+** Keine oder anderweitige Formerfordernis:
+- ZDF-Bieterformblatt: Die im Dokument ZDF-Bieterformblatt genannten Kriterien/Bedingungen/Vorgaben sind entsprechend den im Dokument gemachten Angaben zu erfüllen. Das Dokument ist vollständig ausgefüllt dem Teilnahmeantrag beizufügen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Sollten Sie eine Rüge erheben, die der Auftraggeber zurückweist, muss ein auf die Rüge gestützter Nachprüfungsantrag spätestens am 15. Kalendertag nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer eingehen (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Vorsorglich wird auch auf die Fristen gemäß § 134 Abs. 1 und 2, § 135 Abs. 2 sowie § 160 Abs. 3 S. 1 Nr. 1 bis 3 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXVHYMUDY6EC8WZA</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-28+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">5</cbc:ID>
+			<cbc:Name languageID="DEU">Los 2c: Betrieb ZDFheute</cbc:Name>
+			<cbc:Description languageID="DEU">Vom Auftragnehmer wird eine vollumfängliche Betriebsverantwortung nach ITIL-Standards erwartet:
+- Incident- &amp; Problem Management: Analyse, Bewertung und Behebung von Störungen inklusive einer lückenlosen Dokumentation.
+- Change- &amp; Configuration Management: Erstellung, Koordination, Implementierung und Finalisierung von Changes inklusive Dokumentation der Änderungen.
+- Deploy- &amp; Release Management: Durchführung regelmäßiger, unterbrechungsfreier Installationen (z.B. Sprint-Releases im 2-Wochen-Rhythmus).
+- Capacity- &amp; Cost Management: Aktives Monitoring der Ressourcen und anfallenden Cloud-Kosten in der GCP sowie monatliche Reports zur Kostenoptimierung.
+- Availability Management: Sicherstellen der Service-Verfügbarkeit mit zweckmäßiger Überwachung, Alarmierung, Datensicherungen und Notfallplanung.
+- Security Management: Umsetzung von IT-Sicherheitsmaßnahmen gemäß dem ZDF-Sicherheitskonzept und Sicherstellung des Datenschutzes.
+- Die detaillierte Leistungsbeschreibung für den Betrieb (Los 2c) von ZDFheute sind dem Dokument "Leistungsbeschreibung Los 2c ZDFheute Betrieb" zu entnehmen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der festgelegte Höchstwert berücksichtigt einen umfangreichen Puffer für unvorhergesehene Leistungsbedarfe und ist nicht als Prognose des tatsächlichen Leistungsumfangs zu verstehen. Hieraus kann keine Verpflichtung zur Abnahme von Leistungen abgeleitet werden. Für das ZDF sowie gegebenenfalls weitere Auftraggeber besteht keine Abnahmeverpflichtung.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Gem. Vergabeunterlagen ist die Leistungserbringung nach Absprache remote möglich.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>ZDF-Straße 1</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55127</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Das ZDF hat das Recht, die Rahmenvereinbarung gem. Vergabeunterlagen um dreimal ein Jahr zu verlängern.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Siehe Optionen</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.fu-berlin.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Freie Universität Berlin</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Thielallee 38</cbc:StreetName>
+                           <cbc:CityName>Berlin</cbc:CityName>
+                           <cbc:PostalZone>14195</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE 811304768</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>http://www.berlin.de/sen/wirtschaft/wirtschaft/wirtschaftsrecht/</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Landes Berlin</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Martin-Luther-Str. 105</cbc:StreetName>
+                           <cbc:CityName>Berlin</cbc:CityName>
+                           <cbc:PostalZone>10825</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE296830277</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.fu-berlin.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Freie Universität Berlin</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Thielallee 38</cbc:StreetName>
+                           <cbc:CityName>Berlin</cbc:CityName>
+                           <cbc:PostalZone>14195</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>11-2000027000-18</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00691879-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">194/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">431751bd-8ca3-4b78-bede-3992fb67aea5</cbc:ID>
+   <cbc:ContractFolderID>60cbd19f-613f-42be-ad64-5432118ed19a</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-06+02:00</cbc:IssueDate>
+   <cbc:IssueTime>13:04:57+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-06+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://vergabekooperation.berlin</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>CrossBorderLaw</cbc:ID>
+         <cbc:DocumentDescription languageID="DEU">Nicht zutreffend</cbc:DocumentDescription>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Für alle Ausschlussgründe gelten die gesetzlichen Ausschlussvoraussetzungen nach §§ 123 bis 126 GWB. Unternehmen müssen das Nichtvorliegen von Ausschlussgründen in der Regel durch Eigenerklärungen nachweisen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">siehe oben</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>IIC-2026-0063</cbc:ID>
+      <cbc:Name languageID="DEU">Beschaffung und Einführung einer digitalen Lösung für E-Procurement-Prozesse</cbc:Name>
+      <cbc:Description languageID="DEU">Bereitstellung, Einführung und Betrieb einer E-Procurement-Lösung einschließlich ERP-Anbindung, Migration, Schulung, Support und Weiterentwicklung.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">1. Mit dem Teilnahmeantrag einzureichende Unterlagen zur Eignungsprüfung:
+- Teilnahmeantrag
+- Eigenerklärung zu Ausschlussgründen VgV, Wirt-124 EU
+- BVB und Erklärung zur Frauenförderung (Teil A), Wirt-2141
+- Eigenerklärung Unteraufträge/Eignungsleihe, Wirt-235
+- Verpflichtungserklärung, Wirt-236 (falls zutreffend)
+- Eigenerklärung der Bieter- und Bewerbergemeinschaft, Wirt-238
+- Bieterangaben Wettbewerbsregister, Wirt-3293
+
+Weitere mit dem Teilnahmeantrag einzureichende Unterlagen:
+- Eigenerklärung zu den Mindestanforderungen an den Leistungsgegenstand
+- Ausführliche Referenzbeschreibung (Mindestanforderungen an die Referenzen und Angaben gem. Bekanntmachungstext)
+
+
+2. Folgende Dokumente müssen mit Abgabe des Angebots nicht eingereicht werden, sie gelten mit Abgabe des signierten elektronischen Angebots als gelesen und akzeptiert:
+- Einhaltung restriktiver Maßnahmen, Wirt-124.1
+- BVB zum Mindeststundenentgelt und zur Tariftreue - (Teil A), Wirt 214.1
+- BVB Schutzklausel bei Leistungen von Beratungs- und Schulungsunternehmen, Wirt-2142
+- BVB zur Verhinderung von Benachteiligungen (Teil A), Wirt- 2143
+- BVB über Kontrollen und Sanktionen nach BerlAVG (Teil B), Wirt-2144
+- BVB über Umweltschutzanforderungen (Teil A), Wirt-2145
+- Sicherheitsrichtlinie für Auftragnehmer
+- Zusätzliche Vertragsbedingungen der Freien Universität Berlin
+
+3. Die Bieter/Bietergemeinschaften haben zwingend die vom Auftraggeber vorgegebenen und kostenfrei über die Vergabeplattform https://vergabekooperation.berlin abrufbaren Formblätter für die Erstellung ihres Angebots zu verwenden. Angebote, die nicht unter Verwendung der Formblätter abgegeben werden, werden vom Verfahren ausgeschlossen.
+
+4. Die Vergabestelle behält sich vor, zur Überprüfung der Angaben ggf. weitere Nachweise und Erklärungen innerhalb einer angemessenen Frist nachzufordern.
+
+5. Auskünfte werden nur nach Anforderung in Textform, die auf der projektbezogenen Internet-Plattform zu diesem Verfahren https://vergabekooperation.berlin erfolgen muss, erteilt. Die Beantwortung und weitere Informationen des Auftraggebers werden, soweit im Zuge der Gleichbehandlung aller Bieter geboten, an gleicher Stelle veröffentlicht.
+
+6. Beteiligt sich ein Unternehmen mehrfach - sei es als Bieter, Mitglied einer Bietergemeinschaft oder Unterauftragnehmer - an diesem Vergabeverfahren, so kann dies zum Verfahrensausschluss aller Bieter/Bietergemeinschaften, bei denen das jeweilige Unternehmen beteiligt ist, führen.
+
+7. Für die Teilnahme am Verfahren wird keine Aufwandserstattung, Entschädigung oder Vergütung gewährt; dies gilt auch für den Fall, dass das Verfahren gleich zu welchem Zeitpunkt abgebrochen wird.
+
+8. Alle Teilnehmer am Verfahren verpflichten sich, die Ihnen im Rahmen dieses Verfahrens bzw. bei Vertragsausführung bekanntwerdenden Informationen vertraulich zu behandeln. Die von den Teilnehmern im Rahmen dieses Verfahrens mitgeteilten personen- und unternehmensbezogenen Angaben werden im Rahmen dieses Verfahrens gespeichert und verarbeitet. Durch Abgabe eines Angebots erklärt der Bieter sich hiermit einverstanden.
+
+9. Bei technischen Problemen bei der Angebotserstellung und/oder Registrierung/Anmeldung wenden Sie sich bitte ausschließlich an den Technischen Support der Vergabeplattform "Vergabekooperation Berlin"
+
+Bei technischen Problemen:
+Technische Support-Hotline    Tel.: [removed]
+Mo-Fr 09:00 bis 17:00 Uhr
+
+Hinweis!
+Die Vergabestelle kann Sie in diesen Fällen nicht unterstützen.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48490000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>Thielallee 38</cbc:StreetName>
+            <cbc:CityName>Berlin</cbc:CityName>
+            <cbc:PostalZone>14195</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Referenzen des Bewerbers
+(Kombination aus Ausschlusskriterium und qualitativer Bewertung)
+
+A. Mindestanforderungen an die Referenzen (Ausschlusskriterien):
+Der Bewerber hat zum Nachweis seiner technischen und beruflichen Leistungsfähigkeit geeignete Referenzprojekte aus den letzten fünf (5) Jahren einzureichen.
+Insgesamt müssen die eingereichten Referenzen zwingend alle folgenden drei Fachanforderungen abdecken (Hinweis: Es kann ein einziges Referenzprojekt eingereicht werden, sofern dieses alle drei Anforderungen gleichzeitig erfüllt. Alternativ können bis zu 3 verschiedene Referenzprojekte eingereicht werden, die die Anforderungen in Summe abdecken):
+• SAP PSM- &amp; MM-Integration: 
+Mindestens ein Referenzprojekt mit erfolgreicher bidirektionaler Anbindung an ein SAP-ERP-System unter aktiver Nutzung der Module SAP MM sowie SAP PSM (Public Sector Management) inklusive automatisierter Budget- und Verfügbarkeitsprüfung vor Bestellauslösung.
+• Kataloganbindung (OCI): Mindestens ein Referenzprojekt mit erfolgreicher Anbindung externer Katalogsysteme über die OCI-Schnittstelle (Open Catalog Interface oder cXML).
+
+B. Ergänzende Eignungsbewertung (Punktevergabe):
+• Öffentlicher Sektor / Hochschulkontext: Mindestens ein Referenzprojekt im öffentlichen Sektor, bei Hochschulen oder Forschungseinrichtungen mit komplexer Budget- und Kontierungslogik (z.B. Drittmittel, Fonds, Finanzstellen, PSP-Elemente)
+• Multi-Mandanten-Erfahrung: Sofern nachgewiesen wird, dass eine oder mehrere der eingereichten Referenzen als Multi-Mandanten- bzw. Verbundlösung für mehrere rechtlich eigenständige Organisationen umgesetzt wurden, wird dies im Rahmen der Eignungsprüfung positiv bewertet.
+• Multi-Mandanten-Erfahrung:
+Sofern nachgewiesen wird, dass eine oder mehrere der eingereichten Referenzen als Multi-Mandanten- bzw. Verbundlösung für mehrere rechtlich eigenständige Organisationen umgesetzt wurden, wird dies im Rahmen der Eignungsprüfung positiv bewertet.
+• Lösungsarchitektur und Standardabdeckung:
+Für die eingereichten Referenzprojekte hat der Bewerber ergänzend darzustellen, wie die jeweilige E-Procurement-Lösung architektonisch umgesetzt wurde und in welchem Umfang die erforderlichen Funktionalitäten durch Standardsoftware abgedeckt wurden bzw. Customizing oder Erweiterungsentwicklungen erforderlich waren. Die Angaben werden im Rahmen der qualitativen Eignungsbewertung hinsichtlich der nachgewiesenen Erfahrung des Bewerbers mit einer möglichst hohen Standardabdeckung und einem angemessenen Einsatz von Customizing bzw. Erweiterungsentwicklungen berücksichtigt.
+• Betriebs- und Hostingmodell:
+Für die eingereichten Referenzprojekte hat der Bewerber das jeweils realisierte Betriebs- und Hostingmodell (z. B. SaaS, Public/Private Cloud, Hybrid oder On-Premises) darzustellen. Die Angaben werden im Rahmen der qualitativen Eignungsbewertung hinsichtlich der nachgewiesenen Erfahrung des Bewerbers mit geeigneten Betriebs- und Hostingmodellen berücksichtigt.
+• Integrations- und Schnittstellenmodell:
+Für die eingereichten Referenzprojekte hat der Bewerber das jeweils realisierte Integrations- und Schnittstellenmodell, insbesondere die Anbindung an bestehende ERP- bzw. SAP-Systeme, darzustellen. Die Angaben werden im Rahmen der qualitativen Eignungsbewertung hinsichtlich der nachgewiesenen Erfahrung des Bewerbers mit komplexen Integrations- und Schnittstellenarchitekturen berücksichtigt.
+
+Der Umfang der ergänzenden Darstellung soll insgesamt fünf (5) DIN-A4-Seiten nicht überschreiten. Die Darstellung ist auf die tatsächlich realisierten Referenzprojekte zu beziehen. Eine Darstellung einer für den Auftraggeber vorgesehenen oder hypothetischen zukünftigen Lösung ist nicht Gegenstand der Eignungsbewertung.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabekooperation.berlin/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-19ff610e76f-2f96e2e495149bf9</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Unterlagen können nach Maßgabe des § 56 VgV nachgefordert werden. Ein Anspruch auf Nachforderung besteht nicht. Eine nachträgliche inhaltliche Verbesserung des Teilnahmeantrags ist ausgeschlossen.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>10.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Projektmethodik, Umsetzbarkeit im vorgesehenen Zeitfenster &amp; Pilotierungskonzept</cbc:Name>
+                  <cbc:Description languageID="DEU">Plausibilität des Termin- und Einführungsplans zur Einhaltung des Go-Live am 01.11.2027 (ab Kick-off im Januar 2027), Qualität des Risikomanagements für den Parallelbetrieb sowie Durchführbarkeit des Pilotbetriebs.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>15.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Nutzerfreundlichkeit und Ergonomie (Usability / UX)</cbc:Name>
+                  <cbc:Description languageID="DEU">Intuitive Bedienbarkeit der Benutzeroberfläche für Gelegenheitsanforderer, Barrierefreiheit, Übersichtlichkeit des Warenkorbs und Transparenz im Genehmigungsstatus.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>10.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Kompetenz und Erfahrung des Projektteams</cbc:Name>
+                  <cbc:Description languageID="DEU">Qualifikation und Branchenerfahrung der benannten Berater und Entwickler in Hochschul- oder öffentlichen ERP-Projekten.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>15.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Erfüllungsgrad der funktionalen und technischen Anforderungen</cbc:Name>
+                  <cbc:Description languageID="DEU">Abdeckungsgrad des Referenzprozesses im Standard (u. a. 25.000 € BANF-Ausschleusung, PPOMA-Ersatzlogik, preisanfragegestützte Prozesse) sowie Qualität der Schnittstellenarchitektur.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Gesamtkosten (TCO)</cbc:Name>
+                  <cbc:Description languageID="DEU">Gesamtbetriebskosten (TCO) bestehend aus Implementierungsaufwand, Lizenzen-Gebühren, Betrieb, Wartung und Support, Kosten des jeweiligen Betriebsmodells.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabekooperation.berlin/</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung oder in den Vergabeunterlagen erkennbar sind, sind spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber zu rügen. Im Übrigen sind Verstöße gegen Vergabevorschriften innerhalb einer Frist von zehn Kalendertagen nach Kenntnis gegenüber dem Auftraggeber zu rügen. Ein Nachprüfungsantrag ist innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der zuständigen Vergabekammer zu stellen (§ 160 Gesetz gegen Wettbewerbsbeschränkungen (GWB)). Die o.a. Fristen gelten nicht, wenn der Auftraggeber gemäß § 135 Absatz 1 Nr. 2 GWB den Auftrag ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist. Setzt sich ein Auftraggeber über die Unwirksamkeit eines geschlossenen Vertrages hinweg, indem er die Informations- und Wartepflicht missachtet (§ 134 GWB) oder ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist, kann die Unwirksamkeit nur festgestellt werden, wenn sie im Nachprüfungsverfahren innerhalb von 30 Kalendertagen nach der Information der betroffenen Bieter und Bewerber durch den öffentlichen Auftraggeber über den Abschluss des Vertrags, jedoch nicht später als sechs Monate nach Vertragsschluss geltend gemacht worden ist. Hat der Auftraggeber die Auftragsvergabe im Amtsblatt der Europäischen Union bekannt gemacht, endet die Frist 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union (§ 135 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:InvitationSubmissionPeriod>
+            <cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+         </cac:InvitationSubmissionPeriod>
+         <cac:ParticipationRequestReceptionPeriod>
+            <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+            <cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+         </cac:ParticipationRequestReceptionPeriod>
+         <cac:EconomicOperatorShortList>
+            <cbc:LimitationDescription>true</cbc:LimitationDescription>
+            <cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+            <cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+         </cac:EconomicOperatorShortList>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Beschaffung und Einführung einer digitalen Lösung für E-Procurement-Prozesse</cbc:Name>
+         <cbc:Description languageID="DEU">Gegenstand der Ausschreibung ist die Bereitstellung, Einführung und der Betrieb einer digitalen Lösung für E-Procurement-Prozesse. Die Lösung soll dezentrale Bedarfsanforderungs-, Bestell- und Freigabeprozesse sowie Funktionen des zentralen Einkaufs einschließlich des Kontraktmanagements abbilden.
+
+Die Lösung muss bis zu drei rechtlich selbstständige Organisationen mit jeweils eigenen Organisationsstrukturen, Berechtigungen, Freigabeworkflows und ERP-Anbindungen unterstützen. Darüber hinaus ist eine Schnittstelle zu einem gemeinsam genutzten Produkt- und Lieferantenkatalog vorzusehen. Zum Leistungsumfang gehören insbesondere Konzeption, Konfiguration, Implementierung, Datenmigration, Schnittstellenanbindung, Inbetriebnahme, Schulung, Support und laufende Weiterentwicklung der Lösung.
+
+***************************************************************************
+
+Zwingende Mindestanforderungen an den Leistungsgegenstand:
+
+Der Bewerber muss mit der Abgabe des Teilnahmeantrags verbindlich erklären, dass die vom Bewerber für die Auftragsausführung vorgesehene E-Procurement-Gesamtlösung sowie das zugrunde liegende Betriebs- und Bereitstellungsmodell technisch, funktional und organisatorisch dazu ausgelegt sind, sowohl das Grundszenario sowie die für eine optionale Beauftragung vorgesehenen Erweiterungsszenarien unterstützen zu können.
+
+• Grundszenario (Freie Universität Berlin): Vollständige funktionale Ablösung des bestehenden SAP SRM Server-Systems (Extended Classic Scenario) inklusive der Abbildung der operativen Einkäuferfunktionen und komplexer Freigabestrukturen.
+• Optionale Szenarien (Humboldt-Universität zu Berlin &amp; Technische Universität Berlin): Echte Multi-Mandantenfähigkeit zur Ermöglichung eines zeitgleichen oder gestaffelten Betriebs mehrerer rechtlich eigenständiger Hochschulen mit strikt getrennten Datenräumen, Regelwerken und Rollenkonzepten.
+• Systemintegration (Hybride SAP-Landschaft): Zukunftsfähige und flexible bidirektionale Anbindung an SAP R/3 ERP sowie SAP S/4HANA unter Berücksichtigung von SAP PSM (Public Sector Management) für automatisierte Budget- und Verfügbarkeitsprüfungen.
+
+Hierzu ist die vom Auftraggeber bereitgestellte Eigenerklärung vollständig ausgefüllt und rechtsverbindlich unterzeichnet mit dem Teilnahmeantrag einzureichen.
+
+Die Erfüllung der Mindestanforderungen ist nicht Gegenstand der Auswahlentscheidung nach § 51 VgV. Die Auswahl der zur Angebotsabgabe aufzufordernden Bewerber erfolgt unter denjenigen Bewerbern, die sowohl die geforderten Eignungsvoraussetzungen als auch die vorstehend genannten Mindestanforderungen erfüllen, ausschließlich anhand der bekanntgemachten Eignungskriterien.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48490000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>Thielallee 38</cbc:StreetName>
+               <cbc:CityName>Berlin</cbc:CityName>
+               <cbc:PostalZone>14195</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DescriptionCode listName="timeperiod">UNLIMITED</cbc:DescriptionCode>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Optional können zusätzliche Lizenzen, Module, Schnittstellen sowie Beratungs-, Schulungs-, Support- und Weiterentwicklungsleistungen zu den vertraglich festgelegten Konditionen beauftragt werden. Ein Anspruch auf Beauftragung dieser Leistungen besteht nicht.
+
+Darüber hinaus sind die Humboldt-Universität zu Berlin und die Technische Universität Berlin  berechtigt, dem Vertrag während seiner Laufzeit jeweils eigenständig beizutreten. Der Beitritt ist optional; eine Verpflichtung zur Inanspruchnahme besteht nicht. 
+
+Die Beitrittsoption umfasst insbesondere die Bereitstellung und Einführung der ausgeschriebenen E-Procurement-Lösung, die mandantenspezifische Konfiguration, die Anbindung des jeweiligen ERP-Systems, erforderliche Migrations-, Schulungs- und Einführungsleistungen sowie den anschließenden Betrieb, Support und die Weiterentwicklung zu den vertraglich festgelegten Konditionen.
+Der Beitritt erfolgt durch schriftliche Erklärung der jeweiligen Hochschule und den Abschluss einer entsprechenden Beitrittsvereinbarung mit dem Auftragnehmer. Ein Anspruch des Auftragnehmers auf Ausübung der Option besteht nicht.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.rhein-neckar-kreis.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Landratsamt Rhein-Neckar-Kreis</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kurfürsten-Anlage 38 - 40</cbc:StreetName>
+                           <cbc:CityName>Heidelberg</cbc:CityName>
+                           <cbc:PostalZone>69115</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE128</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>08226-A8148-09</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://rp.baden-wuerttemberg.de/rpk/abt1/ref15</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg beim Regierungspräsidium Karlsruhe</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Durlacher Allee 100</cbc:StreetName>
+                           <cbc:CityName>Karlsruhe</cbc:CityName>
+                           <cbc:PostalZone>76137</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00684172-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">192/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-05+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">bc29c134-50b7-4066-856d-e57a2d26b346</cbc:ID>
+   <cbc:ContractFolderID>b3049778-55b6-4273-be91-9067fdcae498</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-02+02:00</cbc:IssueDate>
+   <cbc:IssueTime>11:14:39+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-02+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://www.rhein-neckar-kreis.de</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem zu bestätigen,
+
+- dass entweder, für das Unternehmen keine Ausschlussgründe gemäß § 42 VgV in Verbindung mit § 123 und § 124 GWB vorliegen
+- oder, dass zwar für das Unternehmen ein Ausschlussgrund gemäß § 123 GWB oder § 124 GWB vorliegt, jedoch das Unternehmen Maßnahmen zur Selbstreinigung ergriffen hat, durch die für das Unternehmen die Zuverlässigkeit wieder hergestellt wurde.
+
+Es ist zu erklären, dass das Unternehmen in den letzten 2 Jahren nicht
+- gem. § 21 Abs. 1 Satz 1 oder 2 Schwarzarbeitsbekämpfungsgesetz oder
+- gem. § 21 Abs. 1 Arbeitnehmerentsendegesetz oder
+- gem. § 19 Abs. 1 Mindestlohngesetz
+mit einer Freiheitsstrafe von mehr als 3 Monaten oder einer Geldstrafe von mehr als 90 Tagessätzen oder einer Geldbuße von mehr als 2.500 EUR belegt worden ist.
+
+Es ist zu bestätigen,
+- dass keine illegalen Beschäftigten eingesetzt werden
+- dass für die angebotene Leistungen keine Kartellabrede, Preisbindungen, ähnliche Vereinbarungen oder vorbereitende Handlungen in diese Richtung getroffen wurden
+- dass die Bestimmungen des Geseztes zur Regelung eines allgemeinen Mindestlohns (MiLoG) eingehalten werden
+- dass keine Geldbuße von wenigsten 2.500 EUR wegen eines Verstoßes nach § 21 Mindestlohngesetz (MiLoG) verhängt wurde
+- dass keine Produkte geliefert werden, die mittels ausbeuterischer Kinderarbeit im Sinne der ILO Konvention 182 hergestellt und/oder bearbeitet wurden
+
+Die Vergabestelle behält es sich vor, Auskünfte aus dem Wettbewerbsregister einzuholen.
+
+Angaben zur Zahlung von Steuern, Abgaben und Beiträgen zur gesetzlichen Sozialversicherung:
+Es ist zu erklären, dass das Unternehmen dessen Verpflichtung zur Zahlung von Steuern und Abgaben sowie der Beiträge zur gesetzlichen Sozialversicherung, soweit sie der Pflicht zur Beitragszahlung unterfallen, ordnungsgemäß erfüllt hat.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>087.31:Hausdruckerei2026</cbc:ID>
+      <cbc:Name languageID="DEU">Überlassung, Versorgung, Wartung und Service von zentralen Drucksystemen in der Hausdruckerei</cbc:Name>
+      <cbc:Description languageID="DEU">Erneuerung der Hausdruckerei-Lösung</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Die Vergabestelle (BT-500 fortfolgend) handelt im Namen von:
+Eigenbetrieb Bau, Vermögen und Informationstechnik (EBVIT),
+Rhein-Neckar-Kreis, Geschäftsbereich IT, Dietmar-Hopp-Straße 8, 74889 Sinsheim (=Auftraggeber).
+
+Es ist in den vorbereiteten Dokumenten der Ausschreibungsunterlage zu erklären, dass:
+
+1.) die geltenden Vorschriften des Datenschutzes (insbesondere DSGVO /§ 53 BDSG/§ 6 LDSG) durch den Bieter und dessen Erfüllungsgehilfen vor, während und nach der Projektausführung/Beauftragung beachtet werden.
+
+2.) alle mit dem Angebot vorgelegten Angaben und Erklärungen im Auftragsfalle zum Vertragsbestandteil werden, soweit diese eine zu erbringende Leistung oder vorhandene Eigenschaft bestätigen.
+
+3.) alle funktionalen Anforderungen und vertraglichen Maßgaben der Ausschreibungsunterlagen beim Angebot erfüllt werden sowie die dort genannten Normen und Standards zur Kenntnis genommen und deren Einhaltung bestätigt wird.
+
+
+4.) im Angebotspreis abschließend alle aufgeführten Funktionalitäten und alle in den Vergabeunterlagen genannten Anforderungen (einschließlich etwaiger zusätzlich zur Auftragserfüllung notwendiger Nebenleistungen) abgedeckt und vertragliche Regelungen sowie alle Angaben und Informationen der Ausschreibungsunterlagen berücksichtigt wurden.
+
+5.) die Vorgaben und Bestimmungen des Tariftreue- und Mindestlohngesetzes für öffentliche Aufträge in Baden-Württemberg (Landestariftreue- und Mindestlohngesetz - LTMG) bezogen auf den Dienstleistungsanteil der Gesamtleistung eingehalten und die geforderte/n einschlägige/n Erklärung/en abgegeben werden.
+
+Neben den Angebotspositionen sind im Leistungsverzeichnis
+ergänzende Fragebögen zu beantworten:
+
+Pflichtangabe für EU-Bekanntmachung (Feld BT- 746):
+Es ist anzugeben, ob das Unternehmen börsennotiert ist.
+
+Pflichtangabe für EU-Bekanntmachung (Feld BT- 706):
+Es ist die Nationalität des wirtschaftlichen Eigentümers (Berechtigten) des Unternehmers gem. § 3 GWG anzugeben.
+Hinweis: Diese Angabe ist bei börsennotierten Unternehmen nicht erforderlich.
+
+HINWEIS ZUR E-VERGABE:
+Die Verfahrensabwicklung läuft vollelektronisch über die E-Vergabeplattform. Das Angebot ist folglich ausschließlich elektronisch über das geschützte E-Vergabesystem einzureichen. Wir stellen zudem klar, dass Angebote per E-Mail und/oder Fax aus Gründen des Datenschutzes und des vergaberechtlichen Geheimwettbewerbs keine zulässige/n elektronische/n Abgabe/n darstellen.
+
+Die Abgabe von Angeboten in Papierform und /oder mittels E-Mail bzw. Fax ist demnach ausdrücklich ausgeschlossen.
+
+Das Bieter-Cockpit (Bieterportal) des E-Vergabesystems gilt darüber hinaus als verbindlicher Kommunikationsweg und wird für die Zustellung/Entgegennahme rechtserheblicher Erklärungen genutzt (gilt somit als "Briefkasten" des Teilnehmenden/Bieters in seinem Machtbereich).
+
+Zur Abgabe des Angebots:
+Der systemeigene Bieter-Assistent/Cockpit führt die Teilnehmenden durch die Bearbeitung bis hin zur Abgabe des Angebots. Für Fragen zum System steht für die Teilnehmenden ein kostenfreier Bieter-Support unter Tel.-Nr.: [removed] oder per E-Mail zur Verfügung über [removed] (Kontaktdaten werden auch systemseitig angezeigt).
+
+Die Vergabeunterlagen sind nach Registrierung komplett elektronisch im System auszufüllen und müssen nicht nochmals ausgedruckt, handschriftlich ausgefüllt oder eingescannt werden. Eine digitale Signatur sowie handschriftliche Unterschriften sind nicht notwendig, selbst wenn Formularfelder entsprechende Eintragungen vorsehen. Die digitale Abgabe des Angebots über das System gilt als rechtsverbindlich.
+
+Es ist zu beachten, dass alle Fragestellungen der Ausschreibungsunterlage individuell zu beantworten sind. Es ist zur Kenntnis zu nehmen, dass bloße Verweise auf standardisierte Unterlagen (z.B. vorgefertigte Broschüren) nicht zulässig sind und nicht als Bestandteil des Angebots gewertet werden.
+
+Mögliche Fragen von Teilnehmenden bzgl. der Anforderungen der Ausschreibungsunterlagen oder zum Vergabeverfahren sind unverzüglich über das E-Vergabesystem an uns zu richten und werden von uns ausschließlich über das System beantwortet. Es können nur Fragen rechtzeitig bearbeitet werden, die voraussichtlich bis 15.10.2026 über die E-Vergabeplattform bei der Vergabestelle eingegangen sind.
+
+Von einer Korrespondenz per E-Mail ist aus verfahrenstechnischen Dokumentationsgründen abzusehen. Mündliche Auskünfte werden nicht erteilt. Abstimmungen mit Dritten werden nicht anerkannt. Sollten die Auskünfte von allgemeinem Interesse sein, werden sie allen Teilnehmenden in anonymisierter Form zugänglich gemacht. Die vom Auftraggeber erteilten Auskünfte sind bei der Ausarbeitung des Angebots zu berücksichtigen.
+
+Die Vergabestelle stellt ausfüllbare PDF-Dokumente zur Verfügung. Das Leistungsverzeichnis (Preisteil +Infofragebögen) und der Fragebogen zur Eignungsprüfung müssen innerhalb des E-Vergabesystems ausgefüllt werden.
+Angeforderte und ergänzende Unterlagen sind bieterseitig im E-Vergabesystem als Anlage hochzuladen und dem Angebot somit beizufügen.
+
+Der Bieter muss sein digitales Angebot rechtzeitig sowie unter Berücksichtigung seiner zur Verfügung stehenden Internet-Bandbreiten bzw. Datenupload-Geschwindigkeiten über das E-Vergabe-System einreichen.
+Das Ende der Angebotsfrist ist dabei unbedingt zu beachten.
+Die einzureichenden Unterlagen sind der "Checkliste für Bietende" zu entnehmen.
+
+Es gelten ausschließlich die Ausschreibungsbedingungen.
+Daher werden Allgemeine Geschäfts-, Verkaufs- oder Lieferbedingungen und ähnliches der Teilnehmenden nicht akzeptiert.
+Das Einreichen solcher Unterlagen kann zum Ausschluss des Angebots führen.
+
+Beachten Sie auch die Hinweise in den Bewerbungsbedingungen.</cbc:Note>
+      <cac:RequestedTenderTotal>
+         <cbc:EstimatedOverallContractAmount currencyID="EUR">339796.22</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30121400</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30121430</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30120000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48773000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>Kurfürsten-Anlage 38 - 40</cbc:StreetName>
+            <cbc:CityName>Heidelberg</cbc:CityName>
+            <cbc:PostalZone>69115</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE128</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Hierfür werden in den Vergabeunterlagen entsprechende Formblätter zur Verfügung gestellt.
+
+Der Bieter hat darin anzugeben:
+- Referenzen:
+realisierte Referenzprojekte mit vollständiger Kontaktangabe
+für mindestens 3 Vergleichsprojekte bezogen auf die
+beschriebene Leistungsart (Lieferung, Implementierung sowie
+Wartung und Service für Drucksysteme in einer Hausdruckerei)
+in den letzten 36 Monaten.
+
+Mindestanforderung an die Referenzen::
+Die Referenzen müssen dem Inhalt und der Menge nach mit den abgefragten Leistungen vergleichbar sein.
+1 der 3 Referenzen muss sich hierbei auch auf die Systemeinbindung in ein Netzwerk mit einer Kapazität von 100/1000 Mbit/s (Ethernet TCP/IP Protokoll) beziehen.
+Aufgrund besonderer Anforderungen im kommunalen Bereich, muss 1 Referenz von einem Kunden der öffentlichen Verwaltung (Bund, Länder, Landkreise und Gemeinden mit deren Körperschaften, Anstalten, Stiftungen, sowie Regie- und Eigenbetrieben) stammen.
+Ferner werden nur Referenzen als vergleichbar anerkannt, bei denen die Beschäftigtenzahl des jeweiligen Auftraggebers mindestens 500 betragen hat.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter hat im "Fragebogen zur Eignungsprüfung" nachfolgende Angaben zu tätigen:
+
+- Kommunikation:
+Verwendung der deutschen Sprache.
+
+- Partner:
+Sofern vorgesehen ist, Partner bei dem  anstehenden Projekt einzusetzen, ist zu den nachfolgenden Punkten ausführlich in einer Anlage Stellung zu nehmen:
+Für welche der beschriebenen Leistungen ist ein
+Partnereinsatz vorgesehen ?
+Nach welchen Kriterien werden diese Partner ausgewählt?
+bezogen auf:
+- Fachkunde
+- Leistungsfähigkeit
+- Zuverlässigkeit
+- Soziale Kompetenz
+
+- Nachunternehmer:
+Angabe, ob es beabsichtigt ist, Nachunternehmer einzusetzen 
+
+Möglicherweise geforderte Mindeststandards:
+
+- Kommunikation:
+Bestätigung, dass die deutsche Sprache in der täglichen Auftragsausführung und für Korrespondenzen verwendet wird.
+
+- Nachunternehmer (falls zutreffend):
+Vorlage des ausgefüllten Vordrucks "Erklärungen bei Weitervergabe von Leistungen an Nachunternehmer".</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter hat im "Fragebogen zur Eignungsprüfung" nachfolgende Angaben zu tätigen:
+
+Anzahl der für dieses Projekt vorgesehenen Mitarbeitenden im Bereich Technik/Support
+
+Möglicherweise geforderte Mindeststandards:
+Ausschluss, wenn nicht mindestens 4 Mitarbeitende
+
+Anzahl der für dieses Projekt vorgesehenen Mitarbeiternden im Bereich Verwaltung/Organisation in der zuständigen Niederlassung
+
+Möglicherweise geforderte Mindeststandards:
+Ausschluss, wenn nicht mindestens 2 Mitarbeitende
+
+Angaben zum etwaigen vorhandenen Partnerstatus bzw. zur Herstellerautorisierung sowie betreffend der Zertifizierungen zu den angebotenen und supporteten Produkten
+
+Möglicherweise geforderte Mindeststandards:
+Falls kein Partnerstatus besteht, kann alternativ eine Hersteller-Autorisierungserklärung (Manufacturer's Authorization Form) vorgelegt werden.
+Darin ist durch den Hersteller der Systeme formlos (aber verbindlich) folgendes zu erklären: "Wir bestätigen, dass das Unternehmen X berechtigt ist, unsere Produkte anzubieten, und dass wir dem Unternehmen X im Rahmen dieses Projekts vollen technischen Support und Zugriff auf originale Ersatzteile gewähren."</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem anzugeben:
+
+- Beschäftigtenanzahl:
+Die durchschnittliche jährliche Beschäftigtenanzahl der letzten drei abgeschlossenen Geschäftsjahre.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-no-mgmt</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem anzugeben:
+
+- Führungskräfte:
+Die durchschnittliche jährliche Zahl der Führungskräfte der letzten drei abgeschlossenen Geschäftsjahre.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem durch den Bieter zu erklären:
+
+- Betriebshaftpflichtversicherung:
+Eigenerklärung, dass eine Haftpflichtversicherung (Betriebshaftpflichtversicherung), die alle Risiken abdeckt, die sich aus der Vertragserfüllung ergeben, vorliegt oder bis zum Vertragsbeginn abgeschlossen und während der Leistungserbringung aufrechterhalten wird.
+
+Die Haftpflichtversicherung muss bei einem in der EU zugelassenen Haftpflichtversicherer oder Kreditinstitut abgeschlossen worden sein, bzw. ist zu bestätigen, dass die Berufshaftpflichtversicherung im Falle der Auftragserteilung entsprechend erhöht werden kann.
+
+Möglicherweise geforderte Mindeststandards:
+Mindestdeckungsgrenzen der Betriebshaftpflichtversicherung je Versicherungsfall:
+Personenschäden: mindestens 1.000.000 EUR je Fall, zweifach maximiert im Jahr
+Sach- und unechte Vermögensschäden: mindestens 1.000.000 EUR je Fall, zweifach maximiert im Jahr
+Echte Vermögensschäden: Mindestens 200.000 EUR pro Schadensfall, zweifach maximiert im Jahr</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem durch den Bieter zu erklären:
+
+- ob über sein Vermögen ein Insolvenzverfahren oder vergleichbares gesetzliches Verfahren beantragt oder eröffnet wurde,
+- ob er sich in Liquidation befindet,
+- ob ein Insolvenzplan rechtskräftig bestätigt wurde. Auf Verlangen ist dieser vorzulegen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es ist im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem anzugeben:
+
+- Umsatz:
+Der Umsatz der letzten drei abgeschlossenen Geschäftsjahre aus dem Tätigkeitsbereich des Auftrags.
+
+Mit der Angabe erklärt der Bieter, dass eine Bestätigung eines vereidigten Wirtschaftsprüfers/Steuerberaters oder entsprechend testierte Jahresabschlüsse oder entsprechend testierte Gewinn- und Verlustrechnungen auf gesondertes Verlangen vorlegt werden, falls das jeweilige  Angebot in die engere Wahl kommt.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es sind im Formular "Fragebogen zur Eignungsprüfung" im E-Vergabesystem Angaben zu leisten:
+
+- zur gewerblichen Anmeldung beim zuständigen Registergericht bzw. die Kopie der Gewerbeanmeldung vorzulegen, falls das Gewerbe als natürliche Person angemeldet wurde
+
+- zur Gesellschaft des Unternehmens (Hat das Unternehmen eine Muttergesellschaft oder ist es in einem Konzernverbund eingebunden?)
+
+- zur Mitgliedschaft bei einer Berufsgenossenschaft</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.vmstart.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a0aa130ead-1e54f580c722d6ab</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Eine Nachforderung von Unterlagen erfolgt im Rahmen der gesetzlichen Vorgaben der VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Angaben zur Bietergemeinschaft, falls zutreffend:
+Bietergemeinschaften müssen gesamtschuldnerisch haften
+und einen Bevollmächtigten benennen. Die erforderlichen Erklärungen müssen (sofern zutreffend) von jedem Mitglied der Bietergemeinschaft vorgelegt werden.
+
+Für die digitale Rechnungsstellung (E-Rechnung) gelten folgenden Maßgaben:
+Zulässiges Format: XRechnung ZUGFeRD-Rechnung bzw. ein anderer zulässiger EN-16931-konformer Standard
+Versandweg: Übermittlung der elektronischen Rechnung per E-Mail oder das zentrale ZRE-Portal des Landes Baden-Württemberg (Leitweg-ID: 08226-A3763-69)
+
+
+EIGENERKLÄRUNG ZU 5. EU-SANKTIONSPAKET RUSSANKTIONEN, VERBOT VON AUFTRAGSERTEILUNGEN AN RUSSISCHE UNTERNEHMEN/LIEFERANTEN:
+Der Bieter hat die genannte Eigenerklärung mit dem Angebot einzureichen.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis wird aus der Wertungssumme des Angebotes ermittelt. Die Wertungssummen werden ermittelt aus den nachgerechneten Angebotssummen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.auftragsboerse.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">38</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Auf folgende Regelungen wird hingewiesen: 
+
+§ 160 Abs. 3 GWB
+
+Der Antrag ist unzulässig, soweit:
+
+1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt;
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden;
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden;
+
+4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. 
+§ 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cbc:AccessToolsURI>https://vergabe.vmstart.de/NetServer/Register</cbc:AccessToolsURI>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-03+01:00</cbc:EndDate>
+            <cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-03+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>11:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Überlassung, Versorgung, Wartung und Service von zentralen Drucksystemen in der Hausdruckerei</cbc:Name>
+         <cbc:Description languageID="DEU">Es wird die Bereitstellung von 2 farbverbindlichen (Fogra) Multifunktionssystemen einschließlich der erforderlichen Steuersoftware für die Ausstattung der zentralen Hausdruckerei mit korrespondierenden Service-/Dienstleistungen ausgeschrieben (Kalkulationsgrundlage 1,0 Mio. S/W-Seiten und 2,0 Mio. Farbseiten p.a.). 
+
+Der Auftragnehmer stellt unter anderem auch die Versorgung der Geräte mit sämtlichen Verbrauchsmaterialien (außer Papier) bereit. 
+
+Der Auftrag wird nicht explizit als Rahmenvereinbarung ausgeschrieben. 
+Jedoch bedingen die in der Natur der Sache liegenden nicht präzise bestimmbaren Druckmengen einen rahmenvertraglichen Charakter beim Umfang der Leistung.
+
+Die im Preisteil angegebenen Volumina dienen lediglich als Richtwerte für die Kalkulation im Rahmen des Vergabeverfahrens. Eine Abnahmeverpflichtung für ein bestimmtes Druck- / Kopiervolumen wird hierdurch nicht begründet.
+
+1 System dient als reines Produktionssystem. Das zweite System ist mit einer umfangreichen, mit dem System verbunden Endverarbeitung für anspruchsvolle Druckaufgaben auszustatten (fest in einer Linie).
+
+Die geplante Lösung besteht im Zusammenspiel aus verschiedenen Soft- und Hardwarekomponenten und muss die beschriebenen Anforderungen abdecken. 
+Die Konzeption der Lösung muss einen durchgehenden Workflow abbilden.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">Die Eignungskriterien sind in dieser Bekanntmachung vollständig veröffentlicht.
+In der Vergabeunterlagen befinden sich keine darüber hinausgehende Anforderungen an die Eignung.</cbc:Note>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">339796.22</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30121400</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30121430</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30120000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48773000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>Kurfürsten-Anlage 38 - 40</cbc:StreetName>
+               <cbc:CityName>Heidelberg</cbc:CityName>
+               <cbc:PostalZone>69115</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE128</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+            <cac:Renewal>
+               <cac:Period>
+                  <cbc:Description languageID="DEU">Der Auftraggeber kann den Vertrag bis 3 Monate vor Ablauf durch schriftliche Erklärung einmalig um 12 Monate verlängern. Nach Ablauf der Verlängerung endet der Vertrag, ohne dass es einer weiteren Kündigung durch den Auftraggeber bedarf.</cbc:Description>
+               </cac:Period>
+            </cac:Renewal>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+    <ext:UBLExtensions>
+        <ext:UBLExtension>
+            <ext:ExtensionContent>
+                <efext:EformsExtension>
+                    <efac:NoticeSubType>
+                        <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+                    </efac:NoticeSubType>
+                    <efac:Organizations>
+                        <efac:Organization>
+                            <efac:Company>
+                                <cbc:WebsiteURI>http://www.beesel.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">Gemeente Beesel</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:StreetName>Raadhuisplein 1</cbc:StreetName>
+                                    <cbc:CityName>Reuver</cbc:CityName>
+                                    <cbc:PostalZone>5953 AL</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:PartyLegalEntity>
+                                    <cbc:CompanyID>432066986</cbc:CompanyID>
+                                </cac:PartyLegalEntity>
+                                <cac:Contact>
+                                    <cbc:Name>[removed]</cbc:Name>
+                                    <cbc:Telephone>[removed]</cbc:Telephone>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:Company>
+                            <efac:TouchPoint>
+                                <cbc:WebsiteURI>http://www.rechtspraak.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="touchpoint">TPO-0003</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">[removed]</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:StreetName>Postbus 1988</cbc:StreetName>
+                                    <cbc:CityName>Maastricht</cbc:CityName>
+                                    <cbc:PostalZone>6201 BZ</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL423</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:Contact>
+                                    <cbc:Telefax>[removed]</cbc:Telefax>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:TouchPoint>
+                            <efac:TouchPoint>
+                                <cbc:WebsiteURI>http://www.tenderned.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="touchpoint">TPO-0004</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">[removed]</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:CityName>Den Haag</cbc:CityName>
+                                    <cbc:PostalZone>2509 AC</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:Contact>
+                                    <cbc:Name>[removed]</cbc:Name>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:TouchPoint>
+                            <efac:TouchPoint>
+                                <cbc:WebsiteURI>http://www.tenderned.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="touchpoint">TPO-0001</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">[removed]</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:CityName>Den Haag</cbc:CityName>
+                                    <cbc:PostalZone>2509 AC</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:Contact>
+                                    <cbc:Name>[removed]</cbc:Name>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:TouchPoint>
+                            <efac:TouchPoint>
+                                <cbc:WebsiteURI>http://www.commissievanaanbestedingsexperts.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="touchpoint">TPO-0002</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">[removed]</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:CityName>Den Haag</cbc:CityName>
+                                    <cbc:PostalZone>2509 AC</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:Contact>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:TouchPoint>
+                        </efac:Organization>
+                    </efac:Organizations>
+                <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00680680-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+            </ext:ExtensionContent>
+        </ext:UBLExtension>
+    </ext:UBLExtensions>
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+    <cbc:ID schemeName="notice-id">fecc09b3-f9fa-4f0e-af96-396195c497ec</cbc:ID>
+    <cbc:ContractFolderID>1a0a7f95-0720-42a8-b6ef-cd6ba1430f36</cbc:ContractFolderID>
+    <cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+    <cbc:IssueTime>12:28:53.434353797+02:00</cbc:IssueTime>
+    <cbc:VersionID>01</cbc:VersionID>
+    <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+    <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+    <cbc:NoticeLanguageCode listName="language">NLD</cbc:NoticeLanguageCode>
+    <cac:ContractingParty>
+        <cac:ContractingPartyType>
+            <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+        </cac:ContractingPartyType>
+        <cac:ContractingActivity>
+            <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+        </cac:ContractingActivity>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+                <cbc:TendererRequirementTypeCode languageID="NLD" listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+        </cac:TendererQualificationRequest>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:ProcedureCode languageID="NLD" listName="procurement-procedure-type">open</cbc:ProcedureCode>
+        <cac:ProcessJustification>
+            <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+        </cac:ProcessJustification>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:Name languageID="NLD">ICT Dienstverlening gemeente Beesel</cbc:Name>
+        <cbc:Description languageID="NLD">De aanbestedende dienst beoogt met deze aanbesteding de ICT dienstverlening rechtmatig, transparant en toekomstbestendig in de markt te zetten, met continuïteit van de bedrijfsvoering als randvoorwaarde  waardoor de aanbestedende dienst beschikt over één betrouwbare, end-to-end leverancier voor alle ICT-processen en ketenverantwoordelijkheid. 1.7600.000</cbc:Description>
+        <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+        <cbc:Note languageID="NLD">Alle van toepassing zijnde aanbestedingsdocumenten, inclusief de Aanbestedingsleidraad, het Programma van Eisen (Bijlage 1), de Prijsbijlage en overige bijlagen, zijn kosteloos, rechtstreeks en onbeperkt digitaal toegankelijk via TenderNed. Communicatie en het stellen van vragen verloopt uitsluitend via de berichtenmodule/Vraag &amp; Antwoord van het TenderNed-platform. Vragen per e-mail of telefoon worden niet in behandeling genomen.
+
+Inschrijving geschiedt uitsluitend digitaal via de TenderNed-kluis vóór de uiterste indieningstermijn (fatale termijn). Inschrijvingen dienen volledig, onvoorwaardelijk en in de Nederlandse taal te zijn opgesteld. De gestanddoeningstermijn bedraagt minimaal 90 dagen na de uiterste datum van indiening (met dien verstande dat bij een kort geding de gestanddoeningstermijn doorloopt tot acht (8) kalenderdagen na het vonnis in kort geding). Varianten, alternatieven of voorbehouden zijn niet toegestaan.
+
+Inschrijver dient bij inschrijving het Uniform Europees Aanbestedingsdocument (UEA) in te vullen en rechtsgeldig te ondertekenen. Indien sprake is van een combinatie of een beroep op derden/onderaannemers voor geschiktheidseisen, dienen separate UEA’s te worden overgelegd conform de voorschriften in de leidraad. Bewijsstukken (waaronder Gedragsverklaring Aanbesteden, Verklaring betalingsgedrag Belastingdienst, ISO 27001-certificering en referentieformulieren) worden op grond van de Aanbestedingswet 2012 en het proportionaliteitsbeginsel enkel opgevraagd bij de beoogde winnende inschrijver binnen een termijn van zeven (7) kalenderdagen na het verzoek. Inschrijvers wordt dringend geadviseerd deze tijdig vooraf aan te vragen. Daarnaast kan de gemeente een toetsing in het kader van de Wet Bibob uitvoeren.
+
+Voor deze opdracht geldt een strikt budgetplafond van € 230.000,- exclusief btw per jaar voor de reguliere dienstverlening (inclusief SIEM/SOC-dienstverlening, exclusief de optie Print Anywhere en exclusief de eenmalige transitiekosten). Inschrijvingen met een inschrijfprijs die dit budgetplafond overschrijden, worden als niet-bestekconform terzijde gelegd.
+
+Vragen en bezwaren ten aanzien van de aanbestedingsstukken dienen uiterlijk vóór de sluitingsdatum van de inlichtingenfase via TenderNed te worden ingediend. Voor formele klachten is de klachtenregeling van Inkoopcentrum Zuid van toepassing. Tegen de voorgenomen gunningsbeslissing staat binnen een fatale termijn van twintig (20) kalenderdagen na verzending van de mededeling van de gunningsbeslissing de gang naar de bevoegde voorzieningenrechter van de Rechtbank Limburg open.</cbc:Note>
+        <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+        </cac:MainCommodityClassification>
+        <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72600000</cbc:ItemClassificationCode>
+        </cac:AdditionalCommodityClassification>
+        <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72700000</cbc:ItemClassificationCode>
+        </cac:AdditionalCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:Description languageID="NLD">Reuver (gemeente Beesel)</cbc:Description>
+            <cac:Address>
+                <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+    </cac:ProcurementProject>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+            <cbc:FundingProgramCode languageID="NLD" listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+            <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+            <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+            <cac:RequiredFinancialGuarantee>
+                <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+            </cac:RequiredFinancialGuarantee>
+            <cac:CallForTendersDocumentReference>
+                <cbc:ID>documentsId</cbc:ID>
+                <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+                <cac:Attachment>
+                    <cac:ExternalReference>
+                        <cbc:URI>https://www.tenderned.nl/aankondigingen/overzicht/442521</cbc:URI>
+                    </cac:ExternalReference>
+                </cac:Attachment>
+            </cac:CallForTendersDocumentReference>
+            <cac:TendererQualificationRequest>
+                <cac:SpecificTendererRequirement>
+                    <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+                </cac:SpecificTendererRequirement>
+            </cac:TendererQualificationRequest>
+            <cac:TendererQualificationRequest>
+                <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+            </cac:TendererQualificationRequest>
+            <cac:TendererQualificationRequest>
+                <cac:SpecificTendererRequirement>
+                    <cbc:TendererRequirementTypeCode languageID="NLD" listName="selection-criteria-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+                </cac:SpecificTendererRequirement>
+            </cac:TendererQualificationRequest>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode languageID="NLD" listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:AwardingTerms>
+                <cac:AwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>25</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Dienstverlening, regie en gebruikersgerichte service</cbc:Name>
+                        <cbc:Description languageID="NLD">De inschrijver levert een Plan Dienstverlening &amp; Regie waarin concreet en toetsbaar wordt beschreven hoe de ICT-dienstverlening aan de gemeente Beesel wordt georganiseerd, aangestuurd en verbeterd, gedurende de looptijd en hoe de eindgebruiker centraal staat.</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>25</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Continuïteit, calamiteitenrespons, back-up/herstel en operationele security</cbc:Name>
+                        <cbc:Description languageID="NLD">De inschrijver levert een Plan Continuïteit &amp; Security waarin concreet en toetsbaar wordt beschreven hoe de continuïteit van de dienstverlening wordt geborgd, hoe wordt gehandeld bij calamiteiten en incidenten, hoe back-up en herstel worden ingericht en hoe de operationele security wordt beheerst.</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>20</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Transitie, implementatie en exit/overdraagbaarheid</cbc:Name>
+                        <cbc:Description languageID="NLD">De inschrijver levert een Plan Transitie, Implementatie &amp; Exit waarin concreet en toetsbaar wordt beschreven hoe de overgang vanaf de huidige situatie wordt uitgevoerd, hoe de dienstverlening wordt geïmplementeerd én hoe aan het einde van de overeenkomst een beheerste exit en overdracht plaatsvindt.</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>30</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Prijs</cbc:Name>
+                        <cbc:Description languageID="NLD">De inschrijver dient zijn prijs volledig, eenduidig en in euro’s exclusief btw op te geven op het voorgeschreven prijsformulier. Enkel volledig ingevulde en rechtsgeldig ondertekende offertes in EURO excl. BTW die tijdig aangeboden worden in de voorgeschreven lay-out (bijlage inschrijfblad/Prijzenblad) worden beoordeeld. 
+De aangeboden prijzen zijn all-in. Dit betekent dat alle kosten die nodig zijn voor de uitvoering van de opdracht in de aangeboden tarieven zijn opgenomen, tenzij in de aanbestedingsstukken uitdrukkelijk anders is bepaald.</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                </cac:AwardingCriterion>
+            </cac:AwardingTerms>
+            <cac:AdditionalInformationParty>
+                <cac:PartyIdentification>
+                    <cbc:ID>TPO-0004</cbc:ID>
+                </cac:PartyIdentification>
+            </cac:AdditionalInformationParty>
+            <cac:TenderRecipientParty>
+                <cbc:EndpointID>https://www.tenderned.nl/aankondigingen/overzicht/442521</cbc:EndpointID>
+                <cac:PartyIdentification>
+                    <cbc:ID>TPO-0001</cbc:ID>
+                </cac:PartyIdentification>
+            </cac:TenderRecipientParty>
+            <cac:TenderValidityPeriod>
+                <cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+            </cac:TenderValidityPeriod>
+            <cac:AppealTerms>
+                <cac:AppealInformationParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID>ORG-0001</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:AppealInformationParty>
+                <cac:AppealReceiverParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID>TPO-0003</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:AppealReceiverParty>
+                <cac:MediationParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID>TPO-0002</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:MediationParty>
+            </cac:AppealTerms>
+            <cac:Language>
+                <cbc:ID>NLD</cbc:ID>
+            </cac:Language>
+            <cac:PostAwardProcess>
+                <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+                <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+            </cac:PostAwardProcess>
+            <cac:SecurityClearanceTerm>
+                <cbc:Code listName="required">false</cbc:Code>
+            </cac:SecurityClearanceTerm>
+        </cac:TenderingTerms>
+        <cac:TenderingProcess>
+            <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+            <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+            <cac:TenderSubmissionDeadlinePeriod>
+                <cbc:EndDate>2026-11-26+01:00</cbc:EndDate>
+                <cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+            </cac:TenderSubmissionDeadlinePeriod>
+            <cac:AdditionalInformationRequestPeriod>
+                <cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+                <cbc:EndTime>14:00:00+01:00</cbc:EndTime>
+            </cac:AdditionalInformationRequestPeriod>
+            <cac:OpenTenderEvent>
+                <cbc:OccurrenceDate>2026-11-26+01:00</cbc:OccurrenceDate>
+                <cbc:OccurrenceTime>13:00:00+01:00</cbc:OccurrenceTime>
+            </cac:OpenTenderEvent>
+            <cac:AuctionTerms>
+                <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+            </cac:AuctionTerms>
+            <cac:ContractingSystem>
+                <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+            </cac:ContractingSystem>
+            <cac:ContractingSystem>
+                <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+            </cac:ContractingSystem>
+        </cac:TenderingProcess>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="InternalID">1</cbc:ID>
+            <cbc:Name languageID="NLD">ICT Dienstverlening gemeente Beesel</cbc:Name>
+            <cbc:Description languageID="NLD">De aanbestedende dienst beoogt met deze aanbesteding de ICT dienstverlening rechtmatig, transparant en toekomstbestendig in de markt te zetten, met continuïteit van de bedrijfsvoering als randvoorwaarde  waardoor de aanbestedende dienst beschikt over één betrouwbare, end-to-end leverancier voor alle ICT-processen en ketenverantwoordelijkheid. 1.7600.000</cbc:Description>
+            <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+            <cac:ProcurementAdditionalType>
+                <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+            </cac:ProcurementAdditionalType>
+            <cac:MainCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+            </cac:MainCommodityClassification>
+            <cac:AdditionalCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">72600000</cbc:ItemClassificationCode>
+            </cac:AdditionalCommodityClassification>
+            <cac:AdditionalCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">72700000</cbc:ItemClassificationCode>
+            </cac:AdditionalCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:Description languageID="NLD">Reuver (gemeente Beesel)</cbc:Description>
+                <cac:Address>
+                    <cbc:CountrySubentityCode listName="nuts">NL421</cbc:CountrySubentityCode>
+                    <cac:Country>
+                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+            <cac:PlannedPeriod>
+                <cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+            </cac:PlannedPeriod>
+            <cac:ContractExtension>
+                <cbc:OptionsDescription languageID="NLD">-</cbc:OptionsDescription>
+                <cbc:MaximumNumberNumeric>4</cbc:MaximumNumberNumeric>
+                <cac:Renewal>
+                    <cac:Period>
+                        <cbc:Description languageID="NLD">de mogelijkheid deze vier (4) keer met twee (2) jaar te verlengen.</cbc:Description>
+                    </cac:Period>
+                </cac:Renewal>
+            </cac:ContractExtension>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+</ContractNotice>

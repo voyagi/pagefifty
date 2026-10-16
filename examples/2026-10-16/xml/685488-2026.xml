@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://vergabe.fraunhofer.de/</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Fraunhofer-Gesellschaft - Einkauf B12</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Hansastraße 28</cbc:StreetName>
+                           <cbc:CityName>München</cbc:CityName>
+                           <cbc:PostalZone>80686</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE 129515865</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammern des Bundes</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kaiser-Friedrich-Straße 16</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53113</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>t:[removed]</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.fraunhofer.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Fraunhofer Gesellschaft zur Förderung der angewandten Forschung e.V.</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Hansastraße 27c</cbc:StreetName>
+                           <cbc:CityName>München</cbc:CityName>
+                           <cbc:PostalZone>80686</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE-129515865</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00685488-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">192/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-05+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">096b2d88-cb3d-4435-8035-0ef469219739</cbc:ID>
+   <cbc:ContractFolderID>0ae091d9-d2a0-462d-a5a7-d0f581c11bf8</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+   <cbc:IssueTime>22:06:13+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-01+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://vergabe.fraunhofer.de/NetServer/</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Es gelten alle einschlägigen zwingenden wie fakultativen 
+Ausschlussgründe, die durch nationales Recht normiert sind. Beleg des 
+Nichtvorliegens von Ausschlussgründen über Eigenerklärung.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>PR1267570-2140-I</cbc:ID>
+      <cbc:Name languageID="DEU">GPU-Cluster Erweiterung - PR1267570-2140-I</cbc:Name>
+      <cbc:Description languageID="DEU">GPU-Cluster Erweiterung</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48820000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Karlsruhe</cbc:CityName>
+            <cbc:PostalZone>76131</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Um die fachliche Qualifikation und die technische Kompetenz der beteiligten Mitarbeiter sicherzustellen, müssen die folgenden Referenzprojekte nachgewiesen werden. Diese Projekte belegen die praktische Erfahrung der Fachkräfte und deren Fähigkeit, die ausgeschriebenen Produkte und Leistungen gemäß den Hersteller-Standards umzusetzen. Da die Integration in die bestehenden NetApp Systeme eine übergeordnete Rolle spielen, sind Referenzprojekte auch im Kontext Netzwerk und Storage notwendig.
+
+•DGX-Compute: 3x Referenzprojekte
+•Storage: 3x Referenzprojekte
+
+Die Beschreibung eines Referenzprojekts darf maximal eine halbe DIN-A4-Seite umfassen und muss sich auf Projekte der letzten drei Jahre beziehen. Diese Referenzen sollten klare Angaben zu den durchgeführten Leistungen, eingesetzten Technologien, Durchfüh-rungszeitraum und erzielten Ergebnissen enthalten.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Um die fachliche Qualifikation und die technische Kompetenz der beteiligten Mitarbeiter sicherzustellen, müssen die folgenden Mitarbeiter-Zertifizierungen vom Hersteller nachgewiesen werden. Diese Zertifikate belegen die Expertise der
+Fachkräfte und deren Fähigkeit, die ausgeschriebenen Produkte und Leistungen gemäß den Hersteller Standards umzusetzen. Da die Integration in die bestehenden NetApp Systeme eine übergeordnete Rolle spielen, sind entsprechende Mitarbeiter-Zertifizierungen bei diesen Herstellern notwendig.
+
+NVIDIA: Mitarbeiter-Partnerzertifizierung:
+•Min. zwei NVIDIA-Certified Associate AI Infrastructure and Operations
+•Min. eine NVIDIA-Certified Professional AI Infrastructure
+•Min. eine NVIDIA-Certified Professional AI Operations
+
+NetApp: Mitarbeiter -Partnerzertifizierung
+•Min. zwei NetApp AI &amp; Analytics Associate
+•Min. zwei NetApp Hybrid Cloud Implementation Engineer
+•Min. zwei NetApp NCSIE ONTAP
+•Min. zwei NetApp NCDA ONTAP
+
+Der Nachweis der Mitarbeiter-Zertifizierungen muss durch die Vorlage einer Zertifizierungsübersicht erfolgen. Dabei ist sicherzustellen, dass die Zertifikate zum Zeitpunkt der Angebotsabgabe aktuell und gültig sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-qu-cert-indep</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Um die Qualität der angebotenen Produkte und Leistungen sicherzustellen, muss der Anbieter über ein Qualitätsmanagementsystem (QMS) gemäß ISO 9001 verfügen. Dieses System gewährleistet die kontinuierliche Verbesserung der Prozesse und stellt sicher, dass die Anforderungen und Erwartungen der Kunden konsequent erfüllt werden.
+
+Der Anbieter muss eine ISO 9001 Zertifizierung für das Unternehmen vorweisen. Diese Zertifizierung muss zum Zeitpunkt der Angebotsabgabe aktuell und gültig sein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Um die Sicherheit der angebotenen Produkte und Dienstleistungen sicherzustellen, muss der Anbieter über ein Informationssicherheits-Managementsystem (ISMS) gemäß ISO 27001 verfügen. Diese Norm gewährleistet, dass die Informationssicherheit des Unternehmens effektiv und nachhaltig gemanagt wird und alle relevanten Risiken minimiert werden.
+
+Der Anbieter muss eine ISO 27001 Zertifizierung für das Unternehmen vorweisen. Diese Zertifizierung muss zum Zeitpunkt der Angebotsabgabe aktuell und gültig sein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Umsatz der letzten 3 Geschäftsjahre
+-
+Die vollständigen Eignungskriterien finden Sie hier:
+
+https://vergabe.fraunhofer.de/NetServer/SelectionCriteria/54321-Tender-1a0d23d0c46-231ce88f18abf131</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-auth-mbrshp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Um die fachliche Qualifikation und die partnerschaftliche Zusammenarbeit mit den relevanten Herstellern sicherzustellen, müssen die folgenden Hersteller-Unternehmenszertifizierungen nachgewiesen werden. Diese Zertifikate belegen die technische Expertise, die strategische Partnerschaft sowie die Fähigkeit des Unternehmens, die ausgeschriebenen Produkte und Leistungen professionell umzusetzen. Da die Integration in die bestehenden NetApp Systeme eine übergeordnete Rolle spielen, sind entsprechende Zertifizierungen bei diesen Herstellern notwendig.
+
+•NVIDIA: Hersteller-Partnerzertifizierung [min. DGX AI Compute Systems Registered und NVIDIA AI Registered]
+•NetApp: Hersteller-Partnerzertifizierung [min. Prestige Partnerstatus]</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.fraunhofer.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a0d23d0c46-231ce88f18abf131</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Siehe Vergabeunterlagen</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Bei evtl. Einsatz von Nachunternehmern sind diese zu benennen, ihre Eignung ist ebenfalls anhand der unter "Ausschreibungsbedingungen" aufgeführten Eignungskriterien nachzuweisen. Ferner ist zu bestätigen, dass sie im Auftragsfall zur Verfügung stehen; deren Anteil am Umfang des Auftragsgegenstandes ist darzulegen.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>10.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Lieferinformationen</cbc:Name>
+                  <cbc:Description languageID="DEU">8-10 
+Alle Aspekte (Lieferzeiten, Verzögerungsgründe, Teillieferungen, Flexibili
+tät bei Änderungen, bevorzugte Transportwege, Ersatzteilverfügbarkeit, 
+Notfallbeschaffung, Nachprojektverfügbarkeit) sind vollständig, detailliert 
+und nachvollziehbar beschrieben. Es werden klare, technisch fundierte Zu
+sicherungen gegeben. Maßnahmen zur Risikominimierung sind erkennbar.  
+5-7 
+Einige Teilaspekte (z. B. Lieferzeiten oder Ersatzteilverfügbarkeit) sind gut 
+beschrieben, andere bleiben allgemein, unkonkret oder unvollständig. Fle
+xibilität oder Risikominimierung wird nur pauschal dargestellt. Die Anga
+ben lassen gewisse Zweifel an der praktischen Umsetzbarkeit.  
+2-4 
+Die Beschreibung enthält überwiegend vage oder pauschale Aussagen. 
+Wenige konkrete Maßnahmen oder belastbare Angaben sind erkennbar. 
+Die Darstellung wirkt eher formelhaft als inhaltlich fundiert. Wesentliche 
+Anforderungen sind nur rudimentär behandelt.  
+0-1 
+Die Angaben sind größtenteils unzureichend oder nicht nachvollziehbar. 
+Wichtige Aspekte wie Lieferzeiten, Ersatzteilverfügbarkeit oder Teilliefe
+rungen fehlen fast vollständig oder sind nicht verständlich erklärt.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>20.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Dienstleistungskonzept</cbc:Name>
+                  <cbc:Description languageID="DEU">Bewertet wird, wie vollständig, strukturiert und fachlich fundiert der Bieter die geforderten 
+Dienstleistungen gemäß Punkten 3.1.4.1 bis 3.1.4.7 beschreibt.  
+• Kickoff Workshop 
+• Projektmanagement 
+• Pre-Installation Workshop 
+• Vor Ort Installation 
+• Software-Installation 
+• Validierung und Tests 
+• Übergabe und Dokumentation 
+ 
+ 
+18-20 Alle sieben Teilbereiche (Kickoff, Projektmanagement, Pre-Installation, 
+Funktionstest, Standortprüfung &amp; Integration, Softwareinstallation, Ab
+nahmetests &amp; Dokumentation) sind vollständig, detailliert und nachvoll
+ziehbar beschrieben. Es werden strukturierte, realistische Konzepte mit 
+klaren Zuständigkeiten, Zeitplänen, technischen Maßnahmen und Quali
+tätskriterien vorgelegt. Aussagen sind fundiert, aufeinander abgestimmt 
+und ggf. mit Belegen oder Erfahrungen aus vergleichbaren Projekten un
+termauert.  
+14 -17 Alle sieben Bereiche sind gut und schlüssig dargestellt, mit nur geringfügi
+gen Lücken oder fehlender Tiefe in einzelnen Punkten. Die Konzepte sind 
+insgesamt nachvollziehbar, realistisch und professionell aufbereitet, jedoch 
+nicht durchgehend gleich stark ausgearbeitet. Zuständigkeiten und Vorge
+hensweisen sind erkennbar, aber teils weniger detailliert.  
+10-13  Die wesentlichen Inhalte sind vorhanden, jedoch sind einzelne Teilbereiche 
+(z. B. Funktionstests oder Pre-Installation Workshop) nur oberflächlich 
+oder unklar beschrieben. Struktur, Zuständigkeiten oder technische Maß
+nahmen bleiben in Teilen vage. Es zeigen sich Unsicherheiten in der prakti
+schen Umsetzbarkeit oder dem Zusammenspiel der Projektphasen.  
+6-9 Mehrere der sieben Punkte sind nicht oder nur sehr allgemein behandelt. 
+Es fehlen klare Konzepte oder nachvollziehbare Vorgehensweisen. Die Be
+schreibung wirkt unstrukturiert oder fragmentarisch, Zuständigkeiten und 
+Qualitätsanforderungen sind nicht klar erkennbar, was Zweifel an einer 
+reibungslosen Umsetzung aufkommen lässt.  
+2-5  Das Konzept ist weitgehend unvollständig oder unstrukturiert, mehrere 
+zentrale Projektphasen fehlen oder sind nicht nachvollziehbar beschrieben. 
+Es werden kaum verwertbare Aussagen zu Verantwortlichkeiten, Zeitpla
+nung, technischen Prüfungen oder Dokumentation gemacht.  
+0 -1 Kein oder vollkommen unbrauchbares Konzept eingereicht. Inhalte fehlen 
+vollständig oder sind nicht verwertbar.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Bewertet wird der Gesamtpreis über die Laufzeit.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.fraunhofer.de</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">17</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Ein Nachprüfungsantrag ist unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind (§ 160 Abs. 3 Satz 1 Nr. 4 GWB). Ein Nachprüfungsantrag ist zudem unzulässig, wenn der Zuschlag erfolgt ist, bevor die Vergabekammer den Auftraggeber über den Antrag auf Nachprüfung informiert hat (§§ 168 Abs. 2 Satz 1, 169 Abs. 1 GWB). Die Zuschlagserteilung ist möglich 15 Kalendertage nach Absendung der Bieterinformation nach § 134 Abs. 1 GWB. Wird die Information auf elektronischem Weg oder per Fax versendet, verkürzt sich die Frist auf zehn Kalendertage (§ 134 Abs. 2 GWB). Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber; auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an. Die Zulässigkeit eines Nachprüfungsantrags setzt ferner voraus, dass die geltend gemachten Vergabeverstöße 10 Kalendertage nach Kenntnis gegenüber dem Auftraggeber gerügt wurden (§ 160 Abs. 3 Satz 1 Nr. 1 GWB). Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 2 GWB) . Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, müssen spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden (§ 160 Abs. 3 Satz 1 Nr. 3 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-03+01:00</cbc:EndDate>
+            <cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-03+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>11:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">GPU-Cluster Erweiterung - PR1267570-2140-I</cbc:Name>
+         <cbc:Description languageID="DEU">Der GPU-basierte Rechencluster ist als integrierte Gesamtlösung ausgelegt und muss sich in die bestehende Nvidia DGX-Landschaft sowie die bestehende Storage-Umgebung einbinden. 
+
+Hardware:
+1 x DGX B300 P4387 PSU System 2304GB Full, Std Support, EDU, 5 Years 
+Software:
+8 x NVIDIA AI Enterprise Subscription per GPU, EDU, 5 Years 
+Service: 
+1 x Onsite 8x5x4 Service DGX B300 PSU 2304GB 
+
+Dienstleistungen bis Abnahme:  
+-Kickoff Workshop 
+-Projektmanagement 
+-Pre-Installation Workshop
+-Vor-Ort-Installation Hardware+Software 
+-Validierung und Tests 
+-Übergabe und Dokumentation
+-8h Initialschulung für bis zu 8 Personen 
+
+Dienstleistungen nach Abnahme: 
+-Helpdesk 24 x 7 x 365  
+Aufwandsbezogen auf Abruf, ohne Abnahmegarantie des Höchstkontingents: 
+-75 h NVIDIA Professional System Engineer über die Laufzeit von 5 Jahren
+-75 h NetApp Professionbal System Engineer über die Laufzeit von 5 Jahren</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48820000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Karlsruhe</cbc:CityName>
+               <cbc:PostalZone>76131</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">60</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">NVIDIA Learning Credits (100 Stück)</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">17</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.rheinbahn.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Rheinbahn AG</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Lierenfelder Str. 42</cbc:StreetName>
+                           <cbc:CityName>Düsseldorf</cbc:CityName>
+                           <cbc:PostalZone>40231</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA11</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 00005133</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer Westfalen bei der Bezirksregierung Münster</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:CityName>Münster</cbc:CityName>
+                           <cbc:PostalZone>48147</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA33</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00677951-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">7427fd2d-7188-479f-ba1e-9b514df7cddc</cbc:ID>
+   <cbc:ContractFolderID>40282210-2256-4f9e-9113-73ecd248018c</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+   <cbc:IssueTime>13:45:52+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-01+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0025</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="entity-activity">urttb</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>sektvo</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">Pilotprojekt „Fahrgemeinschaften als Add-On zum Deutschlandticket-Job"</cbc:Name>
+      <cbc:Description languageID="DEU">Die Rheinbahn AG (Auftraggeberin) sucht einen Partner für die Leistungserbringung einer digitalen 
+Mitfahrplattform. Die Leistungen umfassen insbesondere die Bereitstellung, Anpassung, Einführung und 
+Betrieb der Plattform, Unterstützung beim Onboarding von Arbeitgebenden und bei der Aktivierung von 
+Nutzenden sowie das Reporting, für das alle relevanten Daten fachgerecht aufbereitet und zur Verfügung 
+gestellt werden. Die Plattform richtet sich an Beschäftigte ausgewählter Arbeitgebender im Großraum 
+Düsseldorf (Bediengebiet der Rheinbahn) und wird als ergänzendes Mobilitätsangebot bzw. Add-On zum 
+Deutschlandticket Job eingesetzt. Das Projekt wird in Kooperation mit dem Verkehrsverbund Rhein-Ruhr 
+(VRR) umgesetzt.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72416000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CountrySubentityCode listName="nuts">DEA11</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter hat nachzuweisen, dass er über ein Informationssicherheitsmanagementsystem gemäß DIN EN ISO 27001 verfügt oder dass ein ausgefüllter Sollmaßnahmenkatalog mit positiver Bescheidung vorliegt (Mindestanforderung M).
+
+Der Nachweis ist mit dem Angebot durch Vorlage eines zum Zeitpunkt des Ablaufs der Angebotsfrist gültigen Zertifikats nach DIN EN ISO 27001 in unbeglaubigter Kopie oder durch Vorlage des ausgefüllten Sollmaßnahmenkatalogs zu führen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Es wird ein Mindestjahresumsatz des Bewerbers bzw. der Bewerbergemeinschaft, bezogen auf die letzten drei abgeschlossenen Geschäftsjahre, in Höhe von im Durchschnitt netto 150.000 EUR zwingend gefordert (Mindestanforderung M).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zum Nachweis der erforderlichen technischen und beruflichen Leistungsfähigkeit sind mindestens drei Referenzaufträge des sich erklärenden Unternehmens nachzuweisen.
+Gegenstand der Referenz
+Die Referenz muss ein Projekt betreffen, das inhaltlich mit der ausgeschriebenen Leistung vergleichbar ist. Die Referenz muss dabei insbesondere die folgenden Merkmale aufweisen: 
+•	Bereitstellung und Betrieb einer digitalen Mitfahrplattform bzw. eines digitalen Tools zur Organisation und Abwicklung von Fahrgemeinschaften im Pendelverkehr,
+•	Einsatz im Arbeitgebenden- bzw. B2B-Kontext,
+•	ÖPNV-Bezug, Berücksichtigung von Tarif- und Ticketlogiken.
+
+Leistungsinhalt
+Das sich erklärende Unternehmen muss in dem Referenzprojekt als vertraglich verantwort-licher Auftragnehmer Leistungen erbracht haben, die mit dem Auftragsgegenstand ver-gleichbar sind, insbesondere in Bezug auf Bereitstellung, Konfiguration, Einführung, Betrieb, Support, Reporting und optional Schnittstellenhandling einer digitalen Mitfahrplattform.
+Die eingereichten Referenzen müssen darüber hinaus in ihrer Gesamtheit erkennen lassen, dass das sich erklärende Unternehmen über Erfahrung im Projektmanagement, in der Mar-keting-, Kommunikations- und Aktivierungsunterstützung sowie in der Analyse verfügt.
+
+Zeitraum
+Die Referenzprojekte müssen im Zeitraum von 01.01.2022 bis Ablauf der Angebotsfrist ab-geschlossen worden sein oder in diesem Zeitraum wesentliche Leistungsphasen umfasst haben.
+
+
+Leistungsstand
+Zum Zeitpunkt des Ablaufs der Angebotsfrist muss die Leistung abgenommen, produktiv eingeführt und über einen aussagekräftigen Zeitraum im Echtbetrieb erbracht worden sein.
+
+Vergleichbarkeit
+Die Referenzen müssen nach Art, Umfang und Komplexität mit der ausgeschriebenen Leis-tung vergleichbar sein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Nachweis einer bestehenden, aktuell gültigen Betriebshaftpflichtversicherung oder einer vergleichbaren marktüblichen Versicherung mit einer Haftpflichtdeckungshöhe von mindestens zusammen 2.500.000 Euro für Personen-, Sachschäden und Vermögensschäden je Schadensereignis und Versicherungsjahr. oder alternativ Unternehmen erklärt, dass es im Auftragsfall bereit ist, eine entsprechende Versicherung auf erstes Anfordern des Auftraggebers abzuschließen. Für den Fall, dass ein Bieter die Kapazitäten eines anderen Unternehmens im Hinblick auf die erforderliche wirtschaftliche und finanzielle Leistungsfähigkeit in Anspruch nimmt, verlangt der Auftraggeber eine gemeinsame Haftung des Bieters und des anderen Unternehmens für die Auftragsausführung entsprechend dem Umfang der Eignungsleihe</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zum Nachweis der Befähigung und Erlaubnis zur Berufsausübung ist mit dem Angebot eine Erklärung über die Eintragung in das Handelsregister oder ein vergleichbares Berufs- oder Handelsregister einzureichen. 
+Die Vergabestelle behält sich vor, von den für den Zuschlag in Betracht kommenden Bietern vor Zuschlagserteilung einen aktuellen Handelsregisterauszug oder einen entsprechenden Nachweis anzufordern. Der Nachweis ist auf Verlangen innerhalb der von der Vergabestelle gesetzten Frist vorzulegen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listName="tender-guarantee-required">true</cbc:GuaranteeTypeCode>
+            <cbc:Description languageID="DEU">Anzahlungsbürgschaft	:
+Absicherung von Vorauszahlungen für Setup- und Rolloutleistungen/ Anzahlungsbürgschaft
+Soweit der Auftraggeber für die nachfolgend aufgeführten Leistungen Vorauszahlungen oder Anzahlungen leistet, ist der Auftragnehmer verpflichtet, vor Fälligkeit der jeweiligen Zahlung eine unwiderrufliche, unbefristete, selbstschuldnerische Bürgschaft auf erstes Anfordern eines in der Europäischen Union zugelassenen Kreditinstituts oder Kreditversicherers zugunsten des Auftraggebers zu stellen: (Dafür bitte unseren Vordruck verwenden)
+1.	Setupkosten Gesamtsystem 
+2.	Setupkosten Arbeitgeber 
+3.	Setupkosten pro Mitarbeiter der Partner-Arbeitgeber 
+4.	Marketing für Rollout pro Arbeitgeber 
+5.	Marketing für Rollout pro Mitarbeiter
+Die Bürgschaft hat jeweils mindestens den Betrag der vom Auftraggeber geschuldeten Vorauszahlung einschließlich gesetzlicher Umsatzsteuer abzudecken.
+Die Bürgschaft dient der Sicherung sämtlicher Rückzahlungsansprüche des Auftraggebers hinsichtlich der genannten Vorauszahlungen, insbesondere für den Fall, dass die betreffenden Leistungen ganz oder teilweise nicht, nicht rechtzeitig oder nicht vertragsgemäß erbracht werden.
+Der Auftraggeber ist berechtigt, die Zahlung der jeweiligen Vorauszahlung bis zur Vorlage einer vertragsgemäßen Bürgschaft zurückzuhalten.
+Die Bürgschaft ist insoweit und in dem Umfang zurückzugeben oder freizugeben, in dem die jeweils abgesicherte Leistung vollständig erbracht und abgenommen wurde beziehungsweise die Vorauszahlung durch vertragsgemäße Leistungserbringung verdient ist.</cbc:Description>
+         </cac:RequiredFinancialGuarantee>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E25815527</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E25815527</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:PaymentTerms>
+            <cbc:Note languageID="DEU">siehe Vergabeunterlagen</cbc:Note>
+         </cac:PaymentTerms>
+         <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Wenn die nachgeforderten Unterlagen nicht innerhalb der Nachfrist bei der Vergabestelle eingehen, führt dies zum Ausschluss des Bieters vom weiteren Vergabeverfahren. Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Dies gilt insbesondere für wesentliche Preisangaben (vgl. § 51 Abs. 3 SektVO).</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">siehe Vergabeunterlagen</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="nda">true</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Das Dokument Geheimhaltungsvereinbarung muss zwingend ausgefüllt mit dem einzureichenden Angebot abgegeben werden.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Das günstigste Angebot erhält die volle Punktzahl 300. Der Preis nimmt 30 % der Gesamtwertung ein.
+Die Angebote, die doppelt so teuer oder teurer sind, erhalten 0 Punkte. Alle anderen Angebote werden entsprechend proportional (linear) dazwischen gewertet.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Das Zuschlagskriterium Konzept nimmt 70 % der Gesamtwertung ein. Das Konzept wird nach seiner Vollständigkeit, Nachvollziehbarkeit und dem Detailgrad bewertet. "Für Kriterien mit 100 Punkten (C, D, E, F)
+0 = nicht erfüllt
+25 = ansatzweise erfüllt
+50 = teilweise erfüllt
+75 = überwiegend erfüllt
+100 = vollends erfüllt
+
+Für Kriterien mit 75 Punkten (A, B, G, H)
+0 = nicht erfüllt
+18,75 = ansatzweise erfüllt
+37,5 = teilweise erfüllt
+56,25 = überwiegend erfüllt
+75 = vollends erfüllt"
+Die einzelnen formalen Anforderungen des Konzeptes, sowie die Abstufungen in der Bewertung können der Bewertungsmatrix entnommen werden. Bewertet wird das vom Bieter dem Angebot beigefügte Konzept, in dem er anhand folgender Aspekte darstellt.:
+A) Methodisches Vorgehen &amp; Projektmanagement
+B) Softwarebereitstellung, Konfiguration und Launch
+C) Software-Lösung (Mindest- und optionale Anforderungen)
+D) Onboarding Arbeitgebende
+E) Aktivierung, Kommunikation und Marketing
+F) Betrieb, Wartung und Support
+G) Reporting und Analyse
+H)  Projektorganisation
+
+Ein pauschaler Verweis auf beigelegte Prospekte, Charts etc., ist nicht zulässig und wird nicht gewertet.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E25815527</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">§ 160 Abs. 3 S. 1 GWB: Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-03+01:00</cbc:EndDate>
+            <cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-03+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>11:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 2026-172</cbc:ID>
+         <cbc:Name languageID="DEU">Pilotprojekt „Fahrgemeinschaften als Add-On zum Deutschlandticket-Job"</cbc:Name>
+         <cbc:Description languageID="DEU">Die Rheinbahn AG (Auftraggeberin) sucht einen Partner für die Leistungserbringung einer digitalen 
+Mitfahrplattform. Die Leistungen umfassen insbesondere die Bereitstellung, Anpassung, Einführung und 
+Betrieb der Plattform, Unterstützung beim Onboarding von Arbeitgebenden und bei der Aktivierung von 
+Nutzenden sowie das Reporting, für das alle relevanten Daten fachgerecht aufbereitet und zur Verfügung 
+gestellt werden. Die Plattform richtet sich an Beschäftigte ausgewählter Arbeitgebender im Großraum 
+Düsseldorf (Bediengebiet der Rheinbahn) und wird als ergänzendes Mobilitätsangebot bzw. Add-On zum 
+Deutschlandticket Job eingesetzt. Das Projekt wird in Kooperation mit dem Verkehrsverbund Rhein-Ruhr 
+(VRR) umgesetzt.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:startup#, #Besonders auch geeignet für:other-sme#, #Besonders auch geeignet für:selbst#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72416000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DEA11</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">28</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">max. 4 Monate Set-up Phase und 24 Monate Laufzeit, optionale Verlängerung immer um 12 Monate</cbc:OptionsDescription>
+            <cbc:MaximumNumberNumeric>12</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

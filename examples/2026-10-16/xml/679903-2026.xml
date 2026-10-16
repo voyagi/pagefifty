@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.khdw.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Kreiskliniken Dillingen-Wertingen gGmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Ziegelstraße 38</cbc:StreetName>
+									<cbc:CityName>Dillingen</cbc:CityName>
+									<cbc:PostalZone>89407</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE277</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>HRB 19892</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.goerg.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">GÖRG Partnerschaft von Rechtsanwälten mbB</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Alter Wall 20-22</cbc:StreetName>
+									<cbc:CityName>Hamburg</cbc:CityName>
+									<cbc:PostalZone>20457</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE600</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE177089422</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Südbayern der Regierung von Oberbayern</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:CityName>München</cbc:CityName>
+									<cbc:PostalZone>80534</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE212</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>09-0318006-60</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00679903-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">146e7782-c106-4a9a-afd0-f5a8415edde7</cbc:ID>
+	<cbc:ContractFolderID>fe7c1716-c065-469d-b856-eedeea990e31</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-09-30+02:00</cbc:IssueDate>
+	<cbc:IssueTime>17:29:13+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-09-30+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:ServiceProviderParty>
+				<cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+				<cac:Party>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:Party>
+			</cac:ServiceProviderParty>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">[ Zwingende bzw. fakultative Ausschlussgründe nach §§ 123 bis 126 GWB ]</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">- § 134 Abs. 2 GWB - Informations- und Wartepflicht: Ein Vertrag darf erst 15 Kalendertage nach Absendung der Information nach § 134 Abs. 1 GWB geschlossen werden. Wird die Information auf elektronischem Weg oder per Fax versendet, verkürzt sich die Frist auf 10 Kalendertage. Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber; auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an. - Das Vergabeverfahren unterliegt den Vorschriften über das Nachprüfungsverfahren vor der Vergabekammer (§ 155 ff. GWB). Gemäß § 160 Abs. 3 GWB ist der Antrag unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 GWB bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. Der vorstehende Satz gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Die Erläuterung des Verfahrens sowie der damit verbundenen Fristen und Termine findet sich in Verfahrensbrief 1, der mit der Aufforderung zur Angebotsabgabe ausgegeben wird.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMGMQKE</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">KDW-1003-2026</cbc:ID>
+		<cbc:Name languageID="DEU">Einführung eines Patientendatenmanagementsystems (PDMS) für die Intensivversorgung für die Kreiskliniken Dillingen-Wertingen gGmbH</cbc:Name>
+		<cbc:Description languageID="DEU">Die Kreiskliniken Dillingen-Wertingen gGmbH ("KDW") betreibt die Kreisklinik St. Elisabeth in Dillingen und die Kreisklinik Wertingen in Wertingen im Regierungsbezirk Schwaben (Bayern). An beiden Standorten stehen 317 Betten für eine gehobene medizinische Grund- und Regelversorgung zur Verfügung. Insgesamt werden über 900 Mitarbeiter*innen beschäftigt.  Die Kreiskliniken Dillingen-Wertingen beabsichtigen die Einführung eins Patientendatenmanagementsystems ("PDMS") für die Intensivversorgung in der Kreisklinik St. Elisabeth Dillingen. Die Beschaffung wird durch Fördermittel finanziert.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YMGMQKE#
+
+
+1. Die Bewerbungsunterlagen (Vordrucke und Formulare) können über die Vergabeplattform abgerufen werden. Die Verwendung der Bewerbungsunterlagen ist verbindlich. Sofern im Laufe des Vergabeverfahrens weitere Informationen oder Präzisierungen seitens KDW erforderlich werden sollten, werden diese Zusatzinformationen ebenfalls unter der dort genannten Internetadresse veröffentlicht. Die Bewerber müssen daher regelmäßig prüfen, ob unter der dort genannten Internetadresse weitere Informationen veröffentlicht wurden. Eine Registrierung bei der Vergabeplattform erleichtert den Zugang zu den Bewerberinformationen. 2. Fragen zu den Anforderungen dieser Bekanntmachung und den Bewerbungsunterlagen sollen umgehend, jedoch spätestens bis zu der auf der Vergabeplattform genannten Frist über diese gestellt werden. KDW behält sich vor, später eingehende Fragen nicht zu beantworten. 3. Die in dieser Bekanntmachung enthaltenen Informationen dienen allein dem Zweck, den Interessenten einen Eindruck zu verschaffen und eine Entscheidung über die Teilnahme am Verfahren zu ermöglichen. Abweichungen und Spezifizierungen im Rahmen der Verhandlungen bleiben vorbehalten. 4. Teilnahmeanträge sind elektronisch über die Vergabeplattform zu übermitteln. Bis zum Ablauf der Bewerbungsfrist sind die Teilnahmeanträge verschlüsselt, so dass KDW keinen Zugriff auf sie hat. Dem Bewerber steht es jedoch frei, seinen Teilnahmeantrag bis zum Ablauf der Frist zu bearbeiten und neu hochzuladen. Dies gilt im weiteren Verfahren auch für die Angebote. 5. Fremdsprachige Bescheinigungen oder Erklärungen sind in der Regel nur zu berücksichtigen, wenn sie mit Übersetzung in die deutsche Sprache vorgelegt worden sind. KDW kann Ausnahmen zulassen. Dies gilt insbesondere für technische Nachweise, die nur in englischer Sprache verfügbar sind. 6. KDW behält sich vor, das Verfahren aus sachlichen Gründen aufzuheben. Hierzu zählt auch, sofern Fördermittel nachträglich nicht gewährt werden. Ersatzansprüche der Bewerber und Bieter sind - soweit rechtlich zulässig - ausgeschlossen. Mit dem Herunterladen der Bewerbungsunterlagen stimmt der Bewerber dem zu. 7. Vergabeunterlagen einschließlich des Vertragswerks sowie der Zuschlagskriterien werden erst nach Abschluss des Teilnahmewettbewerbs ausgegeben. 8. Nach Eingang der Teilnahmeanträge und deren Auswertung erhalten die ausgewählten Bewerber die Vergabeunterlagen mit einer Einladung zu den Verhandlungsgesprächen zugesandt. Die Verhandlungsgespräche werden in Dillingen an der Donau (Bayern) oder als Videokonferenz stattfinden. 9. Durch die Stellung des Teilnahmeantrags verpflichtet sich der Bewerber, alle ihm ggf. übersandten Unterlagen vertraulich zu behandeln und den Geheimwettbewerb auch ansonsten zu wahren; dies gilt auch im Hinblick auf das jeweilige Angebot. KDW ihrerseits wird Unterlagen der Bewerber nur für die Zwecke des Verfahrens verwenden. 10. Bewerbergemeinschaften haben mit ihrem Teilnahmeantrag eine von allen Mitgliedern unterschriebene rechtsverbindliche Erklärung abzugeben, die in den Bewerbungsunterlagen enthalten ist. Sollte im Laufe des Verfahrens eine bestehende Bewerber-/ Bietergemeinschaft ihre Zusammensetzung verändern oder ein Einzelbewerber/ Einzelbieter das Verfahren in Bewerber-/ Bietergemeinschaft fortsetzen wollen, so ist dies nur mit ausdrücklicher schriftlicher Einwilligung von KDW zulässig. Die Einwilligung wird jedenfalls nicht erteilt, wenn durch die Veränderung der Wettbewerb wesentlich beeinträchtigt wird oder die Veränderung Auswirkungen auf die Fachkunde und Leistungsfähigkeit hat. Dies gilt entsprechend für Nachunternehmer. 11. KDW behält sich vor, den Zuschlag auf das Erstangebot zu erteilen bzw. die Anzahl der ausgewählten Bieter im Laufe des Verhandlungsverfahrens zu reduzieren. Weitere Einzelheiten hierzu enthält der Verfahrensbrief 1, der mit Abschluss des Teilnahmewettbewerbs ausgegeben wird.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48180000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Kreisklinik St. Elisabeth Dillingen</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Ziegelstraße 38</cbc:StreetName>
+				<cbc:CityName>Dillingen a.d. Donau</cbc:CityName>
+				<cbc:PostalZone>89407</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE277</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nach Prüfung der formellen Anforderungen, der vorzulegenden Angaben und Unterlagen zum Nichtvorliegen von Ausschlussgründen und der Eignung zur Berufsausübung (PL), der Angaben und Unterlagen zur Feststellung der wirtschaftlichen und finanziellen Leistungsfähigkeit (WL) sowie der Mindestanforderung zu TL2 ist für die Bewertung der Eignung ausschließlich die technische und berufliche Leistungsfähigkeit entscheidend (TL). Diese wird ausschließlich anhand der gemäß TL2 dieser Bekanntmachung vorzulegenden Referenzen bewertet.  Die Gesamtpunktzahl beträgt 1.000 Punkte. Die Bewertung der Referenzen erfolgt in einem relativen Vergleich der Bewerber miteinander auf Grundlage der nachfolgenden Notenstufen:  - 100% = sehr gut: Bewerber erfüllt in Bezug auf das Eignungskriterium die Anforderungen in allerhöchstem Maße, - 80% = gut: Bewerber erfüllt in Bezug auf das Eignungskriterium die Anforderungen in höchstem Maße, - 60% = vollbefriedigend: Bewerber erfüllt in Bezug auf das Eignungskriterium die Anforderungen in hohem Maße, - 40% = befriedigend: Bewerber erfüllt in Bezug auf das Eignungskriterium die Anforderungen in hinreichendem Maße, - 20% = ausreichend: Bewerber erfüllt in Bezug auf das Eignungskriterium die Anforderungen in gerade noch hinreichendem Maße.  Die maximal erreichbaren Punktzahlen pro Angabe/Nachweis werden mit dem jeweils erreichten Gewichtungsfaktor (Prozentsatz) multipliziert. Im Bereich zwischen 0% und 100% können zur Berücksichtigung einer Tendenz zur jeweils höheren Notenstufe Zwischenwerte gebildet werden (in 5%-Schritten), die textlich der jeweiligen Notenstufe mit der darunterliegenden geraden Prozentzahl zugeordnet werden. Eine Bewertung der Referenzen mit 10% oder weniger würde einer völligen Nichterfüllung des Eignungskriteriums entsprechen, was den Ausschluss des Teilnahmeantrages zur Folge hat.  Hierbei handelt es sich um Eignungs-, nicht um Zuschlagskriterien.  KDW strebt an, drei Bieter in das Verhandlungsverfahren einzubeziehen. Erreichen mehrere Bewerber dieselbe Gesamtpunktzahl und überschreitet die Bewerberzahl die geplante Anzahl der zur Verhandlung aufzufordernden Bewerber, behält sich KDW vor, die Bieter für die Angebotsphase unter den verbliebenen punktgleichen Bewerbern auszulosen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Die Bewerbungsunterlagen können über die Vergabeplattform abgerufen werden. Die Verwendung der Formblätter in den Bewerbungsunterlagen ist verbindlich. Eingereichte Nachweise müssen noch gültig sein; soweit Anforderungen an die Aktualität gestellt werden, bezieht sich der Zeitpunkt auf den Tag der Veröffentlichung dieser Bekanntmachung. Mit ihrem Teilnahmeantrag haben die Bewerber folgende Dokumente bzw. Unterlagen vorzulegen:  PL1. Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (§§ 123, 124 GWB) gemäß Formblatt in den Bewerbungsunterlagen.  PL2. Eigenerklärung zum Unternehmen mit Angaben zur Firma, Rechtsform, Sitz, Gegenstand, Geschäftsleitung des Unternehmens, Unternehmensstruktur (z. B. Muttergesellschaften, Konzernzugehörigkeit, Niederlassungen - Organigramm), mit Darstellung der Gesellschafts- und Kapitalverhältnisse des Bewerbers, ggf. zur zuständigen Niederlassung, Größe des Unternehmens sowie Nationalität des wirtschaftlichen Eigentümers gemäß Formblatt in den Bewerbungsunterlagen.  PL3. Eigenerklärung zur Einhaltung der datenschutzrechtlichen Anforderungen der Ausschreibung  PL4. Eigenerklärung zum 5. EU-Sanktionspaket ("RUS-Sanktionen"). Ein Formblatt ist in den Bewerbungsunterlagen enthalten.  Im Fall von Bewerbergemeinschaften gelten die hier aufgeführten Eignungsanforderungen PL1 bis PL4 entsprechend für jedes einzelne Mitglied der Bewerbergemeinschaft. Eine Eignungsleihe ist für die Nachweise PL1 bis PL4 ausgeschlossen.  Kann ein Bewerber aus einem stichhaltigen Grund einen geforderten Nachweis nicht beibringen, so kann er seine Leistungsfähigkeit durch Vorlage anderer, von KDW für geeignet erachteter Belege nachweisen.  Die Anforderung weiterer Erklärungen und Bescheinigungen behält sich KDW für am Ende des Teilnahmewettbewerbs ausgewählte Bieter und etwaige Nachunternehmer mit der Angebotsabgabe auf gesondertes Verlangen vor.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">WL. Eigenerklärung über den jährlichen Umsatz des Bewerbers für mit den ausgeschriebenen Leistungen vergleichbaren Leistungen in den letzten drei abgeschlossenen Geschäftsjahren (kein Konzernumsatz).  Maßgeblich für die Vergleichbarkeit sind Umsätze im Zusammenhang mit der Einführung von Patientendatenmanagementsystemen (PDMS) in den letzten drei abgeschlossenen Geschäftsjahren.  Im Fall von Bewerbergemeinschaften können entsprechende Angaben für die Bewerbergemeinschaft insgesamt abgegeben werden.   Kann ein Bewerber aus einem stichhaltigen Grund einen geforderten Nachweis nicht beibringen, so kann er seine Leistungsfähigkeit durch Vorlage anderer, von KDW für geeignet erachteter Belege nachweisen. Die Anforderung weiterer Eigenerklärungen und Bescheinigungen behält sich KDW für am Ende des Teilnahmewettbewerbs ausgewählte Bieter und etwaige Nachunternehmer mit der Angebotsabgabe auf gesondertes Verlangen vor. KDW behält sich vor, eine Wirtschaftsauskunft über den Bewerber einzuholen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">TL1. Eigenerklärung über das jährliche Mittel der Beschäftigten für den maßgeblichen Bereich bzw. Geschäftsbereich in den letzten drei Jahren.  Im Fall von Bewerbergemeinschaften gelten die hier aufgeführten Eignungsanforderungen entsprechend für jedes einzelne Mitglied der Bewerbergemeinschaft, d.h. die Eigenerklärung ist von jedem Mitglied der Bewerbergemeinschaft vorzulegen.  Kann ein Bewerber aus einem stichhaltigen Grund einen geforderten Nachweis nicht beibringen, so kann er seine Leistungsfähigkeit durch Vorlage anderer, von KDW für geeignet erachteter Belege nachweisen. Die Anforderung weiterer Eigenerklärungen und Bescheinigungen behält sich die KDW für am Ende des Teilnahmewettbewerbs ausgewählte Bieter und etwaige Nachunternehmer mit der Angebotsabgabe auf gesondertes Verlangen vor.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">TL2.  Angaben über die Ausführung von vergleichbaren Leistungen/ Referenzprojekten (realisierte Projekte im Zusammenhang mit der Einführung von Patientendatenmanagementsystemen) in den letzten maximal 5 Jahren (Eigenerklärungen; Stichtag: Datum der Veröffentlichung dieser Bekanntmachung).   Im Fall von Bewerbergemeinschaften können entsprechende Angaben für die Bewerbergemeinschaft insgesamt abgegeben werden. Die Referenzen sind gemäß Formblatt aus den Bewerbungsunterlagen mit den dort genannten Angaben einzureichen.  Bitte reichen Sie möglichst nicht mehr als 5 Referenzen ein und sortieren Sie diese nach ihrer Einschlägigkeit und Vergleichbarkeit mit dem Ausschreibungsgegenstand. KDW kann in Einzelfällen die Vorlage von Referenzbescheinigungen der Referenzauftraggeber verlangen.  Mindestanforderung: Es sind mindestens drei Referenzaufträge nachzuweisen, die jeweils alle der folgenden Anforderungen erfüllen (kumulativ):  - zu einem deutschsprachigen Tool im Sinne einer deutschsprachigen Benutzeroberfläche, - mit einem Betrieb der Anwendung On-Premise, - mit einem Referenzprojekt im Regelbetrieb, nicht in der Umsetzung oder im Pilotbetrieb, - und einer PDMS-Standardsoftware, die die Bereiche Intensivversorgung zur digitalen Dokumentation und Prozessoptimierung abdeckt.   KDW legt in der Bewertung der Referenzen insbesondere Wert auf folgende Anforderungen:  - Die Referenz verfügt über mindestens sechs Intensivbetten. - Die PDMS-Standardsoftware umfasst eine visuelle Aufbereitung von Parametern und Messwerten gängiger intensivmedizinsicher Geräte. - Die PDMS-Standardsoftware unterstützt die Dokumentation von PiCCO und PAK, Pacer, Beatmung, Hämofiltration und Dialyse, Scores, allgemeiner medizinische Dokumentation, Ein- und Ausfuhr, Zugänge, Medikamenten und Pflege. - Die Benutzeroberfläche der PDMS-Standardsoftware ist für die jeweiligen User adaptierbar und konnte im üblichen Rahmenselbstständig (d.h.: ohne Customizingaufwand des Auftraggebers) angepasst werden.  - Die PDMS-Standardsoftware ist in die Systemumgebung integriert und unterstützt die Anbindung von Systemen mindestens per HL7 ADT und MDM. - Die PDMS-Standardsoftware ist in die Systemumgebung integriert und unterstützt die Anbindung von Systemen per HL7 ORU oder DFT oder BAR. - Die PDMS-Standardsoftware ist in die Systemumgebung integriert und unterstützt die Anbindung von Systemen von HL7 FHIR ein oder ausgehend, beliebiges Profil. - Die PDMS-Standardsoftware ist mindestens ein Jahr oder länger im Produktivbetrieb. - Die Referenz umfasst die Einführung eines PDMS im Zusammenhang mit einer KIS-Integration zum KIS "MEDICO".  Die mehrfache Erfüllung aller oder mehrerer der zuvor genannten Anforderungen in mehreren Referenzprojekten wird höher bewertet. Die höchste Notenstufe in der Bewertung wird erreicht, wenn mindestens drei eingereichte Referenzen je Anforderung nachgewiesen werden.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMGMQKE/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Siehe Vergabeunterlagen, insbesondere das Vertragswerk und das Preisblatt</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">KDW weist darauf hin, dass Teilnahmeanträge, die nicht die geforderten oder nachgeforderten Erklärungen und Nachweise enthalten oder deren Nachweise Mängel aufweisen, ausgeschlossen werden können.  KDW kann die Bieter jedoch unter Einhaltung der Grundsätze der Transparenz und der Gleichbehandlung auffordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Die Bieter können nicht darauf vertrauen, dass dies geschieht.  Die Nachforderung von leistungsbezogenen Unterlagen, die die Bewertung der Teilnahmeanträge anhand der Auswahlkriterien betreffen, ist ausgeschlossen.  Für die später einzureichenden Angebote werden entsprechende Regelungen im Verfahrensbrief 1 vorgesehen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">1. Werden das Vergabeverfahren vor Zuschlagserteilung aufgehoben oder der auf dieser Vergabe beruhende Vertrag vor vollständiger Leistungserbringung aufgehoben oder gekündigt, sind bereits abgerufene oder ausgezahlte Fördermittel, soweit sie nicht auf zweckentsprechend erbrachte und abgenommene Leistungen entfallen, an den Fördermittelgeber zurückzuzahlen bzw. mit diesem zur weiteren Verwendung abzustimmen.  2. Die Projekt- und Vertragssprache ist Deutsch.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMGMQKE</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">- § 134 Abs. 2 GWB - Informations- und Wartepflicht: Ein Vertrag darf erst 15 Kalendertage nach Absendung der Information nach § 134 Abs. 1 GWB geschlossen werden. Wird die Information auf elektronischem Weg oder per Fax versendet, verkürzt sich die Frist auf 10 Kalendertage. Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber; auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an. - Das Vergabeverfahren unterliegt den Vorschriften über das Nachprüfungsverfahren vor der Vergabekammer (§ 155 ff. GWB). Gemäß § 160 Abs. 3 GWB ist der Antrag unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 GWB bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. Der vorstehende Satz gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMGMQKE</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-02+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-26+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>3</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">KDW-1003-2026</cbc:ID>
+			<cbc:Name languageID="DEU">Einführung eines Patientendatenmanagementsystems (PDMS) für die Intensivversorgung für die Kreiskliniken Dillingen-Wertingen gGmbH</cbc:Name>
+			<cbc:Description languageID="DEU">Die Intensivstation verfügt derzeit über 8 Betten; ein Ausbau auf 12 Betten ist geplant. Die Lösung wird als On-premise-System betrieben und dient der digitalen Dokumentation sowie der Optimierung klinischer Prozesse im Intensivbereich. Eine Abdeckung der Anästhesie ist nicht Bestandteil der Ausschreibung.  Das PDMS ist in die bestehende IT- und Medizintechniklandschaft der Klinik zu integrieren. Erwartet wird eine benutzerfreundliche, leistungsfähige und ausfallsichere Lösung, die eine lückenlose Erfassung, Auswertung und Darstellung medizinischer Daten gewährleistet sowie eine verbesserte Versorgungsqualität und wirtschaftlichere Abläufe ermöglicht.  Der Auftraggeber betreibt MEDLINQ in der Anästhesie und erwartet die nahtlose Anbindung des PDMS an das Krankenhausinformationssystem (KIS) MEDICO sowie an ADVANOVA VMobil. Insbesondere sind FHIR-Schnittstellen zur systemübergreifenden Interoperabilität zu realisieren.  Besonderer Wert wird auf Interoperabilität, automatisierte Datenverarbeitung sowie die Unterstützung bei Qualitätssicherung und klinischer Entscheidungsfindung gelegt. Das System muss flexibel an die spezifischen Abläufe und Anforderungen der Klinik anpassbar sein.  Die geplante Mindest-Vertragslaufzeit beträgt 3 Jahre. Nach Ablauf der Mindestlaufzeit verlängert sich der Vertrag bis zu dreimal automatisch um jeweils ein weiteres Jahr, soweit der Vertrag nicht durch eine der Parteien fristgemäß gekündigt wird. Die maximale Laufzeit des Vertrages beträgt somit sechs Jahre.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Varianten/ Alternativangebote sind Gegenstand des Verhandlungsverfahrens. Der Ausschluss von Varianten/ Alternativangeboten bleibt vorbehalten.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48180000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Kreisklinik St. Elisabeth Dillingen</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Ziegelstraße 38</cbc:StreetName>
+					<cbc:CityName>Dillingen a.d. Donau</cbc:CityName>
+					<cbc:PostalZone>89407</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE277</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Vergaben nach § 14 Abs. 4 Nr. 5 VgV (zusätzliche Lieferungen des ursprünglichen Auftragnehmers) und § 14 Abs. 4 Nr. 9 VgV (Wiederholung gleichartiger Dienstleistungen) bleiben ausdrücklich vorbehalten.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Nach Ablauf der Mindestlaufzeit verlängert sich der Vertrag bis zu dreimal automatisch um jeweils ein weiteres Jahr, soweit der Vertrag nicht durch eine der Parteien fristgemäß gekündigt wird. Die maximale Laufzeit des Vertrages beträgt somit sechs Jahre.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
