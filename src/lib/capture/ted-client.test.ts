@@ -186,6 +186,41 @@ describe('502 answers and thrown calls', () => {
 		expect(twice.ted.calls()).toHaveLength(2);
 	});
 
+	it('retries a body that breaks off while streaming on the same budget', async () => {
+		const broken = () =>
+			new ReadableStream<Uint8Array>({
+				start(controller) {
+					controller.enqueue(new Uint8Array(16));
+					controller.error(new Error('ECONNRESET'));
+				}
+			});
+		const once = rig([{ status: 200, body: broken() }]);
+		expect((await once.send()).ok).toBe(true);
+		expect(once.ted.calls()).toHaveLength(2);
+		const twice = rig([{ status: 502 }, { status: 200, body: broken() }]);
+		const result = await twice.send();
+		expect(result.ok).toBe(false);
+		expect(result.ok ? '' : result.reason).toContain('ECONNRESET');
+		expect(twice.ted.calls()).toHaveLength(2);
+	});
+
+	it('ends the request when the clock refuses a 429 wait, and asks nothing more', async () => {
+		const ted = createScriptedTed({
+			clock: { now: () => START },
+			notices: [NOTICE],
+			script: { [URL_A]: [{ status: 429 }] }
+		});
+		const clock = {
+			now: () => START,
+			sleep: () => Promise.reject(new Error('interrupted'))
+		};
+		const client = createTedClient({ transport: ted, clock });
+		await expect(
+			client.send('xml', () => new Request(URL_A), { id: NOTICE }, MAX_NOTICE_BYTES)
+		).rejects.toThrow('interrupted');
+		expect(ted.calls()).toHaveLength(1);
+	});
+
 	it('applies each rule once when a 429 and a 502 meet on one request', async () => {
 		const mixed = rig([{ status: 429 }, { status: 502 }]);
 		expect((await mixed.send()).ok).toBe(true);

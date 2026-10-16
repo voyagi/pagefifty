@@ -12,6 +12,9 @@ export const GAP_MS = 1000;
 export const BACKOFF_MS: readonly number[] = [5000, 10000, 20000, 40000, 60000, 60000];
 export const MAX_429_WAITS = BACKOFF_MS.length;
 export const RETRIES_502 = 1;
+// D-08 bounds the number of waits, not their length: six stated waits of a day would hold the owner
+// at the keyboard for days, so a longer stated wait fails the request at once.
+export const RETRY_AFTER_CEILING_MS = 300_000;
 
 const TED_HOSTS: ReadonlySet<string> = new Set(['api.ted.europa.eu', 'ted.europa.eu']);
 
@@ -63,17 +66,49 @@ interface Tries {
 	retries: number;
 }
 
-function refusal(status: number, tries: Tries): string {
-	if (status === 429) return `status 429 after ${tries.waits} waits`;
-	if (status === 502) return `status 502 after ${tries.retries} retry`;
-	return `status ${status}`;
+type Log = (status: number, bytes: number, headers: Record<string, string>) => void;
+
+// What one answer means for its request: send it again, or this is the result.
+type Step = { again: true } | { again: false; result: TedResult };
+
+const AGAIN: Step = { again: true };
+
+function joined(chunks: readonly Uint8Array[], total: number): Uint8Array<ArrayBuffer> {
+	const body = new Uint8Array(total);
+	let offset = 0;
+	for (const chunk of chunks) {
+		body.set(chunk, offset);
+		offset += chunk.byteLength;
+	}
+	return body;
 }
 
-async function readBody(response: Response, maxBytes: number): Promise<BodyRead> {
-	const body = new Uint8Array(await response.arrayBuffer());
-	return body.byteLength > maxBytes
-		? { ok: false, reason: `${body.byteLength} bytes, over the ${maxBytes} byte cap` }
-		: { ok: true, body };
+// content-length is optional and only a claim, so it can refuse a body early but never vouch for
+// one: the stream is counted as it arrives and cancelled once it passes the cap, so nothing past the
+// cap is ever buffered.
+export async function readCapped(response: Response, maxBytes: number): Promise<BodyRead> {
+	const stated = response.headers.get('content-length');
+	if (stated !== null && /^\d+$/.test(stated.trim()) && Number(stated) > maxBytes) {
+		await response.body?.cancel();
+		return {
+			ok: false,
+			reason: `content-length ${stated.trim()} is over the ${maxBytes} byte cap`
+		};
+	}
+	if (response.body === null) return { ok: true, body: new Uint8Array(0) };
+	const reader = response.body.getReader();
+	const chunks: Uint8Array[] = [];
+	let total = 0;
+	for (;;) {
+		const { done, value } = await reader.read();
+		if (done) return { ok: true, body: joined(chunks, total) };
+		total += value.byteLength;
+		if (total > maxBytes) {
+			await reader.cancel();
+			return { ok: false, reason: `over the ${maxBytes} byte cap` };
+		}
+		chunks.push(value);
+	}
 }
 
 // D-06: an address that is not plain https on TED's two hosts is refused before it is sent, so a
@@ -94,7 +129,7 @@ export function retryAfterMs(value: string | null, nowMs: number): number | unde
 		const ms = Number(text) * 1000;
 		return ms > 0 ? ms : undefined;
 	}
-	// Every HTTP-date form opens with a day name, and Date.parse alone would read '2030' as a year.
+	// Every HTTP-date form opens with a day name, and Date.parse alone would read '2030-01-01' too.
 	if (!/^[A-Za-z]{3}/.test(text)) return undefined;
 	const ms = Date.parse(text) - nowMs;
 	return ms > 0 ? ms : undefined;
@@ -144,15 +179,66 @@ export function createTedClient({ transport, clock }: { transport: Transport; cl
 		return true;
 	}
 
-	async function waitOn429(tries: Tries, response: Response): Promise<boolean> {
+	const done = (result: TedResult): Step => ({ again: false, result });
+
+	async function on429(tries: Tries, response: Response): Promise<Step> {
 		counts.status429 += 1;
-		if (tries.waits >= MAX_429_WAITS) return false;
+		if (tries.waits >= MAX_429_WAITS) {
+			return done(fail(`status 429 after ${MAX_429_WAITS} waits`, 429));
+		}
 		const stated = retryAfterMs(response.headers.get('retry-after'), clock.now());
+		if (stated !== undefined && stated > RETRY_AFTER_CEILING_MS) {
+			const seconds = Math.ceil(stated / 1000);
+			const ceiling = RETRY_AFTER_CEILING_MS / 1000;
+			return done(fail(`status 429 asking for ${seconds} s, over the ${ceiling} s ceiling`, 429));
+		}
 		const wait = Math.max(GAP_MS, stated ?? BACKOFF_MS[tries.waits]);
 		tries.waits += 1;
 		counts.waited429Ms += wait;
 		await clock.sleep(wait);
-		return true;
+		return AGAIN;
+	}
+
+	function onThrown(tries: Tries, error: unknown, status?: number): Step {
+		if (retryOnce(tries)) return AGAIN;
+		const message = error instanceof Error ? error.message : String(error);
+		return done(fail(`request failed after ${RETRIES_502} retry: ${message}`, status));
+	}
+
+	// A reset or the live transport's timeout can also land while the body streams in, and that is
+	// the same transient failure as one before the answer, so it spends the same retry.
+	async function readAnswer(tries: Tries, response: Response, log: Log, maxBytes: number) {
+		const headers = rateHeaders(response.headers);
+		const { status } = response;
+		let read: BodyRead;
+		try {
+			read = await readCapped(response, maxBytes);
+		} catch (error) {
+			log(status, 0, headers);
+			return onThrown(tries, error, status);
+		}
+		if (!read.ok) {
+			log(status, 0, headers);
+			return done(fail(read.reason, status));
+		}
+		log(status, read.body.byteLength, headers);
+		return done({ ok: true, status, body: read.body, headers: response.headers });
+	}
+
+	async function onAnswer(
+		tries: Tries,
+		response: Response,
+		log: Log,
+		maxBytes: number
+	): Promise<Step> {
+		const { status } = response;
+		if (status >= 200 && status <= 299) return readAnswer(tries, response, log, maxBytes);
+		await response.body?.cancel();
+		log(status, 0, rateHeaders(response.headers));
+		if (status === 429) return on429(tries, response);
+		if (status === 502 && retryOnce(tries)) return AGAIN;
+		const after = status === 502 ? ` after ${RETRIES_502} retry` : '';
+		return done(fail(`status ${status}${after}`, status));
 	}
 
 	async function send(
@@ -171,33 +257,21 @@ export function createTedClient({ transport, clock }: { transport: Transport; cl
 			counts[category === 'search' ? 'searchPages' : 'xmlRequests'] += 1;
 			const attempt = tries.attempt;
 			tries.attempt += 1;
-			const log = (status: number, bytes: number, headers: Record<string, string>) =>
+			const log: Log = (status, bytes, headers) =>
 				entries.push({ at, category, ...meta, attempt, status, bytes, headers, url: url.hostname });
 			let response: Response;
 			try {
 				response = await transport(request);
 			} catch (error) {
 				log(0, 0, {});
-				if (retryOnce(tries)) continue;
-				const message = error instanceof Error ? error.message : String(error);
-				return fail(`request failed after ${RETRIES_502} retry: ${message}`);
+				const step = onThrown(tries, error);
+				if (step.again) continue;
+				return step.result;
 			}
-			const headers = rateHeaders(response.headers);
-			const { status } = response;
-			if (status < 200 || status > 299) {
-				await response.body?.cancel();
-				log(status, 0, headers);
-				if (status === 429 && (await waitOn429(tries, response))) continue;
-				if (status === 502 && retryOnce(tries)) continue;
-				return fail(refusal(status, tries), status);
-			}
-			const read = await readBody(response, maxBytes);
-			if (!read.ok) {
-				log(status, 0, headers);
-				return fail(read.reason, status);
-			}
-			log(status, read.body.byteLength, headers);
-			return { ok: true, status, body: read.body, headers: response.headers };
+			// Outside the try: a wait the clock refuses (the command's Ctrl+C) must end the run, never
+			// pass for a failed request that gets retried.
+			const step = await onAnswer(tries, response, log, maxBytes);
+			if (!step.again) return step.result;
 		}
 	}
 

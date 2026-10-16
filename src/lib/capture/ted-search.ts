@@ -20,7 +20,7 @@ export const SEARCH_FIELDS: readonly string[] = [
 ];
 
 const PAGE_LIMIT = 250;
-const MAX_SEARCH_PAGE_BYTES = 20 * 1024 * 1024;
+export const MAX_SEARCH_PAGE_BYTES = 20 * 1024 * 1024;
 
 export type SearchHit = Record<string, unknown>;
 
