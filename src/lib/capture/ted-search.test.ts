@@ -68,7 +68,8 @@ const UNTRUSTED: [string, Answer[]][] = [
 	[
 		'a page over the size cap',
 		[{ status: 200, headers: { 'content-length': String(MAX_SEARCH_PAGE_BYTES + 1) }, body: '{}' }]
-	]
+	],
+	['a stated total that drops between pages', [page([first, second], 4), page([third], 3)]]
 ];
 
 describe('searchAll', () => {
@@ -94,6 +95,15 @@ describe('searchAll', () => {
 		const reason = await failedSearch([page([first, second], 3), page([second], 3)]);
 		expect(reason).toMatch(/^search page 2: /);
 		expect(reason).toContain('600779-2026');
+	});
+
+	it('fails a listing whose stated total changes after page 1, naming both totals', async () => {
+		const dropped = await failedSearch([page([first, second], 4), page([third], 3)]);
+		expect(dropped).toMatch(/^search page 2: /);
+		expect(dropped).toContain('from 4 to 3');
+		const grown = await failedSearch([page([first], 2), page([second], 3), page([third], 3)]);
+		expect(grown).toMatch(/^search page 2: /);
+		expect(grown).toContain('from 2 to 3');
 	});
 
 	it('fails a page that is not JSON, naming the page', async () => {
