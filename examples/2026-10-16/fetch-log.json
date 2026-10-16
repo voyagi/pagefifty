@@ -1,0 +1,44 @@
+{
+  "log": [
+    {
+      "at": "2026-10-16T14:41:13.446Z",
+      "category": "search",
+      "page": 1,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 2000834,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-16T14:41:14.472Z",
+      "category": "search",
+      "page": 2,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 1164934,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-16T14:41:17.291Z",
+      "category": "xml",
+      "id": "695350-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 30562,
+      "headers": {},
+      "url": "ted.europa.eu"
+    }
+  ],
+  "failures": [
+    {
+      "notice": "694786-2026",
+      "reason": "scrub: contact data stands inside a selection criterion, which is served only as published"
+    },
+    {
+      "notice": "695350-2026",
+      "reason": "malformed: namespace urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2 is bound to prefix cn, and the reader reads it only as the default namespace"
+    }
+  ]
+}
