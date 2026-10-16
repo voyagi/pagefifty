@@ -48,11 +48,14 @@ try {
 		desk.body.includes(PURPOSE),
 		desk.body.includes(PURPOSE) ? 'present' : 'missing'
 	);
+	const latest = config.latest;
+	const expectedCapture = latest.firstPublished
+		? `Snapshot: ${latest.total} IT notices published from ${latest.firstPublished} that TED listed as active on ${latest.capturedOn}.`
+		: `Snapshot: ${latest.total} IT notices TED listed as active on ${latest.capturedOn}.`;
 	check(
-		'the capture line counts 363 IT notices published from 1 Sep 2026',
-		desk.capture ===
-			'Snapshot: 363 IT notices published from 1 Sep 2026 that TED listed as active on 15 Sep 2026.',
-		`capture "${desk.capture}"`
+		"the capture line gives the newest capture's TED count, window and day",
+		desk.capture === expectedCapture,
+		`capture "${desk.capture}", expected "${expectedCapture}"`
 	);
 	check(
 		'links lead to /tenders and /profile',
