@@ -57,6 +57,17 @@ async function failedSearch(answers: readonly Answer[]): Promise<string> {
 }
 
 const [first, second, third] = NOTICES.map(hitOf);
+const fourth = hitOf('605563-2026');
+
+// Pages of two. After page 1 is read, 600457-2026 leaves the listing and 605563-2026 joins at its
+// end, so 609955-2026 shifts onto page 1 unseen: the first reading still counts 3 of a stated 3 with
+// no number twice, and only a second reading shows the change.
+const MOVED_UNDER_A_HELD_TOTAL: Answer[] = [
+	page([first, second], 3),
+	page([fourth], 3),
+	page([second, third], 3),
+	page([fourth], 3)
+];
 
 // Each of these listings is one TED could send and none can be trusted as the whole population.
 const UNTRUSTED: [string, Answer[]][] = [
@@ -69,7 +80,8 @@ const UNTRUSTED: [string, Answer[]][] = [
 		'a page over the size cap',
 		[{ status: 200, headers: { 'content-length': String(MAX_SEARCH_PAGE_BYTES + 1) }, body: '{}' }]
 	],
-	['a stated total that drops between pages', [page([first, second], 4), page([third], 3)]]
+	['a stated total that drops between pages', [page([first, second], 4), page([third], 3)]],
+	['notices that changed while the stated total held', MOVED_UNDER_A_HELD_TOTAL]
 ];
 
 describe('searchAll', () => {
@@ -106,6 +118,22 @@ describe('searchAll', () => {
 		expect(grown).toContain('from 2 to 3');
 	});
 
+	it('fails a listing of more pages whose second reading names other notices', async () => {
+		const reason = await failedSearch(MOVED_UNDER_A_HELD_TOTAL);
+		expect(reason).toMatch(/^search: a second reading /);
+		expect(reason).toContain('only in the first: 600457-2026');
+		expect(reason).toContain('only in the second: 609955-2026');
+	});
+
+	it('names a page of the second reading that fails', async () => {
+		const reason = await failedSearch([
+			page([first, second], 3),
+			page([third], 3),
+			page([first, second], 3, true)
+		]);
+		expect(reason).toMatch(/^second reading, search page 1: .*timed out/);
+	});
+
 	it('fails a page that is not JSON, naming the page', async () => {
 		expect(await failedSearch([{ status: 200, body: '<html>busy</html>' }])).toMatch(
 			/^search page 1: /
@@ -129,10 +157,30 @@ describe('searchAll', () => {
 		);
 	});
 
-	it('collects every page of a listing whose count matches its stated total', async () => {
-		const result = await search([page([first, second], 3), page([third], 3)]);
+	it('collects every page of a listing whose count matches its stated total, read twice', async () => {
+		const clock = createFakeClock(START);
+		const listed = [page([first, second], 3), page([third], 3)];
+		const ted = createScriptedTed({
+			clock,
+			notices: NOTICES,
+			script: { [TED_SEARCH_URL]: [...listed, ...listed] }
+		});
+		const result = await searchAll(createTedClient({ transport: ted, clock }), '20260927');
 		expect(result).toMatchObject({ ok: true, searchTotal: 3, pages: 2 });
 		expect(result.ok ? result.hits.map((hit) => hit['publication-number']) : []).toEqual(NOTICES);
+		expect(ted.calls().map(({ body }) => (body as { page: number }).page)).toEqual([1, 2, 1, 2]);
+	});
+
+	it('reads a one-page listing once', async () => {
+		const clock = createFakeClock(START);
+		const ted = createScriptedTed({
+			clock,
+			notices: NOTICES,
+			script: { [TED_SEARCH_URL]: [page([first, second, third], 3)] }
+		});
+		const result = await searchAll(createTedClient({ transport: ted, clock }), '20260927');
+		expect(result).toMatchObject({ ok: true, searchTotal: 3, pages: 1 });
+		expect(ted.calls()).toHaveLength(1);
 	});
 });
 
