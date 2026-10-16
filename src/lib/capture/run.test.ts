@@ -283,7 +283,8 @@ const RECORD_KEYS = {
 		'modes',
 		'query',
 		'ted',
-		'notices'
+		'notices',
+		'metered'
 	],
 	query: ['query', 'fields', 'scope', 'onlyLatestVersions', 'since'],
 	ted: [
