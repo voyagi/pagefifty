@@ -74,7 +74,11 @@ interface ReadOne {
 
 type XmlCache = ReturnType<typeof createXmlCache>;
 
-type Fetched = { ok: true; raw: Uint8Array; cached: boolean } | { ok: false; reason: string };
+type Fetched =
+	| { ok: true; raw: Uint8Array; record: NoticeRecord; cached: boolean }
+	| { ok: false; reason: string };
+
+type RawNotice = Extract<Fetched, { ok: true }>;
 
 type NoticeOutcome = { ok: true; notice: ReadOne } | { ok: false; failure: Failure };
 
@@ -158,7 +162,8 @@ async function fetchRaw(
 ): Promise<Fetched> {
 	if (cache.has(number)) {
 		const raw = cache.read(number);
-		if (readNotice(raw, { noticeNumber: number }).ok) return { ok: true, raw, cached: true };
+		const read = readNotice(raw, { noticeNumber: number });
+		if (read.ok) return { ok: true, raw, record: read.record, cached: true };
 		cache.remove(number);
 	}
 	const answer = await client.send('xml', () => new Request(url), { id: number }, MAX_NOTICE_BYTES);
@@ -166,16 +171,25 @@ async function fetchRaw(
 	const accepted = readNotice(answer.body, { noticeNumber: number });
 	if (!accepted.ok) return { ok: false, reason: `${accepted.kind}: ${accepted.detail}` };
 	cache.write(number, answer.body);
-	return { ok: true, raw: answer.body, cached: false };
+	return { ok: true, raw: answer.body, record: accepted.record, cached: false };
 }
+
+const criteriaOf = (record: NoticeRecord) => JSON.stringify(record.lots.map((lot) => lot.criteria));
+
+const CRITERION_CONTACT_REASON =
+	'scrub: contact data stands inside a selection criterion, which is served only as published';
 
 // The record is read from the scrubbed bytes, the ones the records build reads from the published
 // folder, and checked with the schema the build checks it with (build-records.mjs buildCapture).
-function readScrubbed(number: string, hit: SearchHit, raw: Uint8Array): NoticeOutcome {
-	const text = scrubNoticeXml(UTF8.decode(raw));
+// A criterion is quoted as TED published it and contact data is never kept, so a notice whose
+// criteria the scrub would change can be served neither way.
+function readScrubbed(number: string, hit: SearchHit, fetched: RawNotice): NoticeOutcome {
+	const text = scrubNoticeXml(UTF8.decode(fetched.raw));
 	const read = readNotice(new TextEncoder().encode(text), { noticeNumber: number });
 	if (!read.ok)
 		return { ok: false, failure: { notice: number, reason: `${read.kind}: ${read.detail}` } };
+	if (criteriaOf(read.record) !== criteriaOf(fetched.record))
+		return { ok: false, failure: { notice: number, reason: CRITERION_CONTACT_REASON } };
 	const checked = NoticeRecordSchema.safeParse(read.record);
 	if (!checked.success) {
 		const where = checked.error.issues
@@ -206,7 +220,7 @@ async function readHits(hits: readonly SearchHit[], run: Run, cache: XmlCache) {
 			continue;
 		}
 		if (fetched.cached) run.cacheHits += 1;
-		const outcome = readScrubbed(number, hit, fetched.raw);
+		const outcome = readScrubbed(number, hit, fetched);
 		if (outcome.ok) notices.push(outcome.notice);
 		else failedOne(hit, outcome.failure.notice, outcome.failure.reason);
 	}

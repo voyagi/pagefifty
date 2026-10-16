@@ -78,7 +78,7 @@ function notCapturedSection(parts: ReadmeParts): string[] {
 	return [
 		'## Not captured',
 		'',
-		'These notices were in the search answer, but their XML could not be downloaded or read, so they are not in this capture:',
+		'These notices were in the search answer, but their XML could not be downloaded, read or served as published, so they are not in this capture:',
 		'',
 		...parts.failed.map(({ notice, reason }) => `- ${notice}: ${reason}`),
 		'',
