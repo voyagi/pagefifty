@@ -28,7 +28,7 @@ type SearchResult =
 	| { ok: true; hits: SearchHit[]; searchTotal: number; pages: number }
 	| { ok: false; reason: string };
 
-type SearchPage = { notices: SearchHit[]; totalNoticeCount: number };
+type SearchPage = { notices: SearchHit[]; totalNoticeCount: number; timedOut: boolean };
 
 // The site reads the window's first day from exactly one publication-date>=YYYYMMDD clause
 // (capture-id.ts), so the query is written in that form and no other.
@@ -63,13 +63,38 @@ function parsePage(body: Uint8Array): SearchPage | undefined {
 		return undefined;
 	}
 	if (typeof parsed !== 'object' || parsed === null) return undefined;
-	const { notices, totalNoticeCount } = parsed as Record<string, unknown>;
+	const { notices, totalNoticeCount, timedOut } = parsed as Record<string, unknown>;
 	if (!Array.isArray(notices) || typeof totalNoticeCount !== 'number') return undefined;
-	return { notices: notices as SearchHit[], totalNoticeCount };
+	return { notices: notices as SearchHit[], totalNoticeCount, timedOut: timedOut === true };
+}
+
+// A partial listing would be served as the whole population, the reason the records build refuses a
+// total that differs from the listed count. So a page TED cut short, a count that does not add up,
+// or a number seen twice (the listing moved between pages, so another notice may have been skipped
+// while the count still matched) ends the search.
+function pageRefusal(page: SearchPage, hits: SearchHit[], seen: Set<string>): string | undefined {
+	const total = page.totalNoticeCount;
+	if (page.timedOut) return 'TED timed out building the listing (timedOut true)';
+	// An empty page before the stated total is reached would page forever.
+	if (page.notices.length === 0 && hits.length < total) {
+		return `listed no notices with ${hits.length} of ${total} collected`;
+	}
+	for (const hit of page.notices) {
+		const number = hit['publication-number'];
+		if (typeof number !== 'string') continue;
+		if (seen.has(number))
+			return `${number} was listed twice, so the listing moved while it was read`;
+		seen.add(number);
+	}
+	hits.push(...page.notices);
+	return hits.length > total
+		? `${hits.length} hits collected against a stated total of ${total}`
+		: undefined;
 }
 
 export async function searchAll(client: TedClient, since: string): Promise<SearchResult> {
 	const hits: SearchHit[] = [];
+	const seen = new Set<string>();
 	let searchTotal = 0;
 	let page = 0;
 	do {
@@ -89,21 +114,24 @@ export async function searchAll(client: TedClient, since: string): Promise<Searc
 				reason: `search page ${page}: not an object with a notices list and a numeric totalNoticeCount`
 			};
 		}
-		// An empty page before the stated total is reached would page forever.
-		if (parsed.notices.length === 0 && hits.length < parsed.totalNoticeCount) {
-			return {
-				ok: false,
-				reason: `search page ${page} listed no notices with ${hits.length} of ${parsed.totalNoticeCount} collected`
-			};
-		}
-		hits.push(...parsed.notices);
+		const refusal = pageRefusal(parsed, hits, seen);
+		if (refusal !== undefined) return { ok: false, reason: `search page ${page}: ${refusal}` };
 		searchTotal = parsed.totalNoticeCount;
 	} while (hits.length < searchTotal);
 	return { ok: true, hits, searchTotal, pages: page };
 }
 
+function namesXml(hit: SearchHit): boolean {
+	const { links } = hit;
+	if (typeof links !== 'object' || links === null) return false;
+	const { xml } = links as Record<string, unknown>;
+	if (typeof xml !== 'object' || xml === null || Array.isArray(xml)) return false;
+	return Object.values(xml).some((address) => typeof address === 'string' && address !== '');
+}
+
 // D-06: the address is built from the publication number, never taken from the hit's links, and the
-// number must have TED's shape before it becomes a URL or a file name.
+// number must have TED's shape before it becomes a URL or a file name. links.xml is only the proof
+// that an XML exists, so a hit without it is failed without asking TED.
 export function xmlTarget(
 	hit: SearchHit
 ): { ok: true; number: string; url: string } | { ok: false; notice: string; reason: string } {
@@ -115,5 +143,7 @@ export function xmlTarget(
 			reason: `publication-number ${JSON.stringify(number ?? null)} is not a TED notice number`
 		};
 	}
+	if (!namesXml(hit))
+		return { ok: false, notice: number, reason: 'no XML link in the search answer' };
 	return { ok: true, number, url: tedNoticeXmlUrl(number) };
 }
