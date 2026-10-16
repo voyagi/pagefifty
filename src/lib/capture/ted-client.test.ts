@@ -21,8 +21,8 @@ const CHUNK = 64 * 1024;
 
 type Script = NonNullable<Parameters<typeof createScriptedTed>[0]['script']>[string];
 
-function rig(answers: Script = []) {
-	const clock = createFakeClock(START);
+function rig(answers: Script = [], start = START) {
+	const clock = createFakeClock(start);
 	const ted = createScriptedTed({ clock, notices: [NOTICE], script: { [URL_A]: answers } });
 	const client = createTedClient({ transport: ted, clock });
 	const send = () => client.send('xml', () => new Request(URL_A), { id: NOTICE }, MAX_NOTICE_BYTES);
@@ -103,6 +103,14 @@ describe('429 answers', () => {
 		const { send, starts } = rig([{ status: 429, headers: { 'retry-after': date } }]);
 		expect((await send()).ok).toBe(true);
 		expect(gaps(starts())[0]).toBeGreaterThanOrEqual(7000);
+	});
+
+	it('never waits less than the gap, even for an HTTP date under a second ahead', async () => {
+		const date = new Date(START).toUTCString();
+		expect(retryAfterMs(date, START - 600)).toBe(600);
+		const { clock, send } = rig([{ status: 429, headers: { 'retry-after': date } }], START - 600);
+		expect((await send()).ok).toBe(true);
+		expect(clock.sleeps()).toEqual([1000]);
 	});
 
 	it.each(['0', 'soon', '-5', '2030-01-01', ''])(
@@ -210,9 +218,14 @@ describe('502 answers and thrown calls', () => {
 			notices: [NOTICE],
 			script: { [URL_A]: [{ status: 429 }] }
 		});
+		let refused = false;
 		const clock = {
 			now: () => START,
-			sleep: () => Promise.reject(new Error('interrupted'))
+			sleep() {
+				if (refused) return Promise.resolve();
+				refused = true;
+				return Promise.reject(new Error('interrupted'));
+			}
 		};
 		const client = createTedClient({ transport: ted, clock });
 		await expect(
