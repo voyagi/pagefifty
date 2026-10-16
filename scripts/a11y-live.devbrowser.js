@@ -49,27 +49,31 @@ const AUDITS = [
 	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
-	// The tender page twice: one lot with the face-down Documents leaf, then the capture's largest
-	// notice, whose 17 lots bring the lot index and seventeen leaf tabs.
+	// The tender page twice. The live one serves the newest capture, so it is reached by clicking the
+	// list's first row (follow: 'first-row'), never by a typed notice number. The 2026-09-15 capture's
+	// largest notice, whose 17 lots bring the lot index and seventeen leaf tabs, is read on the
+	// example, which stays on that capture.
 	{
-		slug: 'tender-one-lot',
+		slug: 'tender-from-list',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/tenders/609955-2026?theme=light'
+		url: 'http://127.0.0.1:8788/tenders?theme=light',
+		follow: 'first-row'
 	},
 	{
-		slug: 'tender-one-lot',
+		slug: 'tender-from-list',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/tenders/609955-2026?theme=dark'
+		url: 'http://127.0.0.1:8788/tenders?theme=dark',
+		follow: 'first-row'
 	},
 	{
 		slug: 'tender-17-lots',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/tenders/600457-2026?theme=light'
+		url: 'http://127.0.0.1:8788/example/600457-2026?theme=light'
 	},
 	{
 		slug: 'tender-17-lots',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/tenders/600457-2026?theme=dark'
+		url: 'http://127.0.0.1:8788/example/600457-2026?theme=dark'
 	},
 	// A well-formed number the snapshot does not hold takes the error page's own notice branch,
 	// which the unknown path below never renders.
@@ -97,17 +101,18 @@ const AUDITS = [
 		url: 'http://127.0.0.1:8788/no-such-page?theme=dark',
 		expectStatus: 404
 	},
-	// No Belgian notice in the capture is due in 2027, so this filter always ends in the empty state.
+	// No captured deadline lies in 2099, so this filter ends in the empty state whichever capture
+	// the live list serves.
 	{
 		slug: 'tenders-empty',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2027-01-01&theme=light',
+		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2099-01-01&theme=light',
 		expectText: 'No tenders match these filters'
 	},
 	{
 		slug: 'tenders-empty',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2027-01-01&theme=dark',
+		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2099-01-01&theme=dark',
 		expectText: 'No tenders match these filters'
 	},
 	{
@@ -211,10 +216,39 @@ async function prepareStorage(storage) {
 	}, storage ?? {});
 }
 
+// The theme switch marks its pressed button only once the app has started.
+const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
+
+// A click before the app has started is a full load of the tender page without ?theme=, which
+// paints the stored or device theme and fails the data-theme check, so the row waits for hydration.
+// The landing page is fetched again for the status the server gives its address.
+async function followFirstRow() {
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	const folded = await page.evaluate(() =>
+		Boolean(document.querySelector('tbody tr[data-notice]')?.closest('details'))
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click('tbody tr[data-notice] a');
+	await page.waitForFunction(() => /^\/tenders\/\d+-\d{4}$/.test(location.pathname), null, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
+	return page.evaluate(async () => ({
+		path: location.pathname,
+		status: (await fetch(location.href)).status
+	}));
+}
+
 async function loadState(entry) {
 	await prepareStorage(entry.storage);
 	const response = await page.goto(entry.url, { waitUntil: 'networkidle' });
 	entry.status = response ? response.status() : 0;
+	if (entry.follow === 'first-row' && entry.status === 200) {
+		const landed = await followFirstRow();
+		entry.followed = landed.path;
+		entry.status = landed.status;
+	}
 	const state = await page.evaluate(() => ({
 		h1: document.querySelectorAll('h1').length,
 		theme: document.documentElement.getAttribute('data-theme'),
@@ -319,12 +353,14 @@ async function audit({
 	storage,
 	width,
 	layout,
-	shots
+	shots,
+	follow
 }) {
 	const entry = {
 		slug,
 		theme,
 		url,
+		follow,
 		expectStatus,
 		expectText,
 		storage,
