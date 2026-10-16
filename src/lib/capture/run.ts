@@ -2,7 +2,7 @@
 // the records build reads. scripts/capture.mjs injects every dependency (the transport, the clock,
 // the root, git's HEAD), so the tests drive this with a stub TED and a fake clock. Imported under
 // Node type stripping: erasable syntax only, relative .ts imports.
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { selectLatest } from '../ingest/latest.ts';
 import { readNotice, MAX_NOTICE_BYTES } from '../ingest/read-notice.ts';
@@ -21,8 +21,9 @@ import {
 	writeJsonFile
 } from './capture-folder.ts';
 import { hitVersion, outdatedByFailed } from './failed-versions.ts';
+import { loadProviderKeys, type ProviderKeys } from './keys.ts';
 import { acquireLock, isAlive } from './lock.ts';
-import { createMeteredGate, type MeteredGate } from './metered.ts';
+import { createMeteredGate, type MeteredGate, type MeteredProvider } from './metered.ts';
 import { captureReadme } from './readme.ts';
 import { buildRunRecord, writeRunRecord, type RunOutcome, type RunRecord } from './run-record.ts';
 import { createTedClient, type Clock, type TedClient } from './ted-client.ts';
@@ -50,6 +51,8 @@ export interface CaptureDeps {
 	// Aborted by the command on Ctrl+C.
 	signal?: AbortSignal;
 	meteredSteps?: readonly MeteredStep[];
+	// Reads the provider keys from the key file at the path given; the default reads it from disk.
+	loadKeys?: (path: string) => ProviderKeys;
 }
 
 interface Failure {
@@ -423,12 +426,48 @@ function takeLock(deps: CaptureDeps, run: Run): string | undefined {
 	return undefined;
 }
 
+const STEP_FAILED = 'a metered step failed';
+
+// A provider's error text can quote the request it was sent, Authorization header and key included,
+// so a send that throws reaches the step, the log and the run record only as a fixed reason naming
+// the provider and the operation.
+function failSafeGate(gate: MeteredGate, failures: string[]): MeteredGate {
+	return {
+		record: () => gate.record(),
+		async attempt(provider, operation, send) {
+			try {
+				return await gate.attempt(provider, operation, send);
+			} catch {
+				const reason = `metered call ${provider} ${operation} failed`;
+				failures.push(reason);
+				throw new Error(reason);
+			}
+		}
+	};
+}
+
 // After the notices are read and filtered, so no metered call is spent on a run that will publish
-// nothing, and before staging, so the run.json it publishes counts every attempt.
-async function runMeteredSteps(deps: CaptureDeps, run: Run, selection: Selection): Promise<void> {
+// nothing, and before staging, so the run.json it publishes counts every attempt. A step that throws
+// fails the run, and its own error text is never written anywhere.
+async function runMeteredSteps(
+	deps: CaptureDeps,
+	run: Run,
+	selection: Selection
+): Promise<RunEnd | undefined> {
 	const records = selection.kept.map((notice) => notice.record);
-	for (const step of deps.meteredSteps ?? []) await step({ gate: run.gate, records });
+	const failures: string[] = [];
+	const gate = failSafeGate(run.gate, failures);
+	for (const step of deps.meteredSteps ?? []) {
+		try {
+			await step({ gate, records });
+		} catch {
+			stopIfInterrupted(deps);
+			const reason = failures.at(-1) ?? STEP_FAILED;
+			return ended(deps, 'failed', reason, `${reason}; nothing was written`);
+		}
+	}
 	stopIfInterrupted(deps);
+	return undefined;
 }
 
 async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
@@ -459,7 +498,8 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	if (tooMany !== undefined) {
 		return ended(deps, 'failed', tooMany, `${tooMany}; nothing was written`);
 	}
-	await runMeteredSteps(deps, run, run.selection);
+	const stepFailure = await runMeteredSteps(deps, run, run.selection);
+	if (stepFailure !== undefined) return stepFailure;
 	const end = await stageAndPublish(deps, run, run.selection, iso(deps.clock.now()));
 	if (end.outcome === 'written') pruneCache(deps, cache, listed);
 	return end;
@@ -482,9 +522,28 @@ function liveRefusal(value: string | undefined): string {
 	return `--live was given, but PAGEFIFTY_LIVE is ${found}, not "1", so no metered call may run; set PAGEFIFTY_LIVE=1 in the shell for this one command, beside --live and --cap`;
 }
 
-// Order before the first request: the start instant and day from the clock, the flags and the
-// switch (no record: a run refused here never started), the existing-folder refusal, the lock, the
-// cleanup.
+type KeyRead =
+	{ ok: true; keys?: Readonly<Record<MeteredProvider, string>> } | { ok: false; message: string };
+
+const readKeyFileFromDisk = (path: string) =>
+	loadProviderKeys(path, (file) => readFileSync(file, 'utf8'));
+
+// The key file is opened only when a metered call could be made: a provider resolved live and a
+// step that could call it. The one place the file's names map to the gate's providers.
+function readProviderKeys(deps: CaptureDeps, modes: Modes): KeyRead {
+	const live = modes.tokenFactory === 'live' || modes.tavily === 'live';
+	if (!live || (deps.meteredSteps ?? []).length === 0) return { ok: true };
+	try {
+		const keys = (deps.loadKeys ?? readKeyFileFromDisk)(join(deps.root, '.env'));
+		return { ok: true, keys: { tokenFactory: keys.NEBIUS_API_KEY, tavily: keys.TAVILY_API_KEY } };
+	} catch (error) {
+		return { ok: false, message: messageOf(error) };
+	}
+}
+
+// Order before the first request: the start instant and day from the clock, the flags, the switch
+// and the provider keys (no record: a run refused here never started), the existing-folder refusal,
+// the lock, the cleanup.
 export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 	const started = deps.clock.now();
 	const date = captureDate(started);
@@ -501,6 +560,11 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		deps.log(`capture: ${liveRefusal(switchValue)}`);
 		return 2;
 	}
+	const keyRead = readProviderKeys(deps, modes);
+	if (!keyRead.ok) {
+		deps.log(`capture: ${keyRead.message}; no request was made`);
+		return 2;
+	}
 	const run: Run = {
 		started,
 		date,
@@ -508,8 +572,8 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		modes,
 		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
 		client: createTedClient({ transport: deps.transport, clock: deps.clock }),
-		// No provider key is loaded yet, so the gate refuses every live call with "no key loaded".
-		gate: createMeteredGate({ modes, cap: args.cap, log: deps.log }),
+		// The keys go to the gate alone, never to a step (D-23).
+		gate: createMeteredGate({ modes, cap: args.cap, log: deps.log, keys: keyRead.keys }),
 		listed: 0,
 		searchTotal: 0,
 		cacheHits: 0,
