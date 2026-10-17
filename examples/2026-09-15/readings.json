@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "run": {
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "provider": "Nebius Token Factory",
+    "region": "us-central1",
+    "thinking": false,
+    "runDate": "2026-10-15",
+    "prices": {
+      "inputUsdPerMillion": "0.30",
+      "outputUsdPerMillion": "0.90",
+      "listedOn": "2026-10-15"
+    },
+    "lots": {
+      "withCriteria": 2,
+      "read": 2,
+      "reused": 0,
+      "notRead": 0
+    },
+    "sends": 2,
+    "tokens": {
+      "input": 2811,
+      "output": 2563,
+      "reasoning": 0
+    },
+    "costUsd": "0.003150",
+    "quotes": {
+      "verified": 24,
+      "rejected": 0
+    }
+  },
+  "notices": [
+    {
+      "notice": "610242-2026",
+      "lots": [
+        {
+          "lot": "LOT-0000",
+          "status": "read",
+          "textSha256": "4f3a30d74cbfe99e986d727cd69da1062e208d8ee440eee2ac40734fa80f808d"
+        }
+      ]
+    },
+    {
+      "notice": "634398-2026",
+      "lots": [
+        {
+          "lot": "LOT-0001",
+          "status": "read",
+          "textSha256": "628b5b2ec2470c9682723c8a870428eedb60c7aa65044361f2bcbd182e3c22db"
+        }
+      ]
+    }
+  ],
+  "readings": [
+    {
+      "notice": "610242-2026",
+      "textSha256": "4f3a30d74cbfe99e986d727cd69da1062e208d8ee440eee2ac40734fa80f808d",
+      "promptSha256": "6b63da73c4ed52b5b591252a3fda16c39b65b7719d3159c1dd01c487678b6231",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "readOn": "2026-10-15",
+      "responseId": "chatcmpl-a0d0baa03bbd93f4",
+      "usage": {
+        "input": 1183,
+        "output": 1615,
+        "reasoning": 0
+      },
+      "items": [
+        {
+          "criterion": 1,
+          "kind": "registration",
+          "quote": "Nachweis der Befähigung und Erlaubnis zur Berufsausübung",
+          "reading": "The bidder must provide proof of qualification and authorization to practice the profession.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 2,
+          "kind": "registration",
+          "quote": "Nachweis der Befähigung und Erlaubnis zur Berufsausübung",
+          "reading": "The bidder must provide proof of qualification and authorization to practice the profession.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "turnover-specific",
+          "quote": "Die Mindestanforderung für den durchschnittlichen Jahresumsatz der letzten drei abgeschlosse-nen Geschäftsjahre (2023,2024,2025) beträgt 100.000,00 Euro netto.",
+          "reading": "The bidder must have an average annual turnover of at least 100,000.00 EUR net over the last three completed fiscal years (2023, 2024, 2025).",
+          "numberText": "100.000,00 Euro netto",
+          "period": "der letzten drei abgeschlossenen Geschäftsjahre (2023,2024,2025)",
+          "mandatory": true
+        },
+        {
+          "criterion": 4,
+          "kind": "insurance",
+          "quote": "Die Deckungssummen dieser Versicherung müssen mindestens betragen: a) für Personenschäden 5 Mio. EUR b) für sonstige Schäden 3 Mio. EUR (Sach- und Vermögensschäden) je Schadensereignis und einer Gesamtleistung für alle Versicherungsfälle eines Versicherungs-jahres mit mindestens dem Zweifachen der Deckungssummen.",
+          "reading": "The insurance coverage must amount to at least 5 million EUR for personal injury and 3 million EUR for other damages (property and financial loss) per claim event, with a total annual aggregate limit of at least twice the individual limits.",
+          "numberText": "5 Mio. EUR",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 4,
+          "kind": "insurance",
+          "quote": "Die Deckungssummen dieser Versicherung müssen mindestens betragen: a) für Personenschäden 5 Mio. EUR b) für sonstige Schäden 3 Mio. EUR (Sach- und Vermögensschäden) je Schadensereignis und einer Gesamtleistung für alle Versicherungsfälle eines Versicherungs-jahres mit mindestens dem Zweifachen der Deckungssummen.",
+          "reading": "The insurance coverage must amount to at least 3 million EUR for other damages (property and financial loss) per claim event, with a total annual aggregate limit of at least twice the individual limits.",
+          "numberText": "3 Mio. EUR",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 4,
+          "kind": "insurance",
+          "quote": "Bei Bietergemeinschaften muss jedes einzelne Mitglied der Bewerbergemeinschaft über eine den Mindestanforderungen entsprechende Berufshaftpflichtversicherung verfügen",
+          "reading": "In case of bidding consortia, each individual member must hold a professional liability insurance meeting the minimum requirements.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 5,
+          "kind": "staff-count",
+          "quote": "mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen",
+          "reading": "The bidder must deploy at least one Junior Consultant and one Senior or Lead Consultant for the project duration.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 5,
+          "kind": "certificate",
+          "quote": "Festangestellter Junior Consultant mit mindestens 1 bis 2 Jahre einschlägige Erfahrung in ISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und zudem mindestens eine Zertifizie-rung, wie beispielsweise ISO/IEC 27001 Foundation, Lead Auditor oder eine vergleichbare Quali-fikation, nachweisen.",
+          "reading": "The Junior Consultant must have 1 to 2 years of relevant experience in ISO/IEC 27001 or BSI Grundschutz projects and hold at least a certification such as ISO/IEC 27001 Foundation, Lead Auditor, or equivalent.",
+          "numberText": "1 bis 2 Jahre",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 5,
+          "kind": "certificate",
+          "quote": "Festangestellter Senior- bzw. Lead-Berater mit mindestens 6 Jahre einschlägige Erfahrung in ISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und darüber hinaus eine Qualifikation wie ISO Lead Implementer, CISSP oder eine vergleichbare Zertifizierung nachweisen.",
+          "reading": "The Senior or Lead Consultant must have at least 6 years of relevant experience in ISO/IEC 27001 or BSI Grundschutz projects and hold a qualification such as ISO Lead Implementer, CISSP, or equivalent.",
+          "numberText": "6 Jahre",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 5,
+          "kind": "other",
+          "quote": "Die Mitarbeitenden können auch per Eignungsleihe nachgewiesen werden.",
+          "reading": "Personnel qualifications may also be proven through temporary assignment (Eignungsleihe).",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 5,
+          "kind": "other",
+          "quote": "Als Nachweis sind kurz Lebensläufe und Eigenerklärungen zu erbringen.",
+          "reading": "As proof, short curricula vitae and self-declarations must be submitted.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 6,
+          "kind": "references",
+          "quote": "Als Mindestanforderung gilt mindestens zwei Referenzen, die folgende Anforderungen erfüllt:",
+          "reading": "At minimum, two references must be provided that meet the following requirements.",
+          "numberText": "zwei",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 6,
+          "kind": "references",
+          "quote": "- erfolgreich durchgeführte Unterstützungsleistungen im Zusammenhang mit ISO/IEC-27001-Zertifizierungen",
+          "reading": "The references must concern successfully performed support services related to ISO/IEC 27001 certifications.",
+          "numberText": "",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 6,
+          "kind": "references",
+          "quote": "- müssen im Zeitraum zwischen dem 01.09.2021 und dem Tag der Frist zur Einreichung der Angebote abgeschlossen worden sein. (Projektende ist zum Zeitpunkt der Abnahme durch den AG)",
+          "reading": "The referenced projects must have been completed between September 1, 2021, and the tender submission deadline (project end = acceptance by the contracting authority).",
+          "numberText": "",
+          "period": "zwischen dem 01.09.2021 und dem Tag der Frist zur Einreichung der Angebote",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "notice": "634398-2026",
+      "textSha256": "628b5b2ec2470c9682723c8a870428eedb60c7aa65044361f2bcbd182e3c22db",
+      "promptSha256": "6b63da73c4ed52b5b591252a3fda16c39b65b7719d3159c1dd01c487678b6231",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "readOn": "2026-10-15",
+      "responseId": "chatcmpl-ba862714e0b4de34",
+      "usage": {
+        "input": 1628,
+        "output": 948,
+        "reasoning": 0
+      },
+      "items": [
+        {
+          "criterion": 1,
+          "kind": "turnover-specific",
+          "quote": "De inschrijver dient over de laatste drie beschikbare boekjaren een gemiddelde jaarlijkse omzet van minimaal € 625.000 excl. btw te hebben gerealiseerd.",
+          "reading": "The bidder must have achieved an average annual turnover of at least €625,000 excluding VAT over the last three available financial years.",
+          "numberText": "€ 625.000",
+          "period": "over de laatste drie beschikbare boekjaren",
+          "mandatory": true
+        },
+        {
+          "criterion": 2,
+          "kind": "references",
+          "quote": "drie succesvolle implementaties uitgevoerd van een elektronisch zorg- en bewonersdossier of een vergelijkbare geïntegreerde softwareoplossing voor zorgregistratie en zorgondersteuning",
+          "reading": "The bidder must have carried out at least three successful implementations of an electronic care and resident record system or a comparable integrated software solution for care registration and support within the last five years.",
+          "numberText": "drie",
+          "period": "gedurende de laatste vijf jaar",
+          "mandatory": true
+        },
+        {
+          "criterion": 2,
+          "kind": "references",
+          "quote": "minstens twee referenties gerealiseerd binnen organisaties bestaande uit minimaal 3 verschillende locaties waar bewoners, cliënten of zorggebruikers verblijven",
+          "reading": "The bidder must have at least two references realised within organisations consisting of at least 3 different locations where residents, clients or care users stay.",
+          "numberText": "twee",
+          "period": "gedurende de laatste vijf jaar",
+          "mandatory": true
+        },
+        {
+          "criterion": 2,
+          "kind": "references",
+          "quote": "minstens één referentie gerealiseerd binnen de residentiële ouderenzorg",
+          "reading": "The bidder must have at least one reference realised within residential elderly care.",
+          "numberText": "één",
+          "period": "gedurende de laatste vijf jaar",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "staff-count",
+          "quote": "Het projectteam omvat minimaal: één projectmanager",
+          "reading": "The project team must include at least one project manager.",
+          "numberText": "één",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "staff-count",
+          "quote": "één functioneel consultant met expertise inzake zorgprocessen",
+          "reading": "The project team must include at least one functional consultant with expertise in care processes.",
+          "numberText": "één",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "staff-count",
+          "quote": "één technisch integratiespecialist",
+          "reading": "The project team must include at least one technical integration specialist.",
+          "numberText": "één",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "staff-count",
+          "quote": "één expert datamigratie",
+          "reading": "The project team must include at least one data migration expert.",
+          "numberText": "één",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 3,
+          "kind": "staff-count",
+          "quote": "één opleidingsverantwoordelijke",
+          "reading": "The project team must include at least one training officer.",
+          "numberText": "één",
+          "period": "",
+          "mandatory": true
+        },
+        {
+          "criterion": 4,
+          "kind": "certificate",
+          "quote": "Attestering softwarepakket : De aangeboden oplossing dient op het ogenblik van indiening van de offerte te beschikken over een geldige attestering van het Agentschap Vlaamse Sociale Bescherming (AVSB) voor communicatie met eWZCfin voor minstens de volgende functionaliteiten:",
+          "reading": "The offered solution must have a valid certification from the Flemish Agency for Social Protection (AVSB) for communication with eWZCfin at the time of submission of the tender for at least the following functionalities.",
+          "numberText": "",
+          "period": "op het ogenblik van indiening van de offerte",
+          "mandatory": true
+        }
+      ]
+    }
+  ]
+}

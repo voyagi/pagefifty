@@ -10,7 +10,8 @@
 // is named with its reason in the index's leftOut; the capture folder itself is never changed.
 // The result is <out>/<capture date>/index.json (one row per kept notice), capture.json (the
 // index's capture line alone, which the server bundles so a 404 names the snapshot's days without
-// reading an index) and records/<notice>.json, written compact into a temp folder and moved into
+// reading an index) and records/<notice>.json, plus, for a capture that published the model's
+// readings.json, readings/<notice>.json and reading-run.json, written compact into a temp folder and moved into
 // place only when every notice of every capture was read. This script is a thin caller: the
 // reading rules live in src, where the import rules and tests see them.
 //
@@ -33,10 +34,12 @@ import { selectLatest } from '../src/lib/ingest/latest.ts';
 import { readNotice } from '../src/lib/ingest/read-notice.ts';
 import { CAPTURE_ID } from '../src/lib/snapshot/capture-id.ts';
 import {
+	NOTICE_NUMBER,
 	NoticeRecordSchema,
 	SnapshotIndexSchema,
 	toIndexRow
 } from '../src/lib/snapshot/index-row.ts';
+import { ReadingsFileSchema } from '../src/lib/snapshot/readings.ts';
 import {
 	createSnapshotTransport,
 	requestKey,
@@ -118,10 +121,23 @@ async function readOne(transport, number) {
 	return readNotice(new Uint8Array(await response.arrayBuffer()), { noticeNumber: number });
 }
 
+// The model's readings the capture published, if it published any. Each notice named in it becomes a
+// file name, so only TED's notice number shape gets that far.
+function readReadings(folder) {
+	const file = join(folder, 'readings.json');
+	if (!existsSync(file)) return undefined;
+	const readings = ReadingsFileSchema.parse(JSON.parse(readFileSync(file, 'utf8')));
+	for (const { notice } of readings.notices) {
+		if (!NOTICE_NUMBER.test(notice)) throw new Error(`${JSON.stringify(notice)} is not a TED notice number`);
+	}
+	return readings;
+}
+
 async function buildCapture(examples, id) {
 	const started = performance.now();
 	const folder = join(examples, id);
 	const { listing, numbers } = readListing(folder, id);
+	const readings = readReadings(folder);
 	const transport = await snapshotTransport(folder);
 	const records = [];
 	const failures = [];
@@ -175,7 +191,22 @@ async function buildCapture(examples, id) {
 		failures.push({ number: '(index)', kind: 'index', detail: index.error.message });
 	}
 	const ms = Math.round(performance.now() - started);
-	return { id, index: index.data, records: kept, failures, listed: numbers.length, ms };
+	return { id, index: index.data, records: kept, readings, failures, listed: numbers.length, ms };
+}
+
+// Each notice's slice of the readings, so a page loads only its own, and the run on its own, which
+// every page of the capture shows.
+function writeReadings(temp, readings) {
+	if (readings === undefined) return;
+	mkdirSync(join(temp, 'readings'));
+	for (const { notice, lots } of readings.notices) {
+		const own = readings.readings.filter((reading) => reading.notice === notice);
+		writeFileSync(
+			join(temp, 'readings', `${notice}.json`),
+			JSON.stringify({ notice, lots, readings: own })
+		);
+	}
+	writeFileSync(join(temp, 'reading-run.json'), JSON.stringify(readings.run));
 }
 
 // Cleanup after a failed write must not replace the error that says which step failed, so a temp
@@ -212,6 +243,8 @@ function writeCapture(out, capture) {
 		for (const record of capture.records) {
 			writeFileSync(join(temp, 'records', `${record.noticeNumber}.json`), JSON.stringify(record));
 		}
+		step = 'write the readings';
+		writeReadings(temp, capture.readings);
 		if (existsSync(target)) {
 			step = `set the old ${capture.id} folder aside`;
 			renameSync(target, aside);

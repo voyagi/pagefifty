@@ -3,7 +3,7 @@
 // describe an item a second way: the item schema is checked against core's ModelItem by the type
 // checker. Imported by the capture command under Node type stripping: erasable syntax only.
 import { z } from 'zod';
-import type { ModelItem } from '../core/lot-reading.ts';
+import type { ModelItem, NoticeReadingsLike } from '../core/lot-reading.ts';
 
 // Spike 004's schema, in its order: the request and the recorded replies use exactly these.
 export const READING_KINDS = [
@@ -98,8 +98,18 @@ export const ReadingsFileSchema = z.strictObject({
 	readings: z.array(ReadingEntrySchema)
 });
 
+// One notice's slice of a ReadingsFile, as the records build writes it for the page to load. The
+// satisfies clause fails the type check if core's lotStatusOf could be handed a shape it does not
+// describe.
+export const NoticeReadingsSchema = z.strictObject({
+	notice: z.string(),
+	lots: z.array(LotEntrySchema),
+	readings: z.array(ReadingEntrySchema)
+}) satisfies z.ZodType<NoticeReadingsLike>;
+
 export type ReplyItem = z.infer<typeof ReplyItemSchema>;
 export type ReadingRun = z.infer<typeof ReadingRunSchema>;
 export type ReadingEntry = z.infer<typeof ReadingEntrySchema>;
 export type LotEntry = z.infer<typeof LotEntrySchema>;
 export type ReadingsFile = z.infer<typeof ReadingsFileSchema>;
+export type NoticeReadings = z.infer<typeof NoticeReadingsSchema>;

@@ -3,7 +3,15 @@
 import { error } from '@sveltejs/kit';
 import { captureFacts } from '../tenders/list';
 import { buildTenderPage, type TenderPageData } from '../tenders/tender-page';
-import { instantOf, loadIndex, loadRecord, snapshotDays, type Now } from './records';
+import {
+	instantOf,
+	loadIndex,
+	loadNoticeReadings,
+	loadRecord,
+	readingRunOf,
+	snapshotDays,
+	type Now
+} from './records';
 
 // The error page names the snapshot the notice is missing from, so the 404 carries the days of the
 // capture this route reads: /tenders the newest, /example its pinned one.
@@ -32,8 +40,10 @@ export async function loadTenderPage({
 	const record = await loadRecord(capture, notice);
 	if (record === undefined) unknownNotice(notice, capture);
 	const index = await loadIndex(capture);
+	const readings = await loadNoticeReadings(capture, notice);
 	return {
-		tender: buildTenderPage(record, instantOf(now, index)),
-		capture: captureFacts(index.capture)
+		tender: buildTenderPage(record, instantOf(now, index), readings),
+		capture: captureFacts(index.capture),
+		readingRun: readingRunOf(capture)
 	};
 }

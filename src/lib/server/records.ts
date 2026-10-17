@@ -11,6 +11,12 @@ import {
 	SnapshotIndexSchema,
 	type SnapshotIndex
 } from '../snapshot/index-row';
+import {
+	NoticeReadingsSchema,
+	ReadingRunSchema,
+	type NoticeReadings,
+	type ReadingRun
+} from '../snapshot/readings';
 import { captureFacts, type CaptureFacts } from '../tenders/list';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
@@ -27,6 +33,8 @@ export function instantOf(now: Now, index: SnapshotIndex): Date {
 const INDEX_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/index\.json$/;
 const CAPTURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/capture\.json$/;
 const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
+const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$/;
+const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
 
 function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
 	const found = new Map<string, T>();
@@ -64,6 +72,22 @@ const CAPTURE_LINES = byMatch(
 		eager: true
 	}),
 	CAPTURE_PATH
+);
+const READING_URLS = byMatch(
+	import.meta.glob('../snapshot/generated/*/readings/*.json', {
+		query: '?url',
+		import: 'default',
+		eager: true
+	}),
+	READING_PATH
+);
+// A reading run is a few hundred bytes, like a capture line, so it is bundled the same way.
+const READING_RUNS = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/reading-run.json', {
+		import: 'default',
+		eager: true
+	}),
+	READING_RUN_PATH
 );
 // Stryker restore all
 
@@ -124,6 +148,38 @@ export function snapshotDays(capture: string): CaptureFacts {
 		);
 	}
 	return captureFacts(parsed.data);
+}
+
+// A notice the capture's readings do not list answers nothing, and keeps the phase 1 view.
+export async function loadNoticeReadings(
+	capture: string,
+	notice: string
+): Promise<NoticeReadings | undefined> {
+	if (!NOTICE_NUMBER.test(notice)) return undefined;
+	const url = READING_URLS.get(`${capture}/${notice}`);
+	if (url === undefined) return undefined;
+	return NoticeReadingsSchema.parse(await readJson(url, `the ${capture} readings of ${notice}`));
+}
+
+// The run that read a capture, or null for a capture the model never read.
+export function readingRunOf(capture: string): ReadingRun | null {
+	const line = READING_RUNS.get(capture);
+	if (line === undefined) return null;
+	const parsed = ReadingRunSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} reading run does not match its schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
+}
+
+// The newest capture the model read, which may be older than the newest capture.
+export function newestReadingRun(): { id: string; run: ReadingRun } | null {
+	if (READING_RUNS.size === 0) return null;
+	const id = newestCapture(READING_RUNS.keys());
+	const run = readingRunOf(id);
+	return run === null ? null : { id, run };
 }
 
 // An unknown or malformed notice number is answered before any read, so the tender page can 404.
