@@ -197,6 +197,25 @@ describe('the reading runs the pages read', () => {
 	});
 });
 
+describe('loadNoticeReadings on a damaged file', () => {
+	it('a damaged generated readings file is a server error naming the file', async () => {
+		read.mockImplementationOnce(() => Response.json({ notice: '610242-2026', lots: 'x' }));
+		const failed = loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026');
+		await expect(failed).rejects.toThrow(
+			'the 2026-09-15 readings of 610242-2026 do not match their schema: '
+		);
+		await expect(failed).rejects.toThrow('"lots"');
+		await expect(failed).rejects.toThrow('"readings"');
+	});
+
+	it('names the readings file when it is not JSON', async () => {
+		read.mockImplementationOnce(() => new Response('{"notice":'));
+		await expect(loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026')).rejects.toThrow(
+			'the 2026-09-15 readings of 610242-2026 is not JSON'
+		);
+	});
+});
+
 describe('loadRecord', () => {
 	it('reads one notice record', async () => {
 		const record = await loadRecord(EXAMPLE_CAPTURE, '609955-2026');

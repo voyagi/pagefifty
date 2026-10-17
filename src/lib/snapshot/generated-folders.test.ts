@@ -331,6 +331,70 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(run.stderr).not.toContain('undefined');
 	});
 
+	// Every file under the out folder with its bytes, so "unchanged" covers names and contents.
+	function folderState(dir: string): Record<string, string> {
+		const state: Record<string, string> = {};
+		for (const entry of readdirSync(dir, { withFileTypes: true, recursive: true })) {
+			if (!entry.isFile()) continue;
+			const path = join(entry.parentPath, entry.name);
+			state[path] = readFileSync(path, 'utf8');
+		}
+		return state;
+	}
+
+	const exampleRun = () => ReadingsFileSchema.parse(readJson(EXAMPLE_READINGS)).run;
+
+	it.each([
+		['missing its run', () => ({ schemaVersion: 1, notices: [], readings: [] }), 'run'],
+		[
+			'naming a notice that is no TED notice number',
+			() => ({
+				schemaVersion: 1,
+				run: exampleRun(),
+				notices: [{ notice: '../../escape', lots: [] }],
+				readings: []
+			}),
+			'"../../escape" is not a TED notice number'
+		]
+	])(
+		'a readings file the schema refuses stops the build and writes nothing: %s',
+		(_what, readings, named) => {
+			writeCapture(['609955-2026']);
+			expect(build().status).toBe(0);
+			const before = folderState(out);
+			writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings()));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-01-02: (readings): readings: ');
+			expect(run.stderr).toContain(join(capture, 'readings.json'));
+			expect(run.stderr).toContain(named);
+			expect(run.stderr).toContain('nothing was written');
+			expect(folderState(out)).toEqual(before);
+			expect(existsSync(join(root, 'escape'))).toBe(false);
+		}
+	);
+
+	it('writes the readings of a capture whose readings.json parses, and none for one without', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'readings'))).toBe(false);
+		const readings = {
+			schemaVersion: 1,
+			run: exampleRun(),
+			notices: [{ notice: '609955-2026', lots: [{ lot: 'LOT-0000', status: 'no-criteria' }] }],
+			readings: []
+		};
+		writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings));
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(readJson(join(out, '2026-01-02', 'readings', '609955-2026.json'))).toEqual({
+			notice: '609955-2026',
+			lots: readings.notices[0].lots,
+			readings: []
+		});
+		expect(readJson(join(out, '2026-01-02', 'reading-run.json'))).toEqual(readings.run);
+	});
+
 	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
 		writeCapture(['609955-2026']);
 		expect(build().status).toBe(0);
