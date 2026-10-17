@@ -99,7 +99,7 @@ export function lotClauseTexts(name: string): string[] {
 	const result = readNotice(new Uint8Array(readFileSync(capturePath(notice))), {
 		noticeNumber: notice
 	});
-	if (!result.ok) throw new Error(`${notice} did not read: ${result.reason}`);
+	if (!result.ok) throw new Error(`${notice} did not read: ${result.kind}, ${result.detail}`);
 	const found = result.record.lots.find((each) => each.id === lot);
 	if (!found) throw new Error(`${notice} has no ${lot}`);
 	return found.criteria.map((criterion) => criterionText(criterion.descriptions));
