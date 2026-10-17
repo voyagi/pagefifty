@@ -1,7 +1,15 @@
 // The capture command as scripts/capture.mjs wires it, model step included, driven with a stub TED,
 // the stub provider serving spike 004's recorded replies, a fake clock and stub keys. Every run gets
 // its own temp root, so nothing lands under the repository and its key file is never read.
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -38,6 +46,11 @@ interface CommandRun {
 	replies?: readonly RecordedReply[];
 	tedScript?: Parameters<typeof createScriptedTed>[0]['script'];
 	providerScript?: Parameters<typeof createStubProvider>[0]['script'];
+	// A root an earlier run used, for a run that finds its store and cache; a fresh temp root otherwise.
+	root?: string;
+	start?: number;
+	// Other pids that read as running, besides the run's own.
+	alive?: readonly number[];
 }
 
 async function commandRun({
@@ -46,12 +59,12 @@ async function commandRun({
 	env = {},
 	replies = [],
 	tedScript,
-	providerScript
+	providerScript,
+	root = freshRoot(),
+	start = START,
+	alive = []
 }: CommandRun) {
-	const root = mkdtempSync(join(tmpdir(), 'pagefifty-command-'));
-	roots.push(root);
-	mkdirSync(join(root, 'examples'));
-	const clock = createFakeClock(START);
+	const clock = createFakeClock(start);
 	const ted = createScriptedTed({ clock, notices, script: tedScript });
 	const provider = createStubProvider({ replies, script: providerScript });
 	const lines: string[] = [];
@@ -66,7 +79,7 @@ async function commandRun({
 			env,
 			head: '0123456789abcdef0123456789abcdef01234567',
 			pid: PID,
-			isAlive: (pid: number) => pid === PID,
+			isAlive: (pid: number) => pid === PID || alive.includes(pid),
 			log: (line: string) => lines.push(line),
 			loadKeys: (path: string) => {
 				keyPaths.push(path);
@@ -74,7 +87,15 @@ async function commandRun({
 			}
 		})
 	);
-	return { code, root, lines, provider, keyPaths, folder: join(root, 'examples', DAY) };
+	const day = new Date(start).toISOString().slice(0, 10);
+	return { code, root, lines, provider, ted, keyPaths, folder: join(root, 'examples', day) };
+}
+
+function freshRoot(): string {
+	const root = mkdtempSync(join(tmpdir(), 'pagefifty-command-'));
+	roots.push(root);
+	mkdirSync(join(root, 'examples'));
+	return root;
 }
 
 const readJson = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
@@ -468,5 +489,132 @@ describe('replies the model step cannot use', () => {
 		expect(traces.files).toEqual(
 			expect.arrayContaining([join(run.folder, 'run.json'), join(run.folder, 'readings.json')])
 		);
+	});
+});
+
+const NEXT_DAY = START + 24 * 60 * 60 * 1000;
+
+// The notice's XML with its first criterion text changed by one word, and the request the command
+// then sends for that lot.
+function changedNotice(notice: string) {
+	const xml = readFileSync(capturePath(notice), 'utf8');
+	const anchor = trackedRecord(notice).lots[0].criteria[0].descriptions[0].text.slice(0, 24);
+	expect(xml.split(anchor)).toHaveLength(2);
+	const changed = xml.replace(anchor, `${anchor} gewijzigd`);
+	const result = readNotice(new TextEncoder().encode(changed), { noticeNumber: notice });
+	if (!result.ok) throw new Error(`the changed ${notice} did not read: ${result.detail}`);
+	return { xml: changed, body: chatBody(result.record.lots[0].criteria) };
+}
+
+describe('readings reused across runs', () => {
+	it('a second run over unchanged text sends nothing and one changed text sends once', async () => {
+		const first = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
+		expect(first.code, first.lines.join('\n')).toBe(0);
+		expect(first.provider.calls()).toHaveLength(3);
+		// The raw XML cache would serve the old bytes, so TED is asked for the changed notice again.
+		rmSync(join(first.root, '.capture-cache', 'xml', '634398-2026.xml'));
+		const changed = changedNotice('634398-2026');
+		const second = await commandRun({
+			notices: THREE,
+			...LIVE,
+			root: first.root,
+			start: NEXT_DAY,
+			replies: [...THREE_REPLIES, syntheticReply(changed.body, [])],
+			tedScript: { [tedNoticeXmlUrl('634398-2026')]: [{ status: 200, body: changed.xml }] }
+		});
+		expect(second.code, second.lines.join('\n')).toBe(0);
+		const calls = second.provider.calls();
+		expect(calls).toHaveLength(1);
+		expect(userMessageOf(calls[0].body)).toBe(userMessageOf(changed.body));
+		expect(readJson(join(second.folder, 'run.json')).reading).toMatchObject({
+			runDate: '2026-09-16',
+			sends: 1,
+			lots: { withCriteria: 3, read: 1, reused: 2, notRead: 0 }
+		});
+		expect(lotsOf(second.folder)).toEqual({
+			'610242-2026': ['read'],
+			'629755-2026': ['read'],
+			'634398-2026': ['read']
+		});
+		const reused = readingsOf(second.folder).readings.filter((each) => each.readOn === DAY);
+		expect(reused.map((each) => each.notice)).toEqual(['610242-2026', '629755-2026']);
+	});
+
+	it('reuse does not depend on the order notices arrive in', async () => {
+		const first = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
+		expect(first.code, first.lines.join('\n')).toBe(0);
+		const second = await commandRun({
+			notices: [...THREE].reverse(),
+			...LIVE,
+			root: first.root,
+			start: NEXT_DAY,
+			replies: THREE_REPLIES
+		});
+		expect(second.code, second.lines.join('\n')).toBe(0);
+		expect(second.provider.calls()).toHaveLength(0);
+		const before = readingsOf(first.folder);
+		const after = readingsOf(second.folder);
+		expect(after.readings).toEqual(before.readings);
+		expect(after.notices).toEqual(before.notices);
+		expect(after.run.lots).toEqual({ withCriteria: 3, read: 0, reused: 3, notRead: 0 });
+	});
+
+	it('two dry runs write equal records and send nothing', async () => {
+		const runs = [
+			await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES }),
+			await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES })
+		];
+		expect(runs[0].root).not.toBe(runs[1].root);
+		for (const run of runs) {
+			expect(run.code, run.lines.join('\n')).toBe(0);
+			expect(run.provider.calls()).toEqual([]);
+		}
+		for (const name of ['run.json', 'README.md']) {
+			const [a, b] = runs.map((run) => readFileSync(join(run.folder, name)));
+			expect(a.equals(b), name).toBe(true);
+		}
+	});
+
+	it('the run lock refuses a second live run with the model step', async () => {
+		const root = freshRoot();
+		mkdirSync(join(root, '.capture-cache'));
+		const holder = { pid: 4242, startedAt: '2026-09-15T07:59:00.000Z', argv: ['--live'] };
+		writeFileSync(join(root, '.capture-cache', 'capture.lock'), JSON.stringify(holder));
+		const run = await commandRun({
+			notices: THREE,
+			...LIVE,
+			replies: THREE_REPLIES,
+			root,
+			alive: [4242]
+		});
+		expect(run.code).toBe(2);
+		expect(run.lines.at(-1)).toContain('another capture run holds');
+		expect(run.ted.calls()).toEqual([]);
+		expect(run.provider.calls()).toEqual([]);
+	});
+});
+
+describe('the README of a capture with the model step', () => {
+	it('names the model read, and a dry run says no model read was made', async () => {
+		const live = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
+		const readme = readFileSync(join(live.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('## Model read');
+		expect(readme).toContain(
+			'nvidia/nemotron-3-super-120b-a12b on Nebius Token Factory, region us-central1, with thinking off'
+		);
+		expect(readme).toContain(
+			'- 3 lots with criteria: 3 read in this run, 0 reused from an earlier run, 0 not read.'
+		);
+		expect(readme).toContain(
+			'- `readings.json` holds the readings, and `run.json` the tokens and the cost: 3 sent, USD 0.008170.'
+		);
+		const dry = await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES });
+		const dryReadme = readFileSync(join(dry.folder, 'README.md'), 'utf8');
+		expect(dryReadme).toContain('## Model read');
+		expect(dryReadme).toContain('No model read was made: this was a dry run');
+		expect(dryReadme).toContain(
+			'- 3 lots with criteria: 0 read in this run, 0 reused from an earlier run, 3 not read.'
+		);
+		expect(dryReadme).not.toContain('`readings.json`');
 	});
 });

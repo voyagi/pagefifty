@@ -22,6 +22,10 @@ const SETUP_SOCKET = "import net from 'node:net';\nexport const socket = net.Soc
 // The command, its own tests and the test helpers may import the command; the site may not.
 const CAPTURE_SIDE: Record<string, string> = {
 	'src/lib/capture/run.ts': "export const run = () => 'capture';\n",
+	'src/lib/capture/token-factory.ts': "export const chat = () => 'model';\n",
+	// The capture's own test may build a profile; the command may not import one.
+	'src/lib/capture/profile-user.test.ts':
+		"import { PROFILE_VERSION } from '../profile/schema';\nexport const used = PROFILE_VERSION;\n",
 	'src/lib/capture/helper.ts': "import { run } from './run';\nexport const helper = () => run();\n",
 	'src/lib/capture-user.test.ts':
 		"import { run } from './capture/run';\nexport const used = run;\n",
@@ -79,7 +83,28 @@ const OUTSIDE_SRC_CLEAN: Record<string, string> = {
 	'src/routes/outside-planted/+page.server.ts': 'export const load = () => ({});\n'
 };
 
+// The model client reached from the site, and the profile reached from the capture, directly and
+// through a library module.
+const MODEL_PLANTED: Record<string, string> = {
+	'src/lib/snapshot/model-user.ts':
+		"import { chat } from '../capture/token-factory';\nexport const used = chat;\n",
+	'src/routes/model-planted/+page.ts':
+		"import { chat } from '../../lib/capture/token-factory';\nexport const load = () => ({ c: typeof chat });\n",
+	'src/lib/capture/profile-user.ts':
+		"import { PROFILE_VERSION } from '../profile/schema';\nexport const user = PROFILE_VERSION;\n",
+	'src/lib/capture/profile-hop.ts':
+		"import { version } from '../helper';\nexport const hop = version;\n"
+};
+const MODEL_CLEAN: Record<string, string> = {
+	'src/lib/snapshot/model-user.ts': "export const used = 'none';\n",
+	'src/routes/model-planted/+page.ts': 'export const load = () => ({});\n',
+	'src/lib/capture/profile-user.ts': 'export const user = 1;\n',
+	'src/lib/capture/profile-hop.ts':
+		"import { version } from '../helper';\nexport const hop = version;\n"
+};
+
 const PLANTED: Record<string, string> = {
+	...MODEL_PLANTED,
 	'src/lib/profile/schema.ts': PROFILE,
 	'src/lib/ingest/read-notice.ts': READER,
 	'src/routes/planted/+page.server.ts':
@@ -113,6 +138,7 @@ const PLANTED: Record<string, string> = {
 };
 
 const CLEAN: Record<string, string> = {
+	...MODEL_CLEAN,
 	'src/lib/profile/schema.ts': PROFILE,
 	'src/lib/ingest/read-notice.ts': READER,
 	'src/routes/planted/+page.server.ts': 'export const load = () => ({ version: 1 });\n',
@@ -222,7 +248,18 @@ describe('dependency-cruiser rules on planted import trees', () => {
 	it('reports no-site-reaches-capture for a route and a library module, never a test, a test helper or the command itself', () => {
 		expect(violators(planted, 'no-site-reaches-capture')).toEqual([
 			'src/lib/capture-planted.ts',
-			'src/routes/capture-planted/+page.server.ts'
+			'src/lib/snapshot/model-user.ts',
+			'src/routes/capture-planted/+page.server.ts',
+			'src/routes/model-planted/+page.ts'
+		]);
+	});
+
+	// P1: the capture sends notice text only, so no capture module may reach the profile, directly or
+	// through a library module; the capture's own tests may.
+	it('no-capture-reaches-profile fails a capture module that imports the profile', () => {
+		expect(violators(planted, 'no-capture-reaches-profile')).toEqual([
+			'src/lib/capture/profile-hop.ts',
+			'src/lib/capture/profile-user.ts'
 		]);
 	});
 
@@ -264,6 +301,7 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		expect(violators(clean, 'single-parser-entry')).toEqual([]);
 		expect(violators(clean, 'fetch-only-network')).toEqual([]);
 		expect(violators(clean, 'no-site-reaches-capture')).toEqual([]);
+		expect(violators(clean, 'no-capture-reaches-profile')).toEqual([]);
 		expect(violators(clean, 'no-private-env')).toEqual([]);
 		expect(violators(clean, 'no-site-imports-tests')).toEqual([]);
 		expect(violators(clean, 'no-site-imports-outside-src')).toEqual([]);
