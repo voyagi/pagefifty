@@ -294,6 +294,23 @@ describe('the model step under the cap', () => {
 			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 2 attempts is reached' }
 		]);
 		expect(record.reading).toMatchObject({ sends: 2, lots: { read: 2, notRead: 1 } });
+		// With a cap of 1 two lots follow the first refusal, and neither is asked for again.
+		const one = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '1'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES
+		});
+		expect(one.code, one.lines.join('\n')).toBe(0);
+		expect(one.provider.calls()).toHaveLength(1);
+		expect(lotsOf(one.folder)).toEqual({
+			'610242-2026': ['read'],
+			'629755-2026': ['not-read cap-reached'],
+			'634398-2026': ['not-read cap-reached']
+		});
+		expect(readJson(join(one.folder, 'run.json')).metered.refusals).toEqual([
+			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 1 attempts is reached' }
+		]);
 	});
 
 	it('a lot whose repair would pass the cap is not partly read', async () => {
