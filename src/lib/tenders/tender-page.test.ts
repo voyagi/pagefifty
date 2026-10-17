@@ -1,9 +1,18 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { readFixture } from '../../test/fixtures/node';
+import { capturePath, readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
+import { costUsd } from '../capture/token-factory';
 import { readNotice } from '../ingest/read-notice';
 import type { NoticeRecord } from '../ingest/record';
-import { buildTenderPage, legalBasisName, workKind } from './tender-page';
+import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
+import {
+	NOT_READ_LINES,
+	REJECTED_LINES,
+	buildTenderPage,
+	legalBasisName,
+	workKind
+} from './tender-page';
 
 const BEFORE_DEADLINES = new Date('2026-09-20T10:00:00Z');
 const AFTER_DEADLINES = new Date('2028-01-01T00:00:00Z');
@@ -17,6 +26,109 @@ function recordOf(role: RoleName, which = 0): NoticeRecord {
 }
 
 const codesOf = (lot: NoticeRecord['lots'][number]) => lot.criteria.map((each) => each.code);
+
+const exampleReadings = () =>
+	ReadingsFileSchema.parse(JSON.parse(readFileSync('examples/2026-09-15/readings.json', 'utf8')));
+
+function capturedRecord(notice: string): NoticeRecord {
+	const result = readNotice(new Uint8Array(readFileSync(capturePath(notice))), {
+		noticeNumber: notice
+	});
+	if (!result.ok) throw new Error(`${notice} did not read: ${result.detail}`);
+	return result.record;
+}
+
+function noticeReadings(notice: string): NoticeReadings {
+	const file = exampleReadings();
+	return {
+		notice,
+		lots: file.notices.find((each) => each.notice === notice)?.lots ?? [],
+		readings: file.readings.filter((reading) => reading.notice === notice)
+	};
+}
+
+describe('the example readings in the page model', () => {
+	it('the stored example cost is its tokens times the listed prices', () => {
+		const { run, readings } = exampleReadings();
+		expect(costUsd(run.tokens, run.prices)).toBe(run.costUsd);
+		expect(run.costUsd).toBe('0.003150');
+		const summed = readings.reduce(
+			(total, { usage }) => ({
+				input: total.input + usage.input,
+				output: total.output + usage.output,
+				reasoning: total.reasoning + usage.reasoning
+			}),
+			{ input: 0, output: 0, reasoning: 0 }
+		);
+		expect(summed).toEqual(run.tokens);
+	});
+
+	it('gives every criterion of a read lot its verified requirements and the notice as source', () => {
+		const record = capturedRecord('610242-2026');
+		const page = buildTenderPage(record, BEFORE_DEADLINES, noticeReadings('610242-2026'));
+		const [lot] = page.lots;
+		expect(page.modelRead).toBe(true);
+		expect(lot.reading).toEqual({ status: 'read', model: 'nvidia/nemotron-3-super-120b-a12b' });
+		expect(lot.criteria.map((criterion) => criterion.source)).toEqual(
+			lot.criteria.map(() => page.tedUrl)
+		);
+		expect(lot.criteria.map((criterion) => criterion.requirements?.length ?? 0)).toEqual(
+			lot.criteria.map(
+				(criterion) =>
+					noticeReadings('610242-2026').readings[0].items.filter(
+						(item) => item.criterion === criterion.position
+					).length
+			)
+		);
+		expect(lot.criteria.every((criterion) => criterion.rejected?.length === 0)).toBe(true);
+	});
+
+	it('keeps the phase 1 model for a notice or a lot the readings do not list', () => {
+		const record = capturedRecord('610242-2026');
+		const unlisted = buildTenderPage(record, BEFORE_DEADLINES, {
+			notice: record.noticeNumber,
+			lots: [],
+			readings: []
+		});
+		expect(unlisted).toEqual({ ...buildTenderPage(record, BEFORE_DEADLINES), modelRead: true });
+		expect(buildTenderPage(record, BEFORE_DEADLINES).modelRead).toBe(false);
+	});
+
+	it('words each reason a listed lot was not read, and a missing reading, in one line each', () => {
+		expect(NOT_READ_LINES).toEqual({
+			'dry-run': 'Not read: the run that captured this notice made no model calls.',
+			'cap-reached': 'Not read: the run reached its cap on model calls before this lot.',
+			'reply-invalid':
+				'Not read: the model did not answer in the expected form, even when asked a second time.',
+			'send-failed': 'Not read: the request to the model failed.',
+			'outside-the-run': 'Not read: this lot was not part of the run that read this capture.',
+			'reading-missing': 'Not read: this capture lists the lot as read, but its reading is missing.'
+		});
+		const record = capturedRecord('610242-2026');
+		const missing = buildTenderPage(record, BEFORE_DEADLINES, {
+			notice: record.noticeNumber,
+			lots: [{ lot: 'LOT-0000', status: 'read', textSha256: '0'.repeat(64) }],
+			readings: []
+		}).lots[0];
+		expect(missing.reading).toEqual({
+			status: 'not-read',
+			reason: 'reading-missing',
+			line: NOT_READ_LINES['reading-missing']
+		});
+		expect(missing.criteria.some((criterion) => criterion.requirements !== undefined)).toBe(false);
+	});
+
+	it('words each rejected quote by its reason', () => {
+		expect(REJECTED_LINES).toEqual({
+			'not-found':
+				'Not read: the quote the model gave was not found in this clause, so it is not used.',
+			'too-short':
+				'Not read: the quote the model gave is too short to check against this clause, so it is not used.',
+			'no-such-criterion':
+				'Not read: the model named a clause this lot does not have, so its answer is not used.'
+		});
+	});
+});
 
 describe('legalBasisName', () => {
 	it.each([
