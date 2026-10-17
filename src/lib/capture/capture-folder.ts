@@ -1,6 +1,14 @@
 // The capture's day, its search window, its JSON files and the staged folder's move into
 // examples/. Imported by scripts/capture.mjs under Node type stripping: erasable syntax only.
-import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	renameSync,
+	rmdirSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { dirname, join } from 'node:path';
 import { SERVER_TIME_ZONE } from '../core/deadline.ts';
 import type { Clock } from './ted-client.ts';
@@ -60,26 +68,59 @@ export const errorCode = (error: unknown) =>
 
 // An indexer or a virus scanner can hold a new file for a moment, and Windows then refuses the
 // rename; a few short retries ride that out, and a failure names the staged folder so nothing is lost.
-export async function publish(staging: string, target: string, clock: Clock): Promise<void> {
-	if (existsSync(target)) {
-		throw new Error(`${target} appeared during the run; the capture is complete in ${staging}`);
-	}
+// A folder another process makes at the target is never replaced: POSIX rename(2) replaces an empty
+// folder there, so the run first makes the target itself, which fails when it exists, and the rename
+// then replaces only that empty folder of its own. Windows refuses to rename onto any folder, so there
+// the claim is given back before the move, and a folder made after that fails the move.
+export async function publish(
+	staging: string,
+	target: string,
+	clock: Clock,
+	platform: NodeJS.Platform = process.platform
+): Promise<void> {
 	mkdirSync(dirname(target), { recursive: true });
+	claim(staging, target, platform);
 	for (let attempt = 1; ; attempt += 1) {
 		try {
 			renameSync(staging, target);
 			return;
 		} catch (error) {
 			if (attempt === MOVE_TRIES || !HELD_CODES.has(errorCode(error))) {
-				const reason = error instanceof Error ? error.message : String(error);
-				throw new Error(
-					`could not move ${staging} to ${target} (${reason}); the capture is complete in ${staging}`,
-					{
-						cause: error
-					}
-				);
+				if (platform !== 'win32') giveBack(target);
+				throw moveFailed(staging, target, error);
 			}
 			await clock.sleep(MOVE_WAIT_MS);
 		}
 	}
+}
+
+function claim(staging: string, target: string, platform: NodeJS.Platform): void {
+	try {
+		mkdirSync(target);
+		if (platform === 'win32') rmdirSync(target);
+	} catch (error) {
+		if (errorCode(error) === 'EEXIST') {
+			throw new Error(`${target} appeared during the run; the capture is complete in ${staging}`);
+		}
+		throw moveFailed(staging, target, error);
+	}
+}
+
+// A failed move leaves no empty examples/<date> behind to refuse the next run. rmdir removes only an
+// empty folder, so a claim another process has written into stays theirs, and the move's own failure
+// is the one reported.
+function giveBack(target: string): void {
+	try {
+		rmdirSync(target);
+	} catch {
+		// Not empty any more: left as it is.
+	}
+}
+
+function moveFailed(staging: string, target: string, error: unknown): Error {
+	const reason = error instanceof Error ? error.message : String(error);
+	return new Error(
+		`could not move ${staging} to ${target} (${reason}); the capture is complete in ${staging}`,
+		{ cause: error }
+	);
 }
