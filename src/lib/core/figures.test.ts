@@ -77,10 +77,11 @@ describe('parseMoney forms', () => {
 		['€100.000', 'nl', one(10_000_000)],
 		['1.500 EUR', 'de', one(150_000)],
 		['1,500 EUR', 'fr', one(150_000)],
-		['1.500 EUR', 'en', one(150)],
 		['1,500 EUR', 'en', one(150_000)],
 		['1.500,5 €', 'de', one(150_050)],
-		['250000 EUR', 'de', one(25_000_000)]
+		['250000 EUR', 'de', one(25_000_000)],
+		['0,29 Mio. EUR', 'de', one(29_000_000)],
+		['45.035.996.273.704,95 €', 'de', one(4_503_599_627_370_495)]
 	] as const)('parseMoney reads %s (%s)', (text, lang, expected) => {
 		expect(parseMoney(text, lang)).toEqual(expected);
 	});
@@ -96,6 +97,7 @@ describe('parseMoney refusals', () => {
 		['3 MEUR', 'fr', NONE],
 		['EUR 2 Mrd.', 'de', NONE],
 		['1.234,567 €', 'de', NONE],
+		['1.500 EUR', 'en', NONE],
 		['1.500 EUR', undefined, NONE],
 		['1,500 EUR', undefined, NONE],
 		['1.50.000 EUR', 'de', NONE],
@@ -260,6 +262,8 @@ describe('parseCount', () => {
 		['2,5 FTE', 'nl', { kind: 'none' }],
 		['dreizehn Mitarbeiter', 'de', { kind: 'none' }],
 		['3 Mitarbeiterinnen', 'de', { kind: 'one', count: 3 }],
+		['drie medewerkers', 'de', { kind: 'none' }],
+		['drei Mitarbeiter', 'it', { kind: 'one', count: 3 }],
 		['5 staffing agencies', 'en', { kind: 'none' }],
 		['keine Angabe', 'de', { kind: 'none' }]
 	] as const)('parseCount reads %s (%s) as given', (text, lang, expected) => {
@@ -385,6 +389,7 @@ describe('sameNumber', () => {
 		['100.000,00 Euro', floor, true],
 		['100.000 EUR', floor, true],
 		['100.001,00 Euro', floor, false],
+		['100.000,01 Euro', floor, false],
 		['10.000,00 Euro', floor, false],
 		['100.000,00', floor, false],
 		['', floor, false],

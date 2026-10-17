@@ -1,6 +1,6 @@
-// Every amount a comparison uses is read here, by code, from the verified quote; a number the model
-// wrote is only ever compared with this reading (SPEC R4). Loaded by the capture command under Node
-// type stripping: erasable syntax only, no imports.
+// Every amount, count, period and certificate name a comparison uses is read here, by code, from
+// the verified quote; a number the model wrote is only ever compared with this reading (SPEC R4).
+// Loaded by the capture command under Node type stripping: erasable syntax only, no imports.
 
 type Basis = 'net' | 'gross' | 'unstated';
 type Comparator = 'at-least' | 'more-than' | 'unstated';
@@ -10,29 +10,358 @@ export type MoneyReading =
 	| { kind: 'several' }
 	| { kind: 'one'; cents: number; basis: Basis; comparator: Comparator };
 
-const AMOUNT =
-	/(?<![\p{L}\p{N}])(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d{1,2}))?\s*(?:EUR|Euro|€)(?![\p{L}\p{N}])/giu;
+export type CountReading = { kind: 'none' } | { kind: 'several' } | { kind: 'one'; count: number };
 
-function basisOf(text: string): Basis {
-	if (/(?<!\p{L})netto(?!\p{L})/iu.test(text)) return 'net';
-	return /(?<!\p{L})brutto(?!\p{L})/iu.test(text) ? 'gross' : 'unstated';
+export interface PeriodReading {
+	mode: 'average' | 'each' | 'sum' | 'any-one' | 'unstated';
+	years: number | null;
+	named: number[];
+}
+
+export interface StandardsReading {
+	standards: string[];
+	join: 'any' | 'all';
+}
+
+const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+
+// A phrase matches as whole words, case-insensitive, with any run of spaces between its words and
+// either apostrophe; a prefix also matches the compounds it starts ("Mindestumsatz").
+function phrases(words: readonly string[], prefixes: readonly string[] = []): RegExp {
+	const exact = words.map((word) =>
+		escape(word)
+			.replace(/ /g, String.raw`\s+`)
+			.replace(/'/g, `['\u2019]`)
+	);
+	const open = prefixes.map((prefix) => `${escape(prefix)}\\p{L}*`);
+	return new RegExp(
+		`(?<![\\p{L}\\p{N}])(?:${[...exact, ...open].join('|')})(?![\\p{L}\\p{N}])`,
+		'iu'
+	);
+}
+
+const SPACE = String.raw`[ \u00A0\u202F\u2009]`;
+// Spaces join digit groups only before a group of exactly three, so "2024 3 Mio." stays two numbers.
+const DIGITS = String.raw`\d+(?:(?:[.,]|${SPACE}(?=\d{3}(?!\d)))\d+)*`;
+const NUMBER = new RegExp(String.raw`(?<![\p{L}\p{N}.,])${DIGITS}`, 'gu');
+const LONE_THOUSANDS = new Set(['de', 'nl', 'fr']);
+
+interface Numeral {
+	whole: string;
+	fraction: string;
+}
+
+// Whether the last mark is the decimal mark; undefined when only the language could say and none
+// was given.
+function lastMarkIsDecimal(
+	marks: readonly string[],
+	last: string,
+	lang?: string
+): boolean | undefined {
+	const mark = marks.at(-1);
+	if (mark === undefined || mark === ' ') return false;
+	if (marks.filter((each) => each === mark).length > 1) return false;
+	if (marks.some((each) => each !== mark && each !== ' ')) return true;
+	if (last.length !== 3) return true;
+	if (lang === 'en') return mark === '.';
+	return lang !== undefined && LONE_THOUSANDS.has(lang) ? false : undefined;
+}
+
+function groupedWhole(groups: readonly string[], marks: readonly string[]): string | undefined {
+	const [first, ...rest] = groups;
+	const oneKind = marks.every((mark) => mark === marks[0]);
+	const shaped =
+		rest.length === 0 || (first.length <= 3 && rest.every((group) => group.length === 3));
+	return oneKind && shaped ? groups.join('') : undefined;
+}
+
+function readNumeral(raw: string, lang?: string): Numeral | undefined {
+	const marks = (raw.match(/\D/gu) ?? []).map((mark) => (/\s/u.test(mark) ? ' ' : mark));
+	const groups = raw.split(/\D/u);
+	const decimal = lastMarkIsDecimal(marks, groups[groups.length - 1], lang);
+	if (decimal === undefined) return undefined;
+	const fraction = decimal ? (groups.pop() as string) : '';
+	if (decimal) marks.pop();
+	const whole = groupedWhole(groups, marks);
+	return whole === undefined ? undefined : { whole, fraction };
+}
+
+// Cents are built from the digit strings, never through a floating-point value.
+function toCents({ whole, fraction }: Numeral, power: number): number | undefined {
+	const places = power + 2;
+	if (fraction.length > places) return undefined;
+	const cents = Number.parseInt(whole + fraction.padEnd(places, '0'), 10);
+	return Number.isSafeInteger(cents) ? cents : undefined;
+}
+
+const CURRENCY = String.raw`(?:d['\u2019]${SPACE}*)?(?:EUR|euros?|€)(?![\p{L}\p{N}])`;
+const FUSED = new RegExp(String.raw`^${SPACE}*(TEUR|T€|M€)(?![\p{L}\p{N}])`, 'iu');
+const CURRENCY_NEXT = new RegExp(`^${SPACE}*${CURRENCY}`, 'iu');
+const WORD_THEN_CURRENCY = new RegExp(
+	String.raw`^${SPACE}*(\p{L}[\p{L}.]*)${SPACE}*${CURRENCY}`,
+	'iu'
+);
+const CURRENCY_BEFORE = new RegExp(String.raw`(?<![\p{L}\p{N}])${CURRENCY}${SPACE}*$`, 'iu');
+const WORD_NEXT = new RegExp(String.raw`^${SPACE}*(\p{L}[\p{L}.]*)`, 'u');
+const MAGNITUDES: Readonly<Record<string, number>> = {
+	teur: 3,
+	't€': 3,
+	'm€': 6,
+	mio: 6,
+	'mio.': 6,
+	millionen: 6,
+	mln: 6,
+	'mln.': 6,
+	miljoen: 6,
+	million: 6,
+	millions: 6
+};
+// A floor read without its multiplier would be met by every firm ("2 Mrd. EUR" as 2 euros), so a
+// word that may be a multiplier this parser does not know refuses the amount instead.
+const UNKNOWN_MAGNITUDE =
+	/^(?:mrd|milliarden?|mia|bn|billions?|milliards?|miljard|k|tsd|tausend|duizend|mille|thousand)\.?$/iu;
+
+type Candidate = { refused: true } | { refused: false; numeral: Numeral; power: number };
+
+function powerAfter(rest: string): number | 'refused' | 'no currency' {
+	const fused = FUSED.exec(rest);
+	if (fused) return MAGNITUDES[fused[1].toLowerCase()];
+	if (CURRENCY_NEXT.test(rest)) return 0;
+	const worded = WORD_THEN_CURRENCY.exec(rest);
+	if (!worded) return 'no currency';
+	return MAGNITUDES[worded[1].toLowerCase()] ?? 'refused';
+}
+
+function powerWithCurrencyBefore(rest: string): number | 'refused' {
+	const word = WORD_NEXT.exec(rest)?.[1] ?? '';
+	if (UNKNOWN_MAGNITUDE.test(word)) return 'refused';
+	return MAGNITUDES[word.toLowerCase()] ?? 0;
+}
+
+function candidate(text: string, match: RegExpExecArray, lang?: string): Candidate | undefined {
+	const rest = text.slice(match.index + match[0].length);
+	let power = powerAfter(rest);
+	if (power === 'no currency') {
+		if (!CURRENCY_BEFORE.test(text.slice(0, match.index))) return undefined;
+		power = powerWithCurrencyBefore(rest);
+	}
+	const numeral = readNumeral(match[0], lang);
+	return power === 'refused' || numeral === undefined
+		? { refused: true }
+		: { refused: false, numeral, power };
+}
+
+const NET = phrases([
+	'netto',
+	'ohne MwSt',
+	'excl. btw',
+	'exclusief btw',
+	'hors TVA',
+	'HTVA',
+	'HT',
+	'excl. VAT'
+]);
+const GROSS = phrases([
+	'brutto',
+	'inkl. MwSt',
+	'incl. btw',
+	'inclusief btw',
+	'TVAC',
+	'TTC',
+	'TVA comprise',
+	'incl. VAT',
+	'gross'
+]);
+// "net" is also a Dutch adverb ("net als", just like), so it names a basis only outside Dutch.
+const NET_WORD = phrases(['net']);
+const AT_LEAST = phrases(
+	[
+		'mindestens',
+		'min.',
+		'minimaal',
+		'minimale',
+		'minstens',
+		'ten minste',
+		'au minimum',
+		'minimum',
+		'minimal',
+		'au moins',
+		'at least',
+		'not less than'
+	],
+	['Mindest']
+);
+const MORE_THAN = phrases([
+	'mehr als',
+	'über',
+	'meer dan',
+	'plus de',
+	'supérieur à',
+	'more than',
+	'exceeding'
+]);
+
+function oneOf<T extends string>(found: Partial<Record<T, boolean>>, otherwise: T): T {
+	const named = (Object.keys(found) as T[]).filter((key) => found[key]);
+	return named.length === 1 ? named[0] : otherwise;
+}
+
+function basisOf(text: string, lang?: string): Basis {
+	const net = NET.test(text) || (lang !== 'nl' && NET_WORD.test(text));
+	return oneOf<Basis>({ net, gross: GROSS.test(text) }, 'unstated');
 }
 
 function comparatorOf(text: string): Comparator {
-	if (/(?<!\p{L})mindest/iu.test(text)) return 'at-least';
-	return /(?<!\p{L})mehr\s+als(?!\p{L})/iu.test(text) ? 'more-than' : 'unstated';
+	return oneOf<Comparator>(
+		{ 'at-least': AT_LEAST.test(text), 'more-than': MORE_THAN.test(text) },
+		'unstated'
+	);
 }
 
 export function parseMoney(text: string, lang?: string): MoneyReading {
-	const amounts = lang === 'de' ? [...text.matchAll(AMOUNT)] : [];
-	if (amounts.length === 0) return { kind: 'none' };
-	if (amounts.length > 1) return { kind: 'several' };
-	const [, whole, fraction = ''] = amounts[0];
-	const cents = Number.parseInt(whole.replaceAll('.', '') + fraction.padEnd(2, '0'), 10);
-	return { kind: 'one', cents, basis: basisOf(text), comparator: comparatorOf(text) };
+	const found = [...text.matchAll(NUMBER)]
+		.map((match) => candidate(text, match, lang))
+		.filter((each) => each !== undefined);
+	if (found.length > 1) return { kind: 'several' };
+	const [only] = found;
+	const cents = only && !only.refused ? toCents(only.numeral, only.power) : undefined;
+	return cents === undefined
+		? { kind: 'none' }
+		: { kind: 'one', cents, basis: basisOf(text, lang), comparator: comparatorOf(text) };
 }
 
-export function sameNumber(modelText: string, reading: MoneyReading, lang?: string): boolean {
-	const model = parseMoney(modelText, lang);
-	return reading.kind === 'one' && model.kind === 'one' && model.cents === reading.cents;
+const wordsFrom = (words: readonly string[], ...ones: string[]) =>
+	Object.fromEntries([
+		...ones.map((word) => [word, 1]),
+		...words.map((word, index) => [word, index + 2])
+	]);
+const NUMBER_WORDS: Readonly<Record<string, Readonly<Record<string, number>>>> = {
+	de: wordsFrom(
+		['zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf'],
+		'eins',
+		'ein',
+		'eine',
+		'einen'
+	),
+	nl: wordsFrom(
+		['twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf', 'twaalf'],
+		'een',
+		'één'
+	),
+	fr: wordsFrom(
+		['deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'],
+		'un',
+		'une'
+	),
+	en: wordsFrom(
+		['two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'],
+		'one'
+	)
+};
+const ANY_LANGUAGE: Readonly<Record<string, number>> = Object.assign(
+	{},
+	...Object.values(NUMBER_WORDS)
+);
+const WORDS = Object.keys(ANY_LANGUAGE)
+	.sort((left, right) => right.length - left.length)
+	.join('|');
+
+function wordValue(word: string, lang?: string): number | undefined {
+	const list = (lang !== undefined && NUMBER_WORDS[lang]) || ANY_LANGUAGE;
+	return list[word.toLowerCase()];
+}
+
+const STAFF = String.raw`(?:mitarbeit(?:er|ende)\p{L}*|beschäftigte\p{L}*|vzä|medewerkers|werknemers|fte|personnes|salariés|employés|employees|staff)`;
+const COUNT = new RegExp(
+	String.raw`(?<![\p{L}\p{N}.,])(${DIGITS}|${WORDS})${SPACE}+${STAFF}(?![\p{L}\p{N}])`,
+	'giu'
+);
+
+function countOf(raw: string, lang?: string): number | undefined {
+	if (!/^\d/u.test(raw)) return wordValue(raw, lang);
+	const numeral = readNumeral(raw, lang);
+	return numeral?.fraction === '' ? Number.parseInt(numeral.whole, 10) : undefined;
+}
+
+export function parseCount(text: string, lang?: string): CountReading {
+	const counts = [...text.matchAll(COUNT)].map((match) => countOf(match[1], lang));
+	if (counts.length > 1) return { kind: 'several' };
+	const [count] = counts;
+	return count === undefined ? { kind: 'none' } : { kind: 'one', count };
+}
+
+const MODES = {
+	average: phrases(
+		['Durchschnitt', 'gemiddeld', 'gemiddelde', 'moyen', 'moyenne', 'average'],
+		['durchschnittlich']
+	),
+	each: phrases([
+		'jährlich',
+		'pro Jahr',
+		'je Geschäftsjahr',
+		'per jaar',
+		'jaarlijks',
+		'par an',
+		'par année',
+		'per year',
+		'each year',
+		'yearly'
+	]),
+	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
+	'any-one': phrases(['in einem der', 'in één van', "au cours d'un des", 'in any one of'])
+} as const;
+const YEARS = new RegExp(
+	String.raw`(?<![\p{L}\p{N}])(\d{1,2}|${WORDS})(?:\s+\S+)?\s+(?:geschäftsjahren?|jahren?|boekjaren|jaar|exercices|années|years)(?![\p{L}\p{N}])`,
+	'giu'
+);
+const NAMED_YEAR = /(?<!\d)20\d{2}(?!\d)/g;
+
+function yearsOf(text: string, lang?: string): number | null {
+	const counts = new Set(
+		[...text.matchAll(YEARS)]
+			.map((match) => countOf(match[1], lang))
+			.filter((count) => count !== undefined)
+	);
+	return counts.size === 1 ? [...counts][0] : null;
+}
+
+export function parsePeriod(text: string, lang?: string): PeriodReading {
+	const found = Object.fromEntries(
+		Object.entries(MODES).map(([mode, pattern]) => [mode, pattern.test(text)])
+	) as Record<keyof typeof MODES, boolean>;
+	return {
+		mode: oneOf<PeriodReading['mode']>(found, 'unstated'),
+		years: yearsOf(text, lang),
+		named: [...text.matchAll(NAMED_YEAR)].map((match) => Number.parseInt(match[0], 10))
+	};
+}
+
+const DESIGNATION =
+	/(?<![\p{L}\p{N}])(?:ISO\/IEC|ISO|IEC|EN|DIN|NEN|BS)[- \u00A0\u202F]?\d+(?:-\d+)*(?::\d{4})?(?!\p{N})/gu;
+const ALTERNATIVE = phrases(['oder', 'ou', 'or', 'bzw.', 'beziehungsweise']);
+// "of" is Dutch for "or" but an English preposition ("ISO 9001 of the firm").
+const OF = phrases(['of']);
+
+export function parseStandards(text: string, lang?: string): StandardsReading {
+	const matches = [...text.matchAll(DESIGNATION)];
+	const any = matches.slice(1).some((match, index) => {
+		const previous = matches[index];
+		const between = text.slice(previous.index + previous[0].length, match.index);
+		return ALTERNATIVE.test(between) || (lang !== 'en' && OF.test(between));
+	});
+	return { standards: matches.map((match) => match[0]), join: any ? 'any' : 'all' };
+}
+
+export function sameNumber(
+	modelText: string,
+	reading: MoneyReading | CountReading,
+	lang?: string
+): boolean {
+	if (reading.kind !== 'one') return false;
+	if ('cents' in reading) {
+		const model = parseMoney(modelText, lang);
+		return model.kind === 'one' && model.cents === reading.cents;
+	}
+	const model = parseCount(modelText, lang);
+	return model.kind === 'one' && model.count === reading.count;
 }
