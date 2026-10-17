@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { criterionLabel } from '$lib/codelists/labels';
 	import type { CriterionView } from '$lib/tenders/tender-page';
+	import ExternalIcon from './ExternalIcon.svelte';
 	import QuoteBlock from './QuoteBlock.svelte';
 
 	let { criterion }: { criterion: CriterionView } = $props();
 
 	const label = $derived(criterionLabel(criterion.code));
+	const provenance = $derived(
+		(criterion.requirements?.length ?? 0) + (criterion.rejected?.length ?? 0) === 0
+			? 'Read by the model, which named no requirement in this clause.'
+			: 'Read by the model. Code found each quote shown here word for word in this clause.'
+	);
 </script>
 
 <li class="clause">
@@ -48,6 +54,15 @@
 					</li>
 				{/each}
 			</ol>
+		{/if}
+		{#each criterion.rejected ?? [] as rejected, index (index)}
+			<p class="not-read">{rejected.line}</p>
+		{/each}
+		{#if criterion.source !== undefined}
+			<p class="provenance">
+				<span>{provenance}</span>
+				<a href={criterion.source} rel="external noreferrer">Open notice on TED<ExternalIcon /></a>
+			</p>
 		{/if}
 	</div>
 </li>
@@ -152,6 +167,35 @@
 		line-height: 1.45;
 		color: var(--ink);
 		overflow-wrap: anywhere;
+	}
+
+	/* Dashed is the binder's one mark for "not read". */
+	.not-read {
+		max-width: 70ch;
+		margin-top: 1rem;
+		padding: 0.5rem 0.75rem;
+		border: 1px dashed var(--ink-3);
+		border-radius: 2px;
+		background: var(--acetate);
+		font-size: var(--step--1);
+		color: var(--ink-2);
+	}
+
+	.provenance {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0 1.5rem;
+		margin-top: 1rem;
+		font-size: var(--step--1);
+		color: var(--ink-2);
+	}
+
+	/* A link standing alone on its line gets the full target height. */
+	.provenance a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 	}
 
 	@media (max-width: 45em) {

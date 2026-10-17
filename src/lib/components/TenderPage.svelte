@@ -10,6 +10,7 @@
 	import Leaf from './Leaf.svelte';
 	import LeafGrid from './LeafGrid.svelte';
 	import LotLeaf from './LotLeaf.svelte';
+	import RunRecord from './RunRecord.svelte';
 	import SourceLinks from './SourceLinks.svelte';
 	import UnreadStrip from './UnreadStrip.svelte';
 
@@ -136,6 +137,7 @@
 						</ol>
 					</nav>
 				{/if}
+				<RunRecord run={data.readingRun ?? null} />
 			</LeafGrid>
 		{/snippet}
 	</Leaf>

@@ -66,6 +66,8 @@ export interface CriterionView {
 	// quote nor its reading is shown, since code could not tie them to this clause.
 	requirements?: RequirementView[];
 	rejected?: { reason: RejectedReason; line: string }[];
+	// The TED notice the clause and its quotes come from.
+	source?: string;
 }
 
 type NotReadReason = Extract<LotEntry, { status: 'not-read' }>['reason'] | 'reading-missing';
@@ -266,8 +268,12 @@ function lotReadingOf(
 	return { view: { status: 'read', model: stored?.model ?? '' }, reading: status.reading };
 }
 
-function readCriterion(criterion: CriterionReading, model: string) {
+const tedUrlOf = (record: NoticeRecord) =>
+	`https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`;
+
+function readCriterion(criterion: CriterionReading, model: string, source: string) {
 	return {
+		source,
 		requirements: criterion.verified.map(({ item }) => ({
 			quote: item.quote,
 			...(criterion.lang && { lang: criterion.lang }),
@@ -320,7 +326,7 @@ function toLotView(
 			of: lot.criteria.length,
 			descriptions: criterion.descriptions.map(withLanguage),
 			parameters: criterion.parameters.map(toParameterView),
-			...(reading && readCriterion(reading.criteria[position], model))
+			...(reading && readCriterion(reading.criteria[position], model, tedUrlOf(record)))
 		})),
 		coverage,
 		...(ownDocuments && { documents: ownDocuments }),
@@ -355,7 +361,7 @@ export function buildTenderPage(
 		countries: row.country.map(countryName),
 		...(kind && { kind }),
 		value: formatValue(row.estimatedValue),
-		tedUrl: `https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`,
+		tedUrl: tedUrlOf(record),
 		...(documents && { documents }),
 		lotIndex:
 			lots.length > 1

@@ -103,6 +103,9 @@
 				{@render tab()}
 			{/snippet}
 			<Label>Selection criteria as published</Label>
+			{#if lot.reading?.status === 'not-read'}
+				<p class="not-read">{lot.reading.line}</p>
+			{/if}
 			{#if count > 0}
 				<ol class="clauses">
 					{#each lot.criteria as criterion (criterion.position)}
@@ -157,6 +160,18 @@
 		margin: 0.75rem 0 0;
 		padding: 0;
 		border-top: 1px solid var(--acetate-edge);
+	}
+
+	/* Dashed is the binder's one mark for "not read". */
+	.not-read {
+		max-width: 70ch;
+		margin: 0.5rem 0 0.75rem;
+		padding: 0.5rem 0.75rem;
+		border: 1px dashed var(--ink-3);
+		border-radius: 2px;
+		background: var(--acetate);
+		font-size: var(--step--1);
+		color: var(--ink-2);
 	}
 
 	.note {
