@@ -10,8 +10,8 @@ export function criterionText(descriptions: readonly { text: string }[]): string
 	return descriptions.map((description) => description.text).join('\n');
 }
 
-const SINGLE_QUOTES = /[‘’‚‛]/gu;
-const DOUBLE_QUOTES = /[“”„‟]/gu;
+const SINGLE_QUOTES = /[\u2018\u2019\u201A\u201B]/gu;
+const DOUBLE_QUOTES = /[\u201C\u201D\u201E\u201F]/gu;
 // Tender texts break words at line ends with a hyphen, and the model keeps the hyphen but drops the
 // break ("abgeschlosse-nen"). Keeping the hyphen found 22 of spike 004's 27 quotes where joining it
 // away found 19; the hyphen-free second pass in findQuote finds the rest (27 of 27).
