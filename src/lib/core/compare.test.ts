@@ -17,7 +17,8 @@ import {
 	type CriterionOutcome,
 	type FirmFacts,
 	type LotContext,
-	type OutcomeWhy
+	type OutcomeWhy,
+	type RequirementOutcome
 } from './compare';
 import type { CriterionState } from './verdict';
 
@@ -48,7 +49,7 @@ function contextOf(record: NoticeRecord, lot: LotRecord): LotContext {
 const outline = (outcome: CriterionOutcome) => ({
 	state: outcome.state,
 	notCompared: outcome.notCompared,
-	why: outcome.requirements.map((requirement) => requirement.why)
+	why: outcome.requirements.map((requirement: RequirementOutcome) => requirement.why)
 });
 
 describe('the two lots spike 004 read, decided for the demo firm', () => {
@@ -469,6 +470,12 @@ const ROWS: readonly Row[] = [
 		{ code: MANPOWER, text: STAFF_AVERAGE },
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 9.8 }),
 		decided('MET', 'met')
+	),
+	row(
+		'average yearly manpower with an empty figure in one year is PROFILE_GAP',
+		{ code: MANPOWER, text: STAFF_EACH },
+		staffFirm({ 2023: undefined, 2024: 12, 2025: 12 }),
+		decided('PROFILE_GAP', 'empty-field')
 	),
 	row(
 		'an empty yearly average list is PROFILE_GAP',

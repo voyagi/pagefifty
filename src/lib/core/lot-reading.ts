@@ -5,6 +5,7 @@
 // import verdict.ts or compare.ts at runtime: the tender page builds its lot statuses from this
 // module and must not reach the verdict model.
 import type { LangText } from '../ingest/record.ts';
+import { normalizeCriterionText } from './document-pointer.ts';
 import { familyOf, type CriterionFamily } from './families.ts';
 import {
 	parseCount,
@@ -60,6 +61,50 @@ export interface LotReading {
 	readonly criteria: readonly CriterionReading[];
 	// Items naming a criterion the lot does not have: shown, never compared.
 	readonly unplaced: readonly RejectedItem[];
+	readonly relianceRestricted: boolean;
+}
+
+// Wordings that bar relying on other firms' capacities or make every member of a group meet a
+// criterion itself. The German ones were measured on the criterion texts of both tracked captures
+// (the counts are in the 02-02 summary); the rest are each language's usual wording, found in no
+// capture yet. Under Article 63 such a clause is what decides whether a partner can cure a
+// shortfall, so a doubtful phrase counts: it can only turn PARTNER NEEDED into ASK FIRST.
+export const RELIANCE_PHRASES: Readonly<Record<'de' | 'nl' | 'fr' | 'en', readonly string[]>> = {
+	de: [
+		'jedes einzelne mitglied',
+		'von jedem bewerbergemeinschaftspartner',
+		'von jedem bietergemeinschaftspartner',
+		'gesondert nachzuweisen',
+		'für alle mitglieder in voller höhe',
+		'für alle mitglieder der bewerbergemeinschaft nachgewiesen',
+		'wenn jedes mitglied die anforderung erfüllt',
+		'eignungsleihe ist für',
+		'keine eignungsleihe',
+		'eignungsleihe ist ausgeschlossen',
+		'eignungsleihe nicht zulässig'
+	],
+	nl: ['elk lid van de combinatie', 'ieder lid van de combinatie', 'geen beroep doen op'],
+	fr: [
+		'chaque membre du groupement',
+		'chacun des membres du groupement',
+		'ne peut pas recourir aux capacités'
+	],
+	en: ['each member of the group', 'every member of the group', 'may not rely on the capacities']
+};
+
+// Every language's list is checked whatever a text is tagged with, as document-pointer.ts does.
+const EVERY_RELIANCE_PHRASE: readonly string[] = Object.values(RELIANCE_PHRASES).flat();
+// A word broken by a hyphen at a line end ("Mit-\nglied" reads "mit- glied" once normalised) is
+// also read joined, so the break can add a match but never hide one.
+const LINE_END_BREAK = /(?<=\p{L})- (?=\p{L})/gu;
+
+export function relianceRestricted(texts: readonly string[]): boolean {
+	return texts.some((text) => {
+		const normalized = normalizeCriterionText(text);
+		return [normalized, normalized.replace(LINE_END_BREAK, '')].some((reading) =>
+			EVERY_RELIANCE_PHRASE.some((phrase) => reading.includes(phrase))
+		);
+	});
 }
 
 export interface LotCriterion {
@@ -133,6 +178,7 @@ export function readLot({
 				textHasAmount: hasAmount(texts[index], family, langs[index])
 			};
 		}),
-		unplaced
+		unplaced,
+		relianceRestricted: relianceRestricted(texts)
 	};
 }

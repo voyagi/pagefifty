@@ -6,7 +6,13 @@ import type { LotRecord } from '../ingest/record';
 import { replyRequirements } from '../../test/fixtures/replies';
 import { normalizeCriterionText } from './document-pointer';
 import { criterionText } from './quote';
-import { RELIANCE_PHRASES, readLot, relianceRestricted, type ModelItem } from './lot-reading';
+import {
+	RELIANCE_PHRASES,
+	readLot,
+	relianceRestricted,
+	type ModelItem,
+	type RejectedItem
+} from './lot-reading';
 
 function capturedLot(capture: string, notice: string, lotId: string): LotRecord {
 	const bytes = readFileSync(join('examples', capture, 'xml', `${notice}.xml`));
@@ -86,7 +92,8 @@ describe('readLot', () => {
 		const [criterion] = read.criteria;
 		expect(criterion.rejected.map((each) => each.reason)).toEqual(['too-short', 'not-found']);
 		expect(criterion.verified).toHaveLength(1);
-		expect(read.unplaced).toEqual([{ item: item(2, text), reason: 'no-such-criterion' }]);
+		const unplaced: RejectedItem = { item: item(2, text), reason: 'no-such-criterion' };
+		expect(read.unplaced).toEqual([unplaced]);
 	});
 
 	it.each([
