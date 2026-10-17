@@ -27,6 +27,7 @@ const REASON_PRECEDENCE = [
 	'route-unsettled',
 	'profile-field-missing',
 	'not-read',
+	'not-compared',
 	'criteria-in-documents',
 	'no-criteria-in-notice'
 ] as const;
@@ -80,6 +81,7 @@ function tableDecision(input: LotInput): LotDecision {
 		'route-unsettled': any('SHORT_ROUTE_UNSETTLED'),
 		'profile-field-missing': any('PROFILE_GAP'),
 		'not-read': any('NOT_READ'),
+		'not-compared': input.notCompared === true,
 		'criteria-in-documents':
 			fact('SOURCE_UNREAD') || !input.noticeIsOnlySource || input.pointsToDocuments,
 		'no-criteria-in-notice': fact('NO_CRITERIA') || input.states.length === 0
@@ -93,6 +95,7 @@ function tableDecision(input: LotInput): LotDecision {
 			input.states.length > 0 &&
 			input.states.every((state) => READ_AND_MET.includes(state)) &&
 			!input.pointsToDocuments &&
+			input.notCompared !== true &&
 			input.facts.length === 0
 	};
 	const verdict = MOST_SEVERE_FIRST.find((candidate) => rows[candidate]);
@@ -166,12 +169,13 @@ describe('closed names', () => {
 		});
 	});
 
-	it('ASK_FIRST_REASON_LABELS has exactly the five reasons, each with its display words', () => {
+	it('ASK_FIRST_REASON_LABELS has exactly the six reasons, each with its display words', () => {
 		expect(Object.keys(ASK_FIRST_REASON_LABELS).sort()).toEqual([...REASON_PRECEDENCE].sort());
 		expect(ASK_FIRST_REASON_LABELS).toEqual({
 			'route-unsettled': 'Route not settled',
 			'profile-field-missing': 'A profile field is missing',
 			'not-read': 'Not read',
+			'not-compared': 'Not compared in this version',
 			'criteria-in-documents': 'Criteria in the ESPD or the documents',
 			'no-criteria-in-notice': 'No criteria in the notice'
 		});

@@ -22,13 +22,15 @@ export const LOT_VERDICTS = ['NO-GO', 'PARTNER NEEDED', 'ASK FIRST', 'GO'] as co
 export type LotVerdict = (typeof LOT_VERDICTS)[number];
 
 // When several reasons apply, the one naming what the firm can act on first wins: settle a route,
-// fill a profile field, wait for a clause to be read. The documents reason comes after those so the
-// near-GO "nothing in the notice rules you out, the documents also hold criteria" keeps its own
-// count instead of standing in for a gap the firm could close itself.
+// fill a profile field, wait for a clause to be read, then check a clause this version reads but
+// does not compare, which the firm can do itself once nothing is left to wait for. The documents
+// reason comes after those so the near-GO "nothing in the notice rules you out, the documents also
+// hold criteria" keeps its own count instead of standing in for a gap the firm could close itself.
 export const ASK_FIRST_REASONS = [
 	'route-unsettled',
 	'profile-field-missing',
 	'not-read',
+	'not-compared',
 	'criteria-in-documents',
 	'no-criteria-in-notice'
 ] as const;
@@ -50,6 +52,9 @@ export interface LotInput {
 	readonly facts: readonly CoverageFact[];
 	readonly noticeIsOnlySource: boolean;
 	readonly pointsToDocuments: boolean;
+	// A criterion read but not compared in this version (insurance, a code without a comparison, a
+	// model reading code disagrees with) or a reservation the profile cannot be compared with.
+	readonly notCompared?: boolean;
 }
 
 export type LotDecision =
@@ -60,6 +65,7 @@ const REASON_APPLIES: Readonly<Record<AskFirstReason, (lot: LotInput) => boolean
 	'route-unsettled': (lot) => lot.states.includes('SHORT_ROUTE_UNSETTLED'),
 	'profile-field-missing': (lot) => lot.states.includes('PROFILE_GAP'),
 	'not-read': (lot) => lot.states.includes('NOT_READ'),
+	'not-compared': (lot) => lot.notCompared === true,
 	'criteria-in-documents': (lot) =>
 		lot.facts.includes('SOURCE_UNREAD') || !lot.noticeIsOnlySource || lot.pointsToDocuments,
 	'no-criteria-in-notice': (lot) => lot.facts.includes('NO_CRITERIA') || lot.states.length === 0
@@ -115,6 +121,7 @@ export const ASK_FIRST_REASON_LABELS: Readonly<Record<AskFirstReason, string>> =
 	'route-unsettled': 'Route not settled',
 	'profile-field-missing': 'A profile field is missing',
 	'not-read': 'Not read',
+	'not-compared': 'Not compared in this version',
 	'criteria-in-documents': 'Criteria in the ESPD or the documents',
 	'no-criteria-in-notice': 'No criteria in the notice'
 };
