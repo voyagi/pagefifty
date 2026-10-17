@@ -6,11 +6,16 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { commandDeps } from '../../../scripts/capture.mjs';
+import { capturePath } from '../../test/fixtures/node.ts';
 import { readReplyFixture, type RecordedReply } from '../../test/fixtures/replies.ts';
-import { createStubProvider } from '../../test/provider-stub.ts';
+import { buildSynthetic } from '../../test/fixtures/roles.ts';
+import { chatResponse, createStubProvider, syntheticReply } from '../../test/provider-stub.ts';
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
+import { readNotice } from '../ingest/read-notice.ts';
 import { ReadingsFileSchema } from '../snapshot/readings.ts';
+import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { runCapture } from './run.ts';
+import { chatBody, userMessage } from './token-factory.ts';
 
 const START = Date.parse('2026-09-15T08:00:00Z');
 const DAY = '2026-09-15';
@@ -31,15 +36,24 @@ interface CommandRun {
 	argv?: readonly string[];
 	env?: Record<string, string>;
 	replies?: readonly RecordedReply[];
+	tedScript?: Parameters<typeof createScriptedTed>[0]['script'];
+	providerScript?: Parameters<typeof createStubProvider>[0]['script'];
 }
 
-async function commandRun({ notices, argv = [], env = {}, replies = [] }: CommandRun) {
+async function commandRun({
+	notices,
+	argv = [],
+	env = {},
+	replies = [],
+	tedScript,
+	providerScript
+}: CommandRun) {
 	const root = mkdtempSync(join(tmpdir(), 'pagefifty-command-'));
 	roots.push(root);
 	mkdirSync(join(root, 'examples'));
 	const clock = createFakeClock(START);
-	const ted = createScriptedTed({ clock, notices });
-	const provider = createStubProvider({ replies });
+	const ted = createScriptedTed({ clock, notices, script: tedScript });
+	const provider = createStubProvider({ replies, script: providerScript });
 	const lines: string[] = [];
 	const keyPaths: string[] = [];
 	const code = await runCapture(
@@ -165,5 +179,294 @@ describe('the command with the model step', () => {
 		expect(calls[0].headers.authorization).toBe(`Bearer ${NEBIUS}`);
 		expect(JSON.stringify(calls[0].headers)).not.toContain(TAVILY);
 		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
+	});
+});
+
+const THREE = ['610242-2026', '629755-2026', '634398-2026'];
+const THREE_REPLIES = ['de-610242-thinking-off', 'fr-629755-default-tab', 'nl-634398-super'].map(
+	readReplyFixture
+);
+const WOULD = 'capture: (dry-run) WOULD call tokenFactory chat';
+const PROVIDER_TEXT = 'provider-detail-5e7b';
+
+function trackedRecord(notice: string) {
+	const result = readNotice(new Uint8Array(readFileSync(capturePath(notice))), {
+		noticeNumber: notice
+	});
+	if (!result.ok) throw new Error(`${notice} did not read: ${result.detail}`);
+	return result.record;
+}
+
+const firstLotBody = (notice: string) => chatBody(trackedRecord(notice).lots[0].criteria);
+
+const userMessageOf = (body: unknown) =>
+	(body as { messages: { role: string; content: string }[] }).messages[1].content;
+
+const readingsOf = (folder: string) =>
+	ReadingsFileSchema.parse(readJson(join(folder, 'readings.json')));
+
+const lotsOf = (folder: string) =>
+	Object.fromEntries(
+		readingsOf(folder).notices.map(({ notice, lots }) => [
+			notice,
+			lots.map((lot) => ('reason' in lot ? `${lot.status} ${lot.reason}` : lot.status))
+		])
+	);
+
+const answerWith = (content: string) => ({
+	status: 200,
+	json: chatResponse('chatcmpl-x', content)
+});
+
+const UNKNOWN_KIND = JSON.stringify({
+	requirements: [
+		{
+			criterion: 1,
+			kind: 'turnover-average',
+			quote: 'Nachweis der Befähigung',
+			reading: 'r',
+			numberText: '',
+			period: '',
+			mandatory: true
+		}
+	]
+});
+
+describe('the model step in a dry run', () => {
+	it('a dry run through the command logs a WOULD line for the model step and sends nothing', async () => {
+		const run = await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.lines.filter((line) => line === WOULD)).toHaveLength(3);
+		expect(run.provider.calls()).toHaveLength(0);
+		expect(run.keyPaths).toEqual([]);
+		expect(existsSync(join(run.folder, 'readings.json'))).toBe(false);
+		expect(run.lines).toContain(
+			'capture: model read: 0 read, 0 reused, 3 not read (dry-run 3), 0 sent, USD 0.000000'
+		);
+		expect(readJson(join(run.folder, 'run.json')).reading).toMatchObject({
+			sends: 0,
+			lots: { withCriteria: 3, read: 0, reused: 0, notRead: 3 },
+			tokens: { input: 0, output: 0, reasoning: 0 },
+			costUsd: '0.000000'
+		});
+	});
+});
+
+describe('the model step under the cap', () => {
+	it('a cap of N sends N chats and leaves every later lot not read', async () => {
+		const run = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '2'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls()).toHaveLength(2);
+		expect(lotsOf(run.folder)).toEqual({
+			'610242-2026': ['read'],
+			'629755-2026': ['read'],
+			'634398-2026': ['not-read cap-reached']
+		});
+		const record = readJson(join(run.folder, 'run.json'));
+		expect(record.metered.attempts).toBe(2);
+		expect(record.metered.refusals).toEqual([
+			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 2 attempts is reached' }
+		]);
+		expect(record.reading).toMatchObject({ sends: 2, lots: { read: 2, notRead: 1 } });
+	});
+
+	it('a lot whose repair would pass the cap is not partly read', async () => {
+		const run = await commandRun({
+			notices: ['610242-2026'],
+			argv: ['--live', '--cap', '1'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: [readReplyFixture(GERMAN)],
+			providerScript: { 1: answerWith('not json') }
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls()).toHaveLength(1);
+		expect(existsSync(join(run.folder, 'readings.json'))).toBe(false);
+		const record = readJson(join(run.folder, 'run.json'));
+		expect(record.metered.refusals).toEqual([
+			{
+				provider: 'tokenFactory',
+				operation: 'chat-repair',
+				reason: 'the cap of 1 attempts is reached'
+			}
+		]);
+		expect(record.reading).toMatchObject({ sends: 1, lots: { read: 0, notRead: 1 } });
+		expect(run.lines).toContain(
+			'capture: model read: 0 read, 0 reused, 1 not read (cap-reached 1), 1 sent, USD 0.000021'
+		);
+	});
+});
+
+describe('which lots the model step sends', () => {
+	it('lots go out in publication order, then lot id', async () => {
+		const run = await commandRun({
+			notices: ['634398-2026', '629755-2026', '610242-2026'],
+			...LIVE,
+			replies: THREE_REPLIES
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls().map((call) => userMessageOf(call.body))).toEqual(
+			THREE_REPLIES.map((reply) => userMessageOf(reply.request))
+		);
+	});
+
+	it('two lots of one notice with the same text are read once and share the reading', async () => {
+		const record = trackedRecord('613419-2026');
+		expect(record.lots).toHaveLength(2);
+		expect(userMessage(record.lots[1].criteria)).toBe(userMessage(record.lots[0].criteria));
+		const body = firstLotBody('613419-2026');
+		const quote = record.lots[0].criteria[0].descriptions[0].text.slice(0, 40);
+		const item = {
+			criterion: 1,
+			kind: 'other',
+			quote,
+			reading: 'r',
+			numberText: '',
+			period: '',
+			mandatory: true
+		};
+		const run = await commandRun({
+			notices: ['613419-2026'],
+			...LIVE,
+			replies: [syntheticReply(body, [item])]
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls()).toHaveLength(1);
+		const readings = readingsOf(run.folder);
+		const lots = readings.notices[0].lots;
+		expect(lots.map((lot) => [lot.lot, lot.status])).toEqual([
+			[record.lots[0].id, 'read'],
+			[record.lots[1].id, 'read']
+		]);
+		expect(lots[0]).toEqual({ ...lots[1], lot: lots[0].lot });
+		expect(readings.readings).toHaveLength(1);
+		expect(readings.run.lots).toEqual({ withCriteria: 2, read: 2, reused: 0, notRead: 0 });
+	});
+
+	it('a lot with no criteria in the notice is never sent', async () => {
+		const stripped = buildSynthetic(
+			'notice-source-no-criteria',
+			readFileSync(capturePath('609955-2026'), 'utf8')
+		);
+		const run = await commandRun({
+			notices: ['610242-2026', '609955-2026'],
+			...LIVE,
+			replies: [readReplyFixture(GERMAN)],
+			tedScript: { [tedNoticeXmlUrl('609955-2026')]: [{ status: 200, body: stripped }] }
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const calls = run.provider.calls();
+		expect(calls).toHaveLength(1);
+		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
+		const lots = lotsOf(run.folder);
+		expect(lots['610242-2026']).toEqual(['read']);
+		expect(lots['609955-2026'].length).toBeGreaterThan(0);
+		expect(new Set(lots['609955-2026'])).toEqual(new Set(['no-criteria']));
+	});
+
+	it('every sent body is the lot criteria text and nothing else', async () => {
+		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const bodies = run.provider.calls().map((call) => call.body);
+		expect(bodies).toEqual(THREE.map(firstLotBody));
+		expect(bodies[0]).toEqual(readReplyFixture(GERMAN).request);
+		expect(Object.keys(bodies[0] as object)).toEqual([
+			'model',
+			'temperature',
+			'max_tokens',
+			'messages',
+			'response_format',
+			'chat_template_kwargs'
+		]);
+	});
+});
+
+describe('replies the model step cannot use', () => {
+	it('an invalid reply gets exactly one repair carrying its issues, then the lot is not read', async () => {
+		const cases = [
+			{
+				script: { 1: answerWith('not json'), 2: answerWith('still not json') },
+				issue: 'reply: not JSON',
+				lot: 'not-read reply-invalid'
+			},
+			{
+				script: { 1: answerWith(UNKNOWN_KIND), 2: answerWith(UNKNOWN_KIND) },
+				issue: 'requirements.0.kind: ',
+				lot: 'not-read reply-invalid'
+			},
+			{ script: { 1: answerWith('not json') }, issue: 'reply: not JSON', lot: 'read' }
+		];
+		for (const { script, issue, lot } of cases) {
+			const run = await commandRun({
+				notices: ['610242-2026'],
+				...LIVE,
+				replies: [readReplyFixture(GERMAN)],
+				providerScript: script
+			});
+			expect(run.code, run.lines.join('\n')).toBe(0);
+			const calls = run.provider.calls();
+			expect(calls, issue).toHaveLength(2);
+			const repair = calls[1].body as { messages: { role: string; content: string }[] };
+			expect(repair.messages.slice(0, 2)).toEqual(readReplyFixture(GERMAN).request.messages);
+			expect(repair.messages).toHaveLength(4);
+			expect(repair.messages[3].role).toBe('user');
+			expect(repair.messages[3].content).toContain(issue);
+			const record = readJson(join(run.folder, 'run.json'));
+			expect(
+				record.metered.responses.map((response: { operation: string }) => response.operation)
+			).toEqual(['chat', 'chat-repair']);
+			if (lot === 'read') expect(lotsOf(run.folder)).toEqual({ '610242-2026': ['read'] });
+			else {
+				expect(existsSync(join(run.folder, 'readings.json'))).toBe(false);
+				expect(run.lines).toContain(
+					`capture: model read: 0 read, 0 reused, 1 not read (reply-invalid 1), 2 sent, USD ${record.reading.costUsd}`
+				);
+			}
+		}
+	});
+
+	it('a send that fails leaves only that lot not read', async () => {
+		const failures = [
+			{ status: 500, text: `upstream broke: ${PROVIDER_TEXT}` },
+			{ status: 200, json: { error: PROVIDER_TEXT } },
+			{ throws: new Error(`socket closed: ${PROVIDER_TEXT}`) }
+		];
+		for (const failure of failures) {
+			const run = await commandRun({
+				notices: THREE,
+				...LIVE,
+				replies: THREE_REPLIES,
+				providerScript: { 1: failure }
+			});
+			expect(run.code, run.lines.join('\n')).toBe(0);
+			expect(run.provider.calls()).toHaveLength(3);
+			expect(lotsOf(run.folder)).toEqual({
+				'610242-2026': ['not-read send-failed'],
+				'629755-2026': ['read'],
+				'634398-2026': ['read']
+			});
+			expect(run.lines.filter((line) => line.includes(PROVIDER_TEXT))).toEqual([]);
+			const leaks = filesUnder(run.root).filter((file) =>
+				readFileSync(file, 'latin1').includes(PROVIDER_TEXT)
+			);
+			expect(leaks).toEqual([]);
+		}
+	});
+
+	it('no provider key appears in any output', async () => {
+		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls().map((call) => call.headers.authorization)).toEqual(
+			THREE.map(() => `Bearer ${NEBIUS}`)
+		);
+		const traces = keyTraces(run);
+		expect(traces.found).toEqual([]);
+		expect(traces.files).toEqual(
+			expect.arrayContaining([join(run.folder, 'run.json'), join(run.folder, 'readings.json')])
+		);
 	});
 });
