@@ -47,7 +47,7 @@ type ParameterView = { label: string; value: string } | { code: string; value: s
 
 // One requirement the model read in a clause whose quote code found there word for word: the quote
 // in the clause's language and the model's plain English reading, which the page labels as AI-made.
-export interface RequirementView {
+interface RequirementView {
 	quote: string;
 	lang?: string;
 	reading: string;
@@ -92,7 +92,7 @@ export const REJECTED_LINES: Readonly<Record<RejectedReason, string>> = {
 		'Not read: the model named a clause this lot does not have, so its answer is not used.'
 };
 
-export type LotReadingView =
+type LotReadingView =
 	| { status: 'read'; model: string }
 	| { status: 'no-criteria' }
 	| { status: 'not-read'; reason: NotReadReason; line: string };
