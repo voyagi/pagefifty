@@ -354,7 +354,8 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			searchTotal: run.searchTotal,
 			leftOut: selection.leftOut,
 			failed: failures,
-			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length
+			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length,
+			reading: record.reading
 		})
 	);
 }

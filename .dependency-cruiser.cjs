@@ -31,6 +31,14 @@ module.exports = {
 			to: { path: '^src/lib/profile/', reachable: true }
 		},
 		{
+			name: 'no-capture-reaches-profile',
+			severity: 'error',
+			comment:
+				'P1: the capture command sends public notice text to Token Factory and nothing else, so no capture module may reach the firm profile, not even by import. Its tests may build one.',
+			from: { path: '^src/lib/capture/', pathNot: TEST_FILE },
+			to: { path: '^src/lib/profile/', reachable: true }
+		},
+		{
 			name: 'no-ui-reaches-verdict',
 			severity: 'error',
 			comment:

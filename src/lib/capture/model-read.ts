@@ -3,17 +3,21 @@
 // tokens and cost (run.json's reading block). Imported under Node type stripping: erasable syntax
 // only, relative .ts imports.
 import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, renameSync } from 'node:fs';
+import { join } from 'node:path';
 import { criterionText, verifyRequirements } from '../core/quote.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
+import { NOTICE_NUMBER } from '../snapshot/index-row.ts';
 import {
 	NOT_READ_REASONS,
+	ReadingEntrySchema,
 	type LotEntry,
 	type ReadingEntry,
 	type ReadingRun,
 	type ReadingsFile
 } from '../snapshot/readings.ts';
 import type { Transport } from '../snapshot/transport.ts';
-import { captureDate } from './capture-folder.ts';
+import { captureDate, writeJsonFile } from './capture-folder.ts';
 import { publicationOrder, type MeteredStep, type StepOutput } from './run.ts';
 import type { Clock } from './ted-client.ts';
 import {
@@ -28,8 +32,51 @@ import {
 	type Tokens
 } from './token-factory.ts';
 
+// The text is hashed exactly as sent, with no normalisation: two texts that differ by one space are
+// two readings, never one reading stretched over a text the model did not see.
 export function readingKey(notice: string, text: string) {
 	return { notice, textSha256: createHash('sha256').update(text, 'utf8').digest('hex') };
+}
+
+// One file per reading under .capture-cache/readings/<notice>/<sha256>.json, kept across runs so each
+// text is read at most once (SPEC R2).
+function storePath(root: string, notice: string, textSha256: string): string {
+	// The number becomes a folder name, so only TED's shape gets that far.
+	if (!NOTICE_NUMBER.test(notice)) {
+		throw new Error(`reading store: ${JSON.stringify(notice)} is not a TED notice number`);
+	}
+	return join(root, '.capture-cache', 'readings', notice, `${textSha256}.json`);
+}
+
+// A reading written under another model or prompt answered another question, so it is read again.
+function storedReading(root: string, notice: string, textSha256: string): ReadingEntry | undefined {
+	const path = storePath(root, notice, textSha256);
+	if (!existsSync(path)) return undefined;
+	let json: unknown;
+	try {
+		json = JSON.parse(readFileSync(path, 'utf8'));
+	} catch {
+		return undefined;
+	}
+	const parsed = ReadingEntrySchema.safeParse(json);
+	if (!parsed.success) return undefined;
+	const entry = parsed.data;
+	const same =
+		entry.notice === notice &&
+		entry.textSha256 === textSha256 &&
+		entry.model === MODEL_READ.id &&
+		entry.promptSha256 === promptSha256;
+	return same ? entry : undefined;
+}
+
+// Written under a temp name and renamed into place, so a run that dies mid-write leaves no file a
+// later run could take for a whole reading.
+function storeReading(root: string, entry: ReadingEntry): void {
+	const path = storePath(root, entry.notice, entry.textSha256);
+	mkdirSync(join(path, '..'), { recursive: true });
+	const temp = `${path}.${process.pid}.tmp`;
+	writeJsonFile(temp, entry);
+	renameSync(temp, path);
 }
 
 interface Reading {
@@ -130,6 +177,7 @@ const NOT_SENT = { 'dry-run': 'dry-run', refused: 'cap-reached', failed: 'send-f
 interface Session {
 	gate: Parameters<MeteredStep>[0]['gate'];
 	transport: Transport;
+	root: string;
 	runDate: string;
 	tokens: Tokens;
 	stopped: boolean;
@@ -155,10 +203,23 @@ function notSent(session: Session, kind: keyof typeof NOT_SENT): TextOutcome {
 	return { status: 'not-read', reason: NOT_SENT[kind] };
 }
 
+type Criteria = NoticeRecord['lots'][number]['criteria'];
+
+const sourcesOf = (criteria: Criteria) =>
+	criteria.map((criterion) => criterionText(criterion.descriptions));
+
+// Reuse needs no attempt, so a stored reading is taken even after the cap is reached or in a dry run.
+function reuse(session: Session, notice: string, criteria: Criteria, textSha256: string) {
+	const entry = storedReading(session.root, notice, textSha256);
+	if (entry === undefined) return undefined;
+	session.readings.push({ entry, sources: sourcesOf(criteria), reused: true });
+	return { status: 'read', textSha256 } as const;
+}
+
 async function readText(
 	session: Session,
 	notice: string,
-	criteria: NoticeRecord['lots'][number]['criteria'],
+	criteria: Criteria,
 	textSha256: string
 ): Promise<TextOutcome> {
 	if (session.stopped) return { status: 'not-read', reason: 'cap-reached' };
@@ -176,20 +237,18 @@ async function readText(
 		reply = readReply(answer.value.content, answer.value.finishReason);
 		if (!reply.ok) return { status: 'not-read', reason: 'reply-invalid' };
 	}
-	session.readings.push({
-		entry: {
-			notice,
-			textSha256,
-			promptSha256,
-			model: MODEL_READ.id,
-			readOn: session.runDate,
-			responseId: answer.id,
-			usage,
-			items: reply.items
-		},
-		sources: criteria.map((criterion) => criterionText(criterion.descriptions)),
-		reused: false
-	});
+	const entry: ReadingEntry = {
+		notice,
+		textSha256,
+		promptSha256,
+		model: MODEL_READ.id,
+		readOn: session.runDate,
+		responseId: answer.id,
+		usage,
+		items: reply.items
+	};
+	storeReading(session.root, entry);
+	session.readings.push({ entry, sources: sourcesOf(criteria), reused: false });
 	return { status: 'read', textSha256 };
 }
 
@@ -208,7 +267,10 @@ async function readLots(session: Session, record: NoticeRecord): Promise<LotEntr
 		const { textSha256 } = readingKey(record.noticeNumber, userMessage(lot.criteria));
 		let outcome = byText.get(textSha256);
 		if (outcome === undefined) {
-			outcome = await readText(session, record.noticeNumber, lot.criteria, textSha256);
+			const { noticeNumber } = record;
+			outcome =
+				reuse(session, noticeNumber, lot.criteria, textSha256) ??
+				(await readText(session, noticeNumber, lot.criteria, textSha256));
 			byText.set(textSha256, outcome);
 		}
 		lots.push({ lot: lot.id, ...outcome });
@@ -229,11 +291,12 @@ function summaryLine(run: ReadingRun, notices: ReadOutcome['notices']): string {
 	return `capture: model read: ${run.lots.read} read, ${run.lots.reused} reused, ${run.lots.notRead} not read${why}, ${run.sends} sent, USD ${run.costUsd}`;
 }
 
-export function createModelReadStep({ transport, clock, log }: StepOptions): MeteredStep {
+export function createModelReadStep({ transport, root, clock, log }: StepOptions): MeteredStep {
 	return async ({ gate, records }): Promise<StepOutput> => {
 		const session: Session = {
 			gate,
 			transport,
+			root,
 			runDate: captureDate(clock.now()),
 			tokens: NO_TOKENS,
 			stopped: false,

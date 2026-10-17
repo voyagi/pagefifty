@@ -4,6 +4,7 @@
 import { SERVER_TIME_ZONE, formatDeadline } from '../core/deadline.ts';
 import type { Modes } from '../server/transport-mode.ts';
 import { dayText } from '../snapshot/capture-id.ts';
+import type { ReadingRun } from '../snapshot/readings.ts';
 
 interface ReadmeParts {
 	captureDate: string;
@@ -17,6 +18,8 @@ interface ReadmeParts {
 	failed: readonly { notice: string; reason: string }[];
 	// Failed notices whose search hit named no usable notice identifier and version.
 	unversioned: number;
+	// run.json's reading block; null when the run had no model step.
+	reading: ReadingRun | null;
 }
 
 const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -44,6 +47,26 @@ function whenAndWhat(parts: ReadmeParts): string[] {
 		`- ${counted(parts.written, 'notice')} written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`,
 		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.',
 		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`
+	];
+}
+
+function modelReadSection(reading: ReadingRun | null, modes: Modes): string[] {
+	if (reading === null) return [];
+	const model = `${reading.model} on ${reading.provider}, region ${reading.region}, with thinking ${reading.thinking ? 'on' : 'off'}`;
+	const { lots } = reading;
+	const published = lots.read + lots.reused > 0;
+	return [
+		'## Model read',
+		'',
+		modes.tokenFactory === 'live'
+			? `Each lot's selection criteria, as published in the notice, were read by ${model}. Every reading is model-written.`
+			: `No model read was made: this was a dry run, so no criteria were sent to ${model}.`,
+		'',
+		`- ${counted(lots.withCriteria, 'lot')} with criteria: ${lots.read} read in this run, ${lots.reused} reused from an earlier run, ${lots.notRead} not read.`,
+		published
+			? `- \`readings.json\` holds the readings, and \`run.json\` the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`
+			: `- \`run.json\` holds the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`,
+		''
 	];
 }
 
@@ -104,6 +127,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		'',
 		...whenAndWhat(parts),
 		'',
+		...modelReadSection(parts.reading, parts.modes),
 		...leftOutSection(parts.leftOut),
 		...notCapturedSection(parts),
 		...SOURCE_AND_TERMS,
