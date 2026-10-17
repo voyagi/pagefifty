@@ -975,11 +975,16 @@ function everyFigure(value: number): FirmFacts {
 	};
 }
 
-function oneDigitChanged(text: string, at: number): string {
-	const digits = [...text].flatMap((char, index) => (/\d/u.test(char) ? [index] : []));
-	if (digits.length === 0) return `${text} 1`;
-	const index = digits[at % digits.length];
-	return `${text.slice(0, index)}${(Number(text[index]) + 1) % 10}${text.slice(index + 1)}`;
+// The leading digit of one digit group of the quote set to another digit, so the change moves an
+// amount by a whole group ("1.000.000 EUR" to "1.900.000 EUR"), enough to cross a firm's figure.
+function oneDigitChanged(text: string, at: number, to: number): string {
+	const leading = [...text].flatMap((char, index) =>
+		/\d/u.test(char) && !/\d/u.test(text[index - 1] ?? '') ? [index] : []
+	);
+	if (leading.length === 0) return `${text} 1`;
+	const index = leading[at % leading.length];
+	const digit = String(to) === text[index] ? (to + 1) % 10 : to;
+	return `${text.slice(0, index)}${digit}${text.slice(index + 1)}`;
 }
 
 function decideCase(testCase: Case, item: ModelItem, firm: FirmFacts | null) {
@@ -998,7 +1003,7 @@ describe('the model can only withhold a comparison', () => {
 
 	test.prop(
 		[
-			fc.constantFrom(...FIXTURE_CASES, ...SYNTHETIC_CASES),
+			fc.oneof(fc.constantFrom(...FIXTURE_CASES), fc.constantFrom(...SYNTHETIC_CASES)),
 			fc.constantFrom(
 				['the demo firm', DEMO_PROFILE] as const,
 				['an empty profile', emptyProfile()] as const,
@@ -1007,7 +1012,12 @@ describe('the model can only withhold a comparison', () => {
 			),
 			fc.oneof(
 				fc.string().map((value) => ({ field: 'numberText', value })),
-				fc.nat().map((at) => ({ field: 'numberText', value: at })),
+				{
+					arbitrary: fc
+						.tuple(fc.nat(), fc.nat({ max: 9 }))
+						.map((digit) => ({ field: 'numberText', value: digit })),
+					weight: 3
+				},
 				fc.constantFrom(...MODEL_KINDS).map((value) => ({ field: 'kind', value })),
 				fc
 					.oneof(fc.string(), fc.constantFrom(...PERIOD_WORDS))
@@ -1026,10 +1036,9 @@ describe('the model can only withhold a comparison', () => {
 				numberText: testCase.item.quote,
 				period: ''
 			};
-			const value =
-				typeof change.value === 'number'
-					? oneDigitChanged(agreeing.quote, change.value)
-					: change.value;
+			const value = Array.isArray(change.value)
+				? oneDigitChanged(agreeing.quote, change.value[0], change.value[1])
+				: change.value;
 			const mutated: ModelItem = { ...agreeing, [change.field]: value };
 			const base = decideCase(testCase, agreeing, firm);
 			const result = decideCase(testCase, mutated, firm);
