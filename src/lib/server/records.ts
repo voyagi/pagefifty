@@ -158,7 +158,15 @@ export async function loadNoticeReadings(
 	if (!NOTICE_NUMBER.test(notice)) return undefined;
 	const url = READING_URLS.get(`${capture}/${notice}`);
 	if (url === undefined) return undefined;
-	return NoticeReadingsSchema.parse(await readJson(url, `the ${capture} readings of ${notice}`));
+	const parsed = NoticeReadingsSchema.safeParse(
+		await readJson(url, `the ${capture} readings of ${notice}`)
+	);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} readings of ${notice} do not match their schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
 }
 
 // The run that read a capture, or null for a capture the model never read.

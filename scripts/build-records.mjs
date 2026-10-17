@@ -22,7 +22,7 @@
 // Usage:  node scripts/build-records.mjs [--examples <dir>] [--out <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository)
 // Exit codes: 0 records written,
-//             1 a listing or a notice could not be read, or a write step failed (nothing
+//             1 a listing, a notice or a readings.json could not be read, or a write step failed (nothing
 //               half-written is served; a temp folder that could not be removed is named),
 //             2 bad usage or no capture folder found.
 
@@ -121,23 +121,32 @@ async function readOne(transport, number) {
 	return readNotice(new Uint8Array(await response.arrayBuffer()), { noticeNumber: number });
 }
 
-// The model's readings the capture published, if it published any. Each notice named in it becomes a
-// file name, so only TED's notice number shape gets that far.
+// The model's readings the capture published, if it published any. A file the schema refuses is a
+// failure like a record that does not read, so nothing of the capture is written. Each notice named
+// in it becomes a file name, so only TED's notice number shape gets that far.
 function readReadings(folder) {
 	const file = join(folder, 'readings.json');
-	if (!existsSync(file)) return undefined;
-	const readings = ReadingsFileSchema.parse(JSON.parse(readFileSync(file, 'utf8')));
-	for (const { notice } of readings.notices) {
-		if (!NOTICE_NUMBER.test(notice)) throw new Error(`${JSON.stringify(notice)} is not a TED notice number`);
+	if (!existsSync(file)) return {};
+	let json;
+	try {
+		json = JSON.parse(readFileSync(file, 'utf8'));
+	} catch (error) {
+		return { failure: `${file} could not be read as JSON: ${error.message}` };
 	}
-	return readings;
+	const parsed = ReadingsFileSchema.safeParse(json);
+	if (!parsed.success) return { failure: `${file} does not match its schema: ${parsed.error.message}` };
+	const misnamed = parsed.data.notices.find(({ notice }) => !NOTICE_NUMBER.test(notice));
+	if (misnamed) {
+		return { failure: `${file}: ${JSON.stringify(misnamed.notice)} is not a TED notice number` };
+	}
+	return { readings: parsed.data };
 }
 
 async function buildCapture(examples, id) {
 	const started = performance.now();
 	const folder = join(examples, id);
 	const { listing, numbers } = readListing(folder, id);
-	const readings = readReadings(folder);
+	const { readings, failure } = readReadings(folder);
 	const transport = await snapshotTransport(folder);
 	const records = [];
 	const failures = [];
@@ -178,6 +187,7 @@ async function buildCapture(examples, id) {
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
 	}
+	if (failure) failures.push({ number: '(readings)', kind: 'readings', detail: failure });
 	const { kept, leftOut } = selectLatest(records);
 	// capture.total is the count TED stated for its search, which a capture made by the command
 	// records as searchTotal; the listed-count check above stays on the notices actually listed.
