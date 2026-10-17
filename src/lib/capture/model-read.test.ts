@@ -14,7 +14,7 @@ import { readNotice } from '../ingest/read-notice.ts';
 import { resolveModes } from '../server/transport-mode.ts';
 import type { ReadingsFile } from '../snapshot/readings.ts';
 import { createMeteredGate } from './metered.ts';
-import { createModelReadStep, readingKey } from './model-read.ts';
+import { createModelReadStep, readingKey, readingsFileOf } from './model-read.ts';
 import { chatBody, userMessage } from './token-factory.ts';
 
 const START = Date.parse('2026-09-15T08:00:00Z');
@@ -101,6 +101,75 @@ describe('the order the model step sends in', () => {
 			userMessage(middle.lots[0].criteria),
 			userMessage(late.lots[0].criteria)
 		]);
+	});
+});
+
+describe('the readings file', () => {
+	it('counts each lot once, prices the tokens sent and checks quotes against their own texts', () => {
+		const textSha256 = 'a'.repeat(64);
+		const entry = {
+			notice: '610242-2026',
+			textSha256,
+			promptSha256: 'b'.repeat(64),
+			model: 'nvidia/nemotron-3-super-120b-a12b',
+			readOn: '2026-09-15',
+			responseId: 'chatcmpl-x',
+			usage: { input: 1183, output: 1615, reasoning: 0 },
+			items: [
+				{
+					criterion: 1,
+					kind: 'other' as const,
+					quote: 'Nachweis der Befähigung',
+					reading: 'r',
+					numberText: '',
+					period: '',
+					mandatory: true
+				},
+				{
+					criterion: 1,
+					kind: 'other' as const,
+					quote: 'not in the source text',
+					reading: 'r',
+					numberText: '',
+					period: '',
+					mandatory: true
+				},
+				{
+					criterion: 2,
+					kind: 'other' as const,
+					quote: 'Nachweis der Befähigung',
+					reading: 'r',
+					numberText: '',
+					period: '',
+					mandatory: true
+				}
+			]
+		};
+		const { file, run } = readingsFileOf({
+			runDate: '2026-09-15',
+			sends: 1,
+			tokens: { input: 1183, output: 1615, reasoning: 0 },
+			notices: [
+				{
+					notice: '610242-2026',
+					lots: [
+						{ lot: 'LOT-0001', status: 'read', textSha256 },
+						{ lot: 'LOT-0002', status: 'read', textSha256 },
+						{ lot: 'LOT-0003', status: 'not-read', reason: 'dry-run' },
+						{ lot: 'LOT-0004', status: 'no-criteria' }
+					]
+				}
+			],
+			readings: [{ entry, sources: ['Nachweis der Befähigung und Erlaubnis'], reused: false }]
+		});
+		expect(run).toMatchObject({
+			sends: 1,
+			lots: { withCriteria: 3, read: 2, reused: 0, notRead: 1 },
+			costUsd: '0.001808',
+			quotes: { verified: 1, rejected: 2 }
+		});
+		expect(file.run).toBe(run);
+		expect(file.readings).toEqual([entry]);
 	});
 });
 

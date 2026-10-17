@@ -20,7 +20,7 @@ import { buildSynthetic } from '../../test/fixtures/roles.ts';
 import { chatResponse, createStubProvider, syntheticReply } from '../../test/provider-stub.ts';
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
 import { readNotice } from '../ingest/read-notice.ts';
-import { ReadingsFileSchema } from '../snapshot/readings.ts';
+import { ReadingRunSchema, ReadingsFileSchema } from '../snapshot/readings.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { runCapture } from './run.ts';
 import { chatBody, userMessage } from './token-factory.ts';
@@ -180,6 +180,7 @@ describe('the command with the model step', () => {
 			quotes: { verified: 14, rejected: 0 }
 		});
 		expect(readings.run).toEqual(record.reading);
+		expect(ReadingRunSchema.parse(record.reading)).toEqual(record.reading);
 		expect(record.metered).toMatchObject({ cap: 5, attempts: 1, refusals: [] });
 		const traces = keyTraces(run);
 		expect(traces.found).toEqual([]);

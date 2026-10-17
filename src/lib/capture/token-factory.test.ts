@@ -1,9 +1,64 @@
+import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 import { readReplyFixture, replyContent } from '../../test/fixtures/replies.ts';
-import { chatBody, costUsd, MODEL_READ, readReply, repairBody } from './token-factory.ts';
+import { ReplyItemSchema } from '../snapshot/readings.ts';
+import {
+	CHAT_URL,
+	ChatCompletionSchema,
+	chatBody,
+	costUsd,
+	MODEL_READ,
+	promptSha256,
+	readReply,
+	repairBody,
+	RESPONSE_SCHEMA,
+	SYSTEM_PROMPT
+} from './token-factory.ts';
 
 const PRICES = MODEL_READ.prices;
 const TAB = String.fromCodePoint(9);
+const CHAT_FIXTURES = [
+	'de-610242-default',
+	'de-610242-thinking-off',
+	'fr-629755-default-tab',
+	'fr-629755-probe',
+	'nl-634398-super'
+];
+
+describe('the client constants', () => {
+	it('names the prompt by the SHA-256 of the system message spike 004 sent', () => {
+		const recorded = readReplyFixture('nl-634398-super').request as {
+			messages: { content: string }[];
+		};
+		const system = recorded.messages[0].content;
+		expect(`${SYSTEM_PROMPT}\n${JSON.stringify(RESPONSE_SCHEMA)}`).toBe(system);
+		expect(promptSha256).toBe(
+			createHash('sha256').update(Buffer.from(system, 'utf8')).digest('hex')
+		);
+		expect(CHAT_URL).toBe('https://api.tokenfactory.nebius.com/v1/chat/completions');
+	});
+
+	it('reads every recorded completion and keeps only the fields it uses', () => {
+		for (const name of CHAT_FIXTURES) {
+			const parsed = ChatCompletionSchema.parse(readReplyFixture(name).response);
+			expect(Object.keys(parsed).sort(), name).toEqual(['choices', 'id', 'usage']);
+		}
+		const response = readReplyFixture('de-610242-thinking-off').response as {
+			usage: Record<string, unknown>;
+		};
+		const fractional = { ...response, usage: { ...response.usage, prompt_tokens: 1183.5 } };
+		expect(ChatCompletionSchema.safeParse(fractional).success).toBe(false);
+		expect(ChatCompletionSchema.safeParse({ ...response, choices: [] }).success).toBe(false);
+	});
+
+	it('refuses an item with a key ModelItem lacks or a criterion below 1', () => {
+		const [item] = JSON.parse(replyContent('de-610242-thinking-off')).requirements;
+		expect(ReplyItemSchema.safeParse(item).success).toBe(true);
+		expect(ReplyItemSchema.safeParse({ ...item, note: 'x' }).success).toBe(false);
+		expect(ReplyItemSchema.safeParse({ ...item, criterion: 0 }).success).toBe(false);
+		expect(ReplyItemSchema.safeParse({ ...item, criterion: 1.5 }).success).toBe(false);
+	});
+});
 
 describe('the reply check', () => {
 	it('the French reply with a raw TAB parses once each TAB is a space', () => {
