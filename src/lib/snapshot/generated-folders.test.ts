@@ -378,6 +378,7 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		writeCapture(['609955-2026']);
 		expect(build().status).toBe(0);
 		expect(existsSync(join(out, '2026-01-02', 'readings'))).toBe(false);
+		expect(existsSync(join(out, '2026-01-02', 'reading-run.json'))).toBe(false);
 		const readings = {
 			schemaVersion: 1,
 			run: exampleRun(),
