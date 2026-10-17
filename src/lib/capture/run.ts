@@ -152,7 +152,8 @@ function stopIfInterrupted(deps: CaptureDeps): void {
 	if (deps.signal?.aborted) throw new Error(INTERRUPTED);
 }
 
-function publicationOrder(a: string, b: string): number {
+// Year, then running number: 99999-2026 comes before 610242-2026, which plain string order reverses.
+export function publicationOrder(a: string, b: string): number {
 	const [runningA, yearA] = a.split('-').map(Number);
 	const [runningB, yearB] = b.split('-').map(Number);
 	return yearA - yearB || runningA - runningB;

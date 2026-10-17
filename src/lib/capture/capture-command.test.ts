@@ -387,7 +387,7 @@ describe('which lots the model step sends', () => {
 
 describe('replies the model step cannot use', () => {
 	it('an invalid reply gets exactly one repair carrying its issues, then the lot is not read', async () => {
-		const cases = [
+		const cases: { script: CommandRun['providerScript']; issue: string; lot: string }[] = [
 			{
 				script: { 1: answerWith('not json'), 2: answerWith('still not json') },
 				issue: 'reply: not JSON',

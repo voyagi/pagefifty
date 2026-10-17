@@ -111,15 +111,39 @@ export function chatBody(criteria: readonly CriterionInput[]) {
 
 type ChatBody = ReturnType<typeof chatBody>;
 
+// The one retry a reply gets: the same request, the reply as the model gave it, and what was wrong.
+export function repairBody(
+	criteria: readonly CriterionInput[],
+	content: string,
+	issues: readonly string[]
+): ChatBody {
+	const body = chatBody(criteria);
+	const repair = [
+		'Your reply does not match the schema:',
+		...issues.map((issue) => `- ${issue}`),
+		'Answer again with JSON only, matching the schema.'
+	].join('\n');
+	return {
+		...body,
+		messages: [...body.messages, { role: 'assistant', content }, { role: 'user', content: repair }]
+	};
+}
+
 export type ReplyRead = { ok: true; items: ReplyItem[] } | { ok: false; issues: string[] };
 
 const issuePath = (path: readonly PropertyKey[]) =>
 	path.length === 0 ? 'reply' : path.map(String).join('.');
 
-export function readReply(content: string): ReplyRead {
+// Token Factory enforces no schema (spike 004 result 4), so a reply can hold a raw TAB copied from
+// the source inside a JSON string. A TAB between JSON tokens is whitespace too, so a space in its
+// place changes nothing else.
+export function readReply(content: string, finishReason: string | null = 'stop'): ReplyRead {
+	if (finishReason === 'length') {
+		return { ok: false, issues: ['finish_reason: length, the reply stopped at the token limit'] };
+	}
 	let json: unknown;
 	try {
-		json = JSON.parse(content);
+		json = JSON.parse(content.replaceAll('\t', ' '));
 	} catch {
 		return { ok: false, issues: ['reply: not JSON'] };
 	}
