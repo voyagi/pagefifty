@@ -107,6 +107,39 @@ export function relianceRestricted(texts: readonly string[]): boolean {
 	});
 }
 
+export type LotStatus =
+	| { readonly status: 'read'; readonly reading: LotReading }
+	| { readonly status: 'no-criteria' }
+	| { readonly status: 'not-read' }
+	| { readonly status: 'unlisted' };
+
+export interface NoticeReadingsLike {
+	readonly lots: readonly (
+		| { readonly lot: string; readonly status: 'read'; readonly textSha256: string }
+		| { readonly lot: string; readonly status: 'no-criteria' }
+		| { readonly lot: string; readonly status: 'not-read'; readonly reason: string }
+	)[];
+	readonly readings: readonly {
+		readonly textSha256: string;
+		readonly items: readonly ModelItem[];
+	}[];
+}
+
+// A lot listed as read whose text hash finds no stored reading reads as unread, never as read: a
+// broken readings file can withhold a comparison but never supply one.
+export function lotStatusOf(
+	lot: { readonly id: string; readonly criteria: readonly LotCriterion[] },
+	readings: NoticeReadingsLike | undefined
+): LotStatus {
+	const listed = readings?.lots.find((each) => each.lot === lot.id);
+	if (readings === undefined || listed === undefined) return { status: 'unlisted' };
+	if (listed.status !== 'read') return { status: listed.status };
+	const stored = readings.readings.find((each) => each.textSha256 === listed.textSha256);
+	return stored
+		? { status: 'read', reading: readLot({ criteria: lot.criteria, items: stored.items }) }
+		: { status: 'not-read' };
+}
+
 export interface LotCriterion {
 	readonly code: string;
 	readonly descriptions: readonly LangText[];

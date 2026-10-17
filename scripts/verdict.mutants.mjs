@@ -77,6 +77,18 @@ const MUTATIONS = [
     find: ' || lot.pointsToDocuments',
     repl: '',
   },
+  {
+    name: 'drop the cancel-intent overlay',
+    expect: 'every lot of a cancel-intent notice reads ASK FIRST cancel-intent, NO-GO included',
+    find: "\tif (lot.cancelIntent === true) return { verdict: 'ASK FIRST', reason: 'cancel-intent' };\n",
+    repl: '',
+  },
+  {
+    name: 'not-compared never applies',
+    expect: 'a not-compared criterion blocks GO',
+    find: "'not-compared': (lot) => lot.notCompared === true,",
+    repl: "'not-compared': () => false,",
+  },
 ];
 
 const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

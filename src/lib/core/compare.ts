@@ -9,6 +9,7 @@ import type { CountReading, MoneyReading, PeriodReading } from './figures.ts';
 import type {
 	CriterionReading,
 	LotReading,
+	LotStatus,
 	ModelItem,
 	VerifiedRequirement
 } from './lot-reading.ts';
@@ -409,6 +410,32 @@ export function decideCriterion(
 	return outcomeOf(requirements.length > 0 ? requirements : [decided('NOT_READ', 'nothing-read')]);
 }
 
+const UNREAD_LOT = { criteria: [], reservation: null } as const;
+
+// The one per-lot dispatch the browser verdict and the home figure share. A lot with no stored
+// reading keeps the phase 1 view (null), except that a buyer's intent to cancel still asks first;
+// a lot the readings do not list at all was never sent, so it stays the phase 1 view regardless.
+export function decideLotStatus(
+	status: LotStatus,
+	firm: FirmFacts | null,
+	context: LotContext
+): ReadLotDecision | null {
+	switch (status.status) {
+		case 'read':
+			return decideReadLot(status.reading, firm, context);
+		case 'no-criteria': {
+			const input = { ...toLotInput(context.coverage, []), cancelIntent: context.cancelIntent };
+			return { decision: decideLot(input), ...UNREAD_LOT };
+		}
+		case 'not-read':
+			return context.cancelIntent
+				? { decision: { verdict: 'ASK FIRST', reason: 'cancel-intent' }, ...UNREAD_LOT }
+				: null;
+		case 'unlisted':
+			return null;
+	}
+}
+
 export function decideReadLot(
 	reading: LotReading,
 	firm: FirmFacts | null,
@@ -423,7 +450,11 @@ export function decideReadLot(
 	const reservation = context.reserved === 'none' ? null : withheld('reserved');
 	const notCompared = reservation !== null || criteria.some((outcome) => outcome.notCompared);
 	return {
-		decision: decideLot({ ...toLotInput(context.coverage, states), notCompared }),
+		decision: decideLot({
+			...toLotInput(context.coverage, states),
+			notCompared,
+			cancelIntent: context.cancelIntent
+		}),
 		criteria,
 		reservation
 	};
