@@ -83,7 +83,10 @@ export interface ReplyRequirement {
 	criterion: number;
 	kind: string;
 	quote: string;
+	reading: string;
 	numberText: string;
+	period: string;
+	mandatory: boolean;
 }
 
 // The capture swaps each raw TAB for a space before parsing (SPEC R1): the French default reply
