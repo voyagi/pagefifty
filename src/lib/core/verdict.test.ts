@@ -24,6 +24,7 @@ import {
 // of silently moving the oracle along with the code.
 const MOST_SEVERE_FIRST = ['NO-GO', 'PARTNER NEEDED', 'ASK FIRST', 'GO'] as const;
 const REASON_PRECEDENCE = [
+	'cancel-intent',
 	'route-unsettled',
 	'profile-field-missing',
 	'not-read',
@@ -77,7 +78,9 @@ function everyLotAround(states: readonly CriterionState[]): LotInput[] {
 function tableDecision(input: LotInput): LotDecision {
 	const any = (state: CriterionState) => input.states.includes(state);
 	const fact = (name: CoverageFact) => input.facts.includes(name);
+	const cancelled = input.cancelIntent === true;
 	const reasons: Record<AskFirstReason, boolean> = {
+		'cancel-intent': cancelled,
 		'route-unsettled': any('SHORT_ROUTE_UNSETTLED'),
 		'profile-field-missing': any('PROFILE_GAP'),
 		'not-read': any('NOT_READ'),
@@ -86,11 +89,13 @@ function tableDecision(input: LotInput): LotDecision {
 			fact('SOURCE_UNREAD') || !input.noticeIsOnlySource || input.pointsToDocuments,
 		'no-criteria-in-notice': fact('NO_CRITERIA') || input.states.length === 0
 	};
+	// The buyer's intent to cancel overlays every row (DATA-02): no reading of the clauses stands.
 	const rows: Record<LotVerdict, boolean> = {
-		'NO-GO': any('SHORT_FIXED'),
-		'PARTNER NEEDED': any('SHORT_BORROWABLE') && !any('SHORT_FIXED'),
+		'NO-GO': any('SHORT_FIXED') && !cancelled,
+		'PARTNER NEEDED': any('SHORT_BORROWABLE') && !any('SHORT_FIXED') && !cancelled,
 		'ASK FIRST': Object.values(reasons).some(Boolean),
 		GO:
+			!cancelled &&
 			input.noticeIsOnlySource &&
 			input.states.length > 0 &&
 			input.states.every((state) => READ_AND_MET.includes(state)) &&
@@ -169,9 +174,10 @@ describe('closed names', () => {
 		});
 	});
 
-	it('ASK_FIRST_REASON_LABELS has exactly the six reasons, each with its display words', () => {
+	it('ASK_FIRST_REASON_LABELS has exactly the seven reasons, each with its display words', () => {
 		expect(Object.keys(ASK_FIRST_REASON_LABELS).sort()).toEqual([...REASON_PRECEDENCE].sort());
 		expect(ASK_FIRST_REASON_LABELS).toEqual({
+			'cancel-intent': 'The buyer intends to cancel',
 			'route-unsettled': 'Route not settled',
 			'profile-field-missing': 'A profile field is missing',
 			'not-read': 'Not read',
@@ -371,6 +377,74 @@ describe('decideLot', () => {
 		'gives the same decision, reason included, for any order of the same criteria',
 		([states, shuffled], source) => {
 			expect(decideLot(lot(shuffled, source))).toEqual(decideLot(lot(states, source)));
+		}
+	);
+
+	it('every lot of a cancel-intent notice reads ASK FIRST cancel-intent, NO-GO included', () => {
+		for (const states of [
+			['SHORT_FIXED'],
+			['SHORT_BORROWABLE'],
+			['PROFILE_GAP'],
+			['MET'],
+			[]
+		] as const) {
+			for (const input of everyLotAround(states)) {
+				for (const notCompared of [false, true]) {
+					expect(
+						decideLot({ ...input, cancelIntent: true, notCompared }),
+						JSON.stringify(input)
+					).toEqual({ verdict: 'ASK FIRST', reason: 'cancel-intent' });
+				}
+			}
+		}
+	});
+
+	it('a not-compared criterion blocks GO', () => {
+		expect(decideLot(lot(['MET']))).toEqual({ verdict: 'GO' });
+		expect(decideLot(lot(['MET', 'INFO'], { notCompared: true }))).toEqual({
+			verdict: 'ASK FIRST',
+			reason: 'not-compared'
+		});
+	});
+
+	it('not-compared gives way to route-unsettled, profile-field-missing and not-read', () => {
+		for (const [state, reason] of [
+			['SHORT_ROUTE_UNSETTLED', 'route-unsettled'],
+			['PROFILE_GAP', 'profile-field-missing'],
+			['NOT_READ', 'not-read']
+		] as const) {
+			expect(decideLot(lot(['MET', state], { notCompared: true }))).toEqual({
+				verdict: 'ASK FIRST',
+				reason
+			});
+		}
+		expect(
+			decideLot(
+				lot(['MET'], { notCompared: true, facts: ['SOURCE_UNREAD'], noticeIsOnlySource: false })
+			)
+		).toEqual({ verdict: 'ASK FIRST', reason: 'not-compared' });
+	});
+
+	it('a lot input without the new fields decides as before', () => {
+		let cases = 0;
+		for (const states of STATE_MULTISETS) {
+			for (const input of everyLotAround(states)) {
+				const withFields = { ...input, cancelIntent: false, notCompared: false };
+				expect(decideLot(withFields), JSON.stringify(input)).toEqual(decideLot(input));
+				expect(decideLot(input), JSON.stringify(input)).toEqual(tableDecision(input));
+				cases++;
+			}
+		}
+		expect(cases).toBe(2640);
+	});
+
+	test.prop([fc.array(stateArb, { maxLength: 6 }), sourceArb, fc.boolean()])(
+		'cancelIntent true always gives ASK FIRST cancel-intent',
+		(states, source, notCompared) => {
+			expect(decideLot(lot(states, { ...source, cancelIntent: true, notCompared }))).toEqual({
+				verdict: 'ASK FIRST',
+				reason: 'cancel-intent'
+			});
 		}
 	);
 });

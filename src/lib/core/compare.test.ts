@@ -10,9 +10,16 @@ import { replyRequirements } from '../../test/fixtures/replies';
 import { summarizeLot } from './coverage-facts';
 import { displayedDeadline } from './deadline';
 import { familyOf, type CriterionFamily } from './families';
-import { readLot, type LotCriterion, type LotReading, type ModelItem } from './lot-reading';
+import {
+	readLot,
+	type LotCriterion,
+	type LotReading,
+	type LotStatus,
+	type ModelItem
+} from './lot-reading';
 import {
 	decideCriterion,
+	decideLotStatus,
 	decideReadLot,
 	type CriterionOutcome,
 	type FirmFacts,
@@ -101,6 +108,59 @@ describe('the two lots spike 004 read, decided for the demo firm', () => {
 			{ state: undefined, notCompared: true, why: ['family'] }
 		]);
 		expect(decided.decision).toEqual({ verdict: 'ASK FIRST', reason: 'route-unsettled' });
+	});
+});
+
+describe('the buyer intent to cancel and the lot reading status', () => {
+	const { record, lot } = trackedLot('610242-2026', 'LOT-0000');
+	const reading = readLot({
+		criteria: lot.criteria,
+		items: replyRequirements('de-610242-thinking-off')
+	});
+	const context = contextOf(record, lot);
+	const cancelled = { ...context, cancelIntent: true };
+	const askCancel = { verdict: 'ASK FIRST', reason: 'cancel-intent' };
+
+	it('a cancel-intent lot read for the demo firm is ASK FIRST cancel-intent', () => {
+		expect(decideReadLot(reading, DEMO_PROFILE, context).decision.verdict).toBe('ASK FIRST');
+		const decidedLot = decideReadLot(reading, DEMO_PROFILE, cancelled);
+		expect(decidedLot.decision).toEqual(askCancel);
+		expect(decidedLot.criteria).toEqual(decideReadLot(reading, DEMO_PROFILE, context).criteria);
+	});
+
+	it('decideLotStatus decides each reading status', () => {
+		const read: LotStatus = { status: 'read', reading };
+		expect(decideLotStatus(read, DEMO_PROFILE, context)).toEqual(
+			decideReadLot(reading, DEMO_PROFILE, context)
+		);
+		expect(decideLotStatus(read, null, cancelled)?.decision).toEqual(askCancel);
+
+		const empty = { criteriaCount: 0, sources: ['epo-notice'], pointsToDocuments: false };
+		const noCriteria: LotStatus = { status: 'no-criteria' };
+		expect(decideLotStatus(noCriteria, DEMO_PROFILE, { ...context, coverage: empty })).toEqual({
+			decision: { verdict: 'ASK FIRST', reason: 'no-criteria-in-notice' },
+			criteria: [],
+			reservation: null
+		});
+		const inDocuments = { ...empty, sources: ['epo-procurement-document'] };
+		expect(
+			decideLotStatus(noCriteria, DEMO_PROFILE, { ...context, coverage: inDocuments })?.decision
+		).toEqual({ verdict: 'ASK FIRST', reason: 'criteria-in-documents' });
+		expect(
+			decideLotStatus(noCriteria, DEMO_PROFILE, { ...cancelled, coverage: empty })?.decision
+		).toEqual(askCancel);
+
+		const notRead: LotStatus = { status: 'not-read' };
+		expect(decideLotStatus(notRead, DEMO_PROFILE, context)).toBeNull();
+		expect(decideLotStatus(notRead, DEMO_PROFILE, cancelled)).toEqual({
+			decision: askCancel,
+			criteria: [],
+			reservation: null
+		});
+
+		const unlisted: LotStatus = { status: 'unlisted' };
+		expect(decideLotStatus(unlisted, DEMO_PROFILE, context)).toBeNull();
+		expect(decideLotStatus(unlisted, DEMO_PROFILE, cancelled)).toBeNull();
 	});
 });
 

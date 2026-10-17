@@ -8,9 +8,11 @@ import { normalizeCriterionText } from './document-pointer';
 import { criterionText } from './quote';
 import {
 	RELIANCE_PHRASES,
+	lotStatusOf,
 	readLot,
 	relianceRestricted,
 	type ModelItem,
+	type NoticeReadingsLike,
 	type RejectedItem
 } from './lot-reading';
 
@@ -172,5 +174,36 @@ describe('relianceRestricted', () => {
 		const allowing = 'Die Mitarbeitenden können auch per Eignungsleihe nachgewiesen werden.';
 		expect(relianceRestricted([allowing])).toBe(false);
 		expect(relianceRestricted([])).toBe(false);
+	});
+});
+
+describe('lotStatusOf', () => {
+	it('lotStatusOf reads a lot status from its notice readings', () => {
+		const german = capturedLot('2026-09-15', '610242-2026', 'LOT-0000');
+		const items = replyRequirements('de-610242-thinking-off');
+		const readings = (lot: NoticeReadingsLike['lots'][number]): NoticeReadingsLike => ({
+			lots: [{ lot: 'LOT-0009', status: 'no-criteria' }, lot],
+			readings: [
+				{ textSha256: 'other', items: [] },
+				{ textSha256: 'sha-of-lot', items }
+			]
+		});
+
+		expect(lotStatusOf(german, undefined)).toEqual({ status: 'unlisted' });
+		expect(lotStatusOf(german, readings({ lot: 'LOT-0001', status: 'no-criteria' }))).toEqual({
+			status: 'unlisted'
+		});
+		expect(
+			lotStatusOf(german, readings({ lot: 'LOT-0000', status: 'read', textSha256: 'sha-of-lot' }))
+		).toEqual({ status: 'read', reading: readLot({ criteria: german.criteria, items }) });
+		expect(
+			lotStatusOf(german, readings({ lot: 'LOT-0000', status: 'read', textSha256: 'no-such-sha' }))
+		).toEqual({ status: 'not-read' });
+		expect(lotStatusOf(german, readings({ lot: 'LOT-0000', status: 'no-criteria' }))).toEqual({
+			status: 'no-criteria'
+		});
+		expect(
+			lotStatusOf(german, readings({ lot: 'LOT-0000', status: 'not-read', reason: 'cap reached' }))
+		).toEqual({ status: 'not-read' });
 	});
 });
