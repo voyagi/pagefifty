@@ -4,10 +4,12 @@
 import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Modes } from '../server/transport-mode.ts';
+import type { ReadingRun } from '../snapshot/readings.ts';
 import { errorCode, writeJsonFile } from './capture-folder.ts';
 import type { MeteredRecord } from './metered.ts';
 
-const RUN_RECORD_VERSION = 1;
+// 2 adds the reading block.
+const RUN_RECORD_VERSION = 2;
 
 interface NoticeReason {
 	notice: string;
@@ -49,6 +51,35 @@ interface RunRecordParts {
 		sameProcedure: readonly (readonly string[])[];
 	};
 	metered: MeteredRecord;
+	// The model step's block; absent or null when no model step ran.
+	reading?: ReadingRun | null;
+}
+
+function readingBlock(reading: ReadingRun | null | undefined) {
+	if (reading === null || reading === undefined) return null;
+	const { prices, lots, tokens, quotes } = reading;
+	return {
+		model: reading.model,
+		provider: reading.provider,
+		region: reading.region,
+		thinking: reading.thinking,
+		runDate: reading.runDate,
+		prices: {
+			inputUsdPerMillion: prices.inputUsdPerMillion,
+			outputUsdPerMillion: prices.outputUsdPerMillion,
+			listedOn: prices.listedOn
+		},
+		lots: {
+			withCriteria: lots.withCriteria,
+			read: lots.read,
+			reused: lots.reused,
+			notRead: lots.notRead
+		},
+		sends: reading.sends,
+		tokens: { input: tokens.input, output: tokens.output, reasoning: tokens.reasoning },
+		costUsd: reading.costUsd,
+		quotes: { verified: quotes.verified, rejected: quotes.rejected }
+	};
 }
 
 // Every key is written out rather than spread, so a part built in another order still lands in
@@ -107,7 +138,8 @@ export function buildRunRecord(parts: RunRecordParts) {
 				id,
 				usage
 			}))
-		}
+		},
+		reading: readingBlock(parts.reading)
 	};
 }
 

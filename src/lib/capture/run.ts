@@ -9,6 +9,7 @@ import { readNotice, MAX_NOTICE_BYTES } from '../ingest/read-notice.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
 import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot/index-row.ts';
 import { resolveModes, type Modes } from '../server/transport-mode.ts';
+import type { ReadingRun } from '../snapshot/readings.ts';
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
@@ -30,13 +31,22 @@ import { createTedClient, type Clock, type TedClient } from './ted-client.ts';
 import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from './ted-search.ts';
 import { createXmlCache } from './xml-cache.ts';
 
+// What a step hands back for the published folder: a file to write into it (none when it has nothing
+// to publish) and its block of run.json.
+export interface StepOutput {
+	file: string | null;
+	value: unknown;
+	recordKey: 'reading';
+	record: ReadingRun;
+}
+
 // The seam phase 2's model read and Tavily search plug into. A step reaches a provider only through
 // gate.attempt; its context never holds a key (the gate does), so a call that skips the gate has
 // none to send.
 export type MeteredStep = (context: {
 	gate: MeteredGate;
 	records: readonly NoticeRecord[];
-}) => Promise<void>;
+}) => Promise<StepOutput | void>;
 
 export interface CaptureDeps {
 	root: string;
@@ -107,6 +117,7 @@ interface Run {
 	cacheHits: number;
 	failed: Failure[];
 	failedHits: FailedHit[];
+	outputs: StepOutput[];
 	selection?: Selection;
 	end?: RunEnd;
 	releaseLock?: () => void;
@@ -300,7 +311,8 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 			failed: run.failed,
 			sameProcedure: selection?.sameProcedure ?? []
 		},
-		metered: run.gate.record()
+		metered: run.gate.record(),
+		reading: run.outputs.find((output) => output.recordKey === 'reading')?.record ?? null
 	});
 }
 
@@ -386,6 +398,10 @@ async function stageAndPublish(
 	rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
 	writeListing(staging, run, selection);
 	writeRecords(staging, run, selection, run.staged);
+	// Before the checks, so the contact check reads what a step publishes too.
+	for (const { file, value } of run.outputs) {
+		if (file !== null) writeJsonFile(join(staging, file), value);
+	}
 	const problems = stagedProblems(staging, run, selection);
 	if (problems.length > 0) {
 		rmSync(staging, { recursive: true, force: true, maxRetries: 5 });
@@ -482,7 +498,8 @@ async function runMeteredSteps(
 	const gate = failSafeGate(run.gate, failures);
 	for (const step of deps.meteredSteps ?? []) {
 		try {
-			await step({ gate, records });
+			const output = await step({ gate, records });
+			if (output) run.outputs.push(output);
 		} catch {
 			stopIfInterrupted(deps);
 			const reason = failures.at(-1) ?? STEP_FAILED;
@@ -602,7 +619,8 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		searchTotal: 0,
 		cacheHits: 0,
 		failed: [],
-		failedHits: []
+		failedHits: [],
+		outputs: []
 	};
 	// Every run that got this far leaves a record, a thrown one included: in phase 2 it is the
 	// account of a live run's paid attempts.
