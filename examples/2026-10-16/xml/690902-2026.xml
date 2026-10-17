@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.hamburgwasser.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Hamburger Stadtentwässerung AöR</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Billhorner Deich 2</cbc:StreetName>
+                           <cbc:CityName>Hamburg</cbc:CityName>
+                           <cbc:PostalZone>20539</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE173526990</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer bei der Finanzbehörde Hamburg</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Adolphsplatz 3-5</cbc:StreetName>
+                           <cbc:CityName>Hamburg</cbc:CityName>
+                           <cbc:PostalZone>20457</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>02000000 KFB0000001 20</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.hamburgwasser.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Submissionsstelle der Hamburger Stadtentwässerung AöR</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Billhorner Deich 2</cbc:StreetName>
+                           <cbc:CityName>Hamburg</cbc:CityName>
+                           <cbc:PostalZone>20539</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>DE173526990</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00690902-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">194/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">9cf1399e-ce1c-41f3-b1d5-15dea3a3b0f6</cbc:ID>
+   <cbc:ContractFolderID>1dd96f8a-9c15-4bb3-ab75-5b7126b46180</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-06+02:00</cbc:IssueDate>
+   <cbc:IssueTime>11:56:41+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-06+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://vergabe.hamburgwasser.de/NetServer/</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">body-pl-cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">env-pro</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zusätzlich finden sämtliche Ausschlussgründe gemäß
+§ 48 VgV Anwendung . Darüber hinaus geltende
+Ausschlussgründe und Eignungskriterien sind den
+Vergabeunterlagen zu entnehmen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>B43_HSE-2026-210-0014</cbc:ID>
+      <cbc:Name languageID="DEU">Einführung eines unternehmensweiten PPS- und Ressourcenmanagementtools</cbc:Name>
+      <cbc:Description languageID="DEU">Europaweite Ausschreibung zur "Einführung einer geeigneten Softwarelösung zur Unterstützung der drei Anforderungscluster Projektportfoliosteuerung, Projektmanagement sowie des Ressourcenmanagement im Unternehmen"</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Die Registrierung des Bieters für die Ausschreibung sowie das Herunterladen der
+Ausschreibungsunterlagen im BieterCockpit des Ausschreibenden muss zwingend bis spätestens vor Ablauf des Submissionstermins erfolgen. Andernfalls ist keine Angebotsabgabe möglich.
+Etwaige Fragen zu den Ausschreibungsunterlagen sollen unverzüglich - spätestens bis eine Woche vor Ablauf der Angebotsfrist gestellt werden, damit die noch rechtzeitig beantwortet werden können.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72500000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">48300000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>Billhorner Deich 2</cbc:StreetName>
+            <cbc:CityName>Hamburg</cbc:CityName>
+            <cbc:PostalZone>20539</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Nachweis DIN EN ISO 9001 oder
+gleichwertig - bitte beifügen!</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Siehe notwendige Angaben in der Wertungstabelle (Anhang zur Leistungsbescheibung).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einreichung von mindestens drei Projektreferenzen. Näheres ist der Datei "Wertungstabelle als Anhang zur Leistungsbeschreibung..." zu entnehmen und dort näher auszuführen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Bitte geben Sie als Eigenerklärung an, ob
+Sie Teile des Gesamtauftrages als
+Unteraufträge an Nachunternehmer zu
+vergeben beabsichtigen. Nachunternehmer
+haben eine Verpflichtungserklärung
+beizufügen, nach der sie zur Erbringung der
+Leistungen im Auftragsfall bereit sind.
+Beabsichtigt der Bieter, Teile der Leistung
+von Nachunternehmern ausführen zu
+lassen, muss er Art und Umfang der
+jeweiligen Leistungen angeben.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sche-qu-cert-indep</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Nachweis DIN EN ISO 9001 oder
+gleichwertig - bitte beifügen! Sofern Ihr Unternehmen über einen gültigen
+Nachweis über die Anwendung und/oder
+Zertifizierung eines
+Qualitätssicherungssystems nach DIN EN
+ISO 9001 oder gleichwertig verfügen, ist
+dieser als Anlage beizufügen.
+Alternativ bestätigen Sie, dass ein eigenes
+Qualitätsmanagementsystem in Ihrem
+Unternehmen etabliert ist.
+Erstellen sie bitte dafür eine max. 2-seitige
+Eigenerklärung, in der sie ausführen welche
+Maßnahmen zur qualitativen Sicherung der
+Arbeitsprozesse in Ihrem Unternehmen
+bestehen. Gehen Sie bitte insbesondere auf
+die folgenden Aspekte ein: Umgang mit
+Fehlern, Kundenorientierung,
+Verantwortlichkeit der Führung, Einbeziehung der beteiligten Personen,
+prozessorientierte Systemabläufe und
+systemorientierter Managementansatz ),
+kontinuierliche Verbesserung.
+Sofern bestätigende Zertifikate vorliegen
+sind diese beizufügen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Datenschutz und Informationssicherheit dass die nachfolgenden Aspekte zwingend
+eingehalten werden und fügen Sie die
+geforderten Nachweise dem Angebot bei.
+Bitte beachten Sie, dass Nachweise
+ebenfalls von evtl.
+Nachunternehmern dem Angebot beigefügt
+werden müssen.
+a) Der Auftragnehmer, sowie ggf.
+eingesetzte Nachunternehmer, müssen
+eine gültige ISO27001-Zertifizierung (oder
+gleichwertig) vorweisen können. Diese ist
+beizulegen. Der Zertifizierungsprozesses
+für die ISO 27001 muss nachgewiesen
+werden.
+b) Der Auftragnehmer, sowie ggf.
+eingesetzte Nachunternehmer, müssen ein
+mit der DSGVO konformes
+Datenschutzmanagementsystem betreiben.
+Löschfristen müssen schriftlich festgelegt
+und nach den Vorgaben der DSGVO in das
+Verzeichnis von Verarbeitungstätigkeiten
+gemäß Art. 30 DSGVO aufgenommen
+werden.
+c) Der Auftragnehmer, sowie
+ggf.eingesetzte Nachunternehmer, muss geeignete technische und organisatorische
+Maßnahmen (TOM) sicherstellen, die dem
+Stand der Technik entsprechen und
+konform mit Gesetzen und Vorgaben, z.B.
+der DSGVO, sind.
+d) Die Datenverarbeitung muss
+ausschließlich innerhalb des Europäischen
+Wirtschaftsraumes (EWR) oder in Ländern
+mit einem vorliegenden
+Angemessenheitsbeschluss gemäß Art. 45
+DSGVO stattfinden.
+e) Der Auftragnehmer muss ein
+Datensicherungskonzept für die von ihm
+betriebenen Lösungen vorlegen, das die zu
+erbringenden Datensicherungs- und
+Wiederherstellungsleistungen
+wiederspiegelt. Dieses muss die Verfahren
+und Maßnahmen zur Sicherung,
+Aufbewahrung und Wiederherstellung von
+Daten nachvollziehbar beschreiben.
+f) Der Auftragnehmer muss sicherstellen,
+dass bei der Auswertung der Daten
+Verfahren eingesetzt werden, die dem
+Stand der Technik (siehe ITGrundschutz-
+Kompendium BSI OPS.1.1.5
+Protokollierung) entsprechen und eine
+durchgängige Nachvollziehbarkeit sowie
+Rekonstruktion von Angriffen ermöglichen.
+g) Bei Notwendigkeit der Verwendung von
+Servern des Dienstleisters müssen die
+Daten innerhalb der Europäischen Union
+verarbeitet und gespeichert werden. Die
+Serverstandorte sind anzugeben und
+vertraglich zuzusichern.
+h) Es werden direkte
+Ansprechpartner:innen des Auftragnehmers
+für Sicherheitsfragen angegeben.
+Der Auftragnehmer MUSS geeignete
+Ansprechpartner für sicherheitsrelevante
+Ereignisse definieren.
+i) Der Auftragnehmer muss
+Sicherheitslücken und entstehende
+Inkompatibilitäten mit abhängigen
+Komponenten identifizieren, den
+Auftraggeber informieren und unverzüglich
+Abhilfe bereitstellen. Ein Prozess muss festgelegt sein, der den Informationsfluss
+bei Sicherheitsvorfällen sicherstellt.
+k) Der Auftragnehmer betreibt die Lösung
+und muss Rückfall- Lösungen erarbeiten,
+bevor Änderungen durchgeführt werden.
+Bei größeren, sicherheitsrelevanten
+Änderungen muss das
+Informationssicherheitsmanagement des
+Auftraggebers schon im Vorfeld beteiligt
+werden.
+l) Der Auftragnehmer muss in seiner
+Lösung Transport Layer Security (TLS) in
+einer Version &gt;1.1 (bevorzugt 1.3)
+unterstützen. Unsichere Versionen von TLS
+sind zu deaktivieren. Dabei muss die
+TR02102-2 des BSI zugrunde gelegt
+werden. Der Auftragnehmer unterstützt in
+seiner Lösung den
+Sicherheitsmechanismus HTTP Strict
+Transport Security (HSTS) gemäß RFC
+6797.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-proc</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Datenverarbeitung, Protokollierung,
+Revisionssicherheit, Datensicherung
+und -wiederherstellung Die Auftraggeber bleiben jederzeit
+Eigentümer der Daten.
+Der Auftragnehmer muss in seiner Lösung
+die für Protokollierungsdaten gesetzlich
+vorgeschriebenen Regelungen
+berücksichtigen und im Konzept
+dokumentieren.
+Protokolle müssen auswertbar,
+nachvollziehbar und revisionssicher
+gespeichert werden. Eine strukturierte
+Analyse und Auswertung der Protokolldaten
+muss möglich sein. Der Auftragnehmer
+muss in seiner Lösung die für
+Protokollierungsdaten gesetzlich
+vorgeschriebenen Regelungen
+berücksichtigen und im Konzept
+dokumentieren.
+Die Lösung muss ein Datensicherungs- und
+Wiederherstellungskonzept
+(Backup/Recovery) bereitstellen. Die
+Wiederherstellung muss vollständig und
+innerhalb definierter technischer Parameter
+(z. B. Datenintegrität) möglich sein.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Haftpflichtversicherung:
+1.	Der Auftragnehmer hat für die Dauer des Vertrags Haftpflichtversicherungen mit Deckung der gesetzlichen Haftpflicht für ihn als Versicherungsnehmer mit folgenden Mindestdeckungen nachzuweisen: 
+•	Betriebshaftpflicht-Versicherung 
+Für Personen-, Sach- und daraus resultierende Vermögensschäden EUR 5.000.000 je Versicherungsfall 
+
+•	IT-Berufshaftpflicht-Versicherung mit einer Mindestdeckungssumme für Vermögensschäden in Höhe von EUR 500.000,- 
+oder eine vergleichbare Vermögensschadenhaftpflicht-Versicherung für (reine) Vermögensschäden in Höhe von EUR 500.000 je Versicherungsfall.
+Alle Deckungssummen sind mindestens 2-fach maximiert. 
+2.	Das Bestehen der Versicherungsdeckungen ist durch Vorlage einer Erklärung des Versicherers mit Nennung des Risikos (Tätigkeitsfeld) und der Deckungssummen erstmalig unaufgefordert binnen eines Monats nach Zuschlagserteilung nachzuweisen und dann während der gesamten Vertragslaufzeit jede Änderung der Versicherungsverhältnisse, die sich auf Art, Umfang oder Bestand des Versicherungsschutzes auswirkt, unverzüglich und unaufgefordert gegenüber dem Auftraggeber anzuzeigen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Nachweis Creditreform-Auskunft oder
+gleichwertig - bitte beifügen!</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Handelsregisterauszug - bitte beifügen!
+
+Bitte fügen Sie einen aktuellen Nachweis
+über die Eintragung im Berufs- und
+Handelsregister bei (nicht älter als 6
+Monate).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.hamburgwasser.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a03388f7e4-5bef8b6339aba9aa</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der Auftraggeber behält sich die Nachforderung von fehlenden, unvollständigen oder fehlhaften Unterlagen unter Einhaltung von § 56 VgV nach eigenem Ermessen vor.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>60.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Funktionalität</cbc:Name>
+                  <cbc:Description languageID="DEU">Bitte reichen Sie mit Ihren Angeboten
+Ihren "Proof of Concept" (Darstellung
+der Funktionalitäten + Erläuterung
+Umsetzung des Projekts), max. 5 A4
+Seiten (Arial Schriftgröße 10) ein.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>40.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Siehe Preisblatt</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.hamburgwasser.de/NetServer/</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Nachprüfungsanträge sind schriftlich an das Postfach der Finanzbehörde:
+Postfach 30 17 41
+20306 Hamburg
+
+und zusätzlich per E-Mail (unterschriebener Nachprüfungsantrag als PDF-Dokument im Anhang) an das Funktionspostfach [removed]
+zu richten.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-09+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Einführung eines unternehmensweiten PPS- und Ressourcenmanagementtools</cbc:Name>
+         <cbc:Description languageID="DEU">Die Einkaufsgemeinschaft HAMBURG WASSER, bestehend aus den Unternehmen 
+Hamburger Stadtentwässerung AöR (HSE) und der Hamburger Wasserwerke GmbH (HWW)  schreibt unter der Federführung der HSE vorgenannte Leistung aus. 
+Grundlaufzeit des Vertrages = 48 Monate. Maximale Vertragslaufzeit = 96 Monate. Nach Ablauf von 48 Monaten sind die Auftraggeber jederzeit berechtigt, den Vertrag mit einer Frist von 6 Monaten zum Ende eines Kalendermonats zu kündigen.
+
+Ausgangssituation: Aktuell gibt es bei HAMBURG WASSER (Gleichordnungskonzern der Kerngesellschaften HWW und HSE) kein zentrales Tool für Projekt-, Ressourcenmanagement &amp; Projektportfoliosteuerung. In den einzelnen Bereichen werden Excel und ähnliche Tools dafür als Hilfsmittel eingesetzt. Mit der Einführung einer zentralen Projektportfoliosteuerung bei HAMBURG WASSER ist der Einsatz einer Software unabdingbar und zwingend für den Erfolg funktionierender Prozesse. Das einzuführende Werkzeug muss einfach zu bedienen sein und den Anwendern eine gute Übersicht über ihre Aufgaben und den aktuellen Stand der jeweiligen Portfolios, Projekte, Budgetauslastungen und Ressour-cenauslastung geben.
+Die Lösung soll Transparenz über laufende und geplante Projekte schaffen, eine priorisierte Steuerung des Projektportfolios ermöglichen und eine effiziente Planung und Auslastung von Ressourcen sicherstellen.
+
+Zielbild: Ziel ist die betriebsbereite Einrichtung der Software gemäß den vereinbarten funktionalen Anforderungen unter größtmöglicher Nutzung von Standardfunktionen der Software, um Wartbarkeit, Updatefähigkeit und Zukunftssicherheit sicherzustellen.
+
+Erwarteter Leistungsumfang: Einrichtung, Konfiguration und Initialbetrieb der Software.
+Nach Bereitstellung der Software ist eine initiale Einrichtung und Konfiguration erforderlich, um den fachlichen und organisatorischen Anforderungen der Auftraggeber gerecht zu werden. Die Auftraggeber stellen hierfür eine Projektleitung zur Verfügung, die die Anforderungen fachlich vertritt, priorisiert und freigibt.
+Der Auftragnehmer übernimmt die Verantwortung für die fachlich‑technische Konfiguration der Software in enger Abstimmung mit der Projektleitung der Auftraggeber.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72500000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48300000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>Billhorner Deich 2</cbc:StreetName>
+               <cbc:CityName>Hamburg</cbc:CityName>
+               <cbc:PostalZone>20539</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">96</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

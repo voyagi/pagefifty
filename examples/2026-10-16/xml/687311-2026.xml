@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>2f3aab71-0042-4914-aded-c0c5aaa5ceae-01</efbc:ChangedNoticeIdentifier>
+                  <efac:Change>
+                     <efac:ChangedSection>
+                        <efbc:ChangedSectionIdentifier>LOT-0000</efbc:ChangedSectionIdentifier>
+                     </efac:ChangedSection>
+                  </efac:Change>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">cor-buy</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Änderung:
+IT_012-2026_Rahmenvereinbarung_V2
+IT_012-2026_Anlage_2_Kriterienkatalog_V2
+IT_012-2026_Anlage_3_Preisblatt_V2
+IT_012-2026_Anlage_6_Mindestarbeits- und Ausführungsbedingungen_V2
+IT_012-2026_Anlage_1b_Einzelarbeitnehmerüberlassungsvertrag_V2
+Fristverlängerung
+Beantwortung Bieteranfragen 12 bis 86</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.dvz-mv.de/Kompetenzen/Beschaffung-und-Vergabe</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Lübecker Straße 283</cbc:StreetName>
+                           <cbc:CityName>Schwerin</cbc:CityName>
+                           <cbc:PostalZone>19059</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>13-X19210004000-80</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.mv-regierung.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammern beim Ministerium für Wirtschaft, Infrastruktur, Tourismus und Arbeit Mecklenburg-Vorpommern</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Johannes-Stelling Straße 14</cbc:StreetName>
+                           <cbc:CityName>Schwerin</cbc:CityName>
+                           <cbc:PostalZone>19053</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>VK M-V</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00687311-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">193/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-06+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">7b59d0ed-979b-4b7c-9ed4-7d89d7d6eadb</cbc:ID>
+   <cbc:ContractFolderID>8cb830a4-e08f-4d46-8b47-6c2eec743f2f</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-02+02:00</cbc:IssueDate>
+   <cbc:IssueTime>15:38:48+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-02+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Ausschlussgründe nach §§ 123, 124 und 125 GWB
+Anhang 5 Punkt 1.1 - Eigenerklärung zu Ausschlussgründen
+nach §§ 123, 124 GWB
+Anhang 5 Punkt 1.2 - Erklärung zur Selbstreinigung gemäß 
+§125 GWB
+
+Mindestarbeits- und Ausführungsbedingungen (Anlage 6 zur
+Rahmenvereinbarung)
+Anlage 6 Punkt 2.1 - Verpflichtungserklärung zum Tariftreue- und
+Vergabegesetz Mecklenburg-Vorpommern (TVgG M-V) vom
+18.12.2023
+Anlage 6 Punkt 2.2 - Erklärung zur Einhaltung der ILO-Kernarbeitsnormen
+Anlage 6 Punkt 2.3 - Eigenerklärung zum Nichtvorliegen
+Russlandbezug</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>IT 012-2026</cbc:ID>
+      <cbc:Name languageID="DEU">Rahmenvereinbarung über Java-Entwicklung</cbc:Name>
+      <cbc:Description languageID="DEU">Die DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH (Auftraggeber) beabsichtigt, zum Ausgleich mangelnder personeller Ressourcen eine Rahmenvereinbarung über Java-Entwicklung auf Basis eines EVB-IT Dienstvertrags (Langfassung) zu schließen.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>Lübecker Straße 283</cbc:StreetName>
+            <cbc:CityName>Schwerin</cbc:CityName>
+            <cbc:PostalZone>19059</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Anhang 4 Punkt 2:
+Mindestens zwei geeignete Referenzaufträge des Unternehmens
+aus den letzten drei Jahren
+Erwartet werden Aufträge mit einer Laufzeit von zwölf oder
+mehr Monaten.
+Ein Referenzauftrag ist geeignet, sofern dieser nach Art und
+Umfang mit dem Auftragsgegenstand vergleichbar ist.
+Laufende Aufträge, bei denen die vergleichbaren
+Lieferleistungen höchstens in den letzten drei Jahren erbracht
+wurden, werden ebenfalls gewertet.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">- Anhang 4 Punkt 3.3:
+Eigenerklärung, dass die zur Leistungserbringung
+vorgesehenen Mitarbeiter die deutsche Sprache fließend in
+Wort und Schrift beherrschen</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">- Anhang 4 Punkt 3.1:
+Eigenerklärung, aus der die durchschnittliche jährliche
+Mitarbeitendenzahl des Unternehmens in den letzten drei
+Jahren ersichtlich ist
+
+- Anhang 4 Punkt 3.2:
+Eigenerklärung, aus der die durchschnittliche jährliche
+Mitarbeitendenzahl des Unternehmens in dem Tätigkeitsbereich
+des Auftrages in den letzten drei Jahren ersichtlich ist</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-no-mgmt</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">- Anhang 4 Punkt 3.1:
+Eigenerklärung, aus der die durchschnittliche jährliche Zahl der
+Führungskräfte in den letzten drei Jahren ersichtlich ist
+
+- Anhang 4 Punkt 3.2:
+Eigenerklärung, aus der die durchschnittliche jährliche Zahl der
+Führungskräfte in dem Tätigkeitsbereich des Auftrags in den
+letzten drei Jahren ersichtlich ist</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktueller (nicht älter als sechs Monate seit dem Tag der
+Absendung der Auftragsbekanntmachung) Nachweis über das
+Bestehen einer Betriebshaftpflichtversicherung oder einer
+vergleichbaren Versicherung aus einem Mitgliedsstaat der EU
+für Personen-, Sach- und Vermögensschäden mit einer
+Mindestdeckungssumme in Höhe von 2.000.000,00 Euro je
+Schadensfall.
+
+- ODER -
+
+Anhang 3 Punkt 4:
+Sofern keine entsprechende Versicherung vorliegt, übergibt der
+Bieter eine Eigenerklärung, in der er bestätigt, dass eine
+Betriebshaftpflichtversicherung oder eine vergleichbare
+Versicherung aus einem Mitgliedsstaat der EU mit einer
+Mindestdeckungssumme in Höhe von 2.000.000,00 Euro je
+Schadensfall für Sach-, Personen- und Vermögensschäden im
+Fall der Zuschlagserteilung abgeschlossen wird und der
+Nachweis darüber unaufgefordert und unverzüglich nach
+Zuschlagserteilung erbracht wird.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">- Anhang 3 Punkt 2:
+Unternehmensdarstellung (Geschäftsfelder, die Firmen- und
+Organisationsstruktur, die Standorte und Niederlassungen des
+Unternehmens, das Leistungsportfolio bezogen auf den
+Auftragsgegenstand sowie die prozentuale Verteilung der
+Auftraggeber nach Privatwirtschaft und öffentliche
+Auftraggeber; Umfang: maximal drei DIN A4 Seiten)
+
+- Aktuelle (d. h. nicht älter als drei Monate seit dem Tag der
+Absendung der Auftragsbekanntmachung) Kopie einer
+Bankerklärung der Hausbank des Bieters, aus der dessen
+gegenwärtige Finanz- und Liquiditätslage hervorgeht
+
+- Übergabe einer Kopie des letzten veröffentlichten
+Jahresabschlusses (soweit dessen Veröffentlichung in dem
+Land, in dem der Bieter niedergelassen ist, gesetzlich
+vorgeschrieben ist).
+Bei nicht veröffentlichungspflichtigen Unternehmen ist eine
+Kopie der letzten Bilanz einzureichen.
+Der Auftraggeber behält sich vor, eine aktuelle (d. h. nicht älter
+als 3 Monate seit dem Tag der Absendung der
+Auftragsbekanntmachung) betriebswirtschaftliche Auswertung
+(BWA) nachzufordern.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Anhang 3 Punkt 3:
+Erklärung über den Gesamtumsatz</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Anhang 3 Punkt 3:
+Erklärung über den Umsatz im Tätigkeitsbereich des Auftrags</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktuelle (d. h. nicht älter als sechs Monate seit dem Tag der
+Absendung der Auftragsbekanntmachung) und vollständige
+Kopie eines Handelsregisterauszuges</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.vergabemarktplatz-mv.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-1a061280f44-11e48bdef10df0f5</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Die Vergabestelle behält sich gemäß § 56 VgV vor, unter Einhaltung der Grundsätze der Transparenz und Gleichbehandlung, Bieter aufzufordern, bis zum Ablauf einer von der Vergabestelle zu bestimmenden Frist fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren.
+Dies gilt nicht für leistungsbezogene Unterlagen, die die Wirtschaftlichkeitsbewertung anhand der Zuschlagskriterien betreffen. Der öffentliche Auftraggeber ist nicht zur Nachforderung verpflichtet. Die Vergabestelle weist darauf hin, dass Angebote, in denen die Erklärung zu Mindestarbeitsund Ausführungsbedingungen fehlt oder Mängel aufweist, gemäß § 14 TVgG M-V von der Wertung auszuschließen sind, wenn auch nach einmaliger erneuter Fristsetzung die Erklärung nicht oder unvollständig nachgereicht wird.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Leistung</cbc:Name>
+                  <cbc:Description languageID="DEU">Vergabeunterlagen</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Gesamtpreis</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>http://www.vergabemarktplatz-mv.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">72</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-10-19+02:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Rahmenvereinbarung über Java-Entwicklung</cbc:Name>
+         <cbc:Description languageID="DEU">Die DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH (Auftraggeber) beabsichtigt, zum Ausgleich mangelnder personeller Ressourcen eine Rahmenvereinbarung über Java-Entwicklung auf Basis eines EVB-IT Dienstvertrags (Langfassung) zu schließen. Bei den abzurufenden Leistungen handelt es sich um IT-Dienstleistungen, IT-Werkleistungen sowie - optional für den Bieter - IT-Leistungen im Wege der Arbeitnehmerüberlassung im Rahmen von anstehenden IT-Projekten, -Vorhaben und -Programmen in Mecklenburg-Vorpommern (M-V).
+Aus dieser Rahmenvereinbarung sollen benötigte Programmierleistungen und unterstützende IT-Leistungen im Bereich der Java-Software-Entwicklung und mit dieser im Zusammenhang stehenden konzeptionelle Aufgaben, die der Auftraggeber als IT-Dienstleister für sich und seine Kunden realisiert, abgerufen werden können. Die einschlägige Leistungsart wird mit dem jeweiligen Einzelabruf - durch Auftrag oder Einzelarbeitnehmerüberlassungsvertrag - konkretisiert.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>Lübecker Straße 283</cbc:StreetName>
+               <cbc:CityName>Schwerin</cbc:CityName>
+               <cbc:PostalZone>19059</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Schwerin</cbc:CityName>
+               <cbc:PostalZone>19059</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Dem Auftraggeber wird die Option eingeräumt, die Rahmenvereinbarung um jeweils ein Jahr jedoch maximal zweimal zu verlängern.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

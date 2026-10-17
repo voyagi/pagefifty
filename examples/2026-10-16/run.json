@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-16T14:41:13.399Z",
+  "finishedAt": "2026-10-16T14:41:20.571Z",
+  "captureDate": "2026-10-16",
+  "outcome": "written",
+  "reason": null,
+  "command": "node scripts/capture.mjs",
+  "head": "efd9ad464b5b872b6ab4d921ed9c577b15294df2",
+  "modes": {
+    "ted": "live",
+    "tokenFactory": "snapshot",
+    "tavily": "snapshot"
+  },
+  "query": {
+    "query": "classification-cpv IN (72000000 48000000) AND buyer-country IN (NLD BEL DEU) AND publication-date>=20261002 AND notice-type=cn-standard",
+    "fields": [
+      "publication-number",
+      "buyer-country",
+      "classification-cpv",
+      "publication-date",
+      "deadline-receipt-tender-date-lot",
+      "selection-criterion-lot",
+      "selection-criterion-description-lot",
+      "document-url-lot",
+      "links",
+      "notice-identifier",
+      "notice-version"
+    ],
+    "scope": "ACTIVE",
+    "onlyLatestVersions": true,
+    "since": "20261002"
+  },
+  "ted": {
+    "searchPages": 2,
+    "xmlRequests": 1,
+    "cacheHits": 396,
+    "status429": 0,
+    "waited429Ms": 0,
+    "retries502": 0,
+    "failures": 0
+  },
+  "notices": {
+    "listed": 397,
+    "written": 395,
+    "leftOut": [],
+    "failed": [
+      {
+        "notice": "694786-2026",
+        "reason": "scrub: contact data stands inside a selection criterion, which is served only as published"
+      },
+      {
+        "notice": "695350-2026",
+        "reason": "malformed: namespace urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2 is bound to prefix cn, and the reader reads it only as the default namespace"
+      }
+    ],
+    "sameProcedure": []
+  },
+  "metered": {
+    "cap": null,
+    "attempts": 0,
+    "perProvider": {
+      "tokenFactory": 0,
+      "tavily": 0
+    },
+    "refusals": [],
+    "responses": []
+  }
+}

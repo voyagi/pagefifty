@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>4520814f-8bd9-4de2-b452-87088114f791-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Die konkreten Mengenangaben wurden sowohl in den Verfahrensangaben als auch im Preisblatt angepasst. Die aktualisierten Informationen (Stand 07.10.2026) liegen erst seit heute mit Abschluss der aktuellen Lizenzvermessung vor.</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-07+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+							<efbc:ReasonDescription languageID="DEU">Die konkreten Mengenangaben wurden sowohl in den Verfahrensangaben als auch im Preisblatt angepasst.   IDM - 2475 Identity Manager Advanced Edition  - 2.778 Identity Manager Integration Module for Tools   - 519 Identity Manager Advanced Edition Inactive   OES - 1641 OES User  - 750 OES Limited User  ZCM - 1.450 verwaltete Geräte  einschließlich - ZENworks Patch Management  - ZENworks Configuration Management  - ZENworks Endpoint Security Management  - ZENworks Asset Management</efbc:ReasonDescription>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.stadtwerke-potsdam.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Stadtwerke Postdam GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Steinstraße 104-106, Haus 14</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14480</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>12-121092720493633-21</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://mwae.brandenburg.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Landes Brandenburg beim Ministerium für Wirtschaft, Arbeit und Energie</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Heinrich-Mann-Allee 107</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14473</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00697361-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">196/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-09+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">d9703d3f-b294-4f38-888d-ff4972147ee7</cbc:ID>
+	<cbc:ContractFolderID>9f915f8d-d1e9-4bd8-8d1b-a52532a49139</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-07+02:00</cbc:IssueDate>
+	<cbc:IssueTime>15:20:01+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-07+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cbc:RecurringProcurementIndicator>true</cbc:RecurringProcurementIndicator>
+		<cbc:RecurringProcurementDescription languageID="DEU">Bei den ausgeschriebenen Leistungen handelt es sich um wiederkehrende Softwarepflege-, Wartungs- und Herstellersupportleistungen für die beim Auftraggeber eingesetzten OpenText-Produkte IDM, OES und ZCM. Die Leistungen werden regelmäßig zur Sicherstellung des laufenden Betriebs der bestehenden Systemlandschaft benötigt. Nach Ablauf der maximalen Vertragslaufzeit ist beabsichtigt, den fortbestehenden Bedarf unter Berücksichtigung der dann vorhandenen technischen, wirtschaftlichen und lizenzrechtlichen Rahmenbedingungen erneut zu prüfen und gegebenenfalls erneut auszuschreiben.</cbc:RecurringProcurementDescription>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+			<cac:MediationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:MediationParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YX3H35D</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">true</cbc:ProcessReasonCode>
+			<cbc:ProcessReason languageID="DEU">Die Vergabe erfolgt im offenen Verfahren unter Inanspruchnahme einer verkürzten Angebotsfrist gemäß § 15 Abs. 3 VgV.   Die Verkürzung der Angebotsfrist ist erforderlich, um die unterbrechungsfreie Fortführung der Softwarepflege- und Herstellersupportleistungen für die beim Auftraggeber eingesetzten OpenText-Produkte sicherzustellen. Der bestehende Supportvertrag endet zum 31.10.2026. Aufgrund der besonderen Bedeutung der betroffenen Systeme für den laufenden Betrieb der Benutzer-, Berechtigungs-, Server- und Endpoint-Management-Infrastruktur besteht die Notwendigkeit eines nahtlosen Übergangs auf einen Folgevertrag.</cbc:ProcessReason>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">261001_SWP_19_DS</cbc:ID>
+		<cbc:Name languageID="DEU">Renewal OpenText-Umgebung</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand der Ausschreibung ist die Verlängerung der Softwarepflege- und Supportleistungen für die beim Auftraggeber eingesetzten OpenText-Produkte Identity Manager (IDM), Open Enterprise Server (OES) und ZENworks Configuration Management (ZCM). Darüber hinaus umfasst der Auftrag die Möglichkeit des Abrufs zusätzlicher Support-, Beratungs- und Unterstützungsleistungen im Umfeld der bestehenden OpenText-Umgebung.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP9YX3H35D#</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">1000000.00</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Steinstraße 104-106, Haus 14</cbc:StreetName>
+				<cbc:CityName>Potsdam</cbc:CityName>
+				<cbc:PostalZone>14480</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE404</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:RecurringProcurementIndicator>true</cbc:RecurringProcurementIndicator>
+			<cbc:RecurringProcurementDescription languageID="DEU">Bei den ausgeschriebenen Leistungen handelt es sich um wiederkehrende Softwarepflege-, Wartungs- und Herstellersupportleistungen für die beim Auftraggeber eingesetzten OpenText-Produkte IDM, OES und ZCM. Die Leistungen werden regelmäßig zur Sicherstellung des laufenden Betriebs der bestehenden Systemlandschaft benötigt. Nach Ablauf der maximalen Vertragslaufzeit ist beabsichtigt, den fortbestehenden Bedarf unter Berücksichtigung der dann vorhandenen technischen, wirtschaftlichen und lizenzrechtlichen Rahmenbedingungen erneut zu prüfen und gegebenenfalls erneut auszuschreiben.</cbc:RecurringProcurementDescription>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YX3H35D/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es können nur Unterlagen zum Nachweis der Eignung nachgefordert werden. Für die Angebotsauswertung relevante Unterlagen können nicht nachgefordert werden.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Folgende Eigenerklärungen sind zur Angebotsabgabe vorzulegen:  - 4.1 Plus Eigenerklärung Eignung und Selbstauskunft  - 4.2 EU Bewerber-Bietergemeinschaftserklärung - wenn zutreffend  - 4.3 EU Erklärung Unteraufträge Eignungsleihe - wenn zutreffend  - 4.4 EU Verpflichtungserklärung anderer Unternehmen - wenn zutreffend  - Auszug aus dem Berufs- oder Handelsregister (zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als drei Monate) - Nachweis einer Unternehmenshaftpflichtversicherung mit einer Deckungssumme von 2 Mio. EUR.  - Nachweis Bonität - Eigenerklärung BbgVergG  - Eigenerklärung BbgVergG für Nachunternehmer (wenn zutreffend) - Eigenerklärung Restriktive Maßnahmen  - Eigenerklärung Lieferkettensorgfaltspflichtengesetz  - Herstellerautorisierung / Partnerstatus</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>80.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Kosten</cbc:Name>
+						<cbc:Description languageID="DEU">Die Preise sind in via Preisblatt (Anlage 12) anzugeben. Für die Preiswertung wird der im Preisblatt ausgewiesene Gesamtpreis herangezogen. Das wirtschaftlich günstigste Angebot (niedrigster Gesamtpreis) erhält 80 Prozentpunkte. Alle weiteren Angebote erhalten eine entsprechend niedrigere Punktzahl im Verhältnis zu diesem Angebot nach der Dreisatzmethode. Die Berechnung erfolgt gemäß folgender Formel: Punkte = (günstigster Angebotspreis / Angebotspreis des jeweiligen Bieters) × 80.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>20.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Skill, Erfahrung, Qualität des eingesetzten Schlüsselpersonals</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet wird die Qualität des vom Bieter vorgesehenen Support- und Beratungsteams für die Betreuung der OpenText-Umgebung. Hierzu sind mit dem Angebot anonymisierte Mitarbeiterprofile bzw. Mitarbeitersteckbriefe der für die Leistungserbringung vorgesehenen Fachkräfte einzureichen. Die Bewertung erfolgt insbesondere anhand: - der Qualifikation der eingesetzten Fachkräfte, - der Erfahrung mit OpenText IDM, OES und ZCM, - der Erfahrungen aus vergleichbaren Betriebs-, Support- und Beratungsprojekten, - vorhandener Herstellerzertifizierungen oder vergleichbarer Qualifikationen, - der Breite und Tiefe der nachgewiesenen Fachkenntnisse.  Wertungsschema:  20 Punkte - Hervorragende Eignung Die Mitarbeiterprofile weisen außergewöhnlich umfangreiche und unmittelbar einschlägige Erfahrungen in den ausgeschriebenen OpenText-Produkten und vergleichbaren Betriebs- und Supportumgebungen nach. Die Qualifikation hebt sich im direkten Angebotsvergleich deutlich positiv von den übrigen Angeboten ab. 15 Punkte - Überdurchschnittliche Eignung Die Mitarbeiterprofile weisen umfangreiche und einschlägige Erfahrungen in wesentlichen Teilen des ausgeschriebenen Leistungsumfangs nach. Die Qualifikation liegt im Vergleich der Angebote erkennbar über dem Durchschnitt. 10 Punkte - Gute Eignung Die Mitarbeiterprofile erfüllen die Anforderungen an die Leistungserbringung uneingeschränkt. Einschlägige Erfahrungen und Qualifikationen sind nachvollziehbar dokumentiert, ohne jedoch im Angebotsvergleich besondere Alleinstellungsmerkmale aufzuweisen. 5 Punkte - Ausreichende Eignung Die Mitarbeiterprofile lassen eine ordnungsgemäße Leistungserbringung erwarten. Die nachgewiesenen Erfahrungen oder Qualifikationen weisen jedoch erkennbare Lücken hinsichtlich Umfang, Tiefe oder Produktbezug auf. 0 Punkte - Unzureichende Eignung Die eingereichten Mitarbeiterprofile lassen nicht erkennen, dass die ausgeschriebenen Leistungen mit der erforderlichen Fachkunde erbracht werden können oder die geforderten Nachweise wurden nicht ausreichend erbracht.  Die Bewertung erfolgt vergleichend auf Grundlage der eingereichten Mitarbeiterprofile. Maßgeblich ist die im Angebotsvergleich erkennbare Qualität der Qualifikationen und Projekterfahrungen. Das qualitativ beste Angebot erhält die Höchstpunktzahl von 20 Punkten. Die Bewertung der übrigen Angebote erfolgt abgestuft unter Berücksichtigung des erkennbaren Qualitätsunterschieds zum jeweils bestbewerteten Angebot.  Angebote, die im Zuschlagskriterium "Qualität des vorgesehenen Support- und Beratungsteams" weniger als 50 % der maximal erreichbaren Punktzahl erzielen, werden als qualitativ nicht ausreichend angesehen und können nicht bezuschlagt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YX3H35D</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">2</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YX3H35D</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-17+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-14+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">261001_SWP_19_DS</cbc:ID>
+			<cbc:Name languageID="DEU">Renewal OpenText-Umgebung</cbc:Name>
+			<cbc:Description languageID="DEU">Der Auftraggeber betreibt eine zentrale OpenText-Umgebung bestehend aus den Produktbereichen Identity Manager (IDM), Open Enterprise Server (OES) sowie ZENworks Configuration Management (ZCM). Die Systeme bilden wesentliche Bestandteile der Berechtigungsverwaltung, Benutzerverwaltung, Serverinfrastruktur sowie des Client- und Endpoint-Managements.   Gegenstand der Ausschreibung ist die Bereitstellung der erforderlichen Softwarepflege-, Wartungs- und Herstellersupportleistungen einschließlich der Verlängerung der bestehenden Nutzungs- und Supportberechtigungen für die eingesetzten OpenText-Produkte über die Vertragslaufzeit.   Zum Zeitpunkt der Ausschreibung umfasst die Umgebung insbesondere:   IDM - 2475 Identity Manager Advanced Edition  - 2.778 Identity Manager Integration Module for Tools   - 519 Identity Manager Advanced Edition Inactive   OES - 1641 OES User  - 750 OES Limited User  ZCM - 1.450 verwaltete Geräte  einschließlich - ZENworks Patch Management  - ZENworks Configuration Management  - ZENworks Endpoint Security Management  - ZENworks Asset Management    Die angegebenen Mengen dienen der Orientierung und können sich während der Vertragslaufzeit verändern.   Zusätzlich zu den Renewal- und Supportleistungen soll der Auftraggeber die Möglichkeit erhalten, bei Bedarf weitere Unterstützungs- und Beratungsleistungen auf Basis eines angebotenen Tagessatzes abzurufen. Hierzu zählen insbesondere Fehleranalysen, Herstellereskalationen, Konfigurationsanpassungen, Unterstützung bei Updates und Upgrades, technische Beratungsleistungen sowie sonstige Dienstleistungen im unmittelbaren Zusammenhang mit der bestehenden OpenText-Umgebung.   Ziel der Ausschreibung ist die Sicherstellung des störungsfreien und wirtschaftlichen Betriebs der bestehenden OpenText-Systemlandschaft sowie die bedarfsgerechte Unterstützung des Auftraggebers durch qualifiziertes Fachpersonal während der gesamten Vertragslaufzeit.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Steinstraße 104-106, Haus 14</cbc:StreetName>
+					<cbc:CityName>Potsdam</cbc:CityName>
+					<cbc:PostalZone>14480</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE404</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">12</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Die Vertragslaufzeit beginnt am 01.11.2026 und endet zunächst am 31.10.2027.   Der Auftraggeber ist berechtigt, den Vertrag bis zu drei Mal um jeweils weitere zwölf Monate zu verlängern. Die maximale Vertragslaufzeit beträgt 48 Monate.   Voraussetzung für die Ausübung der jeweiligen Verlängerungsoption ist eine vor Ablauf des jeweiligen Vertragsjahres durchzuführende Lizenz- und Bestandsvermessung der beim Auftraggeber eingesetzten OpenText-Produkte.   Auf Grundlage der dabei ermittelten tatsächlichen Lizenz- und Nutzungsbestände erstellt der Auftragnehmer für das jeweilige Folgejahr ein Renewal-Angebot auf Basis der vereinbarten Bedingungen.    Ein Anspruch des Auftragnehmers auf Ausübung der Verlängerungsoption besteht nicht.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

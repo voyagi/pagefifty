@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.unimedizin-greifswald.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Universitätsmedizin Greifswald KöR</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Fleischmannstraße 8</cbc:StreetName>
+									<cbc:CityName>Greifswald</cbc:CityName>
+									<cbc:PostalZone>17489</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE80N</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>13-X19111018-22</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.regierung-mv.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Geschäftsstelle der Vergabekammern beim Ministerium für Wirtschaft, Infrastruktur, Tourismus und Arbeit Mecklenburg-Vorpommern</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Johannes-Stelling-Str. 14</cbc:StreetName>
+									<cbc:CityName>Schwerin</cbc:CityName>
+									<cbc:PostalZone>19053</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE804</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>VKMV-13-L50010000000-78</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00692225-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">194/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">8c4cb356-f591-4978-a985-008449b6d0ca</cbc:ID>
+	<cbc:ContractFolderID>583ac4ca-990c-4359-96a5-5a810b486d23</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-06+02:00</cbc:IssueDate>
+	<cbc:IssueTime>14:54:11+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-06+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 48 VgV: Beleg der Eignung und des Nichtvorliegens von Ausschlussgründen
+(6)Werden Urkunden oder Bescheinigungen nach den Absätzen 4 und 5 von dem Herkunftsland oder dem Niederlassungsstaat des Bewerbers oder Bieters nicht ausgestellt oder werden darin nicht alle Ausschlussgründe nach § 123 Absatz 1 bis 4 sowie § 124 Absatz 1 Nummer 2 des Gesetzes gegen Wettbewerbsbeschränkungen erwähnt, so können sie durch eine Versicherung an Eides statt ersetzt werden. In den Staaten, in denen es keine Versicherung an Eides statt gibt, darf die Versicherung an Eides statt durch eine förmliche Erklärung ersetzt werden, die ein Vertreter des betreffenden Unternehmens vor einer zuständigen Gerichts- oder Verwaltungsbehörde, einem Notar oder einer dazu bevollmächtigten Berufs- oder Handelsorganisation des Herkunftslands oder des Niederlassungsstaats des Bewerbers oder Bieters abgibt.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschlussgrund aufgrund der Bildung einer kriminellen Vereinigung ist in § 123 Abs. 1 Nr. 3 GWB geregelt. Dieser Paragraf besagt, dass ein Bewerber oder Bieter von einem Vergabeverfahren ausgeschlossen werden muss, wenn er an einer kriminellen Vereinigung beteiligt ist oder eine solche gegründet hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 123 GWB 
+(1)
+Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme aus, wenn sie Kenntnis davon haben, dass eine Person, deren Verhalten nach Absatz 3 dem Unternehmen zuzurechnen ist, rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach:
+1. 
+§ 129 des Strafgesetzbuchs (Bildung krimineller Vereinigungen), § 129a des Strafgesetzbuchs (Bildung terroristischer Vereinigungen) oder § 129b des Strafgesetzbuchs (Kriminelle und terroristische Vereinigungen im Ausland).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Nach § 123 Abs. (1) Nr.  2. GWB muss ein Unternehmen von einem Vergabeverfahren ausgeschlossen werden, wenn es Geldwäsche betreibt oder
+Terrorismusfinanzierung unterstützt.
+Dieser Ausschlussgrund gilt auch dann, wenn das Unternehmen strafrechtlich verurteilt wurde oder gegen die entsprechenden Bestimmungen verstößt, die sich auf Geldwäsche und Terrorismusfinanzierung beziehen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Ausschlussgrund bei Betrug oder Subventionsbetrug ist in § 123 Abs. 1 Nr. 6 GWB geregelt.
+
+Laut dieser Vorschrift muss ein Unternehmen von einem Vergabeverfahren ausgeschlossen werden, wenn es wegen Betrugs oder Subventionsbetrugs rechtskräftig verurteilt wurde. Dies umfasst insbesondere:
+
+Betrug, der im Zusammenhang mit der Vergabe oder Durchführung öffentlicher Aufträge oder bei der Verwendung öffentlicher Mittel begangen wurde.
+Subventionsbetrug, bei dem das Unternehmen unrichtige Angaben macht, um unrechtmäßig öffentliche Gelder oder Subventionen zu erhalten.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 123 GWB Zwingende Ausschlussgründe,
+(1)
+Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme aus, wenn sie Kenntnis davon haben, dass eine Person, deren Verhalten nach Absatz 3 dem Unternehmen zuzurechnen ist, rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach:
+6.
+§ 299 des Strafgesetzbuchs (Bestechlichkeit und Bestechung im geschäftlichen Verkehr), §§ 299a und 299b des Strafgesetzbuchs (Bestechlichkeit und Bestechung im Gesundheitswesen)</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Ausschlussgrund aufgrund von Menschenhandel, Zwangsprostitution, Zwangsarbeit oder Ausbeutung ist in § 123 Abs. 1 Nr. 10 GWB geregelt.
+
+Nach dieser Vorschrift muss ein Unternehmen von einem Vergabeverfahren ausgeschlossen werden, wenn es in Menschenhandel, Zwangsprostitution, Zwangsarbeit oder Ausbeutung verwickelt ist oder dies gefördert hat. Das umfasst insbesondere auch Fälle, in denen das Unternehmen rechtskräftig verurteilt wurde.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 123 GWB Zwingende Ausschlussgründe
+(4)
+Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren aus, wenn
+1.
+das Unternehmen seinen Verpflichtungen zur Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung nicht nachgekommen ist und dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt wurde.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 123 GWB Zwingende Ausschlussgründe
+(4)
+Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren aus, wenn
+
+das Unternehmen seinen Verpflichtungen zur Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung nicht nachgekommen ist und dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt wurde.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1) Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+1.das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende umwelt-, sozial- oder arbeitsrechtliche Verpflichtungen verstoßen hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1) Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+1. das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende umwelt-, sozial- oder arbeitsrechtliche Verpflichtungen verstoßen hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschlussgrund aufgrund von Verstößen gegen arbeitsrechtliche Verpflichtungen, wie sie in § 21 des Gesetzes zur Bekämpfung der Schwarzarbeit und illegalen Beschäftigung (SchwarzArbG), § 21 des Arbeitnehmerentsendegesetzes (AEntG), § 19 des Mindestlohngesetzes (MiLoG), § 98c des Aufenthaltsgesetzes (AufenthG) sowie § 22 des Lieferkettensorgfaltspflichtengesetzes (LkSG) geregelt sind, kann ebenfalls ein Ausschlussgrund in einem Vergabeverfahren darstellen. Dies gilt insbesondere, wenn ein Unternehmen wiederholt gegen diese arbeitsrechtlichen Verpflichtungen verstößt. Ein solcher Ausschluss dient dem Ziel, sicherzustellen, dass nur Unternehmen, die arbeitsrechtliche Standards einhalten und keine illegalen Praktiken betreiben, an öffentlichen Ausschreibungen teilnehmen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+1)
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+2. das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschlussgrund aufgrund von Insolvenz ist in § 124 Abs. 1 Nr. 2 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) geregelt.
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1) 
+
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+2.das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschlussgrund aufgrund von Insolvenz ist in § 124 Abs. 1 Nr. 2 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) geregelt.
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1) Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+3. 
+das Unternehmen im Rahmen der beruflichen Tätigkeit nachweislich eine schwere Verfehlung begangen hat, durch die die Integrität des Unternehmens infrage gestellt wird; § 123 Absatz 3 ist entsprechend anzuwenden.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ein Ausschlussgrund aufgrund wettbewerbsbeschränkender Vereinbarungen ist in § 124 Abs. 1 Nr. 4 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) geregelt.
+
+Demnach muss ein Bewerber oder Bieter von einem Vergabeverfahren ausgeschlossen werden, wenn er wettbewerbsbeschränkende Vereinbarungen getroffen hat, die den Wettbewerb erheblich beeinträchtigen. Solche Vereinbarungen können zum Beispiel Kartelle oder Absprachen zur Preisgestaltung oder zur Aufteilung von Märkten gehören, die die Transparenz und Fairness des Vergabeverfahrens gefährden.
+
+Die Regelung dient dem Schutz des Wettbewerbs und soll verhindern, dass Unternehmen durch unzulässige Absprachen den Markt manipulieren und dadurch den Wettbewerb und die Vergabe von Aufträgen verzerren.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1)
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+5. 
+ein Interessenkonflikt bei der Durchführung des Vergabeverfahrens besteht, der die Unparteilichkeit und Unabhängigkeit einer für den öffentlichen Auftraggeber tätigen Person bei der Durchführung des Vergabeverfahrens beeinträchtigen könnte und der durch andere, weniger einschneidende Maßnahmen nicht wirksam beseitigt werden kann.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1)
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+6.
+eine Wettbewerbsverzerrung daraus resultiert, dass das Unternehmen bereits in die Vorbereitung des Vergabeverfahrens einbezogen war, und diese Wettbewerbsverzerrung nicht durch andere, weniger einschneidende Maßnahmen beseitigt werden kann.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 124 GWB Fakultative Ausschlussgründe
+(1)
+Öffentliche Auftraggeber können unter Berücksichtigung des Grundsatzes der Verhältnismäßigkeit ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren ausschließen, wenn
+7. das Unternehmen eine wesentliche Anforderung bei der Ausführung eines früheren öffentlichen Auftrags oder Konzessionsvertrags erheblich oder fortdauernd mangelhaft erfüllt hat und dies zu einer vorzeitigen Beendigung, zu Schadensersatz oder zu einer vergleichbaren Rechtsfolge geführt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">§ 123 GWB Zwingende Ausschlussgründe
+(1)
+Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme aus, wenn sie Kenntnis davon haben, dass eine Person, deren Verhalten nach Absatz 3 dem Unternehmen zuzurechnen ist, rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach:
+7.
+§ 108e des Strafgesetzbuchs (Bestechlichkeit und Bestechung von Mandatsträgern).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Vergabeverstöße sind unverzüglich, spätestens innerhalb von 10 Tagen nach Kenntnis, zu rügen (§ 160 Abs. 3 GWB). Mängel in Bekanntmachung oder Vergabeunterlagen bis Angebotsfrist.
+Nach Rügeablehnung kann binnen 15 Tagen ein Nachprüfungsantrag bei der Vergabekammer gestellt werden.
+Bei Vertragsunwirksamkeit: Antrag binnen 30 Tagen nach Mitteilung über Vertragsschluss, sonst binnen 6 Monaten.
+Fristversäumnis führt zum Rechtsverlust.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0YH5DY6NW3R8X</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">#8184-701031</cbc:ID>
+		<cbc:Name languageID="DEU">NetApp AFF A20 Systeme für SQL-Datenbank</cbc:Name>
+		<cbc:Description languageID="DEU">Storagesystem der MKIS und PACS Datenbank muss ausgetauscht werden.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0YH5DY6NW3R8X#
+
+
+Zusätzlich zu den Preisangaben im Vergabemanagementsystem sind den abzugebenden Unterlagen alle Datenblätter der im Umfang des Angebots enthaltenen Artikel und Leistungen beizufügen.
+
+Bei Rückfragen bitten wir Sie, die Vergabestelle vor Ablauf der Abgabefrist zu kontaktieren. Verwenden Sie hierfür ausschließlich die Kommunikationsfunktion des Vergabeportals.
+
+Die Angebotswertung erfolgt zu 100% auf den Preis unter Erfüllung der Ausschlusskriterien.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CityName>Greifswald</cbc:CityName>
+				<cbc:CountrySubentityCode listName="nuts">DE80N</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung (VgV) (Mit dem Angebot; Mittels Eigenerklärung): Befähigung und Erlaubnis zur Berufsausübung § 44 VgV: 
+-Eintragung in die Berufsgenossenschaft (Nennung Bezeichnung und Mitgliedsnummer) oder Eintragung in das Handelsregister (Nennung Nummer und Amtsgericht) oder Eintragung in die Handwerksrolle oder Eintragung in einem sonstigen Berufsregister 
+-Eigenerklärung Präqualifizierung (falls vorhanden)
+-Eigenerklärung Beachtung ILO Kernarbeitsnormen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung Unteraufträge (VgV) (Mit dem Angebot; Mittels Eigenerklärung): Technische und berufliche Leistungsfähigkeit § 46 VgV:
+- Eigenerklärung Unteraufträge
+- Eigenerklärung Eignungsleihe
+- Eigenerklärung Bietergemeinschaften
+-Eigenerklärung verbundene Unternehmen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zum Umsatz (VgV) (Mit dem Angebot; Mittels Eigenerklärung): Wirtschaftliche und finanzielle Leistungsfähigkeit § 45 VgV:
+- Eigenerklärung zum Umsatz: Gesamtumsatz der letzten 3 Geschäftsjahre sowie zusätzlich den Umsatz der letzten 3 Geschäftsjahre in dem Tätigkeitsbereich des konkreten Auftrags, der Gegenstand dieser Vergabe ist</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zur Betriebs-/Berufshaftpflichtversicherung (VgV) (Mit dem Angebot; Mittels Eigenerklärung): Wirtschaftliche und finanzielle Leistungsfähigkeit § 45 VgV: 
+-Eigenerklärung zur Betriebs-/Berufshaftpflichtversicherung mit den Deckungssummen von 5,0 Mio. EUR für Sach- und Personenschäden, sowie eine Deckungssumme von 100.000 EUR für Vermögensschäden je Versicherungsjahr und je Schadensfall bei doppelter Maximierung. Für den Fall, dass der Bieter/Bewerber nicht über eine Betriebs-/Berufshaftpflichtversicherung mit den geforderten Mindestdeckungssummen verfügt, verpflichtet er sich, im Auftragsfall eine Betriebs-/ Berufshaftpflichtversicherung mit den zuvor geforderten Deckungssummen für Personen- und Sachschäden sowie für Vermögensschäden je Versicherungsjahr und je Schadensfall bei jeweils doppelter Maximierung abzuschließen bzw. die Deckungssummen der bestehenden Versicherung entsprechend zu erhöhen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Personalstärke Belegschaft (VgV) (Mit dem Angebot; Mittels Eigenerklärung): -Technische und berufliche Leistungsfähigkeit § 46 VgV: 
+- Personalstärke: durchschnittliche jährliche Anzahl an Beschäftigten insgesamt der letzten 3 Geschäftsjahre umgerechnet auf Vollzeitkräfte; Anzahl der Mitarbeiter in für den Ausschreibungsgegenstand relevanten Geschäftsfeldern in den letzten 3 Geschäftsjahren umgerechnet auf Vollzeitkräfte
+-Eigenerklärung KMU</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen Lieferleistung (VgV) (Mit dem Angebot; Mittels Eigenerklärung): Technische und berufliche Leistungsfähigkeit § 46 VgV:
+ - 3 Referenzen über vergleichbare Leistungen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0YH5DY6NW3R8X/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">§ 56 VgV
+1) Die Interessensbestätigungen, Teilnahmeanträge und Angebote sind auf Vollständigkeit und fachliche Richtigkeit, Angebote zudem auf rechnerische Richtigkeit zu prüfen.
+(2) Der öffentliche Auftraggeber kann den Bewerber oder Bieter unter Einhaltung der Grundsätze der Transparenz und der Gleichbehandlung auffordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Der öffentliche Auftraggeber ist berechtigt, in der Auftragsbekanntmachung oder den Vergabeunterlagen festzulegen, dass er keine Unterlagen nachfordern wird.
+(3) Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Dies gilt nicht für Preisangaben, wenn es sich um unwesentliche Einzelpositionen handelt, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen.
+(4) Die Unterlagen sind vom Bewerber oder Bieter nach Aufforderung durch den öffentlichen Auftraggeber innerhalb einer von diesem festzulegenden angemessenen, nach dem Kalender bestimmten Frist vorzulegen.
+(5) Die Entscheidung zur und das Ergebnis der Nachforderung sind zu dokumentieren.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Eigenerklärung Russlandsanktionen
+- Vereinbarung mit Lieferanten nach § 6 LkSG</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXS0YH5DY6NW3R8X</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Vergabeverstöße sind unverzüglich, spätestens innerhalb von 10 Tagen nach Kenntnis, zu rügen (§ 160 Abs. 3 GWB). Mängel in Bekanntmachung oder Vergabeunterlagen bis Angebotsfrist.
+Nach Rügeablehnung kann binnen 15 Tagen ein Nachprüfungsantrag bei der Vergabekammer gestellt werden.
+Bei Vertragsunwirksamkeit: Antrag binnen 30 Tagen nach Mitteilung über Vertragsschluss, sonst binnen 6 Monaten.
+Fristversäumnis führt zum Rechtsverlust.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0YH5DY6NW3R8X</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-27+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">#8184-701031</cbc:ID>
+			<cbc:Name languageID="DEU">NetApp AFF A20 Systeme für SQL-Datenbank</cbc:Name>
+			<cbc:Description languageID="DEU">NetApp AFF A20 HA Storage-Systemen einschließlich Speicherkapazität,
+Netzwerkkomponenten, ONTAP-Basissoftware und 36 Monaten Hersteller-Support</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CityName>Greifswald</cbc:CityName>
+					<cbc:CountrySubentityCode listName="nuts">DE80N</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">1x 36 Monate</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.zoo-leipzig.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Zoo Leipzig GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Pfaffendorfer Str. 29</cbc:StreetName>
+                           <cbc:CityName>Leipzig</cbc:CityName>
+                           <cbc:PostalZone>04105</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 00010192</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">1. Vergabekammer des Freistaats Sachsen</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:CityName>Leipzig</cbc:CityName>
+                           <cbc:PostalZone>04103</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Referat 38</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00692059-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">194/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-07+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">0052e31e-9b25-47ed-8790-b253c24e4f0c</cbc:ID>
+   <cbc:ContractFolderID>6c9d47e2-589d-4c2c-9802-9ee3320c8172</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-05+02:00</cbc:IssueDate>
+   <cbc:IssueTime>15:11:34+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-05+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">rcr</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Es gelten die Ausschlussgründe gem. §§ 123 und 124 GWB, ferner diejenigen nach § 21 AEntG, § 98c AufenthG, § 19 MiLoG und § 21 SchwarzarbG, § 22 Lieferkettensorgfaltspflichtengesetz oder im Zusammenhang mit den Sanktionen gegen Russland. Hierzu ist eine Eigenerklärung
+über den Teilnahmeantrag abzugeben.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">true</cbc:ProcessReasonCode>
+         <cbc:ProcessReason languageID="DEU">Es wird beabsichtigt, gem. § 17 Abs. 6 VgV die Angebotsfrist einvernehmlich auf 21 Tage festzulegen.</cbc:ProcessReason>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">LIFE4HamsterSaxony</cbc:Name>
+      <cbc:Description languageID="DEU">Der Zoo Leipzig ist im Rahmen seiner Verantwortung im Natur- und Artenschutz Partner im Projekt LIFE4HamsterSaxony, welches von der Europäischen Union kofinanziert wird. Hauptaugenmerk des Projektes ist die Etablierung einer stabilen Feldhamsterpopulation
+im Projektraum Nordwestsachsen mittels Erprobung und schrittweiser Implementierung feldhamsterfreundlicher landwirtschaftlicher Maßnahmen sowie Zucht und Auswilderung von Feldhamstern durch den Zoo Leipzig.
+Gegenstand der Vergabe sind die Fertigung und der Einsatz von sog. Wiegeboxen sowie das Monitoring von Feldhamstern mittels Lebendfang.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">90721700</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">73000000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">73110000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">90711500</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">73110000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">90721700</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">73120000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">73300000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">38311200</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72230000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:Funding>
+                        <efbc:FinancingIdentifier>LIFE4HamsterSaxony</efbc:FinancingIdentifier>
+                        <cbc:Description languageID="DEU">LIFE ist das Förderprogramm der EU für Umwelt-, Natur- und Klimaschutz. Es unterstützt Projekte, die nachhaltige Lösungen voranbringen und Umweltpolitik in die Praxis überführen – für eine ressourcenschonende Wirtschaft und den Schutz biologischer Vielfalt.</cbc:Description>
+                     </efac:Funding>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Vorzulegen ist ein Nachweis der Eintragung in einem Berufs- oder Handelsregister (Vorlage des Auszugs als Scan; nicht älter als drei Monate) oder Nachweis der erlaubten Berufsausübung auf andere Weise gem. § 44 Abs. 1 VgV.</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Gefordert wird der Nachweis der bestehenden Betriebs- oder Berufshaftpflichtversicherung (sofern vorhanden) durch Vorlage einer Kopie des Versicherungsscheins und Eigenerklärung (im Teilnahmeantrag) zur Anpassung auf Deckungssumme 200.000 € für Vermögensschäden, jeweils bezogen auf den jeweiligen Schadenfall. 
+
+Bei Bewerbergemeinschaften ist der Versicherungsschein für jedes Mitglied beizufügen. Bezüglich der Eigenerklärung zur Anpassung auf die geforderte Deckungssumme genügt es, wenn sie von der Bewerbergemeinschaft insgesamt vorgelegt wird.</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Abzugeben ist eine Eigenerklärung, aus der die Zahl der festangestellten Beschäftigten des Bewerbers im Zeitpunkt der Abgabe des Teilnahmeantrags ersichtlich ist;
+
+Das Formular für den Teilnahmeantrag ist für diese Angabe zu verwenden.
+
+Bei Bewerbergemeinschaften ist dieser Nachweis für jedes Mitglied beizufügen</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erforderlich ist die Angabe der Fachkräfte, die im Zusammenhang mit der Leistungserbringung eingesetzt werden sollen, unabhängig davon, ob diese dem Unternehmen angehören oder nicht.</cbc:Description>
+                        <efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Eigenerklärung zu vergleichbaren Referenzen aus den letzten 5 Jahren. Unter vergleichbaren Referenzen versteht der Auftraggeber Referenzen, die in Art und Umfang der geforderten Leistungen ähnlich sind.
+
+Mindestanforderung: Es sind mindestens zwei Referenzen aus den Bereichen Bereich Wildtiermonitoring, Artenschutz, Populationsmonitoring oder vergleichbaren naturschutzfachlichen Projekten vorzulegen.
+
+Diese müssen zum Nachweis von Erfahrungen im Umgang mit Feldhamstern, anderen wildlebenden Säugetieren oder vergleichbaren Tierarten sowie bei der Erfassung, Dokumentation und Aufbereitung wissenschaftlicher Monitoringdaten geeignet sein.
+
+Für den Nachweis des Vorliegens vergleichbarer Referenzen ist einerseits der Teilnahmeantrag im entsprechenden Abschnitt auszufüllen. Zudem sind geeignete Unterlagen vorzulegen (etwa in Form einer Kurzdarstellung der Referenz unter Angabe von Aufgabe und Beispielen für die Umsetzung), anhand derer der Auftraggeber die Erfüllung der Mindestanforderungen und der „Punktekriterien“ beurteilen kann.</cbc:Description>
+                        <efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">par-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E64741274</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E64741274</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der AG verfährt nach § 56 Abs. 2 bis 4 VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>60</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Leistungserbringungskonzept und Personaleinsatz und -qualifikation</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Bieter hat darzustellen, wie die Durchführung der ausgeschriebenen Leistungen sichergestellt wird. Hierbei ist auf die zeitlichen und organisatorischen Abläufe einzugehen. Der Bieter hat hierzu eigene Vorschläge zu unterbreiten, soll aber auch auf die in der Leistungsbeschreibung beschriebenen Phasen-Modelle (Leistungsphasen) eingehen. Sollte er hierzu Alternativvorschläge haben, darf er diese ebenfalls im Rahmen seiner Präsentation unterbreiten. Zudem werden Ausführungen zum Thema Datenmanagement und wissenschaftliche Kommunikation erwartet.
+
+Personaleinsatz und -qualifikation
+
+Es sollen zu den einzusetzenden Personen folgende Angaben erfolgen: 
+•	Höchster Bildungsabschluss Projektleiter
+•	Höchster Bildungsabschluss Mitarbeiter
+•	Höchster Bildungsabschluss Assistenzen
+•	Praktische Erfahrung in Auswilderung von Feldhamstern
+•	Praktische Erfahrung im Lebendfang von Kleinsäugern
+•	Praktische Erfahrung in Individualkennzeichnung
+•	Angaben zu Einhaltung der erforderlichen naturschutzrechtlichen, tierschutzrechtlichen sowie tierversuchsrechtlichen Vorgaben 
+•	Erfahrung im Veröffentlichen wissenschaftlicher Artikel in wissenschaftlichen Magazinen "peer-reviewed"
+•	Praktische Erfahrung in Baukartierung von Feldhamstern
+
+
+Für die Durchführung invasiver Maßnahmen an Tieren sind die hierfür vorgesehenen Personen zu benennen und deren fachliche Eignung nachzuweisen. Der Nachweis kann auf unterschiedliche Weise erfolgen, z.B. nachweisbare praktische Arbeit im Feldhamster-Monitoring, studentische Praktika oder Abschlussarbeiten im genannten Bereich, durch Erfahrung in der Veröffentlichung von Artikeln in Fachzeitschriften oder durch Zertifikate und Genehmigungen.
+
+Die Angaben sind im Dokument „Personal und Leistungsanforderungen_Lebendfang sowie Entwicklung und Einsatz von Wiegeboxen“) einzutragen.
+
+Entsprechende Nachweise sind nur auf gesondertes Verlangen vorzulegen.
+
+Neben dessen fachlicher Qualifikation ist zu erläutern, wann, wieviel und welches Personal für die Leistungserbringung eingesetzt werden soll (Personaleinsatzkonzept).
+
+Die eigenen Ausführungen sollen maximal zwei Seiten umfassen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis ist für die angebotenen Leistungen ist über das beigefügte Preisblatt anzugeben. Die einzelnen preisbildenden Parameter (Zeitaufwand und Stundensatz) sind zur Erläuterung der angebotenen Pauschalen anzugeben. Wertungspreis ist der Gesamtpreis.
+
+Das Angebot mit dem niedrigsten Gesamtpreis (x1) erhält 40 Wertungspunkte. Die Wertungspunkte für die übrigen Angebote (Preis xs) werden innerhalb eines Korridors vergeben, der sich zwischen dem niedrigsten Angebotspreis und einem rechnerisch ermittelten Angebotspreis x2, der 1,5- fach so hoch ist wie dieser, bewegt.
+
+Die Ermittlung der Wertungspunkte für Preise im Korridor (x1....x2) erfolgt über eine lineare Interpolation.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E64741274</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Erkennt ein Bewerber oder Bieter einen Verstoß gegen Vergabevorschriften im vorliegenden Vergabeverfahren, hat er dies gegenüber dem Auftraggeber gem. § 160 Abs. 1 Nr. 1 GWB innerhalb einer Frist von zehn Kalendertagen zu rügen. Unabhängig davon müssen Verstöße
+gegen Vergabevorschriften, die bereits aufgrund der Bekanntmachung erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder
+zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden. Außerdem müssen Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem
+Auftraggeber gerügt werden. Verstößt ein Bieter gegen diese Obliegenheiten, ist ein etwaiger Antrag auf Nachprüfung des Vergabeverfahrens gemäß § 160 Abs. 3 S. 1 Nr. 1-3 GWB unzulässig. Teilt der Auftraggeber auf eine Rüge eines Bieters mit, der Rüge nicht abhelfen zu
+wollen, kann der Rügeführer hiergegen einen Antrag auf Nachprüfung bei der zuständigen Vergabekammer stellen. Der Antrag ist unzulässig, wenn mehr als 15 Kalendertage nach dem Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu
+wollen, vergangen sind (§ 160 Abs. 3 S. 1 Nr. 4 GWB). Es wird darauf hingewiesen, dass bei Durchführung eines Nachprüfungsverfahrens alle Verfahrensbeteiligten nach § 165 Abs. 1 GWB ein Akteneinsichtsrecht haben. Mit der Abgabe eines Angebotes wird
+dieses in die Akten des Auftraggebers aufgenommen. Jeder Bieter muss daher mit der konkreten Möglichkeit rechnen, dass sein Angebot mit allen Bestandteilen von den anderen Verfahrensbeteiligten bei der Vergabekammer eingesehen wird. Es liegt daher im eigenen Interesse eines
+jeden Bieters, schon in seinem Angebot auf wichtige Gründe, die nach § 165 Abs. 2 GWB die Vergabekammer veranlassen, die Einsicht in die Akten zu versagen, hinzuweisen und diese in den Unterlagen entsprechend kenntlich zu machen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:ParticipationRequestReceptionPeriod>
+            <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+         </cac:ParticipationRequestReceptionPeriod>
+         <cac:EconomicOperatorShortList>
+            <cbc:LimitationDescription>true</cbc:LimitationDescription>
+            <cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+            <cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+         </cac:EconomicOperatorShortList>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 LIFE4HamsterSaxony26/3</cbc:ID>
+         <cbc:Name languageID="DEU">Lebendfang sowie Entwicklung und Einsatz von Wiegeboxen</cbc:Name>
+         <cbc:Description languageID="DEU">Der Zoo Leipzig ist im Rahmen seiner Verantwortung im Natur- und Artenschutz Partner im Projekt LIFE4HamsterSaxony, welches von der Europäischen Union kofinanziert wird. Hauptaugenmerk des Projektes ist die Etablierung einer stabilen Feldhamsterpopulation im Projektraum Nordwestsachsen mittels Erprobung und schrittweiser Implementierung feldhamsterfreundlicher landwirtschaftlicher Maßnahmen sowie Zucht und Auswilderung von Feldhamstern durch den Zoo Leipzig. Zur Steuerung der Maßnahmen in diesen drei Komponenten sowie zum Wissensgewinn wird Unterstützung beim wissenschaftlichen Monitoring benötigt. Die zur Hauptleistung gehörenden folgenden Leistungsbereiche sind aufgrund der Notwendigkeit einer engen zeitlichen und räumlichen Abstimmung untrennbar miteinander verbunden.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:startup#, #Besonders auch geeignet für:other-sme#, #Besonders auch geeignet für:selbst#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">90721700</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">90711500</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">73110000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">73120000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">38311000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72230000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-01-04+01:00</cbc:StartDate>
+            <cbc:EndDate>2028-01-03+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Der Vertrag zwischen Auftraggeber und Auftragnehmer läuft 1 Jahr. Wird er nicht bis zum 01.02. des jeweiligen Jahres gekündigt, verlängert er sich automatisch um ein Jahr bis maximal 31.12.2031.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

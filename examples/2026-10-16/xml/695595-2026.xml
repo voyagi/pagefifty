@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>3db640f6-9af7-46d6-b1fe-6c1f60dedf7e-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Leistungsbeschreibung: siehe Änderungsmarkierung Nummer 1.3.16 Vertrag: siehe Änderungsmarkierung Ziffern 5.1.1.4 und 15.4.3 (Hotline)  Vertrag: siehe Änderungsmarkierung Ziffer 15.4.2 (Servicezeiten): Korrektur eines offensichtlichen Übertragungsfehlers der Servicezeiten. Anpassung an Ziffer 5.1.1.3 des Vertrages und Nr. 1.3.15 der Leistungsbeschreibung.</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-02+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+							<efbc:ReasonDescription languageID="DEU">Aufgrund der Antworten zu Bieterfragen 8 - 21 (dort in der beigefügten Excel-Tabelle, Ziffer 3 (Service- und Supportzeiten) wurden die Zeiten des Hotlinebetriebs angepasst.  Diesbezüglich wurden Leistungsbeschreibung und Vertrag (jeweils änderungsmarkiert) angepasst.</efbc:ReasonDescription>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Land Rheinland-Pfalz, vertreten durch das Landesamt für Finanzen (LfF)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Hoevelstraße 10</cbc:StreetName>
+									<cbc:CityName>Koblenz</cbc:CityName>
+									<cbc:PostalZone>56073</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB11</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0011470100000-91</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer beim Ministerium für Wirtschaft, Tourismus, Energie und Klima</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer beim Ministerium für Wirtschaft, Tourismus, Energie und Klima</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00695595-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">195/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-08+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">f4f54c63-52ad-4b0d-8f88-c0b9acbe22b2</cbc:ID>
+	<cbc:ContractFolderID>717e409b-3d0a-4f18-accf-3f9fff89aa13</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-07+02:00</cbc:IssueDate>
+	<cbc:IssueTime>11:42:13+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-07+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. §§ 123/124 GWB. nähere Angaben: Siehe Bieterformblatt, Ziffer 2.1, sowie das Anschreiben Aufforderung zum Teilnahmewettbewerb.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Es handelt sich um ein zweistufiges Verfahren. In der ersten Stufe (Teilnahmewettbewerb) gelten die in der EU-Bekanntmachung und in dem Anschreiben "Aufforderung zum Teilnahmewettbewerb" beschriebenen Anforderungen.  Für die zweite Stufe (Verhandlungsverfahren) gelten die Unterlagen: - Vergabeunterlagen (samt Angebotsformblatt und Bewertungsmatrix)  - ggf. sonstige Dokumente.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYYZYKGZ</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">(O 1080 V 25) 014</cbc:ID>
+		<cbc:Name languageID="DEU">Ticketsystem</cbc:Name>
+		<cbc:Description languageID="DEU">Zur Abbildung verschiedener Ticketprozesse benötigt das Landesamt für Finanzen (LfF) ein neues Ticketsystem, welches im landeseigenen Rechenzentrum des LDI betrieben werden muss (On Premise oder in der rlp-Cloud). Mit dem neuen Verfahren soll der bisher eingesetzte SAP SOLUTION MANAGER 7.2 mit dem SP Stack 20 -Stand 11/2025- und das bisher eingesetzte Ticketverfahren Zammad abgelöst werden. In das neue Verfahren sollen zudem auch Tickets aus anderen, nicht SAP-basierenden Bereichen abgebildet werden.  Die vollständige Einführung des neuen Ticketsystems (einschließlich der notwendigen Anbindung an Folgesysteme, Abnahmetest und Multiplikatorenschulung) soll dabei bis zum 31.07.2027 erfolgt sein. Eine produktive Nutzung des neuen Ticketsystems muss somit für alle angebundenen Nutzer (auch Nutzer anderer Behörden im Land Rheinland-Pfalz) spätestens ab dem 01.08.2027 gegeben sein.  Nähere Einzelheiten können Sie den beigefügten Vergabeunterlagen, insbesondere der Leistungsbeschreibung, Systemumgebung und Vertrag, entnehmen.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXPDYYZYKGZ#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Hoevelstraße 10</cbc:StreetName>
+				<cbc:CityName>Koblenz</cbc:CityName>
+				<cbc:PostalZone>56073</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEB11</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angaben über die Erbringung von einschlägigen Leistungen in den letzten drei Geschäftsjahren (Leistungszeitraum: in den Jahren 2023-2025, Abschluss der Implementierung bis spätestens zum 31.12.2025)(Leistungszeitraum: in den Jahren 2023-2025, spätestes Beginndatum: 01.07.2025), die mit der zu vergebenden Leistung vergleichbar sind (Referenzliste).   Die Referenzliste muss die geforderten Angaben aus dem Vordruck B8 enthalten.   Es werden mindestens 3 vergleichbare Referenzen gefordert.  Die Einreichung der Referenzen erfolgt als Anlage B8_Referenzen mittels des zur Verfügung gestellten Vordrucks.  Die näheren Einzelheiten (inkl. Mindestanforderungen) entnehmen Sie bitte dem Vordruck "B8_Referenzen Vordruck".  ------------------------------  Der Auftraggeber behält sich vor, die Teilnehmerzahl auf 3 bis 5 einzuschränken. Hierfür bildet der Auftraggeber eine an bekannt gemachten objektive Kriterien für die Auswahl der begrenzten Zahl von Bewerbern (Anlage B 8) festgelegte Rangfolge der Teilnahmeanträge und wird anhand dieses Zwischenergebnisses die zur Angebotsabgabe aufzufordernden Bewerber festlegen (Bestenauslese).   Der Auftraggeber behält sich vor, die Zahl der Teilnehmer zu reduzieren. Dazu wird die höchste Anzahl der in der Bekanntmachung geforderten und in Anlage B8 (Referenzen-Vordruck) zum Teilnahmewettbewerb angeführten vergleichbaren Referenzprojekte herangezogen. Liegen mehrere Bewerber/innen auf dem 3. bzw. 5 Platz, entscheidet das Los.   Gewertet werden Referenzen, die folgende Kriterien aufweisen:   Anerkannt wird jede Referenz, die kompatibel mit einer SAP-Umgebung ist und mindestens eine der genannten Mindestanforderungen im Vordruck B8 erfüllt.   Hinweis zum Ausfüllen des Vordrucks B8: Bitte beachten Sie, dass der Auftraggeber laut Ziffer 6.3.2 der Aufforderung zum Teilnahmewettbewerb beabsichtigt den Teilnehmerkreis anhand der Anzahl der Referenzen einzugrenzen. Sofern mehrere Mindestanforderungen für ein und denselben Auftraggeber erfüllt wurden, ist es vor diesem Hintergrund sinnvoll, die Referenzen im Hinblick auf die Mindestanforderung separat aufzuschlüsseln (also einem Auftraggeber ggfls. mehrere Referenznummern zuzuordnen und dort jeweils eine erfüllte Mindestanforderung aufzulisten).  Im Übrigen: siehe Anschreiben zur Aufforderung zum Teilnahmewettbewerb und Bieterformblatt.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">ord-imp</efbc:ParameterCode>
+									<efbc:ParameterNumeric>5</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Unternehmensdarstellung:  Eine aussagekräftige Unternehmensdarstellung unter Angabe von Firma, Sitz, Gegenstand, Rechtsform, Geschäftsleitung des Unternehmens, kurzer Beschreibung des Tätigkeitsbereichs (Arbeitsbereiche, Leistungsspektrum), Benennung des Ansprechpartners für die Bewerbung sowie der Darstellung und Erläuterung der Konzernstruktur, der Eigentums- und Beteiligungsverhältnisse und der Haftungsstruktur ist als Anlage B2 beizufügen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis über Eintrag in Berufs- oder Handelsregister: Ein aktueller Nachweis über den Eintrag in das Berufs- oder Handelsregister des Landes oder Handwerkrolle, in dem der Bieter ansässig ist als Anlage B3 beizufügen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-auth-mbrshp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Unbedenklichkeitsbescheinigung der Berufsgenossenschaft Ein aktueller Nachweis der Unbedenklichkeitsbescheinigung der Berufsgenossenschaft ist als Anlage B4 beizufügen. Der Nachweis darf zum Zeitpunkt der Einreichung nicht älter als 6 Monate sein.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-auth-mbrshp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Unbedenklichkeitsbescheinigung der Krankenkasse: Ein aktueller Nachweis der Unbedenklichkeitsbescheinigung der Krankenkasse, bei der die überwiegende Zahl der Mitarbeiter versichert ist, ist als Anlage B5 beizufügen. Der Nachweis darf zum Zeitpunkt der Einreichung nicht älter als 6 Monate sein.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung zum Umsatz: Umsatz in Mio. EUR soweit er Leistungen betrifft, die mit der zu vergebenden Leistung (Ticketsystem im Bereich der öffentlichen Verwaltung) vergleichbar sind. Der Umsatz ist im Bieterformblatt, Ziffer 3.1, anzugeben.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung/Nachweis Haftpflichtversicherung: Nachweis einer Haftpflichtversicherung mit folgenden Deckungssummen je Schadensfall:  Personenschäden  5 Mio. EUR Sachschäden   5 Mio. EUR Vermögensschäden  5 Mio. EUR  Der Nachweis wird durch eine Bestätigung des Versicherers über das Bestehen der Versicherung mit den genannten Deckungssummen, die als Anlage B7 beizufügen ist, erbracht.   Ist das nicht der Fall, hat der Bieter den Nachweis durch eine Bestätigung des Versicherers über die Bereitschaft, im Auftragsfall eine Versicherung mit den genannten Deckungssummen bereitzustellen, die als Anlage B7/Alternative beizufügen ist, zu erbringen. Der Nachweis bzw. die Alternative darf zum Zeitpunkt der Einreichung nicht älter als 6 Monate sein.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anforderungen des Datenschutzes an eine KI / Kriterienkatalog KI-Modelle: Es sind die  - "Anforderungen des Datenschutzes an eine KI" (B9.1) sowie  - der "Kriterienkatalog_KI-Modelle" (B9.2) als Anlage B9.1/B9.2 mit vollständiger Stellungnahme bzw. vollständig ausgefüllt beizufügen. Die dort enthaltenen Thematiken sind zu beantworten bzw. diesbezüglich Stellung zu nehmen. Die Vordrucke sind für jede der Ziffern 1.2.5/ 1.2.19 und 1.2.20 der LB gesondert einzureichen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachunternehmererklärung: Die Erklärung, welche Teile des Auftrags das Unternehmen unter Umständen an Nachunternehmer zu vergeben beabsichtigt bzw. ob der Bieter sich im Rahmen der Eignungsleihe der Kapazitäten anderer Unternehmen bedient, ist als Anlage B10 beizufügen.  Diesbezüglich kann der von der Vergabestelle bereitgestellte Vordruck verwendet werden.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mustererklärungen LTTG: Die Mustererklärung nach § 3 des rheinland-pfälzischen Landesgesetzes zur Gewährleistung von Tariftreue und Mindestentgelt bei öffentlichen Aufträgen (Mustererklärung 3) und/oder die Mustererklärung für öffentliche Aufträge, die vom Arbeitnehmer-Entsendegesetz erfasst werden (Mustererklärung 1) sind - soweit einschlägig (vgl. Merkblatt für die Abgabe einer Tariftreueerklärung und/oder Mindestentgelterklärung nach LTTG) - als Anlagenkonvolut B11.1 und B11.2 beizufügen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYYZYKGZ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">siehe Informationsschreiben</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">(1) Haftpflichtversicherung mit Deckungssummen je Schadensfall: Personenschäden  5 Mio. EUR Sachschäden   5 Mio. EUR Vermögensschäden  5 Mio. EUR  (2) Verpflichtung des Auftragnehmers zur Zahlung des Tarif- bzw. Mindestentgelts an die Beschäftigten bei der Ausführung der Leistungen gemäß §§ 3 und 4 des rheinland-pfälzischen Landesgesetzes zur Gewährleistung von Tariftreue und Mindestentgelt bei öffentlichen Auftragsvergaben (Landestariftreuegesetz LTTG) vom 1.12.2010 (GVBl. 2010, Nr. 20 S. 426 ff. vom 13.12.2010), gemäß Bieter-Formblatt, Anlage B11.  (3) Die Auftragnehmer halten bei der Leistungserbringung die anwendbaren Datenschutzgesetze in der jeweils gültigen Fassung ein , geben die gesetzlich geforderten Erklärungen zum Datenschutz ab und tragen dafür Sorge, dass die mit der Leistungserbringung betrauten Personen die entsprechenden Erklärungen abgeben.  Im Übrigen siehe Vergabeunterlagen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">gewichteter Gesamtpreis</cbc:Name>
+						<cbc:Description languageID="DEU">ZUSCHLAGSKRITERIEN Der Zuschlag wird nach Abschluss der Angebotsphase auf das wirtschaftlichste Angebot im Sinne des § 127 Abs. 1 GWB, § 58 VgV erteilt. Einzelkriterien in der Reihenfolge ihrer Gewichtung sind: 1. Gesamtpreis (50 %) 2. Güte der eingereichten Konzepte (50 %). ----- Maximal werden je Einzelkriterium 100 Punkte vergeben, die dann mit der Gewichtung multipliziert werden. Somit errechnet sich die Punktezahl für das konkrete Angebot auf der Ebene der Einzelkriterien. Aufsummiert ergibt sich die Gesamtpunktzahl für das Angebot (maximal 100 Punkte). Das Angebot des Bieters mit der höchsten Punktzahl nach den bekannt gemachten Kriterien stellt das wirtschaftlichste Angebot dar.   Bei Punktgleichheit entscheidet der günstigere Preis. Liegt dann auch eine Preisgleichheit vor, erhält das Angebot den Zuschlag, dessen Produkt die meisten zusätzlichen Funktionen beinhaltet (Darstellungen/Konzepte). ------ Im Übrigen: Siehe Dokument "Zuschlagskriterien"</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Güte der eingereichten Konzepte</cbc:Name>
+						<cbc:Description languageID="DEU">ZUSCHLAGSKRITERIEN Der Zuschlag wird nach Abschluss der Angebotsphase auf das wirtschaftlichste Angebot im Sinne des § 127 Abs. 1 GWB, § 58 VgV erteilt. Einzelkriterien in der Reihenfolge ihrer Gewichtung sind: 1. Gesamtpreis (50 %) 2. Güte der eingereichten Konzepte (50 %). ----- Maximal werden je Einzelkriterium 100 Punkte vergeben, die dann mit der Gewichtung multipliziert werden. Somit errechnet sich die Punktezahl für das konkrete Angebot auf der Ebene der Einzelkriterien. Aufsummiert ergibt sich die Gesamtpunktzahl für das Angebot (maximal 100 Punkte). Das Angebot des Bieters mit der höchsten Punktzahl nach den bekannt gemachten Kriterien stellt das wirtschaftlichste Angebot dar.   Bei Punktgleichheit entscheidet der günstigere Preis. Liegt dann auch eine Preisgleichheit vor, erhält das Angebot den Zuschlag, dessen Produkt die meisten zusätzlichen Funktionen beinhaltet (Darstellungen/Konzepte). ----- Im Übrigen: Siehe Dokument "Zuschlagskriterien"</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYYZYKGZ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYYZYKGZ</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-30+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">(O 1080 V 25) 014</cbc:ID>
+			<cbc:Name languageID="DEU">Ticketsystem</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist die Erstellung des in den Vergabeunterlagen beschriebenen Gesamtsystems, einschließlich der Herbeiführung der Betriebsbereitschaft durch den Auftragnehmer auf der Grundlage eines Werkvertrages und der Systemservice und die Weiterentwicklung des Gesamtsystems.  Das Gesamtsystem besteht aus einer auftraggeberspezifisch angepassten marktüblichen Ticketsystemsoftware (On Premise bzw. in der rlp-Cloud des LDI /Miete), die den Anforderungen der modernen Ticketbearbeitung durch den Auftraggeber gerecht wird, inklusive zugehöriger auftraggeberspezifisch erstellter bzw. angepasster Integrationen in das IT-System des Auftraggebers gemäß den weiteren Regelungen, insbesondere gemäß den funktionellen und technischen Spezifikationen des Auftraggebers, vgl. Leistungsbeschreibung. Hierzu gehört u.a. die Integration der  Ticketsystemsoftware in die vom Auftraggeber betriebene SAP-Landschaft, u.a. Anbindung an das Transportmanagement, die Abbildung verschiedener Auswertungen und Berichte, der Aufbau von Wissensdatenbanken und Migrationen aus verschiedenen Quellsystemen. Zur Herstellung des Gesamtsystems ist die Software u.a. einzurichten und zu konfigurieren, insbesondere Nutzer-Accounts anzulegen und Daten gemäß Leistungsbeschreibung bzw. Systemumgebung zu importieren, die Software über Schnittstellen an verschiedene Tools des Auftraggebers anzubinden, die geforderte Automatisierung herzustellen, eine hohe Interoperabilität mit den benannten Drittsystemen herzustellen, zu testen, Testinstanzen einzurichten und zu betreiben, den Onboarding-Prozess erfolgreich inkl. Schnittstellenintegration zu den Drittsystemen und Schulungen abzuschließen.  Eine produktive Nutzung nach Abnahme des Gesamtsystems muss für alle angebundenen Nutzer des Auftraggebers, vgl. Leistungsbeschreibung, zum 01.08.2027 vertragsgemäß möglich sein.   Nähere Einzelheiten können Sie den beigefügten Vergabeunterlagen, insbesondere Leistungsbeschreibung, Systemumgebung und Vertrag, entnehmen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Hoevelstraße 10</cbc:StreetName>
+					<cbc:CityName>Koblenz</cbc:CityName>
+					<cbc:PostalZone>56073</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB11</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">5</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Verlängerungsoption für 3 und 2 Jahre (also gesamt max. 5 Jahre). ------               des Weiteren:           - Option 1: zusätzliche Nutzer inkl. Systemservice, gemäß der vom Auftraggeber gewünschten Dauer ab dem Zeitpunkt der vom Auftraggeber gewünschten Freischaltung, frühestens ab Abnahme des Gesamtsystems, inkl. Systemservice (beliebig oft ausübbar), während der ersten 5-jährigen Mietzeit  -------------------- - Option 2: den Vertrag bezüglich der Leistungen, die der Auftragnehmer nach der Herstellung des Gesamtsystems zu erbringen hat (u.a. Miete, Systemservice, Nutzungsgewährung, Aufrechterhaltung des vertragsgemäßen Zustands), nach Ablauf der ersten 60 Monate "Mietzeit" (die ersten 5 Jahre beginnen mit Abnahme) um 36 Monate (Jahre 6 bis 8 )  zu verlängern und ggf. nach den Jahren 6 bis 8 um weitere 24 Monate zu verlängern (Jahre 9 und 10);   -------------------- - Option 3: zusätzliche Nutzer inkl. Systemservice in den Jahren 6 -8 bzw. auch 9 - 10 gemäß der vom Auftraggeber gewünschten Dauer ab dem Zeitpunkt der vom Auftraggeber gewünschten Freischaltung (beliebig oft ausübbar),  -------------------- - Option 4: Auf Abruf durch den Auftraggeber erbringt der Auftragnehmer zusätzliche Schulungen im Umfang von je 4 Stunden mit Bezug zum Gesamtsystem und / oder den KI-Services (sofern die Option ausgeübt wurde), die während der 5-jährigen Mietzeit einzeln abrufbar sind (beliebig oft ausübbar). Die Schulungen werden nach Wahl des Auftraggebers remote oder vor Ort erbracht. Es besteht keine Abrufverpflichtung des Auftraggebers.  -------------------- - Option 5: Auf Abruf durch den Auftraggeber erbringt der Auftragnehmer zusätzliche IT-Leistungen nach der Abnahme, beispielsweise unterstützt er bei neu benötigten Schnittstellen und berät (beliebig oft ausübbar). Die Unterstützung erfolgt nach Wahl des Auftraggebers remote oder vor Ort. Es besteht keine Abrufverpflichtung des Auftraggebers ("Unterstützung in der Produktion"). Die Option gilt auch während der ggf. verlängerten Nutzungszeit (siehe Option 2).  -------------------- - Option 6: KI-Optionen während der 5-jährigen Mietzeit und während der ggf. verlängerten Nutzungszeit (siehe Option 2) -------- o Option 6.1: KI-Service gemäß Ziffer 1.2.5 der Leistungsbeschreibung: Herstellung/Implementierung, Miete, Systemservice und Deinstallation -------- o Option 6.2: KI-Service gemäß für Ziffer 1.2.19 der Leistungsbeschreibung: Herstellung/Implementierung, Miete, Systemservice und Deinstallation  -------- o Option 6.3: KI-Service gemäß für Ziffer 1.2.20 der Leistungsbeschreibung: Herstellung/Implementierung, Miete, Systemservice und Deinstallation</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>5</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">zusätzlich 3 und 2 Jahre (also gesamt max. 5 Jahre) optionaler Verlängerung.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

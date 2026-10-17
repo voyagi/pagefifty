@@ -5,7 +5,8 @@
 // exit code: this Node layer builds the Worker, serves it with wrangler dev on 127.0.0.1:8788,
 // runs every scripts/e2e/*.devbrowser.js driver through the dev-browser CLI in name order, and
 // owns the verdict. Each driver reads pagefifty-e2e-run.json from the dev-browser tmp folder
-// and writes { driver, checks: [{ name, ok, detail }] } to the result name it finds there. A
+// (its result name, and under latest the facts of the newest built capture) and writes
+// { driver, checks: [{ name, ok, detail }] } to the result name it finds there. A
 // driver may add logMustNotContain (strings the Worker's request log must not hold) and
 // logMustContain (lines it must), checked here after every driver has run.
 //
@@ -25,6 +26,9 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { cetDayEnd } from '../src/lib/core/deadline.ts';
+import { captureDay, firstPublishedDay, newestCapture } from '../src/lib/snapshot/capture-id.ts';
+import { SnapshotIndexSchema } from '../src/lib/snapshot/index-row.ts';
 import {
 	DEV_BROWSER_TMP,
 	HarnessError,
@@ -84,6 +88,79 @@ function checkTwins() {
 	}
 }
 
+const GENERATED = 'src/lib/snapshot/generated';
+const COUNTRY_TABLE = 'src/lib/tenders/list.ts';
+
+// The tender page names a buyer country through the table in list.ts, which Node cannot import
+// (its own imports carry no extension), so the table is read from that file's text.
+function countryNames() {
+	const text = readFileSync(COUNTRY_TABLE, 'utf8');
+	return new Map(
+		[...text.matchAll(/\['([A-Z]{3})', '([^']+)'\]/g)].map(([, code, name]) => [code, name])
+	);
+}
+
+// A deadline filter that ends the day before the capture day keeps only tenders closed before the
+// capture, so it is closed under the real clock whichever capture is served.
+function dayBefore(id) {
+	const [year, month, day] = id.split('-').map(Number);
+	const date = new Date(Date.UTC(year, month - 1, day - 1)).toISOString().slice(0, 10);
+	return { date, endsAt: cetDayEnd(date).toISOString() };
+}
+
+function noticeOrder(left, right) {
+	const [leftRunning, leftYear] = left.noticeNumber.split('-').map(Number);
+	const [rightRunning, rightYear] = right.noticeNumber.split('-').map(Number);
+	return leftYear - rightYear || leftRunning - rightRunning;
+}
+
+// The live routes serve whatever capture is newest, so their expectations come from the build,
+// never from the drivers: the next capture then needs no driver change.
+function latestCapture() {
+	let id;
+	try {
+		id = newestCapture(readdirSync(GENERATED));
+	} catch (error) {
+		throw new HarnessError(2, `${GENERATED}: ${error.message}`);
+	}
+	const path = join(GENERATED, id, 'index.json');
+	let parsed;
+	try {
+		parsed = SnapshotIndexSchema.safeParse(JSON.parse(readFileSync(path, 'utf8')));
+	} catch (error) {
+		throw new HarnessError(2, `${path} could not be read as JSON: ${error.message}`);
+	}
+	if (!parsed.success) {
+		throw new HarnessError(2, `${path} is not a built index: ${parsed.error.message}`);
+	}
+	const { capture, rows } = parsed.data;
+	if (rows.length === 0 || capture.total === 0) {
+		throw new HarnessError(
+			2,
+			`${path} holds ${rows.length} rows of a stated ${capture.total}, so there is nothing to check the live pages against`
+		);
+	}
+	const [first] = [...rows].sort(noticeOrder);
+	const names = countryNames();
+	const unnamed = first.country.filter((code) => !names.has(code));
+	if (unnamed.length > 0) {
+		throw new HarnessError(2, `${COUNTRY_TABLE} names no country for ${unnamed.join(', ')}`);
+	}
+	return {
+		id,
+		rows: rows.length,
+		total: capture.total,
+		capturedOn: captureDay(capture.fetchedAt),
+		firstPublished: firstPublishedDay(capture.query),
+		dayBefore: dayBefore(id),
+		probe: {
+			notice: first.noticeNumber,
+			lots: first.lots.length,
+			countries: first.country.map((code) => names.get(code))
+		}
+	};
+}
+
 function readLog(logFile) {
 	try {
 		return readFileSync(logFile, 'utf8');
@@ -126,13 +203,13 @@ function logChecks(log, logRules) {
 	});
 }
 
-function runDrivers(runId) {
+function runDrivers(runId, latest) {
 	const checks = [];
 	const logRules = [];
 	const times = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
-		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName });
+		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest });
 		const started = Date.now();
 		const run = runDriver({
 			browserName: 'pagefifty-e2e',
@@ -165,7 +242,9 @@ function runDrivers(runId) {
 				driverPath: CLEANUP_DRIVER,
 				timeoutSeconds: CLEANUP_SECONDS
 			});
-			console.log(`[e2e] after ${basename(driverPath)}: cleanup exit ${cleanup.code}, ${cleanup.output.trim()}`);
+			console.log(
+				`[e2e] after ${basename(driverPath)}: cleanup exit ${cleanup.code}, ${cleanup.output.trim()}`
+			);
 		}
 	}
 	// A driver is stopped at its limit, so each one's time is printed on every run, before a new
@@ -210,11 +289,15 @@ async function main() {
 	let code = 2;
 	try {
 		if (!args.has('--no-build')) buildWorker();
+		const latest = latestCapture();
+		console.log(
+			`[e2e] newest capture ${latest.id}: ${latest.rows} rows of ${latest.total} listed, probe ${latest.probe.notice}`
+		);
 		const runId = randomUUID().slice(0, 8);
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const { checks, logRules, times } = runDrivers(runId);
+		const { checks, logRules, times } = runDrivers(runId, latest);
 		const log = logRules.length > 0 ? await settledLog(logFile) : '';
 		code = verdict([...checks, ...logChecks(log, logRules)]);
 		for (const line of marginWarnings(times, DRIVER_SECONDS)) {

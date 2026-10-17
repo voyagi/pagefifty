@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+    <ext:UBLExtensions>
+        <ext:UBLExtension>
+            <ext:ExtensionContent>
+                <efext:EformsExtension>
+                    <efac:Changes>
+                        <efbc:ChangedNoticeIdentifier>c35b3df0-dcb6-4f8e-8a1d-3225fb9d2c8a-01</efbc:ChangedNoticeIdentifier>
+                        <efac:ChangeReason>
+                            <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+                            <efbc:ReasonDescription languageID="NLD">Nota van Inlichtingen 3, vragen stellen vanaf 1 oktober 2026</efbc:ReasonDescription>
+                        </efac:ChangeReason>
+                    </efac:Changes>
+                    <efac:NoticeSubType>
+                        <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+                    </efac:NoticeSubType>
+                    <efac:Organizations>
+                        <efac:Organization>
+                            <efac:Company>
+                                <cbc:WebsiteURI>http://www.tenderned.nl</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">IJsselgemeenten</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:StreetName>Rivierweg 111</cbc:StreetName>
+                                    <cbc:CityName>Capelle aan den IJssel</cbc:CityName>
+                                    <cbc:PostalZone>2903 AR</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL366</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:PartyLegalEntity>
+                                    <cbc:CompanyID>54743224</cbc:CompanyID>
+                                </cac:PartyLegalEntity>
+                                <cac:Contact>
+                                    <cbc:Name>[removed]</cbc:Name>
+                                    <cbc:Telephone>[removed]</cbc:Telephone>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:Company>
+                            <efac:TouchPoint>
+                                <cbc:WebsiteURI>https://www.rechtspraak.nl/</cbc:WebsiteURI>
+                                <cac:PartyIdentification>
+                                    <cbc:ID schemeName="touchpoint">TPO-0001</cbc:ID>
+                                </cac:PartyIdentification>
+                                <cac:PartyName>
+                                    <cbc:Name languageID="NLD">[removed]</cbc:Name>
+                                </cac:PartyName>
+                                <cac:PostalAddress>
+                                    <cbc:CityName>Rotterdam</cbc:CityName>
+                                    <cbc:PostalZone>3072 AK</cbc:PostalZone>
+                                    <cbc:CountrySubentityCode listName="nuts">NL366</cbc:CountrySubentityCode>
+                                    <cac:Country>
+                                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                                    </cac:Country>
+                                </cac:PostalAddress>
+                                <cac:Contact>
+                                    <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                                </cac:Contact>
+                            </efac:TouchPoint>
+                        </efac:Organization>
+                    </efac:Organizations>
+                <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00678197-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+            </ext:ExtensionContent>
+        </ext:UBLExtension>
+    </ext:UBLExtensions>
+    <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+    <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+    <cbc:ID schemeName="notice-id">03bf3965-8402-4c7b-bc63-3eac2b4a1429</cbc:ID>
+    <cbc:ContractFolderID>ea3a83c7-d60a-4cc6-a8db-528f0fa5013e</cbc:ContractFolderID>
+    <cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+    <cbc:IssueTime>14:45:28.99484452+02:00</cbc:IssueTime>
+    <cbc:VersionID>01</cbc:VersionID>
+    <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+    <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+    <cbc:NoticeLanguageCode listName="language">NLD</cbc:NoticeLanguageCode>
+    <cac:ContractingParty>
+        <cac:ContractingPartyType>
+            <cbc:PartyTypeCode listName="buyer-legal-type">body-pl</cbc:PartyTypeCode>
+        </cac:ContractingPartyType>
+        <cac:ContractingActivity>
+            <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+        </cac:ContractingActivity>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+        </cac:Party>
+    </cac:ContractingParty>
+    <cac:TenderingTerms>
+        <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+                <cbc:TendererRequirementTypeCode languageID="NLD" listName="exclusion-grounds-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+        </cac:TendererQualificationRequest>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+        <cbc:Description languageID="NLD">Er wordt een Europese openbare procedure gevolgd. Alle geïnteresseerde marktpartijen kunnen een inschrijving indienen. Er vindt geen voorselectie plaats. De beoordeling van de inschrijvingen geschiedt op basis van de in de aanbestedingsdocumenten opgenomen criteria, waarna de opdracht wordt gegund aan de economisch meest voordelige inschrijving.</cbc:Description>
+        <cbc:ProcedureCode languageID="NLD" listName="procurement-procedure-type">open</cbc:ProcedureCode>
+        <cac:ProcessJustification>
+            <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+        </cac:ProcessJustification>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+        <cbc:ID schemeName="InternalID">EU2026/004</cbc:ID>
+        <cbc:Name languageID="NLD">ID- en aktescanners Burgerzaken</cbc:Name>
+        <cbc:Description languageID="NLD">IJsselgemeenten is op zoek naar een opdrachtnemer voor de levering, implementatie en ondersteuning van ID- en aktescanners voor Burgerzaken.
+De opdracht bestaat uit een complete oplossing voor het controleren van identiteitsbewijzen en akten. Onder de opdracht vallen onder andere de benodigde hardware, software, licenties, koppelingen, gezichtsvergelijking, controle op echtheidskenmerken, fraudeondersteuning, training, beheer, onderhoud en support.
+Met deze oplossing willen de gemeenten Capelle aan den IJssel en Krimpen aan den IJssel medewerkers van Burgerzaken beter ondersteunen bij documentcontrole en identiteitsvaststelling De opdracht bestaat uit de levering, implementatie en ondersteuning van ID-scanners en aktescanners voor Burgerzaken. Per gemeente gaat het om 3 balies met ID-scanners en 1 aktescanner in de backoffice. Onder de opdracht vallen ook de bijbehorende hardware, software, licenties, koppelingen, ondersteuning, beheer, onderhoud, training en documentatie.</cbc:Description>
+        <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+        <cbc:Note languageID="NLD">Deadline vragen stellen: 9 oktober 2026 vóór 12:00 uur
+Publiceren NVI 3: 19 oktober 2026.</cbc:Note>
+        <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30216110</cbc:ItemClassificationCode>
+        </cac:MainCommodityClassification>
+        <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">48318000</cbc:ItemClassificationCode>
+        </cac:AdditionalCommodityClassification>
+        <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+        </cac:AdditionalCommodityClassification>
+        <cac:RealizedLocation>
+            <cbc:Description languageID="NLD">Capelle aan den IJssel</cbc:Description>
+            <cac:Address>
+                <cbc:CountrySubentityCode listName="nuts">NL366</cbc:CountrySubentityCode>
+                <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:Address>
+        </cac:RealizedLocation>
+    </cac:ProcurementProject>
+    <cac:ProcurementProjectLot>
+        <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+        <cac:TenderingTerms>
+            <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+            <cbc:FundingProgramCode languageID="NLD" listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+            <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+            <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+            <cac:RequiredFinancialGuarantee>
+                <cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+            </cac:RequiredFinancialGuarantee>
+            <cac:CallForTendersDocumentReference>
+                <cbc:ID>documentsId</cbc:ID>
+                <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+                <cac:Attachment>
+                    <cac:ExternalReference>
+                        <cbc:URI>https://www.tenderned.nl/aankondigingen/overzicht/442566</cbc:URI>
+                    </cac:ExternalReference>
+                </cac:Attachment>
+            </cac:CallForTendersDocumentReference>
+            <cac:TendererQualificationRequest>
+                <cac:SpecificTendererRequirement>
+                    <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+                </cac:SpecificTendererRequirement>
+            </cac:TendererQualificationRequest>
+            <cac:TendererQualificationRequest>
+                <cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+            </cac:TendererQualificationRequest>
+            <cac:TendererQualificationRequest>
+                <cac:SpecificTendererRequirement>
+                    <cbc:TendererRequirementTypeCode languageID="NLD" listName="selection-criteria-source">epo-sub-espd</cbc:TendererRequirementTypeCode>
+                </cac:SpecificTendererRequirement>
+            </cac:TendererQualificationRequest>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode languageID="NLD" listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:ContractExecutionRequirement>
+                <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+            </cac:ContractExecutionRequirement>
+            <cac:AwardingTerms>
+                <cac:AwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Kwaliteit</cbc:Name>
+                        <cbc:Description languageID="NLD">Het subgunningscriterium Kwaliteit wordt beoordeeld aan de hand van de door Opdrachtnemer ingevulde Eisen- en Wensenlijst. 
+Must have (M): verplichte eisen. Indien een inschrijving niet aan één of meer Must haves voldoet, wordt de inschrijving ongeldig verklaard en niet verder beoordeeld.
+De categorie “S” (Should haves) wordt beoordeeld op basis van vaste puntentoekenning:
+-	per aantoonbare “Should have” worden 3 punten toegekend</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>30</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Dienstverlening</cbc:Name>
+                        <cbc:Description languageID="NLD">Het subgunningscriterium Dienstverlening wordt beoordeeld op basis van dienstverlening bij implementatie en gedurende de looptijd van de overeenkomst.
+De beoordeling vindt plaats aan de hand van:
+-	een implementatieplan conform format van IJsselgemeenten;
+-	een SLA opgesteld door inschrijver</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                    <cac:SubordinateAwardingCriterion>
+                        <ext:UBLExtensions>
+                            <ext:UBLExtension>
+                                <ext:ExtensionContent>
+                                    <efext:EformsExtension>
+                                        <efac:AwardCriterionParameter>
+                                            <efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+                                            <efbc:ParameterNumeric>30</efbc:ParameterNumeric>
+                                        </efac:AwardCriterionParameter>
+                                    </efext:EformsExtension>
+                                </ext:ExtensionContent>
+                            </ext:UBLExtension>
+                        </ext:UBLExtensions>
+                        <cbc:AwardingCriterionTypeCode languageID="NLD" listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                        <cbc:Name languageID="NLD">Prijs</cbc:Name>
+                        <cbc:Description languageID="NLD">Hiermee beoordeelt IJsselgemeenten de totale all-in inschrijfprijs</cbc:Description>
+                    </cac:SubordinateAwardingCriterion>
+                </cac:AwardingCriterion>
+            </cac:AwardingTerms>
+            <cac:AdditionalInformationParty>
+                <cac:PartyIdentification>
+                    <cbc:ID>ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+            </cac:AdditionalInformationParty>
+            <cac:TenderRecipientParty>
+                <cbc:EndpointID>https://www.tenderned.nl/aankondigingen/overzicht/442566</cbc:EndpointID>
+                <cac:PartyIdentification>
+                    <cbc:ID>ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+            </cac:TenderRecipientParty>
+            <cac:TenderValidityPeriod>
+                <cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+            </cac:TenderValidityPeriod>
+            <cac:AppealTerms>
+                <cac:AppealInformationParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID>ORG-0001</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:AppealInformationParty>
+                <cac:AppealReceiverParty>
+                    <cac:PartyIdentification>
+                        <cbc:ID>TPO-0001</cbc:ID>
+                    </cac:PartyIdentification>
+                </cac:AppealReceiverParty>
+            </cac:AppealTerms>
+            <cac:Language>
+                <cbc:ID>NLD</cbc:ID>
+            </cac:Language>
+            <cac:PostAwardProcess>
+                <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+                <cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+            </cac:PostAwardProcess>
+            <cac:SecurityClearanceTerm>
+                <cbc:Code listName="required">false</cbc:Code>
+            </cac:SecurityClearanceTerm>
+        </cac:TenderingTerms>
+        <cac:TenderingProcess>
+            <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+            <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+            <cac:TenderSubmissionDeadlinePeriod>
+                <cbc:EndDate>2026-10-30+01:00</cbc:EndDate>
+                <cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+            </cac:TenderSubmissionDeadlinePeriod>
+            <cac:AdditionalInformationRequestPeriod>
+                <cbc:EndDate>2026-10-09+02:00</cbc:EndDate>
+                <cbc:EndTime>17:00:00+02:00</cbc:EndTime>
+            </cac:AdditionalInformationRequestPeriod>
+            <cac:OpenTenderEvent>
+                <cbc:OccurrenceDate>2026-10-30+01:00</cbc:OccurrenceDate>
+                <cbc:OccurrenceTime>12:05:00+01:00</cbc:OccurrenceTime>
+            </cac:OpenTenderEvent>
+            <cac:AuctionTerms>
+                <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+            </cac:AuctionTerms>
+            <cac:ContractingSystem>
+                <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+            </cac:ContractingSystem>
+            <cac:ContractingSystem>
+                <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+            </cac:ContractingSystem>
+        </cac:TenderingProcess>
+        <cac:ProcurementProject>
+            <cbc:ID schemeName="InternalID">1</cbc:ID>
+            <cbc:Name languageID="NLD">ID- en aktescanners Burgerzaken</cbc:Name>
+            <cbc:Description languageID="NLD">IJsselgemeenten is op zoek naar een opdrachtnemer voor de levering, implementatie en ondersteuning van ID- en aktescanners voor Burgerzaken.
+De opdracht bestaat uit een complete oplossing voor het controleren van identiteitsbewijzen en akten. Onder de opdracht vallen onder andere de benodigde hardware, software, licenties, koppelingen, gezichtsvergelijking, controle op echtheidskenmerken, fraudeondersteuning, training, beheer, onderhoud en support.
+Met deze oplossing willen de gemeenten Capelle aan den IJssel en Krimpen aan den IJssel medewerkers van Burgerzaken beter ondersteunen bij documentcontrole en identiteitsvaststelling De opdracht bestaat uit de levering, implementatie en ondersteuning van ID-scanners en aktescanners voor Burgerzaken. Per gemeente gaat het om 3 balies met ID-scanners en 1 aktescanner in de backoffice. Onder de opdracht vallen ook de bijbehorende hardware, software, licenties, koppelingen, ondersteuning, beheer, onderhoud, training en documentatie.</cbc:Description>
+            <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+            <cac:ProcurementAdditionalType>
+                <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+            </cac:ProcurementAdditionalType>
+            <cac:MainCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">30216110</cbc:ItemClassificationCode>
+            </cac:MainCommodityClassification>
+            <cac:AdditionalCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">48318000</cbc:ItemClassificationCode>
+            </cac:AdditionalCommodityClassification>
+            <cac:AdditionalCommodityClassification>
+                <cbc:ItemClassificationCode listName="cpv">72261000</cbc:ItemClassificationCode>
+            </cac:AdditionalCommodityClassification>
+            <cac:RealizedLocation>
+                <cbc:Description languageID="NLD">Capelle aan den IJssel</cbc:Description>
+                <cac:Address>
+                    <cbc:CountrySubentityCode listName="nuts">NL366</cbc:CountrySubentityCode>
+                    <cac:Country>
+                        <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                    </cac:Country>
+                </cac:Address>
+            </cac:RealizedLocation>
+            <cac:PlannedPeriod>
+                <cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+            </cac:PlannedPeriod>
+        </cac:ProcurementProject>
+    </cac:ProcurementProjectLot>
+</ContractNotice>

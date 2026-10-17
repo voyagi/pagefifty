@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.lasuv.sachsen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Landesamt für Straßenbau und Verkehr, Zentrale</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Stauffenbergallee 24</cbc:StreetName>
+                           <cbc:CityName>Dresden</cbc:CityName>
+                           <cbc:PostalZone>01099</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED21</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>14-0706002LASUV01-45</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">1. Vergabekammer des Freistaates Sachsen bei der Landesdirektion Sachsen</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>PF 10 13 64</cbc:StreetName>
+                           <cbc:CityName>Leipzig</cbc:CityName>
+                           <cbc:PostalZone>04013</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>keine Angabe</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.lasuv.sachsen.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Landesamt für Straßenbau und Verkehr, Zentrale</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Stauffenbergallee 24</cbc:StreetName>
+                           <cbc:CityName>Dresden</cbc:CityName>
+                           <cbc:PostalZone>01099</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DED21</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>14-0706002LASUV01-45</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00680495-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">191/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-02+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">77a5a3c2-7e92-4bbf-946a-e5c3ad11d000</cbc:ID>
+   <cbc:ContractFolderID>2b28a473-012f-4d9b-b7e9-b255aece8ce1</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-01+02:00</cbc:IssueDate>
+   <cbc:IssueTime>09:02:39+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-01+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7006</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingend erfolgt ein Ausschluss des Bieters nach § 123 GWB, wenn dem Unternehmen das Verhalten einer Person zuzurechnen ist, die rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach:
+1. § 129 des Strafgesetzbuchs (Bildung krimineller Vereinigungen), § 129a des Strafgesetzbuchs (Bildung terroristischer Vereinigungen) oder § 129b des Strafgesetzbuchs (Kriminelle und terroristische Vereinigungen im Ausland),
+2. § 89c des Strafgesetzbuchs (Terrorismusfinanzierung) oder wegen der Teilnahme an einer solchen Tat oder wegen der Bereitstellung oder Sammlung finanzieller Mittel in Kenntnis dessen, dass diese finanziellen Mittel ganz oder teilweise dazu verwendet werden oder verwendet werden sollen, eine Tat nach § 89a Absatz 2 Nummer 2 des Strafgesetzbuchs zu begehen,
+3. § 261 des Strafgesetzbuchs (Geldwäsche),
+4. § 263 des Strafgesetzbuchs (Betrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in ihrem Auftrag verwaltet werden,
+5. § 264 des Strafgesetzbuchs (Subventionsbetrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in ihrem Auftrag verwaltet werden,
+6. § 299 des Strafgesetzbuchs (Bestechlichkeit und Bestechung im geschäftlichen Verkehr), §§ 299a und 299b des Strafgesetzbuchs (Bestechlichkeit und Bestechung im Gesundheitswesen),
+7. § 108e des Strafgesetzbuchs (Bestechlichkeit und Bestechung von Mandatsträgern),
+8. den §§ 333 und 334 des Strafgesetzbuchs (Vorteilsgewährung und Bestechung), jeweils auch in Verbindung mit § 335a des Strafgesetzbuchs (Ausländische und internationale Bedienstete),
+9. Artikel 2 § 2 des Gesetzes zur Bekämpfung internationaler Bestechung (Bestechung ausländischer Abgeordneter im Zusammenhang mit internationalem Geschäftsverkehr) oder
+10. den §§ 232, 232a Absatz 1 bis 5, den §§ 232b bis 233a des Strafgesetzbuches (Menschenhandel, Zwangsprostitution, Zwangsarbeit, Ausbeutung der Arbeitskraft, Ausbeutung unter Ausnutzung einer Freiheitsberaubung).
+Einer Verurteilung oder der Festsetzung einer Geldbuße im Sinne des Absatzes 1 stehen eine Verurteilung oder die Festsetzung einer Geldbuße nach den vergleichbaren Vorschriften anderer Staaten gleich.
+Das Verhalten einer rechtskräftig verurteilten Person ist einem Unternehmen zuzurechnen, wenn diese Person als für die Leitung des Unternehmens Verantwortlicher gehandelt hat; dazu gehört auch die Überwachung der Geschäftsführung oder die sonstige Ausübung von Kontrollbefugnissen in leitender Stellung.
+
+Ein Ausschluss kann nach § 124 GWB aufgrund von Kriterien erfolgen, die im Bezug zur persönlichen Situation der Bieter stehen. Das ist der Fall, wenn 
+1. das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende umwelt-, sozial- oder arbeitsrechtliche Verpflichtungen verstoßen hat,
+2. das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat,
+3. das Unternehmen im Rahmen der beruflichen Tätigkeit nachweislich eine schwere Verfehlung begangen hat, durch die die Integrität des Unternehmens infrage gestellt wird; 
+4. der öffentliche Auftraggeber über hinreichende Anhaltspunkte dafür verfügt, dass das Unternehmen mit anderen Unternehmen Vereinbarungen getroffen oder Verhaltensweisen aufeinander abgestimmt hat, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken,
+5. ein Interessenkonflikt bei der Durchführung des Vergabeverfahrens besteht, der die Unparteilichkeit und Unabhängigkeit einer für den öffentlichen Auftraggeber tätigen Person bei der Durchführung des Vergabeverfahrens beeinträchtigen könnte und der durch andere, weniger einschneidende Maßnahmen nicht wirksam beseitigt werden kann,
+6. eine Wettbewerbsverzerrung daraus resultiert, dass das Unternehmen bereits in die Vorbereitung des Vergabeverfahrens einbezogen war, und diese Wettbewerbsverzerrung nicht durch andere, weniger einschneidende Maßnahmen beseitigt werden kann,
+7. das Unternehmen eine wesentliche Anforderung bei der Ausführung eines früheren öffentlichen Auftrags oder Konzessionsvertrags erheblich oder fortdauernd mangelhaft erfüllt hat und dies zu einer vorzeitigen Beendigung, zu Schadensersatz oder zu einer vergleichbaren Rechtsfolge geführt hat,
+8. das Unternehmen in Bezug auf Ausschlussgründe oder Eignungskriterien eine schwerwiegende Täuschung begangen oder Auskünfte zurückgehalten hat oder nicht in der Lage ist, die erforderlichen Nachweise zu übermitteln oder 
+9. das Unternehmen
+a) versucht hat, die Entscheidungsfindung des öffentlichen Auftraggebers in unzulässiger Weise zu beeinflussen
+b) versucht hat, vertrauliche Informationen zu erhalten, durch die es unzulässige Vorteile beim Vergabeverfahren erlangen könnte oder
+c) fahrlässig oder vorsätzlich irreführende Informationen übermittelt hat, die die Vergabeentscheidung des öffentlichen Auftraggebers erheblich beeinflussen könnten oder versucht hat, solche Informationen zu übermitteln.
+
+Hierbei handelt es sich um Ausschlussgründe, die bei Vorliegen optional zum Ausschluss vom Vergabeverfahren führen können. Das bedeutet, dass die Vergabestelle im Einzelfall prüft, ob die persönliche Situation des Bewerbers eine Beauftragung ausschließt.
+Hieraus resultieren folgende Informationserfordernisse:  Der Bieter hat hierzu eine "Eigenerklärung Eignung" abzugeben, dass nachweislich keine schwere Verfehlung begangen wurde, die die Zuverlässigkeit als Bewerber in Frage stellt und Angaben zur Zahlung von Steuern, Abgaben und Beiträgen zur Sozialversicherung zu tätigen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:LotDistribution>
+         <cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+         <cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+      </cac:LotDistribution>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>23-4046/1669/8-</cbc:ID>
+      <cbc:Name languageID="DEU">Rahmenvertrag Fortführung der Straßeninformationsbank</cbc:Name>
+      <cbc:Description languageID="DEU">Rahmenvertrag Fortführung der Straßeninformationsbank</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Die elektronische Rechnungsstellung wird akzeptiert und erfolgt über das Bundesportal OZG-RE im XRechnungs-Format unter:
+Leitweg-ID Zentrale: 14-0706002LASUV01-45
+Leitweg-ID NL Bautzen: 14-0706044LASUV02-47
+Leitweg-ID NL Leipzig: 14-0706093LASUV03-80
+Leitweg-ID NL Meißen: 14-0706036LASUV04-63
+Leitweg-ID NL Plauen: 14-0706069LASUV05-71
+Leitweg-ID NL Zschopau: 14-0706085LASUV06-93</cbc:Note>
+      <cac:RequestedTenderTotal>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efbc:FrameworkMaximumAmount currencyID="EUR">1008403.36</efbc:FrameworkMaximumAmount>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72320000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Freistaat Sachsen</cbc:CityName>
+            <cbc:PostalZone>01099</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DED21</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe.de/unterlagen/54321-Tender-1a0cd0591e0-1894452c557314eb</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Folgende Nachweise, Angaben und Unterlagen sind mit dem Angebot vorzulegen:
+-ausgefüllter Vordruck Eigenerklärung zur Eignung (liegt den Vergabeunterlagen bei); hier insbes. Vorlage geeigneter Referenzen über früher ausgeführte Liefer- und
+Dienstleistungen der in den letzten höchstens drei Jahren erbrachten wesentlichen Leistungen (Angabe der Mindestanzahl an geforderten Referenzen: 3 Referenzen);
+Nachweis einer Berufs- oder Betriebshaftpflichtversicherung in bestimmter geeigneter Höhe (für Personenschäden in Höhe von mindestens 1.500.000,00 € und für sonstige Schäden (Sach- und Vermögensschäden) in Höhe von mindestens 1.500.000,00 €); Nachweis eines bestimmten Mindestjahresumsatzes in dem
+Tätigkeitsbereich des Auftrags (der geforderte Mindestjahresumsatz in dem Tätigkeitsbereich des Auftrages beträgt bei Los 2 NL Leipzig: 170.000,00 EUR netto, bei Los 4 NL Plauen: 170.000,00 EUR netto, bei Los 5 NL Zschopau: 140.000,00 EUR netto)
+-Verzeichnis der Unterauftragnehmerleistungen
+-Liste der wesentlichen in den letzten 3 Jahren erbrachten vergleichbaren Leistungen auf dem Gebiet der Straßeninformationsbank (ASB und TT-SIB) mit jeweiliger
+Angabe von Art und Umfang der Leistung, des Rechnungswertes, der Leistungszeit sowie des Auftraggebers
+-Angaben zu Anzahl und Qualifizierung der fest angestellten Mitarbeiter im Unternehmen
+-Namentliche Benennung des verantwortlichen Projektleiters und Stellvertreters sowie Vorlage von Studiennachweisen und Angaben über die berufliche Befähigung
+-Namentliche Benennung der für die Projektbearbeitung vorgesehenen Personen sowie Angaben zu deren Qualifikation und Berufserfahrung, Kenntnisse und praktische Erfahrungen auf den Gebieten ASB und TT-SIB
+-Angaben über die technische Ausstattung des Unternehmens, insbesondere zur vorhandenen Messtechnik, Einzelbilderfassungssysteme, Scansystem, GNSS,
+Arbeitsfahrzeuge, PC-Ausstattung und Softwareausstattung (TT-SIB, CARD/1)
+-Nachweis über vorhandene Lizenzen TT-SIB und CARD/1 
+
+Fehlende Unterlagen, deren Vorlage mit dem Angebot gefordert war, werden unter Fristsetzung nachgefordert. Werden die nachgeforderten Unterlagen nicht innerhalb der Frist vorgelegt, erfolgt der Ausschluss des Angebotes.
+
+Folgende Nachweise, Angaben und Unterlagen sind auf gesondertes Verlangen der Vergabestelle vorzulegen:
+
+-Ergänzung des Verzeichnisses der Unterauftragnehmerleistungen um die Namen der
+Unterauftragnehmer
+-Nachweis der Betriebshaftpflichtversicherung (Besondere Erklärung des Bieters)
+-Verpflichtungserklärung Leistungen von Unterauftragnehmern
+-Verpflichtungserklärung finanzielle oder wirtschaftliche Eignungsleihe
+-Eigenerklärung zu Artikel 5k Verordnung (EU) Nr. 833_2014
+-Nachweis der Qualifikation des zu benennenden Verantwortlichen für Sicherungsarbeiten an Arbeitsstellen gemäß des "Merkblattes über Rahmenbedingungen für erforderliche Fachkenntnisse zur Verkehrssicherung von
+Arbeitsstellen an Straßen (MVAS)"
+
+Falls Ihr Angebot in die engere Wahl kommt, werden Sie gebeten, zur Bestätigung Ihrer Erklärung auf gesondertes Verlangen u.a. vorzulegen:
+
+Gewerbeanmeldung, Berufs-/Handelsregisterauszug, Eintragung in der Handwerksrolle oder bei der Industrie- und Handelskammer und anderweitige sonstige Nachweise</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Die Ergänzenden Vereinbarungen der Standardvertragsklauseln zwischen Verantwortlichen und Auftragsverarbeitern (gemäß Durchführungsbeschluss (EU)
+2021/915 der Kommission vom 4. Juni 2021 gem. Artikel 28 Absatz 7 der Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates) zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten inkl. Anhänge
+(siehe Heftung B) werden Vertragsbestandteil.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis (in €, netto) wird aus der Wertungssumme des Angebotes ermittelt. Die Wertungssumme wird ermittelt aus der nachgerechneten Angebotssumme unter Berücksichtigung preislich günstigerer Grund- oder Wahlpositionen sowie eines
+eventuellen Nachlasses ohne Bedingungen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">43</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-05+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Beim Öffnungstermin sind keine Bieter oder deren Bevollmächtigte zugelassen.</cbc:Description>
+            <cac:OccurenceLocation>
+               <cbc:Description languageID="DEU">Landesamt für Straßenbau und Verkehr, Zentrale, Stauffenbergallee 24, 01099 Dresden</cbc:Description>
+            </cac:OccurenceLocation>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0001</cbc:ID>
+         <cbc:Name languageID="DEU">Los 2 - NL Leipzig</cbc:Name>
+         <cbc:Description languageID="DEU">Leistungen zur Fortführung der Straßeninformationsbank (SIB) des Freistaates Sachsen für die Niederlassung Leipzig des Landesamtes für Straßenbau und Verkehr</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72320000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Leipzig</cbc:CityName>
+               <cbc:PostalZone>04129</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DED51</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-01-01+01:00</cbc:StartDate>
+            <cbc:EndDate>2030-12-31+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe.de/unterlagen/54321-Tender-1a0cd0591e0-1894452c557314eb</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Folgende Nachweise, Angaben und Unterlagen sind mit dem Angebot vorzulegen:
+-ausgefüllter Vordruck Eigenerklärung zur Eignung (liegt den Vergabeunterlagen bei); hier insbes. Vorlage geeigneter Referenzen über früher ausgeführte Liefer- und
+Dienstleistungen der in den letzten höchstens drei Jahren erbrachten wesentlichen Leistungen (Angabe der Mindestanzahl an geforderten Referenzen: 3 Referenzen);
+Nachweis einer Berufs- oder Betriebshaftpflichtversicherung in bestimmter geeigneter Höhe (für Personenschäden in Höhe von mindestens 1.500.000,00 € und für sonstige Schäden (Sach- und Vermögensschäden) in Höhe von mindestens 1.500.000,00 €); Nachweis eines bestimmten Mindestjahresumsatzes in dem
+Tätigkeitsbereich des Auftrags (der geforderte Mindestjahresumsatz in dem Tätigkeitsbereich des Auftrages beträgt bei Los 2 NL Leipzig: 170.000,00 EUR netto, bei Los 4 NL Plauen: 170.000,00 EUR netto, bei Los 5 NL Zschopau: 140.000,00 EUR netto)
+-Verzeichnis der Unterauftragnehmerleistungen
+-Liste der wesentlichen in den letzten 3 Jahren erbrachten vergleichbaren Leistungen auf dem Gebiet der Straßeninformationsbank (ASB und TT-SIB) mit jeweiliger
+Angabe von Art und Umfang der Leistung, des Rechnungswertes, der Leistungszeit sowie des Auftraggebers
+-Angaben zu Anzahl und Qualifizierung der fest angestellten Mitarbeiter im Unternehmen
+-Namentliche Benennung des verantwortlichen Projektleiters und Stellvertreters sowie Vorlage von Studiennachweisen und Angaben über die berufliche Befähigung
+-Namentliche Benennung der für die Projektbearbeitung vorgesehenen Personen sowie Angaben zu deren Qualifikation und Berufserfahrung, Kenntnisse und praktische Erfahrungen auf den Gebieten ASB und TT-SIB
+-Angaben über die technische Ausstattung des Unternehmens, insbesondere zur vorhandenen Messtechnik, Einzelbilderfassungssysteme, Scansystem, GNSS,
+Arbeitsfahrzeuge, PC-Ausstattung und Softwareausstattung (TT-SIB, CARD/1)
+-Nachweis über vorhandene Lizenzen TT-SIB und CARD/1 
+
+Fehlende Unterlagen, deren Vorlage mit dem Angebot gefordert war, werden unter Fristsetzung nachgefordert. Werden die nachgeforderten Unterlagen nicht innerhalb der Frist vorgelegt, erfolgt der Ausschluss des Angebotes.
+
+Folgende Nachweise, Angaben und Unterlagen sind auf gesondertes Verlangen der Vergabestelle vorzulegen:
+
+-Ergänzung des Verzeichnisses der Unterauftragnehmerleistungen um die Namen der
+Unterauftragnehmer
+-Nachweis der Betriebshaftpflichtversicherung (Besondere Erklärung des Bieters)
+-Verpflichtungserklärung Leistungen von Unterauftragnehmern
+-Verpflichtungserklärung finanzielle oder wirtschaftliche Eignungsleihe
+-Eigenerklärung zu Artikel 5k Verordnung (EU) Nr. 833_2014
+-Nachweis der Qualifikation des zu benennenden Verantwortlichen für Sicherungsarbeiten an Arbeitsstellen gemäß des "Merkblattes über Rahmenbedingungen für erforderliche Fachkenntnisse zur Verkehrssicherung von
+Arbeitsstellen an Straßen (MVAS)"
+
+Falls Ihr Angebot in die engere Wahl kommt, werden Sie gebeten, zur Bestätigung Ihrer Erklärung auf gesondertes Verlangen u.a. vorzulegen:
+
+Gewerbeanmeldung, Berufs-/Handelsregisterauszug, Eintragung in der Handwerksrolle oder bei der Industrie- und Handelskammer und anderweitige sonstige Nachweise</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Die Ergänzenden Vereinbarungen der Standardvertragsklauseln zwischen Verantwortlichen und Auftragsverarbeitern (gemäß Durchführungsbeschluss (EU)
+2021/915 der Kommission vom 4. Juni 2021 gem. Artikel 28 Absatz 7 der Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates) zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten inkl. Anhänge
+(siehe Heftung B) werden Vertragsbestandteil.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis (in €, netto) wird aus der Wertungssumme des Angebotes ermittelt. Die Wertungssumme wird ermittelt aus der nachgerechneten Angebotssumme unter Berücksichtigung preislich günstigerer Grund- oder Wahlpositionen sowie eines
+eventuellen Nachlasses ohne Bedingungen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">43</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-05+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Beim Öffnungstermin sind keine Bieter oder deren Bevollmächtigte zugelassen.</cbc:Description>
+            <cac:OccurenceLocation>
+               <cbc:Description languageID="DEU">Landesamt für Straßenbau und Verkehr, Zentrale, Stauffenbergallee 24, 01099 Dresden</cbc:Description>
+            </cac:OccurenceLocation>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0002</cbc:ID>
+         <cbc:Name languageID="DEU">Los 4 - NL Plauen</cbc:Name>
+         <cbc:Description languageID="DEU">Leistungen zur Fortführung der Straßeninformationsbank (SIB) des Freistaates Sachsen für die Niederlassung Plauen des Landesamtes für Straßenbau und Verkehr</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72320000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Plauen</cbc:CityName>
+               <cbc:PostalZone>08523</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DED44</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-01-01+01:00</cbc:StartDate>
+            <cbc:EndDate>2030-12-31+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.evergabe.de/unterlagen/54321-Tender-1a0cd0591e0-1894452c557314eb</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Folgende Nachweise, Angaben und Unterlagen sind mit dem Angebot vorzulegen:
+-ausgefüllter Vordruck Eigenerklärung zur Eignung (liegt den Vergabeunterlagen bei); hier insbes. Vorlage geeigneter Referenzen über früher ausgeführte Liefer- und
+Dienstleistungen der in den letzten höchstens drei Jahren erbrachten wesentlichen Leistungen (Angabe der Mindestanzahl an geforderten Referenzen: 3 Referenzen);
+Nachweis einer Berufs- oder Betriebshaftpflichtversicherung in bestimmter geeigneter Höhe (für Personenschäden in Höhe von mindestens 1.500.000,00 € und für sonstige Schäden (Sach- und Vermögensschäden) in Höhe von mindestens 1.500.000,00 €); Nachweis eines bestimmten Mindestjahresumsatzes in dem
+Tätigkeitsbereich des Auftrags (der geforderte Mindestjahresumsatz in dem Tätigkeitsbereich des Auftrages beträgt bei Los 2 NL Leipzig: 170.000,00 EUR netto, bei Los 4 NL Plauen: 170.000,00 EUR netto, bei Los 5 NL Zschopau: 140.000,00 EUR netto)
+-Verzeichnis der Unterauftragnehmerleistungen
+-Liste der wesentlichen in den letzten 3 Jahren erbrachten vergleichbaren Leistungen auf dem Gebiet der Straßeninformationsbank (ASB und TT-SIB) mit jeweiliger
+Angabe von Art und Umfang der Leistung, des Rechnungswertes, der Leistungszeit sowie des Auftraggebers
+-Angaben zu Anzahl und Qualifizierung der fest angestellten Mitarbeiter im Unternehmen
+-Namentliche Benennung des verantwortlichen Projektleiters und Stellvertreters sowie Vorlage von Studiennachweisen und Angaben über die berufliche Befähigung
+-Namentliche Benennung der für die Projektbearbeitung vorgesehenen Personen sowie Angaben zu deren Qualifikation und Berufserfahrung, Kenntnisse und praktische Erfahrungen auf den Gebieten ASB und TT-SIB
+-Angaben über die technische Ausstattung des Unternehmens, insbesondere zur vorhandenen Messtechnik, Einzelbilderfassungssysteme, Scansystem, GNSS,
+Arbeitsfahrzeuge, PC-Ausstattung und Softwareausstattung (TT-SIB, CARD/1)
+-Nachweis über vorhandene Lizenzen TT-SIB und CARD/1 
+
+Fehlende Unterlagen, deren Vorlage mit dem Angebot gefordert war, werden unter Fristsetzung nachgefordert. Werden die nachgeforderten Unterlagen nicht innerhalb der Frist vorgelegt, erfolgt der Ausschluss des Angebotes.
+
+Folgende Nachweise, Angaben und Unterlagen sind auf gesondertes Verlangen der Vergabestelle vorzulegen:
+
+-Ergänzung des Verzeichnisses der Unterauftragnehmerleistungen um die Namen der
+Unterauftragnehmer
+-Nachweis der Betriebshaftpflichtversicherung (Besondere Erklärung des Bieters)
+-Verpflichtungserklärung Leistungen von Unterauftragnehmern
+-Verpflichtungserklärung finanzielle oder wirtschaftliche Eignungsleihe
+-Eigenerklärung zu Artikel 5k Verordnung (EU) Nr. 833_2014
+-Nachweis der Qualifikation des zu benennenden Verantwortlichen für Sicherungsarbeiten an Arbeitsstellen gemäß des "Merkblattes über Rahmenbedingungen für erforderliche Fachkenntnisse zur Verkehrssicherung von
+Arbeitsstellen an Straßen (MVAS)"
+
+Falls Ihr Angebot in die engere Wahl kommt, werden Sie gebeten, zur Bestätigung Ihrer Erklärung auf gesondertes Verlangen u.a. vorzulegen:
+
+Gewerbeanmeldung, Berufs-/Handelsregisterauszug, Eintragung in der Handwerksrolle oder bei der Industrie- und Handelskammer und anderweitige sonstige Nachweise</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">Die Ergänzenden Vereinbarungen der Standardvertragsklauseln zwischen Verantwortlichen und Auftragsverarbeitern (gemäß Durchführungsbeschluss (EU)
+2021/915 der Kommission vom 4. Juni 2021 gem. Artikel 28 Absatz 7 der Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates) zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten inkl. Anhänge
+(siehe Heftung B) werden Vertragsbestandteil.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Der Preis (in €, netto) wird aus der Wertungssumme des Angebotes ermittelt. Die Wertungssumme wird ermittelt aus der nachgerechneten Angebotssumme unter Berücksichtigung preislich günstigerer Grund- oder Wahlpositionen sowie eines
+eventuellen Nachlasses ohne Bedingungen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.evergabe.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">43</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7005</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-05+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Beim Öffnungstermin sind keine Bieter oder deren Bevollmächtigte zugelassen.</cbc:Description>
+            <cac:OccurenceLocation>
+               <cbc:Description languageID="DEU">Landesamt für Straßenbau und Verkehr, Zentrale, Stauffenbergallee 24, 01099 Dresden</cbc:Description>
+            </cac:OccurenceLocation>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0003</cbc:ID>
+         <cbc:Name languageID="DEU">Los 5 - NL Zschopau</cbc:Name>
+         <cbc:Description languageID="DEU">Leistungen zur Fortführung der Straßeninformationsbank (SIB) des Freistaates Sachsen für die Niederlassung Zschopau des Landesamtes für Straßenbau und Verkehr (Sitz in Chemnitz)</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72320000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Chemnitz</cbc:CityName>
+               <cbc:PostalZone>09131</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DED41</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-01-01+01:00</cbc:StartDate>
+            <cbc:EndDate>2030-12-31+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -1,0 +1,1697 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>193422a3-6cec-4137-95e6-3eac3b1bdd87-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Fristenplan angepasst.</efbc:ChangeDescription>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">info-release</cbc:ReasonCode>
+							<efbc:ReasonDescription languageID="DEU">Verschiebung der Angebotsabgabefrist und Folgetermine</efbc:ReasonDescription>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:GroupLeadIndicator>true</efbc:GroupLeadIndicator>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dw.com/zentraleinkauf</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Deutsche Welle, Standort Bonn</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kurt-Schumacher-Str. 3</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Deutschlandradio</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Raderberggürtel 40</cbc:StreetName>
+									<cbc:CityName>Köln</cbc:CityName>
+									<cbc:PostalZone>50968</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">NDR - Norddeutscher Rundfunk</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Rothenbaumchaussee 132</cbc:StreetName>
+									<cbc:CityName>Hamburg</cbc:CityName>
+									<cbc:PostalZone>20149</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE600</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0004</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Westdeutscher Rundfunk</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Breite Straße 70</cbc:StreetName>
+									<cbc:CityName>Köln</cbc:CityName>
+									<cbc:PostalZone>50667</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0005</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">ARD Sternpunkt (Hessischer Rundfunk (HR))</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Bertramstraße 8</cbc:StreetName>
+									<cbc:CityName>Frankfurt am Main</cbc:CityName>
+									<cbc:PostalZone>60320</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE712</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0006</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Rundfunk Berlin-Brandenburg (rbb)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Masurenallee 8-14</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>14057</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0007</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">ARD Hauptstadtstudio (rbb)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Wilhelmstraße 67 a</cbc:StreetName>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10117</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0008</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">IVZ - Informations-Verarbeitungs-Zentrum im rbb (Rundfunk Berlin-Brandenburg</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Marlene-Dietrich-Allee 20</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14482</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t: [removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0009</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Mitteldeutscher Rundfunk (MDR)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kantstraße 71 - 73</cbc:StreetName>
+									<cbc:CityName>Leipzig</cbc:CityName>
+									<cbc:PostalZone>04275</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DED51</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.dtvp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0010</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Saarländischer Rundfunk (SR)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Funkhaus Halberg</cbc:StreetName>
+									<cbc:CityName>Saarbrücken</cbc:CityName>
+									<cbc:PostalZone>66100</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEC01</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.bundeskartellamt.bund.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0011</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammern des Bundes</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Bundeskanzlerplatz 2-10</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t: [removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0012</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00686064-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">193/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-06+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">7bd52dea-4a29-450b-a2c3-4901a0137b4e</cbc:ID>
+	<cbc:ContractFolderID>1443f065-1beb-49a3-bb1d-ed98254626ed</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-02+02:00</cbc:IssueDate>
+	<cbc:IssueTime>15:27:58+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-02+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>http://www.dtvp.de</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-cga</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0012</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0002</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0003</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0004</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0005</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0006</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0007</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0008</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0009</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0010</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).
+Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; die in § 134 Abs. 2 GWB genannte Frist von 10 bzw. 15 Kalendertagen läuft auch dann ab, wenn der Antragsteller einen Vergaberechtsverstoß gemäß § 160 Abs. 3 S. 1 GWB gerügt oder die Vergabestelle eine Rüge mit einem Hinweis auf § 160 Abs. 3 S. 1 Nr. 4 GWB zurückgewiesen hat.
+
+Ferner wird auf § 135 GWB hingewiesen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0011</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:AccessToolsURI>
+		<cac:NoticeDocumentReference>
+			<cbc:ID>574454-2022</cbc:ID>
+		</cac:NoticeDocumentReference>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">DW-VMS 26/0303</cbc:ID>
+		<cbc:Name languageID="DEU">Beschaffung und Wartung von Hewlett Packard (HPE) Hardwarekomponenten und Zubehör</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand der Ausschreibung ist der Abschluss eines Rabatt-Rahmenvertrages für die Lieferung von Hardware inklusive Support (Wartung) sowie Zubehör folgender HPE-Komponenten für maximal drei Jahre (01.Januar 2027 - 31.Dezember 2029). Darüber hinaus die Wartung von HPE-Bestandssystemen für maximal vier Jahren (01.Januar 2027 - 31.Dezember 2030), aufgeteilt in die folgenden Lose: 
+
+Los 1: Blade/hyperkonvergenten Server sowie Spezialserver inklusive Wartung 
+ (HPE Tech Care bis 5 Jahre) 
+Los 2: Storage inklusive Wartung (HPE Tech Care bis 5 Jahre) 
+Los 3: SAN-Switche inklusive Wartung (HPE Tech Care bis 5 Jahre) 
+Los 4: HPE-Wartung/Support (HPE Tech Care bis zum Rahmenvertragsende)</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0Y5AYT7HP813R#
+
+
+keine weiteren Angaben</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Deutsche Welle Bonn, Kurt-Schumacher Str. 3</cbc:StreetName>
+				<cbc:CityName>Bonn</cbc:CityName>
+				<cbc:PostalZone>53113</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Deutsche Welle Berlin, Voltastr. 6</cbc:StreetName>
+				<cbc:CityName>Berlin</cbc:CityName>
+				<cbc:PostalZone>13355</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die weiteren Erfüllungsorte ergeben sich, gemäß Angaben im Liefer-und Leistungsverzeichnis für die Beteiligten Rundfunkanstalten.</cbc:Description>
+			<cac:Address>
+				<cbc:Region>anyw</cbc:Region>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Risikohaftpflichtversicherung (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit müssen folgende Unterlagen vorgelegt werden: Nur im Falle einer Bietergemeinschaft, ist das Formular für jedes Mitglied der Gemeinschaft schriftlich ausgefüllt, und dem Angebot (eingescannt, elektronisch) beizulegen Soweit nichts abweichendes vereinbart ist, weist der Auftragnehmer bei Abschluss des Vertrages dem Auftraggeber nach, dass er über eine in Rahmen und Umfang marktübliche Industriehaftpflichtversicherung oder eine vergleichbare Versicherung aus einem Mitgliedsstaat der EU verfügt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4 Eigenerklärung BTTG (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis der Einhaltung des Tariftreueversprechens gem. § 3 BTTG ist die Eigenerklärung zu bestätigen. Nur im Fall einer Bietergemeinschaft ist, oder dem Einsatz von Subunternehmern/Verleihern ist das das Formular für jedes Mitglied der Gemeinschaft/für jeden Subunternehmer ausgefüllt von einer vertretungsberechtigten Person unterzeichnet (eingescannt/elektronisch) beizulegen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1: Zertifizierung "Compute Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Hersteller HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4: Zertifizierung "Compute Gold Partner &amp; Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1-4, Zertifizierung "HPE-Partner Ready Delivery" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Verfügt der Bieter über die Zertifizierung "HPE-Partner
+Ready Delivery".</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlungsbedingungen:
+Die Zahlung erfolgt nach Lieferung und Rechnungslegung innerhalb einer Frist
+von 30 Tagen. Falls nichts anderes vereinbart ist, nimmt der AG bei Zahlung innerhalb
+von 14 Tagen einen Skontoabzug von 2 % vor.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Nachforderung nach den Regelungen bzw. im Rahmen des gültigen Vergaberechts</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">* Mit dem Angebot
+** Mittels Eigenerklärung:
+
+- Eigenerklärung: Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.
+
+** Keine oder anderweitige Formerfordernis:
+
+- Los 4 Eigenerklärung zum Bundestariftreuegesetz
+- Los 1,2,3,4 Fragebogen zur Leistungsbewertung
+
+Die in der Angebotsaufforderung beigefügte Tabelle muss lückenlos ausgefüllt und unverändert eingereicht werden. Nur so kann die Software die eingereichte Tabelle einlesen. Auch eine Umbenennung der Tabelle ist nicht gewünscht.
+
+Dokumente zur Eigenerklärung oder Bestätigung des Bieters können zusätzlich zur lückenlos ausgefüllten Tabelle kann auf Verlangen der Vergabestelle ggf. noch nachgefordert werden.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">34</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).
+Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; die in § 134 Abs. 2 GWB genannte Frist von 10 bzw. 15 Kalendertagen läuft auch dann ab, wenn der Antragsteller einen Vergaberechtsverstoß gemäß § 160 Abs. 3 S. 1 GWB gerügt oder die Vergabestelle eine Rüge mit einem Hinweis auf § 160 Abs. 3 S. 1 Nr. 4 GWB zurückgewiesen hat.
+
+Ferner wird auf § 135 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0011</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-21+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-08-27+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:NoticeDocumentReference>
+				<cbc:ID>574454-2022</cbc:ID>
+			</cac:NoticeDocumentReference>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Blade/hyperkonvergenten Server sowie Spezialserver inklusive Wartung  (HPE Tech Care bis 5 Jahre)</cbc:Name>
+			<cbc:Description languageID="DEU">Die Losaufteilung ist erforderlich, um die unterschiedlichen Gewerke zu separieren, für die erfahrungsgemäß stark voneinander abweichende Rabattsätze gewährt werden. Mit der Ausschreibung wird pro Los ein Rabattsatz erfragt (Los-Rabatt). Der Bieter mit erfüllten Ausschlusskriterien sowie dem höchsten Rabatt 
+(niedrigstem Preis) erhält den Zuschlag für das jeweilige Los. Dazu wird ein Rabattsatz für die Lose 1 - 4 erfragt (Gruppenrabatt). Es besteht die Möglichkeit, 
+dass die Bieter über den Gruppenrabatt den Zuschlag für die Lose 1 - 4 erhalten. 
+Ein Gruppenrabatt wird nur dann berücksichtigt, wenn das Angebot in jedem einzelnen Los der Loskombination das wirtschaftlichste ist.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Eine Vorinformation, CXP4YJAMJ8D, zum Verfahren ist bereits gemäß Bekanntmachung vom 26.06.2026 erfolgt.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Bonn, Kurt-Schumacher Str. 3</cbc:StreetName>
+					<cbc:CityName>Bonn</cbc:CityName>
+					<cbc:PostalZone>53113</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Berlin, Voltastr. 6</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>13355</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die weiteren Erfüllungsorte ergeben sich, gemäß Angaben im Liefer-und Leistungsverzeichnis für die Beteiligten Rundfunkanstalten.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Risikohaftpflichtversicherung (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit müssen folgende Unterlagen vorgelegt werden: Nur im Falle einer Bietergemeinschaft, ist das Formular für jedes Mitglied der Gemeinschaft schriftlich ausgefüllt, und dem Angebot (eingescannt, elektronisch) beizulegen Soweit nichts abweichendes vereinbart ist, weist der Auftragnehmer bei Abschluss des Vertrages dem Auftraggeber nach, dass er über eine in Rahmen und Umfang marktübliche Industriehaftpflichtversicherung oder eine vergleichbare Versicherung aus einem Mitgliedsstaat der EU verfügt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4 Eigenerklärung BTTG (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis der Einhaltung des Tariftreueversprechens gem. § 3 BTTG ist die Eigenerklärung zu bestätigen. Nur im Fall einer Bietergemeinschaft ist, oder dem Einsatz von Subunternehmern/Verleihern ist das das Formular für jedes Mitglied der Gemeinschaft/für jeden Subunternehmer ausgefüllt von einer vertretungsberechtigten Person unterzeichnet (eingescannt/elektronisch) beizulegen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1: Zertifizierung "Compute Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Hersteller HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4: Zertifizierung "Compute Gold Partner &amp; Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1-4, Zertifizierung "HPE-Partner Ready Delivery" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Verfügt der Bieter über die Zertifizierung "HPE-Partner
+Ready Delivery".</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlungsbedingungen:
+Die Zahlung erfolgt nach Lieferung und Rechnungslegung innerhalb einer Frist
+von 30 Tagen. Falls nichts anderes vereinbart ist, nimmt der AG bei Zahlung innerhalb
+von 14 Tagen einen Skontoabzug von 2 % vor.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Nachforderung nach den Regelungen bzw. im Rahmen des gültigen Vergaberechts</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">* Mit dem Angebot
+** Mittels Eigenerklärung:
+
+- Eigenerklärung: Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.
+
+** Keine oder anderweitige Formerfordernis:
+
+- Los 4 Eigenerklärung zum Bundestariftreuegesetz
+- Los 1,2,3,4 Fragebogen zur Leistungsbewertung
+
+Die in der Angebotsaufforderung beigefügte Tabelle muss lückenlos ausgefüllt und unverändert eingereicht werden. Nur so kann die Software die eingereichte Tabelle einlesen. Auch eine Umbenennung der Tabelle ist nicht gewünscht.
+
+Dokumente zur Eigenerklärung oder Bestätigung des Bieters können zusätzlich zur lückenlos ausgefüllten Tabelle kann auf Verlangen der Vergabestelle ggf. noch nachgefordert werden.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">34</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).
+Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; die in § 134 Abs. 2 GWB genannte Frist von 10 bzw. 15 Kalendertagen läuft auch dann ab, wenn der Antragsteller einen Vergaberechtsverstoß gemäß § 160 Abs. 3 S. 1 GWB gerügt oder die Vergabestelle eine Rüge mit einem Hinweis auf § 160 Abs. 3 S. 1 Nr. 4 GWB zurückgewiesen hat.
+
+Ferner wird auf § 135 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0011</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-21+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-08-27+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:NoticeDocumentReference>
+				<cbc:ID>574454-2022</cbc:ID>
+			</cac:NoticeDocumentReference>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Storage inklusive Wartung (HPE Tech Care bis 5 Jahre)</cbc:Name>
+			<cbc:Description languageID="DEU">Die Losaufteilung ist erforderlich, um die unterschiedlichen Gewerke zu separieren, für die erfahrungsgemäß stark voneinander abweichende Rabattsätze gewährt werden. Mit der Ausschreibung wird pro Los ein Rabattsatz erfragt (Los-Rabatt). Der Bieter mit erfüllten Ausschlusskriterien sowie dem höchsten Rabatt 
+(niedrigstem Preis) erhält den Zuschlag für das jeweilige Los. Dazu wird ein Rabattsatz für die Lose 1 - 4 erfragt (Gruppenrabatt). Es besteht die Möglichkeit, 
+dass die Bieter über den Gruppenrabatt den Zuschlag für die Lose 1 - 4 erhalten. 
+Ein Gruppenrabatt wird nur dann berücksichtigt, wenn das Angebot in jedem einzelnen Los der Loskombination das wirtschaftlichste ist.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Eine Vorinformation, CXP4YJAMJ8D, zum Verfahren ist bereits gemäß Bekanntmachung vom 26.06.2026 erfolgt.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Bonn, Kurt-Schumacher Str. 3</cbc:StreetName>
+					<cbc:CityName>Bonn</cbc:CityName>
+					<cbc:PostalZone>53113</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Berlin, Voltastr. 6</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>13355</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die weiteren Erfüllungsorte ergeben sich, gemäß Angaben im Liefer-und Leistungsverzeichnis für die Beteiligten Rundfunkanstalten.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Risikohaftpflichtversicherung (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit müssen folgende Unterlagen vorgelegt werden: Nur im Falle einer Bietergemeinschaft, ist das Formular für jedes Mitglied der Gemeinschaft schriftlich ausgefüllt, und dem Angebot (eingescannt, elektronisch) beizulegen Soweit nichts abweichendes vereinbart ist, weist der Auftragnehmer bei Abschluss des Vertrages dem Auftraggeber nach, dass er über eine in Rahmen und Umfang marktübliche Industriehaftpflichtversicherung oder eine vergleichbare Versicherung aus einem Mitgliedsstaat der EU verfügt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4 Eigenerklärung BTTG (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis der Einhaltung des Tariftreueversprechens gem. § 3 BTTG ist die Eigenerklärung zu bestätigen. Nur im Fall einer Bietergemeinschaft ist, oder dem Einsatz von Subunternehmern/Verleihern ist das das Formular für jedes Mitglied der Gemeinschaft/für jeden Subunternehmer ausgefüllt von einer vertretungsberechtigten Person unterzeichnet (eingescannt/elektronisch) beizulegen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1: Zertifizierung "Compute Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Hersteller HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4: Zertifizierung "Compute Gold Partner &amp; Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1-4, Zertifizierung "HPE-Partner Ready Delivery" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Verfügt der Bieter über die Zertifizierung "HPE-Partner
+Ready Delivery".</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlungsbedingungen:
+Die Zahlung erfolgt nach Lieferung und Rechnungslegung innerhalb einer Frist
+von 30 Tagen. Falls nichts anderes vereinbart ist, nimmt der AG bei Zahlung innerhalb
+von 14 Tagen einen Skontoabzug von 2 % vor.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Nachforderung nach den Regelungen bzw. im Rahmen des gültigen Vergaberechts</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">* Mit dem Angebot
+** Mittels Eigenerklärung:
+
+- Eigenerklärung: Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.
+
+** Keine oder anderweitige Formerfordernis:
+
+- Los 4 Eigenerklärung zum Bundestariftreuegesetz
+- Los 1,2,3,4 Fragebogen zur Leistungsbewertung
+
+Die in der Angebotsaufforderung beigefügte Tabelle muss lückenlos ausgefüllt und unverändert eingereicht werden. Nur so kann die Software die eingereichte Tabelle einlesen. Auch eine Umbenennung der Tabelle ist nicht gewünscht.
+
+Dokumente zur Eigenerklärung oder Bestätigung des Bieters können zusätzlich zur lückenlos ausgefüllten Tabelle kann auf Verlangen der Vergabestelle ggf. noch nachgefordert werden.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">34</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).
+Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; die in § 134 Abs. 2 GWB genannte Frist von 10 bzw. 15 Kalendertagen läuft auch dann ab, wenn der Antragsteller einen Vergaberechtsverstoß gemäß § 160 Abs. 3 S. 1 GWB gerügt oder die Vergabestelle eine Rüge mit einem Hinweis auf § 160 Abs. 3 S. 1 Nr. 4 GWB zurückgewiesen hat.
+
+Ferner wird auf § 135 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0011</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-21+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-08-27+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:NoticeDocumentReference>
+				<cbc:ID>574454-2022</cbc:ID>
+			</cac:NoticeDocumentReference>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">SAN-Switche inklusive Wartung (HPE Tech Care bis 5 Jahre)</cbc:Name>
+			<cbc:Description languageID="DEU">Die Losaufteilung ist erforderlich, um die unterschiedlichen Gewerke zu separieren, für die erfahrungsgemäß stark voneinander abweichende Rabattsätze gewährt werden. Mit der Ausschreibung wird pro Los ein Rabattsatz erfragt (Los-Rabatt). Der Bieter mit erfüllten Ausschlusskriterien sowie dem höchsten Rabatt 
+(niedrigstem Preis) erhält den Zuschlag für das jeweilige Los. Dazu wird ein Rabattsatz für die Lose 1 - 4 erfragt (Gruppenrabatt). Es besteht die Möglichkeit, 
+dass die Bieter über den Gruppenrabatt den Zuschlag für die Lose 1 - 4 erhalten. 
+Ein Gruppenrabatt wird nur dann berücksichtigt, wenn das Angebot in jedem einzelnen Los der Loskombination das wirtschaftlichste ist.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Eine Vorinformation, CXP4YJAMJ8D, zum Verfahren ist bereits gemäß Bekanntmachung vom 26.06.2026 erfolgt.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Bonn, Kurt-Schumacher Str. 3</cbc:StreetName>
+					<cbc:CityName>Bonn</cbc:CityName>
+					<cbc:PostalZone>53113</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Berlin, Voltastr. 6</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>13355</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die weiteren Erfüllungsorte ergeben sich, gemäß Angaben im Liefer-und Leistungsverzeichnis für die Beteiligten Rundfunkanstalten.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Risikohaftpflichtversicherung (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit müssen folgende Unterlagen vorgelegt werden: Nur im Falle einer Bietergemeinschaft, ist das Formular für jedes Mitglied der Gemeinschaft schriftlich ausgefüllt, und dem Angebot (eingescannt, elektronisch) beizulegen Soweit nichts abweichendes vereinbart ist, weist der Auftragnehmer bei Abschluss des Vertrages dem Auftraggeber nach, dass er über eine in Rahmen und Umfang marktübliche Industriehaftpflichtversicherung oder eine vergleichbare Versicherung aus einem Mitgliedsstaat der EU verfügt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4 Eigenerklärung BTTG (Mit dem Angebot; Mittels Eigenerklärung): Zum Nachweis der Einhaltung des Tariftreueversprechens gem. § 3 BTTG ist die Eigenerklärung zu bestätigen. Nur im Fall einer Bietergemeinschaft ist, oder dem Einsatz von Subunternehmern/Verleihern ist das das Formular für jedes Mitglied der Gemeinschaft/für jeden Subunternehmer ausgefüllt von einer vertretungsberechtigten Person unterzeichnet (eingescannt/elektronisch) beizulegen</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1: Zertifizierung "Compute Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 2: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Hersteller HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 3: Zertifizierung "Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 4: Zertifizierung "Compute Gold Partner &amp; Hybrid Cloud Gold Partner" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Zertifikatsnachweis des Herstellers HPE.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Los 1-4, Zertifizierung "HPE-Partner Ready Delivery" (Auf Anforderung der Vergabestelle; Keine oder anderweitige Formerfordernis): Verfügt der Bieter über die Zertifizierung "HPE-Partner
+Ready Delivery".</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlungsbedingungen:
+Die Zahlung erfolgt nach Lieferung und Rechnungslegung innerhalb einer Frist
+von 30 Tagen. Falls nichts anderes vereinbart ist, nimmt der AG bei Zahlung innerhalb
+von 14 Tagen einen Skontoabzug von 2 % vor.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Nachforderung nach den Regelungen bzw. im Rahmen des gültigen Vergaberechts</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">* Mit dem Angebot
+** Mittels Eigenerklärung:
+
+- Eigenerklärung: Zum Nachweis des Nichtvorliegens von Ausschlussgründen gemäß § 42 VgV, bzw. § 31 UVgO in Verbindung mit §§ 123,124 GWB ist die Eigenerklärung zu bestätigen. Nur im Falle einer Bietergemeinschaft, ist das beigefügte Formular für jedes Mitglied der Gemeinschaft ausgefüllt und von einer vertretungsberechtigten Person unterzeichnet dem Angebot (eingescannt, elektronisch) beizulegen.
+
+** Keine oder anderweitige Formerfordernis:
+
+- Los 4 Eigenerklärung zum Bundestariftreuegesetz
+- Los 1,2,3,4 Fragebogen zur Leistungsbewertung
+
+Die in der Angebotsaufforderung beigefügte Tabelle muss lückenlos ausgefüllt und unverändert eingereicht werden. Nur so kann die Software die eingereichte Tabelle einlesen. Auch eine Umbenennung der Tabelle ist nicht gewünscht.
+
+Dokumente zur Eigenerklärung oder Bestätigung des Bieters können zusätzlich zur lückenlos ausgefüllten Tabelle kann auf Verlangen der Vergabestelle ggf. noch nachgefordert werden.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">34</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, kann ein Nachprüfverfahren bei der Vergabekammer beantragt werden (§ 160 Abs. 3 Nr. 4 GWB).
+Der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; die in § 134 Abs. 2 GWB genannte Frist von 10 bzw. 15 Kalendertagen läuft auch dann ab, wenn der Antragsteller einen Vergaberechtsverstoß gemäß § 160 Abs. 3 S. 1 GWB gerügt oder die Vergabestelle eine Rüge mit einem Hinweis auf § 160 Abs. 3 S. 1 Nr. 4 GWB zurückgewiesen hat.
+
+Ferner wird auf § 135 GWB hingewiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0011</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0Y5AYT7HP813R</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-10-21+02:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-08-27+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:NoticeDocumentReference>
+				<cbc:ID>574454-2022</cbc:ID>
+			</cac:NoticeDocumentReference>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">HPE-Wartung/Support (HPE Tech Care bis 4 Jahre)</cbc:Name>
+			<cbc:Description languageID="DEU">Die Losaufteilung ist erforderlich, um die unterschiedlichen Gewerke zu separieren, für die erfahrungsgemäß stark voneinander abweichende Rabattsätze gewährt werden. Mit der Ausschreibung wird pro Los ein Rabattsatz erfragt (Los-Rabatt). Der Bieter mit erfüllten Ausschlusskriterien sowie dem höchsten Rabatt 
+(niedrigstem Preis) erhält den Zuschlag für das jeweilige Los. Dazu wird ein Rabattsatz für die Lose 1 - 4 erfragt (Gruppenrabatt). Es besteht die Möglichkeit, 
+dass die Bieter über den Gruppenrabatt den Zuschlag für die Lose 1 - 4 erhalten. 
+Ein Gruppenrabatt wird nur dann berücksichtigt, wenn das Angebot in jedem einzelnen Los der Loskombination das wirtschaftlichste ist.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Eine Vorinformation, CXP4YJAMJ8D, zum Verfahren ist bereits gemäß Bekanntmachung vom 26.06.2026 erfolgt.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30200000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Bonn, Kurt-Schumacher Str. 3</cbc:StreetName>
+					<cbc:CityName>Bonn</cbc:CityName>
+					<cbc:PostalZone>53113</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Deutsche Welle Berlin, Voltastr. 6</cbc:StreetName>
+					<cbc:CityName>Berlin</cbc:CityName>
+					<cbc:PostalZone>13355</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE300</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die weiteren Erfüllungsorte ergeben sich, gemäß Angaben im Liefer-und Leistungsverzeichnis für die Beteiligten Rundfunkanstalten.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

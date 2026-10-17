@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://zit-bb.brandenburg.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Brandenburgischer IT-Dienstleister</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Steinstraße 104 - 106</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14480</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>12-121092720202821-39</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Landes Brandenburg  beim Ministerium für Wirtschaft, Energie, Klimaschutz und Europa</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Heinrich-Mann-Allee 107</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14473</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00707065-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">198/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-13+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">618779f1-01ad-469a-ba7e-72fdab4633fe</cbc:ID>
+	<cbc:ContractFolderID>a58f10b4-fd1f-47a9-9bb5-4e901c2b2e24</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-09+02:00</cbc:IssueDate>
+	<cbc:IssueTime>16:02:54+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-09+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat die Eigenerklärung gem. § 123 und § 124 GWB vorzulegen (siehe Formular 4.1 EU).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YMGHXTR</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">12904</cbc:ID>
+		<cbc:Name languageID="DEU">Veeam Rahmenvereinbarung</cbc:Name>
+		<cbc:Description languageID="DEU">Beschaffung einer Veeam Rahmenvereinbarung mit einer Laufzeit von vier Jahren für die Verlängerung und Erweiterung von im Einsatz befindlichen Veeam Produkten.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP9YMGHXTR#</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:FrameworkMaximumAmount currencyID="EUR">1800000.00</efbc:FrameworkMaximumAmount>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">1400000.00</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Steinstraße 104 - 106</cbc:StreetName>
+				<cbc:CityName>Potsdam</cbc:CityName>
+				<cbc:PostalZone>14480</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE404</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Unterauftragnehmer: Insofern Teile des Auftrags von Unterauftragnehmern erbracht werden sollen, sind zwingend die Formblätter 4.3 EU und 4.4 EU auszufüllen und die Unternehmen zu benennen.  Des Weiteren ist von jedem zum Einsatz kommenden Unterauftragnehmer, zwingend das Formular 5.4 EU (Vereinbarung des Dritten zur Einhaltung der Mindestanforderungen nach dem Brandenburgischen Vergabegesetz) zu erbringen.  Eignungsleihe: Bewerber / Bieter können sich zum Nachweis der technischen und beruflichen Leistungsfähigkeit auf dritte Unternehmen beziehen, wenn die nachfolgenden Voraussetzungen beachtet werden. Das dritte Unternehmen muss die für die Übernahme des betreffenden Leistungsbereichs erforderliche Eignung aufweisen. Bieter müssen nachweislich die erforderlichen Mittel des Drittunternehmens zur Verfügung stehen, die für den Leistungsbereich erforderlich sind, für den sie nach der Projektstruktur benannt werden und in dem sie gegebenenfalls Referenzen vorlegen. Ein Bewerber oder Bieter darf die Kapazitäten anderer Unternehmen im Hinblick auf Nachweise für die erforderliche berufliche Leistungsfähigkeit wie Ausbildungs- und Befähigungsnachweise nach § 46 Absatz 3 Nummer 6 VgV oder die einschlägige berufliche Erfahrung nur dann in Anspruch nehmen, wenn diese die Leistung erbringen, für die diese Kapazitäten benötigt werden. Der Bewerber / Bieter sichert mit Nennung der Unterauftragnehmer zu, dass ihm im Auftragsfall die Ressourcen vorgenannter Unterauftragnehmer für die vorgesehenen Aufgabenstellungen im Rahmen der Unteraufträge bzw. dass ihm die für den Auftrag erforderlichen Mittel im Rahmen der Eignungsleihe uneingeschränkt zur Verfügung stehen. Im Falle der Eignungsleihe sind zwingend die Formblätter 4.3 EU und 4.4 EU auszufüllen und die Unternehmen zu benennen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber / Bieter hat einen aktuellen Nachweis einzureichen, dass das Unternehmen im Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes der Gemeinschaft oder des Vertragsstaates des EWR-Abkommens eingetragen ist, in dem es ansässig ist. Im Fall der Beteiligung als Bietergemeinschaft ist der Nachweis von jedem Mitglied der Bietergemeinschaft einzureichen. Der Nachweis darf nicht älter als sechs Monate ab Veröffentlichung der EU-Bekanntmachung sein. Im Rahmen der Eignungsleihe ist der Nachweis ebenfalls zwingend von den entsprechenden Unternehmen zu erbringen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zur Beurteilung der wirtschaftlichen und finanziellen Leistungsfähigkeit des Bewerbers / Bieters dienen insbesondere seine Angaben  o Allgemeine Informationen - Firmenname - Sitz des Unternehmens - Anschrift der Geschäftsräume - Eintragung in das Berufs- oder Handelsregister - Umsatzsteuer-Identifikationsnummer - Angabe zur Größe des Wirtschaftsteilnehmers - Darstellung des Unternehmensportfolios o Informationen zur Struktur des Unternehmens - Gesetzlicher Vertreter - Angaben zu Gesellschaftern und Höhe des Gesellschafteranteils - Geschäftszweck des Unternehmens - Angaben zu Konzernstruktur und verbundenen Unternehmen - Angaben zur Nationalität des Eigentümers o Umsatz des Bewerbers / Bieters / Unterauftragnehmers der letzten drei abgeschlossenen und bilanzierten Geschäftsjahre - Gesamtumsatz - Umsatz mit zum ausgeschriebenen Leistungsgegenstand vergleichbaren Leistungen o Anzahl der durchschnittlich sozialversicherungspflichtigen Beschäftigten der letzten drei abgeschlossenen Geschäftsjahre - durchschnittlich Beschäftigte gesamt - durchschnittlich Beschäftigte, welche Leistungen erbringen, die mit dem ausgeschriebenen Leistungsgegenstand in Zusammenhang stehen  o etc. in der Anlage E1 Unternehmensdarstellung.  Im Falle der Beteiligung einer Bewerber-/Bietergemeinschaft ist von allen Mitgliedern zwingend anzugeben, welches Unternehmen bevollmächtigt ist, für die Bewerber-/Bietergemeinschaft mit Wirkung für und gegen die Bewerber-/Bietergemeinschaft Erklärungen abzugeben und anzunehmen bzw. den späteren Vertrag abzuschließen und durchzuführen. Mitglieder einer Bewerber-/Bietergemeinschaft haften gegenüber dem Auftraggeber gesamtschuldnerisch. Für die an einer Bewerber-/Bietergemeinschaft beteiligten Unternehmen ist im Formblatt 4.2 EU mitzuteilen, welchen Leistungsanteil sie jeweils übernehmen. Der Teilnahmeantrag / das Angebot einer Bewerber-/Bietergemeinschaft muss vom bevollmächtigten Vertreter unterschrieben / signiert sein.   Im Falle der Beteiligung als Bewerber-/Bietergemeinschaft ist die Anlage E1 Unternehmensdarstellung von jedem Mitglied der Bewerber-/Bietergemeinschaft einzureichen. Gleiches gilt beim Einsatz von Unterauftragnehmern.  Das Weiteren hat der Bewerber / Bieter nachzuweisen, dass er die Mindestanforderungen nach dem Brandenburgischen Vergabegesetz einhält. Der Bewerber / Bieter hat den Nachweis in Form einer Eigenerklärung mittels des Formulars 5.3 EU zu erbringen. Im Fall der Beteiligung als Bewerber-/Bietergemeinschaft ist der Nachweis von jedem Mitglied der Bewerber-/Bietergemeinschaft zu erbringen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber / Bieter hat zum Nachweis der technischen und beruflichen Leistungsfähigkeit mindestens ein Referenzprojekt der letzten 3 abgeschlossenen Geschäftsjahre, vergleichbar mit dem ausgeschriebenen Leistungsgegenstand Veeam, u. a. mit Angaben wie: - Bezeichnung der Leistung - Auftraggeber mit Name und Anschrift - Beschreibung der Tätigkeiten / Aufgaben - Leistungserbringer (Eigenes Personal oder Drittunternehmen) - Anteil der Eigenleistungen am Gesamtauftragswert in % - Gesamtauftragswert - Leistungszeitraum unter Verwendung der Anlage E2 Eigenerklärung zu Referenzen zu benennen. Jedes einzelne Referenzprojekt muss mit dem ausgeschriebenen Leistungsgegenstand vergleichbar sein.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">- aktueller Nachweis autorisierter Veeam Handelspartner</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YMGHXTR/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Möglichkeit zur Nachforderung von Unterlagen erfolgt gem. § 56 VgV.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Der Bewerber / Bieter hat nachzuweisen, dass er keinen Bezug zu Russland im Sinne des Artikels 5k) Absatz 1 der Verordnung (EU) Nr. 833/2014 hat. Der Bewerber / Bieter hat den Nachweis mittels Eigenerklärung mit dem vom AG zur Verfügung gestellten Sonderformular Russland-Embargo zu erbringen. Im Fall der Beteiligung als Bewerber-/Bietergemeinschaft ist der Nachweis von jedem Mitglied der Bewerber-/Bietergemeinschaft einzureichen.  Des Weiteren gilt für die Ausführung des Auftrages § 128 Absatz 1 des Gesetzes gegen Wettbewerbsbeschränkungen.   Detaillierte Bedingungen für die Ausführung des Auftrages ergeben sich aus der Vergabeunterlage.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-fixed">fix-tot</efbc:ParameterCode>
+											<efbc:ParameterNumeric>100.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Es erfolgt eine reine Preiswertung über die "einfache Preismethode".</cbc:Name>
+						<cbc:Description languageID="DEU">Preis</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YMGHXTR</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">50</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9YMGHXTR</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-10+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-03+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-11-10+01:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>12:01:00+01:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">12904</cbc:ID>
+			<cbc:Name languageID="DEU">Veeam Rahmenvereinbarung</cbc:Name>
+			<cbc:Description languageID="DEU">Beschaffung einer Veeam Rahmenvereinbarung mit einer Laufzeit von vier Jahren für die Verlängerung und Erweiterung von im Einsatz befindlichen Veeam Produkten. Weiterführende Informationen siehe Teil B Leistungsbeschreibung.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Steinstraße 104 - 106</cbc:StreetName>
+					<cbc:CityName>Potsdam</cbc:CityName>
+					<cbc:PostalZone>14480</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE404</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">4</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

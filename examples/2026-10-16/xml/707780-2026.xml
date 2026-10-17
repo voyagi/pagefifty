@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.landkreishildesheim.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Landkreis Hildesheim</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Marie-Wagenknecht-Straße 3</cbc:StreetName>
+									<cbc:CityName>Hildesheim</cbc:CityName>
+									<cbc:PostalZone>31134</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE925</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>03254-0-60</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.mw.niedersachsen.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Niedersachsen beim Nds. Ministerium für Wirtschaft, Verkehr und Bauen</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Auf der Hude 2</cbc:StreetName>
+									<cbc:CityName>Lüneburg</cbc:CityName>
+									<cbc:PostalZone>21339</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE935</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.mw.niedersachsen.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Nds. Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Friedrichswall 1</cbc:StreetName>
+									<cbc:CityName>Hannover</cbc:CityName>
+									<cbc:PostalZone>30159</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE929</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>keine Angabe</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00707780-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">199/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-14+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">e20dea3f-367b-4f44-bcec-5f66949cd27e</cbc:ID>
+	<cbc:ContractFolderID>d9b241f8-bf8d-4258-84ed-76c35c1406c6</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-13+02:00</cbc:IssueDate>
+	<cbc:IssueTime>09:49:39+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-13+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+§ 129 des Strafgesetzbuchs (Bildung krimineller Vereinigungen) oder § 129b des Strafgesetzbuchs (Kriminelle und terroristische Vereinigungen im Ausland).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+§ 129a des Strafgesetzbuchs (Bildung terroristischer Vereinigungen) oder § 129b des Strafgesetzbuchs (Kriminelle und terroristische Vereinigungen im Ausland).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+§ 89c des Strafgesetzbuchs (Terrorismusfinanzierung) oder wegen der Teilnahme an einer solchen Tat oder wegen der Bereitstellung oder Sammlung finanzieller Mittel in Kenntnis dessen, dass diese finanziellen Mittel ganz oder teilweise dazu verwendet werden oder verwendet werden sollen, eine Tat nach § 89a Absatz 2 Nummer 2 des Strafgesetzbuchs zu begehen,
+
+§ 261 des Strafgesetzbuchs (Geldwäsche).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+§ 264 des Strafgesetzbuchs (Subventionsbetrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in ihrem Auftrag verwaltet werden,</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+§ 299 des Strafgesetzbuchs (Bestechlichkeit und Bestechung im geschäftlichen Verkehr), §§ 299a und 299b des Strafgesetzbuchs (Bestechlichkeit und Bestechung im Gesundheitswesen),
+
+§ 108e des Strafgesetzbuchs (Bestechlichkeit und Bestechung von Mandatsträgern) oder § 108f des Strafgesetzbuchs (unzulässige Interessenwahrnehmung),
+
+§§ 333 und 334 des Strafgesetzbuchs (Vorteilsgewährung und Bestechung), jeweils auch in Verbindung mit § 335a des Strafgesetzbuchs (Ausländische und internationale Bedienstete),
+
+Artikel 2 § 2 des Gesetzes zur Bekämpfung internationaler Bestechung (Bestechung ausländischer Abgeordneter im Zusammenhang mit internationalem Geschäftsverkehr)</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn Unternehmen rechtskräftig verurteilt oder gegen das Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist wegen einer Straftat nach: 
+
+den §§ 232, 232a Absatz 1 bis 5, den §§ 232b bis 233a des Strafgesetzbuches (Menschenhandel, Zwangsprostitution, Zwangsarbeit, Ausbeutung der Arbeitskraft, Ausbeutung unter Ausnutzung einer Freiheitsberaubung).</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren aus, wenn
+
+1 das Unternehmen seinen Verpflichtungen zur Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung nicht nachgekommen ist und dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt wurde oder
+
+2 die öffentlichen Auftraggeber auf sonstige geeignete Weise die Verletzung einer Verpflichtung nach Nummer 1 nachweisen können.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Öffentliche Auftraggeber schließen ein Unternehmen zu jedem Zeitpunkt des Vergabeverfahrens von der Teilnahme an einem Vergabeverfahren aus, wenn
+
+1 das Unternehmen seinen Verpflichtungen zur Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung nicht nachgekommen ist und dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt wurde oder
+
+2 die öffentlichen Auftraggeber auf sonstige geeignete Weise die Verletzung einer Verpflichtung nach Nummer 1 nachweisen können.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende umweltrechtliche Verpflichtungen verstoßen hat</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen geltende sozialrechtliche Verpflichtungen verstoßen hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn das Unternehmen bei der Ausführung öffentlicher Aufträge nachweislich gegen arbeitsrechtliche Verpflichtungen verstoßen hat</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn das Unternehmen zahlungsunfähig ist</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Das Unternehmen befindet sich in Liquidation. Ausschlussgrund nach § 124 Abs. 1 Nr. 2 GWB</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn das Unternehmen seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, wenn das Unternehmen zahlungsunfähig ist, über das Vermögen des Unternehmens ein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt worden ist, sich das Unternehmen im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Es wurde nachweislich eine schwere Verfehlung begangen, die die Zuverlässigkeit als Bewerber/Bieter in Frage stellt. Ausschlussgrund nach § 124 Abs. 1 Nr. 3 GWB</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Öffentliche Auftraggeber verfügt über hinreichende Anhaltspunkte, dass das Unternehmen Vereinbarungen mit anderen Unternehmen getroffen hat, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken.
+
+Ausschlussgrund nach § 124 Abs. 1 Nr. 4 GWB</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn ein Interessenkonflikt bei der Durchführung des Vergabeverfahrens besteht, der die Unparteilichkeit und Unabhängigkeit einer für den öffentlichen Auftraggeber tätigen Person bei der Durchführung des Vergabeverfahrens beeinträchtigen könnte und der durch andere, weniger einschneidende Maßnahmen nicht wirksam beseitigt werden kann.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn eine Wettbewerbsverzerrung daraus resultiert, dass das Unternehmen bereits in die Vorbereitung des Vergabeverfahrens einbezogen war, und diese Wettbewerbsverzerrung nicht durch andere, weniger einschneidende Maßnahmen beseitigt werden kann.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss nach § 124 GWB, wenn das Unternehmen eine wesentliche Anforderung bei der Ausführung eines früheren öffentlichen Auftrags oder Konzessionsvertrags erheblich oder fortdauernd mangelhaft erfüllt hat und dies zu einer vorzeitigen Beendigung, zu Schadensersatz oder zu einer vergleichbaren Rechtsfolge geführt hat.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Der Öffentliche Auftraggeber verfügt über hinreichende Anhaltspunkte, dass das Unternehmen Vereinbarungen mit anderen Unternehmen getroffen hat, die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken.
+
+Ausschlussgrund gem. § 124 GWB Abs.12 Nr. 8, 9</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Die Vergabekammer leitet gem. § 160 Gesetz Abs 1. GWB ein Nachprüfungsverfahren nur auf Antrag ein. Der Antrag ist gem. § 160 Abs. 3 Nr. 1 - 4 GWB unzulässig, soweit:
+
+1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt,
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+			<cac:MediationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:MediationParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://vergabe.niedersachsen.de/Satellite/notice/CXS0YHADY625V5HT</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026-192</cbc:ID>
+		<cbc:Name languageID="DEU">Vergabe der bestehenden Geo-Informationsinfrastruktur (GIS) des Landkreises Hildesheim</cbc:Name>
+		<cbc:Description languageID="DEU">Vergabe der Migration und Cloud-Betrieb der GIS-Umgebung einschl. Esri-Softwarelizenzierung des Landkreises Hildesheim</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0YHADY625V5HT#
+
+
+Anfragen zum Verfahren nur über die genannte Vergabeplattform bis zum 09.11.2026.
+
+Wichtiger Hinweis: Das Angebot ist ausschließlich über die entsprechende Funktion der Vergabeplattform einzureichen. Hierzu ist ausreichend Zeit einzuplanen. Bitte senden Sie Ihr Angebot keinesfalls schriftlich, per E-Mail oder über die Kommunikationsfunktion der Vergabeplattform.
+
+Sollten Probleme beim Hochladen des Angebotes auftreten, wenden Sie sich bitte umgehend an den Betreiber der Vergabeplattform, protokollieren Sie dies und informieren Sie zusätzlich die Vergabestelle</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">38221000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72317000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Marie-Wagenknecht-Straße 3</cbc:StreetName>
+				<cbc:CityName>Hildesheim</cbc:CityName>
+				<cbc:PostalZone>31134</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE925</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Darstellung des Unternehmensumsatzes in den letzten 3 abgeschlossenen Geschäftsjahren.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Bonitäts- /Wirtschaftsauskunft einer autorisierten Auskunftei (Creditreform oder vergleichbar). Creditreform-Bonitätsindex mit mindestens einer
+"Guten Bonität" der Risikoklasse II sowohl für den Bewerber als auch für den Rechenzentrumsbetreiber.
+Die Bonitäts-/Wirtschaftsauskunft darf zum Zeitpunkt des Schlusstermins für den Eingang der Angebote nicht älter als 6 Monate sein. Bereitstellung den Bieter und des Rechenzentrumsbetreibers</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Eine genaue Beschreibung des sich bewerbenden Unternehmens, mit der speziellen Ausrichtung auf die Erbringung der geforderten Dienstleistungen.
+Beschreibung der Organisationsstruktur, Bereitstellung eines festen Ansprechpartners inkl. Kontaktdaten
+(one Face to the customer).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis): A) Der Betreiber der Private-Cloud-Lösung darf nicht dem CLOUD Act (Clarifying Lawful Overseas Use of Data Act) unterliegen, bzw. ist in diesem Fall gemäß des Angemessenheitsbeschlusses der EU vom 10.07.2023, ein gültiges EU-U.S. Data Privacy Framework-Zertifikat bereitzustellen. (siehe A10 - Ziff. A.10)
+
+B) Der Bieter hat ein wirksames Qualitätsmanagement nachzuweisen. Als Nachweis werden eine gültige ISO-9001-Zertifizierung oder eine dokumentierte Darstellung der eingesetzten  Qualitätssicherungs-maßnahmen akzeptiert. Diese muss mindestens
+geregelte Verantwortlichkeiten, dokumentierte Arbeits- und Prüfabläufe sowie Verfahren zur Fehlerbehebung und kontinuierlichen Verbesserung erkennen lassen.
+
+C) Der Bieter hat nachzuweisen, dass sowohl der für die Leistungserbringung eingesetzte Rechenzentrums-betreiber als auch der Bieter selbst bzw. das für den ITBetrieb eingesetzte Unternehmen, über ein Wirksames Informationssicherheitsmanagementsystem verfügen. 1.3.4.1 Nachweis eines gültigen Zertifaktes nach ISO/IEC 27001 oder eines vergleichbaren Nachweises für den Bewerber (Ausschlusskriterium) 1.3.4.2 Nachweis eines gültigen Zertifaktes nach ISO/IEC 27001 oder eines vergleichbaren Nachweises für das Rechenzentrum.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">B10_V1 - Eignungsmatrix LKHI - GIS (Mit dem Angebot; Keine oder anderweitige Formerfordernis): Beschreibung von. mind. 3 vergleichbaren Referenzen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://vergabe.niedersachsen.de/Satellite/notice/CXS0YHADY625V5HT/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Nach erfolgreicher Abnahme erfolgt die Abrechnung der Lizenzen und Betriebsleistungen jählich. Es ist das beigefügte Formular B18 zu verwenden! 
+Alle Referenzen müssen sich auf eine Cloud-Lösung beziehen, sonst erfolgt der Ausschluss des Angebotes.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Erklärungen und Nachweise, die explizit gefordert sind, nachzufordern. Die Bieter haben keinen Anspruch auf
+Nachforderungen / Nachreichungen von Unterlagen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">keine</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://vergabe.niedersachsen.de/Satellite/notice/CXS0YHADY625V5HT</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Vergabekammer leitet gem. § 160 Gesetz Abs 1. GWB ein Nachprüfungsverfahren nur auf Antrag ein. Der Antrag ist gem. § 160 Abs. 3 Nr. 1 - 4 GWB unzulässig, soweit:
+
+1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt,
+
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://vergabe.niedersachsen.de/Satellite/notice/CXS0YHADY625V5HT</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-16+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2026-192</cbc:ID>
+			<cbc:Name languageID="DEU">Vergabe der bestehenden Geo-Informationsinfrastruktur (GIS) des Landkreises Hildesheim</cbc:Name>
+			<cbc:Description languageID="DEU">Der Auftragnehmer übernimmt die Bereitstellung der Cloud-Infrastruktur, die Migration der bestehenden GIS-Umgebung und den anschließenden technischen Betrieb. 
+
+Zum Leistungsumfang gehören insbesondere: 
+- Bereitstellung und Betrieb zweier gespiegelter
+Rechenzentrumsstandorte einschließlich der erforderlichen Rechen-, Speicher- und Netzwerk-ressourcen;
+ - Übernahme der vereinbarten Datenbestände, Anwendungen, Konfigurationen, Dienste und
+Schnittstellen aus der bei hannIT betriebenen Umgebung; 
+- Installation und Konfiguration der erforderlichen
+Betriebssysteme, Datenbanken, GIS-Software und Fachanwendungen; 
+- Angebot und Vermittlung des Esri-SG-EA-Vertrags sowie Bereitstellung der zusätzlich erforderlichen
+Softwarelizenzen unter Berücksichtigung bestehender Nutzungsrechte; 
+- technische Anbindung des Auftraggebers und Sicherstellung der vorgesehenen Zugriffsmöglichkeiten für die berechtigten Nutzer;
+- Betrieb, Überwachung, Wartung, Aktualisierung und Störungsbeseitigung der vom Auftragnehmer gemäß den Abgrenzungen dieses Kapitels zu betreibenden Komponenten; 
+- Datensicherung und Wiederherstellung sowie Sicherstellung der Betriebsübernahme bei Ausfall eines Rechenzentrumsstandorts; 
+- Schulung, Dokumentation und Unterstützung bei der
+Abnahme und beim Übergang in den Regelbetrieb.
+
+Der Auftragnehmer koordiniert die zur Leistungser-bringung erforderlichen Abstimmungen mit dem Auftraggeber, hannIT, Esri und den beteiligten
+Fachsoftwareanbietern. Die Verantwortlichkeiten und Mitwirkungspflichten sind im Projektverlauf
+eindeutig zuzuordnen. Zeitliche Zielsetzung Migration, Inbetriebnahme und Abnahme müssen spätestens bis zum 31.03.2027 abgeschlossen sein. Angestrebt wird jedoch ein früherer Abschluss zum 31.01.2027, alternativ zum 28.02.2027. Gemäß des Terminplans
+ist mit dem Zuschlag vor Weihnachten zu rechnen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Die Eignungsnachweise unter Nr. III.2 sind vollständig mit dem Angebot einzureichen.
+
+Die Ergänzung um weitere Unterlagen steht Ihnen frei. Liegen Nachweise und Erklärungen nicht rechtzeitig vor, kann das Angebot wegen Unvollständigkeit ausgeschlossen werden.
+
+Ausländische Bieter haben gleichwertige Bescheinigungen ihres Herkunftslandes
+vorzulegen. Bei fremdsprachigen Bescheinigungen ist eine beglaubigte Übersetzung in die deutsche
+Sprache beizufügen. Im Falle einer Bietergemeinschaft sind die Eignungsnachweise unter III.2.1 bis III. 2.3 für jedes Mitglied der Gemeinschaft mit dem Angebot
+vorzulegen.
+
+Des weiteren ist eine Erklärung abzugeben, dass die Mitglieder der Bietergemeinschaft gesamt-schuldnerisch haften. Es ist anzugeben, welches Mitglied im Verfahren als Bevollmächtigter auftritt. Seit dem 18.10.2018 müssen sämtliche Auftraggeber EU-weite Vergabeverfahren vollständig elektronisch durchführen. Dies umfasst auch die Pflicht, Angebote nur noch in elektronischer Fassung ntgegenzunehmen. 
+
+Schriftliche Beiträge in Papierform dürfen nicht mehr akzeptiert werden. Auch die Abwicklung über E-Mail ist nicht zulässig.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">38221000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72263000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72317000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Marie-Wagenknecht-Straße 3</cbc:StreetName>
+					<cbc:CityName>Hildesheim</cbc:CityName>
+					<cbc:PostalZone>31134</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE925</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Es handelt sich um einen Managed Service Vertrag dessen Eigenart es ist, dass sich der Leistungsumfang während der Laufzeit verändert. Die Abrechnung der
+Leistungen richtet sich nach dem Preisblatt C20 und den Angebotsbedingungen.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Hosting und laufender Betrieb werden auf Grundlage des bereitgestellten EVB-IT-Cloud-Vertrags vereinbart. Dieser hat einer Laufzeit von 48 Monaten mit einer automatischen Verlängerung um jeweils 12 Monate, sollte der Vertrag nicht 6 Monate vor Vertragsende schriftlich gekündigt werden.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

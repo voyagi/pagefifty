@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>58aa55b5-84b4-41ff-b722-e5c6ad0b133e-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Die Gold Partnerschaft wurde von einem Ausschlusskritirium in ein Bewertungskritirium geändert.</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-12+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">cor-buy</cbc:ReasonCode>
+							<efbc:ReasonDescription languageID="DEU">Auf Grund einer Rüge wurde die Unterlagen aktualisiert.</efbc:ReasonDescription>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.tu-dortmund.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Technische Universität Dortmund</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Wilhelm-Dilthey-Straße 2</cbc:StreetName>
+									<cbc:CityName>Dortmund</cbc:CityName>
+									<cbc:PostalZone>44227</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA52</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 811 258 273</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.bezreg-muenster.nrw.de/de/wirtschaft_finanzen_kommunalaufsicht/vergabekammer_westfalen/index.html</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00707306-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">198/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-13+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">743c40dc-b25b-4c65-8e93-8cf73b147944</cbc:ID>
+	<cbc:ContractFolderID>a3455c1c-b8d7-4248-b9fe-87741a23452b</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-12+02:00</cbc:IssueDate>
+	<cbc:IssueTime>12:07:19+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-12+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Der geltend gemachte Verstoß gegen Vergabevorschriften wurde vor Einreichen des Nachprüfungsantrages erkannt und innerhalb einer Frist von 10 Kalendertagen gegenüber dem Auftraggeber gerügt. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen bis spätestens zum Ablauf der Bewerbungsfrist oder Angebotsfrist gegenüber dem Auftraggeber gerügt werden. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar waren, müssten bis zum Ablauf der Bewerbungsfrist oder der Angebotsfrist gegenüber dem Auftraggeber gerügt werden. Ein Nachprüfungsantrag muss innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wolle, eingehen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:Language>
+			<cbc:ID>ENG</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXVHYRMDYYHV3RB9</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026-164</cbc:ID>
+		<cbc:Name languageID="DEU">Midpoint IDM - Migration</cbc:Name>
+		<cbc:Description languageID="DEU">Zielsetzungen des Projekts im Einzelnen:
+- Aufbau und Einführung des Identity-Management-Systems midPoint
+- Clean Core Ansatz: Analysieren und Standardisieren der Daten- und Lifecycle-Modelle sowie der Implementierung auf Basis aktueller Best Practices und relevanter Referenzprojekterfahrungen
+- Anbindung der relevanten Quell- und Zielsysteme
+- Integration der bestehenden Self-Service-Funktionen des Auftraggebers und des midPoint-Standardfunktionsumfangs
+- Konzeption und Umsetzung eines bedarfsgerechten Daten- und Objektmodells in midPoint
+- Realisierung, Optimierung und Weiterentwicklung bestehender Identity-Management-Prozesse
+- Entwicklung und Integration neuer Konnektoren, Komponenten und Services
+- Berücksichtigung externer Personengruppen, die nicht über die klassischen Quellsysteme einer Hochschule bereitgestellt werden
+- Erweiterung und Flexibilisierung des bestehenden Rollen- und Berechtigungsmodells
+- Unterstützung von Self-Services zur dezentralen Berechtigungsvergabe</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXVHYRMDYYHV3RB9#
+
+
+Bitte stellen Sie alle Fragen zum Verfahren oder zur Leistungsbeschreibung ausschließlich über die Kommunikationsmöglichkeit des Vergabeportal NRW (www.evergabe.nrw.de). Die Antworten zu eingehenden Fragen werden ebenfalls über dieses Portal allen Bietern zur Verfügung gestellt. Der Fragesteller bleibt hierbei selbstverständlich anonym.
+Die Angebote sind ausschließlich elektronisch über das Bietertool des Vergabeportal NRW (www.evergabe.nrw.de) einzureichen. Angebote, die auf anderen Wegen (per Briefpost, Fax, E-Mail oder den Kommunikationsbereich des Vergabeportals) eingereicht werden, werden vom Verfahren ausgeschlossen.
+Weitere Informationen zur Nutzung des Vergabemarktplatzes und/oder des Bietertools finden Sie auf den Seiten des Vergabeportals im Bereich Wirtschaft/Einkauf NRW/Vergabemarktplatz und insbesondere unter https://support.cosinex.de/unternehmen/ .
+
+Sofern im Vergabeverfahren das Angebot einer anerkannten Werkstätte für behinderte Menschen oder einer anerkannten Blindenwerkstätte oder diesen Einrichtungen vergleichbare Einrichtungen (nachfolgend bevorzugte Bieter) ebenso wirtschaftlich wie das ansonsten wirtschaftlichste Angebot eines insofern nicht bevorzugten Bieters ist, so wird dem bevorzugten Bieter der Zuschlag erteilt. Bei der Beurteilung der Wirtschaftlichkeit der Angebote wird der von den bevorzugten Bietern angebotene Preis mit einem Abschlag von 15 % berücksichtigt. Voraussetzung für die Berücksichtigung des Abschlags ist, dass die Herstellung der angebotenen Lieferungen zu einem wesentlichen Teil durch die bevorzugten Bieter erfolgt. Dies ist insbesondere dann der Fall, wenn die Wertschöpfung durch ihre Beschäftigten mehr als 10 % des Nettowerts der zugekauften Waren beträgt.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>TU Dortmund</cbc:StreetName>
+				<cbc:CityName>Dortmund</cbc:CityName>
+				<cbc:PostalZone>44227</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA52</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angaben zur Unternehmens- und IDM-Erfahrung (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Bestehensdauer des Unternehmens, Dauer der Tätigkeit im Bereich Identity Management (IDM), Gesamtbruttoumsatz der letzten drei Geschäftsjahre mit prozentualem Anteil des IDM-Geschäfts (getrennt nach Beratung und Implementierung) sowie aktuelle Anzahl der festangestellten Beschäftigten.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Personelle Leistungsfähigkeit im Bereich IDM (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Anzahl der fachlich im IDM-Bereich qualifizierten festangestellten Beschäftigten mit Erfahrung, insbesondere mit midPoint IDM, und mehr als dreijähriger Berufserfahrung sowie Anzahl der Projektmitarbeiter mit Erfahrung im Management komplexer IT-Projekte und mehr als dreijähriger Berufserfahrung.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Fachliche Kompetenzen und Erfahrungen des eingesetzten Personals (Mit dem Teilnahmeantrag; Keine oder anderweitige Formerfordernis): Nachweisbare Expertise in der Einführung, dem Customizing, der Modifikation, Programmierung und dem technischen Betrieb von midPoint-IDM-Systemen sowie in deren Beratung und Integration mit HR- und Zielsystemen (u. a. SAP, LDAP/AD, Exchange, M365 und Cloud-Lösungen). Darüber hinaus werden Erfahrungen mit externen Workflow-Engines, der Durchführung von Workshops mit unterschiedlichen Projektstakeholdern, kryptografischen Funktionen in Java-basierten IDM/IAM-Lösungen sowie der Administration, Datenmodellierung und Optimierung von PostgreSQL-Datenbanken erwartet.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzerfahrung (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Nachweisbare Erfahrungen aus Referenzprojekten vergleichbarer Größenordnung im Hochschulumfeld und/oder öffentlichen Sektor, bei denen midPoint als zentrale, produktiv eingesetzte und betriebskritische IAM-/IDM-Lösung den wesentlichen technologischen und fachlichen Schwerpunkt bildete.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Nachzuweisen sind einschlägige Referenzprojekte der letzten drei Jahre, die hinsichtlich Größenordnung und fachlich-technischer Anforderungen mit dem Vorhaben der TU Dortmund vergleichbar sind. Die Referenzen sollen insbesondere Erfahrungen in der Einführung und Migration von IDM-Systemen mit midPoint, der Konzeption von IDM-Zielarchitekturen in heterogenen SAP-/Nicht-SAP-Systemlandschaften, dem Aufbau von Rollen- und Berechtigungskonzepten sowie der Entwicklung und Integration von Konnektoren und funktionalen Erweiterungen für midPoint belegen. Hierzu zählen insbesondere Integrationen mit SAP S/4HANA, SAP HCM, Active Directory und Exchange sowie Erfahrungen mit Synchronisations-, Provisionierungs- und ETL-/ELT-Verfahren zur Aufbereitung und Transformation komplexer Datenstrukturen.
+
+Für die Referenzprojekte sind insbesondere Rechnungswert, Projekt- und Beteiligungszeitraum, Projektziele, Komplexität und Vorgehensweise, erbrachte Leistungen und Aufgaben-/Projektrolle des Auftragnehmers sowie Auftraggeber und Ansprechpartner anzugeben. Bei midPoint-Erweiterungen sind zusätzlich die konkrete Problemstellung, die wesentlichen Funktionen, die eingesetzte midPoint-Version, der Produktivstatus bzw. die Betriebsdauer sowie Angaben zu Support und Qualitätssicherung darzustellen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische Kompetenz bei der Migration von SAP IDM (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Darstellung der fachlichen und technischen Kompetenz bei der Migration von SAP IDM auf ein Nachfolgesystem. Dabei sind insbesondere Erfahrungen mit Parallelbetrieb sowie der Abgrenzung von Synchronisations- und Provisionierungsprozessen, der Analyse und Aufbereitung historisch gewachsener Datenstrukturen aus dem SAP IDM Identity Store, SAP HCM und weiteren Quellsystemen sowie mit ETL-/ELT-Verfahren zur Datenextraktion, -transformation und -übertragung darzustellen. Zudem ist auf die Unterscheidung zwischen regelmäßiger und ereignisbezogener Datenextraktion sowie auf die eingesetzten Werkzeuge und deren Vor- und Nachteile einzugehen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Beschäftigte (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Der Bewerber benennt die aktuell festangestellten Beschäftigten, die für die Durchführung des geplanten IDM-Projekts in Frage kommen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Entwicklungs- bzw. Programmierleistungen (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Nachweis von Entwicklungs- bzw. Programmierleistungen in Kundenprojekten der letzten drei Jahre, bei denen qualifiziertes Projektpersonal entsprechend den Anforderungen an die technische Eignung eingesetzt wurde.
+
+Der Nachweis ist durch geeignete Mitarbeiterprofile und Projektreferenzen mit Angaben zur erbrachten Leistung und den jeweiligen Rechnungswerten zu führen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Handelsregisterauszug (Mit dem Angebot; Mittels Dritterklärung): Nicht älter als 12 Monate</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische Eignung des Projektpersonals (Mit dem Teilnahmeantrag; Mittels Eigenerklärung): Weiterhin wird auch eine entsprechende technische Leistungsfähigkeit zur Durchführung des Migrationsprojekts erwartet.
+Der AN bestätigt mit der Beteiligung am Bieterwettbewerb, dass technische und praktische Kenntnisstände auf dem genannten Niveau für die nachfolgend genannten Technologien, Protokollen und Architekturen durch das vorgesehene Projektpersonal abgedeckt werden.
+Die Kenntnisstände werden wie folgt klassifiziert:
+- Null: Noch keine Erfahrung auf dem Gebiet
+- Basis - Basiskenntnisse: Gutes, umfangreiches theoretisches Knowhow ist vorhanden. Dem gegenüber stehen nur geringe praxisrelevante Umsetzungsprojekte bei Kunden
+- Fortgeschritten - Fortgeschrittene Kenntnisse: Umfangreiche praxisrelevante Erfahrung bei Kunden vorhanden, was sich durch mehrere erfolgreiche Kundenprojekte ähnlicher Anforderungen belegen lässt
+- Experte - Expertenkenntnisse: Es können umfangreiche, komplexe und technisch-fachliche anspruchsvolle Projekte vorgewiesen werden
+Technologien und Werkzeuge
+- Json - Fortgeschritten
+- XML - Fortgeschritten
+- HTML - Fortgeschritten
+- YAML - Fortgeschritten
+- Java - Fortgeschritten
+- Groovy - Fortgeschritten
+- JavaScript - Fortgeschritten
+- Powershell - Fortgeschritten
+- Java IDE wie z.B: Eclipse / IntelliJ IDE - Fortgeschritten
+- Apache und Tomcat - Fortgeschritten
+- Apache Reverse Proxy - Fortgeschritten
+- Git / GitLab - Fortgeschritten
+- SQL, PL/SQL - Fortgeschritten
+- PostgreSQL und andere relationale Datenbanksysteme - Fortgeschritten
+Plattformen und Protokolle
+- HTTP/S - Fortgeschritten
+- LDAPS / AD - Experte
+- REST - Experte
+- SOAP - Fortgeschritten
+- .NET/ADSI/Microsoft Graph API - Fortgeschritten
+Kryptografischen Verfahren und Bibliotheken
+- Erzeugung, Verwaltung und Verwendung kryptografischer Schlüssel und Schlüsselpaare - Experte
+- Signatur- und Verifikationsverfahren - Fortgeschritten
+- symmetrische und asymmetrische Verschlüsselungsverfahren in midPoint - Experte
+- Verarbeitung und Validierung von X.509-Zertifikaten und Zertifikatsketten - Fortgeschritten
+- Umgang mit Java KeyStores und TrustStores - Fortgeschritten
+- Schlüsselrotation, Zertifikatswechsel und Migration kryptografischer Schlüssel - Fortgeschritten
+- Berücksichtigung aktueller kryptografischer Standards und sicherheitsrelevanter Empfehlungen - Fortgeschritten</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXVHYRMDYYHV3RB9/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, Unterlagen
+im Rahmen des § 56 Abs. 2 VgV (unternehmensbezogene Unterlagen) nachzufordern.
+Hierauf besteht kein Rechtsanspruch.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Einzureichende Unterlagen:
+
+- EU-Sanktionspaket (Vordruck 523)
+- Sicherstellung der pers. Verfügbarkeit: Der AN gewährleistet während der gesamten Projektlaufzeit die Verfügbarkeit ausreichend eingearbeiteten Personals und aller erforderl. Kompetenzen 
+- Sprachkenntnisse, Vor-Ort-Verfügbarkeit: Das Personal beherrscht Deutsch/Englisch fließend in Wort+Schrift. Die Teilnahme des Schlüsselpersonals an Sitzungen/Workshops an der TU Dortmund ist gewährleistet.
+- Übergreifende Anforderungen: Der Bewerber muss sicherstellen, dass er ab Vertragsbeginn
+sämtliche IT-Verfahren sowohl softwareseitig als auch fachinhaltlich betreuen kann,
+bedarfsgerecht und fallbezogen die erforderl. umfassende Dokumentation erstellt,
+Leistungen zur Neu- und Weiterentwicklung i.R.d. IDM-Migration bei Bedarf und ggf. vor Ort beim AG erbringen kann, eine tel. Erreichbarkeit (deutsch/englisch) gewährleistet und
+das techn. Personal des AG schulen kann</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.evergabe.nrw.de/VMPSatellite/notice/CXVHYRMDYYHV3RB9</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der geltend gemachte Verstoß gegen Vergabevorschriften wurde vor Einreichen des Nachprüfungsantrages erkannt und innerhalb einer Frist von 10 Kalendertagen gegenüber dem Auftraggeber gerügt. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen bis spätestens zum Ablauf der Bewerbungsfrist oder Angebotsfrist gegenüber dem Auftraggeber gerügt werden. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar waren, müssten bis zum Ablauf der Bewerbungsfrist oder der Angebotsfrist gegenüber dem Auftraggeber gerügt werden. Ein Nachprüfungsantrag muss innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wolle, eingehen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:Language>
+				<cbc:ID>ENG</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>false</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXVHYRMDYYHV3RB9</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-10-30+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-10-27+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-09-21+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2026-164</cbc:ID>
+			<cbc:Name languageID="DEU">Midpoint IDM - Migration</cbc:Name>
+			<cbc:Description languageID="DEU">Für die Durchführung des Projektvorhabens, bei dem neben dem Umstieg auf das MidPoint IDM auch konzeptionelle Änderungen an der Architektur und Infrastruktur vorgenommen werden müssen, beabsichtigt die TUDo Unterstützungsleistungen an einen externen Auftragnehmer zu vergeben.
+
+Mit diesem Vergabeverfahren soll der wirtschaftlichste Auftragnehmer gefunden werden, der die notwendigen Beratungs-, Konzeptions- und Implementierungsarbeiten zur Erfüllung der erwähnten Projektziele übernimmt.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:startup#, #Besonders auch geeignet für:other-sme#
+
+
+Sollten mehr als drei geeignete Bewerber einen Teilnahmeantrag einreichen, werden die drei am besten geeigneten Bewerber ausgewählt, die im Anschluss des Teilnahmewettbewerbs zur Angebotsabgabe aufgefordert werden. Hierzu werden die in der Bekanntmachung sowie in den Vergabeunterlagen aufgeführten Kriterien herangezogen, anhand derer die Teilnahmeanträge geprüft und bewertet werden. 
+Bei Punktgleichheit entscheidet das Los.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72227000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>TU Dortmund</cbc:StreetName>
+					<cbc:CityName>Dortmund</cbc:CityName>
+					<cbc:PostalZone>44227</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA52</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">18</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Eine Verlängerung der Dienstleistung ist möglich. Ist allerdings abhängig vom Erfolg der Migration.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
