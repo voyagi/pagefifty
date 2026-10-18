@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { formatDay } from '$lib/core/deadline';
+import { REMOVE_COPY } from '$lib/profile/copy';
 import { localIsoDay } from '$lib/profile/export';
 import { StoredProfileSchema, emptyProfile } from '$lib/profile/schema';
 import {
@@ -700,6 +701,101 @@ describe('the demo firm', () => {
 		await staffField();
 		await userEvent.click(screen.getByRole('button', { name: 'Use the demo firm' }));
 		expect(await screen.findByRole('heading', { level: 1, name: 'Brink Data B.V.' })).toBeTruthy();
+	});
+});
+
+describe('removing the stored profile', () => {
+	const removeControl = () => screen.getByRole('button', { name: 'Remove the stored profile' });
+	const confirmation = () => screen.queryByRole('group', { name: REMOVE_COPY.question });
+	const note = () => squash(document.querySelector('[data-remove-note]')?.textContent);
+
+	it('keeps the remove sentences as written', () => {
+		expect(REMOVE_COPY).toEqual({
+			control: 'Remove the stored profile',
+			question:
+				'Remove the firm profile stored in this browser? A profile file you exported keeps its own copy.',
+			confirm: 'Remove',
+			keep: 'Keep it',
+			removed: 'Removed the firm profile from this browser.',
+			nothingStored: 'No firm profile is stored in this browser, so nothing was removed.',
+			failed: 'Not removed: this browser refused to remove the stored profile.'
+		});
+	});
+
+	it('the remove control asks first and then empties the store', async () => {
+		const ask = vi.spyOn(window, 'confirm');
+		render(Page);
+		await saveStaff('19');
+		localStorage.setItem(ACTIVE_FIRM_KEY, 'own');
+		await userEvent.click(removeControl());
+		expect(confirmation()).not.toBeNull();
+		expect(localStorage.getItem(PROFILE_KEY)).not.toBeNull();
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.keep }));
+		expect(confirmation()).toBeNull();
+		expect(localStorage.getItem(PROFILE_KEY)).not.toBeNull();
+		expect((await staffField()).value).toBe('19');
+		await userEvent.click(removeControl());
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		expect(confirmation()).toBeNull();
+		expect(note()).toBe(REMOVE_COPY.removed);
+		expect(localStorage.getItem(PROFILE_KEY)).toBeNull();
+		expect(getProfileStore().store.stored).toBeNull();
+		await vi.waitFor(async () => expect((await staffField()).value).toBe(''));
+		expect(localStorage.getItem(ACTIVE_FIRM_KEY)).toBe('own');
+		expect(ask).not.toHaveBeenCalled();
+	});
+
+	it('the remove control with nothing stored says so', async () => {
+		localStorage.setItem(ACTIVE_FIRM_KEY, 'own');
+		render(Page);
+		await staffField();
+		const before = Object.entries(localStorage);
+		await userEvent.click(removeControl());
+		expect(confirmation()).toBeNull();
+		expect(note()).toBe(REMOVE_COPY.nothingStored);
+		expect(Object.entries(localStorage)).toEqual(before);
+	});
+
+	it('says so when the browser refuses to remove the profile, and keeps it', async () => {
+		render(Page);
+		await saveStaff('19');
+		vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		await userEvent.click(removeControl());
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		expect(note()).toBe(REMOVE_COPY.failed);
+		expect(localStorage.getItem(PROFILE_KEY)).not.toBeNull();
+		expect((await staffField()).value).toBe('19');
+	});
+
+	it('is operated by keyboard alone, and focus returns to the control when the question closes', async () => {
+		render(Page);
+		await saveStaff('19');
+		removeControl().focus();
+		await userEvent.keyboard('{Enter}');
+		expect(confirmation()).not.toBeNull();
+		expect(document.activeElement).toBe(screen.getByRole('button', { name: REMOVE_COPY.keep }));
+		await userEvent.keyboard('{Enter}');
+		expect(confirmation()).toBeNull();
+		expect(document.activeElement).toBe(removeControl());
+		await userEvent.keyboard('{Enter}');
+		await userEvent.tab({ shift: true });
+		expect(document.activeElement).toBe(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		await userEvent.keyboard('{Enter}');
+		expect(note()).toBe(REMOVE_COPY.removed);
+		expect(localStorage.getItem(PROFILE_KEY)).toBeNull();
+		expect(document.activeElement).toBe(removeControl());
+	});
+
+	it('clears the remove note once a new profile is saved', async () => {
+		render(Page);
+		await saveStaff('19');
+		await userEvent.click(removeControl());
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		expect(note()).toBe(REMOVE_COPY.removed);
+		await saveStaff('4');
+		expect(note()).toBe('');
 	});
 });
 

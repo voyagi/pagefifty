@@ -371,6 +371,86 @@ describe('the demo firm slot', () => {
 	});
 });
 
+describe('removeProfile', () => {
+	const savedStore = (storage: Storage) => {
+		const store = createProfileStore(storage);
+		store.load();
+		store.saveProfile(withStaff(19), FIRST);
+		return store;
+	};
+
+	it('removeProfile empties the stored profile', () => {
+		const storage = new CountingStorage();
+		storage.setItem(ACTIVE_FIRM_KEY, 'own');
+		const store = savedStore(storage);
+		expect(storage.getItem(PROFILE_KEY)).not.toBeNull();
+		expect(store.removeProfile()).toBe('removed');
+		expect(storage.values.has(PROFILE_KEY)).toBe(false);
+		expect(store.stored).toBeNull();
+		expect(storage.getItem(ACTIVE_FIRM_KEY)).toBe('own');
+		expect([...storage.values.keys()]).toEqual([ACTIVE_FIRM_KEY]);
+	});
+
+	it('removeProfile with nothing stored removes nothing', () => {
+		const storage = new CountingStorage();
+		storage.setItem(ACTIVE_FIRM_KEY, 'own');
+		const store = createProfileStore(storage);
+		store.load();
+		const removeItem = vi.spyOn(storage, 'removeItem');
+		const before = [...storage.values.entries()];
+		expect(store.removeProfile()).toBe('nothing-stored');
+		expect(removeItem).not.toHaveBeenCalled();
+		expect([...storage.values.entries()]).toEqual(before);
+		expect(store.stored).toBeNull();
+	});
+
+	it('removeProfile reports a storage that refuses', () => {
+		const storage = new CountingStorage();
+		const store = savedStore(storage);
+		const held = store.stored;
+		vi.spyOn(storage, 'removeItem').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		expect(store.removeProfile()).toBe('failed');
+		expect(store.stored).toBe(held);
+		expect(storage.getItem(PROFILE_KEY)).not.toBeNull();
+	});
+
+	// The decision is made on what storage holds now, so a profile another tab wrote after this page
+	// read nothing is removed too, and the confirmation the page asked for covered it.
+	it('removeProfile reads storage first, so a profile another tab stored is removed too', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.stored).toBeNull();
+		createProfileStore(storage).saveProfile(withStaff(7), FIRST);
+		expect(store.removeProfile()).toBe('removed');
+		expect(storage.values.has(PROFILE_KEY)).toBe(false);
+		expect(store.stored).toBeNull();
+	});
+
+	it('removes the own profile while the demo firm is shown, and leaves the demo choice', () => {
+		const storage = new CountingStorage();
+		const store = savedStore(storage);
+		store.useDemo();
+		expect(store.removeProfile()).toBe('removed');
+		expect(storage.values.has(PROFILE_KEY)).toBe(false);
+		expect(storage.getItem(ACTIVE_FIRM_KEY)).toBe('demo');
+		expect(store.activeFirm).toBe('demo');
+	});
+
+	it('removes a profile a newer schema version stored, and drops the newer-version note', () => {
+		const storage = new CountingStorage();
+		storage.setItem(PROFILE_KEY, JSON.stringify({ schemaVersion: 2 }));
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.newerVersion).toBe(2);
+		expect(store.removeProfile()).toBe('removed');
+		expect(storage.values.has(PROFILE_KEY)).toBe(false);
+		expect(store.newerVersion).toBeNull();
+	});
+});
+
 describe('markExported', () => {
 	it('stamps lastExportedAt with one write', () => {
 		const { storage, store } = savedStore();
