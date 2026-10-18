@@ -240,9 +240,16 @@ function euros(cents: number): string {
 	return `EUR ${grouped(String(whole))}.${String(cents % 100).padStart(2, '0')}`;
 }
 
-// The floor code read from the verified quote the shortfall rests on, never the model's number.
-function floorOf(outcome: CriterionOutcome, reading: LotReading['criteria'][number] | undefined) {
+// The floor code read from the verified quote the shortfall rests on, never the model's number. A
+// clause can hold a floor the firm meets beside the one it misses, so only a requirement in the
+// shortfall's own state names it.
+function floorOf(
+	outcome: CriterionOutcome,
+	reading: LotReading['criteria'][number] | undefined,
+	short: CriterionState
+) {
 	for (const requirement of outcome.requirements) {
+		if (requirement.state !== short) continue;
 		const verified = reading?.verified.find((each) => each.item === requirement.item);
 		if (verified === undefined) continue;
 		if (reading?.family === 'staff-average' && verified.count.kind === 'one')
@@ -267,7 +274,7 @@ function shortfallsOf(decided: ReadLotDecision, lot: LotView): Shortfall[] {
 				label: criterionLabel(code) ?? code,
 				position: index + 1,
 				of: decided.criteria.length,
-				floor: floorOf(outcome, reading?.criteria[index])
+				floor: floorOf(outcome, reading?.criteria[index], short)
 			}
 		];
 	});
