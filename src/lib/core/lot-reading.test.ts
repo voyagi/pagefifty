@@ -109,6 +109,69 @@ describe('readLot', () => {
 		expect(read.criteria[0].textHasAmount).toBe(expected);
 	});
 
+	// "two" is no German number word, so a quote read as German counts no years.
+	const GERMAN =
+		'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei Geschäftsjahren.';
+	const ENGLISH =
+		'Minimum yearly net turnover of EUR 1,000,000 in each of the last two financial years.';
+
+	it('reads each verified quote in the language of the description it was found in', () => {
+		const read = readLot({
+			criteria: [
+				{
+					code: 'slc-stand-to-gen',
+					descriptions: [
+						{ text: GERMAN, lang: 'de' },
+						{ text: ENGLISH, lang: 'en' }
+					]
+				}
+			],
+			items: [item(1, ENGLISH)]
+		});
+		const [requirement] = read.criteria[0].verified;
+		expect(requirement.money).toEqual({
+			kind: 'one',
+			cents: 100_000_000,
+			basis: 'net',
+			comparator: 'at-least'
+		});
+		expect(requirement.period).toEqual({ mode: 'each', years: 2, named: [] });
+	});
+
+	it('reads a quote found only across two descriptions in the first description language', () => {
+		const read = readLot({
+			criteria: [
+				{
+					code: 'slc-stand-to-gen',
+					descriptions: [
+						{ text: 'Jährlich mindestens 1.000.000 EUR netto Umsatz', lang: 'de' },
+						{ text: 'in each of the last two financial years.', lang: 'en' }
+					]
+				}
+			],
+			items: [item(1, 'mindestens 1.000.000 EUR netto Umsatz in each of the last two')]
+		});
+		const [requirement] = read.criteria[0].verified;
+		expect(requirement.money).toMatchObject({ kind: 'one', cents: 100_000_000 });
+		expect(requirement.period.years).toBeNull();
+	});
+
+	it('reads a clause as holding an amount when only a later description states it', () => {
+		const read = readLot({
+			criteria: [
+				{
+					code: 'slc-abil-staff-yrly-avg-mp',
+					descriptions: [
+						{ text: 'Angaben zum jährlichen Personal der letzten drei Jahre.', lang: 'de' },
+						{ text: 'At least two employees in each of the last three years.', lang: 'en' }
+					]
+				}
+			],
+			items: []
+		});
+		expect(read.criteria[0].textHasAmount).toBe(true);
+	});
+
 	it('reads a lot with no description language as undefined', () => {
 		const read = readLot({
 			criteria: [{ code: 'slc-stand-to-gen', descriptions: [] }],
