@@ -209,17 +209,18 @@ function checkYears<T>(
 const yearOf = (instant: string): number => Number(formatDay(instant, SERVER_TIME_ZONE).slice(-4));
 
 // The years a floor covers: those the quote names, else the last N completed years before the
-// year of the lot's deadline, ending at the latest year the firm holds a figure for. N is the
+// year of the lot's deadline, ending at the latest year the profile records, with a figure or
+// blank, so a blank newest year stays in the window and reads as a missing figure. N is the
 // quote's count, or 3 when the text states none: Directive 2014/24/EU Annex XII Part I point (c)
 // reads a turnover statement over at most the last three financial years available.
 function windowOf(
 	period: PeriodReading,
-	held: readonly number[],
+	recorded: readonly number[],
 	context: LotContext
 ): number[] | undefined {
 	if (period.named.length > 0) return [...new Set(period.named)];
 	const before = yearOf(context.deadline ?? context.now);
-	const latest = Math.max(...held.filter((year) => year < before));
+	const latest = Math.max(...recorded.filter((year) => year < before));
 	if (!Number.isFinite(latest)) return undefined;
 	return Array.from({ length: period.years || 3 }, (_, index) => latest - index);
 }
@@ -258,7 +259,8 @@ function turnoverCheck(
 			row.generalNet === undefined ? [] : [[row.year, BigInt(row.generalNet) * 100n] as const]
 		)
 	);
-	const window = windowOf(requirement.period, [...held.keys()], context);
+	const recorded = firm.turnover.map((row) => row.year);
+	const window = windowOf(requirement.period, recorded, context);
 	if (window === undefined) return 'missing';
 	const completed = firm.completedFinancialYears;
 	if (completed !== undefined && completed < window.length) return 'fewer-years';
@@ -278,7 +280,8 @@ function staffCheck(
 			row.average === undefined ? [] : [[row.year, row.average] as const]
 		)
 	);
-	const window = windowOf(requirement.period, [...held.keys()], context);
+	const recorded = firm.staff.yearlyAverages.map((row) => row.year);
+	const window = windowOf(requirement.period, recorded, context);
 	if (window === undefined) return 'missing';
 	const figures = window.map((year) => held.get(year));
 	return checkYears(requirement.period.mode, figures, count, COUNT_SCALE);
