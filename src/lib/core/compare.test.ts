@@ -208,6 +208,10 @@ const TWO_UNREAD =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei abgeschlossenen und testierten Geschäftsjahren.';
 const TWO_UNREAD_NAMED =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den zwei abgeschlossenen und testierten Geschäftsjahren 2024 und 2025.';
+const FLOOR_ONLY = 'Jährlich mindestens 1.000.000 EUR netto Umsatz';
+const YEARS_APART = `${FLOOR_ONLY}. Maßgeblich sind die letzten zwei Geschäftsjahre.`;
+const STAFF_NOUN_FIRST = 'Mindestmitarbeiterzahl: mindestens 25.';
+const SAME_FLOOR_TWICE = `${EACH} Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.`;
 const NAMED_AVERAGE =
 	'Durchschnittlicher Jahresumsatz der Geschäftsjahre 2023, 2024 und 2025 von mindestens 1.000.000,67 EUR netto.';
 const LAST_THREE_AVERAGE =
@@ -671,9 +675,27 @@ const ROWS: readonly Row[] = [
 	),
 	row(
 		'a criterion with no amount anywhere is a request to state figures and reads INFO',
-		g(NO_MINIMUM),
+		g(NO_MINIMUM, { numberText: '' }),
 		yearly(2e6),
 		decided('INFO', 'request-without-minimum')
+	),
+	row(
+		'a staff floor code cannot read while the model names one reads NOT_READ, never INFO',
+		{ code: MANPOWER, text: STAFF_NOUN_FIRST, fields: { numberText: '25' } },
+		staffFirm({ 2023: 12, 2024: 12, 2025: 12 }),
+		decided('NOT_READ', 'model-number-differs')
+	),
+	row(
+		'a model count of years beside a quote that states none is not compared',
+		g(YEARS_APART, { period: 'die letzten zwei Geschäftsjahre' }, FLOOR_ONLY),
+		yearly(2e6),
+		notCompared('period-disagrees')
+	),
+	row(
+		'a model count of three years beside a quote that states none leaves the comparison to code',
+		g(YEARS_APART, { period: 'die letzten drei Geschäftsjahre' }, FLOOR_ONLY),
+		yearly(2e6),
+		decided('MET', 'met')
 	),
 	row(
 		'a model number one digit off reads NOT_READ',
@@ -900,12 +922,22 @@ describe('decideCriterion, one row per state the code decides', () => {
 
 	it('an amount code cannot read in the clause keeps the criterion from MET or INFO', () => {
 		const text = 'Jährlich mindestens 2 Mrd. EUR netto Umsatz in den letzten drei Geschäftsjahren.';
+		const clause = g(text, { numberText: '2 Mrd. EUR' });
 		expect(
-			outline(decideCriterion(lotOf([g(text)]).criteria[0], yearly(1e6), CONTEXT, false))
+			outline(decideCriterion(lotOf([clause]).criteria[0], yearly(1e6), CONTEXT, false))
 		).toEqual({
 			state: 'NOT_READ',
 			notCompared: false,
-			why: ['request-without-minimum', 'amount-not-quoted']
+			why: ['model-number-differs', 'amount-not-quoted']
+		});
+	});
+
+	it('a floor the clause states twice is quoted only when both are', () => {
+		const reading = lotOf([g(SAME_FLOOR_TWICE, undefined, EACH)]);
+		expect(outline(decideCriterion(reading.criteria[0], yearly(2e6), CONTEXT, false))).toEqual({
+			state: 'NOT_READ',
+			notCompared: false,
+			why: ['met', 'amount-not-quoted']
 		});
 	});
 
