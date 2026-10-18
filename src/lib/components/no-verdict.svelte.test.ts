@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { cleanup, render } from '@testing-library/svelte';
 import { fc } from '@fast-check/vitest';
@@ -14,20 +14,28 @@ import {
 	toIndexRow,
 	type IndexRow
 } from '$lib/snapshot/index-row';
+import { NoticeReadingsSchema, type NoticeReadings } from '$lib/snapshot/readings';
 import { buildTenderList, captureFacts, type TenderListData } from '$lib/tenders/list';
 import { buildTenderPage, type TenderPageData } from '$lib/tenders/tender-page';
 import { readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import NoVerdictHarness from '../../test/NoVerdictHarness.svelte';
 import PlantedVerdict from '../../test/PlantedVerdict.svelte';
-import { checkedText, findVerdictWords, VERDICT_WORDS } from '../../test/verdict-words';
+import {
+	checkedText,
+	findVerdictWords,
+	verdictRegionWords,
+	VERDICT_WORDS
+} from '../../test/verdict-words';
 import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
 import EntryPage from '../../routes/+page.svelte';
 import ProfilePage from '../../routes/profile/+page.svelte';
 
-// SPEC R3: no phase 1 page shows a verdict, for any notice and any stored profile. Every capture
-// notice and every synthetic fixture that reads is rendered as a list row and as a tender page,
-// under the header whose firm slot is the page's one profile-dependent text.
+// SPEC R3 as R6 keeps it: a verdict word shows only inside a [data-verdict] region of the tender
+// page of a notice the capture's readings list, for any notice and any stored profile, and never on
+// a list row. Every capture notice, with the readings the records build wrote for it, and every
+// synthetic fixture that reads is rendered as a list row and as a tender page, under the header
+// whose firm slot is profile-dependent text too.
 
 // DeadlineTime re-renders dates in the visitor's zone once mounted; pinned so the run is the same
 // on a machine in UTC.
@@ -46,6 +54,14 @@ interface Subject {
 	name: string;
 	row: IndexRow;
 	record: NoticeRecord;
+	readings?: NoticeReadings;
+}
+
+function storedReadings(notice: string): NoticeReadings | undefined {
+	const path = join(CAPTURE_DIR, 'readings', `${notice}.json`);
+	return existsSync(path)
+		? NoticeReadingsSchema.parse(JSON.parse(readFileSync(path, 'utf8')))
+		: undefined;
 }
 
 const captured: Subject[] = index.rows.map((row) => ({
@@ -53,7 +69,8 @@ const captured: Subject[] = index.rows.map((row) => ({
 	row,
 	record: NoticeRecordSchema.parse(
 		JSON.parse(readFileSync(join(CAPTURE_DIR, 'records', `${row.noticeNumber}.json`), 'utf8'))
-	)
+	),
+	readings: storedReadings(row.noticeNumber)
 }));
 
 const SYNTHETIC_ROLES = (Object.keys(FIXTURE_ROLES) as RoleName[]).filter(
@@ -80,9 +97,11 @@ const listData = (subject: Subject): TenderListData => ({
 	capture: CAPTURE
 });
 const pageData = (subject: Subject): TenderPageData => ({
-	tender: buildTenderPage(subject.record, NOW),
+	tender: buildTenderPage(subject.record, NOW, subject.readings),
 	capture: CAPTURE
 });
+
+const LISTED = ['610242-2026', '634398-2026'];
 
 const stored = (profile: Profile, lastExportedAt: string | null) =>
 	JSON.stringify({
@@ -145,13 +164,30 @@ const CONTEXTS: Context[] = [
 	{ label: 'maximal, demo, tenders', stored: MAXIMAL_STORED, active: 'demo', variant: 'tenders' }
 ];
 
+interface Words {
+	outside: string[];
+	inside: string[];
+}
+
+// What breaks the property: a verdict word outside every verdict region, or one inside a region
+// anywhere but the tender page of a listed notice.
+function breaches(subject: Subject, kind: 'list' | 'tender', words: Words): string[] {
+	const allowed = kind === 'tender' && subject.readings !== undefined;
+	return [...words.outside, ...(allowed ? [] : words.inside.map((word) => `in a region: ${word}`))];
+}
+
+const wordsOf = (container: Element): Words => ({
+	outside: findVerdictWords(container, { outsideVerdict: true }),
+	inside: verdictRegionWords(container)
+});
+
 // The firm slot fills after mount, once its store has loaded; the words are read only then, so the
 // header's profile-dependent text is inside what is checked.
 async function renderedWords(
 	subject: Subject,
 	kind: 'list' | 'tender',
 	context: Omit<Context, 'label'>
-): Promise<string[]> {
+): Promise<Words> {
 	const page =
 		kind === 'list'
 			? ({ kind, data: listData(subject) } as const)
@@ -161,7 +197,7 @@ async function renderedWords(
 		() => expect(container.querySelector('a[data-firm-slot] strong')).not.toBeNull(),
 		{ interval: 1, timeout: 5000 }
 	);
-	const words = findVerdictWords(container);
+	const words = wordsOf(container);
 	cleanup();
 	return words;
 }
@@ -383,18 +419,37 @@ describe('the no-verdict property (SPEC R3)', () => {
 
 	// One notice per test keeps each test far inside the per-test limit; the file runs them all.
 	it.each(subjects.map((subject) => [subject.name, subject] as const))(
-		'%s: no verdict word in the list row or the tender page, empty or maximal, own or demo',
+		'%s: verdict words only in the verdict region of a listed tender page, empty or maximal, own or demo',
 		async (_name, subject) => {
 			const found: string[] = [];
 			for (const { label, ...context } of CONTEXTS) {
 				for (const kind of ['list', 'tender'] as const) {
-					const words = await renderedWords(subject, kind, context);
+					const words = breaches(subject, kind, await renderedWords(subject, kind, context));
 					if (words.length > 0) found.push(`${kind}, ${label}: ${words.join(', ')}`);
 				}
 			}
 			expect(found).toEqual([]);
 		}
 	);
+
+	it('verdict words show only in the verdict region of listed notices', async () => {
+		expect(subjects.filter((each) => each.readings !== undefined).map((each) => each.name)).toEqual(
+			LISTED
+		);
+		for (const notice of LISTED) {
+			const subject = captured.find((each) => each.name === notice);
+			if (subject === undefined) throw new Error(`${notice} is not in the capture`);
+			const words = await renderedWords(subject, 'tender', CONTEXTS[1]);
+			expect(words).toEqual({ outside: [], inside: ['Ask first'] });
+			expect(breaches(subject, 'tender', words)).toEqual([]);
+			expect(breaches(subject, 'list', words)).toEqual(['in a region: Ask first']);
+		}
+		const unlisted = captured.find((each) => each.name === '609955-2026');
+		if (unlisted === undefined) throw new Error('609955-2026 is not in the capture');
+		expect(breaches(unlisted, 'tender', { outside: [], inside: ['Ask first'] })).toEqual([
+			'in a region: Ask first'
+		]);
+	});
 
 	it(
 		'holds for arbitrary stored profiles, stored or not, in either mode',
@@ -413,7 +468,7 @@ describe('the no-verdict property (SPEC R3)', () => {
 							active,
 							variant
 						});
-						expect(words).toEqual([]);
+						expect(breaches(subject, kind, words)).toEqual([]);
 					}
 				),
 				{ numRuns: 60 }
@@ -481,5 +536,22 @@ describe('the planted verdict reader', () => {
 			{ interval: 1 }
 		);
 		expect(findVerdictWords(container)).toEqual(['No-go']);
+		expect(breaches(subject, 'tender', wordsOf(container))).toEqual(['No-go']);
+	});
+
+	// The same verdict drawn inside a verdict region: a region is allowed only on a listed notice.
+	it('turns the property red inside a verdict region on a notice the readings do not list', async () => {
+		const subject = captured.find((each) => each.name === '630477-2026');
+		if (subject === undefined) throw new Error('630477-2026 is not in the capture');
+		expect(subject.readings).toBeUndefined();
+		const { container } = render(PlantedVerdict, {
+			props: { data: pageData(subject), stored: EMPTY_STORED, active: 'own', region: true }
+		});
+		await vi.waitFor(
+			() => expect(container.querySelector('a[data-firm-slot] strong')).not.toBeNull(),
+			{ interval: 1 }
+		);
+		expect(wordsOf(container)).toEqual({ outside: [], inside: ['No-go'] });
+		expect(breaches(subject, 'tender', wordsOf(container))).toEqual(['in a region: No-go']);
 	});
 });

@@ -10,7 +10,13 @@ import type { LotRecord, NoticeRecord } from '../ingest/record';
 import { DEMO_PROFILE } from '../profile/demo-firm';
 import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
 import { buildTenderPage } from './tender-page';
-import { lotVerdict } from './verdict-view';
+import {
+	ARTICLE_63_LINE,
+	REASON_LINES,
+	STATE_LABELS,
+	comparedLine,
+	lotVerdict
+} from './verdict-view';
 
 // The example's instant: the 2026-09-15 capture's own time.
 const NOW = new Date('2026-09-15T12:00:00Z');
@@ -107,6 +113,15 @@ describe('lotVerdict', () => {
 		expect(lotVerdict(notRead.lots[0], null, notRead.now)).toBeNull();
 	});
 
+	it('words the Article 63 line only for a lot a partner could help', () => {
+		const record = capturedRecord('610242-2026');
+		const page = buildTenderPage(record, NOW, exampleReadings('610242-2026'));
+		const view = lotVerdict(page.lots[0], DEMO_PROFILE, page.now);
+		expect(view?.article63).toBeNull();
+		expect(view?.shortfalls).toEqual([]);
+		expect(view?.link).toBeNull();
+	});
+
 	it('a listed lot not read on a notice the buyer means to cancel still asks first', () => {
 		const record = { ...capturedRecord('610242-2026'), cancelIntent: true as const };
 		const page = buildTenderPage(record, NOW, notReadOnly('610242-2026', 'LOT-0000'));
@@ -114,5 +129,45 @@ describe('lotVerdict', () => {
 			verdict: 'ASK FIRST',
 			reason: 'cancel-intent'
 		});
+	});
+});
+
+// P5: what a verdict says is what was read, never what the firm should do or will get, and a
+// partner is never enough on its own.
+const BANNED = [
+	'a partner is enough',
+	'partner is sufficient',
+	'partner suffices',
+	'you should',
+	'we recommend',
+	'you will qualify',
+	'you will be invited',
+	'guarantee',
+	'apply now'
+];
+
+describe('the verdict copy', () => {
+	it('the verdict copy is never advice, a promise or legal advice', () => {
+		const copy = [
+			...Object.values(REASON_LINES),
+			...Object.values(STATE_LABELS),
+			ARTICLE_63_LINE,
+			...(['own', 'none', 'newer'] as const).map((kind) => comparedLine({ kind })),
+			comparedLine({ kind: 'demo', name: 'Brink Data B.V.' })
+		];
+		expect(copy.length).toBeGreaterThan(30);
+		for (const sentence of copy) {
+			expect(sentence.trim()).not.toBe('');
+			for (const phrase of BANNED) expect(sentence.toLowerCase()).not.toContain(phrase);
+		}
+		for (const part of ['Article 63', '2014/24/EU', 'necessary', 'not sufficient']) {
+			expect(ARTICLE_63_LINE).toContain(part);
+		}
+	});
+
+	it('names no verdict in a criterion state word', () => {
+		for (const word of Object.values(STATE_LABELS)) {
+			expect(word).not.toMatch(/^(Go|No-go|Ask first|Not met alone|Partner needed)$/i);
+		}
 	});
 });
