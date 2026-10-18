@@ -1,0 +1,115 @@
+import { render } from 'svelte/server';
+import { describe, expect, it, vi } from 'vitest';
+import { newestReadingRun, searchRunOf } from '$lib/server/records';
+import type { ReadingRun } from '$lib/snapshot/readings';
+import { load } from './+page.server';
+import AiPage, { AI_LIMITS } from './+page.svelte';
+
+// providersOf stays real, so the rule for when a provider is named is the one these pages run; only
+// the two records it is given are chosen here. The model ID and region are set apart from the
+// example's, so a page that names the example run's values from anywhere but the load is caught.
+vi.mock('$lib/server/records', async (importOriginal) => ({
+	...(await importOriginal<typeof import('$lib/server/records')>()),
+	newestReadingRun: vi.fn(),
+	searchRunOf: vi.fn()
+}));
+
+const RUN: ReadingRun = {
+	model: 'example-org/model-under-test-7b',
+	provider: 'Nebius Token Factory',
+	region: 'eu-test-9',
+	thinking: false,
+	runDate: '2026-11-02',
+	prices: { inputUsdPerMillion: '0.30', outputUsdPerMillion: '0.90', listedOn: '2026-10-15' },
+	lots: { withCriteria: 3, read: 2, reused: 0, notRead: 1 },
+	sends: 2,
+	tokens: { input: 1000, output: 900, reasoning: 0 },
+	costUsd: '0.001110',
+	quotes: { verified: 7, rejected: 1 }
+};
+
+type LoadEvent = Parameters<typeof load>[0];
+type Loaded = Exclude<Awaited<ReturnType<typeof load>>, void>;
+
+async function loaded(search: { searches: number } | null): Promise<Loaded> {
+	vi.mocked(newestReadingRun).mockReturnValue({ id: '2026-11-02', run: RUN });
+	vi.mocked(searchRunOf).mockReturnValue(
+		search === null ? null : { searches: search.searches, notSearched: 0, credits: null }
+	);
+	return (await load({} as LoadEvent)) as Loaded;
+}
+
+const pageOf = (data: Loaded) =>
+	render(AiPage, { props: { data: data as never, params: {} as never } }).body;
+
+// Every element marked with data-fact, by name, with its text as rendered.
+function facts(body: string): Record<string, string[]> {
+	const found: Record<string, string[]> = {};
+	for (const [, name, text] of body.matchAll(/data-fact="([a-z-]+)"[^>]*>([^<]*)</g)) {
+		(found[name] ??= []).push(text);
+	}
+	return found;
+}
+
+const text = (body: string) =>
+	body
+		.replace(/<[^>]+>/g, ' ')
+		.replace(/&#39;/g, "'")
+		.replace(/&quot;/g, '"')
+		.replace(/&amp;/g, '&')
+		.replace(/\s+/g, ' ')
+		.trim();
+
+describe('/ai load', () => {
+	it('the AI page names the model and region of the newest reading run', async () => {
+		const data = await loaded(null);
+		expect(data).toEqual({ capture: '2026-11-02', run: RUN, providers: ['Nebius Token Factory'] });
+		const body = pageOf(data);
+		expect(facts(body).model).toEqual([RUN.model]);
+		expect(facts(body).region).toEqual([RUN.region]);
+		expect(facts(body).provider).toEqual([RUN.provider]);
+		expect(text(body)).toContain('Zero Data Retention');
+		expect(body).toContain('data-run-record');
+		expect(body).toContain('href="/example"');
+	});
+
+	it('the AI page names Tavily only when the newest run searched', async () => {
+		for (const search of [null, { searches: 0 }]) {
+			const data = await loaded(search);
+			expect(data.providers).toEqual(['Nebius Token Factory']);
+			expect(pageOf(data)).not.toContain('Tavily');
+		}
+		const data = await loaded({ searches: 1 });
+		expect(data.providers).toEqual(['Nebius Token Factory', 'Tavily']);
+		const body = pageOf(data);
+		expect(facts(body)['search-provider']).toEqual(['Tavily']);
+		expect(body).toContain('href="https://tavily.com/privacy"');
+	});
+
+	it('says no model read is recorded when no capture holds one', async () => {
+		vi.mocked(newestReadingRun).mockReturnValue(null);
+		const data = (await load({} as LoadEvent)) as Loaded;
+		expect(data).toEqual({ capture: null, run: null, providers: [] });
+		const body = pageOf(data);
+		expect(text(body)).toContain('No model read is recorded yet.');
+		expect(facts(body).model).toBeUndefined();
+	});
+});
+
+describe('/ai copy', () => {
+	it('the AI page says what the product does not cover in two sentences', async () => {
+		expect(AI_LIMITS).toEqual([
+			"A Go covers only the selection criteria read in the notice, never the exclusion grounds, the procurement documents or the buyer's shortlisting.",
+			'Where a buyer names a category of references, staff or business lines, only the firm can judge whether its own match, so that criterion reads Ask first.'
+		]);
+		const body = text(pageOf(await loaded(null)));
+		for (const sentence of AI_LIMITS) expect(body).toContain(sentence);
+	});
+
+	it('links each provider fact to the page it was read on', async () => {
+		const body = pageOf(await loaded(null));
+		expect(body).toContain('href="https://docs.tokenfactory.nebius.com/legal/legal-quick-guide"');
+		expect(text(body)).toContain('not tied to any single data center');
+		expect(text(body)).toContain('not stored on its systems after each request is processed');
+	});
+});

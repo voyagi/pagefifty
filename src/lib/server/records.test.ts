@@ -18,7 +18,10 @@ const {
 	loadRecord,
 	newestCapture,
 	newestReadingRun,
+	parsedSearchRun,
+	providersOf,
 	readingRunOf,
+	searchRunOf,
 	snapshotDays
 } = await import('./records');
 
@@ -194,6 +197,49 @@ describe('the reading runs the pages read', () => {
 		expect(await loadNoticeReadings(LATEST_CAPTURE, '610242-2026')).toBeUndefined();
 		expect(await loadNoticeReadings(EXAMPLE_CAPTURE, '../reading-run')).toBeUndefined();
 		expect(read).toHaveBeenCalledTimes(1);
+	});
+});
+
+describe('the search runs and the providers the trust pages name', () => {
+	const run = () => readingRunOf(EXAMPLE_CAPTURE);
+	const searched = (searches: number) => ({ searches, notSearched: 0, credits: null });
+
+	it('searchRunOf reads no search run while no capture has one', () => {
+		expect(searchRunOf('2026-09-15')).toBeNull();
+		expect(searchRunOf('2026-10-16')).toBeNull();
+		expect(providersOf(readingRunOf('2026-09-15'), searchRunOf('2026-09-15'))).toEqual([
+			'Nebius Token Factory'
+		]);
+		expect(read).not.toHaveBeenCalled();
+	});
+
+	it('names the model provider of the reading run, and Tavily only for a run with a search', () => {
+		expect(providersOf(run(), null)).toEqual(['Nebius Token Factory']);
+		expect(providersOf(run(), searched(0))).toEqual(['Nebius Token Factory']);
+		expect(providersOf(run(), searched(1))).toEqual(['Nebius Token Factory', 'Tavily']);
+		expect(providersOf(null, searched(3))).toEqual(['Tavily']);
+		expect(providersOf(null, null)).toEqual([]);
+	});
+
+	it('reads a search run the schema accepts as it was written', () => {
+		expect(parsedSearchRun('2026-10-16', undefined)).toBeNull();
+		expect(parsedSearchRun('2026-10-16', { searches: 2, notSearched: 1, credits: 4 })).toEqual({
+			searches: 2,
+			notSearched: 1,
+			credits: 4
+		});
+	});
+
+	it.each([
+		['a missing count', { searches: 1, credits: null }],
+		['a negative count', { searches: -1, notSearched: 0, credits: null }],
+		['a fractional count', { searches: 1.5, notSearched: 0, credits: null }],
+		['negative credits', { searches: 1, notSearched: 0, credits: -1 }],
+		['a key the run never writes', { searches: 1, notSearched: 0, credits: null, query: 'x' }]
+	])('a search run with %s is a server error naming the file', (_label, line) => {
+		expect(() => parsedSearchRun('2026-10-16', line)).toThrow(
+			'the 2026-10-16 search run does not match its schema: '
+		);
 	});
 });
 
