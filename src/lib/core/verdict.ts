@@ -55,7 +55,8 @@ export interface LotInput {
 	readonly noticeIsOnlySource: boolean;
 	readonly pointsToDocuments: boolean;
 	// A criterion read but not compared in this version (insurance, a code without a comparison, a
-	// model reading code disagrees with) or a reservation the profile cannot be compared with.
+	// model reading code disagrees with, a requirement read as optional) or a reservation the
+	// profile cannot be compared with.
 	readonly notCompared?: boolean;
 	// The notice carries the buyer's intent to cancel (BT-140 cancel-intent, DATA-02).
 	readonly cancelIntent?: boolean;

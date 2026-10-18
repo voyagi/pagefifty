@@ -97,6 +97,8 @@ export const REASON_LINES = {
 		'A figure is shown as published and not compared in this version, because its criterion code and its reading disagree on the years it counts.',
 	'not-compared/family':
 		'A criterion of a kind this version does not compare is shown as published.',
+	'not-compared/optional':
+		'A requirement its reading marks as optional or scored is shown as published and not compared in this version.',
 	'not-compared/reserved':
 		'Whether the lot is reserved for certain operators is not compared with the profile in this version.',
 	'criteria-in-documents':

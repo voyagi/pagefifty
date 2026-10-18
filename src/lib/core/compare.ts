@@ -1,7 +1,7 @@
 // The one place a criterion meets a firm's figures (SPEC R5, VERD-02). The state comes from the
 // criterion code's family, the figures code read from the verified quote and the firm's own
-// figures; the model's kind, number and period can only withhold a comparison, never choose its
-// result. Profile-shaped by structure only: no module here imports src/lib/profile.
+// figures; the model's kind, number, period and mandatory flag can only withhold a comparison,
+// never choose its result. Profile-shaped by structure only: no module here imports src/lib/profile.
 import type { LotCoverageInput } from './coverage-facts.ts';
 import { SERVER_TIME_ZONE, cetDayEnd, formatDay } from './deadline.ts';
 import { codePeriodOf, type CriterionFamily } from './families.ts';
@@ -73,6 +73,7 @@ export type OutcomeWhy =
 	| 'kind-disagrees'
 	| 'period-disagrees'
 	| 'family'
+	| 'optional'
 	| 'reserved';
 
 export interface RequirementOutcome {
@@ -400,11 +401,14 @@ export function decideCriterion(
 	const byFamily = familyOutcome(reading.family, firm);
 	if (byFamily) return outcomeOf([byFamily]);
 	const requirements = [
-		...reading.verified.map((requirement) =>
-			reading.family === 'certificate'
+		...reading.verified.map((requirement) => {
+			// The model marks an item optional, scored or a request for information (the prompt in
+			// token-factory.ts), so such an item is never compared and cannot set a shortfall.
+			if (requirement.item.mandatory !== true) return withheld('optional', requirement.item);
+			return reading.family === 'certificate'
 				? decideCertificate(requirement, firm, context)
-				: decideFigure(reading, requirement, firm, context, restricted)
-		),
+				: decideFigure(reading, requirement, firm, context, restricted);
+		}),
 		...reading.rejected.map(({ item }) => decided('NOT_READ', 'quote-rejected', item))
 	];
 	return outcomeOf(requirements.length > 0 ? requirements : [decided('NOT_READ', 'nothing-read')]);
