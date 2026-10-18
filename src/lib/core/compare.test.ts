@@ -544,6 +544,18 @@ const ROWS: readonly Row[] = [
 		decided('PROFILE_GAP', 'empty-field')
 	),
 	row(
+		'a blank turnover figure in the newest recorded year keeps that year in the window',
+		g(EACH),
+		firmOf({ 2022: 1e6, 2023: 1e6, 2024: 1e6, 2025: undefined }),
+		decided('PROFILE_GAP', 'empty-field')
+	),
+	row(
+		'a blank staff figure in the newest recorded year keeps that year in the window',
+		{ code: MANPOWER, text: STAFF_EACH },
+		staffFirm({ 2022: 12, 2023: 12, 2024: 12, 2025: undefined }),
+		decided('PROFILE_GAP', 'empty-field')
+	),
+	row(
 		'a general code on a quote the model read as specific turnover is not compared',
 		g(EACH, { kind: 'turnover-specific' }),
 		yearly(1e6),
