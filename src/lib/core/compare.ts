@@ -121,11 +121,24 @@ const FAMILY_KINDS: Partial<Record<CriterionFamily, string>> = {
 	certificate: 'certificate'
 };
 
+// Directive 2014/24/EU Annex XII Part I point (c) reads a turnover statement over at most the last
+// three financial years available, so a floor whose text states no count of years covers three.
+const DEFAULT_YEARS = 3;
+
 function periodDisagrees(code: string, quote: PeriodReading, model: PeriodReading): boolean {
 	const coded = codePeriodOf(code);
 	if (quote.mode === 'sum') return true;
 	if (coded === 'yearly' && quote.mode === 'average') return true;
 	if (coded === 'average' && (quote.mode === 'each' || quote.mode === 'any-one')) return true;
+	// A count of years stated outside the verified quote would otherwise fall back to the default
+	// window in windowOf, so a model count the quote's window does not match is not compared.
+	if (
+		model.years !== null &&
+		quote.named.length === 0 &&
+		model.years !== (quote.years || DEFAULT_YEARS)
+	) {
+		return true;
+	}
 	return model.mode !== 'unstated' && model.mode !== quote.mode;
 }
 
@@ -213,8 +226,7 @@ const yearOf = (instant: string): number => Number(formatDay(instant, SERVER_TIM
 // The years a floor covers: those the quote names, else the last N completed years before the
 // year of the lot's deadline, ending at the latest year the profile records, with a figure or
 // blank, so a blank newest year stays in the window and reads as a missing figure. N is the
-// quote's count, or 3 when the text states none: Directive 2014/24/EU Annex XII Part I point (c)
-// reads a turnover statement over at most the last three financial years available.
+// quote's count, or DEFAULT_YEARS when the text states none.
 function windowOf(
 	period: PeriodReading,
 	recorded: readonly number[],
@@ -224,7 +236,7 @@ function windowOf(
 	const before = yearOf(context.deadline ?? context.now);
 	const latest = Math.max(...recorded.filter((year) => year < before));
 	if (!Number.isFinite(latest)) return undefined;
-	return Array.from({ length: period.years || 3 }, (_, index) => latest - index);
+	return Array.from({ length: period.years || DEFAULT_YEARS }, (_, index) => latest - index);
 }
 
 function shortfall(item: ModelItem, context: LotContext, restricted: boolean): RequirementOutcome {
