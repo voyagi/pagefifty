@@ -353,6 +353,19 @@ describe('every verdict and reason, worded', () => {
 		expect(textOf(rows[1]?.querySelector('[data-verdict]'))).toBe(STATE_LABELS['not-compared']);
 	});
 
+	// The same floor read as mandatory is the PARTNER NEEDED lot above.
+	it('a floor its reading marks optional reads not compared in this version, never short', () => {
+		const optional = { ...turnoverItem(1, '2.000.000'), mandatory: false };
+		const container = renderExample(
+			syntheticPage([{ criteria: [turnoverCriterion('2.000.000')], items: [optional] }])
+		);
+		const region = verdictOf(container, 'lot-1');
+		expect(wordOf(region)).toBe('Ask first');
+		expect(textOf(region)).toContain(line('not-compared/optional'));
+		expect(region?.querySelector('.slip')).toBeNull();
+		expect(textOf(region)).not.toContain(ARTICLE_63_LINE);
+	});
+
 	it.each([
 		['Dutch', '604724-2026'],
 		['Belgian', '601689-2026']

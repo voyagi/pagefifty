@@ -845,6 +845,39 @@ describe('decideReadLot', () => {
 		expect(decidedLot.decision).toEqual({ verdict: 'ASK FIRST', reason: 'not-compared' });
 	});
 
+	it('an optional turnover floor the firm misses reads not compared, never a shortfall', () => {
+		const firm = yearly(500_000);
+		expect(decideReadLot(lotOf([g(EACH)]), firm, CONTEXT).decision).toEqual({
+			verdict: 'PARTNER NEEDED'
+		});
+		const decidedLot = decideReadLot(lotOf([g(EACH, { mandatory: false })]), firm, CONTEXT);
+		expect(decidedLot.criteria.map(outline)).toEqual([notCompared('optional')]);
+		expect(decidedLot.decision).toEqual({ verdict: 'ASK FIRST', reason: 'not-compared' });
+	});
+
+	it.each([
+		['a turnover floor', g(EACH), yearly(500_000)],
+		[
+			'a staff floor',
+			{ code: MANPOWER, text: STAFF_EACH },
+			staffFirm({ 2023: 1, 2024: 1, 2025: 1 })
+		],
+		['a certificate', { code: CERTIFICATE, text: CERT }, certFirm([])]
+	] as const)(
+		'%s its reading marks optional is withheld before any comparison',
+		(_, clause, firm) => {
+			const optional = { ...clause, fields: { mandatory: false } };
+			expect(decideClause(clause, firm).notCompared).toBe(false);
+			expect(decideClause(optional, firm)).toEqual(notCompared('optional'));
+			expect(decideClause(optional, null)).toEqual(notCompared('optional'));
+		}
+	);
+
+	it('an optional item under a code the family alone decides keeps the family state', () => {
+		const clause = { code: 'slc-abil-ref-services', text: EACH, fields: { mandatory: false } };
+		expect(decideClause(clause, yearly(2e6))).toEqual(decided('PROFILE_GAP', 'firm-judges'));
+	});
+
 	const everyComparison: Clause[] = [
 		g(EACH),
 		{ code: MANPOWER, text: STAFF_EACH },
