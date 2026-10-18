@@ -562,6 +562,18 @@ const ROWS: readonly Row[] = [
 		notCompared('kind-disagrees')
 	),
 	row(
+		'a certificate code on a quote the model read as references is not compared',
+		{ code: CERTIFICATE, text: CERT, fields: { kind: 'references' } },
+		certFirm([{ standard: 'ISO/IEC 27001:2022', validUntil: '2030-01-01' }]),
+		notCompared('kind-disagrees')
+	),
+	row(
+		'a certificate code on a quote the model read as references is not compared without a profile',
+		{ code: CERTIFICATE, text: CERT, fields: { kind: 'references' } },
+		null,
+		notCompared('kind-disagrees')
+	),
+	row(
 		'an average quote under a yearly code is not compared',
 		g(LAST_THREE_AVERAGE),
 		yearly(1e6),
