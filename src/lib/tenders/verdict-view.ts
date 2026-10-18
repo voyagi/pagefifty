@@ -132,7 +132,8 @@ export const STATE_LABELS: Readonly<Record<CriterionStateView['state'], string>>
 export function comparedLine(firm: ComparedFirm): string {
 	switch (firm.kind) {
 		case 'demo':
-			return `Compared with the demo firm, ${firm.name}.`;
+			// A firm name can end in its own period ("B.V."), which then ends the sentence too.
+			return `Compared with the demo firm, ${firm.name}${firm.name.endsWith('.') ? '' : '.'}`;
 		case 'own':
 			return 'Compared with the firm profile kept in this browser.';
 		case 'none':
