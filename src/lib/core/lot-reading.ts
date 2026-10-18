@@ -181,19 +181,29 @@ function hasAmount(text: string, family: CriterionFamily, lang: string | undefin
 	return reading.kind !== 'none';
 }
 
-// An amount code cannot read in a description counts as one no quote names.
+function tally(amounts: readonly number[]): Map<number, number> {
+	const counts = new Map<number, number>();
+	for (const amount of amounts) counts.set(amount, (counts.get(amount) ?? 0) + 1);
+	return counts;
+}
+
+// An amount code cannot read in a description counts as one no quote names. Amounts are counted,
+// not only matched: a clause stating the same floor twice ("EUR 1 million in each year" and "EUR 1
+// million in total") holds two requirements, and one quote naming it once leaves the other unread.
+// Each description is met on its own, since a second language restates the same floors.
 function everyAmountQuoted(
 	family: CriterionFamily,
 	descriptions: readonly LangText[],
 	verified: readonly VerifiedRequirement[]
 ): boolean {
 	const staff = family === 'staff-average';
-	const quoted = new Set(
+	const quoted = tally(
 		verified.flatMap((each) => amountsIn(each.item.quote, staff, each.lang) ?? [])
 	);
 	return descriptions.every((description) => {
 		const amounts = amountsIn(description.text, staff, description.lang);
-		return amounts !== null && amounts.every((amount) => quoted.has(amount));
+		if (amounts === null) return false;
+		return [...tally(amounts)].every(([amount, times]) => (quoted.get(amount) ?? 0) >= times);
 	});
 }
 
