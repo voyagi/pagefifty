@@ -303,8 +303,13 @@ function readFigure(
 	const amount = staff ? requirement.count : requirement.money;
 	if (amount.kind === 'several') return decided('NOT_READ', 'several-amounts', item);
 	if (amount.kind === 'none') {
-		return reading.textHasAmount
-			? decided('NOT_READ', 'no-amount', item)
+		if (reading.textHasAmount) return decided('NOT_READ', 'no-amount', item);
+		// A floor written in a form code cannot read, such as the noun-first "Mindestmitarbeiterzahl
+		// ... mindestens 25", reads no amount anywhere. The prompt gives "" for a clause with no
+		// threshold (token-factory.ts), so a number the model names withholds the clause rather than
+		// let INFO pass a smaller firm as GO.
+		return item.numberText.trim() !== ''
+			? decided('NOT_READ', 'model-number-differs', item)
 			: decided('INFO', 'request-without-minimum', item);
 	}
 	const agrees = staff ? requirement.modelNumber.count : requirement.modelNumber.money;
