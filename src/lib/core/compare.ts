@@ -67,6 +67,7 @@ export type OutcomeWhy =
 	| 'quote-rejected'
 	| 'no-amount'
 	| 'several-amounts'
+	| 'mixed-standards'
 	| 'model-number-differs'
 	| 'nothing-read'
 	| 'insurance'
@@ -358,6 +359,7 @@ function decideCertificate(
 	if (firm.certificates.length === 0) return decided('PROFILE_GAP', 'empty-field', item);
 	const { standards, join } = requirement.standards;
 	if (standards.length === 0) return decided('SHORT_ROUTE_UNSETTLED', 'not-named', item);
+	if (join === 'mixed') return decided('NOT_READ', 'mixed-standards', item);
 	const each = standards.map((standard) => certificateState(standard, firm, context));
 	const states = each.map((outcome) => outcome.state);
 	const state = (join === 'any' ? combineAny : combineAll)(states);

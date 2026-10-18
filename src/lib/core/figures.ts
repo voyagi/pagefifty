@@ -20,7 +20,8 @@ export interface PeriodReading {
 
 export interface StandardsReading {
 	standards: string[];
-	join: 'any' | 'all';
+	// 'mixed' when the list is neither one plain choice nor one plain conjunction.
+	join: 'any' | 'all' | 'mixed';
 }
 
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
@@ -338,18 +339,32 @@ export function parsePeriod(text: string, lang?: string): PeriodReading {
 
 const DESIGNATION =
 	/(?<![\p{L}\p{N}])(?:ISO\/IEC|ISO|IEC|EN|DIN|NEN|BS)[- \u00A0\u202F]?\d+(?:-\d+)*(?::\d{4})?(?!\p{N})/gu;
-const ALTERNATIVE = phrases(['oder', 'ou', 'or', 'bzw.', 'beziehungsweise']);
+const ALTERNATIVE_WORDS = ['oder', 'ou', 'or', 'bzw.', 'beziehungsweise'];
+const ALTERNATIVE = phrases(ALTERNATIVE_WORDS);
+const ALTERNATIVE_ALONE: ReadonlySet<string> = new Set(ALTERNATIVE_WORDS);
 // "of" is Dutch for "or" but an English preposition ("ISO 9001 of the firm").
 const OF = phrases(['of']);
 
+// A list reads as a choice only when every gap between two standards is an alternative word and
+// nothing else. A gap naming one beside other words ("or equivalent and", "and either ... or") or
+// a list choosing in one gap only is mixed, so code never widens an "and" into a choice.
 export function parseStandards(text: string, lang?: string): StandardsReading {
 	const matches = [...text.matchAll(DESIGNATION)];
-	const any = matches.slice(1).some((match, index) => {
-		const previous = matches[index];
-		const between = text.slice(previous.index + previous[0].length, match.index);
-		return ALTERNATIVE.test(between) || (lang !== 'en' && OF.test(between));
-	});
-	return { standards: matches.map((match) => match[0]), join: any ? 'any' : 'all' };
+	const gaps = matches
+		.slice(1)
+		.map((match, index) =>
+			text.slice(matches[index].index + matches[index][0].length, match.index)
+		);
+	const names = (gap: string) => ALTERNATIVE.test(gap) || (lang !== 'en' && OF.test(gap));
+	const alone = (gap: string) => {
+		const word = gap
+			.replace(/[\s,;]+/gu, ' ')
+			.trim()
+			.toLowerCase();
+		return ALTERNATIVE_ALONE.has(word) || (lang !== 'en' && word === 'of');
+	};
+	const join = gaps.length > 0 && gaps.every(alone) ? 'any' : gaps.some(names) ? 'mixed' : 'all';
+	return { standards: matches.map((match) => match[0]), join };
 }
 
 export function sameNumber(
