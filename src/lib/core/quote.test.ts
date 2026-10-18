@@ -93,6 +93,20 @@ describe('findQuote properties', () => {
 			expect(withoutHyphens(withoutHyphens(text))).toBe(withoutHyphens(text));
 		}
 	);
+
+	const digitPairs = (text: string) => (text.match(/\d(?=\d)/gu) ?? []).length;
+
+	test.prop(
+		[
+			fc.oneof(
+				sourceArb,
+				fc.string({ unit: fc.constantFrom(...'0123456789ab -\n\t'), maxLength: 40 })
+			)
+		],
+		{ numRuns: 400 }
+	)('the hyphen-free pass never joins two digits a hyphen held apart', (text) => {
+		expect(digitPairs(withoutHyphens(text))).toBe(digitPairs(text));
+	});
 });
 
 describe('findQuote boundaries', () => {
@@ -155,6 +169,28 @@ describe('findQuote boundaries', () => {
 		});
 		const bulleted = 'Exigences :\n-\tmontant minimum de 100.000,00 € TVAC par certificat ;';
 		expect(findQuote('Exigences : montant minimum de 100.000,00 €', bulleted)).toEqual({
+			found: true,
+			start: 0,
+			pass: 'hyphens-removed'
+		});
+	});
+
+	it('a range between two numbers is never read as one number, either way round', () => {
+		const notFound: QuoteResult = { found: false, reason: 'not-found' };
+		expect(findQuote('mindestens 12 Mitarbeiter', 'mindestens 1-2 Mitarbeiter')).toEqual(notFound);
+		expect(findQuote('mindestens 1-2 Mitarbeiter', 'mindestens 12 Mitarbeiter')).toEqual(notFound);
+		expect(findQuote('mindestens 12 Mitarbeiter', 'mindestens 1--2 Mitarbeiter')).toEqual(notFound);
+		expect(findQuote('mindestens 12 Mitarbeiter', 'mindestens 1-\n2 Mitarbeiter')).toEqual(
+			notFound
+		);
+		expect(findQuote('zwischen 100 200 Mitarbeitern', 'zwischen 100 - 200 Mitarbeitern')).toEqual(
+			notFound
+		);
+		expect(withoutHyphens('1-2, 1 - 2, 1--2, a-b, 3-x, x-3')).toBe('1-2, 1 - 2, 1--2, ab, 3x, x3');
+	});
+
+	it('a hyphen between a number and a word still drops on the second pass', () => {
+		expect(findQuote('ein 3jähriger Nachweis', 'ein 3-jähriger Nachweis')).toEqual({
 			found: true,
 			start: 0,
 			pass: 'hyphens-removed'
