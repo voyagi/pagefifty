@@ -3,8 +3,12 @@ import { describe, expect, it } from 'vitest';
 import { capturePath, readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { costUsd } from '../capture/token-factory';
+import { decideLotStatus } from '../core/compare';
+import { summarizeLot } from '../core/coverage-facts';
+import { displayedDeadline } from '../core/deadline';
 import { readNotice } from '../ingest/read-notice';
 import type { NoticeRecord } from '../ingest/record';
+import { DEMO_PROFILE } from '../profile/demo-firm';
 import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
 import {
 	NOT_READ_LINES,
@@ -493,5 +497,69 @@ describe('buildTenderPage on shapes the capture holds rarely or never', () => {
 			{ code: 'number-weight new-code', value: '3' },
 			{ code: 'ord-imp', value: '1' }
 		]);
+	});
+});
+
+describe('the verdict input the browser decides from', () => {
+	it('carries the instant the page was built for', () => {
+		const page = buildTenderPage(capturedRecord('609955-2026'), BEFORE_DEADLINES);
+		expect(page.now).toBe('2026-09-20T10:00:00.000Z');
+	});
+
+	// The page data crosses from the server to the browser as plain data, so the input must come
+	// through a structured clone whole and decide exactly as the original does.
+	it.each([
+		['610242-2026', 'LOT-0000'],
+		['634398-2026', 'LOT-0001']
+	])(
+		'gives the read lot of %s a verdict input that decides the same after a structured clone',
+		(notice, lotId) => {
+			const record = capturedRecord(notice);
+			const page = buildTenderPage(record, BEFORE_DEADLINES, noticeReadings(notice));
+			const index = record.lots.findIndex((each) => each.id === lotId);
+			const input = page.lots[index].verdictInput;
+			if (input === undefined) throw new Error(`${notice} ${lotId} has no verdict input`);
+			const shown = displayedDeadline(record.lots[index]);
+			expect(input.context).toEqual({
+				legalBasis: record.legalBasis,
+				deadline: shown.kind === 'in-notice' ? null : shown.instant,
+				coverage: summarizeLot(record.lots[index]),
+				cancelIntent: false,
+				reserved: 'none'
+			});
+			expect(input.status.status).toBe('read');
+			const clone = structuredClone(input);
+			expect(clone).toEqual(input);
+			const decide = (each: typeof input) =>
+				decideLotStatus(each.status, DEMO_PROFILE, { ...each.context, now: page.now });
+			expect(decide(clone)).toEqual(decide(input));
+			expect(decide(clone)?.decision.verdict).toBe('ASK FIRST');
+		}
+	);
+
+	it('a lot with no reading view has no verdict input', () => {
+		const unlisted = buildTenderPage(capturedRecord('609955-2026'), BEFORE_DEADLINES);
+		expect(unlisted.lots.map((lot) => lot.verdictInput)).toEqual(
+			unlisted.lots.map(() => undefined)
+		);
+		// 610242-2026 with its lot copied under an id the readings do not list.
+		const record = capturedRecord('610242-2026');
+		const twoLots = { ...record, lots: [record.lots[0], { ...record.lots[0], id: 'LOT-0009' }] };
+		const page = buildTenderPage(twoLots, BEFORE_DEADLINES, noticeReadings('610242-2026'));
+		expect(page.lots.map((lot) => lot.reading?.status)).toEqual(['read', undefined]);
+		expect(page.lots.map((lot) => lot.verdictInput !== undefined)).toEqual([true, false]);
+	});
+
+	it('keeps a reservation the lot does not state unstated in the verdict input', () => {
+		const record = capturedRecord('610242-2026');
+		const unstated = {
+			...record,
+			lots: record.lots.map((lot) => ({ ...lot, reserved: undefined }))
+		};
+		const input = buildTenderPage(unstated, BEFORE_DEADLINES, noticeReadings('610242-2026')).lots[0]
+			.verdictInput;
+		expect(input).toBeDefined();
+		expect(input?.context.reserved).toBeUndefined();
+		expect(structuredClone(input)?.context.reserved).toBeUndefined();
 	});
 });

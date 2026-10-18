@@ -103,7 +103,38 @@ const MODEL_CLEAN: Record<string, string> = {
 		"import { version } from '../helper';\nexport const hop = version;\n"
 };
 
+// The verdict page's chain may reach the verdict module; any other component, the server load of
+// the same route and a list component may not. Relative imports, since $lib would resolve to the
+// repository's own src rather than this tree's.
+const svelteImporting = (from: string, name: string) =>
+	`<script lang="ts">\n\timport ${name} from '${from}';\n</script>\n\n<p>{${name}}</p>\n`;
+const VERDICT_SIDE: Record<string, string> = {
+	'src/lib/core/verdict.ts': "export const decideLot = () => 'decided';\n",
+	'src/lib/tenders/verdict-view.ts':
+		"import { decideLot } from '../core/verdict';\nexport default () => decideLot();\n",
+	'src/lib/components/TenderPage.svelte': svelteImporting('../tenders/verdict-view', 'lotVerdict'),
+	'src/routes/example/[notice]/+page.svelte': svelteImporting(
+		'../../../lib/components/TenderPage.svelte',
+		'TenderPage'
+	),
+	'src/routes/tenders/[notice]/+page.svelte': svelteImporting(
+		'../../../lib/components/TenderPage.svelte',
+		'TenderPage'
+	)
+};
+const VERDICT_PLANTED: Record<string, string> = {
+	'src/lib/components/TenderTable.svelte': svelteImporting('../tenders/verdict-view', 'lotVerdict'),
+	'src/routes/example/[notice]/+page.server.ts':
+		"import lotVerdict from '../../../lib/tenders/verdict-view';\nexport const load = () => ({ v: lotVerdict() });\n"
+};
+const VERDICT_CLEAN: Record<string, string> = {
+	'src/lib/components/TenderTable.svelte': '<p>Rows</p>\n',
+	'src/routes/example/[notice]/+page.server.ts': 'export const load = () => ({});\n'
+};
+
 const PLANTED: Record<string, string> = {
+	...VERDICT_SIDE,
+	...VERDICT_PLANTED,
 	...MODEL_PLANTED,
 	'src/lib/profile/schema.ts': PROFILE,
 	'src/lib/ingest/read-notice.ts': READER,
@@ -138,6 +169,8 @@ const PLANTED: Record<string, string> = {
 };
 
 const CLEAN: Record<string, string> = {
+	...VERDICT_SIDE,
+	...VERDICT_CLEAN,
 	...MODEL_CLEAN,
 	'src/lib/profile/schema.ts': PROFILE,
 	'src/lib/ingest/read-notice.ts': READER,
@@ -294,6 +327,16 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		expect(violators(planted, 'fetch-only-network')).not.toContain(
 			'src/routes/outside-planted/+page.server.ts'
 		);
+	});
+
+	// The lift covers the tender page and its two routes and nothing else: a list component and the
+	// route's own server load still fail, and the verdict page chain alone passes.
+	it('no-ui-reaches-verdict still fails a list component that reaches the verdict', () => {
+		expect(violators(planted, 'no-ui-reaches-verdict')).toEqual([
+			'src/lib/components/TenderTable.svelte',
+			'src/routes/example/[notice]/+page.server.ts'
+		]);
+		expect(violators(clean, 'no-ui-reaches-verdict')).toEqual([]);
 	});
 
 	it('reports no rule on the clean control tree', () => {
