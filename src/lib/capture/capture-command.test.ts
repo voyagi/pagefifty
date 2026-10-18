@@ -28,8 +28,8 @@ import { chatBody, userMessage } from './token-factory.ts';
 const START = Date.parse('2026-09-15T08:00:00Z');
 const DAY = '2026-09-15';
 const PID = 6262;
-const NEBIUS = 'pf-stub-nebius-3a9c';
-const TAVILY = 'pf-stub-tavily-71e4';
+const NEBIUS = 'not-a-real-nebius-key-for-the-command';
+const TAVILY = 'not-a-real-tavily-key-for-the-command';
 const LIVE = { argv: ['--live', '--cap', '5'], env: { PAGEFIFTY_LIVE: '1' } };
 const GERMAN = 'de-610242-thinking-off';
 

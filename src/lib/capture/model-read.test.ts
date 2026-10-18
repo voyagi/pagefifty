@@ -18,7 +18,10 @@ import { createModelReadStep, readingKey, readingsFileOf } from './model-read.ts
 import { chatBody, userMessage } from './token-factory.ts';
 
 const START = Date.parse('2026-09-15T08:00:00Z');
-const KEYS = Object.freeze({ tokenFactory: 'pf-stub-nebius-0b5d', tavily: 'pf-stub-tavily-c2e8' });
+const KEYS = Object.freeze({
+	tokenFactory: 'not-a-real-nebius-key-for-the-model-step',
+	tavily: 'not-a-real-tavily-key-for-the-model-step'
+});
 const GERMAN = readReplyFixture('de-610242-thinking-off');
 
 const roots: string[] = [];
