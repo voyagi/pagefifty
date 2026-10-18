@@ -34,6 +34,8 @@ export interface ModelItem {
 export interface VerifiedRequirement {
 	readonly item: ModelItem;
 	readonly start: number;
+	// The language the quote was read in, which the page also tags it with.
+	readonly lang: string | undefined;
 	readonly money: MoneyReading;
 	readonly count: CountReading;
 	readonly period: PeriodReading;
@@ -156,6 +158,7 @@ function readRequirement(
 	return {
 		item,
 		start,
+		lang,
 		money,
 		count,
 		period: parsePeriod(item.quote, lang),

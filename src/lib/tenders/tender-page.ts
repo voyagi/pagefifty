@@ -48,7 +48,8 @@ export interface QuoteText extends LangText {
 type ParameterView = { label: string; value: string } | { code: string; value: string };
 
 // One requirement the model read in a clause whose quote code found there word for word: the quote
-// in the clause's language and the model's plain English reading, which the page labels as AI-made.
+// in the language of the description it was found in and the model's plain English reading, which
+// the page labels as AI-made.
 interface RequirementView {
 	quote: string;
 	lang?: string;
@@ -308,9 +309,9 @@ const tedUrlOf = (record: NoticeRecord) =>
 function readCriterion(criterion: CriterionReading, model: string, source: string) {
 	return {
 		source,
-		requirements: criterion.verified.map(({ item }) => ({
+		requirements: criterion.verified.map(({ item, lang }) => ({
 			quote: item.quote,
-			...(criterion.lang && { lang: criterion.lang }),
+			...(lang && { lang }),
 			reading: item.reading,
 			model
 		})),
