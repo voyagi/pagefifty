@@ -379,6 +379,24 @@ describe('parseStandards', () => {
 			standards('all', 'ISO 9001', 'ISO 27001')
 		);
 	});
+
+	// "Or equivalent" is the wording Article 62 of Directive 2014/24/EU makes buyers accept, so an
+	// alternative word next to other words is common and never read as a choice between standards.
+	it.each([
+		['ISO 9001 and either ISO 14001 or ISO 27001', 'en'],
+		['ISO 9001 und entweder ISO 14001 oder ISO 27001', 'de'],
+		['ISO 9001, ISO 14001 oder ISO 27001', 'de'],
+		['ISO 9001 oder gleichwertig und ISO 27001 oder gleichwertig', 'de'],
+		['ISO 9001 or equivalent, ISO 27001 or equivalent', 'en']
+	] as const)('reads %s as a mixed join, never as any one of them', (text, lang) => {
+		expect(parseStandards(text, lang).join).toBe('mixed');
+	});
+
+	it('reads three standards each joined by an alternative alone as any one of them', () => {
+		expect(parseStandards('ISO 9001, oder ISO 14001 bzw. ISO 27001', 'de')).toEqual(
+			standards('any', 'ISO 9001', 'ISO 14001', 'ISO 27001')
+		);
+	});
 });
 
 describe('sameNumber', () => {

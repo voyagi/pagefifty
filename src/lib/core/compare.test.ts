@@ -873,6 +873,14 @@ describe('decideReadLot', () => {
 		}
 	);
 
+	it('a certificate clause mixing and with or reads NOT_READ, never met by one certificate', () => {
+		const text = 'Zertifizierung nach ISO 9001 und entweder ISO 14001 oder ISO/IEC 27001:2022.';
+		const firm = certFirm([{ standard: 'ISO 9001', validUntil: '2030-01-01' }]);
+		expect(decideClause({ code: CERTIFICATE, text }, firm)).toEqual(
+			decided('NOT_READ', 'mixed-standards')
+		);
+	});
+
 	it('an optional item under a code the family alone decides keeps the family state', () => {
 		const clause = { code: 'slc-abil-ref-services', text: EACH, fields: { mandatory: false } };
 		expect(decideClause(clause, yearly(2e6))).toEqual(decided('PROFILE_GAP', 'firm-judges'));
