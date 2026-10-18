@@ -176,6 +176,19 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example/609955-2026?theme=dark',
 		expectText: 'Example run from a snapshot'
+	},
+	// A lot the model read: its verdict, reason, state words, AI labels and the run record.
+	{
+		slug: 'example-verdict',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example/610242-2026?theme=light',
+		expectText: 'Ask first'
+	},
+	{
+		slug: 'example-verdict',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example/610242-2026?theme=dark',
+		expectText: 'Ask first'
 	}
 ];
 
