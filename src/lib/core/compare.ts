@@ -60,6 +60,7 @@ export type OutcomeWhy =
 	| 'not-named'
 	| 'not-held'
 	| 'expired'
+	| 'certificate-scope'
 	| 'undated'
 	| 'no-deadline'
 	| 'not-assessed'
@@ -344,9 +345,13 @@ function certificateState(
 	if (held.validUntil === undefined) return { state: 'PROFILE_GAP', why: 'undated' };
 	if (context.deadline === null) return { state: 'PROFILE_GAP', why: 'no-deadline' };
 	// Valid through its last day in the zone the deadlines are shown in, so a deadline late on that
-	// day's evening, already the next day in UTC terms or not, is judged by the Amsterdam day.
+	// day's evening, already the next day in UTC terms or not, is judged by the Amsterdam day. Even
+	// then it is never MET: a buyer can tie the name to a scope, holder, accreditation or function,
+	// in the quote or anywhere else in the clause, and code compares the name only (the profile's
+	// scope is free text too). As with a business line under specific turnover, code can prove a
+	// certificate missing or expired, and only the firm can judge the fit.
 	return Date.parse(context.deadline) <= cetDayEnd(held.validUntil).getTime()
-		? { state: 'MET', why: 'met' }
+		? { state: 'PROFILE_GAP', why: 'certificate-scope' }
 		: { state: 'SHORT_ROUTE_UNSETTLED', why: 'expired' };
 }
 

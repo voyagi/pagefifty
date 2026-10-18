@@ -84,6 +84,8 @@ export const REASON_LINES = {
 		'A figure equals the floor, and the notice does not say whether equal is enough.',
 	'profile-field-missing/period-unstated':
 		"The notice does not say which years count, and the firm's years fall on both sides of the floor.",
+	'profile-field-missing/certificate-scope':
+		'The profile holds a certificate named as the buyer names it and valid through the deadline of this lot. Only the firm can judge whether its scope fits what the buyer asks for.',
 	'profile-field-missing/undated': 'A certificate in the profile has no end date.',
 	'profile-field-missing/no-deadline':
 		"The notice dates no deadline, so a certificate's validity on it cannot be checked.",
