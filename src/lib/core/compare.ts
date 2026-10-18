@@ -68,6 +68,7 @@ export type OutcomeWhy =
 	| 'quote-rejected'
 	| 'no-amount'
 	| 'several-amounts'
+	| 'amount-not-quoted'
 	| 'mixed-standards'
 	| 'model-number-differs'
 	| 'nothing-read'
@@ -423,7 +424,13 @@ export function decideCriterion(
 				? decideCertificate(requirement, firm, context)
 				: decideFigure(reading, requirement, firm, context, restricted);
 		}),
-		...reading.rejected.map(({ item }) => decided('NOT_READ', 'quote-rejected', item))
+		...reading.rejected.map(({ item }) => decided('NOT_READ', 'quote-rejected', item)),
+		// A figure clause holding an amount no verified quote names was read in part only.
+		...(reading.family !== 'certificate' &&
+		reading.verified.length > 0 &&
+		!reading.everyAmountQuoted
+			? [decided('NOT_READ', 'amount-not-quoted')]
+			: [])
 	];
 	return outcomeOf(requirements.length > 0 ? requirements : [decided('NOT_READ', 'nothing-read')]);
 }

@@ -219,13 +219,18 @@ function comparatorOf(text: string): Comparator {
 	);
 }
 
-export function parseMoney(text: string, lang?: string): MoneyReading {
-	const found = [...text.matchAll(NUMBER)]
+// Each amount of money the text names, in cents, or undefined for one code refuses to read.
+function centsIn(text: string, lang?: string): (number | undefined)[] {
+	return [...text.matchAll(NUMBER)]
 		.map((match) => candidate(text, match, lang))
-		.filter((each) => each !== undefined);
+		.filter((each) => each !== undefined)
+		.map((each) => (each.refused ? undefined : toCents(each.numeral, each.power)));
+}
+
+export function parseMoney(text: string, lang?: string): MoneyReading {
+	const found = centsIn(text, lang);
 	if (found.length > 1) return { kind: 'several' };
-	const [only] = found;
-	const cents = only && !only.refused ? toCents(only.numeral, only.power) : undefined;
+	const [cents] = found;
 	return cents === undefined
 		? { kind: 'none' }
 		: { kind: 'one', cents, basis: basisOf(text, lang), comparator: comparatorOf(text) };
@@ -284,8 +289,11 @@ function countOf(raw: string, lang?: string): number | undefined {
 	return numeral?.fraction === '' ? Number.parseInt(numeral.whole, 10) : undefined;
 }
 
+const countsIn = (text: string, lang?: string) =>
+	[...text.matchAll(COUNT)].map((match) => countOf(match[1], lang));
+
 export function parseCount(text: string, lang?: string): CountReading {
-	const counts = [...text.matchAll(COUNT)].map((match) => countOf(match[1], lang));
+	const counts = countsIn(text, lang);
 	if (counts.length > 1) return { kind: 'several' };
 	const [count] = counts;
 	return count === undefined ? { kind: 'none' } : { kind: 'one', count };
@@ -365,6 +373,13 @@ export function parseStandards(text: string, lang?: string): StandardsReading {
 	};
 	const join = gaps.length > 0 && gaps.every(alone) ? 'any' : gaps.some(names) ? 'mixed' : 'all';
 	return { standards: matches.map((match) => match[0]), join };
+}
+
+// Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,
+// so a clause's amounts can be checked against the ones its verified quotes name.
+export function amountsIn(text: string, staff: boolean, lang?: string): number[] | null {
+	const found = staff ? countsIn(text, lang) : centsIn(text, lang);
+	return found.every((each) => each !== undefined) ? found : null;
 }
 
 export function sameNumber(

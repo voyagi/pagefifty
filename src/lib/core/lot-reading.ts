@@ -8,6 +8,7 @@ import type { LangText } from '../ingest/record.ts';
 import { normalizeCriterionText } from './document-pointer.ts';
 import { familyOf, type CriterionFamily } from './families.ts';
 import {
+	amountsIn,
 	parseCount,
 	parseMoney,
 	parsePeriod,
@@ -57,6 +58,9 @@ export interface CriterionReading {
 	readonly verified: readonly VerifiedRequirement[];
 	readonly rejected: readonly RejectedItem[];
 	readonly textHasAmount: boolean;
+	// Every amount code reads in each description is one some verified quote names: a model can
+	// return one floor of a clause and leave out another, and quote checks prove only what it returned.
+	readonly everyAmountQuoted: boolean;
 }
 
 export interface LotReading {
@@ -177,6 +181,22 @@ function hasAmount(text: string, family: CriterionFamily, lang: string | undefin
 	return reading.kind !== 'none';
 }
 
+// An amount code cannot read in a description counts as one no quote names.
+function everyAmountQuoted(
+	family: CriterionFamily,
+	descriptions: readonly LangText[],
+	verified: readonly VerifiedRequirement[]
+): boolean {
+	const staff = family === 'staff-average';
+	const quoted = new Set(
+		verified.flatMap((each) => amountsIn(each.item.quote, staff, each.lang) ?? [])
+	);
+	return descriptions.every((description) => {
+		const amounts = amountsIn(description.text, staff, description.lang);
+		return amounts !== null && amounts.every((amount) => quoted.has(amount));
+	});
+}
+
 // Number words and the lone thousands mark depend on the language ("two" is no German number
 // word), so a quote is read in the language of the description it was found in. A quote found only
 // across two descriptions keeps the first description's language.
@@ -230,7 +250,8 @@ export function readLot({
 					hasAmount(texts[index], family, langs[index]) ||
 					criterion.descriptions.some((description) =>
 						hasAmount(description.text, family, description.lang)
-					)
+					),
+				everyAmountQuoted: everyAmountQuoted(family, criterion.descriptions, found[index].verified)
 			};
 		}),
 		unplaced,
