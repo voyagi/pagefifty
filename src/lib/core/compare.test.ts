@@ -878,6 +878,30 @@ describe('decideReadLot', () => {
 		expect(decideClause(clause, yearly(2e6))).toEqual(decided('PROFILE_GAP', 'firm-judges'));
 	});
 
+	it('an item naming a criterion the lot lacks keeps a met lot from GO', () => {
+		const firm = yearly(1e6);
+		expect(decideReadLot(lotOf([g(EACH)]), firm, CONTEXT).decision).toEqual({ verdict: 'GO' });
+		const reading = readLot({
+			criteria: [{ code: GENERAL, descriptions: [{ text: EACH, lang: 'de' }] }],
+			items: [modelItem(GENERAL, 1, EACH), modelItem(GENERAL, 2, EACH)]
+		});
+		expect(reading.unplaced).toHaveLength(1);
+		const decidedLot = decideReadLot(reading, firm, CONTEXT);
+		expect(decidedLot.criteria.map(outline)).toEqual([decided('MET', 'met')]);
+		expect(decidedLot.decision).toEqual({ verdict: 'ASK FIRST', reason: 'not-read' });
+	});
+
+	it('an item naming a criterion the lot lacks never softens a shortfall', () => {
+		const reading = readLot({
+			criteria: [{ code: GENERAL, descriptions: [{ text: EACH, lang: 'de' }] }],
+			items: [modelItem(GENERAL, 1, EACH), modelItem(GENERAL, 0, EACH)]
+		});
+		expect(reading.unplaced).toHaveLength(1);
+		expect(decideReadLot(reading, yearly(500_000), CONTEXT).decision).toEqual({
+			verdict: 'PARTNER NEEDED'
+		});
+	});
+
 	const everyComparison: Clause[] = [
 		g(EACH),
 		{ code: MANPOWER, text: STAFF_EACH },
