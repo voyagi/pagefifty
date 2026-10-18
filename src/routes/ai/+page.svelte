@@ -4,18 +4,15 @@
 		"A Go covers only the selection criteria read in the notice, never the exclusion grounds, the procurement documents or the buyer's shortlisting.",
 		'Where a buyer names a category of references, staff or business lines, only the firm can judge whether its own match, so that criterion reads Ask first.'
 	];
-
-	const LEGAL_GUIDE = 'https://docs.tokenfactory.nebius.com/legal/legal-quick-guide';
-	const TAVILY_PRIVACY = 'https://tavily.com/privacy';
 </script>
 
 <script lang="ts">
 	import Binder from '$lib/components/Binder.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import FactSource from '$lib/components/FactSource.svelte';
 	import Facts from '$lib/components/Facts.svelte';
 	import Leaf from '$lib/components/Leaf.svelte';
 	import LeafGrid from '$lib/components/LeafGrid.svelte';
+	import ProviderFacts from '$lib/components/ProviderFacts.svelte';
 	import RunRecord from '$lib/components/RunRecord.svelte';
 
 	let { data } = $props();
@@ -62,37 +59,11 @@
 					captured. The site shows those readings as recorded and calls no model while you read.
 				</p>
 				{#if data.run}
-					<div class="fact">
-						<p>
-							The region is the one the provider's model list names for this model. For a public
-							model endpoint, Nebius says the processing location is decided dynamically and is not
-							tied to any single data center.
-						</p>
-						<FactSource href={LEGAL_GUIDE}>Nebius Token Factory, Legal Quick Guide, 5.1</FactSource>
-					</div>
-					<div class="fact">
-						<p>
-							Zero Data Retention is switched on for the account that runs the read. With it, Nebius
-							says, inputs and outputs are not stored on its systems after each request is
-							processed, and are not used to train, fine-tune or improve any model.
-						</p>
-						<FactSource href={LEGAL_GUIDE}>Nebius Token Factory, Legal Quick Guide, 4.1</FactSource>
-					</div>
 					<p class="fact">
 						Only the public criteria text of each lot is sent to the model. No firm profile, contact
-						or personal data is sent.
+						or personal data is sent to the model or the search provider.
 					</p>
-					{#if searched}
-						<div class="fact">
-							<p>
-								The buyer search of this run used Tavily, which receives the buyer's name and fixed
-								search words. Tavily's privacy policy says it is a US based entity, may use query
-								data to improve its responses to future queries unless a contract says otherwise,
-								and may share query data with third-party search index providers.
-							</p>
-							<FactSource href={TAVILY_PRIVACY}>Tavily Privacy Policy</FactSource>
-						</div>
-					{/if}
+					<ProviderFacts {searched} />
 				{/if}
 			</LeafGrid>
 		{/snippet}

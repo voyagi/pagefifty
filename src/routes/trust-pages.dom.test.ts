@@ -36,8 +36,12 @@ function renderPrivacy(providers: string[] = ['Nebius Token Factory']) {
 	return squash(document.querySelector('main')?.textContent);
 }
 
-// The sentences of a page's text, split at a full stop that ends a sentence.
-const sentencesOf = (body: string) => body.split(/(?<=\.)\s+/);
+// The sentences of the page's paragraphs, each paragraph read on its own so text from two blocks
+// never runs together into one sentence.
+const sentencesOf = () =>
+	[...document.querySelectorAll('main p')].flatMap((paragraph) =>
+		squash(paragraph.textContent).split(/(?<=\.)\s+/)
+	);
 
 describe('the privacy page', () => {
 	it('the privacy page names each processing step with its provider', () => {
@@ -59,7 +63,7 @@ describe('the privacy page', () => {
 		).toBe('https://github.com/voyagi/pagefifty/issues');
 		// A visit reaches Cloudflare with its IP address, so a sentence that says no personal data
 		// leaves must be about what is sent to the model or search provider, never about a visit.
-		const noPersonalData = sentencesOf(body).filter((sentence) =>
+		const noPersonalData = sentencesOf().filter((sentence) =>
 			/\bno\b[^.]*personal data|personal data[^.]*\b(never|not)\b/i.test(sentence)
 		);
 		expect(noPersonalData.length).toBeGreaterThan(0);

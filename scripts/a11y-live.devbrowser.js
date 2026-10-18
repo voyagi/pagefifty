@@ -202,6 +202,19 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/ai?theme=dark',
 		expectText: 'Zero Data Retention'
+	},
+	// The privacy page: each processing step with its provider and source, and how the profile goes.
+	{
+		slug: 'privacy',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/privacy?theme=light',
+		expectText: 'Cloudflare hosts the site'
+	},
+	{
+		slug: 'privacy',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/privacy?theme=dark',
+		expectText: 'Cloudflare hosts the site'
 	}
 ];
 

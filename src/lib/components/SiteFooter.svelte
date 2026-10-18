@@ -5,6 +5,7 @@
 <footer class="site-footer">
 	<nav aria-label="About this site">
 		<ul>
+			<li><a href={resolve('/privacy')}>Privacy</a></li>
 			<li><a href={resolve('/ai')}>How the AI is used</a></li>
 		</ul>
 	</nav>

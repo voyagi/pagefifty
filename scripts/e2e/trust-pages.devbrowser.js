@@ -1,6 +1,7 @@
-// trust-pages.devbrowser.js - the AI page on the built Worker: the model, region and providers the
-// build recorded, the two limit sentences, the run record and the footer links on every page, read
-// at every width of the shared sweep in Light and in Dark with no sideways scroll.
+// trust-pages.devbrowser.js - the AI and privacy pages on the built Worker: the model, region and
+// providers the build recorded, the two limit sentences, the run record, the processing statement
+// and the footer links on every page, each trust page read at every width of the shared sweep in
+// Light and in Dark with no sideways scroll.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
 // dev-browser-nav-guard: dynamic-ok the loops below only visit the literal URLs listed in PAGES and FOOTER_PAGES
@@ -23,13 +24,25 @@ const AI_LIMITS = [
 	"A Go covers only the selection criteria read in the notice, never the exclusion grounds, the procurement documents or the buyer's shortlisting.",
 	'Where a buyer names a category of references, staff or business lines, only the firm can judge whether its own match, so that criterion reads Ask first.'
 ];
-const TRUST_LINKS = ['/ai'];
+const TRUST_LINKS = ['/privacy', '/ai'];
+const PRIVACY_SENTENCES = [
+	'Cloudflare hosts the site and serves its pages from its network.',
+	'As data processor under its privacy policy, Cloudflare receives the technical data of each request, such as your IP address.',
+	'The firm profile you enter is kept in this browser only, in its local storage, and is never sent to a server.',
+	'No firm profile, contact or personal data is sent to the model or the search provider.',
+	'On the firm profile page, Remove the stored profile deletes it from this browser after you confirm.'
+];
 
 const PAGES = [
 	{
 		path: '/ai',
 		light: 'http://127.0.0.1:8788/ai?theme=light',
 		dark: 'http://127.0.0.1:8788/ai?theme=dark'
+	},
+	{
+		path: '/privacy',
+		light: 'http://127.0.0.1:8788/privacy?theme=light',
+		dark: 'http://127.0.0.1:8788/privacy?theme=dark'
 	}
 ];
 const FOOTER_PAGES = [
@@ -135,6 +148,16 @@ try {
 					read.body.includes('Zero Data Retention') &&
 					read.example,
 				`limits ${AI_LIMITS.map((sentence) => read.body.includes(sentence)).join(', ')}, run records ${read.runRecord}, example link ${read.example}`
+			);
+		}
+		if (target.path === '/privacy') {
+			const missing = PRIVACY_SENTENCES.filter((sentence) => !read.body.includes(sentence));
+			check(
+				'/privacy names each processing step and provider, what stays in the browser and how the profile is removed',
+				missing.length === 0 &&
+					JSON.stringify(read.facts.region) === JSON.stringify([trust.region]) &&
+					JSON.stringify(read.facts.provider) === JSON.stringify([trust.providers[0]]),
+				`missing ${JSON.stringify(missing)}, region ${JSON.stringify(read.facts.region)}, provider ${JSON.stringify(read.facts.provider)}`
 			);
 		}
 		await sweep(target, 'light', target.light);
