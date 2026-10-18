@@ -114,7 +114,8 @@ const withheld = (why: OutcomeWhy, item?: ModelItem): RequirementOutcome => ({
 const FAMILY_KINDS: Partial<Record<CriterionFamily, string>> = {
 	'turnover-general': 'turnover-general',
 	'turnover-specific': 'turnover-specific',
-	'staff-average': 'staff-count'
+	'staff-average': 'staff-count',
+	certificate: 'certificate'
 };
 
 function periodDisagrees(code: string, quote: PeriodReading, model: PeriodReading): boolean {
@@ -355,6 +356,9 @@ function decideCertificate(
 	context: LotContext
 ): RequirementOutcome {
 	const { item } = requirement;
+	// As readFigure does for a figure: a quote the model read as another kind may name a standard
+	// in passing ("references from ISO 27001 projects"), so it is never compared as a certificate.
+	if (item.kind !== FAMILY_KINDS.certificate) return withheld('kind-disagrees', item);
 	if (firm === null) return decided('PROFILE_GAP', 'no-profile', item);
 	if (firm.certificates.length === 0) return decided('PROFILE_GAP', 'empty-field', item);
 	const { standards, join } = requirement.standards;

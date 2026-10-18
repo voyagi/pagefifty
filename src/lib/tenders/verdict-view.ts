@@ -92,7 +92,7 @@ export const REASON_LINES = {
 	'not-compared/insurance':
 		'Insurance cover is shown as published and not compared in this version.',
 	'not-compared/kind-disagrees':
-		'A figure is shown as published and not compared in this version, because its criterion code and its reading disagree on what it counts.',
+		'A requirement is shown as published and not compared in this version, because its criterion code and its reading disagree on what it asks for.',
 	'not-compared/period-disagrees':
 		'A figure is shown as published and not compared in this version, because its criterion code and its reading disagree on the years it counts.',
 	'not-compared/family':
