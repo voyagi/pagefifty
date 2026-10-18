@@ -676,10 +676,10 @@ const ROWS: readonly Row[] = [
 		decided('SHORT_ROUTE_UNSETTLED', 'not-held')
 	),
 	row(
-		'a certificate held as iso/iec 27001:2022 valid on the deadline day is MET',
+		'a certificate held as iso/iec 27001:2022 valid on the deadline day leaves its scope to the firm',
 		{ code: CERTIFICATE, text: CERT },
 		certFirm([{ standard: 'iso/iec  27001:2022', validUntil: '2026-10-30' }]),
-		decided('MET', 'met')
+		decided('PROFILE_GAP', 'certificate-scope')
 	),
 	row(
 		'a certificate valid until the day before the deadline day is SHORT_ROUTE_UNSETTLED',
@@ -695,10 +695,10 @@ const ROWS: readonly Row[] = [
 		{ deadline: '2026-10-30T23:30:00Z' }
 	),
 	row(
-		'a certificate valid until the Amsterdam day of a late evening deadline is MET',
+		'a certificate valid until the Amsterdam day of a late evening deadline is not expired',
 		{ code: CERTIFICATE, text: CERT },
 		certFirm([{ standard: 'ISO/IEC 27001:2022', validUntil: '2026-10-31' }]),
-		decided('MET', 'met'),
+		decided('PROFILE_GAP', 'certificate-scope'),
 		{ deadline: '2026-10-30T23:30:00Z' }
 	),
 	row(
@@ -718,7 +718,7 @@ const ROWS: readonly Row[] = [
 		'two standards joined by oder take the best of the two',
 		{ code: CERTIFICATE, text: CERT_EITHER },
 		certFirm([{ standard: 'ISO/IEC 27001:2022', validUntil: '2030-01-01' }]),
-		decided('MET', 'met')
+		decided('PROFILE_GAP', 'certificate-scope')
 	),
 	row(
 		'two standards joined by und take the worst of the two',
@@ -891,6 +891,23 @@ describe('decideReadLot', () => {
 		expect(decideClause({ code: CERTIFICATE, text }, firm)).toEqual(
 			decided('NOT_READ', 'mixed-standards')
 		);
+	});
+
+	it('a certificate held as named never makes its lot GO, whatever scope its quote leaves out', () => {
+		// An ISO 9001 certificate scoped to manufacturing carries the name of one the buyer asks for
+		// software development; code cannot compare the two scopes, with or without the quote.
+		const text = 'Zertifizierung nach ISO 9001 für den Bereich Softwareentwicklung.';
+		const firm = certFirm([{ standard: 'ISO 9001', validUntil: '2030-01-01' }]);
+		for (const quote of [text, 'Zertifizierung nach ISO 9001']) {
+			const decidedLot = decideReadLot(lotOf([{ code: CERTIFICATE, text, quote }]), firm, CONTEXT);
+			expect(decidedLot.criteria.map(outline), quote).toEqual([
+				decided('PROFILE_GAP', 'certificate-scope')
+			]);
+			expect(decidedLot.decision).toEqual({
+				verdict: 'ASK FIRST',
+				reason: 'profile-field-missing'
+			});
+		}
 	});
 
 	it('an optional item under a code the family alone decides keeps the family state', () => {
@@ -1179,7 +1196,7 @@ describe('backstops', () => {
 		);
 		const either = `Zertifizierung nach ${standards.join(' oder ')}.`;
 		const both = `Zertifizierung nach ${standards.join(' und ')}.`;
-		expect(decideClause({ code: CERTIFICATE, text: either }, holder).state).toBe('MET');
+		expect(decideClause({ code: CERTIFICATE, text: either }, holder).state).toBe('PROFILE_GAP');
 		expect(decideClause({ code: CERTIFICATE, text: both }, holder).state).toBe(
 			'SHORT_ROUTE_UNSETTLED'
 		);

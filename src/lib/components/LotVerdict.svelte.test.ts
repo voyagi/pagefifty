@@ -279,6 +279,21 @@ describe('every verdict and reason, worded', () => {
 		expect(region?.querySelector('.slip')).toBeNull();
 	});
 
+	it('a certificate held as named reads ASK FIRST and leaves its scope to the firm', () => {
+		const text = 'Zertifizierung nach ISO 27001 für den Rechenzentrumsbetrieb.';
+		const container = renderExample(
+			syntheticPage([
+				{
+					criteria: [criterion('slc-sche-qu-cert-indep', text)],
+					items: [item(1, 'certificate', 'Zertifizierung nach ISO 27001')]
+				}
+			])
+		);
+		const region = verdictOf(container, 'lot-1');
+		expect(wordOf(region)).toBe('Ask first');
+		expect(textOf(region)).toContain(line('profile-field-missing/certificate-scope'));
+	});
+
 	it('an empty profile field reads ASK FIRST naming the empty figure', async () => {
 		const container = await renderTenders(
 			syntheticPage([
