@@ -105,10 +105,21 @@ describe('/ai copy', () => {
 		for (const sentence of AI_LIMITS) expect(body).toContain(sentence);
 	});
 
+	// Each provider fact is its own block, and the block holds the link to the page it was read on.
 	it('links each provider fact to the page it was read on', async () => {
-		const body = pageOf(await loaded(null));
-		expect(body).toContain('href="https://docs.tokenfactory.nebius.com/legal/legal-quick-guide"');
-		expect(text(body)).toContain('not tied to any single data center');
-		expect(text(body)).toContain('not stored on its systems after each request is processed');
+		const guide = 'href="https://docs.tokenfactory.nebius.com/legal/legal-quick-guide"';
+		const blocks = pageOf(await loaded({ searches: 1 })).split('class="fact');
+		const blockOf = (phrase: string) => blocks.filter((block) => text(block).includes(phrase));
+		for (const [phrase, href] of [
+			['not tied to any single data center', guide],
+			['not stored on its systems after each request is processed', guide],
+			[
+				'may share query data with third-party search index providers',
+				'href="https://tavily.com/privacy"'
+			]
+		]) {
+			expect(blockOf(phrase), phrase).toHaveLength(1);
+			expect(blockOf(phrase)[0], phrase).toContain(href);
+		}
 	});
 });
