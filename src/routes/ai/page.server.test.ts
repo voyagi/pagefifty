@@ -39,8 +39,7 @@ async function loaded(search: { searches: number } | null): Promise<Loaded> {
 	return (await load({} as LoadEvent)) as Loaded;
 }
 
-const pageOf = (data: Loaded) =>
-	render(AiPage, { props: { data: data as never, params: {} as never } }).body;
+const pageOf = (data: Loaded) => render(AiPage, { props: { data: data as never } }).body;
 
 // Every element marked with data-fact, by name, with its text as rendered.
 function facts(body: string): Record<string, string[]> {

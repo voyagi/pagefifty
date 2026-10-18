@@ -189,6 +189,19 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example/610242-2026?theme=dark',
 		expectText: 'Ask first'
+	},
+	// The AI page: the model facts from the run record, the limits and the compact run record.
+	{
+		slug: 'ai',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/ai?theme=light',
+		expectText: 'Zero Data Retention'
+	},
+	{
+		slug: 'ai',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/ai?theme=dark',
+		expectText: 'Zero Data Retention'
 	}
 ];
 

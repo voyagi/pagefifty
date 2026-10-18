@@ -17,6 +17,7 @@ import {
 	type NoticeReadings,
 	type ReadingRun
 } from '../snapshot/readings';
+import { SearchRunSchema, type SearchRun } from '../snapshot/search-run';
 import { captureFacts, type CaptureFacts } from '../tenders/list';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
@@ -35,6 +36,7 @@ const CAPTURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/capture\.json$/;
 const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$/;
 const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
+const SEARCH_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/search-run\.json$/;
 
 function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
 	const found = new Map<string, T>();
@@ -88,6 +90,14 @@ const READING_RUNS = byMatch(
 		eager: true
 	}),
 	READING_RUN_PATH
+);
+// A search run is as small, and a capture that ran no buyer search has none.
+const SEARCH_RUNS = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/search-run.json', {
+		import: 'default',
+		eager: true
+	}),
+	SEARCH_RUN_PATH
 );
 // Stryker restore all
 
@@ -188,6 +198,29 @@ export function newestReadingRun(): { id: string; run: ReadingRun } | null {
 	const id = newestCapture(READING_RUNS.keys());
 	const run = readingRunOf(id);
 	return run === null ? null : { id, run };
+}
+
+// The parse is apart from the lookup so a damaged line can be tested before any capture has one.
+export function parsedSearchRun(capture: string, line: unknown): SearchRun | null {
+	if (line === undefined) return null;
+	const parsed = SearchRunSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(`the ${capture} search run does not match its schema: ${parsed.error.message}`);
+	}
+	return parsed.data;
+}
+
+// The buyer search of a capture, or null for a capture that ran none.
+export function searchRunOf(capture: string): SearchRun | null {
+	return parsedSearchRun(capture, SEARCH_RUNS.get(capture));
+}
+
+// The outside providers a capture used, as the trust pages name them: the model provider its
+// reading run records, then the search provider only when the search sent at least one query, so
+// a capture that never searched leaves no claim about one on either page.
+export function providersOf(run: ReadingRun | null, search: SearchRun | null): string[] {
+	const providers = run === null ? [] : [run.provider];
+	return search !== null && search.searches > 0 ? [...providers, 'Tavily'] : providers;
 }
 
 // An unknown or malformed notice number is answered before any read, so the tender page can 404.

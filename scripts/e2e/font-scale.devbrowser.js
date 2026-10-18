@@ -24,8 +24,9 @@ function check(name, ok, detail) {
 }
 
 // One route per layout: the start page, both lists, the largest notice, the filled profile, the
-// empty filter state and the error page. The largest notice, 600457-2026 with its 17 lots, is read on
-// the example, which stays on the 2026-09-15 capture that holds it; no deadline lies in 2099.
+// empty filter state, the error page and the AI page. The largest notice, 600457-2026 with its 17
+// lots, is read on the example, which stays on the 2026-09-15 capture that holds it; no deadline lies
+// in 2099.
 const ROUTES = [
 	{ path: '/', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ path: '/tenders', url: 'http://127.0.0.1:8788/tenders?theme=light' },
@@ -36,7 +37,8 @@ const ROUTES = [
 		path: '/tenders with no match',
 		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2099-01-01&theme=light'
 	},
-	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' }
+	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' },
+	{ path: '/ai', url: 'http://127.0.0.1:8788/ai?theme=light' }
 ];
 const FONTS = [
 	{ px: 20, widths: [320, 768, 901, 1376, 1676] },
