@@ -681,9 +681,9 @@ describe('ProfileForm, the phase 1 scope', () => {
 		await userEvent.type(field('Certificate name'), 'ISO 22301');
 		await userEvent.click(screen.getByRole('button', { name: 'Add certificate' }));
 		await userEvent.click(screen.getByRole('button', { name: 'ISO 27001' }));
-		// The Firm leaf's action row acts on the whole profile and edits no field.
+		// The Firm leaf's action row and its remove control act on the whole profile and edit no field.
 		const names = [...document.body.querySelectorAll('input, select, textarea, button')]
-			.filter((control) => !control.closest('.actions'))
+			.filter((control) => !control.closest('.actions, .remove'))
 			.map(accessibleName);
 		expect(document.querySelectorAll('.actions input, .actions button').length).toBe(3);
 		expect(names.length).toBeGreaterThan(60);

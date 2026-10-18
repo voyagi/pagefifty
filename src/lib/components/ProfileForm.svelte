@@ -311,6 +311,13 @@
 		}
 	}
 
+	// A removed profile leaves every field empty and no error or last save behind.
+	function onremove() {
+		errors = {};
+		lastEvent = null;
+		syncDrafts(() => false);
+	}
+
 	const status = $derived.by((): SaveStatus => {
 		const newer = store?.newerVersion;
 		if (newer != null) return { kind: 'newer', version: newer, reads: PROFILE_SCHEMA_VERSION };
@@ -373,7 +380,7 @@
 			</p>
 		</noscript>
 		{#if store}
-			<ProfileActions {store} {clock} statusText={saveStatusText(status)} {onimport} />
+			<ProfileActions {store} {clock} statusText={saveStatusText(status)} {onimport} {onremove} />
 		{:else}
 			<LoadingLines label="Reading the profile kept in this browser." />
 		{/if}

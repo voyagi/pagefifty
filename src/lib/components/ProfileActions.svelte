@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import {
+		REMOVE_COPY,
 		exportDateText,
 		importAppliedText,
 		importFaultText,
@@ -25,12 +27,15 @@
 		store,
 		statusText,
 		clock = () => new Date(),
-		onimport
+		onimport,
+		onremove
 	}: {
 		store: ProfileStore;
 		statusText: string;
 		clock?: () => Date;
 		onimport: (event: ImportEvent) => void;
+		// The form shows storage again once the profile is gone, so no removed figure stays in a field.
+		onremove: () => void;
 	} = $props();
 
 	let refusal = $state<RefusalText | null>(null);
@@ -73,6 +78,46 @@
 		onimport({ kind: 'refused', file: name });
 	}
 
+	// The question opens inline under the control, focus moves to its safe answer, and closing it in
+	// either direction hands focus back to the control the keyboard user started from.
+	let confirming = $state(false);
+	let removeArea = $state<HTMLElement>();
+	let confirmArea = $state<HTMLElement>();
+	// The answer stays only while the profile is the one it was about: a later save, import or
+	// another tab's write replaces it, so it never sits beside a status it no longer describes.
+	let removeNote = $state.raw<{ text: string; about: ProfileStore['stored'] } | null>(null);
+	const shownNote = $derived(removeNote?.about === store.stored ? removeNote.text : '');
+
+	const control = () => removeArea?.querySelector('button');
+
+	async function askRemove() {
+		if (!store.stored && store.newerVersion === null) {
+			removeNote = { text: REMOVE_COPY.nothingStored, about: store.stored };
+			return;
+		}
+		confirming = true;
+		await tick();
+		confirmArea?.querySelectorAll('button')[1]?.focus();
+	}
+
+	async function closeQuestion() {
+		confirming = false;
+		await tick();
+		control()?.focus();
+	}
+
+	function remove() {
+		const result = store.removeProfile();
+		const text = {
+			removed: REMOVE_COPY.removed,
+			'nothing-stored': REMOVE_COPY.nothingStored,
+			failed: REMOVE_COPY.failed
+		}[result];
+		removeNote = { text, about: store.stored };
+		if (result === 'removed') onremove();
+		void closeQuestion();
+	}
+
 	function exportFile() {
 		const current = store.stored;
 		if (!current) return;
@@ -112,6 +157,19 @@
 {#if exportRefusal}
 	<ErrorBlock text={exportRefusal} />
 {/if}
+<div class="remove" bind:this={removeArea}>
+	<Button variant="secondary" onclick={() => void askRemove()}>{REMOVE_COPY.control}</Button>
+	{#if confirming}
+		<div class="question" role="group" aria-labelledby="remove-question" bind:this={confirmArea}>
+			<p id="remove-question">{REMOVE_COPY.question}</p>
+			<div class="answers">
+				<Button onclick={remove}>{REMOVE_COPY.confirm}</Button>
+				<Button variant="secondary" onclick={() => void closeQuestion()}>{REMOVE_COPY.keep}</Button>
+			</div>
+		</div>
+	{/if}
+	<p class="remove-note" data-remove-note aria-live="polite">{shownNote}</p>
+</div>
 
 <style>
 	.actions {
@@ -125,5 +183,34 @@
 		margin-top: 0.75rem;
 		font-size: var(--step--1);
 		color: var(--ink-3);
+	}
+
+	/* Set apart under a hairline, so the one control that deletes reads apart from export and import. */
+	.remove {
+		margin-top: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--acetate-rule);
+	}
+
+	.question {
+		max-width: 52ch;
+		margin-top: 1rem;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--ink-3);
+		border-radius: 3px;
+		background: var(--acetate);
+	}
+
+	.answers {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 0.875rem;
+	}
+
+	/* Always in the page, empty or not: a live region added at the moment it speaks is not read out. */
+	.remove-note {
+		margin-top: 0.75rem;
+		color: var(--ink-2);
 	}
 </style>
