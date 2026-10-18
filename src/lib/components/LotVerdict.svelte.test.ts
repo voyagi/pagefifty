@@ -228,6 +228,23 @@ describe('every verdict and reason, worded', () => {
 		expect(page).not.toMatch(/partner brief|partner conditions|commitment to provide/i);
 	});
 
+	it('the slip names the floor the firm misses, not one it meets in the same clause', () => {
+		const text = `${TURNOVER('500.000')} ${TURNOVER('2.000.000')}`;
+		const container = renderExample(
+			syntheticPage([
+				{
+					criteria: [criterion('slc-stand-to-gen', text)],
+					items: [turnoverItem(1, '500.000'), turnoverItem(1, '2.000.000')]
+				}
+			])
+		);
+		const region = verdictOf(container, 'lot-1');
+		expect(wordOf(region)).toBe('Not met alone');
+		const slip = textOf(region?.querySelector('.slip'));
+		expect(slip).toContain('EUR 2,000,000.00');
+		expect(slip).not.toContain('EUR 500,000.00');
+	});
+
 	it('a NO-GO lot names its criterion on the slip and gives no advice', () => {
 		const data = examplePage('610242-2026');
 		const [lot] = data.tender.lots;
