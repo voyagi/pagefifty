@@ -59,7 +59,8 @@ export interface CriterionReading {
 
 export interface LotReading {
 	readonly criteria: readonly CriterionReading[];
-	// Items naming a criterion the lot does not have: shown, never compared.
+	// Items naming a criterion the lot does not have: never compared, and any one of them makes the
+	// lot's decision read a requirement as not read.
 	readonly unplaced: readonly RejectedItem[];
 	readonly relianceRestricted: boolean;
 }

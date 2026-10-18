@@ -449,13 +449,16 @@ export function decideReadLot(
 		decideCriterion(criterion, firm, context, reading.relianceRestricted)
 	);
 	const states = criteria.flatMap((outcome) => (outcome.state ? [outcome.state] : []));
+	// An item naming a criterion the lot lacks was not read: it withholds the lot's GO as a rejected
+	// quote withholds its criterion's, with no clause of the lot to show it under.
+	const unplaced: CriterionState[] = reading.unplaced.length > 0 ? ['NOT_READ'] : [];
 	// A reserved lot (BT-71) is open only to firms the profile does not describe, and a lot that
 	// declares no code at all is unknown, never read as "none".
 	const reservation = context.reserved === 'none' ? null : withheld('reserved');
 	const notCompared = reservation !== null || criteria.some((outcome) => outcome.notCompared);
 	return {
 		decision: decideLot({
-			...toLotInput(context.coverage, states),
+			...toLotInput(context.coverage, [...states, ...unplaced]),
 			notCompared,
 			cancelIntent: context.cancelIntent
 		}),
