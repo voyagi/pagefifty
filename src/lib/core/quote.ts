@@ -28,8 +28,13 @@ export function normalizeQuote(text: string): string {
 		.trim();
 }
 
+// A hyphen with a digit on each side, past any spaces and other hyphens, is a range ("1-2",
+// "1 - 2"), and dropping it would read two numbers as one. The second pass keeps those and drops
+// the rest: bullets, and line-end hyphens the model left out of a word.
+const DROPPABLE_HYPHEN = /-(?![\s-]*\d)|(?<!\d[\s-]*)-/gu;
+
 export function withoutHyphens(text: string): string {
-	return text.replaceAll('-', '').replace(WHITESPACE, ' ').trim();
+	return text.replace(DROPPABLE_HYPHEN, '').replace(WHITESPACE, ' ').trim();
 }
 
 export type QuoteResult =
