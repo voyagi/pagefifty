@@ -188,7 +188,7 @@ describe('the lot verdict on the tender page', () => {
 		expect(region).not.toBeNull();
 		expect(textOf(region?.querySelector('[data-verdict-word]'))).toBe('Ask first');
 		expect(textOf(region)).toContain(
-			'Only the firm can judge whether its references or staff fit what the buyer names.'
+			'Only the firm can judge whether its references, staff or line of business fit what the buyer names.'
 		);
 		expect(textOf(region)).toContain('Compared with the demo firm, Brink Data B.V.');
 	});

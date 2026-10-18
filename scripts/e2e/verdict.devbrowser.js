@@ -36,7 +36,8 @@ const PAGES = [
 	{
 		notice: '610242-2026',
 		readings: 14,
-		reason: 'Only the firm can judge whether its references or staff fit what the buyer names.'
+		reason:
+			'Only the firm can judge whether its references, staff or line of business fit what the buyer names.'
 	},
 	{
 		notice: '634398-2026',
