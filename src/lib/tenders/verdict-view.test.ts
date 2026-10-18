@@ -165,6 +165,15 @@ describe('the verdict copy', () => {
 		}
 	});
 
+	it('ends the compared-firm line once, whether or not the firm name ends in a period', () => {
+		expect(comparedLine({ kind: 'demo', name: 'Brink Data B.V.' })).toBe(
+			'Compared with the demo firm, Brink Data B.V.'
+		);
+		expect(comparedLine({ kind: 'demo', name: 'Brink Data' })).toBe(
+			'Compared with the demo firm, Brink Data.'
+		);
+	});
+
 	it('names no verdict in a criterion state word', () => {
 		for (const word of Object.values(STATE_LABELS)) {
 			expect(word).not.toMatch(/^(Go|No-go|Ask first|Not met alone|Partner needed)$/i);
