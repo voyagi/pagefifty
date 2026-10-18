@@ -87,6 +87,43 @@ describe('the example readings in the page model', () => {
 		expect(lot.criteria.every((criterion) => criterion.rejected?.length === 0)).toBe(true);
 	});
 
+	it('gives each requirement the language of the description its quote was found in', () => {
+		const record = capturedRecord('610242-2026');
+		const [lot] = record.lots;
+		const german =
+			'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei Geschäftsjahren.';
+		const english =
+			'Minimum yearly net turnover of EUR 1,000,000 in each of the last two financial years.';
+		const criterion = {
+			...lot.criteria[0],
+			code: 'slc-stand-to-gen',
+			descriptions: [
+				{ text: german, lang: 'de' },
+				{ text: english, lang: 'en' }
+			]
+		};
+		const [stored] = noticeReadings('610242-2026').readings;
+		const item = { ...stored.items[0], criterion: 1, kind: 'turnover-general' as const };
+		const page = buildTenderPage(
+			{ ...record, lots: [{ ...lot, criteria: [criterion] }] },
+			BEFORE_DEADLINES,
+			{
+				notice: record.noticeNumber,
+				lots: [{ lot: lot.id, status: 'read', textSha256: stored.textSha256 }],
+				readings: [
+					{
+						...stored,
+						items: [
+							{ ...item, quote: english },
+							{ ...item, quote: german }
+						]
+					}
+				]
+			}
+		);
+		expect(page.lots[0].criteria[0].requirements?.map((each) => each.lang)).toEqual(['en', 'de']);
+	});
+
 	it('keeps the phase 1 model for a notice or a lot the readings do not list', () => {
 		const record = capturedRecord('610242-2026');
 		const unlisted = buildTenderPage(record, BEFORE_DEADLINES, {

@@ -136,6 +136,7 @@ describe('readLot', () => {
 			comparator: 'at-least'
 		});
 		expect(requirement.period).toEqual({ mode: 'each', years: 2, named: [] });
+		expect(requirement.lang).toBe('en');
 	});
 
 	it('reads a quote found only across two descriptions in the first description language', () => {
@@ -154,6 +155,7 @@ describe('readLot', () => {
 		const [requirement] = read.criteria[0].verified;
 		expect(requirement.money).toMatchObject({ kind: 'one', cents: 100_000_000 });
 		expect(requirement.period.years).toBeNull();
+		expect(requirement.lang).toBe('de');
 	});
 
 	it('reads a clause as holding an amount when only a later description states it', () => {
