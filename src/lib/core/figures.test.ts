@@ -330,6 +330,7 @@ describe('parsePeriod', () => {
 		['the three most recent financial years', 'en', 3],
 		['the last three (3) completed financial years', 'en', 3],
 		['der letzten drei vollständig abgeschlossenen Geschäftsjahre', 'de', 3],
+		['der letzten drei abgeschlosse- nen Geschäftsjahre', 'de', 3],
 		['der 3 letzten abgeschlossenen Geschäftsjahre', 'de', 3],
 		['der letzten zwei abgeschlossenen Kalenderjahre', 'de', 2],
 		['der letzten zwei abgeschlossenen und bilanzierten Geschäftsjahre', 'de', 2],

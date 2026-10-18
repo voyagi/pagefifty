@@ -15,6 +15,8 @@ export type CountReading = { kind: 'none' } | { kind: 'several' } | { kind: 'one
 export interface PeriodReading {
 	mode: 'average' | 'each' | 'sum' | 'any-one' | 'unstated';
 	years: number | null;
+	// The text states a count of years code cannot settle, so no default may stand in for it.
+	yearsUnread: boolean;
 	named: number[];
 }
 
@@ -319,19 +321,96 @@ const MODES = {
 	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
 	'any-one': phrases(['in einem der', 'in één van', "au cours d'un des", 'in any one of'])
 } as const;
+// Plural nouns only ("jahren?" is Jahre or Jahren): a singular follows "pro" or "je", never a count.
+const YEAR_NOUN = String.raw`(?:geschäftsjahren?|kalenderjahren?|jahren?|boekjaren|jaar|exercices|années|years)`;
+// A word between a count and its noun is never itself a count or a "per", so a match can neither
+// swallow a second count nor read an amount per year ("1,5 mln per jaar") as a number of years.
+const BETWEEN = String.raw`(?!(?:\d|(?:${WORDS}|pro|per|par|je)(?![\p{L}\p{N}])))\S+`;
 const YEARS = new RegExp(
-	String.raw`(?<![\p{L}\p{N}])(\d{1,2}|${WORDS})(?:\s+\S+)?\s+(?:geschäftsjahren?|jahren?|boekjaren|jaar|exercices|années|years)(?![\p{L}\p{N}])`,
+	String.raw`(?<![\p{L}\p{N}])(\d{1,2}|${WORDS})((?:\s+${BETWEEN}){0,3}?)\s+${YEAR_NOUN}(?![\p{L}\p{N}])`,
 	'giu'
 );
+// The words that stand between a count and its noun in "the last two completed financial years"
+// and its kin. One other word alone is read as it always was; two or more need these.
+const PERIOD_WORDS: ReadonlySet<string> = new Set([
+	'letzten',
+	'vergangenen',
+	'abgeschlossenen',
+	'abgeschlossene',
+	'abgelaufenen',
+	'vollständig',
+	'vollständigen',
+	'vollen',
+	'bilanzierten',
+	'und',
+	'laatste',
+	'afgelopen',
+	'afgesloten',
+	'beschikbare',
+	'voorgaande',
+	'volledige',
+	'en',
+	'derniers',
+	'dernières',
+	'précédents',
+	'précédentes',
+	'clos',
+	'clôturés',
+	'comptables',
+	'complets',
+	'disponibles',
+	'et',
+	'last',
+	'past',
+	'previous',
+	'preceding',
+	'most',
+	'recent',
+	'completed',
+	'full',
+	'financial',
+	'fiscal',
+	'calendar',
+	'business',
+	'accounting',
+	'consecutive',
+	'available',
+	'audited',
+	'closed',
+	'and'
+]);
 const NAMED_YEAR = /(?<!\d)20\d{2}(?!\d)/g;
 
-function yearsOf(text: string, lang?: string): number | null {
-	const counts = new Set(
-		[...text.matchAll(YEARS)]
-			.map((match) => countOf(match[1], lang))
-			.filter((count) => count !== undefined)
+// A word broken at a line end ("abgeschlosse- nen") is read joined, and a word is judged by its
+// letters, so a kept hyphen or a count repeated in brackets ("three (3)") passes.
+const LINE_END_BREAK = /(?<=\p{L})-\s+(?=\p{L})/gu;
+
+function knownBetween(between: string): boolean {
+	const words = between
+		.replace(LINE_END_BREAK, '')
+		.split(/\s+/u)
+		.filter((word) => word !== '');
+	return (
+		words.length <= 1 ||
+		words.every((word) => {
+			const letters = word.toLowerCase().replace(/[^\p{L}]/gu, '');
+			return letters === '' || PERIOD_WORDS.has(letters);
+		})
 	);
-	return counts.size === 1 ? [...counts][0] : null;
+}
+
+// compare.ts reads a period stating no count over three years, so a count code cannot settle (an
+// unknown word before its noun, a count word of another language, two different counts) is marked
+// unread and never left to read as unstated.
+function yearsOf(text: string, lang?: string): Pick<PeriodReading, 'years' | 'yearsUnread'> {
+	const counts = new Set(
+		[...text.matchAll(YEARS)].map((match) =>
+			knownBetween(match[2]) ? countOf(match[1], lang) : undefined
+		)
+	);
+	if (counts.has(undefined) || counts.size > 1) return { years: null, yearsUnread: true };
+	const [years = null] = counts;
+	return { years, yearsUnread: false };
 }
 
 export function parsePeriod(text: string, lang?: string): PeriodReading {
@@ -340,7 +419,7 @@ export function parsePeriod(text: string, lang?: string): PeriodReading {
 	) as Record<keyof typeof MODES, boolean>;
 	return {
 		mode: oneOf<PeriodReading['mode']>(found, 'unstated'),
-		years: yearsOf(text, lang),
+		...yearsOf(text, lang),
 		named: [...text.matchAll(NAMED_YEAR)].map((match) => Number.parseInt(match[0], 10))
 	};
 }

@@ -72,7 +72,12 @@ describe('readLot', () => {
 			comparator: 'at-least'
 		});
 		expect(floor.count).toEqual({ kind: 'none' });
-		expect(floor.period).toEqual({ mode: 'average', years: 3, named: [2023, 2024, 2025] });
+		expect(floor.period).toEqual({
+			mode: 'average',
+			years: 3,
+			yearsUnread: false,
+			named: [2023, 2024, 2025]
+		});
 		expect(floor.standards).toEqual({ standards: [], join: 'all' });
 		expect(floor.modelPeriod.mode).toBe('unstated');
 		expect(floor.modelNumber).toEqual({ money: true, count: false });
@@ -135,7 +140,7 @@ describe('readLot', () => {
 			basis: 'net',
 			comparator: 'at-least'
 		});
-		expect(requirement.period).toEqual({ mode: 'each', years: 2, named: [] });
+		expect(requirement.period).toEqual({ mode: 'each', years: 2, yearsUnread: false, named: [] });
 		expect(requirement.lang).toBe('en');
 	});
 

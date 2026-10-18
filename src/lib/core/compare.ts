@@ -69,6 +69,7 @@ export type OutcomeWhy =
 	| 'no-amount'
 	| 'several-amounts'
 	| 'amount-not-quoted'
+	| 'years-unread'
 	| 'mixed-standards'
 	| 'model-number-differs'
 	| 'nothing-read'
@@ -307,7 +308,13 @@ function readFigure(
 			: decided('INFO', 'request-without-minimum', item);
 	}
 	const agrees = staff ? requirement.modelNumber.count : requirement.modelNumber.money;
-	return agrees ? undefined : decided('NOT_READ', 'model-number-differs', item);
+	if (!agrees) return decided('NOT_READ', 'model-number-differs', item);
+	// The years a quote names settle the window on their own (windowOf); without them, a count of
+	// years code cannot settle would be compared over the default three.
+	const { period } = requirement;
+	return period.yearsUnread && period.named.length === 0
+		? decided('NOT_READ', 'years-unread', item)
+		: undefined;
 }
 
 function decideFigure(
