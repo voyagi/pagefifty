@@ -2,10 +2,11 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-// Phase 1 draws no verdict (SPEC R3), so no component or route may import the verdict module (the
-// no-ui-reaches-verdict rule in .dependency-cruiser.cjs covers reaching it through another module),
-// and the errata colours belong to the verdict page of a later phase, so none of them may use those.
+// No component or route may import the verdict module directly (the no-ui-reaches-verdict rule in
+// .dependency-cruiser.cjs covers reaching it through another module), and the errata colours mark
+// only what rules a firm out on its own, which the lot verdict alone draws (the Errata Rule).
 const ROOTS = [join('src', 'lib', 'components'), join('src', 'routes')];
+const ERRATA_OWNER = join('src', 'lib', 'components', 'LotVerdict.svelte');
 
 function sourceFiles(dir: string): string[] {
 	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -59,8 +60,21 @@ describe('source rules for components and routes', () => {
 
 	it('finds no component or route importing the verdict module or using an errata colour', () => {
 		const found = files.flatMap((file) =>
-			breaches(readFileSync(file, 'utf8')).map((breach) => `${file}: ${breach}`)
+			breaches(readFileSync(file, 'utf8'))
+				.filter((breach) => file !== ERRATA_OWNER || breach === 'imports the verdict module')
+				.map((breach) => `${file}: ${breach}`)
 		);
 		expect(found).toEqual([]);
+	});
+
+	it('only LotVerdict uses an errata colour', () => {
+		const users = files.filter((file) =>
+			breaches(readFileSync(file, 'utf8')).some((breach) => breach.startsWith('references'))
+		);
+		expect(users).toEqual([ERRATA_OWNER]);
+		expect(breaches(readFileSync(ERRATA_OWNER, 'utf8'))).toEqual([
+			'references --errata',
+			'references --errata-ink'
+		]);
 	});
 });

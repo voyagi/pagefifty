@@ -1,0 +1,140 @@
+{
+	"request": {
+		"model": "nvidia/nemotron-3-super-120b-a12b",
+		"temperature": 0,
+		"max_tokens": 8000,
+		"messages": [
+			{
+				"role": "system",
+				"content": "You read the selection criteria of one lot of an EU public tender.\nReturn every requirement a bidder must meet to take part, one item per requirement.\nquote: copy the exact words from the criterion text that state the requirement, character for character, in the original language. Never translate, shorten inside, or paraphrase it. At least 12 characters.\nreading: one plain English sentence saying what the bidder must show.\nkind: the kind of requirement. Use points-to-documents when the text only says the criteria are in the tender documents.\nnumberText: the exact words holding the threshold number with its unit or currency as written (for example \"1.500.000 EUR\" or \"3 Mitarbeiter\"), or \"\" when there is none.\nperiod: the period as written (for example \"in den letzten drei Geschäftsjahren\"), or \"\".\ncriterion: the number of the criterion block the quote comes from.\nmandatory: false only when the text says the item is optional, scored, or only a request for information.\nNever invent a requirement or a number. Answer with JSON only, matching this schema:\n{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"requirements\"],\"properties\":{\"requirements\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"criterion\",\"kind\",\"quote\",\"reading\",\"numberText\",\"period\",\"mandatory\"],\"properties\":{\"criterion\":{\"type\":\"integer\",\"minimum\":1},\"kind\":{\"type\":\"string\",\"enum\":[\"turnover-general\",\"turnover-specific\",\"staff-count\",\"references\",\"certificate\",\"insurance\",\"registration\",\"points-to-documents\",\"other\"]},\"quote\":{\"type\":\"string\",\"minLength\":12},\"reading\":{\"type\":\"string\"},\"numberText\":{\"type\":\"string\"},\"period\":{\"type\":\"string\"},\"mandatory\":{\"type\":\"boolean\"}}}}}}"
+			},
+			{
+				"role": "user",
+				"content": "Criterion 1 (code slc-stand-to-gen, language nl):\nEen verklaring betreffende de totale jaaromzet van de laatste drie beschikbare boekjaren. De aanbestedende overheid kan de opgegeven omzet verifiëren aan de hand van de neergelegde jaarrekeningen  Minimumeisen: De inschrijver dient te beschikken over een voldoende financiële draagkracht om de opdracht gedurende de volledige looptijd op een duurzame en betrouwbare wijze uit te voeren. \n\nDe inschrijver toont dit aan door middel van een verklaring betreffende de totale jaaromzet van de laatste drie beschikbare boekjaren. \n\nDe inschrijver dient over de laatste drie beschikbare boekjaren een gemiddelde jaarlijkse omzet van minimaal € 625.000 excl. btw te hebben gerealiseerd. Indien de onderneming minder dan drie boekjaren actief is, wordt rekening gehouden met de beschikbare boekjaren waarvoor omzetgegevens beschikbaar zijn.\n\nCriterion 2 (code slc-abil-ref-services, language nl):\nEen lijst van de belangrijkste gelijkaardige projecten uitgevoerd gedurende de laatste vijf jaar, met vermelding van: \n\n-naam van de opdrachtgever \n-contactpersoon \n-korte beschrijving van de opdracht \n-aantal bewoners, cliënten of zorggebruikers \n-aantal actieve gebruikers \n-datum van ingebruikname \n-huidige operationele status van de oplossing \n\nDe aanbestedende overheid behoudt zich het recht voor de opgegeven referenties te verifiëren.  Minimumeisen: De inschrijver dient aan te tonen dat hij beschikt over aantoonbare ervaring met de implementatie van een elektronisch zorg- en bewonersdossier binnen een vergelijkbare zorgcontext. \n\nDe inschrijver heeft gedurende de laatste vijf jaar minimaal: \n\n-drie succesvolle implementaties uitgevoerd van een elektronisch zorg- en bewonersdossier of een vergelijkbare geïntegreerde softwareoplossing voor zorgregistratie en zorgondersteuning \n-minstens twee referenties gerealiseerd binnen organisaties bestaande uit minimaal 3 verschillende locaties waar bewoners, cliënten of zorggebruikers verblijven \n-minstens één referentie gerealiseerd binnen de residentiële ouderenzorg\n\nCriterion 3 (code slc-abil-staff-qual, language nl):\n-een beschrijving van de projectorganisatie \n-een beschrijving van de rol, ervaring en relevante expertise van iedere sleutelfiguur  Minimumeisen: De inschrijver beschikt over een projectteam dat de implementatie, migratie, opleiding, ondersteuning en verdere begeleiding van de oplossing kan uitvoeren. \n\nHet projectteam omvat minimaal: \n-één projectmanager \n-één functioneel consultant met expertise inzake zorgprocessen \n-één technisch integratiespecialist \n-één expert datamigratie \n-één opleidingsverantwoordelijke\n\nCriterion 4 (code slc-sche-qu-cert-indep, language nl):\nDe inschrijver voegt bij zijn offerte het bewijs van deze attestering of een verwijzing naar de officiële lijst van geattesteerde softwarepakketten waaruit blijkt dat aan deze minimumeis wordt voldaan. Minimumeisen: Attestering softwarepakket :\nDe aangeboden oplossing dient op het ogenblik van indiening van de offerte te beschikken over een geldige attestering van het Agentschap Vlaamse Sociale Bescherming (AVSB) voor communicatie met eWZCfin voor minstens de volgende functionaliteiten: \n-VSB-verzekeringsstatus \n-opnameberichten \n-indicatiestellingen \n-facturatie \n-creditnota's\n\nCriterion 5 (code slc-stand-other, language nl):\n* \n\n* De volgende documenten zijn beschikbaar via elektronische weg en de aanbesteder vraagt zelf deze inlichtingen:\n      - Het attest van aangifte en van betaling van de sociale zekerheidsbijdragen van de RSZ;\n      - Het attest van BTW-plichtigheid (FOD Financiën);\n      - De juridische situatie (niet-faillissement of soortgelijke situatie) bij de KBO;\n      - Het attest fiscale schulden (FOD Financiën).\n   \nDe andere documenten zullen aan de vermoedelijke opdrachtnemer gevraagd worden.\n* Het UEA, waarmee de ondernemer verklaart dat hij zich niet bevindt in een van de uitsluitingssituaties als bedoeld in de artikelen 67 tot 69 van de wet van 17 juni 2016.\nArtikel 70 van de wet van 17 juni 2016 betreffende de overheidsopdrachten is van toepassing. Voor de in artikel 67 van de wet bedoelde uitsluitingsgronden deelt de gegadigde of inschrijver op eigen initiatief mee of hij bij het begin van de procedure de in artikel 70, lid 1, bedoelde corrigerende maatregelen heeft genomen."
+			}
+		],
+		"response_format": {
+			"type": "json_schema",
+			"json_schema": {
+				"name": "requirements",
+				"schema": {
+					"type": "object",
+					"additionalProperties": false,
+					"required": ["requirements"],
+					"properties": {
+						"requirements": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"additionalProperties": false,
+								"required": [
+									"criterion",
+									"kind",
+									"quote",
+									"reading",
+									"numberText",
+									"period",
+									"mandatory"
+								],
+								"properties": {
+									"criterion": {
+										"type": "integer",
+										"minimum": 1
+									},
+									"kind": {
+										"type": "string",
+										"enum": [
+											"turnover-general",
+											"turnover-specific",
+											"staff-count",
+											"references",
+											"certificate",
+											"insurance",
+											"registration",
+											"points-to-documents",
+											"other"
+										]
+									},
+									"quote": {
+										"type": "string",
+										"minLength": 12
+									},
+									"reading": {
+										"type": "string"
+									},
+									"numberText": {
+										"type": "string"
+									},
+									"period": {
+										"type": "string"
+									},
+									"mandatory": {
+										"type": "boolean"
+									}
+								}
+							}
+						}
+					}
+				},
+				"strict": true
+			}
+		},
+		"chat_template_kwargs": {
+			"enable_thinking": false
+		}
+	},
+	"response": {
+		"id": "chatcmpl-ba862714e0b4de34",
+		"choices": [
+			{
+				"finish_reason": "stop",
+				"index": 0,
+				"logprobs": null,
+				"message": {
+					"content": "{\"requirements\": [{\"criterion\": 1, \"kind\": \"turnover-specific\", \"quote\": \"De inschrijver dient over de laatste drie beschikbare boekjaren een gemiddelde jaarlijkse omzet van minimaal € 625.000 excl. btw te hebben gerealiseerd.\", \"reading\": \"The bidder must have achieved an average annual turnover of at least €625,000 excluding VAT over the last three available financial years.\", \"numberText\": \"€ 625.000\", \"period\": \"over de laatste drie beschikbare boekjaren\", \"mandatory\": true}, {\"criterion\": 2, \"kind\": \"references\", \"quote\": \"drie succesvolle implementaties uitgevoerd van een elektronisch zorg- en bewonersdossier of een vergelijkbare geïntegreerde softwareoplossing voor zorgregistratie en zorgondersteuning\", \"reading\": \"The bidder must have carried out at least three successful implementations of an electronic care and resident record system or a comparable integrated software solution for care registration and support within the last five years.\", \"numberText\": \"drie\", \"period\": \"gedurende de laatste vijf jaar\", \"mandatory\": true}, {\"criterion\": 2, \"kind\": \"references\", \"quote\": \"minstens twee referenties gerealiseerd binnen organisaties bestaande uit minimaal 3 verschillende locaties waar bewoners, cliënten of zorggebruikers verblijven\", \"reading\": \"The bidder must have at least two references realised within organisations consisting of at least 3 different locations where residents, clients or care users stay.\", \"numberText\": \"twee\", \"period\": \"gedurende de laatste vijf jaar\", \"mandatory\": true}, {\"criterion\": 2, \"kind\": \"references\", \"quote\": \"minstens één referentie gerealiseerd binnen de residentiële ouderenzorg\", \"reading\": \"The bidder must have at least one reference realised within residential elderly care.\", \"numberText\": \"één\", \"period\": \"gedurende de laatste vijf jaar\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"staff-count\", \"quote\": \"Het projectteam omvat minimaal: één projectmanager\", \"reading\": \"The project team must include at least one project manager.\", \"numberText\": \"één\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"staff-count\", \"quote\": \"één functioneel consultant met expertise inzake zorgprocessen\", \"reading\": \"The project team must include at least one functional consultant with expertise in care processes.\", \"numberText\": \"één\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"staff-count\", \"quote\": \"één technisch integratiespecialist\", \"reading\": \"The project team must include at least one technical integration specialist.\", \"numberText\": \"één\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"staff-count\", \"quote\": \"één expert datamigratie\", \"reading\": \"The project team must include at least one data migration expert.\", \"numberText\": \"één\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"staff-count\", \"quote\": \"één opleidingsverantwoordelijke\", \"reading\": \"The project team must include at least one training officer.\", \"numberText\": \"één\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 4, \"kind\": \"certificate\", \"quote\": \"Attestering softwarepakket : De aangeboden oplossing dient op het ogenblik van indiening van de offerte te beschikken over een geldige attestering van het Agentschap Vlaamse Sociale Bescherming (AVSB) voor communicatie met eWZCfin voor minstens de volgende functionaliteiten:\", \"reading\": \"The offered solution must have a valid certification from the Flemish Agency for Social Protection (AVSB) for communication with eWZCfin at the time of submission of the tender for at least the following functionalities.\", \"numberText\": \"\", \"period\": \"op het ogenblik van indiening van de offerte\", \"mandatory\": true}]}",
+					"refusal": null,
+					"role": "assistant",
+					"annotations": null,
+					"audio": null,
+					"function_call": null,
+					"tool_calls": null,
+					"reasoning": null
+				},
+				"stop_reason": null,
+				"token_ids": null,
+				"routed_experts": null
+			}
+		],
+		"created": 1792059865,
+		"model": "nvidia/nemotron-3-super-120b-a12b",
+		"object": "chat.completion",
+		"moderation": null,
+		"service_tier": null,
+		"system_fingerprint": "vllm-0.1.dev1+g5001743e3-dp2-9bbaa064",
+		"usage": {
+			"completion_tokens": 948,
+			"prompt_tokens": 1628,
+			"total_tokens": 2576,
+			"completion_tokens_details": {
+				"accepted_prediction_tokens": null,
+				"audio_tokens": null,
+				"reasoning_tokens": 0,
+				"rejected_prediction_tokens": null
+			},
+			"prompt_tokens_details": {
+				"audio_tokens": null,
+				"cached_tokens": 0,
+				"created_cache_tokens": 0,
+				"multimodal_tokens": null
+			},
+			"prompt_cache_hit_tokens": 0,
+			"prompt_cache_miss_tokens": 1628
+		},
+		"prompt_logprobs": null,
+		"prompt_token_ids": null,
+		"prompt_text": null,
+		"kv_transfer_params": null,
+		"ec_transfer_params": null,
+		"metrics": null
+	}
+}

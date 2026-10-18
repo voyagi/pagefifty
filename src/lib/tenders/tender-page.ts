@@ -1,6 +1,7 @@
 // The tender page model /tenders/[notice] and /example/[notice] share. Pure: the record and "now"
 // come in as arguments, so the deadline, the time left and the open test all read the one instant
-// the loader was given (D-06). Nothing here reads, translates or judges a clause (D-13).
+// the loader was given (D-06). Nothing here translates or judges a clause (D-13): the model's
+// readings come in with the capture, and only what code verified against a clause is shown under it.
 import type {
 	CriterionParameter,
 	DocumentsLink,
@@ -10,6 +11,7 @@ import type {
 	NoticeRecord
 } from '../ingest/record';
 import { parameterLabel } from '../codelists/labels';
+import type { LotContext } from '../core/compare';
 import { summarizeLot } from '../core/coverage-facts';
 import {
 	displayedDeadline,
@@ -19,8 +21,16 @@ import {
 	type DisplayedDeadline,
 	type NoticeDeadline
 } from '../core/deadline';
+import {
+	lotStatusOf,
+	type CriterionReading,
+	type LotReading,
+	type LotStatus,
+	type RejectedItem
+} from '../core/lot-reading';
 import { coverageLines, readingStatus, type CoverageLine } from '../core/reading';
 import { toIndexRow } from '../snapshot/index-row';
+import type { LotEntry, NoticeReadings, ReadingRun } from '../snapshot/readings';
 import { countryName, formatValue, type CaptureFacts } from './list';
 
 export interface WorkKind {
@@ -37,12 +47,66 @@ export interface QuoteText extends LangText {
 // list and code as published when the list has no name for it. The number stays as published.
 type ParameterView = { label: string; value: string } | { code: string; value: string };
 
+// One requirement the model read in a clause whose quote code found there word for word: the quote
+// in the language of the description it was found in and the model's plain English reading, which
+// the page labels as AI-made.
+interface RequirementView {
+	quote: string;
+	lang?: string;
+	reading: string;
+	model: string;
+}
+
+type RejectedReason = RejectedItem['reason'];
+
 export interface CriterionView {
 	code: string;
 	position: number;
 	of: number;
 	descriptions: QuoteText[];
 	parameters: ParameterView[];
+	// Set only on a lot the model read. A rejected requirement keeps only its reason: neither its
+	// quote nor its reading is shown, since code could not tie them to this clause.
+	requirements?: RequirementView[];
+	rejected?: { reason: RejectedReason; line: string }[];
+	// The TED notice the clause and its quotes come from.
+	source?: string;
+}
+
+type NotReadReason = Extract<LotEntry, { status: 'not-read' }>['reason'] | 'reading-missing';
+
+// One line per reason a lot the readings list was not read, worded for the page.
+export const NOT_READ_LINES: Readonly<Record<NotReadReason, string>> = {
+	'dry-run': 'Not read: the run that captured this notice made no model calls.',
+	'cap-reached': 'Not read: the run reached its cap on model calls before this lot.',
+	'reply-invalid':
+		'Not read: the model did not answer in the expected form, even when asked a second time.',
+	'send-failed': 'Not read: the request to the model failed.',
+	'outside-the-run': 'Not read: this lot was not part of the run that read this capture.',
+	'reading-missing': 'Not read: this capture lists the lot as read, but its reading is missing.'
+};
+
+export const REJECTED_LINES: Readonly<Record<RejectedReason, string>> = {
+	'not-found':
+		'Not read: the quote the model gave was not found in this clause, so it is not used.',
+	'too-short':
+		'Not read: the quote the model gave is too short to check against this clause, so it is not used.',
+	'no-such-criterion':
+		'Not read: the model named a clause this lot does not have, so its answer is not used.'
+};
+
+type LotReadingView =
+	| { status: 'read'; model: string }
+	| { status: 'no-criteria' }
+	| { status: 'not-read'; reason: NotReadReason; line: string };
+
+// What the browser decides a listed lot's verdict from, as plain data: the status lotStatusOf gave
+// (a read lot's figures parsed here, on the server, from its verified quotes) and every fact of the
+// lot's context except the instant, which the page carries once for all its lots. The reservation
+// stays as published, so a lot that declares none is never read as "none".
+interface LotVerdictInput {
+	status: LotStatus;
+	context: Omit<LotContext, 'now'>;
 }
 
 export interface LotView {
@@ -72,6 +136,10 @@ export interface LotView {
 	// coverage line carries it: a lot whose criteria come from the notice alone would otherwise show
 	// its published link nowhere.
 	documents?: DocumentsLink;
+	// Absent when the capture's readings do not list the lot.
+	reading?: LotReadingView;
+	// Set exactly when reading is.
+	verdictInput?: LotVerdictInput;
 }
 
 interface LotIndexEntry {
@@ -83,6 +151,9 @@ interface LotIndexEntry {
 }
 
 export interface TenderPageModel {
+	// The instant the loader built the page for, as an ISO string: the browser's verdict reads this
+	// one, never its own clock, so a lot's closed state and its verdict cannot disagree.
+	now: string;
 	noticeNumber: string;
 	title: LangText;
 	buyers: LangText[];
@@ -97,13 +168,17 @@ export interface TenderPageModel {
 	lots: LotView[];
 	documentsUnread: boolean;
 	cancelIntent: boolean;
+	// The capture's readings list this notice.
+	modelRead: boolean;
 }
 
 // What the loader hands the page. It lives here, not beside the loader, because components may not
-// import from lib/server.
+// import from lib/server. The loader always sets readingRun, null for a capture the model never
+// read; a page built without it says the same.
 export interface TenderPageData {
 	tender: TenderPageModel;
 	capture: CaptureFacts;
+	readingRun?: ReadingRun | null;
 }
 
 // Maps, like the country names: every code here comes from the notice, and a plain object would
@@ -190,13 +265,70 @@ function toParameterView({ listName, code, value }: CriterionParameter): Paramet
 	return { code: listName === undefined ? code : `${listName} ${code}`, value };
 }
 
+// The lot's reading by the one mapping the verdict also uses (lotStatusOf), with what the page shows
+// of it: a lot listed as read whose stored reading is missing reads as not read, never as read.
+function lotReadingOf(
+	lot: LotRecord,
+	readings: NoticeReadings | undefined
+): { status: LotStatus; view?: LotReadingView; reading?: LotReading } {
+	const status = lotStatusOf(lot, readings);
+	const listed = readings?.lots.find((each) => each.lot === lot.id);
+	if (status.status === 'unlisted') return { status };
+	if (status.status === 'no-criteria') return { status, view: { status: 'no-criteria' } };
+	if (status.status === 'not-read') {
+		const reason = listed?.status === 'not-read' ? listed.reason : 'reading-missing';
+		return { status, view: { status: 'not-read', reason, line: NOT_READ_LINES[reason] } };
+	}
+	const stored = readings?.readings.find(
+		(each) => listed?.status === 'read' && each.textSha256 === listed.textSha256
+	);
+	return {
+		status,
+		view: { status: 'read', model: stored?.model ?? '' },
+		reading: status.reading
+	};
+}
+
+function verdictContext(
+	record: NoticeRecord,
+	lot: LotRecord,
+	deadline: DisplayedDeadline
+): LotVerdictInput['context'] {
+	return {
+		legalBasis: record.legalBasis,
+		deadline: deadline.kind === 'in-notice' ? null : deadline.instant,
+		coverage: summarizeLot(lot),
+		cancelIntent: record.cancelIntent === true,
+		reserved: lot.reserved
+	};
+}
+
+const tedUrlOf = (record: NoticeRecord) =>
+	`https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`;
+
+function readCriterion(criterion: CriterionReading, model: string, source: string) {
+	return {
+		source,
+		requirements: criterion.verified.map(({ item, lang }) => ({
+			quote: item.quote,
+			...(lang && { lang }),
+			reading: item.reading,
+			model
+		})),
+		rejected: criterion.rejected.map(({ reason }) => ({ reason, line: REJECTED_LINES[reason] }))
+	};
+}
+
 function toLotView(
 	record: NoticeRecord,
 	lot: LotRecord,
 	index: number,
 	now: Date,
-	shared: DocumentsLink | undefined
+	shared: DocumentsLink | undefined,
+	readings: NoticeReadings | undefined
 ): LotView {
+	const { status, view, reading } = lotReadingOf(lot, readings);
+	const model = view?.status === 'read' ? view.model : '';
 	const deadline = displayedDeadline(lot);
 	const coverage = coverageLines(summarizeLot(lot), lot.documents ?? record.documents);
 	const ownDocuments =
@@ -228,14 +360,25 @@ function toLotView(
 			position: position + 1,
 			of: lot.criteria.length,
 			descriptions: criterion.descriptions.map(withLanguage),
-			parameters: criterion.parameters.map(toParameterView)
+			parameters: criterion.parameters.map(toParameterView),
+			...(reading && readCriterion(reading.criteria[position], model, tedUrlOf(record)))
 		})),
 		coverage,
-		...(ownDocuments && { documents: ownDocuments })
+		...(ownDocuments && { documents: ownDocuments }),
+		...(view && {
+			reading: view,
+			verdictInput: { status, context: verdictContext(record, lot, deadline) }
+		})
 	};
 }
 
-export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageModel {
+// readings is the notice's slice of its capture's readings, absent when the capture lists none for
+// it: a lot the readings do not list keeps the phase 1 view.
+export function buildTenderPage(
+	record: NoticeRecord,
+	now: Date,
+	readings?: NoticeReadings
+): TenderPageModel {
 	const row = toIndexRow(record);
 	const deadline = noticeDeadline(record.lots, now);
 	const left =
@@ -244,8 +387,11 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 			: undefined;
 	const kind = workKind(record.cpv);
 	const documents = noticeDocuments(record);
-	const lots = record.lots.map((lot, index) => toLotView(record, lot, index, now, documents));
+	const lots = record.lots.map((lot, index) =>
+		toLotView(record, lot, index, now, documents, readings)
+	);
 	return {
+		now: now.toISOString(),
 		noticeNumber: record.noticeNumber,
 		title: record.title,
 		buyers: record.buyers.map((buyer) => buyer.name),
@@ -254,7 +400,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 		countries: row.country.map(countryName),
 		...(kind && { kind }),
 		value: formatValue(row.estimatedValue),
-		tedUrl: `https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`,
+		tedUrl: tedUrlOf(record),
 		...(documents && { documents }),
 		lotIndex:
 			lots.length > 1
@@ -269,6 +415,7 @@ export function buildTenderPage(record: NoticeRecord, now: Date): TenderPageMode
 		lots,
 		// The same facts that give the list its "Criteria in the documents" tag.
 		documentsUnread: readingStatus(record.lots.map(summarizeLot)).tag === 'criteria-in-documents',
-		cancelIntent: record.cancelIntent === true
+		cancelIntent: record.cancelIntent === true,
+		modelRead: readings !== undefined
 	};
 }

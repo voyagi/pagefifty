@@ -31,11 +31,26 @@ module.exports = {
 			to: { path: '^src/lib/profile/', reachable: true }
 		},
 		{
+			name: 'no-capture-reaches-profile',
+			severity: 'error',
+			comment:
+				'P1: the capture command sends public notice text to Token Factory and nothing else, so no capture module may reach the firm profile, not even by import. Its tests may build one.',
+			from: { path: '^src/lib/capture/', pathNot: TEST_FILE },
+			to: { path: '^src/lib/profile/', reachable: true }
+		},
+		{
 			name: 'no-ui-reaches-verdict',
 			severity: 'error',
 			comment:
-				'Phase 1 draws no verdict (SPEC R3): no component or route may reach the verdict module, directly or through another module. source-rules.test.ts checks the direct import; this rule covers the path through a library module. The verdict page of a later phase lifts it on purpose.',
-			from: { path: '(^src/lib/components/|^src/routes/)', pathNot: TEST_FILE },
+				'No component or route may reach the verdict module, directly or through another module, except the tender page chain that shows a listed lot its verdict (SPEC R6): TenderPage.svelte and the two [notice] page components that render it, exactly the modules gate:deps named once that page was wired. The list, the cards, the entry page, the profile page and every server load stay under the rule (LIST-03 is not built), so a verdict word can reach no other page. source-rules.test.ts checks the direct import; this rule covers the path through a library module.',
+			from: {
+				path: '(^src/lib/components/|^src/routes/)',
+				pathNot: [
+					TEST_FILE,
+					'^src/lib/components/TenderPage\\.svelte$',
+					'^src/routes/(example|tenders)/\\[notice\\]/\\+page\\.svelte$'
+				]
+			},
 			to: { path: '^src/lib/core/verdict\\.ts$', reachable: true }
 		},
 		{

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LangText } from '$lib/ingest/record';
 	import type { LotView } from '$lib/tenders/tender-page';
+	import type { LotVerdictView } from '$lib/tenders/verdict-view';
 	import CoverageList from './CoverageList.svelte';
 	import CriterionRow from './CriterionRow.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
@@ -8,8 +9,28 @@
 	import Label from './Label.svelte';
 	import Leaf from './Leaf.svelte';
 	import LeafGrid from './LeafGrid.svelte';
+	import LoadingLines from './LoadingLines.svelte';
+	import LotVerdict from './LotVerdict.svelte';
 
-	let { lot }: { lot: LotView } = $props();
+	// verdict is absent for a lot that keeps the phase 1 view, and 'loading' while the browser has
+	// not read which firm to compare with yet.
+	let {
+		lot,
+		verdict
+	}: { lot: LotView; verdict?: { view: LotVerdictView; compared: string } | 'loading' } = $props();
+
+	// The verdict's compared-firm line takes over from the coverage list's "Not compared" line,
+	// which would otherwise say the opposite beside it.
+	const stateOf = (position: number) =>
+		verdict === undefined || verdict === 'loading'
+			? undefined
+			: verdict.view.criteria[position - 1]?.word;
+
+	const coverage = $derived(
+		verdict === undefined
+			? lot.coverage
+			: lot.coverage.filter((line) => line.status !== 'Not compared')
+	);
 
 	const count = $derived(lot.criteria.length);
 	const tabLabel = $derived(
@@ -102,11 +123,21 @@
 				</Facts>
 				{@render tab()}
 			{/snippet}
+			{#if verdict === 'loading'}
+				<div class="verdict-pending">
+					<LoadingLines label="Reading the firm profile kept in this browser" />
+				</div>
+			{:else if verdict !== undefined}
+				<LotVerdict view={verdict.view} compared={verdict.compared} />
+			{/if}
 			<Label>Selection criteria as published</Label>
+			{#if lot.reading?.status === 'not-read'}
+				<p class="not-read">{lot.reading.line}</p>
+			{/if}
 			{#if count > 0}
 				<ol class="clauses">
 					{#each lot.criteria as criterion (criterion.position)}
-						<CriterionRow {criterion} />
+						<CriterionRow {criterion} state={stateOf(criterion.position)} />
 					{/each}
 				</ol>
 			{:else}
@@ -120,12 +151,18 @@
 					{/each}
 				</section>
 			{/each}
-			<CoverageList lines={lot.coverage} documents={lot.documents} />
+			<CoverageList lines={coverage} documents={lot.documents} />
 		</LeafGrid>
 	{/snippet}
 </Leaf>
 
 <style>
+	.verdict-pending {
+		margin: 0 0 1.75rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--acetate-rule);
+	}
+
 	.lot-title {
 		margin-top: 0.35rem;
 		color: var(--ink);
@@ -157,6 +194,18 @@
 		margin: 0.75rem 0 0;
 		padding: 0;
 		border-top: 1px solid var(--acetate-edge);
+	}
+
+	/* Dashed is the binder's one mark for "not read". */
+	.not-read {
+		max-width: 70ch;
+		margin: 0.5rem 0 0.75rem;
+		padding: 0.5rem 0.75rem;
+		border: 1px dashed var(--ink-3);
+		border-radius: 2px;
+		background: var(--acetate);
+		font-size: var(--step--1);
+		color: var(--ink-2);
 	}
 
 	.note {

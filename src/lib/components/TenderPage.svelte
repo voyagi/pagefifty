@@ -1,6 +1,15 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { DEMO_FIRM_NAME, DEMO_PROFILE } from '$lib/profile/demo-firm';
+	import type { getProfileStore } from '$lib/profile/store.svelte';
 	import { CANCEL_INTENT_LINE } from '$lib/tenders/list';
-	import type { TenderPageData } from '$lib/tenders/tender-page';
+	import type { LotView, TenderPageData } from '$lib/tenders/tender-page';
+	import {
+		comparedLine,
+		lotVerdict,
+		type ComparedFirm,
+		type FirmFacts
+	} from '$lib/tenders/verdict-view';
 	import Binder from './Binder.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import DemoNote from './DemoNote.svelte';
@@ -10,6 +19,7 @@
 	import Leaf from './Leaf.svelte';
 	import LeafGrid from './LeafGrid.svelte';
 	import LotLeaf from './LotLeaf.svelte';
+	import RunRecord from './RunRecord.svelte';
 	import SourceLinks from './SourceLinks.svelte';
 	import UnreadStrip from './UnreadStrip.svelte';
 
@@ -29,6 +39,38 @@
 	const timeLeftTerm = $derived(
 		variant === 'example' ? 'Time left at the capture time' : 'Time left'
 	);
+
+	// The example always compares with the demo firm. Anywhere else the firm is whatever this
+	// browser keeps, read only after mount from the store the header shares, so a server render
+	// never sees a profile and the store follows a save in another tab.
+	let shared = $state<ReturnType<typeof getProfileStore> | null>(null);
+
+	onMount(async () => {
+		if (variant === 'example') return;
+		const profile = await import('$lib/profile/store.svelte');
+		shared = profile.getProfileStore();
+	});
+
+	const DEMO: ComparedFirm = { kind: 'demo', name: DEMO_FIRM_NAME };
+
+	const firm = $derived.by((): { facts: FirmFacts | null; compared: ComparedFirm } | null => {
+		if (variant === 'example') return { facts: DEMO_PROFILE, compared: DEMO };
+		if (shared === null) return null;
+		if (shared.store.activeFirm === 'demo') return { facts: DEMO_PROFILE, compared: DEMO };
+		if (shared.store.newerVersion !== null) return { facts: null, compared: { kind: 'newer' } };
+		const stored = shared.store.stored;
+		return stored
+			? { facts: stored.profile, compared: { kind: 'own' } }
+			: { facts: null, compared: { kind: 'none' } };
+	});
+
+	// Whether a lot gets a verdict at all does not depend on the firm, so before the firm is read
+	// the lots that will carry one show their loading lines and no word of it.
+	function verdictOf(lot: LotView) {
+		if (firm === null) return lotVerdict(lot, null, tender.now) === null ? undefined : 'loading';
+		const view = lotVerdict(lot, firm.facts, tender.now, tender.documents);
+		return view === null ? undefined : { view, compared: comparedLine(firm.compared) };
+	}
 </script>
 
 {#snippet buyers()}
@@ -136,12 +178,13 @@
 						</ol>
 					</nav>
 				{/if}
+				<RunRecord run={data.readingRun ?? null} />
 			</LeafGrid>
 		{/snippet}
 	</Leaf>
 
 	{#each tender.lots as lot (lot.anchor)}
-		<LotLeaf {lot} />
+		<LotLeaf {lot} verdict={verdictOf(lot)} />
 	{/each}
 
 	{#if tender.documentsUnread}

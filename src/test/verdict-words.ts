@@ -1,7 +1,7 @@
-// The words no phase 1 page may show (SPEC R3): the four internal verdict names, their display
-// labels, and the UI-SPEC's extra forbidden strings. The ask-first reason labels are left out on
-// purpose: they name reasons, and the reading-status tag legitimately says "No criteria in the
-// notice" and the coverage list "Not read:".
+// The verdict words (SPEC R3, kept by R6 outside a listed lot's verdict): the four internal names,
+// their display labels, and the UI-SPEC's extra forbidden strings. The ask-first reason labels are
+// left out on purpose: they name reasons, and the reading-status tag legitimately says "No criteria
+// in the notice" and the coverage list "Not read:".
 import { LOT_VERDICTS, VERDICT_LABELS } from '$lib/core/verdict';
 
 export const VERDICT_WORDS: readonly string[] = [
@@ -12,13 +12,19 @@ export const VERDICT_WORDS: readonly string[] = [
 // pointer shows the third, and an empty field shows the fourth.
 const NAMED_BY = ['aria-label', 'alt', 'title', 'placeholder'];
 
+interface Scope {
+	// Leave out every [data-verdict] region, where a listed lot's verdict may name itself.
+	outsideVerdict?: boolean;
+}
+
 // The page's own words: everything except text marked as the notice's (titles, buyers,
 // descriptions), which may say anything, "Go-Live" included. Each text node is its own line, since
 // markup can set two elements side by side with no space between them and a word in one must never
 // read as the tail of the text before it ("Lot 1GO").
-export function checkedText(root: Element): string {
+export function checkedText(root: Element, { outsideVerdict = false }: Scope = {}): string {
 	const copy = root.cloneNode(true) as Element;
-	for (const node of copy.querySelectorAll('[data-notice-text]')) node.remove();
+	const left = outsideVerdict ? '[data-notice-text], [data-verdict]' : '[data-notice-text]';
+	for (const node of copy.querySelectorAll(left)) node.remove();
 	const texts: string[] = [];
 	const walker = copy.ownerDocument.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
 	for (let node = walker.nextNode(); node !== null; node = walker.nextNode()) {
@@ -43,6 +49,11 @@ const FINDER = new RegExp(
 	'gu'
 );
 
-export function findVerdictWords(root: Element): string[] {
-	return checkedText(root).match(FINDER) ?? [];
+export function findVerdictWords(root: Element, scope: Scope = {}): string[] {
+	return checkedText(root, scope).match(FINDER) ?? [];
+}
+
+// The verdict words inside the [data-verdict] regions alone.
+export function verdictRegionWords(root: Element): string[] {
+	return [...root.querySelectorAll('[data-verdict]')].flatMap((region) => findVerdictWords(region));
 }

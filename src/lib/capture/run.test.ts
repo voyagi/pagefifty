@@ -284,7 +284,8 @@ const RECORD_KEYS = {
 		'query',
 		'ted',
 		'notices',
-		'metered'
+		'metered',
+		'reading'
 	],
 	query: ['query', 'fields', 'scope', 'onlyLatestVersions', 'since'],
 	ted: [
@@ -344,8 +345,9 @@ describe.each([
 		expect(Object.keys(record.query)).toEqual(RECORD_KEYS.query);
 		expect(Object.keys(record.ted)).toEqual(RECORD_KEYS.ted);
 		expect(Object.keys(record.notices)).toEqual(RECORD_KEYS.notices);
+		expect(record.reading).toBeNull();
 		expect(record).toMatchObject({
-			schemaVersion: 1,
+			schemaVersion: 2,
 			startedAt: '2026-10-11T08:00:00.000Z',
 			finishedAt: '2026-10-11T08:00:02.000Z',
 			captureDate: '2026-10-11',

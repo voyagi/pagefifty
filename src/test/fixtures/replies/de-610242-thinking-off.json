@@ -1,0 +1,140 @@
+{
+	"request": {
+		"model": "nvidia/nemotron-3-super-120b-a12b",
+		"temperature": 0,
+		"max_tokens": 8000,
+		"messages": [
+			{
+				"role": "system",
+				"content": "You read the selection criteria of one lot of an EU public tender.\nReturn every requirement a bidder must meet to take part, one item per requirement.\nquote: copy the exact words from the criterion text that state the requirement, character for character, in the original language. Never translate, shorten inside, or paraphrase it. At least 12 characters.\nreading: one plain English sentence saying what the bidder must show.\nkind: the kind of requirement. Use points-to-documents when the text only says the criteria are in the tender documents.\nnumberText: the exact words holding the threshold number with its unit or currency as written (for example \"1.500.000 EUR\" or \"3 Mitarbeiter\"), or \"\" when there is none.\nperiod: the period as written (for example \"in den letzten drei Geschäftsjahren\"), or \"\".\ncriterion: the number of the criterion block the quote comes from.\nmandatory: false only when the text says the item is optional, scored, or only a request for information.\nNever invent a requirement or a number. Answer with JSON only, matching this schema:\n{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"requirements\"],\"properties\":{\"requirements\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"required\":[\"criterion\",\"kind\",\"quote\",\"reading\",\"numberText\",\"period\",\"mandatory\"],\"properties\":{\"criterion\":{\"type\":\"integer\",\"minimum\":1},\"kind\":{\"type\":\"string\",\"enum\":[\"turnover-general\",\"turnover-specific\",\"staff-count\",\"references\",\"certificate\",\"insurance\",\"registration\",\"points-to-documents\",\"other\"]},\"quote\":{\"type\":\"string\",\"minLength\":12},\"reading\":{\"type\":\"string\"},\"numberText\":{\"type\":\"string\"},\"period\":{\"type\":\"string\"},\"mandatory\":{\"type\":\"boolean\"}}}}}}"
+			},
+			{
+				"role": "user",
+				"content": "Criterion 1 (code slc-suit-reg-trade, language de):\nNachweis der Befähigung und Erlaubnis zur Berufsausübung\n\nCriterion 2 (code slc-suit-reg-prof, language de):\nNachweis der Befähigung und Erlaubnis zur Berufsausübung\n\nCriterion 3 (code slc-stand-to-spec, language de):\ndurchschnittlichen Jahresumsatz für vergleichbare Dienstleistungen im Bereich der ISO/IEC 27001 Zertifizierungsvorbereitung in den letzten drei Geschäftsjahre \nDie Mindestanforderung für den durchschnittlichen Jahresumsatz der letzten drei abgeschlosse-\nnen Geschäftsjahre (2023,2024,2025) beträgt 100.000,00 Euro netto.\n\nCriterion 4 (code slc-stand-ins, language de):\nAls Mindestanforderung an die Eignung und für die Berücksichtigung im weiteren Vergabeverfah-\nren gelten folgende Anforderungen an die Versicherungsbedingungen: \nDie Deckungssummen dieser Versicherung müssen mindestens betragen: \na) für Personenschäden 5 Mio. EUR \nb) für sonstige Schäden 3 Mio. EUR (Sach- und Vermögensschäden) \nje Schadensereignis und einer Gesamtleistung für alle Versicherungsfälle eines Versicherungs-\njahres mit mindestens dem Zweifachen der Deckungssummen. \nBei Bietergemeinschaften muss jedes einzelne Mitglied der Bewerbergemeinschaft über eine den \nMindestanforderungen entsprechende Berufshaftpflichtversicherung verfügen\n\nCriterion 5 (code slc-abil-staff-qual, language de):\nMindestanforderung  \nDer Auftragnehmer stellt für die Dauer des Projekts feste Ansprechpartner und projektverantwort-\nliche Personen für den Auftraggeber bereit. Hierzu sind mindestens ein Junior Consultant sowie \nein Senior- bzw. Lead Consultant einzusetzen, die dem Auftraggeber als zentrale fachliche und \norganisatorische Ansprechpartner zur Verfügung stehen und eine kontinuierliche Begleitung des \nProjekts sicherstellen. \n\nFestangestellter Junior Consultant mit mindestens 1 bis 2 Jahre einschlägige Erfahrung in \nISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und zudem mindestens eine Zertifizie-\nrung, wie beispielsweise ISO/IEC 27001 Foundation, Lead Auditor oder eine vergleichbare Quali-\nfikation, nachweisen.  \n\nFestangestellter Senior- bzw. Lead-Berater mit mindestens 6 Jahre einschlägige Erfahrung in \nISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und darüber hinaus eine Qualifikation \nwie ISO Lead Implementer, CISSP oder eine vergleichbare Zertifizierung nachweisen. \n\nDie Mitarbeitenden können auch per Eignungsleihe nachgewiesen werden. \nAls Nachweis sind kurz Lebensläufe und Eigenerklärungen zu erbringen.\n\nCriterion 6 (code slc-abil-ref-services, language de):\nAls Mindestanforderung gilt mindestens zwei Referenzen, die folgende Anforderungen erfüllt: \n- erfolgreich durchgeführte Unterstützungsleistungen im Zusammenhang mit ISO/IEC-27001-\nZertifizierungen \n- müssen im Zeitraum zwischen dem 01.09.2021 und dem Tag der Frist zur Einreichung der An-\ngebote abgeschlossen worden sein. (Projektende ist zum Zeitpunkt der Abnahme durch den \nAG)"
+			}
+		],
+		"response_format": {
+			"type": "json_schema",
+			"json_schema": {
+				"name": "requirements",
+				"schema": {
+					"type": "object",
+					"additionalProperties": false,
+					"required": ["requirements"],
+					"properties": {
+						"requirements": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"additionalProperties": false,
+								"required": [
+									"criterion",
+									"kind",
+									"quote",
+									"reading",
+									"numberText",
+									"period",
+									"mandatory"
+								],
+								"properties": {
+									"criterion": {
+										"type": "integer",
+										"minimum": 1
+									},
+									"kind": {
+										"type": "string",
+										"enum": [
+											"turnover-general",
+											"turnover-specific",
+											"staff-count",
+											"references",
+											"certificate",
+											"insurance",
+											"registration",
+											"points-to-documents",
+											"other"
+										]
+									},
+									"quote": {
+										"type": "string",
+										"minLength": 12
+									},
+									"reading": {
+										"type": "string"
+									},
+									"numberText": {
+										"type": "string"
+									},
+									"period": {
+										"type": "string"
+									},
+									"mandatory": {
+										"type": "boolean"
+									}
+								}
+							}
+						}
+					}
+				},
+				"strict": true
+			}
+		},
+		"chat_template_kwargs": {
+			"enable_thinking": false
+		}
+	},
+	"response": {
+		"id": "chatcmpl-a0d0baa03bbd93f4",
+		"choices": [
+			{
+				"finish_reason": "stop",
+				"index": 0,
+				"logprobs": null,
+				"message": {
+					"content": "{\"requirements\": [{\"criterion\": 1, \"kind\": \"registration\", \"quote\": \"Nachweis der Befähigung und Erlaubnis zur Berufsausübung\", \"reading\": \"The bidder must provide proof of qualification and authorization to practice the profession.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 2, \"kind\": \"registration\", \"quote\": \"Nachweis der Befähigung und Erlaubnis zur Berufsausübung\", \"reading\": \"The bidder must provide proof of qualification and authorization to practice the profession.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 3, \"kind\": \"turnover-specific\", \"quote\": \"Die Mindestanforderung für den durchschnittlichen Jahresumsatz der letzten drei abgeschlosse-nen Geschäftsjahre (2023,2024,2025) beträgt 100.000,00 Euro netto.\", \"reading\": \"The bidder must have an average annual turnover of at least 100,000.00 EUR net over the last three completed fiscal years (2023, 2024, 2025).\", \"numberText\": \"100.000,00 Euro netto\", \"period\": \"der letzten drei abgeschlossenen Geschäftsjahre (2023,2024,2025)\", \"mandatory\": true}, {\"criterion\": 4, \"kind\": \"insurance\", \"quote\": \"Die Deckungssummen dieser Versicherung müssen mindestens betragen: a) für Personenschäden 5 Mio. EUR b) für sonstige Schäden 3 Mio. EUR (Sach- und Vermögensschäden) je Schadensereignis und einer Gesamtleistung für alle Versicherungsfälle eines Versicherungs-jahres mit mindestens dem Zweifachen der Deckungssummen.\", \"reading\": \"The insurance coverage must amount to at least 5 million EUR for personal injury and 3 million EUR for other damages (property and financial loss) per claim event, with a total annual aggregate limit of at least twice the individual limits.\", \"numberText\": \"5 Mio. EUR\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 4, \"kind\": \"insurance\", \"quote\": \"Die Deckungssummen dieser Versicherung müssen mindestens betragen: a) für Personenschäden 5 Mio. EUR b) für sonstige Schäden 3 Mio. EUR (Sach- und Vermögensschäden) je Schadensereignis und einer Gesamtleistung für alle Versicherungsfälle eines Versicherungs-jahres mit mindestens dem Zweifachen der Deckungssummen.\", \"reading\": \"The insurance coverage must amount to at least 3 million EUR for other damages (property and financial loss) per claim event, with a total annual aggregate limit of at least twice the individual limits.\", \"numberText\": \"3 Mio. EUR\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 4, \"kind\": \"insurance\", \"quote\": \"Bei Bietergemeinschaften muss jedes einzelne Mitglied der Bewerbergemeinschaft über eine den Mindestanforderungen entsprechende Berufshaftpflichtversicherung verfügen\", \"reading\": \"In case of bidding consortia, each individual member must hold a professional liability insurance meeting the minimum requirements.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 5, \"kind\": \"staff-count\", \"quote\": \"mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen\", \"reading\": \"The bidder must deploy at least one Junior Consultant and one Senior or Lead Consultant for the project duration.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 5, \"kind\": \"certificate\", \"quote\": \"Festangestellter Junior Consultant mit mindestens 1 bis 2 Jahre einschlägige Erfahrung in ISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und zudem mindestens eine Zertifizie-rung, wie beispielsweise ISO/IEC 27001 Foundation, Lead Auditor oder eine vergleichbare Quali-fikation, nachweisen.\", \"reading\": \"The Junior Consultant must have 1 to 2 years of relevant experience in ISO/IEC 27001 or BSI Grundschutz projects and hold at least a certification such as ISO/IEC 27001 Foundation, Lead Auditor, or equivalent.\", \"numberText\": \"1 bis 2 Jahre\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 5, \"kind\": \"certificate\", \"quote\": \"Festangestellter Senior- bzw. Lead-Berater mit mindestens 6 Jahre einschlägige Erfahrung in ISO/IEC-27001- oder BSI-Grundschutz-Projekten verfügen und darüber hinaus eine Qualifikation wie ISO Lead Implementer, CISSP oder eine vergleichbare Zertifizierung nachweisen.\", \"reading\": \"The Senior or Lead Consultant must have at least 6 years of relevant experience in ISO/IEC 27001 or BSI Grundschutz projects and hold a qualification such as ISO Lead Implementer, CISSP, or equivalent.\", \"numberText\": \"6 Jahre\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 5, \"kind\": \"other\", \"quote\": \"Die Mitarbeitenden können auch per Eignungsleihe nachgewiesen werden.\", \"reading\": \"Personnel qualifications may also be proven through temporary assignment (Eignungsleihe).\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 5, \"kind\": \"other\", \"quote\": \"Als Nachweis sind kurz Lebensläufe und Eigenerklärungen zu erbringen.\", \"reading\": \"As proof, short curricula vitae and self-declarations must be submitted.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 6, \"kind\": \"references\", \"quote\": \"Als Mindestanforderung gilt mindestens zwei Referenzen, die folgende Anforderungen erfüllt:\", \"reading\": \"At minimum, two references must be provided that meet the following requirements.\", \"numberText\": \"zwei\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 6, \"kind\": \"references\", \"quote\": \"- erfolgreich durchgeführte Unterstützungsleistungen im Zusammenhang mit ISO/IEC-27001-Zertifizierungen\", \"reading\": \"The references must concern successfully performed support services related to ISO/IEC 27001 certifications.\", \"numberText\": \"\", \"period\": \"\", \"mandatory\": true}, {\"criterion\": 6, \"kind\": \"references\", \"quote\": \"- müssen im Zeitraum zwischen dem 01.09.2021 und dem Tag der Frist zur Einreichung der Angebote abgeschlossen worden sein. (Projektende ist zum Zeitpunkt der Abnahme durch den AG)\", \"reading\": \"The referenced projects must have been completed between September 1, 2021, and the tender submission deadline (project end = acceptance by the contracting authority).\", \"numberText\": \"\", \"period\": \"zwischen dem 01.09.2021 und dem Tag der Frist zur Einreichung der Angebote\", \"mandatory\": true}]}",
+					"refusal": null,
+					"role": "assistant",
+					"annotations": null,
+					"audio": null,
+					"function_call": null,
+					"tool_calls": null,
+					"reasoning": null
+				},
+				"stop_reason": null,
+				"token_ids": null,
+				"routed_experts": null
+			}
+		],
+		"created": 1792059624,
+		"model": "nvidia/nemotron-3-super-120b-a12b",
+		"object": "chat.completion",
+		"moderation": null,
+		"service_tier": null,
+		"system_fingerprint": "vllm-0.1.dev1+g5001743e3-dp2-9bbaa064",
+		"usage": {
+			"completion_tokens": 1615,
+			"prompt_tokens": 1183,
+			"total_tokens": 2798,
+			"completion_tokens_details": {
+				"accepted_prediction_tokens": null,
+				"audio_tokens": null,
+				"reasoning_tokens": 0,
+				"rejected_prediction_tokens": null
+			},
+			"prompt_tokens_details": {
+				"audio_tokens": null,
+				"cached_tokens": 0,
+				"created_cache_tokens": 0,
+				"multimodal_tokens": null
+			},
+			"prompt_cache_hit_tokens": 0,
+			"prompt_cache_miss_tokens": 1183
+		},
+		"prompt_logprobs": null,
+		"prompt_token_ids": null,
+		"prompt_text": null,
+		"kv_transfer_params": null,
+		"ec_transfer_params": null,
+		"metrics": null
+	}
+}

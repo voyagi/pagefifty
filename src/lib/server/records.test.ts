@@ -10,8 +10,17 @@ const read = vi.hoisted(() =>
 );
 vi.mock('$app/server', () => ({ read }));
 
-const { EXAMPLE_CAPTURE, LATEST_CAPTURE, loadIndex, loadRecord, newestCapture, snapshotDays } =
-	await import('./records');
+const {
+	EXAMPLE_CAPTURE,
+	LATEST_CAPTURE,
+	loadIndex,
+	loadNoticeReadings,
+	loadRecord,
+	newestCapture,
+	newestReadingRun,
+	readingRunOf,
+	snapshotDays
+} = await import('./records');
 
 // The shapes SvelteKit's read() really produces on the Worker. Its answer is always status 200: the
 // adapter fetches the file through ASSETS inside the body stream and throws there when ASSETS
@@ -159,6 +168,51 @@ describe('loadIndex', () => {
 			message: expect.stringContaining('the 2026-09-15 index is not JSON'),
 			cause: expect.any(SyntaxError)
 		});
+	});
+});
+
+describe('the reading runs the pages read', () => {
+	const exampleRun = () =>
+		JSON.parse(readFileSync('examples/2026-09-15/readings.json', 'utf8')).run as unknown;
+
+	it('newestReadingRun returns the example capture run', () => {
+		expect(LATEST_CAPTURE).not.toBe(EXAMPLE_CAPTURE);
+		expect(newestReadingRun()?.id).toBe(EXAMPLE_CAPTURE);
+		expect(newestReadingRun()).toEqual({ id: EXAMPLE_CAPTURE, run: exampleRun() });
+		expect(readingRunOf(EXAMPLE_CAPTURE)).toEqual(exampleRun());
+		expect(readingRunOf(LATEST_CAPTURE)).toBeNull();
+		expect(read).not.toHaveBeenCalled();
+	});
+
+	it('loadNoticeReadings reads the German lot readings through read(), and nothing for a notice the readings do not list', async () => {
+		const german = await loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026');
+		expect(german?.notice).toBe('610242-2026');
+		expect(german?.lots.map(({ lot, status }) => `${lot} ${status}`)).toEqual(['LOT-0000 read']);
+		expect(german?.readings.map((reading) => reading.items.length)).toEqual([14]);
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(await loadNoticeReadings(EXAMPLE_CAPTURE, '609955-2026')).toBeUndefined();
+		expect(await loadNoticeReadings(LATEST_CAPTURE, '610242-2026')).toBeUndefined();
+		expect(await loadNoticeReadings(EXAMPLE_CAPTURE, '../reading-run')).toBeUndefined();
+		expect(read).toHaveBeenCalledTimes(1);
+	});
+});
+
+describe('loadNoticeReadings on a damaged file', () => {
+	it('a damaged generated readings file is a server error naming the file', async () => {
+		read.mockImplementationOnce(() => Response.json({ notice: '610242-2026', lots: 'x' }));
+		const failed = loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026');
+		await expect(failed).rejects.toThrow(
+			'the 2026-09-15 readings of 610242-2026 do not match their schema: '
+		);
+		await expect(failed).rejects.toThrow('"lots"');
+		await expect(failed).rejects.toThrow('"readings"');
+	});
+
+	it('names the readings file when it is not JSON', async () => {
+		read.mockImplementationOnce(() => new Response('{"notice":'));
+		await expect(loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026')).rejects.toThrow(
+			'the 2026-09-15 readings of 610242-2026 is not JSON'
+		);
 	});
 });
 

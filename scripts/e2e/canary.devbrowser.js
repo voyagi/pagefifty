@@ -165,9 +165,12 @@ try {
 			shown.country === built.countries.join(', '),
 		`notice "${shown.notice}", ${shown.lots} lots, country "${shown.country}"; built index: ${built.notice}, ${built.lots} lots, ${built.countries.join(', ')}`
 	);
+	// The last page computes a verdict in the browser, so its requests are searched for the markers
+	// too: the verdict there is the demo firm's, and the stored profile must stay in storage.
 	for (const url of [
 		'http://127.0.0.1:8788/example',
-		'http://127.0.0.1:8788/example/609955-2026'
+		'http://127.0.0.1:8788/example/609955-2026',
+		'http://127.0.0.1:8788/example/610242-2026'
 	]) {
 		const response = await page.goto(url);
 		await page.waitForSelector('h1', { timeout: 10000 });

@@ -13,8 +13,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
+import { readReplyFixture } from '../../test/fixtures/replies';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
-import { CaptureLineSchema, SnapshotIndexSchema } from './index-row';
+import { readingKey } from '../capture/model-read';
+import { MODEL_READ, promptSha256, readReply, userMessage } from '../capture/token-factory';
+import { CaptureLineSchema, NoticeRecordSchema, SnapshotIndexSchema } from './index-row';
+import { NoticeReadingsSchema, ReadingsFileSchema } from './readings';
 
 // globalSetup has run scripts/build-records.mjs before this file, so these read its real output.
 const GENERATED = join('src', 'lib', 'snapshot', 'generated');
@@ -86,6 +90,103 @@ describe('generated record folders', () => {
 		const files = readdirSync(join(GENERATED, id, 'records')).sort();
 		expect(files).toEqual(index.rows.map((row) => `${row.noticeNumber}.json`).sort());
 		expect(readFileSync(join(GENERATED, id, 'index.json'), 'utf8')).not.toContain('\n');
+	});
+});
+
+// The two lots spike 004 read with the capture command's own prompt and settings, thinking off.
+const READ_LOTS = [
+	{ notice: '610242-2026', lot: 'LOT-0000', fixture: 'de-610242-thinking-off', items: 14 },
+	{ notice: '634398-2026', lot: 'LOT-0001', fixture: 'nl-634398-super', items: 10 }
+] as const;
+const EXAMPLE_READINGS = join(EXAMPLES, CAPTURE_ID, 'readings.json');
+
+interface RecordedUsage {
+	id: string;
+	usage: {
+		prompt_tokens: number;
+		completion_tokens: number;
+		completion_tokens_details?: { reasoning_tokens?: number };
+	};
+	choices: { message: { content: string } }[];
+}
+
+describe('the example capture readings', () => {
+	it('the example readings carry the two lots spike 004 read with the command settings', () => {
+		expect(existsSync(EXAMPLE_READINGS)).toBe(true);
+		const text = readFileSync(EXAMPLE_READINGS, 'utf8');
+		const file = ReadingsFileSchema.parse(JSON.parse(text));
+		expect(text).toBe(`${JSON.stringify(file, null, 2)}\n`);
+		expect(file.run).toEqual({
+			model: MODEL_READ.id,
+			provider: 'Nebius Token Factory',
+			region: 'us-central1',
+			thinking: false,
+			runDate: '2026-10-15',
+			prices: { inputUsdPerMillion: '0.30', outputUsdPerMillion: '0.90', listedOn: '2026-10-15' },
+			lots: { withCriteria: 2, read: 2, reused: 0, notRead: 0 },
+			sends: 2,
+			tokens: { input: 2811, output: 2563, reasoning: 0 },
+			costUsd: '0.003150',
+			quotes: { verified: 24, rejected: 0 }
+		});
+		expect(file.notices.map(({ notice }) => notice)).toEqual(READ_LOTS.map(({ notice }) => notice));
+		expect(file.readings).toHaveLength(READ_LOTS.length);
+		for (const { notice, lot, fixture, items } of READ_LOTS) {
+			const record = NoticeRecordSchema.parse(
+				readJson(join(GENERATED, CAPTURE_ID, 'records', `${notice}.json`))
+			);
+			const criteria = record.lots.find((each) => each.id === lot)?.criteria ?? [];
+			const { textSha256 } = readingKey(notice, userMessage(criteria));
+			expect(file.notices.find((each) => each.notice === notice)?.lots).toEqual([
+				{ lot, status: 'read', textSha256 }
+			]);
+			const response = readReplyFixture(fixture).response as unknown as RecordedUsage;
+			const reply = readReply(response.choices[0].message.content);
+			const entry = file.readings.find((each) => each.notice === notice);
+			expect(entry).toEqual({
+				notice,
+				textSha256,
+				promptSha256,
+				model: MODEL_READ.id,
+				readOn: '2026-10-15',
+				responseId: response.id,
+				usage: {
+					input: response.usage.prompt_tokens,
+					output: response.usage.completion_tokens,
+					reasoning: response.usage.completion_tokens_details?.reasoning_tokens ?? 0
+				},
+				items: reply.ok ? reply.items : []
+			});
+			expect(entry?.items).toHaveLength(items);
+		}
+	});
+
+	it('the records build writes the example readings beside its records', () => {
+		const built = join(GENERATED, CAPTURE_ID);
+		expect(existsSync(join(built, 'reading-run.json'))).toBe(true);
+		expect(existsSync(join(built, 'readings'))).toBe(true);
+		const file = ReadingsFileSchema.parse(readJson(EXAMPLE_READINGS));
+		expect(readJson(join(built, 'reading-run.json'))).toEqual(file.run);
+		expect(readdirSync(join(built, 'readings')).sort()).toEqual(
+			READ_LOTS.map(({ notice }) => `${notice}.json`)
+		);
+		for (const { notice, lots } of file.notices) {
+			const written = NoticeReadingsSchema.parse(
+				readJson(join(built, 'readings', `${notice}.json`))
+			);
+			expect(written).toEqual({
+				notice,
+				lots,
+				readings: file.readings.filter((each) => each.notice === notice)
+			});
+		}
+		// A capture with no readings.json gets neither, so its pages keep the phase 1 view.
+		for (const id of folders(GENERATED).filter((each) => each !== CAPTURE_ID)) {
+			expect(existsSync(join(EXAMPLES, id, 'readings.json'))).toBe(false);
+			expect(existsSync(join(GENERATED, id, 'readings'))).toBe(false);
+			expect(existsSync(join(GENERATED, id, 'reading-run.json'))).toBe(false);
+		}
+		expect(folders(GENERATED)).toContain('2026-10-16');
 	});
 });
 
@@ -228,6 +329,71 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(named).toHaveLength(2);
 		expect(run.stderr).not.toContain('listed more than once');
 		expect(run.stderr).not.toContain('undefined');
+	});
+
+	// Every file under the out folder with its bytes, so "unchanged" covers names and contents.
+	function folderState(dir: string): Record<string, string> {
+		const state: Record<string, string> = {};
+		for (const entry of readdirSync(dir, { withFileTypes: true, recursive: true })) {
+			if (!entry.isFile()) continue;
+			const path = join(entry.parentPath, entry.name);
+			state[path] = readFileSync(path, 'utf8');
+		}
+		return state;
+	}
+
+	const exampleRun = () => ReadingsFileSchema.parse(readJson(EXAMPLE_READINGS)).run;
+
+	it.each([
+		['missing its run', () => ({ schemaVersion: 1, notices: [], readings: [] }), 'run'],
+		[
+			'naming a notice that is no TED notice number',
+			() => ({
+				schemaVersion: 1,
+				run: exampleRun(),
+				notices: [{ notice: '../../escape', lots: [] }],
+				readings: []
+			}),
+			'"../../escape" is not a TED notice number'
+		]
+	])(
+		'a readings file the schema refuses stops the build and writes nothing: %s',
+		(_what, readings, named) => {
+			writeCapture(['609955-2026']);
+			expect(build().status).toBe(0);
+			const before = folderState(out);
+			writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings()));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-01-02: (readings): readings: ');
+			expect(run.stderr).toContain(join(capture, 'readings.json'));
+			expect(run.stderr).toContain(named);
+			expect(run.stderr).toContain('nothing was written');
+			expect(folderState(out)).toEqual(before);
+			expect(existsSync(join(root, 'escape'))).toBe(false);
+		}
+	);
+
+	it('writes the readings of a capture whose readings.json parses, and none for one without', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'readings'))).toBe(false);
+		expect(existsSync(join(out, '2026-01-02', 'reading-run.json'))).toBe(false);
+		const readings = {
+			schemaVersion: 1,
+			run: exampleRun(),
+			notices: [{ notice: '609955-2026', lots: [{ lot: 'LOT-0000', status: 'no-criteria' }] }],
+			readings: []
+		};
+		writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings));
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(readJson(join(out, '2026-01-02', 'readings', '609955-2026.json'))).toEqual({
+			notice: '609955-2026',
+			lots: readings.notices[0].lots,
+			readings: []
+		});
+		expect(readJson(join(out, '2026-01-02', 'reading-run.json'))).toEqual(readings.run);
 	});
 
 	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
