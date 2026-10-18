@@ -277,7 +277,7 @@ describe('parsePeriod', () => {
 		mode: PeriodReading['mode'],
 		years: number | null = null,
 		named: number[] = []
-	): PeriodReading => ({ mode, years, named });
+	): PeriodReading => ({ mode, years, yearsUnread: false, named });
 
 	it.each([
 		['durchschnittlichen Jahresumsatz', 'de', 'average'],
@@ -326,12 +326,42 @@ describe('parsePeriod', () => {
 		['au cours des trois dernières années', 'fr', 3],
 		['the last three financial years', 'en', 3],
 		['in the last 2 years', 'en', 2],
-		['drei Jahre und fünf Jahre', 'de', null],
-		['der letzten drei vollständig abgeschlossenen Geschäftsjahre', 'de', null],
+		['in each of the last two completed financial years', 'en', 2],
+		['the three most recent financial years', 'en', 3],
+		['the last three (3) completed financial years', 'en', 3],
+		['der letzten drei vollständig abgeschlossenen Geschäftsjahre', 'de', 3],
+		['der 3 letzten abgeschlossenen Geschäftsjahre', 'de', 3],
+		['der letzten zwei abgeschlossenen Kalenderjahre', 'de', 2],
+		['der letzten zwei abgeschlossenen und bilanzierten Geschäftsjahre', 'de', 2],
+		['de laatste twee volledige en afgesloten boekjaren', 'nl', 2],
 		['Geschäftsjahre', 'de', null]
 	] as const)('parsePeriod reads the years in "%s" (%s) as %s', (text, lang, years) => {
-		expect(parsePeriod(text, lang).years).toBe(years);
+		expect(parsePeriod(text, lang)).toMatchObject({ years, yearsUnread: false });
 	});
+
+	// The window's default of three would silently stand in for a count the text states, so a count
+	// code cannot settle is marked, never left as unstated.
+	it.each([
+		['der letzten zwei abgeschlossenen und testierten Geschäftsjahre', 'de'],
+		['at least 5 employees in recent years', 'en'],
+		['drei Jahre und fünf Jahre', 'de'],
+		['in den letzten fünf Jahren wenigstens drei Jahre', 'de'],
+		['in the last three years', 'de']
+	] as const)('parsePeriod reads "%s" (%s) as years it cannot settle', (text, lang) => {
+		expect(parsePeriod(text, lang)).toMatchObject({ years: null, yearsUnread: true });
+	});
+
+	// "jaar" is also the Dutch singular, and a count never stands in front of a "per".
+	it.each([
+		['minimaal € 1,5 mln per jaar', 'nl'],
+		['minimaal 2 FTE per jaar', 'nl'],
+		['mindestens 1 Mio. EUR pro Jahr', 'de']
+	] as const)(
+		'parsePeriod reads no count of years in the amount per year "%s" (%s)',
+		(text, lang) => {
+			expect(parsePeriod(text, lang)).toMatchObject({ years: null, yearsUnread: false });
+		}
+	);
 
 	it('parsePeriod names every year from 2000 to 2099 in text order', () => {
 		expect(parsePeriod('Jahre 2025, 2023 und 2024 sowie 1999, 2100 und 12023', 'de').named).toEqual(

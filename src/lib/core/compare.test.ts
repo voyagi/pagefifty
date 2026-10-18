@@ -202,6 +202,12 @@ const NO_BASIS = 'Jährlich mindestens 1.000.000 EUR Umsatz in den letzten drei 
 const CENTS =
 	'Jährlich mindestens 1.000.000,01 EUR netto Umsatz in den letzten drei Geschäftsjahren.';
 const FIVE = 'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten fünf Geschäftsjahren.';
+const TWO_FULL =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei vollständig abgeschlossenen Geschäftsjahren.';
+const TWO_UNREAD =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei abgeschlossenen und testierten Geschäftsjahren.';
+const TWO_UNREAD_NAMED =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den zwei abgeschlossenen und testierten Geschäftsjahren 2024 und 2025.';
 const NAMED_AVERAGE =
 	'Durchschnittlicher Jahresumsatz der Geschäftsjahre 2023, 2024 und 2025 von mindestens 1.000.000,67 EUR netto.';
 const LAST_THREE_AVERAGE =
@@ -464,6 +470,24 @@ const ROWS: readonly Row[] = [
 		g(FIVE),
 		firmOf({ 2021: 999_999, 2022: 1e6, 2023: 1e6, 2024: 1e6, 2025: 1e6 }),
 		decided('SHORT_BORROWABLE', 'short')
+	),
+	row(
+		'a quote naming two years with two words before the noun compares the last two',
+		g(TWO_FULL),
+		firmOf({ 2023: 999_999, 2024: 1e6, 2025: 1e6 }),
+		decided('MET', 'met')
+	),
+	row(
+		'a count of years code cannot settle is NOT_READ, never the default three',
+		g(TWO_UNREAD),
+		yearly(2e6),
+		decided('NOT_READ', 'years-unread')
+	),
+	row(
+		'the years a quote names settle its window when its count of years is unread',
+		g(TWO_UNREAD_NAMED),
+		firmOf({ 2023: 1, 2024: 1e6, 2025: 1e6 }),
+		decided('MET', 'met')
 	),
 	row(
 		'fewer completed financial years than demanded is PROFILE_GAP',
