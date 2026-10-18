@@ -11,6 +11,7 @@ import type {
 	NoticeRecord
 } from '../ingest/record';
 import { parameterLabel } from '../codelists/labels';
+import type { LotContext } from '../core/compare';
 import { summarizeLot } from '../core/coverage-facts';
 import {
 	displayedDeadline,
@@ -24,6 +25,7 @@ import {
 	lotStatusOf,
 	type CriterionReading,
 	type LotReading,
+	type LotStatus,
 	type RejectedItem
 } from '../core/lot-reading';
 import { coverageLines, readingStatus, type CoverageLine } from '../core/reading';
@@ -97,6 +99,15 @@ type LotReadingView =
 	| { status: 'no-criteria' }
 	| { status: 'not-read'; reason: NotReadReason; line: string };
 
+// What the browser decides a listed lot's verdict from, as plain data: the status lotStatusOf gave
+// (a read lot's figures parsed here, on the server, from its verified quotes) and every fact of the
+// lot's context except the instant, which the page carries once for all its lots. The reservation
+// stays as published, so a lot that declares none is never read as "none".
+interface LotVerdictInput {
+	status: LotStatus;
+	context: Omit<LotContext, 'now'>;
+}
+
 export interface LotView {
 	number: number;
 	anchor: string;
@@ -126,6 +137,8 @@ export interface LotView {
 	documents?: DocumentsLink;
 	// Absent when the capture's readings do not list the lot.
 	reading?: LotReadingView;
+	// Set exactly when reading is.
+	verdictInput?: LotVerdictInput;
 }
 
 interface LotIndexEntry {
@@ -137,6 +150,9 @@ interface LotIndexEntry {
 }
 
 export interface TenderPageModel {
+	// The instant the loader built the page for, as an ISO string: the browser's verdict reads this
+	// one, never its own clock, so a lot's closed state and its verdict cannot disagree.
+	now: string;
 	noticeNumber: string;
 	title: LangText;
 	buyers: LangText[];
@@ -253,19 +269,37 @@ function toParameterView({ listName, code, value }: CriterionParameter): Paramet
 function lotReadingOf(
 	lot: LotRecord,
 	readings: NoticeReadings | undefined
-): { view?: LotReadingView; reading?: LotReading } {
+): { status: LotStatus; view?: LotReadingView; reading?: LotReading } {
 	const status = lotStatusOf(lot, readings);
 	const listed = readings?.lots.find((each) => each.lot === lot.id);
-	if (status.status === 'unlisted') return {};
-	if (status.status === 'no-criteria') return { view: { status: 'no-criteria' } };
+	if (status.status === 'unlisted') return { status };
+	if (status.status === 'no-criteria') return { status, view: { status: 'no-criteria' } };
 	if (status.status === 'not-read') {
 		const reason = listed?.status === 'not-read' ? listed.reason : 'reading-missing';
-		return { view: { status: 'not-read', reason, line: NOT_READ_LINES[reason] } };
+		return { status, view: { status: 'not-read', reason, line: NOT_READ_LINES[reason] } };
 	}
 	const stored = readings?.readings.find(
 		(each) => listed?.status === 'read' && each.textSha256 === listed.textSha256
 	);
-	return { view: { status: 'read', model: stored?.model ?? '' }, reading: status.reading };
+	return {
+		status,
+		view: { status: 'read', model: stored?.model ?? '' },
+		reading: status.reading
+	};
+}
+
+function verdictContext(
+	record: NoticeRecord,
+	lot: LotRecord,
+	deadline: DisplayedDeadline
+): LotVerdictInput['context'] {
+	return {
+		legalBasis: record.legalBasis,
+		deadline: deadline.kind === 'in-notice' ? null : deadline.instant,
+		coverage: summarizeLot(lot),
+		cancelIntent: record.cancelIntent === true,
+		reserved: lot.reserved
+	};
 }
 
 const tedUrlOf = (record: NoticeRecord) =>
@@ -292,7 +326,7 @@ function toLotView(
 	shared: DocumentsLink | undefined,
 	readings: NoticeReadings | undefined
 ): LotView {
-	const { view, reading } = lotReadingOf(lot, readings);
+	const { status, view, reading } = lotReadingOf(lot, readings);
 	const model = view?.status === 'read' ? view.model : '';
 	const deadline = displayedDeadline(lot);
 	const coverage = coverageLines(summarizeLot(lot), lot.documents ?? record.documents);
@@ -330,7 +364,10 @@ function toLotView(
 		})),
 		coverage,
 		...(ownDocuments && { documents: ownDocuments }),
-		...(view && { reading: view })
+		...(view && {
+			reading: view,
+			verdictInput: { status, context: verdictContext(record, lot, deadline) }
+		})
 	};
 }
 
@@ -353,6 +390,7 @@ export function buildTenderPage(
 		toLotView(record, lot, index, now, documents, readings)
 	);
 	return {
+		now: now.toISOString(),
 		noticeNumber: record.noticeNumber,
 		title: record.title,
 		buyers: record.buyers.map((buyer) => buyer.name),
