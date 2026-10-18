@@ -4,7 +4,9 @@
 	import ExternalIcon from './ExternalIcon.svelte';
 	import QuoteBlock from './QuoteBlock.svelte';
 
-	let { criterion }: { criterion: CriterionView } = $props();
+	// state is the criterion's state in words, given only on a lot that shows a verdict; the words
+	// come from the verdict, so they sit in their own data-verdict element.
+	let { criterion, state }: { criterion: CriterionView; state?: string } = $props();
 
 	const label = $derived(criterionLabel(criterion.code));
 	const provenance = $derived(
@@ -26,6 +28,9 @@
 		<p class="ref">
 			<span class="mono">Criterion {criterion.position} of {criterion.of}</span>
 		</p>
+		{#if state !== undefined}
+			<p class="state" data-verdict>{state}</p>
+		{/if}
 		{#if criterion.parameters.length > 0}
 			<ul class="parameters" aria-label="Parameters as published">
 				{#each criterion.parameters as parameter, index (index)}
@@ -102,6 +107,14 @@
 
 	.ref {
 		overflow-wrap: anywhere;
+	}
+
+	/* A state is a margin head, in the condensed cut the verdict states take. */
+	.state {
+		margin-top: 0.5rem;
+		font: 600 var(--step-0) / 1.25 var(--font-cond);
+		letter-spacing: 0.01em;
+		color: var(--ink);
 	}
 
 	.parameters {

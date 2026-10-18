@@ -68,7 +68,7 @@
 	// the lots that will carry one show their loading lines and no word of it.
 	function verdictOf(lot: LotView) {
 		if (firm === null) return lotVerdict(lot, null, tender.now) === null ? undefined : 'loading';
-		const view = lotVerdict(lot, firm.facts, tender.now);
+		const view = lotVerdict(lot, firm.facts, tender.now, tender.documents);
 		return view === null ? undefined : { view, compared: comparedLine(firm.compared) };
 	}
 </script>

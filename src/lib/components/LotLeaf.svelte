@@ -21,6 +21,11 @@
 
 	// The verdict's compared-firm line takes over from the coverage list's "Not compared" line,
 	// which would otherwise say the opposite beside it.
+	const stateOf = (position: number) =>
+		verdict === undefined || verdict === 'loading'
+			? undefined
+			: verdict.view.criteria[position - 1]?.word;
+
 	const coverage = $derived(
 		verdict === undefined
 			? lot.coverage
@@ -132,7 +137,7 @@
 			{#if count > 0}
 				<ol class="clauses">
 					{#each lot.criteria as criterion (criterion.position)}
-						<CriterionRow {criterion} />
+						<CriterionRow {criterion} state={stateOf(criterion.position)} />
 					{/each}
 				</ol>
 			{:else}

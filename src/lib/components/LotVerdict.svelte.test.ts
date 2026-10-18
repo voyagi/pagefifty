@@ -85,7 +85,12 @@ const criterion = (code: string, text: string): Criterion => ({
 	pointsToDocuments: false
 });
 
-const item = (criterionAt: number, kind: string, quote: string, numberText = ''): ReplyItem => ({
+const item = (
+	criterionAt: number,
+	kind: ReplyItem['kind'],
+	quote: string,
+	numberText = ''
+): ReplyItem => ({
 	criterion: criterionAt,
 	kind,
 	quote,
