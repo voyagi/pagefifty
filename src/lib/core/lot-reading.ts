@@ -18,7 +18,7 @@ import {
 	type PeriodReading,
 	type StandardsReading
 } from './figures.ts';
-import { criterionText, verifyRequirements } from './quote.ts';
+import { criterionText, findQuote, verifyRequirements } from './quote.ts';
 
 // The shape spike 004's reply schema returns for one requirement.
 export interface ModelItem {
@@ -174,6 +174,18 @@ function hasAmount(text: string, family: CriterionFamily, lang: string | undefin
 	return reading.kind !== 'none';
 }
 
+// Number words and the lone thousands mark depend on the language ("two" is no German number
+// word), so a quote is read in the language of the description it was found in. A quote found only
+// across two descriptions keeps the first description's language.
+function quoteLang(
+	quote: string,
+	descriptions: readonly LangText[],
+	firstLang: string | undefined
+): string | undefined {
+	const source = descriptions.find((description) => findQuote(quote, description.text).found);
+	return source === undefined ? firstLang : source.lang;
+}
+
 export function readLot({
 	criteria,
 	items
@@ -191,9 +203,9 @@ export function readLot({
 	verifyRequirements(texts, items).forEach((check, index) => {
 		const item = items[index];
 		if (check.status === 'verified') {
-			found[check.criterion - 1].verified.push(
-				readRequirement(item, check.start, langs[check.criterion - 1])
-			);
+			const at = check.criterion - 1;
+			const lang = quoteLang(item.quote, criteria[at].descriptions, langs[at]);
+			found[at].verified.push(readRequirement(item, check.start, lang));
 		} else if (check.reason === 'no-such-criterion') {
 			unplaced.push({ item, reason: check.reason });
 		} else {
@@ -209,7 +221,13 @@ export function readLot({
 				text: texts[index],
 				lang: langs[index],
 				...found[index],
-				textHasAmount: hasAmount(texts[index], family, langs[index])
+				// Each description is also read in its own language, which can only add an amount: a
+				// clause read as holding one turns a quote without an amount from INFO into NOT_READ.
+				textHasAmount:
+					hasAmount(texts[index], family, langs[index]) ||
+					criterion.descriptions.some((description) =>
+						hasAmount(description.text, family, description.lang)
+					)
 			};
 		}),
 		unplaced,
