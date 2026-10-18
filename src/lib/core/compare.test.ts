@@ -643,7 +643,7 @@ const ROWS: readonly Row[] = [
 		'a quote with no amount while its criterion holds one reads NOT_READ',
 		g(NO_AMOUNT, undefined, NO_AMOUNT_QUOTE),
 		yearly(2e6),
-		decided('NOT_READ', 'no-amount')
+		{ state: 'NOT_READ', notCompared: false, why: ['no-amount', 'amount-not-quoted'] }
 	),
 	row(
 		'a criterion with no amount anywhere is a request to state figures and reads INFO',
@@ -667,7 +667,7 @@ const ROWS: readonly Row[] = [
 		'a staff quote with no count while its criterion holds one reads NOT_READ',
 		{ code: MANPOWER, text: STAFF_NO_COUNT, quote: STAFF_NO_COUNT_QUOTE },
 		staffFirm({ 2023: 12, 2024: 12, 2025: 12 }),
-		decided('NOT_READ', 'no-amount')
+		{ state: 'NOT_READ', notCompared: false, why: ['no-amount', 'amount-not-quoted'] }
 	),
 	row(
 		'a staff quote with two counts reads NOT_READ',
@@ -835,6 +835,74 @@ describe('decideCriterion, one row per state the code decides', () => {
 			notCompared: false,
 			why: ['met', 'quote-rejected']
 		});
+	});
+
+	it('a floor in the clause that no verified quote names keeps the criterion from MET', () => {
+		const higher = MORE.replace('1.000.000', '2.000.000');
+		const text = `${EACH} ${higher}`;
+		const criteria = [{ code: GENERAL, descriptions: [{ text, lang: 'de' }] }];
+		const partial = readLot({ criteria, items: [modelItem(GENERAL, 1, EACH)] });
+		expect(
+			outline(decideCriterion(partial.criteria[0], yearly(1_500_000), CONTEXT, false))
+		).toEqual({ state: 'NOT_READ', notCompared: false, why: ['met', 'amount-not-quoted'] });
+		expect(decideReadLot(partial, yearly(1_500_000), CONTEXT).decision).toEqual({
+			verdict: 'ASK FIRST',
+			reason: 'not-read'
+		});
+		const whole = readLot({
+			criteria,
+			items: [modelItem(GENERAL, 1, EACH), modelItem(GENERAL, 1, higher)]
+		});
+		expect(outline(decideCriterion(whole.criteria[0], yearly(2_500_000), CONTEXT, false))).toEqual({
+			state: 'MET',
+			notCompared: false,
+			why: ['met', 'met']
+		});
+	});
+
+	it('a headcount in the clause that no verified quote names keeps the criterion from MET', () => {
+		const text = `${STAFF_EACH} Davon mindestens 4 Beschäftigte im Projektteam.`;
+		const reading = readLot({
+			criteria: [{ code: MANPOWER, descriptions: [{ text, lang: 'de' }] }],
+			items: [modelItem(MANPOWER, 1, STAFF_EACH)]
+		});
+		const firm = staffFirm({ 2023: 12, 2024: 12, 2025: 12 });
+		expect(outline(decideCriterion(reading.criteria[0], firm, CONTEXT, false))).toEqual({
+			state: 'NOT_READ',
+			notCompared: false,
+			why: ['met', 'amount-not-quoted']
+		});
+	});
+
+	it('an amount code cannot read in the clause keeps the criterion from MET or INFO', () => {
+		const text = 'Jährlich mindestens 2 Mrd. EUR netto Umsatz in den letzten drei Geschäftsjahren.';
+		expect(
+			outline(decideCriterion(lotOf([g(text)]).criteria[0], yearly(1e6), CONTEXT, false))
+		).toEqual({
+			state: 'NOT_READ',
+			notCompared: false,
+			why: ['request-without-minimum', 'amount-not-quoted']
+		});
+	});
+
+	it('the same floor in a second language is quoted once it is quoted in the first', () => {
+		const english =
+			'At least EUR 1,000,000 net turnover each year in the last three financial years.';
+		const reading = readLot({
+			criteria: [
+				{
+					code: GENERAL,
+					descriptions: [
+						{ text: EACH, lang: 'de' },
+						{ text: english, lang: 'en' }
+					]
+				}
+			],
+			items: [modelItem(GENERAL, 1, EACH)]
+		});
+		expect(outline(decideCriterion(reading.criteria[0], yearly(1e6), CONTEXT, false))).toEqual(
+			decided('MET', 'met')
+		);
 	});
 
 	it('every requirement of a criterion joins with combineAll', () => {

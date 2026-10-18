@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { replyRequirements } from '../../test/fixtures/replies';
 import {
+	amountsIn,
 	parseCount,
 	parseMoney,
 	parsePeriod,
@@ -396,6 +397,25 @@ describe('parseStandards', () => {
 		expect(parseStandards('ISO 9001, oder ISO 14001 bzw. ISO 27001', 'de')).toEqual(
 			standards('any', 'ISO 9001', 'ISO 14001', 'ISO 27001')
 		);
+	});
+});
+
+describe('amountsIn', () => {
+	it('lists every amount of money a text names, in cents', () => {
+		const text = 'Mindestens 1.000.000 EUR netto, für Bietergemeinschaften 2 Mio. EUR.';
+		expect(amountsIn(text, false, 'de')).toEqual([100_000_000, 200_000_000]);
+		expect(amountsIn('Angabe des Umsatzes der letzten drei Jahre.', false, 'de')).toEqual([]);
+	});
+
+	it('lists every headcount a text names', () => {
+		expect(amountsIn('mindestens 10 Mitarbeiter und zwei Beschäftigte', true, 'de')).toEqual([
+			10, 2
+		]);
+	});
+
+	it('is null when code cannot read one of the amounts', () => {
+		expect(amountsIn('1.000.000 EUR oder 2 Mrd. EUR', false, 'de')).toBeNull();
+		expect(amountsIn('10 Mitarbeiter, davon 1,5 Beschäftigte', true, 'de')).toBeNull();
 	});
 });
 
