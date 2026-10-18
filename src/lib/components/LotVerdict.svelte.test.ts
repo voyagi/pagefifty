@@ -458,18 +458,19 @@ describe('where the verdict shows', () => {
 
 	it('the verdict reads the page instant, never the browser clock', () => {
 		// No deadline in the notice, so the years counted end before the year of the instant: the
-		// page's 2026 instant counts 2023 to 2025, a 2024 clock would count years the firm never held.
+		// page's 2026 instant counts 2023 to 2025, which the demo firm meets; a 2024 clock would count
+		// 2021 and 2022 too, which the firm holds no figure for, and the lot would ask first.
 		const data = syntheticPage([
 			{
-				criteria: [turnoverCriterion('2.000.000')],
-				items: [turnoverItem(1, '2.000.000')],
+				criteria: [turnoverCriterion('500.000')],
+				items: [turnoverItem(1, '500.000')],
 				deadlines: {}
 			}
 		]);
 		vi.useFakeTimers({ toFake: ['Date'] });
 		vi.setSystemTime(new Date('2024-06-01T12:00:00Z'));
 		const container = renderExample(data);
-		expect(wordOf(verdictOf(container, 'lot-1'))).toBe('Not met alone');
+		expect(wordOf(verdictOf(container, 'lot-1'))).toBe('Go');
 	});
 
 	it('lots render in published order', () => {
