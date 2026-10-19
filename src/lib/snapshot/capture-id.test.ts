@@ -107,6 +107,14 @@ describe('exampleCaptureOf', () => {
 		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T16:59:59.999Z' }]])).toBe(
 			'2026-09-15'
 		);
+		// Written text would order these the other way round: 16:00 at -01:00 is the cutoff, and
+		// 18:30 at +02:00 is half an hour before it.
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T16:00:00-01:00' }]])).toBe(
+			'2026-10-21'
+		);
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T18:30:00+02:00' }]])).toBe(
+			'2026-09-15'
+		);
 	});
 
 	it('takes the newest qualifying capture, never one with no openAfter or an earlier one', () => {

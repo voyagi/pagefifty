@@ -114,6 +114,17 @@ describe('a capture run with --open-after', () => {
 		);
 	});
 
+	it('the README of a filtered capture that left nothing out says so', async () => {
+		const run = await openAfterRun({
+			notices: ['600779-2026'],
+			argv: ['--open-after', '2026-09-20T00:00:00Z']
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readFileSync(join(run.folder, 'README.md'), 'utf8')).toContain(
+			'- Only notices whose every lot closes after 2026-09-20T00:00:00.000Z (20 Sep 2026, 02:00 CEST) were kept, and no listed notice closed earlier.'
+		);
+	});
+
 	it('a capture made without --open-after records no instant and says nothing about one', async () => {
 		const run = await openAfterRun({ notices: ['600779-2026'], argv: [] });
 		expect(run.code, run.lines.join('\n')).toBe(0);
