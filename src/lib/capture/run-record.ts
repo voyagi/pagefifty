@@ -8,8 +8,8 @@ import type { ReadingRun } from '../snapshot/readings.ts';
 import { errorCode, writeJsonFile } from './capture-folder.ts';
 import type { MeteredRecord } from './metered.ts';
 
-// 2 adds the reading block.
-const RUN_RECORD_VERSION = 2;
+// 2 adds the reading block, 3 the openAfter instant.
+const RUN_RECORD_VERSION = 3;
 
 interface NoticeReason {
 	notice: string;
@@ -27,6 +27,8 @@ interface RunRecordParts {
 	command: string;
 	head: string;
 	modes: Modes;
+	// The --open-after instant, or null for a run that kept notices whatever their deadlines.
+	openAfter: string | null;
 	query: {
 		query: string;
 		fields: readonly string[];
@@ -96,6 +98,7 @@ export function buildRunRecord(parts: RunRecordParts) {
 		command: parts.command,
 		head: parts.head,
 		modes: { ted: modes.ted, tokenFactory: modes.tokenFactory, tavily: modes.tavily },
+		openAfter: parts.openAfter,
 		query: {
 			query: query.query,
 			fields: [...query.fields],

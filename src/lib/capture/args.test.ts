@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { MAX_CAP, parseCaptureArgs } from './args.ts';
 
 const DAY = '2026-10-11';
-const PLAIN = { live: false, cap: null };
+const PLAIN = { live: false, cap: null, openAfter: null };
 
 function refusal(argv: readonly string[]): string {
 	const parsed = parseCaptureArgs(argv, DAY);
@@ -91,13 +91,15 @@ describe('parseCaptureArgs: --live and --cap', () => {
 			ok: true,
 			since: '20260927',
 			live: true,
-			cap: 5
+			cap: 5,
+			openAfter: null
 		});
 		expect(parseCaptureArgs(['--cap', '7', '--since', '20260920', '--live'], DAY)).toEqual({
 			ok: true,
 			since: '20260920',
 			live: true,
-			cap: 7
+			cap: 7,
+			openAfter: null
 		});
 	});
 
@@ -111,7 +113,8 @@ describe('parseCaptureArgs: --live and --cap', () => {
 			ok: true,
 			since: '20260927',
 			live: false,
-			cap: 3
+			cap: 3,
+			openAfter: null
 		});
 	});
 

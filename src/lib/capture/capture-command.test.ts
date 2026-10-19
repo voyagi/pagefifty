@@ -133,6 +133,7 @@ const RUN_RECORD_KEYS = [
 	'command',
 	'head',
 	'modes',
+	'openAfter',
 	'query',
 	'ted',
 	'notices',

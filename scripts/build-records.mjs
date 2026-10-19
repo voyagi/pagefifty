@@ -192,8 +192,17 @@ async function buildCapture(examples, id) {
 	// capture.total is the count TED stated for its search, which a capture made by the command
 	// records as searchTotal; the listed-count check above stays on the notices actually listed.
 	const total = listing.searchTotal ?? listing.total;
+	// A capture made with --open-after carries its instant into the line, which is what the example
+	// rule reads; null is how the command writes "not given". Any other value goes to the schema.
+	const openAfter = listing.openAfter ?? undefined;
 	const index = SnapshotIndexSchema.safeParse({
-		capture: { id, fetchedAt: listing.fetchedAt, total, query: listing.query },
+		capture: {
+			id,
+			fetchedAt: listing.fetchedAt,
+			total,
+			query: listing.query,
+			...(openAfter !== undefined && { openAfter })
+		},
 		leftOut,
 		rows: kept.map(toIndexRow)
 	});

@@ -67,6 +67,26 @@ function isCalendarDay(id: string): boolean {
 	);
 }
 
+// The Devpost cutoff is 18:00 CET on 2026-10-30. Summer time ends on 25 October, so CET (UTC+1)
+// applies that day and the cutoff is 17:00 UTC, not 16:00.
+export const FINAL_CUTOFF = '2026-10-30T17:00:00.000Z';
+
+const FALLBACK_EXAMPLE = '2026-09-15';
+
+// Only a capture the command filtered with --open-after at or after the cutoff can promise that every
+// tender it shows is still open at the cutoff, so the newest such capture is the example, and a
+// failed final run, which writes no folder, leaves the example where it was. Instants, never strings:
+// 18:00+01:00 and 17:00Z name the same moment.
+export function exampleCaptureOf(
+	lines: Iterable<readonly [string, { readonly openAfter?: string }]>
+): string {
+	const cutoff = Date.parse(FINAL_CUTOFF);
+	const qualifying = [...lines]
+		.filter(([, line]) => line.openAfter !== undefined && Date.parse(line.openAfter) >= cutoff)
+		.map(([id]) => id);
+	return qualifying.length === 0 ? FALLBACK_EXAMPLE : newestCapture(qualifying);
+}
+
 export function newestCapture(ids: Iterable<string>): string {
 	const dated = [...ids].filter(isCaptureId).sort();
 	if (dated.length === 0) {

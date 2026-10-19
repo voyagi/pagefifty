@@ -280,6 +280,7 @@ function runRecordParts(metered: ReturnType<ReturnType<typeof createMeteredGate>
 		command: 'node scripts/capture.mjs --live --cap 2',
 		head: '0123456789abcdef0123456789abcdef01234567',
 		modes: ON,
+		openAfter: null,
 		query: { query: 'q', fields: [], scope: 'ACTIVE', onlyLatestVersions: true, since: '20260927' },
 		ted: {
 			searchPages: 1,

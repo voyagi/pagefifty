@@ -3,7 +3,7 @@
 // binding on the Worker, so no notice XML is parsed while a page is served.
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
-import { newestCapture } from '../snapshot/capture-id';
+import { exampleCaptureOf, newestCapture } from '../snapshot/capture-id';
 import {
 	CaptureLineSchema,
 	NOTICE_NUMBER,
@@ -101,11 +101,30 @@ const SEARCH_RUNS = byMatch(
 );
 // Stryker restore all
 
+// A missing or damaged line is a broken build and fails whatever reads it, like a damaged index.
+function captureLine(capture: string): SnapshotIndex['capture'] {
+	const line = CAPTURE_LINES.get(capture);
+	if (line === undefined) {
+		throw new Error(
+			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
+		);
+	}
+	const parsed = CaptureLineSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} capture line does not match its schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
+}
+
 // Both are fixed when the module loads, from the glob the build already expanded, so no request
-// ever chooses which capture it reads. The example stays on the capture its copy describes until
-// the final capture replaces it (DEMO-04).
+// ever chooses which capture it reads. The example moves to the final capture by the rule in
+// exampleCaptureOf the moment that capture is built, with no change here (DEMO-04).
 export const LATEST_CAPTURE = newestCapture(INDEX_URLS.keys());
-export const EXAMPLE_CAPTURE = '2026-09-15';
+export const EXAMPLE_CAPTURE = exampleCaptureOf(
+	[...CAPTURE_LINES.keys()].map((id) => [id, captureLine(id)] as const)
+);
 export { newestCapture };
 
 // SvelteKit's read() always answers status 200. On the Worker the adapter fetches the file through
@@ -145,19 +164,7 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 // never leaves the page naming an older one's days. A missing or damaged line is a broken build
 // and fails the page like a damaged index does.
 export function snapshotDays(capture: string): CaptureFacts {
-	const line = CAPTURE_LINES.get(capture);
-	if (line === undefined) {
-		throw new Error(
-			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
-		);
-	}
-	const parsed = CaptureLineSchema.safeParse(line);
-	if (!parsed.success) {
-		throw new Error(
-			`the ${capture} capture line does not match its schema: ${parsed.error.message}`
-		);
-	}
-	return captureFacts(parsed.data);
+	return captureFacts(captureLine(capture));
 }
 
 // A notice the capture's readings do not list answers nothing, and keeps the phase 1 view.

@@ -3,7 +3,14 @@
 import { defaultSince } from './capture-folder.ts';
 
 type ParsedArgs =
-	{ ok: true; since: string; live: boolean; cap: number | null } | { ok: false; message: string };
+	| {
+			ok: true;
+			since: string;
+			live: boolean;
+			cap: number | null;
+			openAfter: string | null;
+	  }
+	| { ok: false; message: string };
 
 type Refusal = { ok: false; message: string };
 
@@ -11,12 +18,19 @@ interface Flags {
 	since?: string;
 	live: boolean;
 	cap: number | null;
+	openAfter: string | null;
 }
 
 const DATE_DIGITS = /^[0-9]{8}$/;
 const WRITTEN_AS = 'a date written YYYYMMDD';
 const CAP_DIGITS = /^[0-9]+$/;
-const FLAGS = '--since <YYYYMMDD>, --live and --cap <n>';
+const FLAGS = '--since <YYYYMMDD>, --live, --cap <n> and --open-after <instant>';
+
+// A zone is required: Date.parse reads a time with none as local time, so the same flag would name a
+// different instant on another machine. Hours stop at 23, since Date.parse rolls 24:00 into the next day.
+const INSTANT =
+	/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.[0-9]{1,3})?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9])$/;
+const INSTANT_AS = 'an instant written YYYY-MM-DDTHH:MM:SS with Z or an offset such as +01:00';
 
 // One model read plus one repair retry per notice over a capture of about 363 notices is about 726
 // attempts, so 1000 bounds the worst case with headroom (D-24).
@@ -68,6 +82,24 @@ function checkCap(value: string | undefined): number | Refusal {
 	return cap;
 }
 
+// Date.parse reads 30 February as 2 March, so the written day is checked against the calendar first.
+function checkOpenAfter(value: string | undefined): string | Refusal {
+	if (value === undefined || value.startsWith('--')) {
+		const found =
+			value === undefined ? 'for example 2026-10-30T17:00:00Z' : `not ${JSON.stringify(value)}`;
+		return refuse(`--open-after needs ${INSTANT_AS}, ${found}`);
+	}
+	const quoted = JSON.stringify(value);
+	const parts = INSTANT.exec(value);
+	if (parts === null) {
+		return refuse(`--open-after ${quoted} is not ${INSTANT_AS}`);
+	}
+	if (!isRealDay(`${parts[1]}${parts[2]}${parts[3]}`)) {
+		return refuse(`--open-after ${quoted} is not a real date; write a day that exists`);
+	}
+	return new Date(Date.parse(value)).toISOString();
+}
+
 const twice = (flag: string) => refuse(`${flag} is given twice; give it once`);
 
 // Reads the flag at index into flags and returns how many arguments it took, or the refusal.
@@ -90,6 +122,13 @@ function readFlag(
 		flags.since = since;
 		return 2;
 	}
+	if (flag === '--open-after') {
+		if (flags.openAfter !== null) return twice('--open-after');
+		const openAfter = checkOpenAfter(argv[index + 1]);
+		if (typeof openAfter !== 'string') return openAfter;
+		flags.openAfter = openAfter;
+		return 2;
+	}
 	if (flag === '--cap') {
 		if (flags.cap !== null) return twice('--cap');
 		const cap = checkCap(argv[index + 1]);
@@ -101,7 +140,7 @@ function readFlag(
 }
 
 export function parseCaptureArgs(argv: readonly string[], captureDay: string): ParsedArgs {
-	const flags: Flags = { live: false, cap: null };
+	const flags: Flags = { live: false, cap: null, openAfter: null };
 	for (let index = 0; index < argv.length;) {
 		const taken = readFlag(argv, index, flags, captureDay);
 		if (typeof taken !== 'number') return taken;
@@ -117,6 +156,7 @@ export function parseCaptureArgs(argv: readonly string[], captureDay: string): P
 		ok: true,
 		since: flags.since ?? defaultSince(captureDay),
 		live: flags.live,
-		cap: flags.cap
+		cap: flags.cap,
+		openAfter: flags.openAfter
 	};
 }

@@ -154,7 +154,9 @@ export const CaptureLineSchema = z.strictObject({
 	total: z.number().int().nonnegative(),
 	query: z.string().refine(namesRealFirstDay, {
 		error: 'its publication-date>= names no calendar day as one YYYYMMDD clause'
-	})
+	}),
+	// Only a capture made with --open-after has one: every lot it holds closes after this instant.
+	openAfter: z.iso.datetime({ offset: true }).optional()
 });
 
 export const SnapshotIndexSchema = z.strictObject({
