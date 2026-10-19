@@ -396,6 +396,65 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(readJson(join(out, '2026-01-02', 'reading-run.json'))).toEqual(readings.run);
 	});
 
+	const searchesOf = (url: string, notice = '609955-2026') => ({
+		schemaVersion: 1,
+		run: { searches: 1, notSearched: 0, credits: 1 },
+		notices: [
+			{
+				notice,
+				status: 'searched',
+				query: 'Ein Auftraggeber Vergabe Zuschlag IT Dienstleistungen',
+				results: [{ title: 'Earlier awards of a buyer', url, score: 0.5 }]
+			}
+		]
+	});
+
+	it('writes the searches of a capture whose searches.json parses, and none for one without', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'searches'))).toBe(false);
+		expect(existsSync(join(out, '2026-01-02', 'search-run.json'))).toBe(false);
+		const searches = searchesOf('https://awards.example/buyer');
+		writeFileSync(join(capture, 'searches.json'), JSON.stringify(searches));
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'searches'))).toBe(true);
+		expect(readdirSync(join(out, '2026-01-02', 'searches'))).toEqual(['609955-2026.json']);
+		expect(readJson(join(out, '2026-01-02', 'searches', '609955-2026.json'))).toEqual(
+			searches.notices[0]
+		);
+		expect(readJson(join(out, '2026-01-02', 'search-run.json'))).toEqual(searches.run);
+	});
+
+	it.each([
+		[
+			'holding a result whose address is not http or https',
+			searchesOf('javascript:alert(1)'),
+			'url'
+		],
+		[
+			'naming a notice that is no TED notice number',
+			searchesOf('https://awards.example/buyer', '../../escape'),
+			'"../../escape" is not a TED notice number'
+		]
+	])(
+		'a searches file the schema refuses stops the build and writes nothing: %s',
+		(_what, searches, named) => {
+			writeCapture(['609955-2026']);
+			expect(build().status).toBe(0);
+			const before = folderState(out);
+			writeFileSync(join(capture, 'searches.json'), JSON.stringify(searches));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-01-02: (searches): searches: ');
+			expect(run.stderr).toContain(join(capture, 'searches.json'));
+			expect(run.stderr).toContain(named);
+			expect(run.stderr).toContain('nothing was written');
+			expect(folderState(out)).toEqual(before);
+			expect(existsSync(join(root, 'escape'))).toBe(false);
+		}
+	);
+
 	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
 		writeCapture(['609955-2026']);
 		expect(build().status).toBe(0);

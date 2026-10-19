@@ -1,12 +1,14 @@
-// Token Factory's side of the wire for the capture's model read. A chat request is answered with the
-// recorded reply whose request carried the same user message, so an answer a test sees is one the
-// provider gave for that exact text. A test scripts any other answer by call number. Nothing here
+// Token Factory's and Tavily's side of the wire for the capture's metered steps. A chat request is
+// answered with the recorded reply whose request carried the same user message, and a search with
+// the recorded answer whose request carried the same query, so an answer a test sees is one the
+// provider gave for that exact request. A test scripts any other answer by call number. Nothing here
 // reaches a network: an unmatched request answers 599 naming its address, as ted-stub.ts does.
 import type { Transport } from '../lib/snapshot/transport.ts';
 import type { RecordedReply } from './fixtures/replies.ts';
 
 // Written out here rather than imported, so a wrong address in the client fails the tests.
 const STUB_CHAT_URL = 'https://api.tokenfactory.nebius.com/v1/chat/completions';
+const STUB_SEARCH_URL = 'https://api.tavily.com/search';
 
 interface ProviderCall {
 	method: string;
@@ -33,6 +35,12 @@ function firstUserMessage(body: unknown): string | undefined {
 	const { messages } = body as { messages?: unknown };
 	if (!Array.isArray(messages)) return undefined;
 	return (messages as ChatMessage[]).find((message) => message.role === 'user')?.content;
+}
+
+function searchQueryOf(body: unknown): string | undefined {
+	if (typeof body !== 'object' || body === null) return undefined;
+	const { query } = body as { query?: unknown };
+	return typeof query === 'string' ? query : undefined;
 }
 
 function parsedBody(text: string): unknown {
@@ -85,8 +93,22 @@ function scripted(answer: ScriptedAnswer): Response {
 	return new Response(answer.text ?? '', { status: answer.status });
 }
 
+function recordedSearch(
+	bySearch: ReadonlyMap<string, RecordedReply>,
+	call: ProviderCall
+): Response {
+	const query = searchQueryOf(call.body);
+	const search = query === undefined ? undefined : bySearch.get(query);
+	if (search === undefined) {
+		return unanswered(call.method, call.url, ' (no recorded answer for this query)');
+	}
+	return Response.json(search.response);
+}
+
 export function createStubProvider(options: {
 	replies: readonly RecordedReply[];
+	// Tavily answers, each matched by the query its request carried.
+	searches?: readonly RecordedReply[];
 	// Answers by call number, counted from 1 over every request this stub receives.
 	script?: Readonly<Record<number, ScriptedAnswer>>;
 }) {
@@ -96,6 +118,12 @@ export function createStubProvider(options: {
 		if (message === undefined)
 			throw new Error('provider stub: a reply whose request has no user message');
 		byMessage.set(message, reply);
+	}
+	const bySearch = new Map<string, RecordedReply>();
+	for (const search of options.searches ?? []) {
+		const query = searchQueryOf(search.request);
+		if (query === undefined) throw new Error('provider stub: a search whose request has no query');
+		bySearch.set(query, search);
 	}
 	const log: ProviderCall[] = [];
 
@@ -109,6 +137,8 @@ export function createStubProvider(options: {
 		log.push(call);
 		const answer = options.script?.[log.length];
 		if (answer !== undefined) return scripted(answer);
+		if (call.method === 'POST' && call.url === STUB_SEARCH_URL)
+			return recordedSearch(bySearch, call);
 		if (call.method !== 'POST' || call.url !== STUB_CHAT_URL)
 			return unanswered(call.method, call.url);
 		const message = firstUserMessage(call.body);

@@ -1,6 +1,7 @@
-// The capture command as scripts/capture.mjs wires it, model step included, driven with a stub TED,
-// the stub provider serving spike 004's recorded replies, a fake clock and stub keys. Every run gets
-// its own temp root, so nothing lands under the repository and its key file is never read.
+// The capture command as scripts/capture.mjs wires it, model step and buyer search included, driven
+// with a stub TED, the stub provider serving spike 004's recorded replies and search, a fake clock
+// and stub keys. Every run gets its own temp root, so nothing lands under the repository and its key
+// file is never read.
 import {
 	existsSync,
 	mkdirSync,
@@ -21,6 +22,8 @@ import { chatResponse, createStubProvider, syntheticReply } from '../../test/pro
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
 import { readNotice } from '../ingest/read-notice.ts';
 import { ReadingRunSchema, ReadingsFileSchema } from '../snapshot/readings.ts';
+import { SearchRunSchema } from '../snapshot/search-run.ts';
+import { SearchesFileSchema } from '../snapshot/searches.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { runCapture } from './run.ts';
 import { chatBody, userMessage } from './token-factory.ts';
@@ -32,6 +35,9 @@ const NEBIUS = 'not-a-real-nebius-key-for-the-command';
 const TAVILY = 'not-a-real-tavily-key-for-the-command';
 const LIVE = { argv: ['--live', '--cap', '5'], env: { PAGEFIFTY_LIVE: '1' } };
 const GERMAN = 'de-610242-thinking-off';
+const BUYER = 'tavily-610242-buyer';
+const CHAT_URL = 'https://api.tokenfactory.nebius.com/v1/chat/completions';
+const SEARCH_URL = 'https://api.tavily.com/search';
 
 const roots: string[] = [];
 
@@ -44,6 +50,8 @@ interface CommandRun {
 	argv?: readonly string[];
 	env?: Record<string, string>;
 	replies?: readonly RecordedReply[];
+	// Tavily answers; spike 004's search of the German buyer unless a test names others.
+	searches?: readonly RecordedReply[];
 	tedScript?: Parameters<typeof createScriptedTed>[0]['script'];
 	providerScript?: Parameters<typeof createStubProvider>[0]['script'];
 	// A root an earlier run used, for a run that finds its store and cache; a fresh temp root otherwise.
@@ -58,6 +66,7 @@ async function commandRun({
 	argv = [],
 	env = {},
 	replies = [],
+	searches = [readReplyFixture(BUYER)],
 	tedScript,
 	providerScript,
 	root = freshRoot(),
@@ -66,7 +75,7 @@ async function commandRun({
 }: CommandRun) {
 	const clock = createFakeClock(start);
 	const ted = createScriptedTed({ clock, notices, script: tedScript });
-	const provider = createStubProvider({ replies, script: providerScript });
+	const provider = createStubProvider({ replies, searches, script: providerScript });
 	const lines: string[] = [];
 	const keyPaths: string[] = [];
 	const code = await runCapture(
@@ -138,8 +147,20 @@ const RUN_RECORD_KEYS = [
 	'ted',
 	'notices',
 	'metered',
-	'reading'
+	'reading',
+	'search'
 ];
+
+type Provider = ReturnType<typeof createStubProvider>;
+
+const chatCalls = (run: { provider: Provider }) =>
+	run.provider.calls().filter((call) => call.url === CHAT_URL);
+const searchCalls = (run: { provider: Provider }) =>
+	run.provider.calls().filter((call) => call.url === SEARCH_URL);
+
+// The model step's part of the metered record, which the buyer search after it shares.
+const ofProvider = <T extends { provider: string }>(entries: readonly T[], provider: string) =>
+	entries.filter((entry) => entry.provider === provider);
 
 describe('the command with the model step', () => {
 	it('the command reads one German lot live and publishes its reading with the run cost', async () => {
@@ -150,7 +171,7 @@ describe('the command with the model step', () => {
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
 		expect(run.keyPaths).toEqual([join(run.root, '.env')]);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		const readings = ReadingsFileSchema.parse(readJson(join(run.folder, 'readings.json')));
 		expect(readings.notices).toEqual([
 			{
@@ -182,7 +203,11 @@ describe('the command with the model step', () => {
 		});
 		expect(readings.run).toEqual(record.reading);
 		expect(ReadingRunSchema.parse(record.reading)).toEqual(record.reading);
-		expect(record.metered).toMatchObject({ cap: 5, attempts: 1, refusals: [] });
+		expect(record.metered).toMatchObject({
+			cap: 5,
+			perProvider: expect.objectContaining({ tokenFactory: 1 }),
+			refusals: []
+		});
 		const traces = keyTraces(run);
 		expect(traces.found).toEqual([]);
 		expect(traces.files).toContain(join(run.folder, 'readings.json'));
@@ -195,13 +220,75 @@ describe('the command with the model step', () => {
 			replies: [readReplyFixture(GERMAN)]
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const calls = run.provider.calls();
+		const calls = chatCalls(run);
 		expect(calls).toHaveLength(1);
 		expect(calls[0].method).toBe('POST');
 		expect(calls[0].url).toBe('https://api.tokenfactory.nebius.com/v1/chat/completions');
 		expect(calls[0].headers.authorization).toBe(`Bearer ${NEBIUS}`);
 		expect(JSON.stringify(calls[0].headers)).not.toContain(TAVILY);
 		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
+	});
+});
+
+interface RecordedResult {
+	url: string;
+	title: string;
+	score: number;
+}
+
+const buyerResults = () =>
+	(readReplyFixture(BUYER).response as unknown as { results: RecordedResult[] }).results;
+
+describe('the command with the buyer search', () => {
+	it('the command searches the German buyer and publishes its five results', async () => {
+		const run = await commandRun({
+			notices: ['610242-2026'],
+			...LIVE,
+			replies: [readReplyFixture(GERMAN)]
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls().map((call) => call.url)).toEqual([CHAT_URL, SEARCH_URL]);
+		const [search] = searchCalls(run);
+		expect(search.method).toBe('POST');
+		expect(search.headers.authorization).toBe(`Bearer ${TAVILY}`);
+		expect(JSON.stringify(search.headers)).not.toContain(NEBIUS);
+		expect(search.body).toEqual(readReplyFixture(BUYER).request);
+		const path = join(run.folder, 'searches.json');
+		expect(existsSync(path)).toBe(true);
+		const text = readFileSync(path, 'utf8');
+		const searches = SearchesFileSchema.parse(JSON.parse(text));
+		expect(text).toBe(`${JSON.stringify(searches, null, 2)}\n`);
+		expect(text).not.toContain('"content"');
+		expect(searches.notices).toEqual([
+			{
+				notice: '610242-2026',
+				status: 'searched',
+				query: 'Berlin TXL Management GmbH Vergabe Zuschlag IT Dienstleistungen',
+				results: buyerResults().map(({ title, url, score }) => ({ title, url, score }))
+			}
+		]);
+		const record = readJson(join(run.folder, 'run.json'));
+		expect(Object.keys(record)).toEqual(RUN_RECORD_KEYS);
+		expect(record.search).toEqual({ searches: 1, notSearched: 0, credits: 1 });
+		expect(searches.run).toEqual(record.search);
+		expect(SearchRunSchema.parse(record.search)).toEqual(record.search);
+		expect(record.metered).toMatchObject({
+			cap: 5,
+			attempts: 2,
+			perProvider: { tokenFactory: 1, tavily: 1 },
+			refusals: []
+		});
+		expect(ofProvider(record.metered.responses, 'tavily')).toEqual([
+			{
+				provider: 'tavily',
+				operation: 'search',
+				id: '61735852-a429-4665-a578-75ec3028ebb3',
+				usage: { credits: 1 }
+			}
+		]);
+		const traces = keyTraces(run);
+		expect(traces.found).toEqual([]);
+		expect(traces.files).toContain(path);
 	});
 });
 
@@ -284,7 +371,7 @@ describe('the model step under the cap', () => {
 			replies: THREE_REPLIES
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(2);
+		expect(chatCalls(run)).toHaveLength(2);
 		expect(lotsOf(run.folder)).toEqual({
 			'610242-2026': ['read'],
 			'629755-2026': ['read'],
@@ -292,7 +379,7 @@ describe('the model step under the cap', () => {
 		});
 		const record = readJson(join(run.folder, 'run.json'));
 		expect(record.metered.attempts).toBe(2);
-		expect(record.metered.refusals).toEqual([
+		expect(ofProvider(record.metered.refusals, 'tokenFactory')).toEqual([
 			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 2 attempts is reached' }
 		]);
 		expect(record.reading).toMatchObject({ sends: 2, lots: { read: 2, notRead: 1 } });
@@ -304,13 +391,15 @@ describe('the model step under the cap', () => {
 			replies: THREE_REPLIES
 		});
 		expect(one.code, one.lines.join('\n')).toBe(0);
-		expect(one.provider.calls()).toHaveLength(1);
+		expect(chatCalls(one)).toHaveLength(1);
 		expect(lotsOf(one.folder)).toEqual({
 			'610242-2026': ['read'],
 			'629755-2026': ['not-read cap-reached'],
 			'634398-2026': ['not-read cap-reached']
 		});
-		expect(readJson(join(one.folder, 'run.json')).metered.refusals).toEqual([
+		expect(
+			ofProvider(readJson(join(one.folder, 'run.json')).metered.refusals, 'tokenFactory')
+		).toEqual([
 			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 1 attempts is reached' }
 		]);
 	});
@@ -324,10 +413,10 @@ describe('the model step under the cap', () => {
 			providerScript: { 1: answerWith('not json') }
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		expect(existsSync(join(run.folder, 'readings.json'))).toBe(false);
 		const record = readJson(join(run.folder, 'run.json'));
-		expect(record.metered.refusals).toEqual([
+		expect(ofProvider(record.metered.refusals, 'tokenFactory')).toEqual([
 			{
 				provider: 'tokenFactory',
 				operation: 'chat-repair',
@@ -349,7 +438,7 @@ describe('which lots the model step sends', () => {
 			replies: THREE_REPLIES
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls().map((call) => userMessageOf(call.body))).toEqual(
+		expect(chatCalls(run).map((call) => userMessageOf(call.body))).toEqual(
 			THREE_REPLIES.map((reply) => userMessageOf(reply.request))
 		);
 	});
@@ -375,7 +464,7 @@ describe('which lots the model step sends', () => {
 			replies: [syntheticReply(body, [item])]
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		const readings = readingsOf(run.folder);
 		const lots = readings.notices[0].lots;
 		expect(lots.map((lot) => [lot.lot, lot.status])).toEqual([
@@ -399,7 +488,7 @@ describe('which lots the model step sends', () => {
 			tedScript: { [tedNoticeXmlUrl('609955-2026')]: [{ status: 200, body: stripped }] }
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const calls = run.provider.calls();
+		const calls = chatCalls(run);
 		expect(calls).toHaveLength(1);
 		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
 		const lots = lotsOf(run.folder);
@@ -411,7 +500,7 @@ describe('which lots the model step sends', () => {
 	it('every sent body is the lot criteria text and nothing else', async () => {
 		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const bodies = run.provider.calls().map((call) => call.body);
+		const bodies = chatCalls(run).map((call) => call.body);
 		expect(bodies).toEqual(THREE.map(firstLotBody));
 		expect(bodies[0]).toEqual(readReplyFixture(GERMAN).request);
 		expect(Object.keys(bodies[0] as object)).toEqual([
@@ -448,7 +537,7 @@ describe('replies the model step cannot use', () => {
 				providerScript: script
 			});
 			expect(run.code, run.lines.join('\n')).toBe(0);
-			const calls = run.provider.calls();
+			const calls = chatCalls(run);
 			expect(calls, issue).toHaveLength(2);
 			const repair = calls[1].body as { messages: { role: string; content: string }[] };
 			expect(repair.messages.slice(0, 2)).toEqual(readReplyFixture(GERMAN).request.messages);
@@ -457,7 +546,10 @@ describe('replies the model step cannot use', () => {
 			expect(repair.messages[3].content).toContain(issue);
 			const record = readJson(join(run.folder, 'run.json'));
 			expect(
-				record.metered.responses.map((response: { operation: string }) => response.operation)
+				ofProvider(
+					record.metered.responses as { provider: string; operation: string }[],
+					'tokenFactory'
+				).map((response) => response.operation)
 			).toEqual(['chat', 'chat-repair']);
 			if (lot === 'read') expect(lotsOf(run.folder)).toEqual({ '610242-2026': ['read'] });
 			else {
@@ -483,7 +575,7 @@ describe('replies the model step cannot use', () => {
 				providerScript: { 1: failure }
 			});
 			expect(run.code, run.lines.join('\n')).toBe(0);
-			expect(run.provider.calls()).toHaveLength(3);
+			expect(chatCalls(run)).toHaveLength(3);
 			expect(lotsOf(run.folder)).toEqual({
 				'610242-2026': ['not-read send-failed'],
 				'629755-2026': ['read'],
@@ -500,9 +592,12 @@ describe('replies the model step cannot use', () => {
 	it('no provider key appears in any output', async () => {
 		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls().map((call) => call.headers.authorization)).toEqual(
+		expect(chatCalls(run).map((call) => call.headers.authorization)).toEqual(
 			THREE.map(() => `Bearer ${NEBIUS}`)
 		);
+		for (const call of searchCalls(run)) {
+			expect(call.headers.authorization).toBe(`Bearer ${TAVILY}`);
+		}
 		const traces = keyTraces(run);
 		expect(traces.found).toEqual([]);
 		expect(traces.files).toEqual(
@@ -529,7 +624,7 @@ describe('readings reused across runs', () => {
 	it('a second run over unchanged text sends nothing and one changed text sends once', async () => {
 		const first = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(first.code, first.lines.join('\n')).toBe(0);
-		expect(first.provider.calls()).toHaveLength(3);
+		expect(chatCalls(first)).toHaveLength(3);
 		// The raw XML cache would serve the old bytes, so TED is asked for the changed notice again.
 		rmSync(join(first.root, '.capture-cache', 'xml', '634398-2026.xml'));
 		const changed = changedNotice('634398-2026');
@@ -542,7 +637,7 @@ describe('readings reused across runs', () => {
 			tedScript: { [tedNoticeXmlUrl('634398-2026')]: [{ status: 200, body: changed.xml }] }
 		});
 		expect(second.code, second.lines.join('\n')).toBe(0);
-		const calls = second.provider.calls();
+		const calls = chatCalls(second);
 		expect(calls).toHaveLength(1);
 		expect(userMessageOf(calls[0].body)).toBe(userMessageOf(changed.body));
 		expect(readJson(join(second.folder, 'run.json')).reading).toMatchObject({
@@ -570,7 +665,7 @@ describe('readings reused across runs', () => {
 			replies: THREE_REPLIES
 		});
 		expect(second.code, second.lines.join('\n')).toBe(0);
-		expect(second.provider.calls()).toHaveLength(0);
+		expect(chatCalls(second)).toHaveLength(0);
 		const before = readingsOf(first.folder);
 		const after = readingsOf(second.folder);
 		expect(after.readings).toEqual(before.readings);
