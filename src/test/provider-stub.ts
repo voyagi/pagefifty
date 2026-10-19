@@ -80,6 +80,31 @@ export function syntheticReply(
 	return { request, response: chatResponse(id, JSON.stringify({ requirements })) };
 }
 
+interface StubResult {
+	url: string;
+	title: string;
+	score: number;
+}
+
+// A Tavily answer to a query no recording holds, in the shape the recorded one has: each result with
+// a content snippet the capture must not keep.
+export function searchAnswer(
+	query: string,
+	results: readonly StubResult[],
+	credits: number | null = 1
+): RecordedReply {
+	return {
+		request: { query },
+		response: {
+			query,
+			answer: null,
+			results: results.map((result) => ({ ...result, content: 'a snippet', raw_content: null })),
+			...(credits !== null && { usage: { credits } }),
+			request_id: `stub-${query.length}`
+		}
+	};
+}
+
 function unanswered(method: string, url: string, detail = ''): Response {
 	return new Response(`provider stub: nothing answers ${method} ${url}${detail}`, {
 		status: 599,

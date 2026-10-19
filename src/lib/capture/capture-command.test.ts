@@ -18,7 +18,12 @@ import { commandDeps } from '../../../scripts/capture.mjs';
 import { capturePath } from '../../test/fixtures/node.ts';
 import { readReplyFixture, type RecordedReply } from '../../test/fixtures/replies.ts';
 import { buildSynthetic } from '../../test/fixtures/roles.ts';
-import { chatResponse, createStubProvider, syntheticReply } from '../../test/provider-stub.ts';
+import {
+	chatResponse,
+	createStubProvider,
+	searchAnswer,
+	syntheticReply
+} from '../../test/provider-stub.ts';
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
 import { readNotice } from '../ingest/read-notice.ts';
 import { ReadingRunSchema, ReadingsFileSchema } from '../snapshot/readings.ts';
@@ -26,6 +31,7 @@ import { SearchRunSchema } from '../snapshot/search-run.ts';
 import { SearchesFileSchema } from '../snapshot/searches.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { runCapture } from './run.ts';
+import { searchBody, searchQuery } from './tavily.ts';
 import { chatBody, userMessage } from './token-factory.ts';
 
 const START = Date.parse('2026-09-15T08:00:00Z');
@@ -730,5 +736,180 @@ describe('the README of a capture with the model step', () => {
 			'- 3 lots with criteria: 0 read in this run, 0 reused from an earlier run, 3 not read.'
 		);
 		expect(dryReadme).not.toContain('`readings.json`');
+	});
+});
+
+// A Tavily answer for each of the three notices: the recorded one for the German buyer, one result
+// each for the other two.
+const threeSearches = () => [
+	readReplyFixture(BUYER),
+	...THREE.slice(1).map((notice) =>
+		searchAnswer(searchQuery(trackedRecord(notice)), [
+			{ url: `https://awards.example/${notice}`, title: `Awards of ${notice}`, score: 0.5 }
+		])
+	)
+];
+
+const searchesPath = (folder: string) => join(folder, 'searches.json');
+
+const searchStatuses = (folder: string) =>
+	SearchesFileSchema.parse(readJson(searchesPath(folder))).notices.map((each) =>
+		each.status === 'searched' ? `${each.notice} searched` : `${each.notice} ${each.reason}`
+	);
+
+const SEARCH_WOULD = 'capture: (dry-run) WOULD call tavily search';
+
+// Three chats and three searches fit under a cap of 6.
+const LIVE_SIX = { argv: ['--live', '--cap', '6'], env: { PAGEFIFTY_LIVE: '1' } };
+
+describe('the buyer search under the cap the model read shares', () => {
+	it('searches and model sends stop at the one cap', async () => {
+		const four = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '4'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(four.code, four.lines.join('\n')).toBe(0);
+		expect([chatCalls(four).length, searchCalls(four).length]).toEqual([3, 1]);
+		expect(searchStatuses(four.folder)).toEqual([
+			'610242-2026 searched',
+			'629755-2026 cap-reached',
+			'634398-2026 cap-reached'
+		]);
+		const record = readJson(join(four.folder, 'run.json'));
+		expect(record.metered.attempts).toBe(4);
+		expect(ofProvider(record.metered.refusals, 'tavily')).toEqual([
+			{ provider: 'tavily', operation: 'search', reason: 'the cap of 4 attempts is reached' }
+		]);
+		expect(record.search).toEqual({ searches: 1, notSearched: 2, credits: 1 });
+		const three = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '3'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(three.code, three.lines.join('\n')).toBe(0);
+		expect([chatCalls(three).length, searchCalls(three).length]).toEqual([3, 0]);
+		expect(existsSync(searchesPath(three.folder))).toBe(false);
+		const capped = readJson(join(three.folder, 'run.json'));
+		expect(ofProvider(capped.metered.refusals, 'tavily')).toEqual([
+			{ provider: 'tavily', operation: 'search', reason: 'the cap of 3 attempts is reached' }
+		]);
+		expect(capped.search).toEqual({ searches: 0, notSearched: 3, credits: 0 });
+		expect(three.lines).toContain(
+			'capture: buyer search: 0 searched, 3 not searched (cap-reached 3), 0 sent, credits 0'
+		);
+	});
+
+	it('a dry run makes no search', async () => {
+		const run = await commandRun({
+			notices: THREE,
+			argv: ['--cap', '5'],
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.lines.filter((line) => line === SEARCH_WOULD)).toHaveLength(1);
+		expect(searchCalls(run)).toEqual([]);
+		expect(run.provider.calls()).toEqual([]);
+		expect(existsSync(searchesPath(run.folder))).toBe(false);
+		expect(readJson(join(run.folder, 'run.json')).search).toEqual({
+			searches: 0,
+			notSearched: 3,
+			credits: 0
+		});
+		expect(run.lines).toContain(
+			'capture: buyer search: 0 searched, 3 not searched (dry-run 3), 0 sent, credits 0'
+		);
+	});
+
+	it('a failed search leaves only that notice unsearched', async () => {
+		const failures = [
+			{ status: 500, text: `upstream broke: ${PROVIDER_TEXT}` },
+			{ status: 200, json: { error: PROVIDER_TEXT } },
+			{ throws: new Error(`socket closed: ${PROVIDER_TEXT}`) }
+		];
+		for (const failure of failures) {
+			const run = await commandRun({
+				notices: THREE,
+				...LIVE_SIX,
+				replies: THREE_REPLIES,
+				searches: threeSearches(),
+				// Three chats go out first, so the fourth request is the first search.
+				providerScript: { 4: failure }
+			});
+			expect(run.code, run.lines.join('\n')).toBe(0);
+			expect(searchCalls(run)).toHaveLength(3);
+			expect(searchStatuses(run.folder)).toEqual([
+				'610242-2026 send-failed',
+				'629755-2026 searched',
+				'634398-2026 searched'
+			]);
+			expect(readJson(join(run.folder, 'run.json')).search).toEqual({
+				searches: 3,
+				notSearched: 1,
+				credits: 2
+			});
+			expect(run.lines.filter((line) => line.includes(PROVIDER_TEXT))).toEqual([]);
+			const leaks = filesUnder(run.root).filter((file) =>
+				readFileSync(file, 'latin1').includes(PROVIDER_TEXT)
+			);
+			expect(leaks).toEqual([]);
+		}
+	});
+
+	it('every search body is the buyer name and the search words', async () => {
+		const run = await commandRun({
+			notices: THREE,
+			...LIVE_SIX,
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const bodies = searchCalls(run).map((call) => call.body as { query: string });
+		expect(bodies).toEqual(THREE.map((notice) => searchBody(trackedRecord(notice))));
+		THREE.forEach((notice, index) => {
+			expect(bodies[index].query.startsWith(trackedRecord(notice).buyers[0].name.text)).toBe(true);
+			expect(Object.keys(bodies[index])).toEqual([
+				'query',
+				'search_depth',
+				'max_results',
+				'include_answer',
+				'include_raw_content',
+				'include_usage'
+			]);
+		});
+	});
+});
+
+describe('the README of a capture with the buyer search', () => {
+	it('names the buyer search, and a dry run says no search was made', async () => {
+		const live = await commandRun({
+			notices: THREE,
+			...LIVE_SIX,
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		const readme = readFileSync(join(live.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('## Buyer search');
+		expect(readme).toContain(
+			'- 3 notices with criteria in the notice: 3 searched, 0 not searched.'
+		);
+		expect(readme).toContain(
+			'- `searches.json` holds the web results, which nobody checked, and `run.json` the searches and the credits: 3 sent, 3 credits.'
+		);
+		const dry = await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES });
+		const dryReadme = readFileSync(join(dry.folder, 'README.md'), 'utf8');
+		expect(dryReadme).toContain('## Buyer search');
+		expect(dryReadme).toContain(
+			"No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily."
+		);
+		expect(dryReadme).toContain(
+			'- 3 notices with criteria in the notice: 0 searched, 3 not searched.'
+		);
+		expect(dryReadme).not.toContain('`searches.json`');
 	});
 });
