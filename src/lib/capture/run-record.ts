@@ -5,11 +5,12 @@ import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Modes } from '../server/transport-mode.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
+import type { SearchRun } from '../snapshot/search-run.ts';
 import { errorCode, writeJsonFile } from './capture-folder.ts';
 import type { MeteredRecord } from './metered.ts';
 
-// 2 adds the reading block, 3 the openAfter instant.
-const RUN_RECORD_VERSION = 3;
+// 2 adds the reading block, 3 the openAfter instant, 4 the search block.
+const RUN_RECORD_VERSION = 4;
 
 interface NoticeReason {
 	notice: string;
@@ -55,6 +56,13 @@ interface RunRecordParts {
 	metered: MeteredRecord;
 	// The model step's block; absent or null when no model step ran.
 	reading?: ReadingRun | null;
+	// The buyer search's block; absent or null when no search step ran.
+	search?: SearchRun | null;
+}
+
+function searchBlock(search: SearchRun | null | undefined) {
+	if (search === null || search === undefined) return null;
+	return { searches: search.searches, notSearched: search.notSearched, credits: search.credits };
 }
 
 function readingBlock(reading: ReadingRun | null | undefined) {
@@ -142,7 +150,8 @@ export function buildRunRecord(parts: RunRecordParts) {
 				usage
 			}))
 		},
-		reading: readingBlock(parts.reading)
+		reading: readingBlock(parts.reading),
+		search: searchBlock(parts.search)
 	};
 }
 

@@ -19,6 +19,7 @@ import { execFileSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { setTimeout as wait } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
+import { createBuyerSearchStep } from '../src/lib/capture/buyer-search.ts';
 import { createModelReadStep } from '../src/lib/capture/model-read.ts';
 import { runCapture } from '../src/lib/capture/run.ts';
 
@@ -27,8 +28,9 @@ const REQUEST_TIMEOUT_MS = 30_000;
 // Spike 004's slowest call took 22.4 s with thinking on; its ceiling of 180 s is kept.
 const PROVIDER_TIMEOUT_MS = 180_000;
 
-// The dependencies the command runs with, model step included. The tests call this with a stub TED,
-// a stub provider and a temp root, so they drive the command's own wiring.
+// The dependencies the command runs with, model step and buyer search included. The tests call this
+// with a stub TED, a stub provider and a temp root, so they drive the command's own wiring. The
+// search runs second, so a cap the model read uses up leaves it nothing to send.
 /**
  * @param {Omit<import('../src/lib/capture/run.ts').CaptureDeps, 'meteredSteps'> & {
  *   providerTransport: import('../src/lib/snapshot/transport.ts').Transport }} options
@@ -43,7 +45,8 @@ export function commandDeps({ providerTransport, ...deps }) {
 				root: deps.root,
 				clock: deps.clock,
 				log: deps.log
-			})
+			}),
+			createBuyerSearchStep({ transport: providerTransport, log: deps.log })
 		]
 	};
 }

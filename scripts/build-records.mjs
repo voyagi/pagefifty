@@ -11,7 +11,8 @@
 // The result is <out>/<capture date>/index.json (one row per kept notice), capture.json (the
 // index's capture line alone, which the server bundles so a 404 names the snapshot's days without
 // reading an index) and records/<notice>.json, plus, for a capture that published the model's
-// readings.json, readings/<notice>.json and reading-run.json, written compact into a temp folder and moved into
+// readings.json, readings/<notice>.json and reading-run.json, and for one that published its buyer
+// search, searches/<notice>.json and search-run.json, written compact into a temp folder and moved into
 // place only when every notice of every capture was read. This script is a thin caller: the
 // reading rules live in src, where the import rules and tests see them.
 //
@@ -22,7 +23,7 @@
 // Usage:  node scripts/build-records.mjs [--examples <dir>] [--out <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository)
 // Exit codes: 0 records written,
-//             1 a listing, a notice or a readings.json could not be read, or a write step failed (nothing
+//             1 a listing, a notice, a readings.json or a searches.json could not be read, or a write step failed (nothing
 //               half-written is served; a temp folder that could not be removed is named),
 //             2 bad usage or no capture folder found.
 
@@ -40,6 +41,7 @@ import {
 	toIndexRow
 } from '../src/lib/snapshot/index-row.ts';
 import { ReadingsFileSchema } from '../src/lib/snapshot/readings.ts';
+import { SearchesFileSchema } from '../src/lib/snapshot/searches.ts';
 import {
 	createSnapshotTransport,
 	requestKey,
@@ -121,11 +123,12 @@ async function readOne(transport, number) {
 	return readNotice(new Uint8Array(await response.arrayBuffer()), { noticeNumber: number });
 }
 
-// The model's readings the capture published, if it published any. A file the schema refuses is a
-// failure like a record that does not read, so nothing of the capture is written. Each notice named
-// in it becomes a file name, so only TED's notice number shape gets that far.
-function readReadings(folder) {
-	const file = join(folder, 'readings.json');
+// A file a capture step published (the model's readings, the buyer search), if it published one. A
+// file the schema refuses is a failure like a record that does not read, so nothing of the capture
+// is written. Each notice named in it becomes a file name, so only TED's notice number shape gets
+// that far.
+function readStepFile(folder, name, schema) {
+	const file = join(folder, name);
 	if (!existsSync(file)) return {};
 	let json;
 	try {
@@ -133,20 +136,21 @@ function readReadings(folder) {
 	} catch (error) {
 		return { failure: `${file} could not be read as JSON: ${error.message}` };
 	}
-	const parsed = ReadingsFileSchema.safeParse(json);
+	const parsed = schema.safeParse(json);
 	if (!parsed.success) return { failure: `${file} does not match its schema: ${parsed.error.message}` };
 	const misnamed = parsed.data.notices.find(({ notice }) => !NOTICE_NUMBER.test(notice));
 	if (misnamed) {
 		return { failure: `${file}: ${JSON.stringify(misnamed.notice)} is not a TED notice number` };
 	}
-	return { readings: parsed.data };
+	return { data: parsed.data };
 }
 
 async function buildCapture(examples, id) {
 	const started = performance.now();
 	const folder = join(examples, id);
 	const { listing, numbers } = readListing(folder, id);
-	const { readings, failure } = readReadings(folder);
+	const readingsFile = readStepFile(folder, 'readings.json', ReadingsFileSchema);
+	const searchesFile = readStepFile(folder, 'searches.json', SearchesFileSchema);
 	const transport = await snapshotTransport(folder);
 	const records = [];
 	const failures = [];
@@ -187,7 +191,12 @@ async function buildCapture(examples, id) {
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
 	}
-	if (failure) failures.push({ number: '(readings)', kind: 'readings', detail: failure });
+	if (readingsFile.failure) {
+		failures.push({ number: '(readings)', kind: 'readings', detail: readingsFile.failure });
+	}
+	if (searchesFile.failure) {
+		failures.push({ number: '(searches)', kind: 'searches', detail: searchesFile.failure });
+	}
 	const { kept, leftOut } = selectLatest(records);
 	// capture.total is the count TED stated for its search, which a capture made by the command
 	// records as searchTotal; the listed-count check above stays on the notices actually listed.
@@ -210,7 +219,16 @@ async function buildCapture(examples, id) {
 		failures.push({ number: '(index)', kind: 'index', detail: index.error.message });
 	}
 	const ms = Math.round(performance.now() - started);
-	return { id, index: index.data, records: kept, readings, failures, listed: numbers.length, ms };
+	return {
+		id,
+		index: index.data,
+		records: kept,
+		readings: readingsFile.data,
+		searches: searchesFile.data,
+		failures,
+		listed: numbers.length,
+		ms
+	};
 }
 
 // Each notice's slice of the readings, so a page loads only its own, and the run on its own, which
@@ -226,6 +244,16 @@ function writeReadings(temp, readings) {
 		);
 	}
 	writeFileSync(join(temp, 'reading-run.json'), JSON.stringify(readings.run));
+}
+
+// Each notice's search, and the run, which the trust pages read to name the search provider.
+function writeSearches(temp, searches) {
+	if (searches === undefined) return;
+	mkdirSync(join(temp, 'searches'));
+	for (const search of searches.notices) {
+		writeFileSync(join(temp, 'searches', `${search.notice}.json`), JSON.stringify(search));
+	}
+	writeFileSync(join(temp, 'search-run.json'), JSON.stringify(searches.run));
 }
 
 // Cleanup after a failed write must not replace the error that says which step failed, so a temp
@@ -264,6 +292,8 @@ function writeCapture(out, capture) {
 		}
 		step = 'write the readings';
 		writeReadings(temp, capture.readings);
+		step = 'write the searches';
+		writeSearches(temp, capture.searches);
 		if (existsSync(target)) {
 			step = `set the old ${capture.id} folder aside`;
 			renameSync(target, aside);

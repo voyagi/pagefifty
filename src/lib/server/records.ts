@@ -18,6 +18,7 @@ import {
 	type ReadingRun
 } from '../snapshot/readings';
 import { SearchRunSchema, type SearchRun } from '../snapshot/search-run';
+import { NoticeSearchSchema, type NoticeSearch } from '../snapshot/searches';
 import { captureFacts, type CaptureFacts } from '../tenders/list';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
@@ -37,6 +38,7 @@ const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$/;
 const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
 const SEARCH_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/search-run\.json$/;
+const SEARCH_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/searches\/([^/]+)\.json$/;
 
 function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
 	const found = new Map<string, T>();
@@ -98,6 +100,14 @@ const SEARCH_RUNS = byMatch(
 		eager: true
 	}),
 	SEARCH_RUN_PATH
+);
+const SEARCH_URLS = byMatch(
+	import.meta.glob('../snapshot/generated/*/searches/*.json', {
+		query: '?url',
+		import: 'default',
+		eager: true
+	}),
+	SEARCH_PATH
 );
 // Stryker restore all
 
@@ -181,6 +191,25 @@ export async function loadNoticeReadings(
 	if (!parsed.success) {
 		throw new Error(
 			`the ${capture} readings of ${notice} do not match their schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
+}
+
+// A notice the capture's buyer search does not list answers nothing, and its page shows no search.
+export async function loadNoticeSearch(
+	capture: string,
+	notice: string
+): Promise<NoticeSearch | undefined> {
+	if (!NOTICE_NUMBER.test(notice)) return undefined;
+	const url = SEARCH_URLS.get(`${capture}/${notice}`);
+	if (url === undefined) return undefined;
+	const parsed = NoticeSearchSchema.safeParse(
+		await readJson(url, `the ${capture} buyer search of ${notice}`)
+	);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} buyer search of ${notice} does not match its schema: ${parsed.error.message}`
 		);
 	}
 	return parsed.data;

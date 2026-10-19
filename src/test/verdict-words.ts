@@ -18,12 +18,15 @@ interface Scope {
 }
 
 // The page's own words: everything except text marked as the notice's (titles, buyers,
-// descriptions), which may say anything, "Go-Live" included. Each text node is its own line, since
-// markup can set two elements side by side with no space between them and a word in one must never
-// read as the tail of the text before it ("Lot 1GO").
+// descriptions) or as a web page's (a buyer search result's title), which may say anything,
+// "Go-Live" included. Each text node is its own line, since markup can set two elements side by side
+// with no space between them and a word in one must never read as the tail of the text before it
+// ("Lot 1GO").
+const PUBLISHED_TEXT = '[data-notice-text], [data-web-text]';
+
 export function checkedText(root: Element, { outsideVerdict = false }: Scope = {}): string {
 	const copy = root.cloneNode(true) as Element;
-	const left = outsideVerdict ? '[data-notice-text], [data-verdict]' : '[data-notice-text]';
+	const left = outsideVerdict ? `${PUBLISHED_TEXT}, [data-verdict]` : PUBLISHED_TEXT;
 	for (const node of copy.querySelectorAll(left)) node.remove();
 	const texts: string[] = [];
 	const walker = copy.ownerDocument.createTreeWalker(copy, NodeFilter.SHOW_TEXT);

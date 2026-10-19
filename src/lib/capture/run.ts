@@ -11,6 +11,7 @@ import type { NoticeRecord } from '../ingest/record.ts';
 import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot/index-row.ts';
 import { resolveModes, type Modes } from '../server/transport-mode.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
+import type { SearchRun } from '../snapshot/search-run.ts';
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
@@ -33,13 +34,15 @@ import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from '.
 import { createXmlCache } from './xml-cache.ts';
 
 // What a step hands back for the published folder: a file to write into it (none when it has nothing
-// to publish) and its block of run.json.
-export interface StepOutput {
+// to publish) and its block of run.json, keyed by the block it fills.
+interface StepFile {
 	file: string | null;
 	value: unknown;
-	recordKey: 'reading';
-	record: ReadingRun;
 }
+
+export type StepOutput =
+	| (StepFile & { recordKey: 'reading'; record: ReadingRun })
+	| (StepFile & { recordKey: 'search'; record: SearchRun });
 
 // The seam phase 2's model read and Tavily search plug into. A step reaches a provider only through
 // gate.attempt; its context never holds a key (the gate does), so a call that skips the gate has
@@ -325,6 +328,16 @@ function leaveOutClosing(selection: Selection, openAfter: string | null): Select
 	);
 }
 
+function readingBlockOf(outputs: readonly StepOutput[]): ReadingRun | null {
+	for (const output of outputs) if (output.recordKey === 'reading') return output.record;
+	return null;
+}
+
+function searchBlockOf(outputs: readonly StepOutput[]): SearchRun | null {
+	for (const output of outputs) if (output.recordKey === 'search') return output.record;
+	return null;
+}
+
 function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string): RunRecord {
 	const { query, fields, scope, onlyLatestVersions } = searchBody(run.since, 1);
 	const { selection } = run;
@@ -348,7 +361,8 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 			sameProcedure: selection?.sameProcedure ?? []
 		},
 		metered: run.gate.record(),
-		reading: run.outputs.find((output) => output.recordKey === 'reading')?.record ?? null
+		reading: readingBlockOf(run.outputs),
+		search: searchBlockOf(run.outputs)
 	});
 }
 
