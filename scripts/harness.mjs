@@ -23,28 +23,56 @@ import {
 	utimesSync,
 	writeFileSync
 } from 'node:fs';
+import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { delimiter, dirname, join } from 'node:path';
 import { connect } from 'node:net';
 import { fileURLToPath } from 'node:url';
-import { decideLotStatus } from '../src/lib/core/compare.ts';
-import { coverage, summarizeLot } from '../src/lib/core/coverage-facts.ts';
-import {
-	SERVER_TIME_ZONE,
-	displayedDeadline,
-	formatDeadline,
-	noticeDeadline
-} from '../src/lib/core/deadline.ts';
-import { lotStatusOf } from '../src/lib/core/lot-reading.ts';
-import { VERDICT_LABELS } from '../src/lib/core/verdict.ts';
-import { DEMO_PROFILE } from '../src/lib/profile/demo-firm.ts';
-import { captureDay, exampleCaptureOf, isCaptureId } from '../src/lib/snapshot/capture-id.ts';
-import {
-	CaptureLineSchema,
-	NoticeRecordSchema,
-	SnapshotIndexSchema
-} from '../src/lib/snapshot/index-row.ts';
-import { NoticeReadingsSchema, ReadingRunSchema } from '../src/lib/snapshot/readings.ts';
+
+// The example's facts are read with the site's own rules from src. scripts/preview.mjs imports this
+// file too, and its test runs it from a copy of scripts/ alone, so src is loaded only when
+// exampleFacts first runs: require loads an erasable TypeScript module under Node's type stripping
+// as an import would, and keeps exampleFacts synchronous.
+const requireFromHarness = createRequire(import.meta.url);
+let decideLotStatus;
+let coverage;
+let summarizeLot;
+let SERVER_TIME_ZONE;
+let displayedDeadline;
+let formatDeadline;
+let noticeDeadline;
+let lotStatusOf;
+let VERDICT_LABELS;
+let DEMO_PROFILE;
+let captureDay;
+let exampleCaptureOf;
+let isCaptureId;
+let CaptureLineSchema;
+let NoticeRecordSchema;
+let SnapshotIndexSchema;
+let NoticeReadingsSchema;
+let ReadingRunSchema;
+
+function loadSiteRules() {
+	if (decideLotStatus !== undefined) return;
+	({ decideLotStatus } = requireFromHarness('../src/lib/core/compare.ts'));
+	({ coverage, summarizeLot } = requireFromHarness('../src/lib/core/coverage-facts.ts'));
+	({ SERVER_TIME_ZONE, displayedDeadline, formatDeadline, noticeDeadline } = requireFromHarness(
+		'../src/lib/core/deadline.ts'
+	));
+	({ lotStatusOf } = requireFromHarness('../src/lib/core/lot-reading.ts'));
+	({ VERDICT_LABELS } = requireFromHarness('../src/lib/core/verdict.ts'));
+	({ DEMO_PROFILE } = requireFromHarness('../src/lib/profile/demo-firm.ts'));
+	({ captureDay, exampleCaptureOf, isCaptureId } = requireFromHarness(
+		'../src/lib/snapshot/capture-id.ts'
+	));
+	({ CaptureLineSchema, NoticeRecordSchema, SnapshotIndexSchema } = requireFromHarness(
+		'../src/lib/snapshot/index-row.ts'
+	));
+	({ NoticeReadingsSchema, ReadingRunSchema } = requireFromHarness(
+		'../src/lib/snapshot/readings.ts'
+	));
+}
 
 export const DEV_BROWSER_TMP = join(homedir(), '.dev-browser', 'tmp');
 const LOCK_PATH = join(DEV_BROWSER_TMP, 'pagefifty-browser-run.lock');
@@ -927,6 +955,7 @@ function probeRows(rows, notices) {
 // The example capture is chosen by exampleCaptureOf over the built capture lines, the rule the site
 // itself uses, and every count and probe is read at its capture instant, as /example shows it.
 export function exampleFacts(generatedDir) {
+	loadSiteRules();
 	const id = exampleCaptureOf(captureLines(generatedDir));
 	const folder = join(generatedDir, id);
 	const index = readBuilt(join(folder, 'index.json'), SnapshotIndexSchema, 'a built index');
