@@ -15,10 +15,13 @@ import { afterAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
 import { readReplyFixture } from '../../test/fixtures/replies';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
+import { searchesFileOf } from '../capture/buyer-search';
 import { readingKey } from '../capture/model-read';
+import { readResults, searchQuery } from '../capture/tavily';
 import { MODEL_READ, promptSha256, readReply, userMessage } from '../capture/token-factory';
 import { CaptureLineSchema, NoticeRecordSchema, SnapshotIndexSchema } from './index-row';
 import { NoticeReadingsSchema, ReadingsFileSchema } from './readings';
+import { SearchesFileSchema, type WebResult } from './searches';
 
 // globalSetup has run scripts/build-records.mjs before this file, so these read its real output.
 const GENERATED = join('src', 'lib', 'snapshot', 'generated');
@@ -187,6 +190,47 @@ describe('the example capture readings', () => {
 			expect(existsSync(join(GENERATED, id, 'reading-run.json'))).toBe(false);
 		}
 		expect(folders(GENERATED)).toContain('2026-10-16');
+	});
+});
+
+const EXAMPLE_SEARCHES = join(EXAMPLES, CAPTURE_ID, 'searches.json');
+const BUYER_SEARCH = 'tavily-610242-buyer';
+
+describe('the example capture buyer search', () => {
+	it('the example search of the German buyer holds the recorded five results', () => {
+		expect(existsSync(EXAMPLE_SEARCHES)).toBe(true);
+		const text = readFileSync(EXAMPLE_SEARCHES, 'utf8');
+		const file = SearchesFileSchema.parse(JSON.parse(text));
+		expect(text).toBe(`${JSON.stringify(file, null, 2)}\n`);
+		expect(text).not.toContain('"content"');
+		const recorded = readReplyFixture(BUYER_SEARCH);
+		const answer = recorded.response as unknown as { results: WebResult[] };
+		const record = NoticeRecordSchema.parse(
+			readJson(join(GENERATED, CAPTURE_ID, 'records', '610242-2026.json'))
+		);
+		expect(searchQuery(record)).toBe(recorded.request.query);
+		const searched = {
+			notice: '610242-2026',
+			status: 'searched' as const,
+			query: searchQuery(record),
+			results: readResults(answer.results)
+		};
+		expect(file).toEqual(searchesFileOf({ searches: 1, credits: 1, notices: [searched] }).file);
+		expect(file.run).toEqual({ searches: 1, notSearched: 0, credits: 1 });
+		expect(searched.results.map(({ url }) => url)).toEqual(answer.results.map(({ url }) => url));
+	});
+
+	it('the records build writes the example search beside its records', () => {
+		const built = join(GENERATED, CAPTURE_ID);
+		const file = SearchesFileSchema.parse(readJson(EXAMPLE_SEARCHES));
+		expect(readJson(join(built, 'search-run.json'))).toEqual(file.run);
+		expect(readdirSync(join(built, 'searches'))).toEqual(['610242-2026.json']);
+		expect(readJson(join(built, 'searches', '610242-2026.json'))).toEqual(file.notices[0]);
+		for (const id of folders(GENERATED).filter((each) => each !== CAPTURE_ID)) {
+			expect(existsSync(join(EXAMPLES, id, 'searches.json'))).toBe(false);
+			expect(existsSync(join(GENERATED, id, 'searches'))).toBe(false);
+			expect(existsSync(join(GENERATED, id, 'search-run.json'))).toBe(false);
+		}
 	});
 });
 

@@ -25,6 +25,7 @@ const {
 	LATEST_CAPTURE,
 	loadIndex,
 	loadNoticeReadings,
+	loadNoticeSearch,
 	loadRecord,
 	newestCapture,
 	newestReadingRun,
@@ -240,13 +241,26 @@ describe('the search runs and the providers the trust pages name', () => {
 	const run = () => readingRunOf(SEPT);
 	const searched = (searches: number) => ({ searches, notSearched: 0, credits: null });
 
-	it('searchRunOf reads no search run while no capture has one', () => {
-		expect(searchRunOf('2026-09-15')).toBeNull();
-		expect(searchRunOf('2026-10-16')).toBeNull();
+	it('the trust pages name Tavily once the example capture searched', () => {
+		expect(searchRunOf('2026-09-15')).toEqual({ searches: 1, notSearched: 0, credits: 1 });
 		expect(providersOf(readingRunOf('2026-09-15'), searchRunOf('2026-09-15'))).toEqual([
-			'Nebius Token Factory'
+			'Nebius Token Factory',
+			'Tavily'
 		]);
+		expect(searchRunOf('2026-10-16')).toBeNull();
+		expect(providersOf(readingRunOf('2026-10-16'), searchRunOf('2026-10-16'))).toEqual([]);
 		expect(read).not.toHaveBeenCalled();
+	});
+
+	it('loadNoticeSearch reads the German buyer search through read(), and nothing for a notice it does not list', async () => {
+		const german = await loadNoticeSearch(SEPT, '610242-2026');
+		expect(german?.status).toBe('searched');
+		expect(german?.status === 'searched' && german.results.length).toBe(5);
+		expect(read).toHaveBeenCalledTimes(1);
+		expect(await loadNoticeSearch(SEPT, '634398-2026')).toBeUndefined();
+		expect(await loadNoticeSearch('2026-10-16', '610242-2026')).toBeUndefined();
+		expect(await loadNoticeSearch(SEPT, '../search-run')).toBeUndefined();
+		expect(read).toHaveBeenCalledTimes(1);
 	});
 
 	it('names the model provider of the reading run, and Tavily only for a run with a search', () => {

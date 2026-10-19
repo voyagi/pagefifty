@@ -284,11 +284,17 @@ interface PlantOptions {
 	notices: string[];
 	openAfter?: string;
 	edit?: (notice: string, record: Json, row: Json, readings: Json | undefined) => void;
+	// Buyer searches to plant, by notice; none unless a test names them.
+	searches?: Record<string, Json>;
 }
 
 // A generated folder holding one capture built from a few 2026-09-15 notices, so a probe the real
 // build always has can be left out. The repository's own generated folder is never touched.
-function plantCapture(root: string, id: string, { notices, openAfter, edit }: PlantOptions) {
+function plantCapture(
+	root: string,
+	id: string,
+	{ notices, openAfter, edit, searches = {} }: PlantOptions
+) {
 	const from = join(GENERATED, SEPT);
 	const line = { ...readJson(join(from, 'capture.json')), id, ...(openAfter && { openAfter }) };
 	const index = readJson(join(from, 'index.json'));
@@ -303,6 +309,9 @@ function plantCapture(root: string, id: string, { notices, openAfter, edit }: Pl
 		rows.push(row);
 		writeJson(join(root, id, 'records', `${notice}.json`), record);
 		if (readings) writeJson(join(root, id, 'readings', `${notice}.json`), readings);
+	}
+	for (const [notice, search] of Object.entries(searches)) {
+		writeJson(join(root, id, 'searches', `${notice}.json`), search);
 	}
 	writeJson(join(root, id, 'capture.json'), line);
 	writeJson(join(root, id, 'index.json'), { capture: line, leftOut: [], rows });
@@ -410,6 +419,39 @@ describe('the example capture the browser runs follow', () => {
 				'610242-2026'
 			]);
 		});
+	});
+
+	it('exampleFacts carries the read probe search results', () => {
+		const built = exampleFacts(GENERATED).probes.read as NoticeFacts & { searchResults: unknown };
+		expect([built.notice, built.searchResults]).toEqual(['610242-2026', 5]);
+		const notices = ['600457-2026', '609955-2026', '610242-2026'];
+		const searched = (results: Json[]) => ({
+			notice: '610242-2026',
+			status: 'searched',
+			query: 'Berlin TXL Management GmbH Vergabe Zuschlag IT Dienstleistungen',
+			results
+		});
+		const cases: [string, Record<string, Json> | undefined, number | null][] = [
+			['no searches', undefined, null],
+			['searched with no result', { '610242-2026': searched([]) }, 0],
+			[
+				'searched with one result',
+				{ '610242-2026': searched([{ title: 'A', url: 'https://a.example/', score: 0.5 }]) },
+				1
+			],
+			[
+				'not searched',
+				{ '610242-2026': { notice: '610242-2026', status: 'not-searched', reason: 'cap-reached' } },
+				null
+			]
+		];
+		for (const [what, searches, expected] of cases) {
+			withPlantedRoot((root) => {
+				plantCapture(root, SEPT, { notices, searches });
+				const read = exampleFacts(root).probes.read as { searchResults: unknown };
+				expect(read.searchResults, what).toBe(expected);
+			});
+		}
 	});
 
 	it("takes the read probe's verdicts from decideLotStatus, a lot not read included", () => {
