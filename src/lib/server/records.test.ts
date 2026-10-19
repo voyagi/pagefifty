@@ -1,7 +1,14 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { CAPTURE_ID } from '../snapshot/capture-id';
+import {
+	assertOpenPastCutoff,
+	builtCaptureLines,
+	lotsClosingByCutoff
+} from '../../test/example-deadlines';
+import { CAPTURE_ID, exampleCaptureOf } from '../snapshot/capture-id';
 import { captureFacts } from '../tenders/list';
+
+const GENERATED = 'src/lib/snapshot/generated';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -85,15 +92,40 @@ describe('newestCapture', () => {
 
 describe('the captures the pages read', () => {
 	it('gives the live pages the newest capture the build wrote', () => {
-		const built = readdirSync('src/lib/snapshot/generated')
+		const built = readdirSync(GENERATED)
 			.filter((name) => CAPTURE_ID.test(name))
 			.sort();
 		expect(built.length).toBeGreaterThan(0);
 		expect(LATEST_CAPTURE).toBe(built[built.length - 1]);
 	});
 
-	it('keeps the example on the 2026-09-15 capture', () => {
-		expect(EXAMPLE_CAPTURE).toBe('2026-09-15');
+	it('chooses the example by the rule over the built capture lines', () => {
+		expect(EXAMPLE_CAPTURE).toBe(exampleCaptureOf(builtCaptureLines(GENERATED)));
+	});
+});
+
+// The 2026-09-15 capture predates the filter, so while it is the example no deadline claim is made
+// for it; once a capture the rule chose is the example, every lot it shows must close after the cutoff.
+describe('the example and the Devpost cutoff', () => {
+	it('the example capture shows no lot closing at or before the cutoff', async () => {
+		const { rows } = await loadIndex(EXAMPLE_CAPTURE);
+		if (EXAMPLE_CAPTURE === '2026-09-15') {
+			expect(lotsClosingByCutoff(rows).length).toBeGreaterThan(0);
+			return;
+		}
+		// Called bare, so a failure prints every lot it names in full rather than a cut message.
+		assertOpenPastCutoff(EXAMPLE_CAPTURE, rows);
+	});
+
+	it('the fallback example is named, not checked silently', () => {
+		const withOpenAfter = [...builtCaptureLines(GENERATED)]
+			.filter(([, line]) => line.openAfter !== undefined)
+			.map(([id]) => id);
+		if (EXAMPLE_CAPTURE === '2026-09-15') {
+			expect(withOpenAfter).toEqual([]);
+		} else {
+			expect(withOpenAfter).toContain(EXAMPLE_CAPTURE);
+		}
 	});
 });
 

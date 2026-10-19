@@ -11,9 +11,14 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it, vi } from 'vitest';
+import {
+	assertOpenPastCutoff,
+	builtCaptureLines,
+	noticeWithLotDeadlines
+} from '../../test/example-deadlines';
 import { capturePath } from '../../test/fixtures/node';
 import { CAPTURE_ID, exampleCaptureOf, FINAL_CUTOFF } from '../snapshot/capture-id';
-import { captureDay, CaptureLineSchema, SnapshotIndexSchema } from '../snapshot/index-row';
+import { captureDay, SnapshotIndexSchema } from '../snapshot/index-row';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -64,18 +69,6 @@ function buildRecords(examples: string, out: string) {
 	);
 }
 
-// Each built capture's line, keyed by its folder, as records.ts keys the lines it bundles.
-function builtLines(out: string) {
-	return new Map(
-		readdirSync(out)
-			.filter((name) => CAPTURE_ID.test(name))
-			.map((id) => [
-				id,
-				CaptureLineSchema.parse(JSON.parse(readFileSync(join(out, id, 'capture.json'), 'utf8')))
-			])
-	);
-}
-
 // records.ts globs the generated folder when Vite builds it, so a second capture cannot be added
 // under a running test. The pair is proven where the folders are written, and the glob wiring by the
 // loaders below, which turn into a two-capture test by themselves once a newer capture is tracked.
@@ -94,7 +87,7 @@ describe('two captures built side by side', () => {
 			'600779-2026'
 		]);
 		expect(newestCapture(readdirSync(out))).toBe('2026-01-09');
-		expect(exampleCaptureOf(builtLines(out))).toBe('2026-09-15');
+		expect(exampleCaptureOf(builtCaptureLines(out))).toBe('2026-09-15');
 		expect(EXAMPLE_CAPTURE).toBe('2026-09-15');
 	});
 });
@@ -107,11 +100,50 @@ describe('the example rule over built captures', () => {
 		writeDatedCapture(examples, '2026-01-09', '600779-2026');
 		const run = buildRecords(examples, out);
 		expect(run.status, run.stderr).toBe(0);
-		const lines = builtLines(out);
+		const lines = builtCaptureLines(out);
 		expect(lines.get('2026-01-02')?.openAfter).toBe('2026-10-30T17:00:00.000Z');
 		expect(lines.get('2026-01-09')?.openAfter).toBeUndefined();
 		expect(exampleCaptureOf(lines)).toBe('2026-01-02');
 		expect(newestCapture(lines.keys())).toBe('2026-01-09');
+	});
+});
+
+// The check the records tests run over the real example, run over a capture that should never have
+// been written: its listing claims the cutoff, but one lot closes exactly at it.
+describe('the example deadline check over a planted capture', () => {
+	function plantedCapture(prefix: string, time: string) {
+		const { examples, out } = tempCaptures(prefix);
+		const folder = join(examples, '2026-01-16');
+		mkdirSync(join(folder, 'xml'), { recursive: true });
+		const listing = {
+			fetchedAt: '2026-01-16T09:00:00.000Z',
+			query: 'publication-date>=20260116',
+			openAfter: FINAL_CUTOFF,
+			total: 2,
+			notices: [{ 'publication-number': '607360-2026' }, { 'publication-number': '609955-2026' }]
+		};
+		writeFileSync(join(folder, 'notices.json'), JSON.stringify(listing));
+		copyFileSync(capturePath('607360-2026'), join(folder, 'xml', '607360-2026.xml'));
+		writeFileSync(
+			join(folder, 'xml', '609955-2026.xml'),
+			noticeWithLotDeadlines('609955-2026', [['2026-10-30+01:00', time]])
+		);
+		const run = buildRecords(examples, out);
+		expect(run.status, run.stderr).toBe(0);
+		expect(exampleCaptureOf(builtCaptureLines(out))).toBe('2026-01-16');
+		return indexOf(join(out, '2026-01-16')).rows;
+	}
+
+	it('names the notice and lot of a lot planted exactly at the cutoff', () => {
+		const rows = plantedCapture('pagefifty-planted-cutoff-', '18:00:00+01:00');
+		expect(() => assertOpenPastCutoff('2026-01-16', rows)).toThrow(
+			'the example 2026-01-16 shows lots closing at or before 2026-10-30T17:00:00.000Z: 609955-2026 LOT-0000 closes 2026-10-30T18:00:00+01:00'
+		);
+	});
+
+	it('passes the same capture with that lot one second after the cutoff', () => {
+		const rows = plantedCapture('pagefifty-planted-after-', '18:00:01+01:00');
+		expect(() => assertOpenPastCutoff('2026-01-16', rows)).not.toThrow();
 	});
 });
 

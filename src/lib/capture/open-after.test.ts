@@ -10,7 +10,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
-import { capturePath } from '../../test/fixtures/node.ts';
+import { noticeWithLotDeadlines } from '../../test/example-deadlines.ts';
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
 import { runCapture, type MeteredStep } from './run.ts';
@@ -134,26 +134,11 @@ describe('a capture run with --open-after', () => {
 	});
 });
 
-// The tender deadline period of each lot of a tracked notice, in lot order, replaced by the given
-// day and time, or removed for null. The count must match, so a notice with another lot count, or a
-// period this pattern misses, fails the fixture instead of serving the tracked deadline.
-const TENDER_PERIOD =
-	/<cac:TenderSubmissionDeadlinePeriod>[\s\S]*?<\/cac:TenderSubmissionDeadlinePeriod>/g;
-
+// The stub TED serves the notice with its lots' tender deadlines rewritten.
 function withLotDeadlines(notice: string, periods: readonly ([string, string] | null)[]) {
-	const tracked = readFileSync(capturePath(notice), 'utf8');
-	const found = tracked.match(TENDER_PERIOD)?.length ?? 0;
-	if (found !== periods.length) {
-		throw new Error(`${notice} has ${found} tender deadline periods, not ${periods.length}`);
-	}
-	let lot = 0;
-	const body = tracked.replace(TENDER_PERIOD, () => {
-		const period = periods[lot++];
-		return period === null
-			? ''
-			: `<cac:TenderSubmissionDeadlinePeriod><cbc:EndDate>${period[0]}</cbc:EndDate><cbc:EndTime>${period[1]}</cbc:EndTime></cac:TenderSubmissionDeadlinePeriod>`;
-	});
-	return { [tedNoticeXmlUrl(notice)]: [{ status: 200, body }] };
+	return {
+		[tedNoticeXmlUrl(notice)]: [{ status: 200, body: noticeWithLotDeadlines(notice, periods) }]
+	};
 }
 
 // 607360-2026 closes on 30 Nov 2026, after every instant used here, so each run writes something.
