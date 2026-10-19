@@ -11,11 +11,12 @@ const { fromDisk, read } = vi.hoisted(() => {
 });
 vi.mock('$app/server', () => ({ read }));
 
-const { EXAMPLE_CAPTURE } = await import('./records');
 const { loadTenderPage } = await import('./tender-page');
 
+// The 2026-09-15 capture is named, not reached through the example, since these figures are its own.
+const SEPT = '2026-09-15';
 const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
-// The days the error page names for the example's capture, from its built capture line.
+// The days the error page names for the 2026-09-15 capture, from its built capture line.
 const UNKNOWN = {
 	message: 'Not Found',
 	kind: 'unknown-notice',
@@ -45,8 +46,7 @@ async function failureOf(load: Promise<unknown>): Promise<unknown> {
 	throw new Error('the load succeeded instead of failing');
 }
 
-const load = (notice: string) =>
-	loadTenderPage({ capture: EXAMPLE_CAPTURE, notice, now: CAPTURE_INSTANT });
+const load = (notice: string) => loadTenderPage({ capture: SEPT, notice, now: CAPTURE_INSTANT });
 
 beforeEach(() => {
 	read.mockClear();

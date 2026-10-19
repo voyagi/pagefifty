@@ -9,6 +9,9 @@ import { CAPTURE_ID, exampleCaptureOf } from '../snapshot/capture-id';
 import { captureFacts } from '../tenders/list';
 
 const GENERATED = 'src/lib/snapshot/generated';
+// The capture whose own records these tests check, named rather than reached through the example,
+// so the example moving to the final capture moves only the tests about the example rule.
+const SEPT = '2026-09-15';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -140,8 +143,8 @@ describe('snapshotDays', () => {
 		expect(days).toEqual(captureFacts(index.capture));
 	});
 
-	it('names 15 Sep 2026 and 1 Sep 2026 for the example capture', () => {
-		expect(snapshotDays(EXAMPLE_CAPTURE)).toMatchObject({
+	it('names 15 Sep 2026 and 1 Sep 2026 for the 2026-09-15 capture', () => {
+		expect(snapshotDays(SEPT)).toMatchObject({
 			capturedOn: '15 Sep 2026',
 			firstPublished: '1 Sep 2026'
 		});
@@ -156,8 +159,8 @@ describe('snapshotDays', () => {
 });
 
 describe('loadIndex', () => {
-	it('reads every notice of the example capture through read()', async () => {
-		const index = await loadIndex(EXAMPLE_CAPTURE);
+	it('reads every notice of the 2026-09-15 capture through read()', async () => {
+		const index = await loadIndex(SEPT);
 		expect(index.capture.id).toBe('2026-09-15');
 		expect(index.rows).toHaveLength(362);
 		expect(read).toHaveBeenCalledTimes(1);
@@ -171,7 +174,7 @@ describe('loadIndex', () => {
 
 	it('fails the whole load when the index does not match its schema', async () => {
 		read.mockImplementationOnce(() => Response.json({ capture: {}, rows: [] }));
-		await expect(loadIndex(EXAMPLE_CAPTURE)).rejects.toThrow('does not match its schema');
+		await expect(loadIndex(SEPT)).rejects.toThrow('does not match its schema');
 	});
 
 	it('names the step and the folder that write the records when a capture was never built', async () => {
@@ -182,7 +185,7 @@ describe('loadIndex', () => {
 
 	it('names the index and the cause when the Worker cannot fetch its file', async () => {
 		read.mockImplementationOnce(fetchFailed);
-		await expect(loadIndex(EXAMPLE_CAPTURE)).rejects.toMatchObject({
+		await expect(loadIndex(SEPT)).rejects.toMatchObject({
 			message: expect.stringContaining(
 				'the 2026-09-15 index could not be read: Error: read(...) failed: could not fetch'
 			),
@@ -192,14 +195,14 @@ describe('loadIndex', () => {
 
 	it('names the index when read() refuses its path outright', async () => {
 		read.mockImplementationOnce(notInManifest);
-		await expect(loadIndex(EXAMPLE_CAPTURE)).rejects.toThrow(
+		await expect(loadIndex(SEPT)).rejects.toThrow(
 			'the 2026-09-15 index could not be read: Error: Asset does not exist'
 		);
 	});
 
 	it('names the index when its file is not JSON, keeping the parse error as the cause', async () => {
 		read.mockImplementationOnce(() => new Response('<!doctype html>'));
-		await expect(loadIndex(EXAMPLE_CAPTURE)).rejects.toMatchObject({
+		await expect(loadIndex(SEPT)).rejects.toMatchObject({
 			message: expect.stringContaining('the 2026-09-15 index is not JSON'),
 			cause: expect.any(SyntaxError)
 		});
@@ -207,33 +210,34 @@ describe('loadIndex', () => {
 });
 
 describe('the reading runs the pages read', () => {
-	const exampleRun = () =>
+	const septRun = () =>
 		JSON.parse(readFileSync('examples/2026-09-15/readings.json', 'utf8')).run as unknown;
 
-	it('newestReadingRun returns the example capture run', () => {
-		expect(LATEST_CAPTURE).not.toBe(EXAMPLE_CAPTURE);
-		expect(newestReadingRun()?.id).toBe(EXAMPLE_CAPTURE);
-		expect(newestReadingRun()).toEqual({ id: EXAMPLE_CAPTURE, run: exampleRun() });
-		expect(readingRunOf(EXAMPLE_CAPTURE)).toEqual(exampleRun());
+	// Holds while 2026-09-15 is the only capture the model read; the final capture replaces it here.
+	it('newestReadingRun returns the 2026-09-15 run, the newest capture the model read', () => {
+		expect(LATEST_CAPTURE).not.toBe(SEPT);
+		expect(newestReadingRun()?.id).toBe(SEPT);
+		expect(newestReadingRun()).toEqual({ id: SEPT, run: septRun() });
+		expect(readingRunOf(SEPT)).toEqual(septRun());
 		expect(readingRunOf(LATEST_CAPTURE)).toBeNull();
 		expect(read).not.toHaveBeenCalled();
 	});
 
 	it('loadNoticeReadings reads the German lot readings through read(), and nothing for a notice the readings do not list', async () => {
-		const german = await loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026');
+		const german = await loadNoticeReadings(SEPT, '610242-2026');
 		expect(german?.notice).toBe('610242-2026');
 		expect(german?.lots.map(({ lot, status }) => `${lot} ${status}`)).toEqual(['LOT-0000 read']);
 		expect(german?.readings.map((reading) => reading.items.length)).toEqual([14]);
 		expect(read).toHaveBeenCalledTimes(1);
-		expect(await loadNoticeReadings(EXAMPLE_CAPTURE, '609955-2026')).toBeUndefined();
+		expect(await loadNoticeReadings(SEPT, '609955-2026')).toBeUndefined();
 		expect(await loadNoticeReadings(LATEST_CAPTURE, '610242-2026')).toBeUndefined();
-		expect(await loadNoticeReadings(EXAMPLE_CAPTURE, '../reading-run')).toBeUndefined();
+		expect(await loadNoticeReadings(SEPT, '../reading-run')).toBeUndefined();
 		expect(read).toHaveBeenCalledTimes(1);
 	});
 });
 
 describe('the search runs and the providers the trust pages name', () => {
-	const run = () => readingRunOf(EXAMPLE_CAPTURE);
+	const run = () => readingRunOf(SEPT);
 	const searched = (searches: number) => ({ searches, notSearched: 0, credits: null });
 
 	it('searchRunOf reads no search run while no capture has one', () => {
@@ -278,7 +282,7 @@ describe('the search runs and the providers the trust pages name', () => {
 describe('loadNoticeReadings on a damaged file', () => {
 	it('a damaged generated readings file is a server error naming the file', async () => {
 		read.mockImplementationOnce(() => Response.json({ notice: '610242-2026', lots: 'x' }));
-		const failed = loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026');
+		const failed = loadNoticeReadings(SEPT, '610242-2026');
 		await expect(failed).rejects.toThrow(
 			'the 2026-09-15 readings of 610242-2026 do not match their schema: '
 		);
@@ -288,7 +292,7 @@ describe('loadNoticeReadings on a damaged file', () => {
 
 	it('names the readings file when it is not JSON', async () => {
 		read.mockImplementationOnce(() => new Response('{"notice":'));
-		await expect(loadNoticeReadings(EXAMPLE_CAPTURE, '610242-2026')).rejects.toThrow(
+		await expect(loadNoticeReadings(SEPT, '610242-2026')).rejects.toThrow(
 			'the 2026-09-15 readings of 610242-2026 is not JSON'
 		);
 	});
@@ -296,25 +300,25 @@ describe('loadNoticeReadings on a damaged file', () => {
 
 describe('loadRecord', () => {
 	it('reads one notice record', async () => {
-		const record = await loadRecord(EXAMPLE_CAPTURE, '609955-2026');
+		const record = await loadRecord(SEPT, '609955-2026');
 		expect(record?.noticeNumber).toBe('609955-2026');
 		expect(record?.lots[0].deadlines.tender).toBe('2026-10-06T10:30:00+02:00');
 	});
 
 	it('answers nothing for 601147-2026, the version 600367-2026 superseded', async () => {
-		expect(await loadRecord(EXAMPLE_CAPTURE, '601147-2026')).toBeUndefined();
+		expect(await loadRecord(SEPT, '601147-2026')).toBeUndefined();
 	});
 
 	it('fails the load when a record does not match its schema', async () => {
 		read.mockImplementationOnce(() => Response.json({ noticeNumber: '609955-2026', lots: 'x' }));
-		await expect(loadRecord(EXAMPLE_CAPTURE, '609955-2026')).rejects.toThrow(
+		await expect(loadRecord(SEPT, '609955-2026')).rejects.toThrow(
 			'the 2026-09-15 record 609955-2026 does not match its schema'
 		);
 	});
 
 	it('names the record and the cause when the Worker cannot fetch its file', async () => {
 		read.mockImplementationOnce(fetchFailed);
-		await expect(loadRecord(EXAMPLE_CAPTURE, '609955-2026')).rejects.toThrow(
+		await expect(loadRecord(SEPT, '609955-2026')).rejects.toThrow(
 			'the 2026-09-15 record 609955-2026 could not be read: Error: read(...) failed'
 		);
 	});
@@ -328,7 +332,7 @@ describe('loadRecord', () => {
 		'6099552026',
 		'12345-2025'
 	])('answers %j with nothing and never reads', async (notice) => {
-		expect(await loadRecord(EXAMPLE_CAPTURE, notice)).toBeUndefined();
+		expect(await loadRecord(SEPT, notice)).toBeUndefined();
 		expect(read).not.toHaveBeenCalled();
 	});
 });

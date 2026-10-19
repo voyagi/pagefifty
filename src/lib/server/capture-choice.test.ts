@@ -88,7 +88,6 @@ describe('two captures built side by side', () => {
 		]);
 		expect(newestCapture(readdirSync(out))).toBe('2026-01-09');
 		expect(exampleCaptureOf(builtCaptureLines(out))).toBe('2026-09-15');
-		expect(EXAMPLE_CAPTURE).toBe('2026-09-15');
 	});
 });
 
@@ -151,22 +150,23 @@ describe('the live list and the example', () => {
 	const tenders = new URL('http://127.0.0.1/tenders');
 	const example = new URL('http://127.0.0.1/example');
 
-	it('dates the live list by the newest generated capture and the example by 15 Sep 2026', async () => {
+	it('dates the live list by the newest generated capture and the example by its own capture', async () => {
 		const built = readdirSync(GENERATED)
 			.filter((name) => CAPTURE_ID.test(name))
 			.sort();
 		const newest = indexOf(join(GENERATED, built[built.length - 1]));
+		const chosen = indexOf(join(GENERATED, EXAMPLE_CAPTURE));
 		const live = await loadTenderList({ capture: LATEST_CAPTURE, url: tenders, now: 'capture' });
 		const pinned = await loadExampleList({ url: example });
 		expect(live.capture.capturedOn).toBe(captureDay(newest.capture.fetchedAt));
-		expect(pinned.capture.capturedOn).toBe('15 Sep 2026');
+		expect(pinned.capture.capturedOn).toBe(captureDay(chosen.capture.fetchedAt));
 		expect(live.capture.capturedOn === pinned.capture.capturedOn).toBe(
-			LATEST_CAPTURE === '2026-09-15'
+			LATEST_CAPTURE === EXAMPLE_CAPTURE
 		);
 	});
 
-	it('lists 600367-2026 on the example and never 601147-2026, the version it replaced', async () => {
-		const { list } = await loadExampleList({ url: example });
+	it('lists 600367-2026 in the 2026-09-15 capture and never 601147-2026, the version it replaced', async () => {
+		const { list } = await loadTenderList({ capture: '2026-09-15', url: tenders, now: 'capture' });
 		const listed = [...list.open, ...list.closed].map((row) => row.noticeNumber);
 		expect(listed).toContain('600367-2026');
 		expect(listed).not.toContain('601147-2026');

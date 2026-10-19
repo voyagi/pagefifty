@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { noticeDeadline } from '../core/deadline';
+import { captureDay, SnapshotIndexSchema } from '../snapshot/index-row';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -13,11 +15,13 @@ const { EXAMPLE_CAPTURE } = await import('./records');
 const { loadExampleList, loadExamplePage, loadTenderList } = await import('./tenders');
 const { loadTenderPage } = await import('./tender-page');
 
+// The 2026-09-15 capture is named, not reached through the example, since these figures are its own.
+const SEPT = '2026-09-15';
 const CAPTURE_INSTANT = new Date('2026-09-15T19:50:49.157Z');
 
 const load = (search: string, now = CAPTURE_INSTANT) =>
 	loadTenderList({
-		capture: EXAMPLE_CAPTURE,
+		capture: SEPT,
 		url: new URL(`http://127.0.0.1/tenders${search}`),
 		now
 	});
@@ -80,9 +84,29 @@ describe('loadTenderList', () => {
 	});
 });
 
+// The example is whichever capture the rule chose, so its own index gives the instant it is judged
+// at and a notice open then; these tests hold on the day the final capture becomes the example.
+const EXAMPLE_INDEX = SnapshotIndexSchema.parse(
+	JSON.parse(fromDisk(`src/lib/snapshot/generated/${EXAMPLE_CAPTURE}/index.json`))
+);
+const EXAMPLE_INSTANT = new Date(EXAMPLE_INDEX.capture.fetchedAt);
+const OPEN_NOTICE = EXAMPLE_INDEX.rows.find(
+	(row) => noticeDeadline(row.lots, EXAMPLE_INSTANT).open
+)?.noticeNumber;
+
 describe('the example run', () => {
 	const exampleList = (search = '') =>
 		loadExampleList({ url: new URL(`http://127.0.0.1/example${search}`) });
+	const atExample = (search: string, now = EXAMPLE_INSTANT) =>
+		loadTenderList({
+			capture: EXAMPLE_CAPTURE,
+			url: new URL(`http://127.0.0.1/tenders${search}`),
+			now
+		});
+	const openNotice = () => {
+		if (OPEN_NOTICE === undefined) throw new Error(`${EXAMPLE_CAPTURE} lists no open notice`);
+		return OPEN_NOTICE;
+	};
 
 	afterEach(() => {
 		vi.useRealTimers();
@@ -90,25 +114,26 @@ describe('the example run', () => {
 	});
 
 	it('lists the same notices as /tenders judged at the capture instant, reading the index once', async () => {
-		const tenders = await load('');
+		const tenders = await atExample('');
 		read.mockClear();
 		const example = await exampleList();
 		expect(read).toHaveBeenCalledTimes(1);
 		expect(example).toEqual(tenders);
-		expect(example.list.open.length).toBe(349);
+		expect(example.list.open.length).toBeGreaterThan(0);
 	});
 
 	it('filters the same way as /tenders', async () => {
-		expect(await exampleList('?country=NL&cpv=72')).toEqual(await load('?country=NL&cpv=72'));
+		expect(await exampleList('?country=NL&cpv=72')).toEqual(await atExample('?country=NL&cpv=72'));
 	});
 
-	it('builds the same tender page for 609955-2026 as /tenders at the capture instant', async () => {
+	it('builds the same tender page as /tenders for a notice open at the capture instant', async () => {
+		const notice = openNotice();
 		const tenders = await loadTenderPage({
 			capture: EXAMPLE_CAPTURE,
-			notice: '609955-2026',
-			now: CAPTURE_INSTANT
+			notice,
+			now: EXAMPLE_INSTANT
 		});
-		const example = await loadExamplePage({ notice: '609955-2026' });
+		const example = await loadExamplePage({ notice });
 		expect(example).toEqual(tenders);
 		expect(example.tender.deadline.open).toBe(true);
 	});
@@ -129,10 +154,12 @@ describe('the example run', () => {
 		expect(Object.keys(process.env).filter((name) => name.startsWith('PAGEFIFTY'))).toEqual([]);
 		const judging = await exampleList();
 		expect(judging.list.open.length).toBeGreaterThan(0);
-		expect(judging.capture.capturedOn).toBe('15 Sep 2026');
+		expect(judging.capture.capturedOn).toBe(captureDay(EXAMPLE_INDEX.capture.fetchedAt));
 		expect(judging).toEqual(atCapture);
-		// The live list judged on the same day has fewer open, so the example is not reading the clock.
-		expect((await load('', new Date())).list.counts.open).toBeLessThan(judging.list.counts.open);
+		// The same capture judged long after every deadline has none open, so the example is not
+		// reading the clock.
+		const later = await atExample('', new Date('2099-01-01T00:00:00Z'));
+		expect(later.list.counts.open).toBe(0);
 	});
 
 	it('ignores the live switch: the example reads no environment variable', async () => {
@@ -142,30 +169,32 @@ describe('the example run', () => {
 	});
 
 	describe('a lot whose deadline is the capture instant itself', () => {
-		const NOTICE = '609955-2026';
 		function withDeadline(deadline: string) {
 			read.mockImplementationOnce((url: string) => {
 				const index = JSON.parse(fromDisk(url)) as {
 					rows: { noticeNumber: string; lots: { deadlines: unknown }[] }[];
 				};
-				const row = index.rows.find((each) => each.noticeNumber === NOTICE);
-				if (row === undefined) throw new Error(`${NOTICE} is not in the capture index`);
+				const row = index.rows.find((each) => each.noticeNumber === openNotice());
+				if (row === undefined) throw new Error(`${openNotice()} is not in the capture index`);
 				for (const lot of row.lots) lot.deadlines = { tender: deadline };
 				return new Response(JSON.stringify(index));
 			});
 		}
 		const where = (data: Awaited<ReturnType<typeof exampleList>>) => ({
-			open: data.list.open.some((row) => row.noticeNumber === NOTICE),
-			closed: data.list.closed.some((row) => row.noticeNumber === NOTICE)
+			open: data.list.open.some((row) => row.noticeNumber === openNotice()),
+			closed: data.list.closed.some((row) => row.noticeNumber === openNotice())
 		});
+		// The instant written at +02:00, as a buyer in summer time publishes it, so the comparison is
+		// shown to be by instant and not by the text.
+		const atPlusTwo = (ms: number) => new Date(ms + 7_200_000).toISOString().replace('Z', '+02:00');
 
 		it('is closed in the example, since a deadline equal to now has passed', async () => {
-			withDeadline('2026-09-15T21:50:49.157+02:00');
+			withDeadline(atPlusTwo(EXAMPLE_INSTANT.getTime()));
 			expect(where(await exampleList())).toEqual({ open: false, closed: true });
 		});
 
 		it('is open one millisecond later', async () => {
-			withDeadline('2026-09-15T21:50:49.158+02:00');
+			withDeadline(atPlusTwo(EXAMPLE_INSTANT.getTime() + 1));
 			expect(where(await exampleList())).toEqual({ open: true, closed: false });
 		});
 	});
