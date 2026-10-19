@@ -27,7 +27,15 @@
 //               half-written is served; a temp folder that could not be removed is named),
 //             2 bad usage or no capture folder found.
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	readFileSync,
+	readdirSync,
+	renameSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -62,7 +70,9 @@ function parseArgs(argv) {
 	for (let index = 0; index < argv.length; index += 2) {
 		const [flag, value] = [argv[index], argv[index + 1]];
 		if ((flag !== '--examples' && flag !== '--out') || !value) {
-			throw new UsageError(`unknown or incomplete argument ${flag ?? ''}; see the usage in this file`);
+			throw new UsageError(
+				`unknown or incomplete argument ${flag ?? ''}; see the usage in this file`
+			);
 		}
 		options[flag.slice(2)] = resolve(value);
 	}
@@ -116,7 +126,11 @@ function hasNumber(number) {
 
 async function readOne(transport, number) {
 	if (!hasNumber(number)) {
-		return { ok: false, kind: 'listing', detail: 'a notice in notices.json has no publication-number' };
+		return {
+			ok: false,
+			kind: 'listing',
+			detail: 'a notice in notices.json has no publication-number'
+		};
 	}
 	const response = await transport(new Request(tedNoticeXmlUrl(number)));
 	if (response.status !== 200) return { ok: false, kind: 'missing', detail: await response.text() };
@@ -137,7 +151,8 @@ function readStepFile(folder, name, schema) {
 		return { failure: `${file} could not be read as JSON: ${error.message}` };
 	}
 	const parsed = schema.safeParse(json);
-	if (!parsed.success) return { failure: `${file} does not match its schema: ${parsed.error.message}` };
+	if (!parsed.success)
+		return { failure: `${file} does not match its schema: ${parsed.error.message}` };
 	const misnamed = parsed.data.notices.find(({ notice }) => !NOTICE_NUMBER.test(notice));
 	if (misnamed) {
 		return { failure: `${file}: ${JSON.stringify(misnamed.notice)} is not a TED notice number` };
@@ -347,7 +362,8 @@ function pruneStale(out, ids) {
 async function main() {
 	const { examples, out } = parseArgs(process.argv.slice(2));
 	const ids = captureIds(examples);
-	if (ids.length === 0) throw new UsageError(`no capture folder with a notices.json under ${examples}`);
+	if (ids.length === 0)
+		throw new UsageError(`no capture folder with a notices.json under ${examples}`);
 	const captures = [];
 	for (const id of ids) captures.push(await buildCapture(examples, id));
 	const failed = captures.filter((capture) => capture.failures.length > 0);
@@ -366,10 +382,13 @@ async function main() {
 		// A notice the rule left out has no row and no page, so the line names each one: a wrong
 		// leftOut on a new capture shows here, not only as a smaller count.
 		const { leftOut } = capture.index;
-		const left = leftOut.length === 0
-			? ''
-			: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
-		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`);
+		const left =
+			leftOut.length === 0
+				? ''
+				: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
+		console.log(
+			`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`
+		);
 	}
 	pruneStale(out, ids);
 	return 0;

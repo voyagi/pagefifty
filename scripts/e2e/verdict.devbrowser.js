@@ -1,6 +1,7 @@
 // verdict.devbrowser.js - the example pages the capture's model read: each lot's verdict and reason
 // for the demo firm, one AI label per reading, the run record in its fixed order, no verdict word
-// outside a verdict region, and no request to any host but the site's own, after hydration too.
+// outside a verdict region, no request to any host but the site's own, after hydration too, and the
+// buyer search the build holds for the notice.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
 //
@@ -28,8 +29,10 @@ const CHECKS = [
 	'labels each of its readings as AI reading',
 	"lists the run record in its fixed order with the run's values",
 	'shows no verdict word outside a verdict region',
-	`makes no request to any host but ${SITE}, after hydration too`
+	`makes no request to any host but ${SITE}, after hydration too`,
+	'lists the buyer search the build holds, each result an http or https link under the unchecked label, or none'
 ];
+const NONE_FOUND = 'No earlier awards found by web search.';
 const PROBES = ['read', 'readOtherLanguage'];
 
 const VERDICT_WORDS =
@@ -71,12 +74,23 @@ function readVerdictPage() {
 		);
 		// A page reached from the example list keeps that list's serialized data, every row's title
 		// with it, in a script in the body, which no reader sees, so scripts are left out too.
+		// A web result's title is a third party's text shown as published, like the notice's own.
 		const outside = document.body.cloneNode(true);
 		outside
-			.querySelectorAll('[data-notice-text], [data-verdict], script')
+			.querySelectorAll('[data-notice-text], [data-web-text], [data-verdict], script')
 			.forEach((node) => node.remove());
 		const run = document.querySelector('section[data-run-record]');
+		const search = document.querySelector('[data-web-search]');
 		return {
+			search:
+				search === null
+					? null
+					: {
+							hrefs: Array.from(search.querySelectorAll('a')).map((link) =>
+								link.getAttribute('href')
+							),
+							text: text(search)
+						},
 			lots: lots.map((leaf) => {
 				const words = leaf.querySelectorAll('[data-verdict-word]');
 				const region = words.length === 1 ? words[0].closest('[data-verdict]') : null;
@@ -159,6 +173,22 @@ try {
 			`the ${name} probe ${CHECKS[4]}`,
 			stray === null && shown.outside.length > 200,
 			`${probe.notice}: ${stray ? `found "${stray[0]}"` : `${shown.outside.length} characters read`}`
+		);
+		// A searched probe shows exactly the results the build holds, a probe searched with none the
+		// none-found line, and a probe not searched no list at all. A result link is never opened.
+		const expected = probe.searchResults;
+		const search = shown.search;
+		const listed =
+			search !== null &&
+			search.text.includes('not checked') &&
+			(expected === 0
+				? search.hrefs.length === 0 && search.text.includes(NONE_FOUND)
+				: search.hrefs.length === expected &&
+					search.hrefs.every((href) => /^https?:\/\//.test(href ?? '')));
+		check(
+			`the ${name} probe ${CHECKS[6]}`,
+			expected === null ? search === null : listed,
+			`${probe.notice}: expected ${expected === null ? 'no search' : `${expected} results`}, shown ${JSON.stringify(search)}`
 		);
 		const requests = captured.slice(from);
 		const network = requests.filter((url) => /^https?:/.test(url));

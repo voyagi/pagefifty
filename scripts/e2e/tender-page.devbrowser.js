@@ -103,7 +103,7 @@ function readPage() {
 	return page.evaluate(() => {
 		const copy = document.body.cloneNode(true);
 		copy
-			.querySelectorAll('[data-notice-text], [data-verdict], script')
+			.querySelectorAll('[data-notice-text], [data-web-text], [data-verdict], script')
 			.forEach((node) => node.remove());
 		const h1 = document.querySelector('h1');
 		return {

@@ -52,6 +52,7 @@ let NoticeRecordSchema;
 let SnapshotIndexSchema;
 let NoticeReadingsSchema;
 let ReadingRunSchema;
+let NoticeSearchSchema;
 
 function loadSiteRules() {
 	if (decideLotStatus !== undefined) return;
@@ -72,6 +73,7 @@ function loadSiteRules() {
 	({ NoticeReadingsSchema, ReadingRunSchema } = requireFromHarness(
 		'../src/lib/snapshot/readings.ts'
 	));
+	({ NoticeSearchSchema } = requireFromHarness('../src/lib/snapshot/searches.ts'));
 }
 
 export const DEV_BROWSER_TMP = join(homedir(), '.dev-browser', 'tmp');
@@ -844,7 +846,14 @@ function lotFactsOf(record, lot, readings, now, lines) {
 	};
 }
 
-function noticeFacts(record, readings, now, lines) {
+// How many web results the page lists for the notice's buyer: the built count for a notice the
+// capture searched, 0 included, and null for one it did not search or a capture with no search, so
+// the verdict driver checks the links, the none-found line or the absence of the list.
+function searchResultsOf(search) {
+	return search?.status === 'searched' ? search.results.length : null;
+}
+
+function noticeFacts(record, readings, search, now, lines) {
 	const lotFacts = record.lots.map((lot) => lotFactsOf(record, lot, readings, now, lines));
 	return {
 		notice: record.noticeNumber,
@@ -859,7 +868,8 @@ function noticeFacts(record, readings, now, lines) {
 		),
 		documents: pageDocuments(record),
 		lotFacts,
-		readings: lotFacts.reduce((sum, lot) => sum + lot.readings, 0)
+		readings: lotFacts.reduce((sum, lot) => sum + lot.readings, 0),
+		searchResults: searchResultsOf(search)
 	};
 }
 
@@ -908,7 +918,11 @@ function noticeReader(folder, now, lines) {
 				const readings = existsSync(readingsPath)
 					? readBuilt(readingsPath, NoticeReadingsSchema, 'built readings')
 					: undefined;
-				read.set(notice, noticeFacts(record, readings, now, lines));
+				const searchPath = join(folder, 'searches', `${notice}.json`);
+				const search = existsSync(searchPath)
+					? readBuilt(searchPath, NoticeSearchSchema, 'a built buyer search')
+					: undefined;
+				read.set(notice, noticeFacts(record, readings, search, now, lines));
 			}
 			return read.get(notice);
 		}
