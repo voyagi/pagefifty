@@ -5,10 +5,12 @@
 // exit code: this Node layer builds the Worker, serves it with wrangler dev on 127.0.0.1:8788,
 // runs every scripts/e2e/*.devbrowser.js driver through the dev-browser CLI in name order, and
 // owns the verdict. Each driver reads pagefifty-e2e-run.json from the dev-browser tmp folder
-// (its result name, and under latest the facts of the newest built capture) and writes
-// { driver, checks: [{ name, ok, detail }] } to the result name it finds there. A
-// driver may add logMustNotContain (strings the Worker's request log must not hold) and
-// logMustContain (lines it must), checked here after every driver has run.
+// (its result name, under latest the facts of the newest built capture, and under example the
+// example capture's facts and the notices it visits there) and writes
+// { driver, checks: [{ name, ok, detail, didNotRun? }] } to the result name it finds there. A
+// check marked didNotRun is printed as such and never counted as passed. A driver may add
+// logMustNotContain (strings the Worker's request log must not hold) and logMustContain (lines
+// it must), checked here after every driver has run.
 //
 // A run that checked nothing is never a pass: no dev-browser is exit 1 (never SKIPPED, since
 // verify:ship runs this locally and a skip would hide a run that never happened), and zero
@@ -38,12 +40,14 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	exampleFacts,
 	marginWarnings,
 	readResult,
 	releaseRunLock,
 	runDriver,
 	startWorker,
 	stopWorker,
+	tallyChecks,
 	writeRunConfig
 } from './harness.mjs';
 
@@ -239,13 +243,13 @@ function logChecks(log, logRules) {
 	});
 }
 
-function runDrivers(runId, latest, trust) {
+function runDrivers(runId, latest, trust, example) {
 	const checks = [];
 	const logRules = [];
 	const times = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
-		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest, trust });
+		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest, trust, example });
 		const started = Date.now();
 		const run = runDriver({
 			browserName: 'pagefifty-e2e',
@@ -292,13 +296,10 @@ function runDrivers(runId, latest, trust) {
 }
 
 function verdict(checks) {
-	for (const check of checks) {
-		console.log(
-			`${check.driver} | ${check.name} | ${check.ok ? 'PASS' : 'FAIL'} | ${check.detail}`
-		);
-	}
-	const passed = checks.filter((check) => check.ok).length;
-	console.log(`e2e: ${checks.length} checks, ${passed} passed`);
+	const tally = tallyChecks(checks);
+	for (const line of tally.lines) console.log(line);
+	console.log(tally.summary);
+	for (const line of tally.notRunLines) console.log(`e2e: ${line}`);
 	if (checks.length === 0) {
 		console.error('e2e: zero checks ran, so this run proved nothing');
 		return 2;
@@ -313,7 +314,14 @@ function verdict(checks) {
 		);
 		return caught ? 0 : 1;
 	}
-	return passed === checks.length ? 0 : 1;
+	return tally.failed === 0 ? 0 : 1;
+}
+
+function describeExample(example) {
+	const picks = Object.entries(example.probes)
+		.map(([name, probe]) => `${name} ${probe ? probe.notice : 'none'}`)
+		.join(', ');
+	return `[e2e] example capture ${example.id}: ${example.rows} rows, ${example.open} open and ${example.closed} closed at its capture instant; probes ${picks}`;
 }
 
 async function main() {
@@ -333,11 +341,13 @@ async function main() {
 		console.log(
 			`[e2e] trust pages: model ${trust.model} in ${trust.region} from capture ${trust.capture}, providers ${trust.providers.join(', ')}`
 		);
+		const example = exampleFacts(GENERATED);
+		console.log(describeExample(example));
 		const runId = randomUUID().slice(0, 8);
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const { checks, logRules, times } = runDrivers(runId, latest, trust);
+		const { checks, logRules, times } = runDrivers(runId, latest, trust, example);
 		const log = logRules.length > 0 ? await settledLog(logFile) : '';
 		code = verdict([...checks, ...logChecks(log, logRules)]);
 		for (const line of marginWarnings(times, DRIVER_SECONDS)) {
