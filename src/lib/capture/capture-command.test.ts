@@ -872,7 +872,15 @@ describe('the buyer search under the cap the model read shares', () => {
 		const bodies = searchCalls(run).map((call) => call.body as { query: string });
 		expect(bodies).toEqual(THREE.map((notice) => searchBody(trackedRecord(notice))));
 		THREE.forEach((notice, index) => {
-			expect(bodies[index].query.startsWith(trackedRecord(notice).buyers[0].name.text)).toBe(true);
+			const { query, ...settings } = bodies[index];
+			expect(query.startsWith(`${trackedRecord(notice).buyers[0].name.text} `)).toBe(true);
+			expect(settings).toEqual({
+				search_depth: 'basic',
+				max_results: 5,
+				include_answer: false,
+				include_raw_content: false,
+				include_usage: true
+			});
 			expect(Object.keys(bodies[index])).toEqual([
 				'query',
 				'search_depth',
