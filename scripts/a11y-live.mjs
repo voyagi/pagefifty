@@ -30,6 +30,7 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	exampleFacts,
 	marginWarnings,
 	readResult,
 	releaseRunLock,
@@ -42,6 +43,7 @@ import {
 
 const PORT = 8788;
 const BASE_URL = `http://127.0.0.1:${PORT}/`;
+const GENERATED = 'src/lib/snapshot/generated';
 const DRIVER_SECONDS = 260;
 // Each theme runs as its own driver with the whole limit. All 26 pages in one run took 171 to 224 s
 // on a quiet machine, then passed the limit twice on 2026-10-08 (280 s) while another program used
@@ -59,8 +61,9 @@ function reportPage(page) {
 	const group = page.auditedGroup ? ` from the ${page.auditedGroup} group` : '';
 	const layout = page.layout ? ` as ${page.auditedLayout}${group}` : '';
 	const shot = page.shots ? page.screenshot : 'no shots, its route and theme have them';
+	const followed = page.followed ? ` | reached ${page.followed} by its row` : '';
 	console.log(
-		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${layout}${status} | ${page.violations.length} violations | ` +
+		`${page.slug} | ${page.theme} at ${page.auditedWidth}px${layout}${status}${followed} | ${page.violations.length} violations | ` +
 			`${page.incomplete.length} incomplete (${accepted} accepted) | ${shot}`
 	);
 	for (const item of [...page.violations, ...page.incomplete]) {
@@ -138,6 +141,13 @@ async function main() {
 	let code = 2;
 	try {
 		if (!process.argv.includes('--no-build')) buildWorker();
+		// The example pages are audited on the example capture's notices with each property, chosen
+		// from the build by the rule the e2e run uses, so the audit follows the example to the final
+		// capture unchanged.
+		const example = exampleFacts(GENERATED);
+		console.log(
+			`[a11y] example capture ${example.id}: mostLots ${example.probes.mostLots.notice}, oneLot ${example.probes.oneLot.notice}, read ${example.probes.read.notice}`
+		);
 		const runId = randomUUID().slice(0, 8);
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-a11y-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
@@ -147,7 +157,7 @@ async function main() {
 		const times = [];
 		for (const theme of THEMES) {
 			const resultName = `pagefifty-a11y-${runId}-${theme}-result.json`;
-			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme });
+			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme, example });
 			const started = Date.now();
 			// Eleven routes, each audited and shot at three widths, and each list audited a second time
 			// in its other layout without shots.
