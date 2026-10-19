@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { readReplyFixture } from '../../test/fixtures/replies.ts';
 import type { Buyer, LangText } from '../ingest/record.ts';
-import { AWARD_WORDS, SEARCH_URL, readResults, searchBody, searchQuery } from './tavily.ts';
+import {
+	AWARD_WORDS,
+	SEARCH_URL,
+	SearchResponseSchema,
+	readResults,
+	searchBody,
+	searchQuery
+} from './tavily.ts';
 
 const buyer = (name: string, country: string): Buyer => ({ name: { text: name }, country });
 
@@ -86,6 +93,17 @@ describe('the results the capture keeps', () => {
 			result('https://middle.example/', 0.5)
 		];
 		expect(readResults(given)).toEqual(given);
+	});
+
+	it('reads the recorded answer, its fields of its own included, and refuses one without results', () => {
+		const answer = readReplyFixture('tavily-610242-buyer').response;
+		const read = SearchResponseSchema.parse(answer);
+		expect([read.request_id, read.results.length, read.usage]).toEqual([
+			'61735852-a429-4665-a578-75ec3028ebb3',
+			5,
+			{ credits: 1 }
+		]);
+		expect(SearchResponseSchema.safeParse({ ...answer, results: undefined }).success).toBe(false);
 	});
 
 	it('keeps only the title, the URL and the score of each result', () => {
