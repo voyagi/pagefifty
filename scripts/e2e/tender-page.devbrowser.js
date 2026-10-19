@@ -5,25 +5,106 @@
 // Every address is a literal, as the navigation allowlist requires.
 //
 // The run uses the real clock, so the captured tenders close day by day, and no check here depends
-// on a notice being open. The live routes serve the newest capture, so the checks about particular
-// notices of 2026-09-15 read them on /example, which stays on that capture, and /tenders is reached
-// through its first row's link, never a typed notice number.
+// on a notice being open. The live routes serve the newest capture, so /tenders is reached through
+// its first row's link, never a typed notice number. The checks about particular kinds of notice
+// read them on /example, each the notice of the example capture with that property (config.example,
+// chosen from the build by scripts/e2e.mjs), reached by its row.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
+const example = config.example;
 const PAGE = 'pagefifty-e2e-tender-page';
 const page = await browser.getPage(PAGE);
 const checks = [];
+const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 
 function check(name, ok, detail) {
 	checks.push({ name, ok: Boolean(ok), detail });
 }
 
-// Page text outside the buyer's own words: notice text may contain any word, so it is left out
-// before the page's own copy is searched for verdict words.
+// A check whose notice the example capture lacks is printed as one that did not run, never as a
+// pass, and fails the run only when its probe is one the example must hold.
+function didNotRun(name, probe) {
+	checks.push({
+		name: `${name} did not run: the example capture holds no ${probe} notice (${example.properties[probe]})`,
+		ok: !example.required.includes(probe),
+		didNotRun: true,
+		detail: `no ${probe} probe in ${example.id}`
+	});
+}
+
+// A notice of the example is reached by clicking its row on /example, opening the folded closed
+// group first when the notice had closed at the capture instant. The landing page is fetched again
+// for the status the server gives its address.
+async function followExampleRow(notice) {
+	await page.goto('http://127.0.0.1:8788/example');
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	const folded = await page.evaluate(
+		(number) =>
+			Boolean(
+				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+			),
+		notice
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
+	return page.evaluate(async () => (await fetch(location.href)).status);
+}
+
+// The coverage list a lot shows, from the facts the build read for it, in the words of
+// src/lib/core/reading.ts written a second time on purpose. A lot with a verdict drops the line
+// about the firm profile, since its verdict compares the profile.
+function coverageExpected(lot) {
+	const facts = lot.coverage;
+	const criteria = facts.criteriaInNotice;
+	const lines = [
+		criteria === 0
+			? 'Read: the notice, which publishes no selection criteria for this lot.'
+			: `Read: ${criteria === 1 ? '1 selection criterion' : `${criteria} selection criteria`} published in the notice for this lot.`
+	];
+	if (facts.namesDocuments) {
+		lines.push(
+			'Not read: the procurement documents, which the buyer names as a source of criteria.'
+		);
+	}
+	if (facts.namesEspd) {
+		lines.push('Not read: the ESPD, which the buyer names as a source of criteria.');
+	}
+	if (facts.sourceUnnamed) {
+		lines.push(
+			'Not read: any criteria outside the notice, which names no source of criteria this version can read for this lot.'
+		);
+	}
+	if (facts.pointsToDocuments) lines.push('Not read: the documents a criterion refers to.');
+	return { lines, profileLine: lot.verdict === null };
+}
+
+function coverageShows(shown, lot) {
+	const { lines, profileLine } = coverageExpected(lot);
+	return (
+		lines.every((line) => shown.includes(line)) &&
+		shown.includes('Not compared: your firm profile.') === profileLine
+	);
+}
+
+const verdictsOf = (probe) =>
+	probe.lotFacts.filter((lot) => lot.verdict !== null).map((lot) => lot.verdict);
+
+// Page text outside the buyer's own words and outside the verdict regions: notice text may contain
+// any word, and a lot the example read carries its verdict, so both are left out before the page's
+// own copy is searched for verdict words. The verdict words are read on their own. Scripts are left
+// out too: a page reached from the example list keeps that list's serialized data, every row's
+// title with it, in a script in the body, which no reader sees.
 function readPage() {
 	return page.evaluate(() => {
 		const copy = document.body.cloneNode(true);
-		copy.querySelectorAll('[data-notice-text]').forEach((node) => node.remove());
+		copy
+			.querySelectorAll('[data-notice-text], [data-verdict], script')
+			.forEach((node) => node.remove());
 		const h1 = document.querySelector('h1');
 		return {
 			path: location.pathname,
@@ -34,6 +115,9 @@ function readPage() {
 			),
 			body: document.body.textContent.replace(/\s+/g, ' '),
 			ownCopy: copy.textContent.replace(/\s+/g, ' '),
+			verdictWords: Array.from(document.querySelectorAll('[data-verdict-word]')).map((word) =>
+				word.textContent.replace(/\s+/g, ' ').trim()
+			),
 			// The server writes relative hrefs ("../tenders") and hydration rewrites them, so the link is
 			// matched by the address it resolves to, never by the attribute text.
 			listLinks: Array.from(document.querySelectorAll('main a[href]')).filter(
@@ -86,17 +170,19 @@ try {
 	await page.goto('http://127.0.0.1:8788/');
 	await page.evaluate(() => localStorage.clear());
 
-	const response = await page.goto('http://127.0.0.1:8788/example/609955-2026');
+	const documents = example.probes.documents;
+	const status = await followExampleRow(documents.notice);
 	const facts = await readPage();
 	check(
-		'/example/609955-2026 answers 200 with its German title',
-		response.status() === 200 && facts.h1Lang === 'de' && facts.h1.length > 0,
-		`status ${response.status()}, h1 lang ${facts.h1Lang}, title "${facts.title}"`
+		'the documents probe answers 200 with its title in its own language',
+		status === 200 && facts.h1Lang === documents.language && facts.h1.length > 0,
+		`${documents.notice}: status ${status}, h1 lang ${facts.h1Lang} of ${documents.language}, title "${facts.title}"`
 	);
 	check(
-		'every quote on 609955-2026 carries lang de',
-		facts.quoteLangs.length === 6 && facts.quoteLangs.every((lang) => lang === 'de'),
-		`${facts.quoteLangs.length} quotes, langs ${[...new Set(facts.quoteLangs)].join(' ')}`
+		'every quote on the documents probe carries the language of its clause',
+		facts.quoteLangs.length > 0 &&
+			JSON.stringify(facts.quoteLangs) === JSON.stringify(documents.quoteLangs),
+		`${facts.quoteLangs.length} quotes of ${documents.quoteLangs.length}, langs ${[...new Set(facts.quoteLangs)].join(' ')}`
 	);
 	check(
 		'the page names the criteria as published and says it is not legal advice',
@@ -106,97 +192,112 @@ try {
 	);
 	const verdict = VERDICT_WORDS.exec(facts.ownCopy);
 	check(
-		'the page shows no verdict word in its own copy',
-		verdict === null && facts.ownCopy.length > 200,
-		verdict ? `found "${verdict[0]}"` : `${facts.ownCopy.length} characters of page copy read`
+		'the page shows no verdict word in its own copy, and a verdict only on each lot the example read',
+		verdict === null &&
+			facts.ownCopy.length > 200 &&
+			JSON.stringify(facts.verdictWords) === JSON.stringify(verdictsOf(documents)),
+		`${verdict ? `found "${verdict[0]}"` : `${facts.ownCopy.length} characters of page copy read`}, verdicts ${JSON.stringify(facts.verdictWords)} of ${JSON.stringify(verdictsOf(documents))}`
 	);
 	check(
 		'the page title names the tender, its notice and the example run',
-		facts.title.endsWith('(609955-2026), example run - Pagefifty'),
+		facts.title.endsWith(`(${documents.notice}), example run - Pagefifty`),
 		`"${facts.title}"`
 	);
 
 	const tender = await readTender();
 	check(
-		'609955-2026 lists what was read and what was not, the pointer line included',
-		tender.coverage.length === 1 &&
-			tender.coverage[0].includes(
-				'Read: 6 selection criteria published in the notice for this lot.'
-			) &&
-			tender.coverage[0].includes('Not read: the documents a criterion refers to.') &&
-			tender.coverage[0].includes('Not compared: your firm profile.'),
-		`${tender.coverage.length} coverage lists: ${tender.coverage.join(' | ').slice(0, 300)}`
+		'the documents probe lists what was read and what was not on each lot, every unread source named',
+		tender.coverage.length === documents.lots &&
+			documents.lotFacts.every((lot, index) => coverageShows(tender.coverage[index] ?? '', lot)),
+		`${tender.coverage.length} coverage lists of ${documents.lots}, expected ${JSON.stringify(coverageExpected(documents.lotFacts[0]))}: ${tender.coverage.join(' | ').slice(0, 300)}`
 	);
 	check(
-		'609955-2026 shows the unread strip, the TED link and the documents link as published',
+		'the documents probe shows the unread strip, the TED link and the documents link as published',
 		tender.strip.startsWith('Shown as published in the notice.') &&
 			tender.links['Open notice on TED'] ===
-				'https://ted.europa.eu/en/notice/-/detail/609955-2026' &&
-			tender.links['Open the procurement documents'] ===
-				'https://www.evergabe-online.de/tenderdocuments.html?id=887787',
-		`strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}`
+				`https://ted.europa.eu/en/notice/-/detail/${documents.notice}` &&
+			tender.links['Open the procurement documents'] === documents.documents.href,
+		`strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}, documents ${documents.documents.href}`
 	);
 	check(
-		'609955-2026 sits on the Example tab and ends with the face-down Documents leaf and the leaf foot naming the 15 Sep 2026 snapshot',
+		'the documents probe sits on the Example tab and ends with the face-down Documents leaf and the leaf foot naming the example snapshot day',
 		tender.tab.startsWith('Example') &&
 			tender.documentsLeaf &&
 			tender.foot ===
-				"Criteria as published in TED notice 609955-2026. Source: TED, the EU's Tenders Electronic Daily, snapshot captured 15 Sep 2026. Not legal advice.",
+				`Criteria as published in TED notice ${documents.notice}. Source: TED, the EU's Tenders Electronic Daily, snapshot captured ${example.capturedOn}. Not legal advice.`,
 		`tab "${tender.tab}", documents leaf ${tender.documentsLeaf}, foot "${tender.foot}"`
 	);
-	const served = await page.evaluate(async () =>
-		(await fetch('http://127.0.0.1:8788/example/609955-2026')).text()
-	);
+	// The page reached by its row is fetched again at its own address, as a browser with scripts off
+	// receives it.
+	const served = await page.evaluate(async () => (await fetch(location.href)).text());
 	check(
 		'without scripts the served page holds the criteria, the coverage list and the Documents leaf',
-		(served.match(/<blockquote/g) || []).length === 6 &&
+		(served.match(/<blockquote/g) || []).length === documents.quoteLangs.length &&
 			served.includes('What was read and what was not') &&
 			served.includes('id="documents"'),
-		`${(served.match(/<blockquote/g) || []).length} quotes, coverage ${served.includes('What was read and what was not')}, documents leaf ${served.includes('id="documents"')}`
+		`${(served.match(/<blockquote/g) || []).length} quotes of ${documents.quoteLangs.length}, coverage ${served.includes('What was read and what was not')}, documents leaf ${served.includes('id="documents"')}`
 	);
 	check(
-		'copy read for PLAW-09: 609955-2026, no verdict word in it',
+		'copy read for PLAW-09: the documents probe, no verdict word in it',
 		facts.ownCopy.length > 0 && VERDICT_WORDS.exec(facts.ownCopy) === null,
-		facts.ownCopy
+		`${documents.notice}: ${facts.ownCopy}`
 	);
 
-	await page.goto('http://127.0.0.1:8788/example/600954-2026');
-	const restricted = await readTender();
-	check(
-		'600954-2026 words its restricted documents link as access on request',
-		restricted.links['Request access to the restricted procurement documents'] ===
-			'https://app.tenpu.eu/public/tender/dps/1167' &&
-			!('Open the procurement documents' in restricted.links),
-		JSON.stringify(restricted.links)
-	);
+	const RESTRICTED_CHECK =
+		'the restricted probe words its restricted documents link as access on request';
+	const restricted = example.probes.restricted;
+	if (restricted === null) {
+		didNotRun(RESTRICTED_CHECK, 'restricted');
+	} else {
+		await followExampleRow(restricted.notice);
+		const shown = await readTender();
+		check(
+			RESTRICTED_CHECK,
+			shown.links['Request access to the restricted procurement documents'] ===
+				restricted.documents.href && !('Open the procurement documents' in shown.links),
+			`${restricted.notice}: ${JSON.stringify(shown.links)}, documents ${restricted.documents.href}`
+		);
+	}
 
-	await page.goto('http://127.0.0.1:8788/example/600367-2026');
-	const documentsOnly = await readTender();
-	const documentsCopy = await readPage();
-	check(
-		'600367-2026 says the procurement documents were not read and links them by name',
-		documentsOnly.coverage[0].includes(
-			'Not read: the procurement documents, which the buyer names as a source of criteria.'
-		) &&
+	const NO_CRITERIA_CHECKS = [
+		'the no-criteria probe says the procurement documents were not read and links them by name',
+		'the no-criteria probe shows no criteria, so its Documents leaf points at none "shown above"',
+		'copy read for PLAW-09: the no-criteria probe, no verdict word in it'
+	];
+	const noCriteria = example.probes.noCriteria;
+	if (noCriteria === null) {
+		for (const name of NO_CRITERIA_CHECKS) didNotRun(name, 'noCriteria');
+	} else {
+		await followExampleRow(noCriteria.notice);
+		const documentsOnly = await readTender();
+		const documentsCopy = await readPage();
+		check(
+			NO_CRITERIA_CHECKS[0],
 			documentsOnly.coverage[0].includes(
-				'Read: the notice, which publishes no selection criteria for this lot.'
+				'Not read: the procurement documents, which the buyer names as a source of criteria.'
 			) &&
-			documentsOnly.lotNote.includes('This lot publishes no selection criteria in the notice.') &&
-			documentsOnly.documentsLeaf,
-		`${documentsOnly.coverage[0].slice(0, 200)}, documents leaf ${documentsOnly.documentsLeaf}`
-	);
-	check(
-		'600367-2026 shows no criteria, so its Documents leaf points at none "shown above"',
-		documentsOnly.documentsText.includes(
-			'The notice itself publishes no selection criteria, and those sources may set some.'
-		) && !documentsOnly.documentsText.includes('shown above'),
-		`"${documentsOnly.documentsText.slice(0, 160)}"`
-	);
-	check(
-		'copy read for PLAW-09: 600367-2026, no verdict word in it',
-		documentsCopy.ownCopy.length > 0 && VERDICT_WORDS.exec(documentsCopy.ownCopy) === null,
-		documentsCopy.ownCopy
-	);
+				documentsOnly.coverage[0].includes(
+					'Read: the notice, which publishes no selection criteria for this lot.'
+				) &&
+				documentsOnly.lotNote.includes('This lot publishes no selection criteria in the notice.') &&
+				documentsOnly.documentsLeaf,
+			`${noCriteria.notice}: ${documentsOnly.coverage[0].slice(0, 200)}, documents leaf ${documentsOnly.documentsLeaf}`
+		);
+		check(
+			NO_CRITERIA_CHECKS[1],
+			documentsOnly.documentsText.includes(
+				'The notice itself publishes no selection criteria, and those sources may set some.'
+			) && !documentsOnly.documentsText.includes('shown above'),
+			`${noCriteria.notice}: "${documentsOnly.documentsText.slice(0, 160)}"`
+		);
+		check(
+			NO_CRITERIA_CHECKS[2],
+			documentsCopy.ownCopy.length > 0 &&
+				VERDICT_WORDS.exec(documentsCopy.ownCopy) === null &&
+				JSON.stringify(documentsCopy.verdictWords) === JSON.stringify(verdictsOf(noCriteria)),
+			`${noCriteria.notice}: verdicts ${JSON.stringify(documentsCopy.verdictWords)}, ${documentsCopy.ownCopy}`
+		);
+	}
 
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
 	// status the server gives that address. The first row sits in the closed group, folded shut, only
@@ -247,18 +348,18 @@ try {
 	);
 
 	// Well formed, so the real record lookup runs and misses: the one 404 the unit test reaches only
-	// through a mocked reader.
+	// through a mocked reader. No capture holds a notice published in 2099.
 	await notFound(
-		'/tenders/999991-2026',
-		await page.goto('http://127.0.0.1:8788/tenders/999991-2026'),
+		'/tenders/999991-2099',
+		await page.goto('http://127.0.0.1:8788/tenders/999991-2099'),
 		NO_TENDER
 	);
 	const unknownLede = await page.evaluate(() =>
 		document.querySelector('.lede').textContent.replace(/\s+/g, ' ').trim()
 	);
-	const unknownStart = `Notice 999991-2026 is not in the ${config.latest.capturedOn} snapshot.`;
+	const unknownStart = `Notice 999991-2099 is not in the ${config.latest.capturedOn} snapshot.`;
 	check(
-		"/tenders/999991-2026 names the number back and the newest capture's day",
+		"/tenders/999991-2099 names the number back and the newest capture's day",
 		unknownLede.startsWith(unknownStart),
 		`"${unknownLede.slice(0, 90)}", expected to start "${unknownStart}"`
 	);

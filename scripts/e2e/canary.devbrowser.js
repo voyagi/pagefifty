@@ -71,6 +71,29 @@ page.on('request', (request) => {
 	});
 });
 
+// A notice of the example is reached by clicking its row on /example, the folded closed group
+// opened first when the notice had closed at the capture instant; the landing page is fetched again
+// for the status the server gives its address.
+async function followExampleRow(notice) {
+	await page.goto('http://127.0.0.1:8788/example');
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	const folded = await page.evaluate(
+		(number) =>
+			Boolean(
+				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+			),
+		notice
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
+	return page.evaluate(async () => (await fetch(location.href)).status);
+}
+
 function hitsIn(requests, needle) {
 	return {
 		url: requests.filter((request) => request.url.includes(needle)).length,
@@ -165,16 +188,15 @@ try {
 			shown.country === built.countries.join(', '),
 		`notice "${shown.notice}", ${shown.lots} lots, country "${shown.country}"; built index: ${built.notice}, ${built.lots} lots, ${built.countries.join(', ')}`
 	);
-	// The last page computes a verdict in the browser, so its requests are searched for the markers
-	// too: the verdict there is the demo firm's, and the stored profile must stay in storage.
-	for (const url of [
-		'http://127.0.0.1:8788/example',
-		'http://127.0.0.1:8788/example/609955-2026',
-		'http://127.0.0.1:8788/example/610242-2026'
-	]) {
-		const response = await page.goto(url);
-		await page.waitForSelector('h1', { timeout: 10000 });
-		visited.push(`${url.replace('http://127.0.0.1:8788', '')} ${response.status()}`);
+	// The example's documents and read notices (config.example, from the build) are reached by their
+	// rows. The read notice's page computes a verdict in the browser, so its requests are searched
+	// for the markers too: the verdict there is the demo firm's, and the stored profile must stay in
+	// storage.
+	const exampleList = await page.goto('http://127.0.0.1:8788/example');
+	await page.waitForSelector('h1', { timeout: 10000 });
+	visited.push(`/example ${exampleList.status()}`);
+	for (const probe of [config.example.probes.documents, config.example.probes.read]) {
+		visited.push(`/example/${probe.notice} ${await followExampleRow(probe.notice)}`);
 	}
 	// A client-side hop as well, so a request the started app makes is in the sample too. Before the
 	// app starts the click is a full page load and samples nothing client-side, so the app must have

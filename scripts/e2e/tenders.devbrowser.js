@@ -341,18 +341,22 @@ try {
 		`${all.length} rows of ${config.latest.rows} in the built index, ${untagged.length} without a tag or reason`
 	);
 
-	// A notice whose criterion points at the documents is a fact of the 2026-09-15 capture, which the
-	// example keeps serving, so its tag is read from the example list as served.
+	// A notice whose criteria sit partly in the documents is a fact of the example capture's own
+	// notices, so the example's documents probe (config.example, from the build) is read on the
+	// example list as served.
+	const documents = config.example.probes.documents;
 	const exampleList = await page.evaluate(async () =>
 		(await fetch('http://127.0.0.1:8788/example')).text()
 	);
-	const rowStart = exampleList.indexOf('<tr data-notice="609955-2026"');
+	const rowStart = exampleList.indexOf(`<tr data-notice="${documents.notice}"`);
 	const exampleRow =
 		rowStart < 0 ? '' : exampleList.slice(rowStart, exampleList.indexOf('</tr>', rowStart));
 	check(
-		'609955-2026 reads "Criteria in the documents" on the served example list',
+		'the documents probe reads "Criteria in the documents" on the served example list',
 		exampleRow.includes('Criteria in the documents'),
-		rowStart < 0 ? 'row not found in /example' : `row of ${exampleRow.length} characters read`
+		rowStart < 0
+			? `row ${documents.notice} not found in /example`
+			: `row ${documents.notice} of ${exampleRow.length} characters read`
 	);
 
 	const captureLine = `Snapshot captured from TED on ${config.latest.capturedOn}`;
