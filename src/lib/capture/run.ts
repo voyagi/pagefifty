@@ -307,6 +307,12 @@ function closesBy(record: NoticeRecord, limit: number): boolean {
 	});
 }
 
+function closingCount(selection: Selection, openAfter: string | null): number {
+	if (openAfter === null) return 0;
+	const reason = closingReason(openAfter);
+	return selection.leftOut.filter((notice) => notice.reason === reason).length;
+}
+
 function leaveOutClosing(selection: Selection, openAfter: string | null): Selection {
 	if (openAfter === null) return selection;
 	const limit = Date.parse(openAfter);
@@ -385,6 +391,8 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			leftOut: selection.leftOut,
 			failed: failures,
 			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length,
+			openAfter: run.openAfter,
+			closing: closingCount(selection, run.openAfter),
 			reading: record.reading
 		})
 	);

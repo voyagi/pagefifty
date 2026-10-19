@@ -18,6 +18,9 @@ interface ReadmeParts {
 	failed: readonly { notice: string; reason: string }[];
 	// Failed notices whose search hit named no usable notice identifier and version.
 	unversioned: number;
+	// The --open-after instant, or null, and how many notices it left out.
+	openAfter: string | null;
+	closing: number;
 	// run.json's reading block; null when the run had no model step.
 	reading: ReadingRun | null;
 }
@@ -46,7 +49,17 @@ function whenAndWhat(parts: ReadmeParts): string[] {
 		'- The search reads competition notices only, so a procedure its buyer ended through a later result notice is not detected here.',
 		`- ${counted(parts.written, 'notice')} written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`,
 		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.',
-		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`
+		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`,
+		...openAfterLine(parts)
+	];
+}
+
+function openAfterLine({ openAfter, closing }: ReadmeParts): string[] {
+	if (openAfter === null) return [];
+	const kept = `- Only notices whose every lot closes after ${openAfter} (${formatDeadline(openAfter, SERVER_TIME_ZONE)}) were kept`;
+	if (closing === 0) return [`${kept}, and no listed notice closed earlier.`];
+	return [
+		`${kept}: ${counted(closing, 'notice')} with a lot that closes at or before it, or shows no deadline, ${closing === 1 ? 'was' : 'were'} left out, and Left out names each.`
 	];
 }
 
