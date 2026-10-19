@@ -5,6 +5,7 @@ import { SERVER_TIME_ZONE, formatDeadline } from '../core/deadline.ts';
 import type { Modes } from '../server/transport-mode.ts';
 import { dayText } from '../snapshot/capture-id.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
+import type { SearchesFile } from '../snapshot/searches.ts';
 
 interface ReadmeParts {
 	captureDate: string;
@@ -23,6 +24,8 @@ interface ReadmeParts {
 	closing: number;
 	// run.json's reading block; null when the run had no model step.
 	reading: ReadingRun | null;
+	// What the buyer search step produced, searches.json or not; null when the run had none.
+	search: SearchesFile | null;
 }
 
 const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -79,6 +82,27 @@ function modelReadSection(reading: ReadingRun | null, modes: Modes): string[] {
 		published
 			? `- \`readings.json\` holds the readings, and \`run.json\` the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`
 			: `- \`run.json\` holds the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`,
+		''
+	];
+}
+
+// The results are web pages nobody checked, so the section says so wherever it names the file.
+function buyerSearchSection(search: SearchesFile | null, modes: Modes): string[] {
+	if (search === null) return [];
+	const { run, notices } = search;
+	const searched = notices.length - run.notSearched;
+	const credits = run.credits === null ? 'credits not reported' : counted(run.credits, 'credit');
+	return [
+		'## Buyer search',
+		'',
+		modes.tavily === 'live'
+			? "For each notice with criteria in the notice, the buyer's name and fixed words for earlier awards were searched with Tavily basic search. The results are web pages nobody checked, and they change no verdict."
+			: "No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily.",
+		'',
+		`- ${counted(notices.length, 'notice')} with criteria in the notice: ${searched} searched, ${run.notSearched} not searched.`,
+		run.searches > 0
+			? `- \`searches.json\` holds the web results, which nobody checked, and \`run.json\` the searches and the credits: ${run.searches} sent, ${credits}.`
+			: `- \`run.json\` holds the searches and the credits: ${run.searches} sent, ${credits}.`,
 		''
 	];
 }
@@ -141,6 +165,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		...whenAndWhat(parts),
 		'',
 		...modelReadSection(parts.reading, parts.modes),
+		...buyerSearchSection(parts.search, parts.modes),
 		...leftOutSection(parts.leftOut),
 		...notCapturedSection(parts),
 		...SOURCE_AND_TERMS,

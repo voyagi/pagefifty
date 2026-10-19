@@ -46,24 +46,32 @@ const notSearched = (notice: string, reason: NotSearched): NoticeSearch => ({
 const addCredits = (total: number | null, credits: number | null) =>
 	total === null || credits === null ? null : total + credits;
 
+// One run's searching state. The first dry-run answer or refusal ends the asking: every later notice
+// takes the same reason without another attempt, so the gate logs one WOULD line or one refusal,
+// and no search is ever sent past the cap.
 interface Session {
 	gate: Parameters<MeteredStep>[0]['gate'];
 	transport: Transport;
 	credits: number | null;
+	stopped?: 'dry-run' | 'cap-reached';
 }
 
 // The gate the step is handed has already replaced a thrown send's text with a fixed reason, so a
-// failed search ends only its own notice and nothing the provider said is kept.
+// failed search ends only its own notice and nothing the provider said is kept. A search is never
+// retried.
 async function searchOne(session: Session, record: NoticeRecord): Promise<NoticeSearch> {
 	const notice = record.noticeNumber;
+	if (session.stopped !== undefined) return notSearched(notice, session.stopped);
 	let answer: Awaited<ReturnType<typeof sendSearch>>;
 	try {
 		answer = await sendSearch(session.gate, session.transport, searchBody(record));
 	} catch {
 		return notSearched(notice, 'send-failed');
 	}
-	if (answer.kind === 'dry-run') return notSearched(notice, 'dry-run');
-	if (answer.kind === 'refused') return notSearched(notice, 'cap-reached');
+	if (answer.kind !== 'sent') {
+		session.stopped = answer.kind === 'dry-run' ? 'dry-run' : 'cap-reached';
+		return notSearched(notice, session.stopped);
+	}
 	session.credits = addCredits(session.credits, answer.value.credits);
 	return {
 		notice,

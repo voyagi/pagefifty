@@ -4,8 +4,9 @@
 // holds the buyer's name and fixed words only, never anything of a firm. Imported under Node type
 // stripping: erasable syntax only, relative .ts imports.
 import { z } from 'zod';
+import { linkTarget } from '../ingest/link-target.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
-import type { WebResult } from '../snapshot/searches.ts';
+import { MAX_RESULTS, type WebResult } from '../snapshot/searches.ts';
 import type { Transport } from '../snapshot/transport.ts';
 import type { MeteredGate } from './metered.ts';
 
@@ -58,8 +59,13 @@ export const SearchResponseSchema = z.object({
 	usage: z.object({ credits: z.number().nonnegative() }).optional()
 });
 
+// Tavily's own order is kept as given, never re-sorted by score; a result whose address is not http
+// or https is dropped before the five are counted, so it never takes a place in the page's list.
 export function readResults(results: readonly WebResult[]): WebResult[] {
-	return results.map(({ title, url, score }) => ({ title, url, score }));
+	return results
+		.filter(({ url }) => linkTarget(url) !== undefined)
+		.slice(0, MAX_RESULTS)
+		.map(({ title, url, score }) => ({ title, url, score }));
 }
 
 export interface SearchAnswer {

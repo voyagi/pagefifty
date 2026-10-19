@@ -12,6 +12,7 @@ import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot
 import { resolveModes, type Modes } from '../server/transport-mode.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
 import type { SearchRun } from '../snapshot/search-run.ts';
+import type { SearchesFile } from '../snapshot/searches.ts';
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
@@ -34,15 +35,11 @@ import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from '.
 import { createXmlCache } from './xml-cache.ts';
 
 // What a step hands back for the published folder: a file to write into it (none when it has nothing
-// to publish) and its block of run.json, keyed by the block it fills.
-interface StepFile {
-	file: string | null;
-	value: unknown;
-}
-
+// to publish) and its block of run.json, keyed by the block it fills. The search's file is typed, since
+// the README counts its notices.
 export type StepOutput =
-	| (StepFile & { recordKey: 'reading'; record: ReadingRun })
-	| (StepFile & { recordKey: 'search'; record: SearchRun });
+	| { file: string | null; value: unknown; recordKey: 'reading'; record: ReadingRun }
+	| { file: string | null; value: SearchesFile; recordKey: 'search'; record: SearchRun };
 
 // The seam phase 2's model read and Tavily search plug into. A step reaches a provider only through
 // gate.attempt; its context never holds a key (the gate does), so a call that skips the gate has
@@ -333,8 +330,8 @@ function readingBlockOf(outputs: readonly StepOutput[]): ReadingRun | null {
 	return null;
 }
 
-function searchBlockOf(outputs: readonly StepOutput[]): SearchRun | null {
-	for (const output of outputs) if (output.recordKey === 'search') return output.record;
+function searchFileOf(outputs: readonly StepOutput[]): SearchesFile | null {
+	for (const output of outputs) if (output.recordKey === 'search') return output.value;
 	return null;
 }
 
@@ -362,7 +359,7 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 		},
 		metered: run.gate.record(),
 		reading: readingBlockOf(run.outputs),
-		search: searchBlockOf(run.outputs)
+		search: searchFileOf(run.outputs)?.run ?? null
 	});
 }
 
@@ -407,7 +404,8 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length,
 			openAfter: run.openAfter,
 			closing: closingCount(selection, run.openAfter),
-			reading: record.reading
+			reading: record.reading,
+			search: searchFileOf(run.outputs)
 		})
 	);
 }
