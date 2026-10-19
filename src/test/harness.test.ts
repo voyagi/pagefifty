@@ -1,14 +1,19 @@
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
+import { REASON_LINES } from '../lib/tenders/verdict-view';
 import {
 	devBrowserStatus,
+	exampleFacts,
 	marginWarnings,
 	npmCliPath,
+	reasonLine,
+	reasonLines,
+	tallyChecks,
 	wranglerDevArgs
 } from '../../scripts/harness.mjs';
 
@@ -244,5 +249,222 @@ describe('the time margin warning of the browser runs', () => {
 				60
 			)
 		).toEqual([]);
+	});
+});
+
+const GENERATED = 'src/lib/snapshot/generated';
+const SEPT = '2026-09-15';
+
+// The 2026-09-15 readings run as the verdict driver pinned it while it named its notices.
+const SEPT_RUN = [
+	['Model', 'nvidia/nemotron-3-super-120b-a12b'],
+	['Provider', 'Nebius Token Factory'],
+	['Region', 'us-central1'],
+	['Run date', '2026-10-15'],
+	['Input tokens', '2,811'],
+	['Output tokens', '2,563'],
+	['Reasoning tokens', '0'],
+	['Cost in USD', '0.003150'],
+	['Quotes verified', '24'],
+	['Quotes rejected', '0']
+];
+const FIRM_JUDGES =
+	'Only the firm can judge whether its references, staff or line of business fit what the buyer names.';
+const NOT_NAMED =
+	'The buyer asks for a certificate this version cannot match by name with the profile.';
+
+type Json = Record<string, unknown> & { lots?: Json[]; rows?: Json[] };
+const readJson = (path: string): Json => JSON.parse(readFileSync(path, 'utf8'));
+const writeJson = (path: string, value: unknown) => {
+	mkdirSync(dirname(path), { recursive: true });
+	writeFileSync(path, JSON.stringify(value));
+};
+
+interface PlantOptions {
+	notices: string[];
+	openAfter?: string;
+	edit?: (notice: string, record: Json, row: Json, readings: Json | undefined) => void;
+}
+
+// A generated folder holding one capture built from a few 2026-09-15 notices, so a probe the real
+// build always has can be left out. The repository's own generated folder is never touched.
+function plantCapture(root: string, id: string, { notices, openAfter, edit }: PlantOptions) {
+	const from = join(GENERATED, SEPT);
+	const line = { ...readJson(join(from, 'capture.json')), id, ...(openAfter && { openAfter }) };
+	const index = readJson(join(from, 'index.json'));
+	const rows: Json[] = [];
+	for (const notice of notices) {
+		const row = index.rows?.find((each) => each.noticeNumber === notice);
+		if (row === undefined) throw new Error(`${notice} is not a 2026-09-15 row`);
+		const record = readJson(join(from, 'records', `${notice}.json`));
+		const readingsPath = join(from, 'readings', `${notice}.json`);
+		const readings = existsSync(readingsPath) ? readJson(readingsPath) : undefined;
+		edit?.(notice, record, row, readings);
+		rows.push(row);
+		writeJson(join(root, id, 'records', `${notice}.json`), record);
+		if (readings) writeJson(join(root, id, 'readings', `${notice}.json`), readings);
+	}
+	writeJson(join(root, id, 'capture.json'), line);
+	writeJson(join(root, id, 'index.json'), { capture: line, leftOut: [], rows });
+	if (notices.includes('610242-2026')) {
+		writeJson(join(root, id, 'reading-run.json'), readJson(join(from, 'reading-run.json')));
+	}
+}
+
+function withPlantedRoot<T>(use: (root: string) => T): T {
+	const root = mkdtempSync(join(tmpdir(), 'pagefifty-example-'));
+	try {
+		return use(root);
+	} finally {
+		rmSync(root, { recursive: true, force: true });
+	}
+}
+
+function thrown(run: () => unknown): { exitCode?: number; message: string } {
+	try {
+		run();
+	} catch (error) {
+		return error as { exitCode?: number; message: string };
+	}
+	throw new Error('expected a throw');
+}
+
+interface LotFacts {
+	coverage: {
+		criteriaInNotice: number;
+		namesDocuments: boolean;
+		sourceUnread: boolean;
+	};
+	verdict: string | null;
+	reason: string | null;
+}
+interface NoticeFacts {
+	notice: string;
+	title: string;
+	language: string | null;
+	lots: number;
+	quoteLangs: (string | null)[];
+	documents: { href: string; restricted: boolean } | null;
+	lotFacts: LotFacts[];
+	readings: number;
+}
+
+describe('the example capture the browser runs follow', () => {
+	it('exampleFacts picks the 2026-09-15 probes while it is the example', () => {
+		const example = exampleFacts(GENERATED);
+		expect([
+			example.id,
+			example.capturedOn,
+			example.capturedAt,
+			example.rows,
+			example.open,
+			example.closed
+		]).toEqual([SEPT, '15 Sep 2026', '21:50 CEST', 362, 349, 13]);
+		expect(example.run).toEqual(SEPT_RUN);
+		const probes = example.probes as Record<string, NoticeFacts | null>;
+		const { mostLots, documents, oneLot, read, readOtherLanguage, restricted, noCriteria } =
+			probes as Record<string, NoticeFacts>;
+		expect([mostLots.notice, mostLots.lots]).toEqual(['600457-2026', 17]);
+		expect([read.notice, read.readings]).toEqual(['610242-2026', 14]);
+		expect(read.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
+			['Ask first', FIRM_JUDGES]
+		]);
+		expect([readOtherLanguage.notice, readOtherLanguage.readings]).toEqual(['634398-2026', 10]);
+		expect(readOtherLanguage.language).not.toBe(read.language);
+		expect(readOtherLanguage.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
+			['Ask first', NOT_NAMED]
+		]);
+		expect(documents.lotFacts.some((lot) => lot.coverage.sourceUnread)).toBe(true);
+		expect(documents.documents).toEqual({ href: expect.any(String), restricted: false });
+		expect(documents.quoteLangs.length).toBeGreaterThan(0);
+		expect([oneLot.lots, oneLot.quoteLangs.length > 0]).toEqual([1, true]);
+		expect(restricted.documents).toEqual({ href: expect.any(String), restricted: true });
+		expect(noCriteria.lotFacts.every((lot) => lot.coverage.criteriaInNotice === 0)).toBe(true);
+		expect(noCriteria.lotFacts.some((lot) => lot.coverage.namesDocuments)).toBe(true);
+		for (const probe of Object.values(probes)) {
+			expect(probe?.title).toEqual(expect.any(String));
+			expect(probe?.lotFacts).toHaveLength(probe?.lots ?? -1);
+		}
+	});
+
+	it('a missing required probe stops the run naming it', () => {
+		withPlantedRoot((root) => {
+			plantCapture(root, SEPT, { notices: ['600457-2026', '609955-2026'] });
+			const error = thrown(() => exampleFacts(root));
+			expect(error.exitCode).toBe(2);
+			expect(error.message).toMatch(/\bread\b/);
+		});
+	});
+
+	it('a missing optional probe is null, never another notice', () => {
+		withPlantedRoot((root) => {
+			plantCapture(root, SEPT, { notices: ['600457-2026', '609955-2026', '610242-2026'] });
+			const { probes } = exampleFacts(root);
+			expect([probes.restricted, probes.noCriteria, probes.readOtherLanguage]).toEqual([
+				null,
+				null,
+				null
+			]);
+			expect([probes.mostLots?.notice, probes.read?.notice]).toEqual([
+				'600457-2026',
+				'610242-2026'
+			]);
+		});
+	});
+
+	it("takes the read probe's verdicts from decideLotStatus, a lot not read included", () => {
+		withPlantedRoot((root) => {
+			plantCapture(root, SEPT, {
+				notices: ['600457-2026', '609955-2026', '610242-2026'],
+				edit(notice, record, row, readings) {
+					if (notice !== '610242-2026' || !record.lots || !row.lots || !readings) return;
+					record.lots.push({ ...record.lots[0], id: 'LOT-0001' });
+					row.lots.push({ ...row.lots[0], id: 'LOT-0001' });
+					readings.lots?.push({ lot: 'LOT-0001', status: 'not-read', reason: 'dry-run' });
+				}
+			});
+			const read = exampleFacts(root).probes.read as NoticeFacts;
+			expect([read.lots, read.readings]).toEqual([2, 14]);
+			expect(read.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
+				['Ask first', FIRM_JUDGES],
+				[null, null]
+			]);
+		});
+	});
+
+	it('follows the capture the example rule chooses, never merely the newest', () => {
+		withPlantedRoot((root) => {
+			const notices = ['600457-2026', '609955-2026', '610242-2026'];
+			plantCapture(root, SEPT, { notices });
+			plantCapture(root, '2026-10-21', { notices, openAfter: '2026-10-30T17:00:00Z' });
+			plantCapture(root, '2026-10-25', { notices });
+			expect(exampleFacts(root).id).toBe('2026-10-21');
+		});
+	});
+
+	it('reads the reason sentences from verdict-view.ts as written', () => {
+		const view = readFileSync('src/lib/tenders/verdict-view.ts', 'utf8');
+		const list = readFileSync('src/lib/tenders/list.ts', 'utf8');
+		expect(reasonLines(view, list)).toEqual(new Map(Object.entries(REASON_LINES)));
+		const planted = reasonLines(view.replace(/\n\t'not-read': '[^']*',/, ''), list);
+		const error = thrown(() => reasonLine(planted, 'not-read'));
+		expect([error.exitCode, error.message.includes('not-read')]).toEqual([2, true]);
+	});
+
+	it('prints a check that did not run as such and never counts it as a pass', () => {
+		const tally = tallyChecks([
+			{ driver: 'probe', name: 'ran and passed', ok: true, detail: 'one' },
+			{
+				driver: 'probe',
+				name: 'a check did not run: the example capture holds no restricted notice',
+				ok: true,
+				didNotRun: true,
+				detail: 'two'
+			},
+			{ driver: 'probe', name: 'ran and failed', ok: false, detail: 'three' }
+		]);
+		expect([tally.passed, tally.failed, tally.notRun]).toEqual([1, 1, 1]);
+		expect(tally.lines[1]).toContain(' | DID NOT RUN | ');
+		expect(tally.summary).toBe('e2e: 3 checks, 1 passed, 1 did not run');
 	});
 });
