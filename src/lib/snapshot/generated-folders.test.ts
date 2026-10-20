@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import {
 	copyFileSync,
+	cpSync,
 	existsSync,
 	mkdirSync,
 	mkdtempSync,
@@ -11,14 +12,16 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
+import { EXAMPLE_FIGURE } from '../../test/home-figure';
 import { readReplyFixture } from '../../test/fixtures/replies';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
 import { searchesFileOf } from '../capture/buyer-search';
 import { readingKey } from '../capture/model-read';
 import { readResults, searchQuery } from '../capture/tavily';
 import { MODEL_READ, promptSha256, readReply, userMessage } from '../capture/token-factory';
+import { FigureFileSchema } from './figure';
 import { CaptureLineSchema, NoticeRecordSchema, SnapshotIndexSchema } from './index-row';
 import { NoticeReadingsSchema, ReadingsFileSchema } from './readings';
 import { SearchesFileSchema, type WebResult } from './searches';
@@ -231,6 +234,44 @@ describe('the example capture buyer search', () => {
 			expect(existsSync(join(GENERATED, id, 'searches'))).toBe(false);
 			expect(existsSync(join(GENERATED, id, 'search-run.json'))).toBe(false);
 		}
+	});
+});
+
+// A copy of the example capture and its own records build in a temp root, so the script writes its
+// figure file there and never into the repository's examples/ or generated folder.
+describe('scripts/figure.mjs', () => {
+	const root = mkdtempSync(join(tmpdir(), 'pagefifty-figure-'));
+	const examples = join(root, 'examples');
+	const out = join(root, 'generated');
+
+	beforeAll(() => {
+		cpSync(join(EXAMPLES, CAPTURE_ID), join(examples, CAPTURE_ID), { recursive: true });
+		const run = spawnSync(
+			process.execPath,
+			['scripts/build-records.mjs', '--examples', examples, '--out', out],
+			{ encoding: 'utf8' }
+		);
+		if (run.status !== 0) throw new Error(`the temp records build failed: ${run.stderr}`);
+	}, 120_000);
+
+	afterAll(() => {
+		rmSync(root, { recursive: true, force: true, maxRetries: 5 });
+	});
+
+	const figureRun = (capture: string) =>
+		spawnSync(
+			process.execPath,
+			['scripts/figure.mjs', capture, '--examples', examples, '--generated', out],
+			{ encoding: 'utf8' }
+		);
+
+	it('the figure script writes a figure file for a capture with readings', () => {
+		const run = figureRun(CAPTURE_ID);
+		expect(run.status, run.stderr).toBe(0);
+		const text = readFileSync(join(examples, CAPTURE_ID, 'figure.json'), 'utf8');
+		const figure = FigureFileSchema.parse(JSON.parse(text));
+		expect(text).toBe(`${JSON.stringify(figure, null, 2)}\n`);
+		expect(figure).toEqual(EXAMPLE_FIGURE);
 	});
 });
 
