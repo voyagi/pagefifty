@@ -96,6 +96,10 @@ describe('/privacy load', () => {
 			[
 				'may share query data with third-party search index providers',
 				'href="https://tavily.com/privacy"'
+			],
+			[
+				'query data is not stored or used for improvements',
+				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
 			]
 		]) {
 			expect(blockOf(phrase), phrase).toHaveLength(1);

@@ -34,6 +34,17 @@
 		</p>
 		<FactSource href="https://tavily.com/privacy">Tavily Privacy Policy</FactSource>
 	</div>
+	<div class="fact">
+		<p>
+			Since 20 October 2026, the setting "Allow use of query data" is switched off for the Tavily
+			account that runs the search. With it off, Tavily says, query data is not stored or used for
+			improvements.
+		</p>
+		<FactSource
+			href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"
+			>Tavily Help Center, the Allow use of query data setting</FactSource
+		>
+	</div>
 {/if}
 
 <style>
