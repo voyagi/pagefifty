@@ -15,6 +15,7 @@ import {
 import { parameterLabel } from '../codelists/labels';
 import type { LotContext } from '../core/compare';
 import { summarizeLot } from '../core/coverage-facts';
+import { lotContextOf } from '../core/lot-context';
 import {
 	displayedDeadline,
 	isOpen,
@@ -298,20 +299,6 @@ function lotReadingOf(
 	};
 }
 
-function verdictContext(
-	record: NoticeRecord,
-	lot: LotRecord,
-	deadline: DisplayedDeadline
-): LotVerdictInput['context'] {
-	return {
-		legalBasis: record.legalBasis,
-		deadline: deadline.kind === 'in-notice' ? null : deadline.instant,
-		coverage: summarizeLot(lot),
-		cancelIntent: record.cancelIntent === true,
-		reserved: lot.reserved
-	};
-}
-
 const tedUrlOf = (record: NoticeRecord) =>
 	`https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`;
 
@@ -376,7 +363,7 @@ function toLotView(
 		...(ownDocuments && { documents: ownDocuments }),
 		...(view && {
 			reading: view,
-			verdictInput: { status, context: verdictContext(record, lot, deadline) }
+			verdictInput: { status, context: lotContextOf(record, lot) }
 		})
 	};
 }

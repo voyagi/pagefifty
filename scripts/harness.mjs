@@ -38,9 +38,9 @@ let decideLotStatus;
 let coverage;
 let summarizeLot;
 let SERVER_TIME_ZONE;
-let displayedDeadline;
 let formatDeadline;
 let noticeDeadline;
+let lotContextOf;
 let lotStatusOf;
 let VERDICT_LABELS;
 let DEMO_PROFILE;
@@ -58,9 +58,10 @@ function loadSiteRules() {
 	if (decideLotStatus !== undefined) return;
 	({ decideLotStatus } = requireFromHarness('../src/lib/core/compare.ts'));
 	({ coverage, summarizeLot } = requireFromHarness('../src/lib/core/coverage-facts.ts'));
-	({ SERVER_TIME_ZONE, displayedDeadline, formatDeadline, noticeDeadline } = requireFromHarness(
+	({ SERVER_TIME_ZONE, formatDeadline, noticeDeadline } = requireFromHarness(
 		'../src/lib/core/deadline.ts'
 	));
+	({ lotContextOf } = requireFromHarness('../src/lib/core/lot-context.ts'));
 	({ lotStatusOf } = requireFromHarness('../src/lib/core/lot-reading.ts'));
 	({ VERDICT_LABELS } = requireFromHarness('../src/lib/core/verdict.ts'));
 	({ DEMO_PROFILE } = requireFromHarness('../src/lib/profile/demo-firm.ts'));
@@ -810,21 +811,14 @@ function pageDocuments(record) {
 		: null;
 }
 
-// The verdict the example page shows on a lot, for the demo firm at the capture instant. The lot
-// context is the one tender-page.ts's verdictContext builds, written a second time here because
-// src/lib/tenders cannot be imported by Node; the decision itself is decideLotStatus's.
+// The verdict the example page shows on a lot, for the demo firm at the capture instant.
 function lotFactsOf(record, lot, readings, now, lines) {
 	const summary = summarizeLot(lot);
 	const facts = coverage(summary);
 	const status = lotStatusOf(lot, readings);
-	const shown = displayedDeadline(lot);
 	const decided = decideLotStatus(status, DEMO_PROFILE, {
-		legalBasis: record.legalBasis,
-		deadline: shown.kind === 'in-notice' ? null : shown.instant,
-		now: now.toISOString(),
-		coverage: summary,
-		cancelIntent: record.cancelIntent === true,
-		reserved: lot.reserved
+		...lotContextOf(record, lot),
+		now: now.toISOString()
 	});
 	const read = status.status === 'read';
 	return {
