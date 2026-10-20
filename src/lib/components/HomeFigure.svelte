@@ -1,25 +1,10 @@
 <script lang="ts">
 	import type { FigureFile } from '$lib/snapshot/figure';
+	import { figureWords } from '$lib/tenders/verdict-view';
 
 	let { figure }: { figure: FigureFile } = $props();
 
-	const ROWS = [
-		{ key: 'go', label: 'Go', gloss: 'meets every selection criterion read, on its own' },
-		{
-			key: 'partnerNeeded',
-			label: 'Not met alone',
-			gloss: 'falls short on its own on a criterion read'
-		},
-		{
-			key: 'noGo',
-			label: 'No-go',
-			gloss: 'ruled out by a criterion read, with no route through another firm'
-		},
-		{ key: 'askFirst', label: 'Ask first', gloss: 'not read in full, or a question left open' }
-	] as const;
-
-	const LOT_RULE =
-		'Each notice counts once, under its most lenient lot: Go, then Ask first, then Not met alone, then No-go.';
+	const { rows, lotRule } = figureWords();
 </script>
 
 <!-- Every number here is read from the committed figure file; none is computed on the page. -->
@@ -30,7 +15,7 @@
 		snapshot, this is how each one reads for the demo firm.
 	</p>
 	<dl class="tally">
-		{#each ROWS as row (row.key)}
+		{#each rows as row (row.key)}
 			<div class="count" data-count={row.key}>
 				<dt class="label">{row.label}</dt>
 				<dd class="number" data-number>{figure.counts[row.key]}</dd>
@@ -38,7 +23,7 @@
 			</div>
 		{/each}
 	</dl>
-	<p class="rule">{LOT_RULE}</p>
+	<p class="rule">{lotRule}</p>
 	<p class="frame">
 		From one run over the {figure.capturedOn} snapshot, at a model cost of
 		<span class="mono">USD {figure.costUsd}</span>.

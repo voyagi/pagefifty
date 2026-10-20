@@ -12,7 +12,12 @@ import {
 } from '../core/compare';
 import { coverage } from '../core/coverage-facts';
 import type { LotReading } from '../core/lot-reading';
-import { VERDICT_LABELS, type CriterionState, type LotDecision } from '../core/verdict';
+import {
+	VERDICT_LABELS,
+	type CriterionState,
+	type LotDecision,
+	type LotVerdict
+} from '../core/verdict';
 import type { DocumentsLink } from '../ingest/record';
 import { CANCEL_INTENT_LINE } from './list';
 import type { LotView } from './tender-page';
@@ -296,6 +301,38 @@ export function verdictView(
 		}),
 		shortfalls: shortfallsOf(decided, lot),
 		article63: decided.decision.verdict === 'PARTNER NEEDED' ? ARTICLE_63_LINE : null
+	};
+}
+
+type FigureCount = 'go' | 'partnerNeeded' | 'noGo' | 'askFirst';
+
+const FIGURE_GLOSSES: Readonly<Record<LotVerdict, string>> = {
+	GO: 'meets every selection criterion read, on its own',
+	'PARTNER NEEDED': 'falls short on its own on a criterion read',
+	'NO-GO': 'ruled out by a criterion read, with no route through another firm',
+	'ASK FIRST': 'not read in full, or a question left open'
+};
+
+// The home figure's words, in the tender page's display labels: one set of verdict words for both.
+// The rows follow the figure file's count order; the lot rule follows the order mostLenient ranks.
+export function figureWords(): {
+	rows: { key: FigureCount; label: string; gloss: string }[];
+	lotRule: string;
+} {
+	const row = (key: FigureCount, verdict: LotVerdict) => ({
+		key,
+		label: VERDICT_LABELS[verdict],
+		gloss: FIGURE_GLOSSES[verdict]
+	});
+	const L = VERDICT_LABELS;
+	return {
+		rows: [
+			row('go', 'GO'),
+			row('partnerNeeded', 'PARTNER NEEDED'),
+			row('noGo', 'NO-GO'),
+			row('askFirst', 'ASK FIRST')
+		],
+		lotRule: `Each notice counts once, under its most lenient lot: ${L.GO}, then ${L['ASK FIRST']}, then ${L['PARTNER NEEDED']}, then ${L['NO-GO']}.`
 	};
 }
 
