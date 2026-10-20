@@ -19,6 +19,7 @@ import { readReplyFixture } from '../../test/fixtures/replies';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
 import { searchesFileOf } from '../capture/buyer-search';
 import { readingKey } from '../capture/model-read';
+import { runRecordName } from '../capture/run-record';
 import { readResults, searchQuery } from '../capture/tavily';
 import { MODEL_READ, promptSha256, readReply, userMessage } from '../capture/token-factory';
 import { FigureFileSchema } from './figure';
@@ -264,16 +265,128 @@ describe('scripts/figure.mjs', () => {
 			['scripts/figure.mjs', capture, '--examples', examples, '--generated', out],
 			{ encoding: 'utf8' }
 		);
+	const figureText = () => readFileSync(join(examples, CAPTURE_ID, 'figure.json'), 'utf8');
+	const builtFigure = () => readFileSync(join(out, CAPTURE_ID, 'figure.json'), 'utf8');
+	const rebuild = () => {
+		const run = spawnSync(
+			process.execPath,
+			['scripts/build-records.mjs', '--examples', examples, '--out', out],
+			{ encoding: 'utf8' }
+		);
+		expect(run.status, run.stderr).toBe(0);
+	};
 
 	it('the figure script writes a figure file for a capture with readings', () => {
 		const run = figureRun(CAPTURE_ID);
 		expect(run.status, run.stderr).toBe(0);
-		const text = readFileSync(join(examples, CAPTURE_ID, 'figure.json'), 'utf8');
+		const text = figureText();
 		const figure = FigureFileSchema.parse(JSON.parse(text));
 		expect(text).toBe(`${JSON.stringify(figure, null, 2)}\n`);
 		expect(figure).toEqual(EXAMPLE_FIGURE);
 	});
+
+	it('a committed figure that differs from its readings fails', () => {
+		expect(figureChecks(EXAMPLES, GENERATED).filter((check) => check.status !== 0)).toEqual([]);
+		expect(figureRun(CAPTURE_ID).status).toBe(0);
+		const fresh = figureChecks(examples, out);
+		expect(fresh.map(({ id, status }) => [id, status])).toEqual([[CAPTURE_ID, 0]]);
+		const written = FigureFileSchema.parse(JSON.parse(figureText()));
+		const changed = { ...written, counts: { ...written.counts, go: written.counts.go + 1 } };
+		writeFileSync(
+			join(examples, CAPTURE_ID, 'figure.json'),
+			`${JSON.stringify(changed, null, 2)}\n`
+		);
+		const planted = figureChecks(examples, out);
+		expect(planted.map(({ id }) => id)).toContain(CAPTURE_ID);
+		const [check] = planted;
+		expect(check.status).toBe(1);
+		expect(check.stderr).toContain(`figure: ${CAPTURE_ID}:`);
+		expect(check.stderr).toContain('differs from the figure its readings give');
+		expect(figureRun(CAPTURE_ID).status).toBe(0);
+	});
+
+	// Two run records for one capture day: the written run, and a second run of that day the command
+	// refused. The figure and the built figure the home page reads follow the capture folder's run.json.
+	it('a refused second run of the day changes neither the page nor the figure', () => {
+		const runs = join(root, '.capture-cache', 'runs');
+		mkdirSync(runs, { recursive: true });
+		const written = {
+			schemaVersion: 4,
+			captureDate: CAPTURE_ID,
+			outcome: 'written',
+			reason: null,
+			command: 'node scripts/capture.mjs --live --cap 40'
+		};
+		const refused = {
+			...written,
+			outcome: 'refused',
+			reason: `a capture for ${CAPTURE_ID} already exists`,
+			command: 'node scripts/capture.mjs --live --cap 999'
+		};
+		const fromRoot = () =>
+			spawnSync(
+				process.execPath,
+				[
+					join(process.cwd(), 'scripts', 'figure.mjs'),
+					CAPTURE_ID,
+					'--examples',
+					examples,
+					'--generated',
+					out
+				],
+				{ cwd: root, encoding: 'utf8' }
+			);
+		try {
+			writeFileSync(
+				join(runs, runRecordName(Date.parse('2026-09-15T19:50:00Z'), 4100)),
+				JSON.stringify(written)
+			);
+			writeFileSync(join(examples, CAPTURE_ID, 'run.json'), JSON.stringify(written));
+			expect(fromRoot().status).toBe(0);
+			const before = figureText();
+			rebuild();
+			const builtBefore = builtFigure();
+			writeFileSync(
+				join(runs, runRecordName(Date.parse('2026-09-15T21:05:00Z'), 4200)),
+				JSON.stringify(refused)
+			);
+			expect(readdirSync(runs)).toHaveLength(2);
+			expect(fromRoot().status).toBe(0);
+			expect(figureText()).toBe(before);
+			expect(FigureFileSchema.parse(JSON.parse(before)).command).toBe(written.command);
+			rebuild();
+			expect(builtFigure()).toBe(builtBefore);
+			expect(JSON.parse(builtBefore)).toEqual(JSON.parse(before));
+		} finally {
+			rmSync(join(examples, CAPTURE_ID, 'run.json'), { force: true });
+			rmSync(join(examples, CAPTURE_ID, 'figure.json'), { force: true });
+		}
+	});
 });
+
+// Every capture under an examples folder that holds a figure.json, checked by the script against the
+// figure its built readings give. The captures are enumerated, so the figure the final capture
+// commits is checked with no change here.
+function figureChecks(examplesDir: string, generatedDir: string) {
+	return folders(examplesDir)
+		.filter((id) => existsSync(join(examplesDir, id, 'figure.json')))
+		.map((id) => {
+			const run = spawnSync(
+				process.execPath,
+				[
+					'scripts/figure.mjs',
+					id,
+					'--check',
+					'--examples',
+					examplesDir,
+					'--generated',
+					generatedDir
+				],
+				{ encoding: 'utf8' }
+			);
+			return { id, status: run.status, stderr: run.stderr };
+		});
+}
 
 describe('scripts/build-records.mjs on a capture it cannot read', () => {
 	const root = mkdtempSync(join(tmpdir(), 'pagefifty-records-'));
@@ -539,6 +652,106 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 			expect(existsSync(join(root, 'escape'))).toBe(false);
 		}
 	);
+
+	const figureOf2 = (patch: Record<string, unknown> = {}) => ({
+		...EXAMPLE_FIGURE,
+		capture: '2026-01-02',
+		population: 1,
+		counts: { go: 0, partnerNeeded: 0, noGo: 0, askFirst: 1 },
+		capturedOn: '2 Jan 2026',
+		...patch
+	});
+
+	it('writes the figure of a capture whose figure.json parses, and none for one without', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		expect(existsSync(join(out, '2026-01-02', 'figure.json'))).toBe(false);
+		writeFileSync(join(capture, 'figure.json'), JSON.stringify(figureOf2()));
+		const run = build();
+		expect(run.status, run.stderr).toBe(0);
+		expect(readJson(join(out, '2026-01-02', 'figure.json'))).toEqual(figureOf2());
+	});
+
+	it.each([
+		[
+			'whose counts do not sum to its population',
+			() => figureOf2({ population: 2 }),
+			'the four counts do not sum to the population'
+		],
+		[
+			'that names another capture',
+			() => figureOf2({ capture: '2026-09-15' }),
+			'is the figure of capture 2026-09-15, not 2026-01-02'
+		]
+	])(
+		'a figure file the schema refuses stops the build and writes nothing: %s',
+		(_what, figure, named) => {
+			writeCapture(['609955-2026']);
+			expect(build().status).toBe(0);
+			const before = folderState(out);
+			writeFileSync(join(capture, 'figure.json'), JSON.stringify(figure()));
+			const run = build();
+			expect(run.status).toBe(1);
+			expect(run.stderr).toContain('records: 2026-01-02: (figure): figure: ');
+			expect(run.stderr).toContain(join(capture, 'figure.json'));
+			expect(run.stderr).toContain(named);
+			expect(run.stderr).toContain('nothing was written');
+			expect(folderState(out)).toEqual(before);
+		}
+	);
+
+	const figureScript = (...flags: string[]) =>
+		spawnSync(
+			process.execPath,
+			[
+				'scripts/figure.mjs',
+				'2026-01-02',
+				'--examples',
+				join(root, 'examples'),
+				'--generated',
+				out,
+				...flags
+			],
+			{ encoding: 'utf8' }
+		);
+
+	it('the figure script exits 2 for a capture with no reading run, and writes nothing', () => {
+		writeCapture(['609955-2026']);
+		expect(build().status).toBe(0);
+		const run = figureScript();
+		expect(run.status).toBe(2);
+		expect(run.stderr).toContain('capture 2026-01-02 holds no reading run');
+		expect(existsSync(join(capture, 'figure.json'))).toBe(false);
+	});
+
+	it('the figure script refuses a run.json whose command it cannot read, and writes nothing', () => {
+		writeCapture(['609955-2026']);
+		const readings = {
+			schemaVersion: 1,
+			run: exampleRun(),
+			notices: [{ notice: '609955-2026', lots: [{ lot: 'LOT-0000', status: 'no-criteria' }] }],
+			readings: []
+		};
+		writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings));
+		writeFileSync(join(capture, 'run.json'), JSON.stringify({ command: 7 }));
+		expect(build().status).toBe(0);
+		const run = figureScript();
+		expect(run.status).toBe(1);
+		expect(run.stderr).toContain(`${join(capture, 'run.json')} does not match its schema`);
+		expect(existsSync(join(capture, 'figure.json'))).toBe(false);
+		writeFileSync(
+			join(capture, 'run.json'),
+			JSON.stringify({ command: 'node scripts/capture.mjs' })
+		);
+		expect(figureScript().status).toBe(0);
+		expect(readJson(join(capture, 'figure.json'))).toMatchObject({
+			population: 1,
+			command: 'node scripts/capture.mjs'
+		});
+		expect(figureScript('--check').status).toBe(0);
+		rmSync(join(capture, 'run.json'));
+		expect(figureScript('--check').status).toBe(1);
+	});
 
 	it('replaces the records of a rebuilt capture and leaves no set-aside folder', () => {
 		writeCapture(['609955-2026']);

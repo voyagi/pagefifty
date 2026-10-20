@@ -5,6 +5,7 @@ import {
 	builtCaptureLines,
 	lotsClosingByCutoff
 } from '../../test/example-deadlines';
+import { EXAMPLE_FIGURE } from '../../test/home-figure';
 import { CAPTURE_ID, exampleCaptureOf } from '../snapshot/capture-id';
 import { captureFacts } from '../tenders/list';
 
@@ -29,6 +30,8 @@ const {
 	loadRecord,
 	newestCapture,
 	newestReadingRun,
+	figureFile,
+	parsedFigure,
 	parsedSearchRun,
 	providersOf,
 	readingRunOf,
@@ -289,6 +292,32 @@ describe('the search runs and the providers the trust pages name', () => {
 	])('a search run with %s is a server error naming the file', (_label, line) => {
 		expect(() => parsedSearchRun('2026-10-16', line)).toThrow(
 			'the 2026-10-16 search run does not match its schema: '
+		);
+	});
+});
+
+describe('the home figure', () => {
+	// No tracked capture holds a figure.json yet: 2026-09-15 holds two read lots, which is no
+	// finding, and the latest capture holds no reading at all.
+	it('figureFile is null for a capture that holds no figure', () => {
+		expect(figureFile(SEPT)).toBeNull();
+		expect(figureFile(LATEST_CAPTURE)).toBeNull();
+		expect(figureFile('2099-01-01')).toBeNull();
+	});
+
+	it('reads a figure the schema accepts as it was written', () => {
+		expect(parsedFigure('2026-09-15', undefined)).toBeNull();
+		expect(parsedFigure('2026-09-15', EXAMPLE_FIGURE)).toEqual(EXAMPLE_FIGURE);
+	});
+
+	it.each([
+		['counts that do not sum to the population', { ...EXAMPLE_FIGURE, population: 361 }],
+		['a second run', { ...EXAMPLE_FIGURE, runs: 2 }],
+		['an empty command', { ...EXAMPLE_FIGURE, command: '' }],
+		['no capture date', { ...EXAMPLE_FIGURE, capturedOn: '' }]
+	])('a figure with %s is a server error naming the capture', (_label, line) => {
+		expect(() => parsedFigure('2026-09-15', line)).toThrow(
+			'the 2026-09-15 figure does not match its schema: '
 		);
 	});
 });
