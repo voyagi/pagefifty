@@ -4,6 +4,7 @@
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
 import { exampleCaptureOf, newestCapture } from '../snapshot/capture-id';
+import { FigureFileSchema, type FigureFile } from '../snapshot/figure';
 import {
 	CaptureLineSchema,
 	NOTICE_NUMBER,
@@ -39,6 +40,7 @@ const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$
 const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
 const SEARCH_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/search-run\.json$/;
 const SEARCH_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/searches\/([^/]+)\.json$/;
+const FIGURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/figure\.json$/;
 
 function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
 	const found = new Map<string, T>();
@@ -108,6 +110,14 @@ const SEARCH_URLS = byMatch(
 		eager: true
 	}),
 	SEARCH_PATH
+);
+// The home figure is a few hundred bytes too, and only a capture the model read can hold one.
+const FIGURES = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/figure.json', {
+		import: 'default',
+		eager: true
+	}),
+	FIGURE_PATH
 );
 // Stryker restore all
 
@@ -249,6 +259,21 @@ export function parsedSearchRun(capture: string, line: unknown): SearchRun | nul
 // The buyer search of a capture, or null for a capture that ran none.
 export function searchRunOf(capture: string): SearchRun | null {
 	return parsedSearchRun(capture, SEARCH_RUNS.get(capture));
+}
+
+// The parse is apart from the lookup so a damaged figure can be tested before any capture has one.
+export function parsedFigure(capture: string, line: unknown): FigureFile | null {
+	if (line === undefined) return null;
+	const parsed = FigureFileSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(`the ${capture} figure does not match its schema: ${parsed.error.message}`);
+	}
+	return parsed.data;
+}
+
+// The home figure of a capture, or null for one that holds none.
+export function figureFile(capture: string): FigureFile | null {
+	return parsedFigure(capture, FIGURES.get(capture));
 }
 
 // The outside providers a capture used, as the trust pages name them: the model provider its

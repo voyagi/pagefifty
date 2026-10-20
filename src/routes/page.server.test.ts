@@ -7,7 +7,8 @@ import { load } from './+page.server';
 vi.mock('$lib/server/records', () => ({
 	LATEST_CAPTURE: '2026-10-11',
 	EXAMPLE_CAPTURE: '2026-09-15',
-	loadIndex: vi.fn()
+	loadIndex: vi.fn(),
+	figureFile: vi.fn(() => null)
 }));
 
 const indexWith = (query: string) => ({
@@ -24,7 +25,8 @@ describe('/ load', () => {
 		expect(await load({} as LoadEvent)).toStrictEqual({
 			total: 120,
 			capturedOn: '11 Oct 2026',
-			firstPublished: '27 Sep 2026'
+			firstPublished: '27 Sep 2026',
+			figure: null
 		});
 		expect(loadIndex).toHaveBeenCalledWith('2026-10-11');
 	});
@@ -32,6 +34,10 @@ describe('/ load', () => {
 	// toStrictEqual, because a firstPublished key holding undefined would pass a plain toEqual.
 	it('leaves firstPublished out when the capture query names no first day', async () => {
 		vi.mocked(loadIndex).mockResolvedValueOnce(indexWith('buyer-country IN (NLD)'));
-		expect(await load({} as LoadEvent)).toStrictEqual({ total: 120, capturedOn: '11 Oct 2026' });
+		expect(await load({} as LoadEvent)).toStrictEqual({
+			total: 120,
+			capturedOn: '11 Oct 2026',
+			figure: null
+		});
 	});
 });

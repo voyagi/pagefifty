@@ -490,7 +490,7 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 
 	it('finds no verdict word on the entry page', () => {
 		const { container } = render(EntryPage, {
-			props: { data: { total: captured.length, capturedOn: CAPTURE.capturedOn } }
+			props: { data: { total: captured.length, capturedOn: CAPTURE.capturedOn, figure: null } }
 		});
 		expect(checkedText(container)).toContain('Browse open tenders');
 		expect(findVerdictWords(container)).toEqual([]);

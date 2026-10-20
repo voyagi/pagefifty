@@ -1,9 +1,16 @@
-import { LATEST_CAPTURE, loadIndex } from '$lib/server/records';
+import { figureFile, LATEST_CAPTURE, loadIndex } from '$lib/server/records';
 import { captureFacts } from '$lib/tenders/list';
 import type { PageServerLoad } from './$types';
 
+// The figure is read from the committed file of the latest capture, never computed here: no server
+// module decides a verdict or reaches the profile. A latest capture the model never read has none.
 export const load: PageServerLoad = async () => {
 	const { capture } = await loadIndex(LATEST_CAPTURE);
 	const { capturedOn, firstPublished } = captureFacts(capture);
-	return { total: capture.total, capturedOn, ...(firstPublished && { firstPublished }) };
+	return {
+		total: capture.total,
+		capturedOn,
+		...(firstPublished && { firstPublished }),
+		figure: figureFile(LATEST_CAPTURE)
+	};
 };
