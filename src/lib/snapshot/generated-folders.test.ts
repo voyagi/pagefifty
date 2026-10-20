@@ -239,8 +239,9 @@ describe('the example capture buyer search', () => {
 });
 
 // A copy of the example capture and its own records build in a temp root, so the script writes its
-// figure file there and never into the repository's examples/ or generated folder.
-describe('scripts/figure.mjs', () => {
+// figure file there and never into the repository's examples/ or generated folder. Each test spawns
+// node several times; the limit is set here because the mutation run's config keeps vitest's 5 s.
+describe('scripts/figure.mjs', { timeout: 30_000 }, () => {
 	const root = mkdtempSync(join(tmpdir(), 'pagefifty-figure-'));
 	const examples = join(root, 'examples');
 	const out = join(root, 'generated');
