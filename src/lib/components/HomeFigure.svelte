@@ -26,8 +26,8 @@
 <section class="figure" data-figure aria-labelledby="figure-title">
 	<h2 class="head" id="figure-title">What one run found</h2>
 	<p class="lead">
-		Of <span class="mono">{figure.population}</span> IT notices in the {figure.capturedOn} snapshot, this
-		is how each one reads for the demo firm.
+		Of <span class="mono" data-population>{figure.population}</span> IT notices in the {figure.capturedOn}
+		snapshot, this is how each one reads for the demo firm.
 	</p>
 	<dl class="tally">
 		{#each ROWS as row (row.key)}

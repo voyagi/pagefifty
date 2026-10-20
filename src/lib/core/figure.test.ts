@@ -107,7 +107,7 @@ function syntheticNotice(kinds: readonly LotKind[], cancelIntent: boolean): Figu
 		}))
 	};
 	const readings: NoticeReadingsLike = {
-		lots: kinds.flatMap((kind, index) => {
+		lots: kinds.flatMap<NoticeReadingsLike['lots'][number]>((kind, index) => {
 			const id = `LOT-000${index}`;
 			if (kind === 'unlisted') return [];
 			if (kind === 'not-read') return [{ lot: id, status: 'not-read' as const, reason: 'dry-run' }];

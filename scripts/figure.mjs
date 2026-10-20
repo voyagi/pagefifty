@@ -10,12 +10,16 @@
 // A capture with no run.json gets a null command, which the page words as a one-off read. The
 // capture command never computes the figure: it may not reach the profile.
 //
-// Usage:  node scripts/figure.mjs <capture> [--examples <dir>] [--generated <dir>]
+// Usage:  node scripts/figure.mjs <capture> [--check] [--examples <dir>] [--generated <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository;
 //         run node scripts/build-records.mjs first, which npm run dev, build and test each do)
-// Exit codes: 0 figure.json written,
-//             1 a built file or the capture's run.json does not match its schema, or the write failed,
-//             2 bad usage, no built records for the capture, or a capture with no reading run.
+//         --check writes nothing and compares the capture's figure.json with the figure its
+//         readings give.
+// Exit codes: 0 figure.json written, or with --check, figure.json matches,
+//             1 a built file or the capture's run.json does not match its schema, the write failed,
+//               or with --check, figure.json differs,
+//             2 bad usage, no built records for the capture, a capture with no reading run, or with
+//               --check, no figure.json.
 
 import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -47,10 +51,15 @@ function parseArgs(argv) {
 	const options = {
 		capture,
 		examples: join(repository, 'examples'),
-		generated: join(repository, 'src', 'lib', 'snapshot', 'generated')
+		generated: join(repository, 'src', 'lib', 'snapshot', 'generated'),
+		check: false
 	};
-	for (let index = 0; index < flags.length; index += 2) {
+	for (let index = 0; index < flags.length; index += 1) {
 		const [flag, value] = [flags[index], flags[index + 1]];
+		if (flag === '--check' && !options.check) {
+			options.check = true;
+			continue;
+		}
 		if ((flag !== '--examples' && flag !== '--generated') || !value) {
 			throw new FigureError(
 				2,
@@ -58,6 +67,7 @@ function parseArgs(argv) {
 			);
 		}
 		options[flag.slice(2)] = resolve(value);
+		index += 1;
 	}
 	return options;
 }
@@ -156,10 +166,29 @@ function writeFigure(folder, figure) {
 	return target;
 }
 
+// The committed file must be exactly what the readings give today, byte for byte, so a figure typed
+// or edited by hand, or left over from readings that changed since, fails here and in the tests.
+function checkFigure(folder, figure) {
+	const target = join(folder, 'figure.json');
+	if (!existsSync(target)) throw new FigureError(2, `${figure.capture}: no ${target} to check`);
+	if (readFileSync(target, 'utf8') !== `${JSON.stringify(figure, null, 2)}\n`) {
+		throw new FigureError(
+			1,
+			`${figure.capture}: ${target} differs from the figure its readings give; node scripts/figure.mjs ${figure.capture} writes it again`
+		);
+	}
+	console.log(`figure: ${figure.capture}: ${target} matches its readings`);
+}
+
 function main() {
 	const options = parseArgs(process.argv.slice(2));
 	const figure = figureFileOf(options);
-	const target = writeFigure(join(options.examples, options.capture), figure);
+	const folder = join(options.examples, options.capture);
+	if (options.check) {
+		checkFigure(folder, figure);
+		return;
+	}
+	const target = writeFigure(folder, figure);
 	const { go, partnerNeeded, noGo, askFirst } = figure.counts;
 	console.log(
 		`figure: ${figure.capture}: ${figure.population} notices, go ${go}, partner needed ${partnerNeeded}, no-go ${noGo}, ask first ${askFirst}; written to ${target}`
