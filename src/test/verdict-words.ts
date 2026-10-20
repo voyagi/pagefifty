@@ -15,6 +15,8 @@ const NAMED_BY = ['aria-label', 'alt', 'title', 'placeholder'];
 interface Scope {
 	// Leave out every [data-verdict] region, where a listed lot's verdict may name itself.
 	outsideVerdict?: boolean;
+	// Leave out the home figure, which names the verdicts it counts.
+	outsideFigure?: boolean;
 }
 
 // The page's own words: everything except text marked as the notice's (titles, buyers,
@@ -24,9 +26,16 @@ interface Scope {
 // ("Lot 1GO").
 const PUBLISHED_TEXT = '[data-notice-text], [data-web-text]';
 
-export function checkedText(root: Element, { outsideVerdict = false }: Scope = {}): string {
+export function checkedText(
+	root: Element,
+	{ outsideVerdict = false, outsideFigure = false }: Scope = {}
+): string {
 	const copy = root.cloneNode(true) as Element;
-	const left = outsideVerdict ? `${PUBLISHED_TEXT}, [data-verdict]` : PUBLISHED_TEXT;
+	const left = [
+		PUBLISHED_TEXT,
+		...(outsideVerdict ? ['[data-verdict]'] : []),
+		...(outsideFigure ? ['[data-figure]'] : [])
+	].join(', ');
 	for (const node of copy.querySelectorAll(left)) node.remove();
 	const texts: string[] = [];
 	const walker = copy.ownerDocument.createTreeWalker(copy, NodeFilter.SHOW_TEXT);

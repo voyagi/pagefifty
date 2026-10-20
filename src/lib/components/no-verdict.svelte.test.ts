@@ -4,6 +4,7 @@ import { cleanup, render } from '@testing-library/svelte';
 import { fc } from '@fast-check/vitest';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import type { FilterState } from '$lib/core/filters';
+import { VERDICT_LABELS } from '$lib/core/verdict';
 import { readNotice } from '$lib/ingest/read-notice';
 import type { NoticeRecord } from '$lib/ingest/record';
 import { EU_EEA_COUNTRIES, EU_LANGUAGES } from '$lib/profile/codes';
@@ -18,6 +19,7 @@ import { NoticeReadingsSchema, type NoticeReadings } from '$lib/snapshot/reading
 import { buildTenderList, captureFacts, type TenderListData } from '$lib/tenders/list';
 import { buildTenderPage, type TenderPageData } from '$lib/tenders/tender-page';
 import { readFixture } from '../../test/fixtures/node';
+import { SPREAD_FIGURE } from '../../test/home-figure';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import NoVerdictHarness from '../../test/NoVerdictHarness.svelte';
 import PlantedVerdict from '../../test/PlantedVerdict.svelte';
@@ -494,6 +496,24 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 		});
 		expect(checkedText(container)).toContain('Browse open tenders');
 		expect(findVerdictWords(container)).toEqual([]);
+	});
+
+	// The finding names the verdicts it counts, so they may show inside the figure and nowhere else on
+	// the page; with no figure the page shows none at all.
+	it('the entry page shows verdict words only inside the figure', () => {
+		const base = { total: captured.length, capturedOn: CAPTURE.capturedOn };
+		const without = render(EntryPage, { props: { data: { ...base, figure: null } } }).container;
+		expect(without.querySelector('[data-figure]')).toBeNull();
+		expect(findVerdictWords(without)).toEqual([]);
+		cleanup();
+		const shown = render(EntryPage, {
+			props: { data: { ...base, figure: SPREAD_FIGURE } }
+		}).container;
+		const figure = shown.querySelector('[data-figure]');
+		expect(figure).not.toBeNull();
+		expect(findVerdictWords(shown, { outsideFigure: true })).toEqual([]);
+		const inside = figure === null ? [] : findVerdictWords(figure);
+		expect(new Set(inside)).toEqual(new Set(Object.values(VERDICT_LABELS)));
 	});
 
 	it.each([
