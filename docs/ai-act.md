@@ -5,9 +5,10 @@ for providers and deployers of certain AI systems", read on EUR-Lex
 (https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202401689) on 2026-10-18. Each
 verdict below rests on a fact the site's AI page (/ai) states.
 
-One model reads the published selection criteria of each tender lot when a snapshot is captured.
-The site shows those readings as recorded and calls no model while a visitor reads (/ai). Code,
-not the model, checks every quote and decides every criterion state and verdict.
+When a snapshot is captured, one model reads the published selection criteria of the tender lots
+the capture run sends it. The criteria of a lot without a reading are shown as published and not
+compared. The site shows those readings as recorded and calls no model while a visitor reads (/ai).
+Code, not the model, checks every quote and decides every criterion state and verdict.
 
 ## Article 50(1), interaction with natural persons: DOES NOT APPLY
 

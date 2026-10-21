@@ -55,8 +55,10 @@
 				<h1 id="ai-title">How the AI is used</h1>
 				{@render tab()}
 				<p class="lede">
-					One model reads the published selection criteria of each tender lot when the snapshot is
-					captured. The site shows those readings as recorded and calls no model while you read.
+					When the snapshot is captured, one model reads the published selection criteria of the
+					tender lots the capture run sends it. The criteria of a lot without a reading are shown as
+					published and not compared with your firm. The site shows those readings as recorded and
+					calls no model while you read.
 				</p>
 				{#if data.run}
 					<p class="fact">

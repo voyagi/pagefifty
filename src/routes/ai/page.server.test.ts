@@ -105,6 +105,17 @@ describe('/ai copy', () => {
 		for (const sentence of AI_LIMITS) expect(body).toContain(sentence);
 	});
 
+	// A capture run can leave lots unread (its cap, a lot outside the run: the 2026-09-15 run read 2
+	// lots of a capture of 362 notices), so the page claims no reading for every lot.
+	it('the AI page says only the lots a run sends are read', async () => {
+		const body = text(pageOf(await loaded(null)));
+		expect(body).not.toContain('each tender lot');
+		expect(body).toContain('the tender lots the capture run sends it');
+		expect(body).toContain(
+			'The criteria of a lot without a reading are shown as published and not compared with your firm.'
+		);
+	});
+
 	// Each provider fact is its own block, and the block holds the link to the page it was read on.
 	it('links each provider fact to the page it was read on', async () => {
 		const guide = 'href="https://docs.tokenfactory.nebius.com/legal/legal-quick-guide"';
