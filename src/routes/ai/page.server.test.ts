@@ -1,6 +1,6 @@
 import { render } from 'svelte/server';
 import { describe, expect, it, vi } from 'vitest';
-import { newestReadingRun, searchRunOf } from '$lib/server/records';
+import { newestReadingRun, readingRunOf, searchRunOf } from '$lib/server/records';
 import type { ReadingRun } from '$lib/snapshot/readings';
 import { load } from './+page.server';
 import AiPage, { AI_LIMITS } from './+page.svelte';
@@ -8,9 +8,13 @@ import AiPage, { AI_LIMITS } from './+page.svelte';
 // providersOf stays real, so the rule for when a provider is named is the one these pages run; only
 // the two records it is given are chosen here. The model ID and region are set apart from the
 // example's, so a page that names the example run's values from anywhere but the load is caught.
+// The newest reading run is a newer capture that is not the example, so a load that names it is
+// caught too.
 vi.mock('$lib/server/records', async (importOriginal) => ({
 	...(await importOriginal<typeof import('$lib/server/records')>()),
+	EXAMPLE_CAPTURE: '2026-11-02',
 	newestReadingRun: vi.fn(),
+	readingRunOf: vi.fn(),
 	searchRunOf: vi.fn()
 }));
 
@@ -28,13 +32,26 @@ const RUN: ReadingRun = {
 	quotes: { verified: 7, rejected: 1 }
 };
 
+const NEWER_RUN: ReadingRun = {
+	...RUN,
+	model: 'example-org/newer-model-9b',
+	region: 'eu-test-8',
+	runDate: '2026-12-01'
+};
+
 type LoadEvent = Parameters<typeof load>[0];
 type Loaded = Exclude<Awaited<ReturnType<typeof load>>, void>;
 
+// Only the example capture holds this run and this search; any other capture holds neither.
 async function loaded(search: { searches: number } | null): Promise<Loaded> {
-	vi.mocked(newestReadingRun).mockReturnValue({ id: '2026-11-02', run: RUN });
-	vi.mocked(searchRunOf).mockReturnValue(
-		search === null ? null : { searches: search.searches, notSearched: 0, credits: null }
+	vi.mocked(newestReadingRun).mockReturnValue({ id: '2026-12-01', run: NEWER_RUN });
+	vi.mocked(readingRunOf).mockImplementation((capture) =>
+		capture === '2026-11-02' ? RUN : capture === '2026-12-01' ? NEWER_RUN : null
+	);
+	vi.mocked(searchRunOf).mockImplementation((capture) =>
+		capture === '2026-11-02' && search !== null
+			? { searches: search.searches, notSearched: 0, credits: null }
+			: null
 	);
 	return (await load({} as LoadEvent)) as Loaded;
 }
@@ -60,7 +77,7 @@ const text = (body: string) =>
 		.trim();
 
 describe('/ai load', () => {
-	it('the AI page names the model and region of the newest reading run', async () => {
+	it('the AI page names the model and region of the run that read the example capture', async () => {
 		const data = await loaded(null);
 		expect(data).toEqual({ capture: '2026-11-02', run: RUN, providers: ['Nebius Token Factory'] });
 		const body = pageOf(data);
@@ -72,7 +89,19 @@ describe('/ai load', () => {
 		expect(body).toContain('href="/example"');
 	});
 
-	it('the AI page names Tavily only when the newest run searched', async () => {
+	// /example serves the example capture, so the run the page links to as the example run is that
+	// capture's, even while the model has read a newer capture that is not the example.
+	it('never names a newer reading run that is not the example capture', async () => {
+		const data = await loaded(null);
+		expect(data.capture).toBe('2026-11-02');
+		expect(data.run).toBe(RUN);
+		const body = pageOf(data);
+		expect(body).not.toContain(NEWER_RUN.model);
+		expect(body).not.toContain(NEWER_RUN.region);
+		expect(text(body)).toContain('This run read the capture of 2026-11-02');
+	});
+
+	it('the AI page names Tavily only when the example capture searched', async () => {
 		for (const search of [null, { searches: 0 }]) {
 			const data = await loaded(search);
 			expect(data.providers).toEqual(['Nebius Token Factory']);
@@ -85,8 +114,11 @@ describe('/ai load', () => {
 		expect(body).toContain('href="https://tavily.com/privacy"');
 	});
 
-	it('says no model read is recorded when no capture holds one', async () => {
-		vi.mocked(newestReadingRun).mockReturnValue(null);
+	it('says no model read is recorded when the example capture holds none', async () => {
+		vi.mocked(newestReadingRun).mockReturnValue({ id: '2026-12-01', run: NEWER_RUN });
+		vi.mocked(readingRunOf).mockImplementation((capture) =>
+			capture === '2026-12-01' ? NEWER_RUN : null
+		);
 		const data = (await load({} as LoadEvent)) as Loaded;
 		expect(data).toEqual({ capture: null, run: null, providers: [] });
 		const body = pageOf(data);
