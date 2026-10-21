@@ -635,6 +635,24 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 			'naming a notice that is no TED notice number',
 			searchesOf('https://awards.example/buyer', '../../escape'),
 			'"../../escape" is not a TED notice number'
+		],
+		// Results on the tender page from a run whose count says Tavily was never sent a search, so the
+		// trust pages would leave Tavily out.
+		[
+			'counting fewer searches sent than its notices were searched',
+			{
+				...searchesOf('https://awards.example/buyer'),
+				run: { searches: 0, notSearched: 0, credits: 0 }
+			},
+			'the run counts a different number of searches sent than its notices searched or failed'
+		],
+		[
+			'counting a notice not searched that it does not list',
+			{
+				...searchesOf('https://awards.example/buyer'),
+				run: { searches: 1, notSearched: 1, credits: 1 }
+			},
+			'the run counts a different number of notices not searched than it lists'
 		]
 	])(
 		'a searches file the schema refuses stops the build and writes nothing: %s',
