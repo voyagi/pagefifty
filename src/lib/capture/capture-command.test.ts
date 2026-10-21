@@ -849,11 +849,15 @@ describe('the buyer search under the cap the model read shares', () => {
 				'629755-2026 searched',
 				'634398-2026 searched'
 			]);
+			// The failed search was counted as sent and reported no credits, so the total is unknown.
 			expect(readJson(join(run.folder, 'run.json')).search).toEqual({
 				searches: 3,
 				notSearched: 1,
-				credits: 2
+				credits: null
 			});
+			expect(readFileSync(join(run.folder, 'README.md'), 'utf8')).toContain(
+				'`run.json` the searches and the credits: 3 sent, credits not reported.'
+			);
 			expect(run.lines.filter((line) => line.includes(PROVIDER_TEXT))).toEqual([]);
 			const leaks = filesUnder(run.root).filter((file) =>
 				readFileSync(file, 'latin1').includes(PROVIDER_TEXT)

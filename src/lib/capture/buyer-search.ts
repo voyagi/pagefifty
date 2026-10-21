@@ -17,7 +17,7 @@ import { readResults, searchBody, searchQuery, sendSearch } from './tavily.ts';
 interface SearchOutcome {
 	// Searches the gate let through, answered or not: each sent the buyer's name to Tavily.
 	searches: number;
-	// The credits Tavily reported, or null once an answer reported none.
+	// The credits Tavily reported, or null once a sent search reported none, a failed one included.
 	credits: number | null;
 	notices: readonly NoticeSearch[];
 }
@@ -58,7 +58,8 @@ interface Session {
 
 // The gate the step is handed has already replaced a thrown send's text with a fixed reason, so a
 // failed search ends only its own notice and nothing the provider said is kept. A search is never
-// retried.
+// retried. The gate counted a failed search as sent before it failed, and it reported no credits,
+// so the run's credit total is unknown from then on.
 async function searchOne(session: Session, record: NoticeRecord): Promise<NoticeSearch> {
 	const notice = record.noticeNumber;
 	if (session.stopped !== undefined) return notSearched(notice, session.stopped);
@@ -66,6 +67,7 @@ async function searchOne(session: Session, record: NoticeRecord): Promise<Notice
 	try {
 		answer = await sendSearch(session.gate, session.transport, searchBody(record));
 	} catch {
+		session.credits = null;
 		return notSearched(notice, 'send-failed');
 	}
 	if (answer.kind !== 'sent') {
