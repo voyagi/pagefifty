@@ -1,6 +1,7 @@
-// The capture command as scripts/capture.mjs wires it, model step included, driven with a stub TED,
-// the stub provider serving spike 004's recorded replies, a fake clock and stub keys. Every run gets
-// its own temp root, so nothing lands under the repository and its key file is never read.
+// The capture command as scripts/capture.mjs wires it, model step and buyer search included, driven
+// with a stub TED, the stub provider serving spike 004's recorded replies and search, a fake clock
+// and stub keys. Every run gets its own temp root, so nothing lands under the repository and its key
+// file is never read.
 import {
 	existsSync,
 	mkdirSync,
@@ -17,12 +18,21 @@ import { commandDeps } from '../../../scripts/capture.mjs';
 import { capturePath } from '../../test/fixtures/node.ts';
 import { readReplyFixture, type RecordedReply } from '../../test/fixtures/replies.ts';
 import { buildSynthetic } from '../../test/fixtures/roles.ts';
-import { chatResponse, createStubProvider, syntheticReply } from '../../test/provider-stub.ts';
+import {
+	chatResponse,
+	createStubProvider,
+	searchAnswer,
+	syntheticReply
+} from '../../test/provider-stub.ts';
 import { createFakeClock, createScriptedTed } from '../../test/ted-stub.ts';
 import { readNotice } from '../ingest/read-notice.ts';
 import { ReadingRunSchema, ReadingsFileSchema } from '../snapshot/readings.ts';
+import { SearchRunSchema } from '../snapshot/search-run.ts';
+import { SearchesFileSchema } from '../snapshot/searches.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
+import { captureReadme } from './readme.ts';
 import { runCapture } from './run.ts';
+import { searchBody, searchQuery } from './tavily.ts';
 import { chatBody, userMessage } from './token-factory.ts';
 
 const START = Date.parse('2026-09-15T08:00:00Z');
@@ -32,6 +42,9 @@ const NEBIUS = 'not-a-real-nebius-key-for-the-command';
 const TAVILY = 'not-a-real-tavily-key-for-the-command';
 const LIVE = { argv: ['--live', '--cap', '5'], env: { PAGEFIFTY_LIVE: '1' } };
 const GERMAN = 'de-610242-thinking-off';
+const BUYER = 'tavily-610242-buyer';
+const CHAT_URL = 'https://api.tokenfactory.nebius.com/v1/chat/completions';
+const SEARCH_URL = 'https://api.tavily.com/search';
 
 const roots: string[] = [];
 
@@ -44,6 +57,8 @@ interface CommandRun {
 	argv?: readonly string[];
 	env?: Record<string, string>;
 	replies?: readonly RecordedReply[];
+	// Tavily answers; spike 004's search of the German buyer unless a test names others.
+	searches?: readonly RecordedReply[];
 	tedScript?: Parameters<typeof createScriptedTed>[0]['script'];
 	providerScript?: Parameters<typeof createStubProvider>[0]['script'];
 	// A root an earlier run used, for a run that finds its store and cache; a fresh temp root otherwise.
@@ -58,6 +73,7 @@ async function commandRun({
 	argv = [],
 	env = {},
 	replies = [],
+	searches = [readReplyFixture(BUYER)],
 	tedScript,
 	providerScript,
 	root = freshRoot(),
@@ -66,7 +82,7 @@ async function commandRun({
 }: CommandRun) {
 	const clock = createFakeClock(start);
 	const ted = createScriptedTed({ clock, notices, script: tedScript });
-	const provider = createStubProvider({ replies, script: providerScript });
+	const provider = createStubProvider({ replies, searches, script: providerScript });
 	const lines: string[] = [];
 	const keyPaths: string[] = [];
 	const code = await runCapture(
@@ -133,12 +149,25 @@ const RUN_RECORD_KEYS = [
 	'command',
 	'head',
 	'modes',
+	'openAfter',
 	'query',
 	'ted',
 	'notices',
 	'metered',
-	'reading'
+	'reading',
+	'search'
 ];
+
+type Provider = ReturnType<typeof createStubProvider>;
+
+const chatCalls = (run: { provider: Provider }) =>
+	run.provider.calls().filter((call) => call.url === CHAT_URL);
+const searchCalls = (run: { provider: Provider }) =>
+	run.provider.calls().filter((call) => call.url === SEARCH_URL);
+
+// The model step's part of the metered record, which the buyer search after it shares.
+const ofProvider = <T extends { provider: string }>(entries: readonly T[], provider: string) =>
+	entries.filter((entry) => entry.provider === provider);
 
 describe('the command with the model step', () => {
 	it('the command reads one German lot live and publishes its reading with the run cost', async () => {
@@ -149,7 +178,7 @@ describe('the command with the model step', () => {
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
 		expect(run.keyPaths).toEqual([join(run.root, '.env')]);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		const readings = ReadingsFileSchema.parse(readJson(join(run.folder, 'readings.json')));
 		expect(readings.notices).toEqual([
 			{
@@ -181,7 +210,11 @@ describe('the command with the model step', () => {
 		});
 		expect(readings.run).toEqual(record.reading);
 		expect(ReadingRunSchema.parse(record.reading)).toEqual(record.reading);
-		expect(record.metered).toMatchObject({ cap: 5, attempts: 1, refusals: [] });
+		expect(record.metered).toMatchObject({
+			cap: 5,
+			perProvider: expect.objectContaining({ tokenFactory: 1 }),
+			refusals: []
+		});
 		const traces = keyTraces(run);
 		expect(traces.found).toEqual([]);
 		expect(traces.files).toContain(join(run.folder, 'readings.json'));
@@ -194,13 +227,75 @@ describe('the command with the model step', () => {
 			replies: [readReplyFixture(GERMAN)]
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const calls = run.provider.calls();
+		const calls = chatCalls(run);
 		expect(calls).toHaveLength(1);
 		expect(calls[0].method).toBe('POST');
 		expect(calls[0].url).toBe('https://api.tokenfactory.nebius.com/v1/chat/completions');
 		expect(calls[0].headers.authorization).toBe(`Bearer ${NEBIUS}`);
 		expect(JSON.stringify(calls[0].headers)).not.toContain(TAVILY);
 		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
+	});
+});
+
+interface RecordedResult {
+	url: string;
+	title: string;
+	score: number;
+}
+
+const buyerResults = () =>
+	(readReplyFixture(BUYER).response as unknown as { results: RecordedResult[] }).results;
+
+describe('the command with the buyer search', () => {
+	it('the command searches the German buyer and publishes its five results', async () => {
+		const run = await commandRun({
+			notices: ['610242-2026'],
+			...LIVE,
+			replies: [readReplyFixture(GERMAN)]
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.provider.calls().map((call) => call.url)).toEqual([CHAT_URL, SEARCH_URL]);
+		const [search] = searchCalls(run);
+		expect(search.method).toBe('POST');
+		expect(search.headers.authorization).toBe(`Bearer ${TAVILY}`);
+		expect(JSON.stringify(search.headers)).not.toContain(NEBIUS);
+		expect(search.body).toEqual(readReplyFixture(BUYER).request);
+		const path = join(run.folder, 'searches.json');
+		expect(existsSync(path)).toBe(true);
+		const text = readFileSync(path, 'utf8');
+		const searches = SearchesFileSchema.parse(JSON.parse(text));
+		expect(text).toBe(`${JSON.stringify(searches, null, 2)}\n`);
+		expect(text).not.toContain('"content"');
+		expect(searches.notices).toEqual([
+			{
+				notice: '610242-2026',
+				status: 'searched',
+				query: 'Berlin TXL Management GmbH Vergabe Zuschlag IT Dienstleistungen',
+				results: buyerResults().map(({ title, url, score }) => ({ title, url, score }))
+			}
+		]);
+		const record = readJson(join(run.folder, 'run.json'));
+		expect(Object.keys(record)).toEqual(RUN_RECORD_KEYS);
+		expect(record.search).toEqual({ searches: 1, notSearched: 0, credits: 1 });
+		expect(searches.run).toEqual(record.search);
+		expect(SearchRunSchema.parse(record.search)).toEqual(record.search);
+		expect(record.metered).toMatchObject({
+			cap: 5,
+			attempts: 2,
+			perProvider: { tokenFactory: 1, tavily: 1 },
+			refusals: []
+		});
+		expect(ofProvider(record.metered.responses, 'tavily')).toEqual([
+			{
+				provider: 'tavily',
+				operation: 'search',
+				id: '61735852-a429-4665-a578-75ec3028ebb3',
+				usage: { credits: 1 }
+			}
+		]);
+		const traces = keyTraces(run);
+		expect(traces.found).toEqual([]);
+		expect(traces.files).toContain(path);
 	});
 });
 
@@ -283,7 +378,7 @@ describe('the model step under the cap', () => {
 			replies: THREE_REPLIES
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(2);
+		expect(chatCalls(run)).toHaveLength(2);
 		expect(lotsOf(run.folder)).toEqual({
 			'610242-2026': ['read'],
 			'629755-2026': ['read'],
@@ -291,7 +386,7 @@ describe('the model step under the cap', () => {
 		});
 		const record = readJson(join(run.folder, 'run.json'));
 		expect(record.metered.attempts).toBe(2);
-		expect(record.metered.refusals).toEqual([
+		expect(ofProvider(record.metered.refusals, 'tokenFactory')).toEqual([
 			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 2 attempts is reached' }
 		]);
 		expect(record.reading).toMatchObject({ sends: 2, lots: { read: 2, notRead: 1 } });
@@ -303,13 +398,15 @@ describe('the model step under the cap', () => {
 			replies: THREE_REPLIES
 		});
 		expect(one.code, one.lines.join('\n')).toBe(0);
-		expect(one.provider.calls()).toHaveLength(1);
+		expect(chatCalls(one)).toHaveLength(1);
 		expect(lotsOf(one.folder)).toEqual({
 			'610242-2026': ['read'],
 			'629755-2026': ['not-read cap-reached'],
 			'634398-2026': ['not-read cap-reached']
 		});
-		expect(readJson(join(one.folder, 'run.json')).metered.refusals).toEqual([
+		expect(
+			ofProvider(readJson(join(one.folder, 'run.json')).metered.refusals, 'tokenFactory')
+		).toEqual([
 			{ provider: 'tokenFactory', operation: 'chat', reason: 'the cap of 1 attempts is reached' }
 		]);
 	});
@@ -323,10 +420,10 @@ describe('the model step under the cap', () => {
 			providerScript: { 1: answerWith('not json') }
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		expect(existsSync(join(run.folder, 'readings.json'))).toBe(false);
 		const record = readJson(join(run.folder, 'run.json'));
-		expect(record.metered.refusals).toEqual([
+		expect(ofProvider(record.metered.refusals, 'tokenFactory')).toEqual([
 			{
 				provider: 'tokenFactory',
 				operation: 'chat-repair',
@@ -348,7 +445,7 @@ describe('which lots the model step sends', () => {
 			replies: THREE_REPLIES
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls().map((call) => userMessageOf(call.body))).toEqual(
+		expect(chatCalls(run).map((call) => userMessageOf(call.body))).toEqual(
 			THREE_REPLIES.map((reply) => userMessageOf(reply.request))
 		);
 	});
@@ -374,7 +471,7 @@ describe('which lots the model step sends', () => {
 			replies: [syntheticReply(body, [item])]
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls()).toHaveLength(1);
+		expect(chatCalls(run)).toHaveLength(1);
 		const readings = readingsOf(run.folder);
 		const lots = readings.notices[0].lots;
 		expect(lots.map((lot) => [lot.lot, lot.status])).toEqual([
@@ -398,7 +495,7 @@ describe('which lots the model step sends', () => {
 			tedScript: { [tedNoticeXmlUrl('609955-2026')]: [{ status: 200, body: stripped }] }
 		});
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const calls = run.provider.calls();
+		const calls = chatCalls(run);
 		expect(calls).toHaveLength(1);
 		expect(calls[0].body).toEqual(readReplyFixture(GERMAN).request);
 		const lots = lotsOf(run.folder);
@@ -410,7 +507,7 @@ describe('which lots the model step sends', () => {
 	it('every sent body is the lot criteria text and nothing else', async () => {
 		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		const bodies = run.provider.calls().map((call) => call.body);
+		const bodies = chatCalls(run).map((call) => call.body);
 		expect(bodies).toEqual(THREE.map(firstLotBody));
 		expect(bodies[0]).toEqual(readReplyFixture(GERMAN).request);
 		expect(Object.keys(bodies[0] as object)).toEqual([
@@ -447,7 +544,7 @@ describe('replies the model step cannot use', () => {
 				providerScript: script
 			});
 			expect(run.code, run.lines.join('\n')).toBe(0);
-			const calls = run.provider.calls();
+			const calls = chatCalls(run);
 			expect(calls, issue).toHaveLength(2);
 			const repair = calls[1].body as { messages: { role: string; content: string }[] };
 			expect(repair.messages.slice(0, 2)).toEqual(readReplyFixture(GERMAN).request.messages);
@@ -456,7 +553,10 @@ describe('replies the model step cannot use', () => {
 			expect(repair.messages[3].content).toContain(issue);
 			const record = readJson(join(run.folder, 'run.json'));
 			expect(
-				record.metered.responses.map((response: { operation: string }) => response.operation)
+				ofProvider(
+					record.metered.responses as { provider: string; operation: string }[],
+					'tokenFactory'
+				).map((response) => response.operation)
 			).toEqual(['chat', 'chat-repair']);
 			if (lot === 'read') expect(lotsOf(run.folder)).toEqual({ '610242-2026': ['read'] });
 			else {
@@ -482,7 +582,7 @@ describe('replies the model step cannot use', () => {
 				providerScript: { 1: failure }
 			});
 			expect(run.code, run.lines.join('\n')).toBe(0);
-			expect(run.provider.calls()).toHaveLength(3);
+			expect(chatCalls(run)).toHaveLength(3);
 			expect(lotsOf(run.folder)).toEqual({
 				'610242-2026': ['not-read send-failed'],
 				'629755-2026': ['read'],
@@ -499,9 +599,12 @@ describe('replies the model step cannot use', () => {
 	it('no provider key appears in any output', async () => {
 		const run = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(run.code, run.lines.join('\n')).toBe(0);
-		expect(run.provider.calls().map((call) => call.headers.authorization)).toEqual(
+		expect(chatCalls(run).map((call) => call.headers.authorization)).toEqual(
 			THREE.map(() => `Bearer ${NEBIUS}`)
 		);
+		for (const call of searchCalls(run)) {
+			expect(call.headers.authorization).toBe(`Bearer ${TAVILY}`);
+		}
 		const traces = keyTraces(run);
 		expect(traces.found).toEqual([]);
 		expect(traces.files).toEqual(
@@ -528,7 +631,7 @@ describe('readings reused across runs', () => {
 	it('a second run over unchanged text sends nothing and one changed text sends once', async () => {
 		const first = await commandRun({ notices: THREE, ...LIVE, replies: THREE_REPLIES });
 		expect(first.code, first.lines.join('\n')).toBe(0);
-		expect(first.provider.calls()).toHaveLength(3);
+		expect(chatCalls(first)).toHaveLength(3);
 		// The raw XML cache would serve the old bytes, so TED is asked for the changed notice again.
 		rmSync(join(first.root, '.capture-cache', 'xml', '634398-2026.xml'));
 		const changed = changedNotice('634398-2026');
@@ -541,7 +644,7 @@ describe('readings reused across runs', () => {
 			tedScript: { [tedNoticeXmlUrl('634398-2026')]: [{ status: 200, body: changed.xml }] }
 		});
 		expect(second.code, second.lines.join('\n')).toBe(0);
-		const calls = second.provider.calls();
+		const calls = chatCalls(second);
 		expect(calls).toHaveLength(1);
 		expect(userMessageOf(calls[0].body)).toBe(userMessageOf(changed.body));
 		expect(readJson(join(second.folder, 'run.json')).reading).toMatchObject({
@@ -569,7 +672,7 @@ describe('readings reused across runs', () => {
 			replies: THREE_REPLIES
 		});
 		expect(second.code, second.lines.join('\n')).toBe(0);
-		expect(second.provider.calls()).toHaveLength(0);
+		expect(chatCalls(second)).toHaveLength(0);
 		const before = readingsOf(first.folder);
 		const after = readingsOf(second.folder);
 		expect(after.readings).toEqual(before.readings);
@@ -634,5 +737,250 @@ describe('the README of a capture with the model step', () => {
 			'- 3 lots with criteria: 0 read in this run, 0 reused from an earlier run, 3 not read.'
 		);
 		expect(dryReadme).not.toContain('`readings.json`');
+	});
+});
+
+// A Tavily answer for each of the three notices: the recorded one for the German buyer, one result
+// each for the other two.
+const threeSearches = () => [
+	readReplyFixture(BUYER),
+	...THREE.slice(1).map((notice) =>
+		searchAnswer(searchQuery(trackedRecord(notice)), [
+			{ url: `https://awards.example/${notice}`, title: `Awards of ${notice}`, score: 0.5 }
+		])
+	)
+];
+
+const searchesPath = (folder: string) => join(folder, 'searches.json');
+
+const searchStatuses = (folder: string) =>
+	SearchesFileSchema.parse(readJson(searchesPath(folder))).notices.map((each) =>
+		each.status === 'searched' ? `${each.notice} searched` : `${each.notice} ${each.reason}`
+	);
+
+const SEARCH_WOULD = 'capture: (dry-run) WOULD call tavily search';
+
+// Three chats and three searches fit under a cap of 6.
+const LIVE_SIX = { argv: ['--live', '--cap', '6'], env: { PAGEFIFTY_LIVE: '1' } };
+
+describe('the buyer search under the cap the model read shares', () => {
+	it('searches and model sends stop at the one cap', async () => {
+		const four = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '4'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(four.code, four.lines.join('\n')).toBe(0);
+		expect([chatCalls(four).length, searchCalls(four).length]).toEqual([3, 1]);
+		expect(searchStatuses(four.folder)).toEqual([
+			'610242-2026 searched',
+			'629755-2026 cap-reached',
+			'634398-2026 cap-reached'
+		]);
+		const record = readJson(join(four.folder, 'run.json'));
+		expect(record.metered.attempts).toBe(4);
+		expect(ofProvider(record.metered.refusals, 'tavily')).toEqual([
+			{ provider: 'tavily', operation: 'search', reason: 'the cap of 4 attempts is reached' }
+		]);
+		expect(record.search).toEqual({ searches: 1, notSearched: 2, credits: 1 });
+		const three = await commandRun({
+			notices: THREE,
+			argv: ['--live', '--cap', '3'],
+			env: { PAGEFIFTY_LIVE: '1' },
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(three.code, three.lines.join('\n')).toBe(0);
+		expect([chatCalls(three).length, searchCalls(three).length]).toEqual([3, 0]);
+		expect(existsSync(searchesPath(three.folder))).toBe(false);
+		const capped = readJson(join(three.folder, 'run.json'));
+		expect(ofProvider(capped.metered.refusals, 'tavily')).toEqual([
+			{ provider: 'tavily', operation: 'search', reason: 'the cap of 3 attempts is reached' }
+		]);
+		expect(capped.search).toEqual({ searches: 0, notSearched: 3, credits: 0 });
+		expect(three.lines).toContain(
+			'capture: buyer search: 0 searched, 3 not searched (cap-reached 3), 0 sent, credits 0'
+		);
+	});
+
+	it('a dry run makes no search', async () => {
+		const run = await commandRun({
+			notices: THREE,
+			argv: ['--cap', '5'],
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(run.lines.filter((line) => line === SEARCH_WOULD)).toHaveLength(1);
+		expect(searchCalls(run)).toEqual([]);
+		expect(run.provider.calls()).toEqual([]);
+		expect(existsSync(searchesPath(run.folder))).toBe(false);
+		expect(readJson(join(run.folder, 'run.json')).search).toEqual({
+			searches: 0,
+			notSearched: 3,
+			credits: 0
+		});
+		expect(run.lines).toContain(
+			'capture: buyer search: 0 searched, 3 not searched (dry-run 3), 0 sent, credits 0'
+		);
+	});
+
+	it('a failed search leaves only that notice unsearched', async () => {
+		const failures = [
+			{ status: 500, text: `upstream broke: ${PROVIDER_TEXT}` },
+			{ status: 200, json: { error: PROVIDER_TEXT } },
+			{ throws: new Error(`socket closed: ${PROVIDER_TEXT}`) }
+		];
+		for (const failure of failures) {
+			const run = await commandRun({
+				notices: THREE,
+				...LIVE_SIX,
+				replies: THREE_REPLIES,
+				searches: threeSearches(),
+				// Three chats go out first, so the fourth request is the first search.
+				providerScript: { 4: failure }
+			});
+			expect(run.code, run.lines.join('\n')).toBe(0);
+			expect(searchCalls(run)).toHaveLength(3);
+			expect(searchStatuses(run.folder)).toEqual([
+				'610242-2026 send-failed',
+				'629755-2026 searched',
+				'634398-2026 searched'
+			]);
+			// The failed search was counted as sent and reported no credits, so the total is unknown.
+			expect(readJson(join(run.folder, 'run.json')).search).toEqual({
+				searches: 3,
+				notSearched: 1,
+				credits: null
+			});
+			expect(readFileSync(join(run.folder, 'README.md'), 'utf8')).toContain(
+				'`run.json` the searches and the credits: 3 sent, credits not reported.'
+			);
+			expect(run.lines.filter((line) => line.includes(PROVIDER_TEXT))).toEqual([]);
+			const leaks = filesUnder(run.root).filter((file) =>
+				readFileSync(file, 'latin1').includes(PROVIDER_TEXT)
+			);
+			expect(leaks).toEqual([]);
+		}
+	});
+
+	it('every search body is the buyer name and the search words', async () => {
+		const run = await commandRun({
+			notices: THREE,
+			...LIVE_SIX,
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const bodies = searchCalls(run).map((call) => call.body as { query: string });
+		expect(bodies).toEqual(THREE.map((notice) => searchBody(trackedRecord(notice))));
+		THREE.forEach((notice, index) => {
+			const { query, ...settings } = bodies[index];
+			expect(query.startsWith(`${trackedRecord(notice).buyers[0].name.text} `)).toBe(true);
+			expect(settings).toEqual({
+				search_depth: 'basic',
+				max_results: 5,
+				include_answer: false,
+				include_raw_content: false,
+				include_usage: true
+			});
+			expect(Object.keys(bodies[index])).toEqual([
+				'query',
+				'search_depth',
+				'max_results',
+				'include_answer',
+				'include_raw_content',
+				'include_usage'
+			]);
+		});
+	});
+});
+
+const SEARCHED_OPENING =
+	"Each search sent one notice's buyer name and fixed words for earlier awards to Tavily basic search. The results are web pages nobody checked, and they change no verdict.";
+
+const cappedRun = (cap: string) =>
+	commandRun({
+		notices: THREE,
+		argv: ['--live', '--cap', cap],
+		env: { PAGEFIFTY_LIVE: '1' },
+		replies: THREE_REPLIES,
+		searches: threeSearches()
+	});
+
+describe('the README of a capture with the buyer search', () => {
+	it('names the buyer search, and a dry run says no search was made', async () => {
+		const live = await commandRun({
+			notices: THREE,
+			...LIVE_SIX,
+			replies: THREE_REPLIES,
+			searches: threeSearches()
+		});
+		const readme = readFileSync(join(live.folder, 'README.md'), 'utf8');
+		expect(readme).toContain('## Buyer search');
+		expect(readme).toContain(SEARCHED_OPENING);
+		expect(readme).toContain(
+			'- 3 notices with criteria in the notice: 3 searched, 0 not searched.'
+		);
+		expect(readme).toContain(
+			'- `searches.json` holds the web results, which nobody checked, and `run.json` the searches and the credits: 3 sent, 3 credits.'
+		);
+		const dry = await commandRun({ notices: THREE, argv: ['--cap', '5'], replies: THREE_REPLIES });
+		const dryReadme = readFileSync(join(dry.folder, 'README.md'), 'utf8');
+		expect(dryReadme).toContain('## Buyer search');
+		expect(dryReadme).toContain(
+			"No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily."
+		);
+		expect(dryReadme).toContain(
+			'- 3 notices with criteria in the notice: 0 searched, 3 not searched.'
+		);
+		expect(dryReadme).not.toContain('`searches.json`');
+	});
+
+	// The gate counts a search before it sends it, so a live run with 0 sent never reached Tavily,
+	// and a run the cap stops part way searched only the notices it counts.
+	it('opens on the searches sent, never on the mode alone', async () => {
+		const partly = readFileSync(join((await cappedRun('4')).folder, 'README.md'), 'utf8');
+		expect(partly).toContain(SEARCHED_OPENING);
+		expect(partly).toContain(
+			'- 3 notices with criteria in the notice: 1 searched, 2 not searched.'
+		);
+		expect(partly).not.toContain('For each notice');
+		const refused = readFileSync(join((await cappedRun('3')).folder, 'README.md'), 'utf8');
+		expect(refused).toContain(
+			"No buyer search was sent: the run refused every search before sending it, and `run.json` names why, so no buyer's name reached Tavily."
+		);
+		expect(refused).toContain(
+			'- 3 notices with criteria in the notice: 0 searched, 3 not searched.'
+		);
+		expect(refused).not.toContain(SEARCHED_OPENING);
+	});
+
+	it('a live run with no notice to search says no search was made', () => {
+		const readme = captureReadme({
+			captureDate: DAY,
+			fetchedAt: '2026-09-15T08:00:00.000Z',
+			query: 'publication-date>=20260901',
+			since: '20260901',
+			modes: { ted: 'live', tokenFactory: 'live', tavily: 'live' },
+			written: 1,
+			searchTotal: 1,
+			leftOut: [],
+			failed: [],
+			unversioned: 0,
+			openAfter: null,
+			closing: 0,
+			reading: null,
+			search: { schemaVersion: 1, run: { searches: 0, notSearched: 0, credits: 0 }, notices: [] }
+		});
+		expect(readme).toContain(
+			"No buyer search was made: no notice in this capture names a buyer and has criteria in the notice, so no buyer's name was sent to Tavily."
+		);
+		expect(readme).toContain(
+			'- 0 notices with criteria in the notice: 0 searched, 0 not searched.'
+		);
+		expect(readme).not.toContain(SEARCHED_OPENING);
 	});
 });

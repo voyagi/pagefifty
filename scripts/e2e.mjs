@@ -5,10 +5,12 @@
 // exit code: this Node layer builds the Worker, serves it with wrangler dev on 127.0.0.1:8788,
 // runs every scripts/e2e/*.devbrowser.js driver through the dev-browser CLI in name order, and
 // owns the verdict. Each driver reads pagefifty-e2e-run.json from the dev-browser tmp folder
-// (its result name, and under latest the facts of the newest built capture) and writes
-// { driver, checks: [{ name, ok, detail }] } to the result name it finds there. A
-// driver may add logMustNotContain (strings the Worker's request log must not hold) and
-// logMustContain (lines it must), checked here after every driver has run.
+// (its result name, under latest the facts of the newest built capture, and under example the
+// example capture's facts and the notices it visits there) and writes
+// { driver, checks: [{ name, ok, detail, didNotRun? }] } to the result name it finds there. A
+// check marked didNotRun is printed as such and never counted as passed. A driver may add
+// logMustNotContain (strings the Worker's request log must not hold) and logMustContain (lines
+// it must), checked here after every driver has run.
 //
 // A run that checked nothing is never a pass: no dev-browser is exit 1 (never SKIPPED, since
 // verify:ship runs this locally and a skip would hide a run that never happened), and zero
@@ -23,12 +25,14 @@
 //             2 the run could not run (lock, port, server, zero checks, a crash, or the two
 //               copies of the shared width-sweep code differ).
 
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { cetDayEnd } from '../src/lib/core/deadline.ts';
 import { captureDay, firstPublishedDay, newestCapture } from '../src/lib/snapshot/capture-id.ts';
 import { SnapshotIndexSchema } from '../src/lib/snapshot/index-row.ts';
+import { ReadingRunSchema } from '../src/lib/snapshot/readings.ts';
+import { SearchRunSchema } from '../src/lib/snapshot/search-run.ts';
 import {
 	DEV_BROWSER_TMP,
 	HarnessError,
@@ -36,12 +40,14 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	exampleFacts,
 	marginWarnings,
 	readResult,
 	releaseRunLock,
 	runDriver,
 	startWorker,
 	stopWorker,
+	tallyChecks,
 	writeRunConfig
 } from './harness.mjs';
 
@@ -161,6 +167,40 @@ function latestCapture() {
 	};
 }
 
+function builtJson(path, schema) {
+	let parsed;
+	try {
+		parsed = schema.safeParse(JSON.parse(readFileSync(path, 'utf8')));
+	} catch (error) {
+		throw new HarnessError(2, `${path} could not be read as JSON: ${error.message}`);
+	}
+	if (!parsed.success)
+		throw new HarnessError(2, `${path} is not a built run: ${parsed.error.message}`);
+	return parsed.data;
+}
+
+// The trust pages name the model of the newest capture the model read and the providers that
+// capture used, so the drivers expect what the build wrote. The rule for naming the search
+// provider is written here a second time on purpose: an expectation computed by the page's own
+// function would agree with any defect in it.
+function trustFacts() {
+	const read = readdirSync(GENERATED).filter((name) =>
+		existsSync(join(GENERATED, name, 'reading-run.json'))
+	);
+	if (read.length === 0) {
+		throw new HarnessError(
+			2,
+			`${GENERATED} holds no reading-run.json, so the AI page has nothing to show`
+		);
+	}
+	const id = newestCapture(read);
+	const run = builtJson(join(GENERATED, id, 'reading-run.json'), ReadingRunSchema);
+	const searchPath = join(GENERATED, id, 'search-run.json');
+	const search = existsSync(searchPath) ? builtJson(searchPath, SearchRunSchema) : null;
+	const providers = [run.provider, ...(search !== null && search.searches > 0 ? ['Tavily'] : [])];
+	return { capture: id, model: run.model, region: run.region, providers };
+}
+
 function readLog(logFile) {
 	try {
 		return readFileSync(logFile, 'utf8');
@@ -203,13 +243,13 @@ function logChecks(log, logRules) {
 	});
 }
 
-function runDrivers(runId, latest) {
+function runDrivers(runId, latest, trust, example) {
 	const checks = [];
 	const logRules = [];
 	const times = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
-		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest });
+		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest, trust, example });
 		const started = Date.now();
 		const run = runDriver({
 			browserName: 'pagefifty-e2e',
@@ -256,13 +296,10 @@ function runDrivers(runId, latest) {
 }
 
 function verdict(checks) {
-	for (const check of checks) {
-		console.log(
-			`${check.driver} | ${check.name} | ${check.ok ? 'PASS' : 'FAIL'} | ${check.detail}`
-		);
-	}
-	const passed = checks.filter((check) => check.ok).length;
-	console.log(`e2e: ${checks.length} checks, ${passed} passed`);
+	const tally = tallyChecks(checks);
+	for (const line of tally.lines) console.log(line);
+	console.log(tally.summary);
+	for (const line of tally.notRunLines) console.log(`e2e: ${line}`);
 	if (checks.length === 0) {
 		console.error('e2e: zero checks ran, so this run proved nothing');
 		return 2;
@@ -277,7 +314,14 @@ function verdict(checks) {
 		);
 		return caught ? 0 : 1;
 	}
-	return passed === checks.length ? 0 : 1;
+	return tally.failed === 0 ? 0 : 1;
+}
+
+function describeExample(example) {
+	const picks = Object.entries(example.probes)
+		.map(([name, probe]) => `${name} ${probe ? probe.notice : 'none'}`)
+		.join(', ');
+	return `[e2e] example capture ${example.id}: ${example.rows} rows, ${example.open} open and ${example.closed} closed at its capture instant; probes ${picks}`;
 }
 
 async function main() {
@@ -293,11 +337,17 @@ async function main() {
 		console.log(
 			`[e2e] newest capture ${latest.id}: ${latest.rows} rows of ${latest.total} listed, probe ${latest.probe.notice}`
 		);
+		const trust = trustFacts();
+		console.log(
+			`[e2e] trust pages: model ${trust.model} in ${trust.region} from capture ${trust.capture}, providers ${trust.providers.join(', ')}`
+		);
+		const example = exampleFacts(GENERATED);
+		console.log(describeExample(example));
 		const runId = randomUUID().slice(0, 8);
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const { checks, logRules, times } = runDrivers(runId, latest);
+		const { checks, logRules, times } = runDrivers(runId, latest, trust, example);
 		const log = logRules.length > 0 ? await settledLog(logFile) : '';
 		code = verdict([...checks, ...logChecks(log, logRules)]);
 		for (const line of marginWarnings(times, DRIVER_SECONDS)) {

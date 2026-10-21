@@ -103,6 +103,18 @@ export function saveStatusText(status: SaveStatus): string {
 	}
 }
 
+// The remove control, its inline question and the three answers the store can give.
+export const REMOVE_COPY = {
+	control: 'Remove the stored profile',
+	question:
+		'Remove the firm profile stored in this browser? A profile file you exported keeps its own copy.',
+	confirm: 'Remove',
+	keep: 'Keep it',
+	removed: 'Removed the firm profile from this browser.',
+	nothingStored: 'No firm profile is stored in this browser, so nothing was removed.',
+	failed: 'Not removed: this browser refused to remove the stored profile.'
+} as const;
+
 // A refusal reads as its lead sentence, one line per field (for schema errors), and the closing
 // sentence, which every refusal ends on because each one leaves storage exactly as it was.
 export interface RefusalText {

@@ -5,6 +5,7 @@ import { SERVER_TIME_ZONE, formatDeadline } from '../core/deadline.ts';
 import type { Modes } from '../server/transport-mode.ts';
 import { dayText } from '../snapshot/capture-id.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
+import type { SearchesFile } from '../snapshot/searches.ts';
 
 interface ReadmeParts {
 	captureDate: string;
@@ -18,8 +19,13 @@ interface ReadmeParts {
 	failed: readonly { notice: string; reason: string }[];
 	// Failed notices whose search hit named no usable notice identifier and version.
 	unversioned: number;
+	// The --open-after instant, or null, and how many notices it left out.
+	openAfter: string | null;
+	closing: number;
 	// run.json's reading block; null when the run had no model step.
 	reading: ReadingRun | null;
+	// What the buyer search step produced, searches.json or not; null when the run had none.
+	search: SearchesFile | null;
 }
 
 const counted = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
@@ -46,7 +52,17 @@ function whenAndWhat(parts: ReadmeParts): string[] {
 		'- The search reads competition notices only, so a procedure its buyer ended through a later result notice is not detected here.',
 		`- ${counted(parts.written, 'notice')} written, of the ${parts.searchTotal} TED stated for the search: \`notices.json\` lists them (\`total\` is the written count, \`searchTotal\` TED's) and \`xml/\` holds one eForms notice file per publication number.`,
 		'- `fetch-log.json` lists every request of this run, search pages and notice downloads, with its time, status and size. `run.json` records the run: its start and end, the commit it ran from, the query and what became of each listed notice.',
-		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`
+		`- Modes of this run: TED ${parts.modes.ted}, Token Factory ${parts.modes.tokenFactory}, Tavily ${parts.modes.tavily}. \`run.json\` records them beside every metered call the run attempted.`,
+		...openAfterLine(parts)
+	];
+}
+
+function openAfterLine({ openAfter, closing }: ReadmeParts): string[] {
+	if (openAfter === null) return [];
+	const kept = `- Only notices whose every lot closes after ${openAfter} (${formatDeadline(openAfter, SERVER_TIME_ZONE)}) were kept`;
+	if (closing === 0) return [`${kept}, and no listed notice closed earlier.`];
+	return [
+		`${kept}: ${counted(closing, 'notice')} with a lot that closes at or before it, or shows no deadline, ${closing === 1 ? 'was' : 'were'} left out, and Left out names each.`
 	];
 }
 
@@ -66,6 +82,38 @@ function modelReadSection(reading: ReadingRun | null, modes: Modes): string[] {
 		published
 			? `- \`readings.json\` holds the readings, and \`run.json\` the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`
 			: `- \`run.json\` holds the tokens and the cost: ${reading.sends} sent, USD ${reading.costUsd}.`,
+		''
+	];
+}
+
+// The opening names what reached Tavily, never the mode alone: the cap the model read shares can
+// refuse every search, and the gate counts a search before it sends it (metered.ts), so a live run
+// with 0 sent sent no buyer's name. The step also runs when no notice has anything to search.
+function searchOpening({ run, notices }: SearchesFile, modes: Modes): string {
+	if (modes.tavily !== 'live')
+		return "No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily.";
+	if (notices.length === 0)
+		return "No buyer search was made: no notice in this capture names a buyer and has criteria in the notice, so no buyer's name was sent to Tavily.";
+	if (run.searches === 0)
+		return "No buyer search was sent: the run refused every search before sending it, and `run.json` names why, so no buyer's name reached Tavily.";
+	return "Each search sent one notice's buyer name and fixed words for earlier awards to Tavily basic search. The results are web pages nobody checked, and they change no verdict.";
+}
+
+// The results are web pages nobody checked, so the section says so wherever it names the file.
+function buyerSearchSection(search: SearchesFile | null, modes: Modes): string[] {
+	if (search === null) return [];
+	const { run, notices } = search;
+	const searched = notices.length - run.notSearched;
+	const credits = run.credits === null ? 'credits not reported' : counted(run.credits, 'credit');
+	return [
+		'## Buyer search',
+		'',
+		searchOpening(search, modes),
+		'',
+		`- ${counted(notices.length, 'notice')} with criteria in the notice: ${searched} searched, ${run.notSearched} not searched.`,
+		run.searches > 0
+			? `- \`searches.json\` holds the web results, which nobody checked, and \`run.json\` the searches and the credits: ${run.searches} sent, ${credits}.`
+			: `- \`run.json\` holds the searches and the credits: ${run.searches} sent, ${credits}.`,
 		''
 	];
 }
@@ -128,6 +176,7 @@ export function captureReadme(parts: ReadmeParts): string {
 		...whenAndWhat(parts),
 		'',
 		...modelReadSection(parts.reading, parts.modes),
+		...buyerSearchSection(parts.search, parts.modes),
 		...leftOutSection(parts.leftOut),
 		...notCapturedSection(parts),
 		...SOURCE_AND_TERMS,

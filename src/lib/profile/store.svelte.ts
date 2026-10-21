@@ -18,6 +18,10 @@ export const ACTIVE_FIRM_KEY = 'pagefifty-active-firm';
 // was written; a page must never word it as the browser refusing.
 export type SaveResult = 'saved' | 'unchanged' | 'failed' | 'invalid' | 'newer-version';
 export type ActiveFirm = 'own' | 'demo';
+export type RemoveResult = 'removed' | 'nothing-stored' | 'failed';
+// held: storage answered with a value under the profile key, readable or not. unreadable: the
+// browser refused the read, so whether a profile is there is not known.
+export type ProfileKeyState = 'held' | 'empty' | 'unreadable';
 
 // The part of navigator this store uses; absent where the browser has no Storage API manager.
 export interface PersistCapableNavigator {
@@ -215,6 +219,33 @@ export function createProfileStore(storage: Storage) {
 		}
 	}
 
+	// What storage holds under the profile key at this moment. Unlike readKey, a refused read stays
+	// apart from an empty key, so nothing is ever reported as not stored when it could not be looked at.
+	function profileKeyState(): ProfileKeyState {
+		try {
+			return storage.getItem(PROFILE_KEY) === null ? 'empty' : 'held';
+		} catch {
+			return 'unreadable';
+		}
+	}
+
+	// Decided on what storage holds now, not on this page's copy, so a profile another tab saved after
+	// this page loaded goes too. Only the profile key is touched: the active-firm choice stays, and it
+	// works while the demo firm is shown, since it writes nothing and removes the user's own data.
+	function removeProfile(): RemoveResult {
+		const held = profileKeyState();
+		if (held === 'unreadable') return 'failed';
+		if (held === 'empty') return 'nothing-stored';
+		try {
+			storage.removeItem(PROFILE_KEY);
+		} catch {
+			return 'failed';
+		}
+		stored = null;
+		newerVersion = null;
+		return 'removed';
+	}
+
 	return {
 		get stored() {
 			return stored;
@@ -231,6 +262,8 @@ export function createProfileStore(storage: Storage) {
 		updateProfile,
 		markExported,
 		replaceFromImport,
+		profileKeyState,
+		removeProfile,
 		useDemo: () => setActiveFirm('demo'),
 		backToOwn: () => setActiveFirm('own'),
 		listen,

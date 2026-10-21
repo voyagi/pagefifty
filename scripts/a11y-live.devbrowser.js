@@ -50,9 +50,9 @@ const AUDITS = [
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
 	// The tender page twice. The live one serves the newest capture, so it is reached by clicking the
-	// list's first row (follow: 'first-row'), never by a typed notice number. The 2026-09-15 capture's
-	// largest notice, whose 17 lots bring the lot index and seventeen leaf tabs, is read on the
-	// example, which stays on that capture.
+	// list's first row (follow: 'first-row'), never by a typed notice number. The example capture's
+	// notice with the most lots, which brings the lot index and a leaf tab per lot, is reached by its
+	// row on the example list (follow: 'example-probe'; 600457-2026 with 17 lots on 2026-09-15).
 	{
 		slug: 'tender-from-list',
 		theme: 'light',
@@ -68,25 +68,29 @@ const AUDITS = [
 	{
 		slug: 'tender-17-lots',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/example/600457-2026?theme=light'
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		follow: 'example-probe',
+		probe: 'mostLots'
 	},
 	{
 		slug: 'tender-17-lots',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/example/600457-2026?theme=dark'
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		follow: 'example-probe',
+		probe: 'mostLots'
 	},
-	// A well-formed number the snapshot does not hold takes the error page's own notice branch,
-	// which the unknown path below never renders.
+	// A well-formed number no snapshot holds (no capture has a notice of 2099) takes the error page's
+	// own notice branch, which the unknown path below never renders.
 	{
 		slug: 'unknown-notice',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/tenders/999991-2026?theme=light',
+		url: 'http://127.0.0.1:8788/tenders/999991-2099?theme=light',
 		expectStatus: 404
 	},
 	{
 		slug: 'unknown-notice',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/tenders/999991-2026?theme=dark',
+		url: 'http://127.0.0.1:8788/tenders/999991-2099?theme=dark',
 		expectStatus: 404
 	},
 	{
@@ -130,7 +134,9 @@ const AUDITS = [
 		expectText: 'Brink Data B.V.'
 	},
 	// The main nav names "Example run" on every page, so the example list is known by its closed
-	// group, which only the example words against the capture time.
+	// group, which only the example words against the capture time. The group's heading renders
+	// whether or not any tender had closed (visually hidden when none had, as on the final capture),
+	// which the e2e example driver holds to the page through a filter that leaves no closed row.
 	{
 		slug: 'example',
 		theme: 'light',
@@ -165,30 +171,62 @@ const AUDITS = [
 		layout: 'table',
 		shots: false
 	},
+	// A one-lot notice with criteria in the notice (600017-2026 on 2026-09-15), reached by its row.
 	{
 		slug: 'example-one-lot',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/example/609955-2026?theme=light',
-		expectText: 'Example run from a snapshot'
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		follow: 'example-probe',
+		probe: 'oneLot'
 	},
 	{
 		slug: 'example-one-lot',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/example/609955-2026?theme=dark',
-		expectText: 'Example run from a snapshot'
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		follow: 'example-probe',
+		probe: 'oneLot'
 	},
-	// A lot the model read: its verdict, reason, state words, AI labels and the run record.
+	// A lot the model read: its verdict, reason, state words, AI labels and the run record
+	// (610242-2026 on 2026-09-15), reached by its row.
 	{
 		slug: 'example-verdict',
 		theme: 'light',
-		url: 'http://127.0.0.1:8788/example/610242-2026?theme=light',
-		expectText: 'Ask first'
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		follow: 'example-probe',
+		probe: 'read'
 	},
 	{
 		slug: 'example-verdict',
 		theme: 'dark',
-		url: 'http://127.0.0.1:8788/example/610242-2026?theme=dark',
-		expectText: 'Ask first'
+		url: 'http://127.0.0.1:8788/example?theme=dark',
+		follow: 'example-probe',
+		probe: 'read'
+	},
+	// The AI page: the model facts from the run record, the limits and the compact run record.
+	{
+		slug: 'ai',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/ai?theme=light',
+		expectText: 'Zero Data Retention'
+	},
+	{
+		slug: 'ai',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/ai?theme=dark',
+		expectText: 'Zero Data Retention'
+	},
+	// The privacy page: each processing step with its provider and source, and how the profile goes.
+	{
+		slug: 'privacy',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/privacy?theme=light',
+		expectText: 'Cloudflare hosts the site'
+	},
+	{
+		slug: 'privacy',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/privacy?theme=dark',
+		expectText: 'Cloudflare hosts the site'
 	}
 ];
 
@@ -253,6 +291,40 @@ async function followFirstRow() {
 	}));
 }
 
+// An example probe's notice (config.example, chosen from the build by scripts/a11y-live.mjs) is
+// reached by clicking its row on the example list, the folded closed group opened first when the
+// notice had closed at the capture instant, so the audit follows the example to any capture.
+async function followExampleProbe(notice) {
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	const folded = await page.evaluate(
+		(number) =>
+			Boolean(
+				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+			),
+		notice
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
+	return page.evaluate(async () => ({
+		path: location.pathname,
+		status: (await fetch(location.href)).status
+	}));
+}
+
+// The text a probe's page must show: the notice's title, or for the read notice the verdict word
+// decided for the first lot the example read.
+function probeText(probe) {
+	if (probe === config.example.probes.read) {
+		return probe.lotFacts.find((lot) => lot.verdict !== null).verdict;
+	}
+	return probe.title.replace(/\s+/g, ' ').trim();
+}
+
 async function loadState(entry) {
 	await prepareStorage(entry.storage);
 	const response = await page.goto(entry.url, { waitUntil: 'networkidle' });
@@ -262,11 +334,22 @@ async function loadState(entry) {
 		entry.followed = landed.path;
 		entry.status = landed.status;
 	}
-	const state = await page.evaluate(() => ({
-		h1: document.querySelectorAll('h1').length,
-		theme: document.documentElement.getAttribute('data-theme'),
-		text: document.body.textContent.replace(/\s+/g, ' ')
-	}));
+	if (entry.follow === 'example-probe' && entry.status === 200) {
+		const landed = await followExampleProbe(entry.notice);
+		entry.followed = landed.path;
+		entry.status = landed.status;
+	}
+	// A page reached from the example list keeps that list's serialized data, every row's title with
+	// it, in a script in the body, so the expected text is looked for in the page without its scripts.
+	const state = await page.evaluate(() => {
+		const shown = document.body.cloneNode(true);
+		shown.querySelectorAll('script').forEach((node) => node.remove());
+		return {
+			h1: document.querySelectorAll('h1').length,
+			theme: document.documentElement.getAttribute('data-theme'),
+			text: shown.textContent.replace(/\s+/g, ' ')
+		};
+	});
 	entry.h1Count = state.h1;
 	entry.themeApplied = state.theme;
 	const problems = [];
@@ -278,6 +361,11 @@ async function loadState(entry) {
 	}
 	if (entry.expectText && !state.text.includes(entry.expectText)) {
 		problems.push(`"${entry.expectText}" is not on the page`);
+	}
+	if (entry.follow === 'example-probe' && entry.followed !== `/example/${entry.notice}`) {
+		problems.push(
+			`landed on ${entry.followed}, not the ${entry.probe} probe /example/${entry.notice}`
+		);
 	}
 	return problems.join(', ');
 }
@@ -367,15 +455,19 @@ async function audit({
 	width,
 	layout,
 	shots,
-	follow
+	follow,
+	probe
 }) {
+	const probed = probe === undefined ? null : config.example.probes[probe];
 	const entry = {
 		slug,
 		theme,
 		url,
 		follow,
+		probe,
+		notice: probed?.notice,
 		expectStatus,
-		expectText,
+		expectText: probed ? probeText(probed) : expectText,
 		storage,
 		layout,
 		shots: shots !== false,

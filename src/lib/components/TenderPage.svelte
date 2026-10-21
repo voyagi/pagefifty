@@ -11,6 +11,7 @@
 		type FirmFacts
 	} from '$lib/tenders/verdict-view';
 	import Binder from './Binder.svelte';
+	import BuyerSearch from './BuyerSearch.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import DemoNote from './DemoNote.svelte';
 	import FacedownLeaf from './FacedownLeaf.svelte';
@@ -186,6 +187,10 @@
 	{#each tender.lots as lot (lot.anchor)}
 		<LotLeaf {lot} verdict={verdictOf(lot)} />
 	{/each}
+
+	{#if tender.search !== undefined}
+		<BuyerSearch search={tender.search} />
+	{/if}
 
 	{#if tender.documentsUnread}
 		<FacedownLeaf documents={tender.documents} {criteriaShown} />

@@ -15,7 +15,8 @@ export type CountReading = { kind: 'none' } | { kind: 'several' } | { kind: 'one
 export interface PeriodReading {
 	mode: 'average' | 'each' | 'sum' | 'any-one' | 'unstated';
 	years: number | null;
-	// The text states a count of years code cannot settle, so no default may stand in for it.
+	// The text states a count of years, or a range of years, code cannot settle, so no default may
+	// stand in for it.
 	yearsUnread: boolean;
 	named: number[];
 }
@@ -380,6 +381,31 @@ const PERIOD_WORDS: ReadonlySet<string> = new Set([
 	'and'
 ]);
 const NAMED_YEAR = /(?<!\d)20\d{2}(?!\d)/g;
+// What joins the two ends of a range of years: a dash of any kind, or a range word.
+const RANGE_JOIN = /^\s*[-‐-―−]\s*$|^\s+(?:bis|tot|tot\s+en\s+met|t\/m|à|to|through)\s+$/iu;
+// A range whose end is not a whole year ("2023-25"), or a date such as "2025-12-31".
+const SHORT_RANGE = /(?<!\d)20\d{2}\s*[-‐-―−]\s*\d{2}(?!\d)/u;
+const LONGEST_RANGE = 10;
+
+// The years a text names, in text order, a range ("2023-2025", "2023 bis 2025", "2023-2024-2025")
+// read as every year in it. compare.ts compares exactly the years named, so a range read as its two
+// ends would leave out the years between them; a range code cannot list (backwards, longer than
+// LONGEST_RANGE years, or not ending in a whole year) gives null.
+function namedYears(text: string): number[] | null {
+	if (SHORT_RANGE.test(text)) return null;
+	const years: number[] = [];
+	let previous: { year: number; end: number } | undefined;
+	for (const match of text.matchAll(NAMED_YEAR)) {
+		const year = Number.parseInt(match[0], 10);
+		if (previous && RANGE_JOIN.test(text.slice(previous.end, match.index))) {
+			if (year <= previous.year || year - previous.year > LONGEST_RANGE) return null;
+			for (let between = previous.year + 1; between < year; between += 1) years.push(between);
+		}
+		years.push(year);
+		previous = { year, end: match.index + match[0].length };
+	}
+	return years;
+}
 
 // A word broken at a line end ("abgeschlosse- nen") is read joined, and a word is judged by its
 // letters, so a kept hyphen or a count repeated in brackets ("three (3)") passes.
@@ -417,10 +443,14 @@ export function parsePeriod(text: string, lang?: string): PeriodReading {
 	const found = Object.fromEntries(
 		Object.entries(MODES).map(([mode, pattern]) => [mode, pattern.test(text)])
 	) as Record<keyof typeof MODES, boolean>;
+	const counted = yearsOf(text, lang);
+	const named = namedYears(text);
 	return {
 		mode: oneOf<PeriodReading['mode']>(found, 'unstated'),
-		...yearsOf(text, lang),
-		named: [...text.matchAll(NAMED_YEAR)].map((match) => Number.parseInt(match[0], 10))
+		years: counted.years,
+		// A range code cannot list leaves no named years to settle the window, so it is unread too.
+		yearsUnread: counted.yearsUnread || named === null,
+		named: named ?? []
 	};
 }
 

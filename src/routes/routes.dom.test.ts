@@ -7,7 +7,12 @@ import Page from './+page.svelte';
 const TAGLINE = "The rule your firm can't meet alone is on page fifty. Read it first.";
 const PURPOSE =
 	"Pagefifty checks whether your firm meets a tender's published selection criteria, and quotes each clause from the tender's own text with its source.";
-const entryData = { total: 7, capturedOn: '15 Sep 2026', firstPublished: '1 Sep 2026' };
+const entryData = {
+	total: 7,
+	capturedOn: '15 Sep 2026',
+	firstPublished: '1 Sep 2026',
+	figure: null
+};
 const renderEntry = () => render(Page, { props: { data: entryData } });
 const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
 
@@ -36,7 +41,7 @@ describe('entry route', () => {
 	});
 
 	it('keeps the capture line without a window when the query names no first day', () => {
-		render(Page, { props: { data: { total: 7, capturedOn: '15 Sep 2026' } } });
+		render(Page, { props: { data: { total: 7, capturedOn: '15 Sep 2026', figure: null } } });
 		expect(
 			screen.getByText('Snapshot: 7 IT notices TED listed as active on 15 Sep 2026.', {
 				normalizer: squash

@@ -42,13 +42,15 @@ module.exports = {
 			name: 'no-ui-reaches-verdict',
 			severity: 'error',
 			comment:
-				'No component or route may reach the verdict module, directly or through another module, except the tender page chain that shows a listed lot its verdict (SPEC R6): TenderPage.svelte and the two [notice] page components that render it, exactly the modules gate:deps named once that page was wired. The list, the cards, the entry page, the profile page and every server load stay under the rule (LIST-03 is not built), so a verdict word can reach no other page. source-rules.test.ts checks the direct import; this rule covers the path through a library module.',
+				'No component or route may reach the verdict module, directly or through another module, except the tender page chain that shows a listed lot its verdict (SPEC R6): TenderPage.svelte and the two [notice] page components that render it, and the home figure chain that names the verdicts it counts in their display words (SPEC R9): HomeFigure.svelte and the entry page component that renders it, exactly the modules gate:deps named once each was wired. The list, the cards, every other entry page component, the profile page and every server load stay under the rule (LIST-03 is not built), so a verdict word can reach no other page. source-rules.test.ts checks the direct import; this rule covers the path through a library module.',
 			from: {
 				path: '(^src/lib/components/|^src/routes/)',
 				pathNot: [
 					TEST_FILE,
 					'^src/lib/components/TenderPage\\.svelte$',
-					'^src/routes/(example|tenders)/\\[notice\\]/\\+page\\.svelte$'
+					'^src/routes/(example|tenders)/\\[notice\\]/\\+page\\.svelte$',
+					'^src/lib/components/HomeFigure\\.svelte$',
+					'^src/routes/\\+page\\.svelte$'
 				]
 			},
 			to: { path: '^src/lib/core/verdict\\.ts$', reachable: true }

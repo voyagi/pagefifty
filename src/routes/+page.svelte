@@ -2,6 +2,7 @@
 	import Binder from '$lib/components/Binder.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Facts from '$lib/components/Facts.svelte';
+	import HomeFigure from '$lib/components/HomeFigure.svelte';
 	import Leaf from '$lib/components/Leaf.svelte';
 
 	let { data } = $props();
@@ -52,6 +53,10 @@
 						</div>
 						<p class="legal">This is not legal advice.</p>
 					</div>
+					<!-- After the buttons, so a figure of any height never pushes them below the fold. -->
+					{#if data.figure}
+						<HomeFigure figure={data.figure} />
+					{/if}
 				</div>
 			</div>
 		{/snippet}

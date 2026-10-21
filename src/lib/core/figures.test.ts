@@ -370,6 +370,39 @@ describe('parsePeriod', () => {
 		);
 	});
 
+	// compare.ts compares exactly the years a quote names, so a range read as its two ends would
+	// leave out every year between them.
+	it.each([
+		['Geschäftsjahre (2023-2025)', 'de', [2023, 2024, 2025]],
+		['die letzten drei Jahre (2023 - 2025)', 'de', [2023, 2024, 2025]],
+		['Geschäftsjahre 2023 – 2025', 'de', [2023, 2024, 2025]],
+		['für die Jahre 2023 bis 2025', 'de', [2023, 2024, 2025]],
+		['de boekjaren 2023 tot en met 2025', 'nl', [2023, 2024, 2025]],
+		['de boekjaren 2023 t/m 2025', 'nl', [2023, 2024, 2025]],
+		['de boekjaren 2023 tot 2025', 'nl', [2023, 2024, 2025]],
+		['les exercices de 2023 à 2025', 'fr', [2023, 2024, 2025]],
+		['les trois dernières années (2023-2024-2025)', 'fr', [2023, 2024, 2025]],
+		['the financial years 2023 to 2025', 'en', [2023, 2024, 2025]],
+		['2025, 2024 sowie 2021-2023', 'de', [2025, 2024, 2021, 2022, 2023]],
+		['Geschäftsjahre 2015-2025', 'de', Array.from({ length: 11 }, (_, index) => 2015 + index)],
+		['Jahre 2023 und 2025', 'de', [2023, 2025]],
+		['Jahre 2023. - 2025 ist das Ende', 'de', [2023, 2025]]
+	] as const)('parsePeriod names the years in "%s" (%s) as %s', (text, lang, named) => {
+		expect(parsePeriod(text, lang)).toMatchObject({ named, yearsUnread: false });
+	});
+
+	// A range running backwards, longer than ten years or ending in a short form ("2023-25") is not
+	// listed by code, so it leaves no named years and marks the period unread.
+	it.each([
+		['Geschäftsjahre 2025-2023'],
+		['Geschäftsjahre 2023-2023'],
+		['Geschäftsjahre 2014-2025'],
+		['Geschäftsjahre 2023-25'],
+		['Stichtag 2025-12-31']
+	])('parsePeriod reads the range in "%s" as years it cannot settle', (text) => {
+		expect(parsePeriod(text, 'de')).toMatchObject({ named: [], yearsUnread: true });
+	});
+
 	it('the German period reads average only together with the durchschnittlichen before it', () => {
 		const tail = 'der letzten drei abgeschlosse-nen Geschäftsjahre (2023,2024,2025)';
 		expect(parsePeriod(tail, 'de')).toEqual(period('unstated', 3, [2023, 2024, 2025]));

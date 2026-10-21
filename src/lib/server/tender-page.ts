@@ -7,6 +7,7 @@ import {
 	instantOf,
 	loadIndex,
 	loadNoticeReadings,
+	loadNoticeSearch,
 	loadRecord,
 	readingRunOf,
 	snapshotDays,
@@ -41,8 +42,9 @@ export async function loadTenderPage({
 	if (record === undefined) unknownNotice(notice, capture);
 	const index = await loadIndex(capture);
 	const readings = await loadNoticeReadings(capture, notice);
+	const search = await loadNoticeSearch(capture, notice);
 	return {
-		tender: buildTenderPage(record, instantOf(now, index), readings),
+		tender: buildTenderPage(record, instantOf(now, index), readings, search),
 		capture: captureFacts(index.capture),
 		readingRun: readingRunOf(capture)
 	};

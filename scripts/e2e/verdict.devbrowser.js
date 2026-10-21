@@ -1,10 +1,18 @@
-// verdict.devbrowser.js - the two example pages the capture's model read: each lot's verdict and
-// reason for the demo firm, one AI label per reading, the run record in its fixed order, no verdict
-// word outside a verdict region, and no request to any host but the site's own, after hydration too.
+// verdict.devbrowser.js - the example pages the capture's model read: each lot's verdict and reason
+// for the demo firm, one AI label per reading, the run record in its fixed order, no verdict word
+// outside a verdict region, no request to any host but the site's own, after hydration too, and the
+// buyer search the build holds for the notice.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 // Every address is a literal, as the navigation allowlist requires.
+//
+// The pages are the example capture's first read notice and, when it holds one, a read notice in a
+// second language (config.example, chosen from the build by scripts/e2e.mjs), each reached by its row
+// on /example. Every expectation comes from the build too: each lot's verdict word and reason as
+// decideLotStatus decides it for the demo firm at the capture instant, the reading count, and the
+// readings run as RunRecord.svelte shows it.
 
 const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
+const example = config.example;
 const PAGE = 'pagefifty-e2e-verdict';
 const page = await browser.getPage(PAGE);
 const checks = [];
@@ -13,38 +21,19 @@ const check = (name, ok, detail) => checks.push({ name, ok: Boolean(ok), detail 
 // The theme switch marks its pressed button only once the app has started.
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 const SITE = '127.0.0.1:8788';
+const COMPARED = 'Compared with the demo firm, Brink Data B.V.';
 
-// The run of examples/2026-09-15/readings.json, as the records build serves it in reading-run.json,
-// in the order of RUN_RECORD_FIELDS (src/lib/components/RunRecord.svelte).
-const RUN_RECORD = [
-	['Model', 'nvidia/nemotron-3-super-120b-a12b'],
-	['Provider', 'Nebius Token Factory'],
-	['Region', 'us-central1'],
-	['Run date', '2026-10-15'],
-	['Input tokens', '2,811'],
-	['Output tokens', '2,563'],
-	['Reasoning tokens', '0'],
-	['Cost in USD', '0.003150'],
-	['Quotes verified', '24'],
-	['Quotes rejected', '0']
+const CHECKS = [
+	'answers 200 with one verdict on each lot the example read, the word decided for the demo firm',
+	'gives the reason decided for each lot and names the demo firm',
+	'labels each of its readings as AI reading',
+	"lists the run record in its fixed order with the run's values",
+	'shows no verdict word outside a verdict region',
+	`makes no request to any host but ${SITE}, after hydration too`,
+	'lists the buyer search the build holds, each result an http or https link under the unchecked label, or none'
 ];
-
-// The reasons the component tests pin for these two lots (src/lib/tenders/verdict-view.ts
-// REASON_LINES): the German lot's references and staff are for the firm to judge, the Dutch lot's
-// certificate is named in no form this version matches with a profile.
-const PAGES = [
-	{
-		notice: '610242-2026',
-		readings: 14,
-		reason:
-			'Only the firm can judge whether its references, staff or line of business fit what the buyer names.'
-	},
-	{
-		notice: '634398-2026',
-		readings: 10,
-		reason: 'The buyer asks for a certificate this version cannot match by name with the profile.'
-	}
-];
+const NONE_FOUND = 'No earlier awards found by web search.';
+const PROBES = ['read', 'readOtherLanguage'];
 
 const VERDICT_WORDS =
 	/\b(GO|NO-GO|No-go|PARTNER NEEDED|Partner needed|ASK FIRST|Ask first|Not met alone|Out alone|Go)\b/;
@@ -54,16 +43,54 @@ page.on('request', (request) => {
 	captured.push(request.url());
 });
 
+// A notice of the example is reached by clicking its row on /example, the folded closed group
+// opened first when the notice had closed at the capture instant; the landing page is fetched again
+// for the status the server gives its address.
+async function followExampleRow(notice) {
+	await page.goto('http://127.0.0.1:8788/example');
+	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	const folded = await page.evaluate(
+		(number) =>
+			Boolean(
+				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+			),
+		notice
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
+	return page.evaluate(async () => (await fetch(location.href)).status);
+}
+
 function readVerdictPage() {
 	return page.evaluate(() => {
 		const text = (node) => (node ? node.textContent.replace(/\s+/g, ' ').trim() : '');
 		const lots = Array.from(document.querySelectorAll('[id^="lot-"]')).filter((leaf) =>
 			/^lot-\d+$/.test(leaf.id)
 		);
+		// A page reached from the example list keeps that list's serialized data, every row's title
+		// with it, in a script in the body, which no reader sees, so scripts are left out too.
+		// A web result's title is a third party's text shown as published, like the notice's own.
 		const outside = document.body.cloneNode(true);
-		outside.querySelectorAll('[data-notice-text], [data-verdict]').forEach((node) => node.remove());
+		outside
+			.querySelectorAll('[data-notice-text], [data-web-text], [data-verdict], script')
+			.forEach((node) => node.remove());
 		const run = document.querySelector('section[data-run-record]');
+		const search = document.querySelector('[data-web-search]');
 		return {
+			search:
+				search === null
+					? null
+					: {
+							hrefs: Array.from(search.querySelectorAll('a')).map((link) =>
+								link.getAttribute('href')
+							),
+							text: text(search)
+						},
 			lots: lots.map((leaf) => {
 				const words = leaf.querySelectorAll('[data-verdict-word]');
 				const region = words.length === 1 ? words[0].closest('[data-verdict]') : null;
@@ -88,57 +115,89 @@ try {
 	await page.goto('http://127.0.0.1:8788/');
 	await page.evaluate(() => localStorage.clear());
 
-	for (const expected of PAGES) {
+	for (const name of PROBES) {
+		const probe = example.probes[name];
+		if (probe === null) {
+			// A probe the example capture lacks leaves its checks printed as not run, never as passed,
+			// and fails the run only when the example must hold one.
+			for (const title of CHECKS) {
+				checks.push({
+					name: `the ${name} probe ${title} did not run: the example capture holds no ${name} notice (${example.properties[name]})`,
+					ok: !example.required.includes(name),
+					didNotRun: true,
+					detail: `no ${name} probe in ${example.id}`
+				});
+			}
+			continue;
+		}
 		const from = captured.length;
-		const answer =
-			expected.notice === '610242-2026'
-				? await page.goto('http://127.0.0.1:8788/example/610242-2026')
-				: await page.goto('http://127.0.0.1:8788/example/634398-2026');
-		await page.waitForSelector(HYDRATED, { timeout: 10000 });
-		await page.waitForLoadState('networkidle');
+		const status = await followExampleRow(probe.notice);
 		const shown = await readVerdictPage();
-		const name = expected.notice;
+		const words = shown.lots.map(({ words, word }) => ({ words, word }));
 
 		check(
-			`/example/${name} answers 200 with one verdict per lot, Ask first`,
-			answer.status() === 200 &&
-				shown.lots.length > 0 &&
-				shown.lots.every((lot) => lot.words === 1 && lot.word === 'Ask first'),
-			`status ${answer.status()}, lots ${JSON.stringify(shown.lots.map(({ words, word }) => ({ words, word })))}`
+			`the ${name} probe ${CHECKS[0]}`,
+			status === 200 &&
+				shown.lots.length === probe.lots &&
+				probe.lotFacts.some((lot) => lot.verdict !== null) &&
+				probe.lotFacts.every((lot, index) =>
+					lot.verdict === null
+						? words[index].words === 0
+						: words[index].words === 1 && words[index].word === lot.verdict
+				),
+			`${probe.notice}: status ${status}, lots ${JSON.stringify(words)}, expected ${JSON.stringify(probe.lotFacts.map((lot) => lot.verdict))}`
 		);
 		check(
-			`/example/${name} gives the reason the component tests pin and names the demo firm`,
-			shown.lots.every(
-				(lot) =>
-					lot.region.includes(expected.reason) &&
-					lot.region.includes('Compared with the demo firm, Brink Data B.V.')
-			),
-			shown.lots.map((lot) => lot.region.slice(0, 240)).join(' | ')
+			`the ${name} probe ${CHECKS[1]}`,
+			shown.lots.length === probe.lots &&
+				probe.lotFacts.every(
+					(lot, index) =>
+						lot.verdict === null ||
+						(shown.lots[index].region.includes(lot.reason) &&
+							shown.lots[index].region.includes(COMPARED))
+				),
+			`${probe.notice}: ${shown.lots.map((lot) => lot.region.slice(0, 240)).join(' | ')}; expected ${JSON.stringify(probe.lotFacts.map((lot) => lot.reason))}`
 		);
 		check(
-			`/example/${name} labels each of its ${expected.readings} readings as AI reading`,
-			shown.labels === expected.readings && shown.marked === expected.readings,
-			`${shown.labels} labels, ${shown.marked} elements marked data-ai-generated`
+			`the ${name} probe ${CHECKS[2]}`,
+			probe.readings > 0 && shown.labels === probe.readings && shown.marked === probe.readings,
+			`${probe.notice}: ${shown.labels} labels, ${shown.marked} elements marked data-ai-generated, ${probe.readings} readings in the build`
 		);
 		check(
-			`/example/${name} lists the run record in its fixed order with the run's values`,
-			JSON.stringify(shown.record) === JSON.stringify(RUN_RECORD),
-			JSON.stringify(shown.record)
+			`the ${name} probe ${CHECKS[3]}`,
+			JSON.stringify(shown.record) === JSON.stringify(example.run),
+			`${probe.notice}: ${JSON.stringify(shown.record)}`
 		);
 		const stray = VERDICT_WORDS.exec(shown.outside);
 		check(
-			`/example/${name} shows no verdict word outside a verdict region`,
+			`the ${name} probe ${CHECKS[4]}`,
 			stray === null && shown.outside.length > 200,
-			stray ? `found "${stray[0]}"` : `${shown.outside.length} characters read`
+			`${probe.notice}: ${stray ? `found "${stray[0]}"` : `${shown.outside.length} characters read`}`
+		);
+		// A searched probe shows exactly the results the build holds, a probe searched with none the
+		// none-found line, and a probe not searched no list at all. A result link is never opened.
+		const expected = probe.searchResults;
+		const search = shown.search;
+		const listed =
+			search !== null &&
+			search.text.includes('not checked') &&
+			(expected === 0
+				? search.hrefs.length === 0 && search.text.includes(NONE_FOUND)
+				: search.hrefs.length === expected &&
+					search.hrefs.every((href) => /^https?:\/\//.test(href ?? '')));
+		check(
+			`the ${name} probe ${CHECKS[6]}`,
+			expected === null ? search === null : listed,
+			`${probe.notice}: expected ${expected === null ? 'no search' : `${expected} results`}, shown ${JSON.stringify(search)}`
 		);
 		const requests = captured.slice(from);
 		const network = requests.filter((url) => /^https?:/.test(url));
 		// The sandbox has no URL class, so the host is cut from the address by hand.
 		const offSite = network.filter((url) => url.replace(/^https?:\/\//, '').split('/')[0] !== SITE);
 		check(
-			`/example/${name} makes no request to any host but ${SITE}, after hydration too`,
+			`the ${name} probe ${CHECKS[5]}`,
 			network.length > 0 && offSite.length === 0,
-			`${network.length} requests, ${requests.length - network.length} not http, off the site ${JSON.stringify(offSite)}`
+			`${probe.notice}: ${network.length} requests, ${requests.length - network.length} not http, off the site ${JSON.stringify(offSite)}`
 		);
 	}
 } finally {

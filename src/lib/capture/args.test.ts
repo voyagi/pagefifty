@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { MAX_CAP, parseCaptureArgs } from './args.ts';
 
 const DAY = '2026-10-11';
-const PLAIN = { live: false, cap: null };
+const PLAIN = { live: false, cap: null, openAfter: null };
 
 function refusal(argv: readonly string[]): string {
 	const parsed = parseCaptureArgs(argv, DAY);
@@ -91,13 +91,15 @@ describe('parseCaptureArgs: --live and --cap', () => {
 			ok: true,
 			since: '20260927',
 			live: true,
-			cap: 5
+			cap: 5,
+			openAfter: null
 		});
 		expect(parseCaptureArgs(['--cap', '7', '--since', '20260920', '--live'], DAY)).toEqual({
 			ok: true,
 			since: '20260920',
 			live: true,
-			cap: 7
+			cap: 7,
+			openAfter: null
 		});
 	});
 
@@ -111,7 +113,8 @@ describe('parseCaptureArgs: --live and --cap', () => {
 			ok: true,
 			since: '20260927',
 			live: false,
-			cap: 3
+			cap: 3,
+			openAfter: null
 		});
 	});
 
@@ -149,5 +152,63 @@ describe('parseCaptureArgs: --live and --cap', () => {
 		expect(message).toContain('"--dry-run"');
 		expect(message).toContain('--live');
 		expect(message).toContain('--cap <n>');
+		expect(message).toContain('--open-after <instant>');
+	});
+});
+
+describe('parseCaptureArgs: --open-after', () => {
+	it.each([
+		['2026-10-30T17:00:00Z', '2026-10-30T17:00:00.000Z'],
+		['2026-10-30T18:00:00+01:00', '2026-10-30T17:00:00.000Z'],
+		['2026-10-30T19:00:00+02:00', '2026-10-30T17:00:00.000Z'],
+		['2026-10-30T16:59:59.999Z', '2026-10-30T16:59:59.999Z'],
+		['2024-02-29T00:00:00-05:00', '2024-02-29T05:00:00.000Z']
+	])('takes --open-after %j as the instant %j', (value, instant) => {
+		expect(parseCaptureArgs(['--open-after', value], DAY)).toEqual({
+			ok: true,
+			since: '20260927',
+			live: false,
+			cap: null,
+			openAfter: instant
+		});
+	});
+
+	it.each([
+		['a bare date', '2026-10-30'],
+		['a local time with no zone', '2026-10-30T17:00:00'],
+		['a leading space', ' 2026-10-30T17:00:00Z'],
+		['an offset without its colon', '2026-10-30T17:00:00+0100'],
+		['hour 24', '2026-10-30T24:00:00Z'],
+		['minutes without seconds', '2026-10-30T17:00Z'],
+		['lower-case letters', '2026-10-30t17:00:00z'],
+		['an expanded year', '+002026-10-30T17:00:00Z']
+	])('--open-after refuses what is not an instant: %s', (_label, value) => {
+		expect(refusal(['--open-after', value])).toBe(
+			`--open-after ${JSON.stringify(value)} is not an instant written YYYY-MM-DDTHH:MM:SS with Z or an offset such as +01:00`
+		);
+	});
+
+	it.each([
+		'2026-13-01T00:00:00Z',
+		'2026-02-30T00:00:00Z',
+		'2026-04-31T12:00:00+02:00',
+		'2025-02-29T00:00:00Z'
+	])('refuses --open-after %j, a day that does not exist', (value) => {
+		expect(refusal(['--open-after', value])).toBe(
+			`--open-after ${JSON.stringify(value)} is not a real date; write a day that exists`
+		);
+	});
+
+	it('refuses --open-after with no value, naming the form', () => {
+		expect(refusal(['--open-after'])).toBe(
+			'--open-after needs an instant written YYYY-MM-DDTHH:MM:SS with Z or an offset such as +01:00, for example 2026-10-30T17:00:00Z'
+		);
+		expect(refusal(['--open-after', '--live'])).toContain('not "--live"');
+	});
+
+	it('refuses --open-after given twice', () => {
+		expect(
+			refusal(['--open-after', '2026-10-30T17:00:00Z', '--open-after', '2026-10-31T17:00:00Z'])
+		).toBe('--open-after is given twice; give it once');
 	});
 });

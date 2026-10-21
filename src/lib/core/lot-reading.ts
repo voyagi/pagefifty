@@ -19,7 +19,13 @@ import {
 	type PeriodReading,
 	type StandardsReading
 } from './figures.ts';
-import { criterionText, findQuote, verifyRequirements } from './quote.ts';
+import {
+	criterionText,
+	findQuote,
+	normalizeQuote,
+	verifyRequirements,
+	withoutHyphens
+} from './quote.ts';
 
 // The shape spike 004's reply schema returns for one requirement.
 export interface ModelItem {
@@ -190,15 +196,20 @@ function tally(amounts: readonly number[]): Map<number, number> {
 // An amount code cannot read in a description counts as one no quote names. Amounts are counted,
 // not only matched: a clause stating the same floor twice ("EUR 1 million in each year" and "EUR 1
 // million in total") holds two requirements, and one quote naming it once leaves the other unread.
-// Each description is met on its own, since a second language restates the same floors.
+// Each description is met on its own, since a second language restates the same floors. A quote
+// counts once however often the model returns it: rows whose quotes read the same once normalised
+// as quote.ts finds them (spacing, quote marks, hyphens) point at the same words of the clause.
 function everyAmountQuoted(
 	family: CriterionFamily,
 	descriptions: readonly LangText[],
 	verified: readonly VerifiedRequirement[]
 ): boolean {
 	const staff = family === 'staff-average';
+	const distinct = new Map(
+		verified.map((each) => [withoutHyphens(normalizeQuote(each.item.quote)), each] as const)
+	);
 	const quoted = tally(
-		verified.flatMap((each) => amountsIn(each.item.quote, staff, each.lang) ?? [])
+		[...distinct.values()].flatMap((each) => amountsIn(each.item.quote, staff, each.lang) ?? [])
 	);
 	return descriptions.every((description) => {
 		const amounts = amountsIn(description.text, staff, description.lang);

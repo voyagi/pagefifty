@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import favicon from '$lib/assets/favicon.svg';
 	import DeskBar from '$lib/components/DeskBar.svelte';
+	import SiteFooter from '$lib/components/SiteFooter.svelte';
 
 	let { children } = $props();
 </script>
@@ -28,3 +29,5 @@
 <DeskBar path={page.url.pathname} />
 
 {@render children()}
+
+<SiteFooter />

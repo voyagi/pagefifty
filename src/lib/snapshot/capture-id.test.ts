@@ -1,6 +1,12 @@
 import { fc, test } from '@fast-check/vitest';
 import { describe, expect, it } from 'vitest';
-import { firstPublishedDay, namesRealFirstDay, newestCapture } from './capture-id';
+import {
+	exampleCaptureOf,
+	FINAL_CUTOFF,
+	firstPublishedDay,
+	namesRealFirstDay,
+	newestCapture
+} from './capture-id';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -84,4 +90,45 @@ describe('newestCapture', () => {
 			expect(newestCapture([...others, ...days].reverse())).toBe(latest);
 		}
 	);
+});
+
+describe('exampleCaptureOf', () => {
+	it('names the Devpost cutoff, 18:00 CET on 30 Oct 2026, as 17:00 UTC', () => {
+		expect(FINAL_CUTOFF).toBe('2026-10-30T17:00:00.000Z');
+	});
+
+	it('exampleCaptureOf picks by instant', () => {
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T18:00:00+01:00' }]])).toBe(
+			'2026-10-21'
+		);
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T16:59:59Z' }]])).toBe(
+			'2026-09-15'
+		);
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T16:59:59.999Z' }]])).toBe(
+			'2026-09-15'
+		);
+		// Written text would order these the other way round: 16:00 at -01:00 is the cutoff, and
+		// 18:30 at +02:00 is half an hour before it.
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T16:00:00-01:00' }]])).toBe(
+			'2026-10-21'
+		);
+		expect(exampleCaptureOf([['2026-10-21', { openAfter: '2026-10-30T18:30:00+02:00' }]])).toBe(
+			'2026-09-15'
+		);
+	});
+
+	it('takes the newest qualifying capture, never one with no openAfter or an earlier one', () => {
+		const lines = new Map<string, { openAfter?: string }>([
+			['2026-10-27', { openAfter: '2026-10-30T17:00:00.000Z' }],
+			['2026-10-21', { openAfter: '2026-10-30T17:00:00.000Z' }],
+			['2026-10-29', {}],
+			['2026-10-28', { openAfter: '2026-10-01T00:00:00.000Z' }]
+		]);
+		expect(exampleCaptureOf(lines)).toBe('2026-10-27');
+	});
+
+	it('keeps 2026-09-15 while no capture holds an openAfter', () => {
+		expect(exampleCaptureOf([])).toBe('2026-09-15');
+		expect(exampleCaptureOf([['2026-10-16', {}]])).toBe('2026-09-15');
+	});
 });

@@ -161,10 +161,12 @@ describe('a capture run against the stub TED', () => {
 			'scope',
 			'onlyLatestVersions',
 			'since',
+			'openAfter',
 			'total',
 			'searchTotal',
 			'notices'
 		]);
+		expect(notices.openAfter).toBeNull();
 		expect(
 			notices.notices.map((hit: Record<string, unknown>) => hit['publication-number'])
 		).toEqual(sorted);
@@ -281,11 +283,13 @@ const RECORD_KEYS = {
 		'command',
 		'head',
 		'modes',
+		'openAfter',
 		'query',
 		'ted',
 		'notices',
 		'metered',
-		'reading'
+		'reading',
+		'search'
 	],
 	query: ['query', 'fields', 'scope', 'onlyLatestVersions', 'since'],
 	ted: [
@@ -346,8 +350,9 @@ describe.each([
 		expect(Object.keys(record.ted)).toEqual(RECORD_KEYS.ted);
 		expect(Object.keys(record.notices)).toEqual(RECORD_KEYS.notices);
 		expect(record.reading).toBeNull();
+		expect(record.search).toBeNull();
 		expect(record).toMatchObject({
-			schemaVersion: 2,
+			schemaVersion: 4,
 			startedAt: '2026-10-11T08:00:00.000Z',
 			finishedAt: '2026-10-11T08:00:02.000Z',
 			captureDate: '2026-10-11',
@@ -356,6 +361,7 @@ describe.each([
 			command: 'node scripts/capture.mjs',
 			head: HEAD,
 			modes: { ted: 'live', tokenFactory: 'snapshot', tavily: 'snapshot' },
+			openAfter: null,
 			query: {
 				query: QUERY,
 				fields: FIELDS,

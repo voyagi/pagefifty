@@ -4,12 +4,15 @@
 // Node type stripping: erasable syntax only, relative .ts imports.
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { displayedDeadline } from '../core/deadline.ts';
 import { selectLatest } from '../ingest/latest.ts';
 import { readNotice, MAX_NOTICE_BYTES } from '../ingest/read-notice.ts';
 import type { NoticeRecord } from '../ingest/record.ts';
 import { NoticeRecordSchema, SnapshotIndexSchema, toIndexRow } from '../snapshot/index-row.ts';
 import { resolveModes, type Modes } from '../server/transport-mode.ts';
 import type { ReadingRun } from '../snapshot/readings.ts';
+import type { SearchRun } from '../snapshot/search-run.ts';
+import type { SearchesFile } from '../snapshot/searches.ts';
 import { scrubJsonValue, scrubNoticeXml } from '../snapshot/scrub.ts';
 import { checkCaptureFolder } from '../snapshot/scrub-check.ts';
 import type { Transport } from '../snapshot/transport.ts';
@@ -32,13 +35,11 @@ import { searchAll, searchBody, searchQuery, xmlTarget, type SearchHit } from '.
 import { createXmlCache } from './xml-cache.ts';
 
 // What a step hands back for the published folder: a file to write into it (none when it has nothing
-// to publish) and its block of run.json.
-export interface StepOutput {
-	file: string | null;
-	value: unknown;
-	recordKey: 'reading';
-	record: ReadingRun;
-}
+// to publish) and its block of run.json, keyed by the block it fills. The search's file is typed, since
+// the README counts its notices.
+export type StepOutput =
+	| { file: string | null; value: unknown; recordKey: 'reading'; record: ReadingRun }
+	| { file: string | null; value: SearchesFile; recordKey: 'search'; record: SearchRun };
 
 // The seam phase 2's model read and Tavily search plug into. A step reaches a provider only through
 // gate.attempt; its context never holds a key (the gate does), so a call that skips the gate has
@@ -108,6 +109,7 @@ interface Run {
 	started: number;
 	date: string;
 	since: string;
+	openAfter: string | null;
 	modes: Modes;
 	command: string;
 	client: TedClient;
@@ -278,17 +280,59 @@ function leaveOutOutdated(selection: Selection, failed: readonly FailedHit[]): S
 		selection.kept.map((notice) => notice.record),
 		failed
 	);
-	if (outdated.length === 0) return selection;
-	const out = new Set(outdated.map(({ notice }) => notice));
+	return leaveOut(selection, outdated);
+}
+
+function leaveOut(selection: Selection, out: readonly Failure[]): Selection {
+	if (out.length === 0) return selection;
+	const numbers = new Set(out.map(({ notice }) => notice));
 	return {
-		kept: selection.kept.filter((notice) => !out.has(notice.number)),
-		leftOut: [...selection.leftOut, ...outdated].sort((a, b) =>
-			publicationOrder(a.notice, b.notice)
-		),
+		kept: selection.kept.filter((notice) => !numbers.has(notice.number)),
+		leftOut: [...selection.leftOut, ...out].sort((a, b) => publicationOrder(a.notice, b.notice)),
 		sameProcedure: selection.sameProcedure
-			.map((group) => group.filter((notice) => !out.has(notice)))
+			.map((group) => group.filter((notice) => !numbers.has(notice)))
 			.filter((group) => group.length > 1)
 	};
+}
+
+const closingReason = (openAfter: string) => `a lot closes at or before ${openAfter}`;
+
+// A notice is shown by every lot's deadline, so one lot closing in time is enough to leave it out;
+// a lot that shows no instant could close on any day and is left out too. The pages' own rule
+// decides which instant a lot shows.
+function closesBy(record: NoticeRecord, limit: number): boolean {
+	return record.lots.some((lot) => {
+		const shown = displayedDeadline(lot);
+		return shown.kind === 'in-notice' || Date.parse(shown.instant) <= limit;
+	});
+}
+
+function closingCount(selection: Selection, openAfter: string | null): number {
+	if (openAfter === null) return 0;
+	const reason = closingReason(openAfter);
+	return selection.leftOut.filter((notice) => notice.reason === reason).length;
+}
+
+function leaveOutClosing(selection: Selection, openAfter: string | null): Selection {
+	if (openAfter === null) return selection;
+	const limit = Date.parse(openAfter);
+	const reason = closingReason(openAfter);
+	return leaveOut(
+		selection,
+		selection.kept
+			.filter((notice) => closesBy(notice.record, limit))
+			.map(({ number }) => ({ notice: number, reason }))
+	);
+}
+
+function readingBlockOf(outputs: readonly StepOutput[]): ReadingRun | null {
+	for (const output of outputs) if (output.recordKey === 'reading') return output.record;
+	return null;
+}
+
+function searchFileOf(outputs: readonly StepOutput[]): SearchesFile | null {
+	for (const output of outputs) if (output.recordKey === 'search') return output.value;
+	return null;
 }
 
 function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string): RunRecord {
@@ -303,6 +347,7 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 		command: run.command,
 		head: deps.head,
 		modes: run.modes,
+		openAfter: run.openAfter,
 		query: { query, fields, scope, onlyLatestVersions, since: run.since },
 		ted: { ...run.client.stats(), cacheHits: run.cacheHits },
 		notices: {
@@ -313,7 +358,8 @@ function recordOf(deps: CaptureDeps, run: Run, end: RunEnd, finishedAt: string):
 			sameProcedure: selection?.sameProcedure ?? []
 		},
 		metered: run.gate.record(),
-		reading: run.outputs.find((output) => output.recordKey === 'reading')?.record ?? null
+		reading: readingBlockOf(run.outputs),
+		search: searchFileOf(run.outputs)?.run ?? null
 	});
 }
 
@@ -331,6 +377,7 @@ function writeListing(staging: string, run: Run, selection: Selection): void {
 			scope,
 			onlyLatestVersions,
 			since: run.since,
+			openAfter: run.openAfter,
 			total: selection.kept.length,
 			searchTotal: run.searchTotal,
 			notices: selection.kept.map((notice) => notice.hit)
@@ -355,7 +402,10 @@ function writeRecords(staging: string, run: Run, selection: Selection, record: R
 			leftOut: selection.leftOut,
 			failed: failures,
 			unversioned: run.failedHits.filter(({ hit }) => hitVersion(hit) === undefined).length,
-			reading: record.reading
+			openAfter: run.openAfter,
+			closing: closingCount(selection, run.openAfter),
+			reading: record.reading,
+			search: searchFileOf(run.outputs)
 		})
 	);
 }
@@ -369,7 +419,8 @@ function stagedProblems(staging: string, run: Run, selection: Selection): string
 			id: run.date,
 			fetchedAt: iso(run.started),
 			total: run.searchTotal,
-			query: searchQuery(run.since)
+			query: searchQuery(run.since),
+			...(run.openAfter !== null && { openAfter: run.openAfter })
 		},
 		leftOut: selection.leftOut,
 		rows: selection.kept.map((notice) => toIndexRow(notice.record))
@@ -535,7 +586,12 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	const { notices, listed } = await readHits(search.hits, run, cache);
 	stopIfInterrupted(deps);
 	for (const { notice, reason } of run.failed) log(`capture: ${notice}: ${reason}`);
-	run.selection = leaveOutOutdated(keepLatest(notices), run.failedHits);
+	// The deadline filter comes before the failure checks, so a filter that leaves nothing is refused
+	// like any empty run, and before the metered steps, so no paid call reads a notice it left out.
+	run.selection = leaveOutClosing(
+		leaveOutOutdated(keepLatest(notices), run.failedHits),
+		run.openAfter
+	);
 	const tooMany = failureRefusal(run.failed.length, run.listed, run.selection.kept.length);
 	if (tooMany !== undefined) {
 		return ended(deps, 'failed', tooMany, `${tooMany}; nothing was written`);
@@ -612,6 +668,7 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		started,
 		date,
 		since: args.since,
+		openAfter: args.openAfter,
 		modes,
 		command: ['node', 'scripts/capture.mjs', ...deps.argv].join(' '),
 		client: createTedClient({ transport: deps.transport, clock: deps.clock }),

@@ -42,8 +42,9 @@ const xmlDir = join(CAPTURE, 'xml');
 const xmlFiles = readdirSync(xmlDir)
 	.filter((name) => name.endsWith('.xml'))
 	.sort();
-// readings.json holds the model's readings of two lots, published beside the TED files.
-const jsonFiles = ['notices.json', 'fetch-log.json', 'readings.json'];
+// readings.json holds the model's readings of two lots and searches.json the one buyer search,
+// published beside the TED files.
+const jsonFiles = ['notices.json', 'fetch-log.json', 'readings.json', 'searches.json'];
 
 describe('the detectors (positive controls)', () => {
 	it('EMAIL_PATTERN and the ASCII pattern match a planted address', () => {
@@ -364,7 +365,7 @@ describe('one verdict over a capture folder', () => {
 });
 
 describe(`the tracked capture ${CAPTURE}`, () => {
-	it('holds all 363 notices and its three JSON files', () => {
+	it('holds all 363 notices and its four JSON files', () => {
 		expect(xmlFiles).toHaveLength(363);
 		for (const name of xmlFiles) expect(name).toMatch(/^\d{6}-\d{4}\.xml$/);
 		const top = readdirSync(CAPTURE);
@@ -382,7 +383,7 @@ describe(`the tracked capture ${CAPTURE}`, () => {
 		expect(notices.notices).toHaveLength(363);
 	});
 
-	it('scans its three JSON files, the README and every notice in the folder-wide checks', () => {
+	it('scans its four JSON files, the README and every notice in the folder-wide checks', () => {
 		expect(captureFiles(CAPTURE).filter(isCaptureText)).toHaveLength(
 			jsonFiles.length + 1 + xmlFiles.length
 		);

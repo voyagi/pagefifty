@@ -70,7 +70,9 @@ async function stepRun(
 		log
 	});
 	const output = await step({ gate, records });
-	if (!output) throw new Error('the model step returned no output');
+	if (!output || output.recordKey !== 'reading') {
+		throw new Error('the model step returned no reading output');
+	}
 	return { file: output.value as ReadingsFile, run: output.record, provider, lines, root };
 }
 

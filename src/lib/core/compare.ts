@@ -223,10 +223,10 @@ function checkYears<T>(
 
 const yearOf = (instant: string): number => Number(formatDay(instant, SERVER_TIME_ZONE).slice(-4));
 
-// The years a floor covers: those the quote names, else the last N completed years before the
-// year of the lot's deadline, ending at the latest year the profile records, with a figure or
-// blank, so a blank newest year stays in the window and reads as a missing figure. N is the
-// quote's count, or DEFAULT_YEARS when the text states none.
+// The years a floor covers: those the quote names (a range read as every year in it, figures.ts),
+// else the last N completed years before the year of the lot's deadline, ending at the latest year
+// the profile records, with a figure or blank, so a blank newest year stays in the window and
+// reads as a missing figure. N is the quote's count, or DEFAULT_YEARS when the text states none.
 function windowOf(
 	period: PeriodReading,
 	recorded: readonly number[],

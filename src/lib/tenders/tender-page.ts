@@ -2,17 +2,20 @@
 // come in as arguments, so the deadline, the time left and the open test all read the one instant
 // the loader was given (D-06). Nothing here translates or judges a clause (D-13): the model's
 // readings come in with the capture, and only what code verified against a clause is shown under it.
-import type {
-	CriterionParameter,
-	DocumentsLink,
-	LangText,
-	LegislationReference,
-	LotRecord,
-	NoticeRecord
+import {
+	safeLink,
+	type CriterionParameter,
+	type DocumentsLink,
+	type LangText,
+	type LegislationReference,
+	type LotRecord,
+	type NoticeRecord,
+	type SafeLink
 } from '../ingest/record';
 import { parameterLabel } from '../codelists/labels';
 import type { LotContext } from '../core/compare';
 import { summarizeLot } from '../core/coverage-facts';
+import { lotContextOf } from '../core/lot-context';
 import {
 	displayedDeadline,
 	isOpen,
@@ -31,6 +34,7 @@ import {
 import { coverageLines, readingStatus, type CoverageLine } from '../core/reading';
 import { toIndexRow } from '../snapshot/index-row';
 import type { LotEntry, NoticeReadings, ReadingRun } from '../snapshot/readings';
+import type { NoticeSearch } from '../snapshot/searches';
 import { countryName, formatValue, type CaptureFacts } from './list';
 
 export interface WorkKind {
@@ -150,6 +154,10 @@ interface LotIndexEntry {
 	closed: boolean;
 }
 
+// What the capture's web search for the buyer's earlier awards found, in Tavily's order. Each address
+// went through safeLink, so only an http or https one carries an href.
+export type BuyerSearchView = { results: { title: string; link: SafeLink }[] } | { none: true };
+
 export interface TenderPageModel {
 	// The instant the loader built the page for, as an ISO string: the browser's verdict reads this
 	// one, never its own clock, so a lot's closed state and its verdict cannot disagree.
@@ -170,6 +178,8 @@ export interface TenderPageModel {
 	cancelIntent: boolean;
 	// The capture's readings list this notice.
 	modelRead: boolean;
+	// Absent when the capture did not search this notice's buyer. Nothing here reaches a verdict.
+	search?: BuyerSearchView;
 }
 
 // What the loader hands the page. It lives here, not beside the loader, because components may not
@@ -289,20 +299,6 @@ function lotReadingOf(
 	};
 }
 
-function verdictContext(
-	record: NoticeRecord,
-	lot: LotRecord,
-	deadline: DisplayedDeadline
-): LotVerdictInput['context'] {
-	return {
-		legalBasis: record.legalBasis,
-		deadline: deadline.kind === 'in-notice' ? null : deadline.instant,
-		coverage: summarizeLot(lot),
-		cancelIntent: record.cancelIntent === true,
-		reserved: lot.reserved
-	};
-}
-
 const tedUrlOf = (record: NoticeRecord) =>
 	`https://ted.europa.eu/en/notice/-/detail/${encodeURIComponent(record.noticeNumber)}`;
 
@@ -367,18 +363,29 @@ function toLotView(
 		...(ownDocuments && { documents: ownDocuments }),
 		...(view && {
 			reading: view,
-			verdictInput: { status, context: verdictContext(record, lot, deadline) }
+			verdictInput: { status, context: lotContextOf(record, lot) }
 		})
 	};
 }
 
+function searchView(search: NoticeSearch | undefined): BuyerSearchView | undefined {
+	if (search === undefined || search.status !== 'searched') return undefined;
+	if (search.results.length === 0) return { none: true };
+	return {
+		results: search.results.map(({ title, url }) => ({ title, link: safeLink(url) }))
+	};
+}
+
 // readings is the notice's slice of its capture's readings, absent when the capture lists none for
-// it: a lot the readings do not list keeps the phase 1 view.
+// it: a lot the readings do not list keeps the phase 1 view. search is the notice's buyer search,
+// absent when the capture holds none for it.
 export function buildTenderPage(
 	record: NoticeRecord,
 	now: Date,
-	readings?: NoticeReadings
+	readings?: NoticeReadings,
+	search?: NoticeSearch
 ): TenderPageModel {
+	const buyerSearch = searchView(search);
 	const row = toIndexRow(record);
 	const deadline = noticeDeadline(record.lots, now);
 	const left =
@@ -416,6 +423,7 @@ export function buildTenderPage(
 		// The same facts that give the list its "Criteria in the documents" tag.
 		documentsUnread: readingStatus(record.lots.map(summarizeLot)).tag === 'criteria-in-documents',
 		cancelIntent: record.cancelIntent === true,
-		modelRead: readings !== undefined
+		modelRead: readings !== undefined,
+		...(buyerSearch && { search: buyerSearch })
 	};
 }

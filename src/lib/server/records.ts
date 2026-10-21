@@ -3,7 +3,8 @@
 // binding on the Worker, so no notice XML is parsed while a page is served.
 import { read } from '$app/server';
 import type { NoticeRecord } from '../ingest/record';
-import { newestCapture } from '../snapshot/capture-id';
+import { exampleCaptureOf, newestCapture } from '../snapshot/capture-id';
+import { FigureFileSchema, type FigureFile } from '../snapshot/figure';
 import {
 	CaptureLineSchema,
 	NOTICE_NUMBER,
@@ -17,6 +18,8 @@ import {
 	type NoticeReadings,
 	type ReadingRun
 } from '../snapshot/readings';
+import { SearchRunSchema, type SearchRun } from '../snapshot/search-run';
+import { NoticeSearchSchema, type NoticeSearch } from '../snapshot/searches';
 import { captureFacts, type CaptureFacts } from '../tenders/list';
 
 // A page is judged against an instant: the real clock for /tenders, or "capture" for the moment
@@ -35,6 +38,9 @@ const CAPTURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/capture\.json$/;
 const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$/;
 const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
+const SEARCH_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/search-run\.json$/;
+const SEARCH_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/searches\/([^/]+)\.json$/;
+const FIGURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/figure\.json$/;
 
 function byMatch<T>(files: Record<string, T>, pattern: RegExp): ReadonlyMap<string, T> {
 	const found = new Map<string, T>();
@@ -89,13 +95,56 @@ const READING_RUNS = byMatch(
 	}),
 	READING_RUN_PATH
 );
+// A search run is as small, and a capture that ran no buyer search has none.
+const SEARCH_RUNS = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/search-run.json', {
+		import: 'default',
+		eager: true
+	}),
+	SEARCH_RUN_PATH
+);
+const SEARCH_URLS = byMatch(
+	import.meta.glob('../snapshot/generated/*/searches/*.json', {
+		query: '?url',
+		import: 'default',
+		eager: true
+	}),
+	SEARCH_PATH
+);
+// The home figure is a few hundred bytes too, and only a capture the model read can hold one.
+const FIGURES = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/figure.json', {
+		import: 'default',
+		eager: true
+	}),
+	FIGURE_PATH
+);
 // Stryker restore all
 
+// A missing or damaged line is a broken build and fails whatever reads it, like a damaged index.
+function captureLine(capture: string): SnapshotIndex['capture'] {
+	const line = CAPTURE_LINES.get(capture);
+	if (line === undefined) {
+		throw new Error(
+			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
+		);
+	}
+	const parsed = CaptureLineSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} capture line does not match its schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
+}
+
 // Both are fixed when the module loads, from the glob the build already expanded, so no request
-// ever chooses which capture it reads. The example stays on the capture its copy describes until
-// the final capture replaces it (DEMO-04).
+// ever chooses which capture it reads. The example moves to the final capture by the rule in
+// exampleCaptureOf the moment that capture is built, with no change here (DEMO-04).
 export const LATEST_CAPTURE = newestCapture(INDEX_URLS.keys());
-export const EXAMPLE_CAPTURE = '2026-09-15';
+export const EXAMPLE_CAPTURE = exampleCaptureOf(
+	[...CAPTURE_LINES.keys()].map((id) => [id, captureLine(id)] as const)
+);
 export { newestCapture };
 
 // SvelteKit's read() always answers status 200. On the Worker the adapter fetches the file through
@@ -135,19 +184,7 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 // never leaves the page naming an older one's days. A missing or damaged line is a broken build
 // and fails the page like a damaged index does.
 export function snapshotDays(capture: string): CaptureFacts {
-	const line = CAPTURE_LINES.get(capture);
-	if (line === undefined) {
-		throw new Error(
-			`no built capture line for capture ${capture}: scripts/build-records.mjs writes it from examples/${capture}/notices.json, and npm run dev, npm run build and the test run each call it first`
-		);
-	}
-	const parsed = CaptureLineSchema.safeParse(line);
-	if (!parsed.success) {
-		throw new Error(
-			`the ${capture} capture line does not match its schema: ${parsed.error.message}`
-		);
-	}
-	return captureFacts(parsed.data);
+	return captureFacts(captureLine(capture));
 }
 
 // A notice the capture's readings do not list answers nothing, and keeps the phase 1 view.
@@ -164,6 +201,25 @@ export async function loadNoticeReadings(
 	if (!parsed.success) {
 		throw new Error(
 			`the ${capture} readings of ${notice} do not match their schema: ${parsed.error.message}`
+		);
+	}
+	return parsed.data;
+}
+
+// A notice the capture's buyer search does not list answers nothing, and its page shows no search.
+export async function loadNoticeSearch(
+	capture: string,
+	notice: string
+): Promise<NoticeSearch | undefined> {
+	if (!NOTICE_NUMBER.test(notice)) return undefined;
+	const url = SEARCH_URLS.get(`${capture}/${notice}`);
+	if (url === undefined) return undefined;
+	const parsed = NoticeSearchSchema.safeParse(
+		await readJson(url, `the ${capture} buyer search of ${notice}`)
+	);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} buyer search of ${notice} does not match its schema: ${parsed.error.message}`
 		);
 	}
 	return parsed.data;
@@ -188,6 +244,44 @@ export function newestReadingRun(): { id: string; run: ReadingRun } | null {
 	const id = newestCapture(READING_RUNS.keys());
 	const run = readingRunOf(id);
 	return run === null ? null : { id, run };
+}
+
+// The parse is apart from the lookup so a damaged line can be tested before any capture has one.
+export function parsedSearchRun(capture: string, line: unknown): SearchRun | null {
+	if (line === undefined) return null;
+	const parsed = SearchRunSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(`the ${capture} search run does not match its schema: ${parsed.error.message}`);
+	}
+	return parsed.data;
+}
+
+// The buyer search of a capture, or null for a capture that ran none.
+export function searchRunOf(capture: string): SearchRun | null {
+	return parsedSearchRun(capture, SEARCH_RUNS.get(capture));
+}
+
+// The parse is apart from the lookup so a damaged figure can be tested before any capture has one.
+export function parsedFigure(capture: string, line: unknown): FigureFile | null {
+	if (line === undefined) return null;
+	const parsed = FigureFileSchema.safeParse(line);
+	if (!parsed.success) {
+		throw new Error(`the ${capture} figure does not match its schema: ${parsed.error.message}`);
+	}
+	return parsed.data;
+}
+
+// The home figure of a capture, or null for one that holds none.
+export function figureFile(capture: string): FigureFile | null {
+	return parsedFigure(capture, FIGURES.get(capture));
+}
+
+// The outside providers a capture used, as the trust pages name them: the model provider its
+// reading run records, then the search provider only when the search sent at least one query, so
+// a capture that never searched leaves no claim about one on either page.
+export function providersOf(run: ReadingRun | null, search: SearchRun | null): string[] {
+	const providers = run === null ? [] : [run.provider];
+	return search !== null && search.searches > 0 ? [...providers, 'Tavily'] : providers;
 }
 
 // An unknown or malformed notice number is answered before any read, so the tender page can 404.

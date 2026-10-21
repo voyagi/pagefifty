@@ -11,7 +11,9 @@
 // The result is <out>/<capture date>/index.json (one row per kept notice), capture.json (the
 // index's capture line alone, which the server bundles so a 404 names the snapshot's days without
 // reading an index) and records/<notice>.json, plus, for a capture that published the model's
-// readings.json, readings/<notice>.json and reading-run.json, written compact into a temp folder and moved into
+// readings.json, readings/<notice>.json and reading-run.json, for one that published its buyer
+// search, searches/<notice>.json and search-run.json, and for one that holds the home figure
+// scripts/figure.mjs wrote, figure.json, written compact into a temp folder and moved into
 // place only when every notice of every capture was read. This script is a thin caller: the
 // reading rules live in src, where the import rules and tests see them.
 //
@@ -22,17 +24,26 @@
 // Usage:  node scripts/build-records.mjs [--examples <dir>] [--out <dir>]
 //         (defaults: examples and src/lib/snapshot/generated beside this script's repository)
 // Exit codes: 0 records written,
-//             1 a listing, a notice or a readings.json could not be read, or a write step failed (nothing
+//             1 a listing, a notice, a readings.json, a searches.json or a figure.json could not be read, or a write step failed (nothing
 //               half-written is served; a temp folder that could not be removed is named),
 //             2 bad usage or no capture folder found.
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	readFileSync,
+	readdirSync,
+	renameSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { selectLatest } from '../src/lib/ingest/latest.ts';
 import { readNotice } from '../src/lib/ingest/read-notice.ts';
 import { CAPTURE_ID } from '../src/lib/snapshot/capture-id.ts';
+import { FigureFileSchema } from '../src/lib/snapshot/figure.ts';
 import {
 	NOTICE_NUMBER,
 	NoticeRecordSchema,
@@ -40,6 +51,7 @@ import {
 	toIndexRow
 } from '../src/lib/snapshot/index-row.ts';
 import { ReadingsFileSchema } from '../src/lib/snapshot/readings.ts';
+import { SearchesFileSchema } from '../src/lib/snapshot/searches.ts';
 import {
 	createSnapshotTransport,
 	requestKey,
@@ -60,7 +72,9 @@ function parseArgs(argv) {
 	for (let index = 0; index < argv.length; index += 2) {
 		const [flag, value] = [argv[index], argv[index + 1]];
 		if ((flag !== '--examples' && flag !== '--out') || !value) {
-			throw new UsageError(`unknown or incomplete argument ${flag ?? ''}; see the usage in this file`);
+			throw new UsageError(
+				`unknown or incomplete argument ${flag ?? ''}; see the usage in this file`
+			);
 		}
 		options[flag.slice(2)] = resolve(value);
 	}
@@ -114,18 +128,21 @@ function hasNumber(number) {
 
 async function readOne(transport, number) {
 	if (!hasNumber(number)) {
-		return { ok: false, kind: 'listing', detail: 'a notice in notices.json has no publication-number' };
+		return {
+			ok: false,
+			kind: 'listing',
+			detail: 'a notice in notices.json has no publication-number'
+		};
 	}
 	const response = await transport(new Request(tedNoticeXmlUrl(number)));
 	if (response.status !== 200) return { ok: false, kind: 'missing', detail: await response.text() };
 	return readNotice(new Uint8Array(await response.arrayBuffer()), { noticeNumber: number });
 }
 
-// The model's readings the capture published, if it published any. A file the schema refuses is a
-// failure like a record that does not read, so nothing of the capture is written. Each notice named
-// in it becomes a file name, so only TED's notice number shape gets that far.
-function readReadings(folder) {
-	const file = join(folder, 'readings.json');
+// A file published beside the capture, if there is one. A file the schema refuses is a failure like
+// a record that does not read, so nothing of the capture is written.
+function readCheckedFile(folder, name, schema) {
+	const file = join(folder, name);
 	if (!existsSync(file)) return {};
 	let json;
 	try {
@@ -133,20 +150,44 @@ function readReadings(folder) {
 	} catch (error) {
 		return { failure: `${file} could not be read as JSON: ${error.message}` };
 	}
-	const parsed = ReadingsFileSchema.safeParse(json);
-	if (!parsed.success) return { failure: `${file} does not match its schema: ${parsed.error.message}` };
-	const misnamed = parsed.data.notices.find(({ notice }) => !NOTICE_NUMBER.test(notice));
+	const parsed = schema.safeParse(json);
+	if (!parsed.success)
+		return { failure: `${file} does not match its schema: ${parsed.error.message}` };
+	return { data: parsed.data };
+}
+
+// A file a capture step published (the model's readings, the buyer search). Each notice named in it
+// becomes a file name, so only TED's notice number shape gets that far.
+function readStepFile(folder, name, schema) {
+	const read = readCheckedFile(folder, name, schema);
+	const misnamed = read.data?.notices.find(({ notice }) => !NOTICE_NUMBER.test(notice));
 	if (misnamed) {
-		return { failure: `${file}: ${JSON.stringify(misnamed.notice)} is not a TED notice number` };
+		return {
+			failure: `${join(folder, name)}: ${JSON.stringify(misnamed.notice)} is not a TED notice number`
+		};
 	}
-	return { readings: parsed.data };
+	return read;
+}
+
+// The home figure scripts/figure.mjs wrote. One copied in from another capture's folder would state
+// that capture's numbers under this capture's date, so its own capture must be this one.
+function readFigureFile(folder, id) {
+	const read = readCheckedFile(folder, 'figure.json', FigureFileSchema);
+	if (read.data !== undefined && read.data.capture !== id) {
+		return {
+			failure: `${join(folder, 'figure.json')} is the figure of capture ${read.data.capture}, not ${id}`
+		};
+	}
+	return read;
 }
 
 async function buildCapture(examples, id) {
 	const started = performance.now();
 	const folder = join(examples, id);
 	const { listing, numbers } = readListing(folder, id);
-	const { readings, failure } = readReadings(folder);
+	const readingsFile = readStepFile(folder, 'readings.json', ReadingsFileSchema);
+	const searchesFile = readStepFile(folder, 'searches.json', SearchesFileSchema);
+	const figureFile = readFigureFile(folder, id);
 	const transport = await snapshotTransport(folder);
 	const records = [];
 	const failures = [];
@@ -187,13 +228,30 @@ async function buildCapture(examples, id) {
 	for (const number of new Set(duplicates)) {
 		failures.push({ number, kind: 'listing', detail: 'listed more than once in notices.json' });
 	}
-	if (failure) failures.push({ number: '(readings)', kind: 'readings', detail: failure });
+	if (readingsFile.failure) {
+		failures.push({ number: '(readings)', kind: 'readings', detail: readingsFile.failure });
+	}
+	if (searchesFile.failure) {
+		failures.push({ number: '(searches)', kind: 'searches', detail: searchesFile.failure });
+	}
+	if (figureFile.failure) {
+		failures.push({ number: '(figure)', kind: 'figure', detail: figureFile.failure });
+	}
 	const { kept, leftOut } = selectLatest(records);
 	// capture.total is the count TED stated for its search, which a capture made by the command
 	// records as searchTotal; the listed-count check above stays on the notices actually listed.
 	const total = listing.searchTotal ?? listing.total;
+	// A capture made with --open-after carries its instant into the line, which is what the example
+	// rule reads; null is how the command writes "not given". Any other value goes to the schema.
+	const openAfter = listing.openAfter ?? undefined;
 	const index = SnapshotIndexSchema.safeParse({
-		capture: { id, fetchedAt: listing.fetchedAt, total, query: listing.query },
+		capture: {
+			id,
+			fetchedAt: listing.fetchedAt,
+			total,
+			query: listing.query,
+			...(openAfter !== undefined && { openAfter })
+		},
 		leftOut,
 		rows: kept.map(toIndexRow)
 	});
@@ -201,7 +259,17 @@ async function buildCapture(examples, id) {
 		failures.push({ number: '(index)', kind: 'index', detail: index.error.message });
 	}
 	const ms = Math.round(performance.now() - started);
-	return { id, index: index.data, records: kept, readings, failures, listed: numbers.length, ms };
+	return {
+		id,
+		index: index.data,
+		records: kept,
+		readings: readingsFile.data,
+		searches: searchesFile.data,
+		figure: figureFile.data,
+		failures,
+		listed: numbers.length,
+		ms
+	};
 }
 
 // Each notice's slice of the readings, so a page loads only its own, and the run on its own, which
@@ -217,6 +285,16 @@ function writeReadings(temp, readings) {
 		);
 	}
 	writeFileSync(join(temp, 'reading-run.json'), JSON.stringify(readings.run));
+}
+
+// Each notice's search, and the run, which the trust pages read to name the search provider.
+function writeSearches(temp, searches) {
+	if (searches === undefined) return;
+	mkdirSync(join(temp, 'searches'));
+	for (const search of searches.notices) {
+		writeFileSync(join(temp, 'searches', `${search.notice}.json`), JSON.stringify(search));
+	}
+	writeFileSync(join(temp, 'search-run.json'), JSON.stringify(searches.run));
 }
 
 // Cleanup after a failed write must not replace the error that says which step failed, so a temp
@@ -255,6 +333,12 @@ function writeCapture(out, capture) {
 		}
 		step = 'write the readings';
 		writeReadings(temp, capture.readings);
+		step = 'write the searches';
+		writeSearches(temp, capture.searches);
+		if (capture.figure !== undefined) {
+			step = 'write the figure';
+			writeFileSync(join(temp, 'figure.json'), JSON.stringify(capture.figure));
+		}
 		if (existsSync(target)) {
 			step = `set the old ${capture.id} folder aside`;
 			renameSync(target, aside);
@@ -308,7 +392,8 @@ function pruneStale(out, ids) {
 async function main() {
 	const { examples, out } = parseArgs(process.argv.slice(2));
 	const ids = captureIds(examples);
-	if (ids.length === 0) throw new UsageError(`no capture folder with a notices.json under ${examples}`);
+	if (ids.length === 0)
+		throw new UsageError(`no capture folder with a notices.json under ${examples}`);
 	const captures = [];
 	for (const id of ids) captures.push(await buildCapture(examples, id));
 	const failed = captures.filter((capture) => capture.failures.length > 0);
@@ -327,10 +412,13 @@ async function main() {
 		// A notice the rule left out has no row and no page, so the line names each one: a wrong
 		// leftOut on a new capture shows here, not only as a smaller count.
 		const { leftOut } = capture.index;
-		const left = leftOut.length === 0
-			? ''
-			: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
-		console.log(`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`);
+		const left =
+			leftOut.length === 0
+				? ''
+				: `, ${leftOut.length} left out: ${leftOut.map(({ notice, reason }) => `${notice} (${reason})`).join(', ')}`;
+		console.log(
+			`records: ${capture.id}: ${capture.records.length} notices in ${capture.ms} ms${left}`
+		);
 	}
 	pruneStale(out, ids);
 	return 0;

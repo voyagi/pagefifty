@@ -208,6 +208,10 @@ const TWO_UNREAD =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten zwei abgeschlossenen und testierten Geschäftsjahren.';
 const TWO_UNREAD_NAMED =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den zwei abgeschlossenen und testierten Geschäftsjahren 2024 und 2025.';
+const RANGE_EACH =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten drei Geschäftsjahren (2023-2025).';
+const RANGE_BACKWARDS =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den Geschäftsjahren 2025-2023.';
 const FLOOR_ONLY = 'Jährlich mindestens 1.000.000 EUR netto Umsatz';
 const YEARS_APART = `${FLOOR_ONLY}. Maßgeblich sind die letzten zwei Geschäftsjahre.`;
 const STAFF_NOUN_FIRST = 'Mindestmitarbeiterzahl: mindestens 25.';
@@ -492,6 +496,18 @@ const ROWS: readonly Row[] = [
 		g(TWO_UNREAD_NAMED),
 		firmOf({ 2023: 1, 2024: 1e6, 2025: 1e6 }),
 		decided('MET', 'met')
+	),
+	row(
+		'a yearly floor over a named range compares the years between its ends',
+		g(RANGE_EACH),
+		firmOf({ 2023: 1e6, 2024: 999_999, 2025: 1e6 }),
+		decided('SHORT_BORROWABLE', 'short')
+	),
+	row(
+		'a range of years code cannot settle is NOT_READ, never its two ends',
+		g(RANGE_BACKWARDS),
+		yearly(2e6),
+		decided('NOT_READ', 'years-unread')
 	),
 	row(
 		'fewer completed financial years than demanded is PROFILE_GAP',
@@ -939,6 +955,23 @@ describe('decideCriterion, one row per state the code decides', () => {
 			notCompared: false,
 			why: ['met', 'amount-not-quoted']
 		});
+	});
+
+	it('one quote returned twice quotes a floor the clause states twice only once', () => {
+		const readTwice = (quotes: readonly string[]) =>
+			readLot({
+				criteria: [{ code: GENERAL, descriptions: [{ text: SAME_FLOOR_TWICE, lang: 'de' }] }],
+				items: quotes.map((quote) => modelItem(GENERAL, 1, quote))
+			}).criteria[0];
+		expect(outline(decideCriterion(readTwice([EACH, EACH]), yearly(2e6), CONTEXT, false))).toEqual({
+			state: 'NOT_READ',
+			notCompared: false,
+			why: ['met', 'met', 'amount-not-quoted']
+		});
+		// The same quote with other spacing is found at the same place, so it is the same row.
+		expect(readTwice([EACH, EACH.replace(' EUR ', '  EUR ')]).everyAmountQuoted).toBe(false);
+		const total = 'Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.';
+		expect(readTwice([EACH, total]).everyAmountQuoted).toBe(true);
 	});
 
 	it('the same floor in a second language is quoted once it is quoted in the first', () => {

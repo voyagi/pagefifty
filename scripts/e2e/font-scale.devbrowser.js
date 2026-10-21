@@ -24,19 +24,27 @@ function check(name, ok, detail) {
 }
 
 // One route per layout: the start page, both lists, the largest notice, the filled profile, the
-// empty filter state and the error page. The largest notice, 600457-2026 with its 17 lots, is read on
-// the example, which stays on the 2026-09-15 capture that holds it; no deadline lies in 2099.
+// empty filter state, the error page and the two trust pages, /ai and /privacy. The largest notice is
+// the example capture's notice with the most lots (config.example, from the build), reached by its
+// row on the example list; no deadline lies in 2099.
+const MOST_LOTS = config.example.probes.mostLots;
 const ROUTES = [
 	{ path: '/', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ path: '/tenders', url: 'http://127.0.0.1:8788/tenders?theme=light' },
 	{ path: '/example', url: 'http://127.0.0.1:8788/example?theme=light' },
-	{ path: '/example/600457-2026', url: 'http://127.0.0.1:8788/example/600457-2026?theme=light' },
+	{
+		path: 'the example notice with the most lots',
+		url: 'http://127.0.0.1:8788/example?theme=light',
+		row: MOST_LOTS.notice
+	},
 	{ path: '/profile (demo firm)', url: 'http://127.0.0.1:8788/profile?theme=light', demo: true },
 	{
 		path: '/tenders with no match',
 		url: 'http://127.0.0.1:8788/tenders?country=BE&from=2099-01-01&theme=light'
 	},
-	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' }
+	{ path: 'an unknown page', url: 'http://127.0.0.1:8788/no-such-page?theme=light' },
+	{ path: '/ai', url: 'http://127.0.0.1:8788/ai?theme=light' },
+	{ path: '/privacy', url: 'http://127.0.0.1:8788/privacy?theme=light' }
 ];
 const FONTS = [
 	{ px: 20, widths: [320, 768, 901, 1376, 1676] },
@@ -100,6 +108,8 @@ function readSpill() {
 	});
 }
 
+// A route with a row is the notice that row leads to, reached by clicking it, never by a typed
+// number; a row closed at the capture instant sits in the folded closed group, opened first.
 async function load(route) {
 	await page.evaluate((demo) => {
 		localStorage.clear();
@@ -107,6 +117,21 @@ async function load(route) {
 	}, Boolean(route.demo));
 	await page.goto(route.url);
 	await page.waitForSelector(HYDRATED, { timeout: 10000 });
+	if (route.row === undefined) return;
+	const folded = await page.evaluate(
+		(number) =>
+			Boolean(
+				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+			),
+		route.row
+	);
+	if (folded) await page.click('#closed summary');
+	await page.click(`tr[data-notice="${route.row}"] a.t`);
+	await page.waitForFunction((path) => location.pathname === path, `/example/${route.row}`, {
+		timeout: 10000
+	});
+	await page.waitForSelector('#tender-title', { timeout: 10000 });
+	await page.waitForLoadState('networkidle');
 }
 
 try {
