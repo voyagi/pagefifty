@@ -227,6 +227,22 @@ describe('the reading runs the pages read', () => {
 		expect(read).not.toHaveBeenCalled();
 	});
 
+	// /ai and /privacy name the newest reading run, and /ai links it as the example run, while
+	// /example shows the example capture and /tenders the latest one. While one capture holds every
+	// reading and search a served page shows, and it is the example, every trust page states what the
+	// served pages show. A capture that splits them fails here, so which run the trust pages name is
+	// decided then, together with scripts/e2e.mjs trustFacts.
+	it('the newest reading run is the example capture, the one served capture that shows readings or searches', () => {
+		const newest = newestReadingRun()?.id;
+		expect(newest, 'the newest reading run is not the example capture').toBe(EXAMPLE_CAPTURE);
+		const shown = [...new Set([LATEST_CAPTURE, EXAMPLE_CAPTURE])].filter(
+			(id) => readingRunOf(id) !== null || (searchRunOf(id)?.searches ?? 0) > 0
+		);
+		expect(shown, 'a served capture other than the newest reading run shows readings').toEqual([
+			newest
+		]);
+	});
+
 	it('loadNoticeReadings reads the German lot readings through read(), and nothing for a notice the readings do not list', async () => {
 		const german = await loadNoticeReadings(SEPT, '610242-2026');
 		expect(german?.notice).toBe('610242-2026');
