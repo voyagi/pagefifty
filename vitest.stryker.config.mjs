@@ -6,6 +6,12 @@ import viteConfig from './vite.config.ts';
 import { PROJECTS } from './src/test/projects.ts';
 
 const { include, exclude, setupFiles } = PROJECTS.node;
+// Stryker prints every file it mutates again through Babel's generator, so in its sandbox
+// verdict-view.ts and list.ts no longer read as written, and the harness's example-capture tests,
+// which take the reason sentences from that text, fail the initial run with an empty sentence map.
+// The rest of the file tests scripts/harness.mjs, which is no mutation target, so nothing it could
+// kill is lost.
+const notInSandbox = ['src/test/harness.test.ts'];
 // vite.config.ts exports a function of the mode, and a mutation run is a test run.
 const { plugins } = viteConfig({ command: 'serve', mode: 'test' });
 
@@ -23,7 +29,7 @@ export default defineConfig({
 		name: 'node',
 		environment: 'node',
 		include: [...include],
-		exclude: [...exclude],
+		exclude: [...exclude, ...notInSandbox],
 		setupFiles: [...setupFiles]
 	}
 });
