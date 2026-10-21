@@ -120,6 +120,10 @@ describe('/ai copy', () => {
 			[
 				'query data is not stored or used for improvements',
 				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
+			],
+			[
+				'the buyer search recorded on 15 October 2026 was made while the setting was still on',
+				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
 			]
 		]) {
 			expect(blockOf(phrase), phrase).toHaveLength(1);
