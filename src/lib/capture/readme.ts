@@ -86,6 +86,19 @@ function modelReadSection(reading: ReadingRun | null, modes: Modes): string[] {
 	];
 }
 
+// The opening names what reached Tavily, never the mode alone: the cap the model read shares can
+// refuse every search, and the gate counts a search before it sends it (metered.ts), so a live run
+// with 0 sent sent no buyer's name. The step also runs when no notice has anything to search.
+function searchOpening({ run, notices }: SearchesFile, modes: Modes): string {
+	if (modes.tavily !== 'live')
+		return "No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily.";
+	if (notices.length === 0)
+		return "No buyer search was made: no notice in this capture names a buyer and has criteria in the notice, so no buyer's name was sent to Tavily.";
+	if (run.searches === 0)
+		return "No buyer search was sent: the run refused every search before sending it, and `run.json` names why, so no buyer's name reached Tavily.";
+	return "Each search sent one notice's buyer name and fixed words for earlier awards to Tavily basic search. The results are web pages nobody checked, and they change no verdict.";
+}
+
 // The results are web pages nobody checked, so the section says so wherever it names the file.
 function buyerSearchSection(search: SearchesFile | null, modes: Modes): string[] {
 	if (search === null) return [];
@@ -95,9 +108,7 @@ function buyerSearchSection(search: SearchesFile | null, modes: Modes): string[]
 	return [
 		'## Buyer search',
 		'',
-		modes.tavily === 'live'
-			? "For each notice with criteria in the notice, the buyer's name and fixed words for earlier awards were searched with Tavily basic search. The results are web pages nobody checked, and they change no verdict."
-			: "No buyer search was made: this was a dry run, so no buyer's name was sent to Tavily.",
+		searchOpening(search, modes),
 		'',
 		`- ${counted(notices.length, 'notice')} with criteria in the notice: ${searched} searched, ${run.notSearched} not searched.`,
 		run.searches > 0

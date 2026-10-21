@@ -30,6 +30,7 @@ import { ReadingRunSchema, ReadingsFileSchema } from '../snapshot/readings.ts';
 import { SearchRunSchema } from '../snapshot/search-run.ts';
 import { SearchesFileSchema } from '../snapshot/searches.ts';
 import { tedNoticeXmlUrl } from '../snapshot/transport.ts';
+import { captureReadme } from './readme.ts';
 import { runCapture } from './run.ts';
 import { searchBody, searchQuery } from './tavily.ts';
 import { chatBody, userMessage } from './token-factory.ts';
@@ -893,6 +894,18 @@ describe('the buyer search under the cap the model read shares', () => {
 	});
 });
 
+const SEARCHED_OPENING =
+	"Each search sent one notice's buyer name and fixed words for earlier awards to Tavily basic search. The results are web pages nobody checked, and they change no verdict.";
+
+const cappedRun = (cap: string) =>
+	commandRun({
+		notices: THREE,
+		argv: ['--live', '--cap', cap],
+		env: { PAGEFIFTY_LIVE: '1' },
+		replies: THREE_REPLIES,
+		searches: threeSearches()
+	});
+
 describe('the README of a capture with the buyer search', () => {
 	it('names the buyer search, and a dry run says no search was made', async () => {
 		const live = await commandRun({
@@ -903,6 +916,7 @@ describe('the README of a capture with the buyer search', () => {
 		});
 		const readme = readFileSync(join(live.folder, 'README.md'), 'utf8');
 		expect(readme).toContain('## Buyer search');
+		expect(readme).toContain(SEARCHED_OPENING);
 		expect(readme).toContain(
 			'- 3 notices with criteria in the notice: 3 searched, 0 not searched.'
 		);
@@ -919,5 +933,50 @@ describe('the README of a capture with the buyer search', () => {
 			'- 3 notices with criteria in the notice: 0 searched, 3 not searched.'
 		);
 		expect(dryReadme).not.toContain('`searches.json`');
+	});
+
+	// The gate counts a search before it sends it, so a live run with 0 sent never reached Tavily,
+	// and a run the cap stops part way searched only the notices it counts.
+	it('opens on the searches sent, never on the mode alone', async () => {
+		const partly = readFileSync(join((await cappedRun('4')).folder, 'README.md'), 'utf8');
+		expect(partly).toContain(SEARCHED_OPENING);
+		expect(partly).toContain(
+			'- 3 notices with criteria in the notice: 1 searched, 2 not searched.'
+		);
+		expect(partly).not.toContain('For each notice');
+		const refused = readFileSync(join((await cappedRun('3')).folder, 'README.md'), 'utf8');
+		expect(refused).toContain(
+			"No buyer search was sent: the run refused every search before sending it, and `run.json` names why, so no buyer's name reached Tavily."
+		);
+		expect(refused).toContain(
+			'- 3 notices with criteria in the notice: 0 searched, 3 not searched.'
+		);
+		expect(refused).not.toContain(SEARCHED_OPENING);
+	});
+
+	it('a live run with no notice to search says no search was made', () => {
+		const readme = captureReadme({
+			captureDate: DAY,
+			fetchedAt: '2026-09-15T08:00:00.000Z',
+			query: 'publication-date>=20260901',
+			since: '20260901',
+			modes: { ted: 'live', tokenFactory: 'live', tavily: 'live' },
+			written: 1,
+			searchTotal: 1,
+			leftOut: [],
+			failed: [],
+			unversioned: 0,
+			openAfter: null,
+			closing: 0,
+			reading: null,
+			search: { schemaVersion: 1, run: { searches: 0, notSearched: 0, credits: 0 }, notices: [] }
+		});
+		expect(readme).toContain(
+			"No buyer search was made: no notice in this capture names a buyer and has criteria in the notice, so no buyer's name was sent to Tavily."
+		);
+		expect(readme).toContain(
+			'- 0 notices with criteria in the notice: 0 searched, 0 not searched.'
+		);
+		expect(readme).not.toContain(SEARCHED_OPENING);
 	});
 });
