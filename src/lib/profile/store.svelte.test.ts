@@ -416,6 +416,38 @@ describe('removeProfile', () => {
 		expect(storage.getItem(PROFILE_KEY)).not.toBeNull();
 	});
 
+	// A read the browser refuses is not an empty key: the profile may still be there, so the removal
+	// says it failed rather than that nothing was stored, and tries no removal it cannot check.
+	it('removeProfile reports a refused read as failed, never as nothing stored', () => {
+		const storage = new CountingStorage();
+		const store = savedStore(storage);
+		const held = store.stored;
+		vi.spyOn(storage, 'getItem').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		const removeItem = vi.spyOn(storage, 'removeItem');
+		expect(store.removeProfile()).toBe('failed');
+		expect(removeItem).not.toHaveBeenCalled();
+		expect(storage.values.has(PROFILE_KEY)).toBe(true);
+		expect(store.stored).toBe(held);
+	});
+
+	it('profileKeyState tells an empty key from a held one and from a refused read', () => {
+		const storage = new CountingStorage();
+		const store = createProfileStore(storage);
+		store.load();
+		expect(store.profileKeyState()).toBe('empty');
+		createProfileStore(storage).saveProfile(withStaff(7), FIRST);
+		expect(store.stored).toBeNull();
+		expect(store.profileKeyState()).toBe('held');
+		storage.setItem(PROFILE_KEY, 'not json');
+		expect(store.profileKeyState()).toBe('held');
+		vi.spyOn(storage, 'getItem').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		expect(store.profileKeyState()).toBe('unreadable');
+	});
+
 	// The decision is made on what storage holds now, so a profile another tab wrote after this page
 	// read nothing is removed too, and the confirmation the page asked for covered it.
 	it('removeProfile reads storage first, so a profile another tab stored is removed too', () => {

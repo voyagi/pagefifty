@@ -90,8 +90,11 @@
 
 	const control = () => removeArea?.querySelector('button');
 
+	// Asked of storage, not of this page's copy: another tab can save a profile before its storage
+	// event reaches this page. So the shortcut says nothing is stored only when the removal would, and
+	// a read the browser refuses opens the question, after which the removal says what happened.
 	async function askRemove() {
-		if (!store.stored && store.newerVersion === null) {
+		if (store.profileKeyState() === 'empty') {
 			removeNote = { text: REMOVE_COPY.nothingStored, about: store.stored };
 			return;
 		}

@@ -756,6 +756,34 @@ describe('removing the stored profile', () => {
 		expect(Object.entries(localStorage)).toEqual(before);
 	});
 
+	// Another tab can save before its storage event reaches this page, so the control asks storage,
+	// not the page's copy, whether a profile is there.
+	it('asks before removing a profile another tab stored before its storage event arrived', async () => {
+		render(Page);
+		await staffField();
+		expect(getProfileStore().store.stored).toBeNull();
+		localStorage.setItem(PROFILE_KEY, storedFile(7));
+		await userEvent.click(removeControl());
+		expect(confirmation()).not.toBeNull();
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		expect(note()).toBe(REMOVE_COPY.removed);
+		expect(localStorage.getItem(PROFILE_KEY)).toBeNull();
+	});
+
+	it('asks, then says the removal failed, when the browser refuses to read storage', async () => {
+		render(Page);
+		await saveStaff('19');
+		const refuse = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+			throw new DOMException('blocked', 'SecurityError');
+		});
+		await userEvent.click(removeControl());
+		expect(confirmation()).not.toBeNull();
+		await userEvent.click(screen.getByRole('button', { name: REMOVE_COPY.confirm }));
+		expect(note()).toBe(REMOVE_COPY.failed);
+		refuse.mockRestore();
+		expect(localStorage.getItem(PROFILE_KEY)).not.toBeNull();
+	});
+
 	it('says so when the browser refuses to remove the profile, and keeps it', async () => {
 		render(Page);
 		await saveStaff('19');
