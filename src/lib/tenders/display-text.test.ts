@@ -1,10 +1,13 @@
 import { fc } from '@fast-check/vitest';
 import { describe, expect, it } from 'vitest';
 import {
+	criterionMarks,
 	displayRuns,
 	findQuotes,
+	placeMarks,
 	runsBetween,
 	sentencesAround,
+	shownText,
 	type TextRun
 } from './display-text';
 
@@ -207,6 +210,72 @@ describe('findQuotes', () => {
 		const text = 'alpha beta gamma delta epsilon zeta';
 		const found = findQuotes(text, ['gamma delta epsilon', 'alpha beta gamma', 'nowhere at all']);
 		expect(found).toEqual([{ start: 0, end: 30, indexes: [1, 0] }]);
+	});
+});
+
+describe('placeMarks', () => {
+	it('keeps the place a mark carries and looks for every other mark by its quote', () => {
+		const text = 'alpha beta gamma delta epsilon zeta';
+		expect(
+			placeMarks(text, [
+				{ quote: 'nowhere at all, placed', at: { start: 31, end: 35 } },
+				{ quote: 'alpha beta gamma' }
+			])
+		).toEqual([
+			{ start: 0, end: 16, indexes: [1] },
+			{ start: 31, end: 35, indexes: [0] }
+		]);
+	});
+});
+
+describe('criterionMarks', () => {
+	// The criterion lot-reading.test.ts reads across its two descriptions: code verified the quote
+	// against them joined, and finds it in neither alone.
+	const descriptions = [
+		{ text: 'Jährlich mindestens 1.000.000 EUR netto Umsatz', lang: 'de' },
+		{ text: 'in each of the last two financial years.', lang: 'en' }
+	];
+	const across = 'mindestens 1.000.000 EUR netto Umsatz in each of the last two';
+
+	it('cuts a quote found only across two descriptions at their edge, the number on the first piece', () => {
+		const marks = criterionMarks(descriptions, [{ quote: across, lang: 'de' }], [0]);
+		expect(marks).toEqual([
+			[{ quote: across, n: 1, decides: true, at: { start: 9, end: 46 } }],
+			[{ quote: across, n: undefined, decides: true, at: { start: 0, end: 23 } }]
+		]);
+		const pieces = marks.map(([mark], index) =>
+			shownText(descriptions[index].text).slice(mark.at?.start, mark.at?.end)
+		);
+		expect(pieces).toEqual(['mindestens 1.000.000 EUR netto Umsatz', 'in each of the last two']);
+	});
+
+	it('places the pieces in the drawn text, past an indent the block trims', () => {
+		const indented = [
+			{ text: '  \nJährlich mindestens 1.000.000 EUR netto Umsatz  ' },
+			descriptions[1]
+		];
+		const [[first], [second]] = criterionMarks(indented, [{ quote: across }], []);
+		expect([first.at, first.decides, second.at]).toEqual([
+			{ start: 9, end: 46 },
+			false,
+			{ start: 0, end: 23 }
+		]);
+	});
+
+	it('marks a quote found in one description on each block of its language, by its quote', () => {
+		const marks = criterionMarks(
+			descriptions,
+			[
+				{ quote: 'in each of the last two financial years', lang: 'en' },
+				{ quote: 'mindestens 1.000.000 EUR', lang: 'de' },
+				{ quote: 'nowhere in the clause at all' }
+			],
+			[1]
+		);
+		expect(marks).toEqual([
+			[{ quote: 'mindestens 1.000.000 EUR', n: 2, decides: true }],
+			[{ quote: 'in each of the last two financial years', n: 1, decides: false }]
+		]);
 	});
 });
 

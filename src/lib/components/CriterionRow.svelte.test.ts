@@ -122,6 +122,32 @@ describe('CriterionRow', () => {
 		expect(criterion.descriptions[0].text).toBe(published);
 	});
 
+	// Code verifies a quote against the descriptions joined, so one can run from the French
+	// description into the Dutch one; each block marks its own piece, the reading's number once.
+	it('marks a quote that runs from one description into the next in both blocks', () => {
+		const record = recordOf('multilingual-criterion');
+		const [criterion] = buildTenderPage(record, NOW).lots[0].criteria;
+		const french = criterion.descriptions[0].text.trim();
+		const quote = `${french.slice(-24)} Een lijst van de belangrijkste`;
+		const { container } = renderRow(
+			{
+				...criterion,
+				requirements: [{ quote, lang: 'fr', reading: 'A list of the main deliveries.', model: 'm' }]
+			},
+			record.noticeNumber
+		);
+		const marks = [...container.querySelectorAll('blockquote')].map((block) => [
+			...block.querySelectorAll('mark')
+		]);
+		expect(marks.map((each) => each.length)).toEqual([1, 1]);
+		const [[first], [second]] = marks;
+		expect(first.getAttribute('data-n')).toBe('1');
+		expect(second.hasAttribute('data-n')).toBe(false);
+		expect(second.textContent).toBe('Een lijst van de belangrijkste');
+		expect(first.textContent?.length).toBeGreaterThan(12);
+		expect(french.endsWith(first.textContent ?? '')).toBe(true);
+	});
+
 	it('keeps the line breaks of the published text', () => {
 		const [criterion] = buildTenderPage(recordOf('one-lot'), NOW).lots[0].criteria;
 		const { container } = renderRow(criterion, '609955-2026');

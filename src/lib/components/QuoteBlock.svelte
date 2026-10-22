@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { displayRuns, findQuotes, runsBetween, type QuoteMark } from '$lib/tenders/display-text';
+	import {
+		displayRuns,
+		placeMarks,
+		runsBetween,
+		shownText,
+		type QuoteMark
+	} from '$lib/tenders/display-text';
 	import type { QuoteText } from '$lib/tenders/tender-page';
 	import Label from './Label.svelte';
 	import ProseRuns from './ProseRuns.svelte';
@@ -19,12 +25,7 @@
 		clamp?: boolean;
 	} = $props();
 
-	// Word pastes its Symbol-font bullets as private-use code points U+F0A7 and U+F0D8, which no font
-	// draws, so the reader would see empty boxes. Display only: the record keeps the published text.
-	const SYMBOL_BULLETS = /[\u{F0A7}\u{F0D8}]/gu;
-	const BULLET = String.fromCodePoint(0x2022);
-
-	const shown = $derived(quote.text.trim().replace(SYMBOL_BULLETS, BULLET));
+	const shown = $derived(shownText(quote.text));
 	const runs = $derived(displayRuns(shown));
 
 	// The clause cut into the stretches the marks cover and the stretches between them; each is
@@ -33,11 +34,7 @@
 	const parts = $derived.by(() => {
 		const pieces: { start: number; end: number; on?: QuoteMark[] }[] = [];
 		let at = 0;
-		const found = findQuotes(
-			shown,
-			marks.map((each) => each.quote)
-		);
-		for (const { start, end, indexes } of found) {
+		for (const { start, end, indexes } of placeMarks(shown, marks)) {
 			if (start > at) pieces.push({ start: at, end: start });
 			pieces.push({ start, end, on: indexes.map((index) => marks[index]) });
 			at = end;

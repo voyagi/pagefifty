@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { criterionLabel } from '$lib/codelists/labels';
-	import type { QuoteMark } from '$lib/tenders/display-text';
+	import { criterionMarks } from '$lib/tenders/display-text';
 	import type { CriterionView } from '$lib/tenders/tender-page';
 	import type { LotVerdictView } from '$lib/tenders/verdict-view';
 	import ExternalIcon from './ExternalIcon.svelte';
@@ -28,14 +28,8 @@
 	const requirements = $derived(criterion.requirements ?? []);
 
 	// Each requirement is marked where code found it in the clause, numbered as its reading is, so
-	// the quote shows once, in its place. A requirement carries the language of the description it
-	// was found in; the marks of one language are looked for in that description alone.
-	const marksIn = (lang: string | undefined): QuoteMark[] =>
-		requirements.flatMap((requirement, index) =>
-			requirement.lang === undefined || requirement.lang === lang
-				? [{ quote: requirement.quote, n: index + 1, decides: decides.includes(index) }]
-				: []
-		);
+	// the quote shows once, in its place, even where it runs from one description into the next.
+	const marks = $derived(criterionMarks(criterion.descriptions, requirements, decides));
 	const provenance = $derived(
 		(criterion.requirements?.length ?? 0) + (criterion.rejected?.length ?? 0) === 0
 			? 'Read by the model, which named no requirement in this clause.'
@@ -78,7 +72,7 @@
 		{#each criterion.descriptions as quote, index (index)}
 			<QuoteBlock
 				{quote}
-				marks={marksIn(quote.lang)}
+				marks={marks[index]}
 				source={index === 0 ? `Quoted from TED notice ${notice}` : undefined}
 			/>
 		{/each}
