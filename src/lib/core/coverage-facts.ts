@@ -41,7 +41,7 @@ export function summarizeLot(lot: {
 }
 
 // The tag, the coverage list and the verdict input all read this, so a lot that names no source
-// cannot read "criteria, not read yet" on the list while its verdict says criteria-in-documents.
+// cannot read "criteria in the notice" on the list while its verdict says criteria-in-documents.
 export function coverage(input: LotCoverageInput): CoverageFacts {
 	const namesDocuments = input.sources.includes(SOURCE_DOCUMENTS);
 	const namesEspd = input.sources.includes(SOURCE_ESPD);

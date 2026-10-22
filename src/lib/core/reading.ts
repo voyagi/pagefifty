@@ -50,12 +50,16 @@ export function readingStatus(lots: readonly LotCoverageInput[]): ReadingStatus 
 			reason: 'No lot in this notice publishes selection criteria in the notice itself.'
 		};
 	}
+	// Worded from the notice alone, true whether or not a capture read the clauses: the tender page
+	// is where a reading shows, and the list must never say the opposite of it.
 	const one = count === 1;
 	return {
 		tag: 'criteria-not-read',
 		count,
-		text: one ? '1 criterion, not read yet' : `${count} criteria, not read yet`,
-		reason: `${one ? '1 selection criterion is' : `${count} selection criteria are`} published in the notice, shown as published and not compared with your firm yet.`
+		text: one ? '1 criterion in the notice' : `${count} criteria in the notice`,
+		reason: one
+			? '1 selection criterion is published in the notice itself. Open the tender to see how it reads.'
+			: `${count} selection criteria are published in the notice itself. Open the tender to see how each one reads.`
 	};
 }
 
