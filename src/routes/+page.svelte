@@ -38,11 +38,12 @@
 							as published.
 						</p>
 						<p class="capture mono">
+							Snapshot: {data.served}
+							{#if data.served !== data.total}of the {data.total}{/if}
 							{#if data.firstPublished}
-								Snapshot: {data.total} IT notices published from {data.firstPublished} that TED listed
-								as active on {data.capturedOn}.
+								IT notices published from {data.firstPublished} that TED listed as active on {data.capturedOn}.
 							{:else}
-								Snapshot: {data.total} IT notices TED listed as active on {data.capturedOn}.
+								IT notices TED listed as active on {data.capturedOn}.
 							{/if}
 						</p>
 					</div>

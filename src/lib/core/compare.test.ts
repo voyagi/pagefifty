@@ -212,10 +212,14 @@ const RANGE_EACH =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten drei Geschäftsjahren (2023-2025).';
 const RANGE_BACKWARDS =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den Geschäftsjahren 2025-2023.';
+const STRAY_YEAR =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten drei Geschäftsjahren; bei Neugründung ab 2024 genügt der Umsatz seit Gründung.';
 const FLOOR_ONLY = 'Jährlich mindestens 1.000.000 EUR netto Umsatz';
 const YEARS_APART = `${FLOOR_ONLY}. Maßgeblich sind die letzten zwei Geschäftsjahre.`;
 const STAFF_NOUN_FIRST = 'Mindestmitarbeiterzahl: mindestens 25.';
-const SAME_FLOOR_TWICE = `${EACH} Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.`;
+// No field of business named: a clause naming one leaves a met general floor to the firm, which
+// would hide the unquoted second floor these cases are about.
+const SAME_FLOOR_TWICE = `${EACH} Insgesamt mindestens 1.000.000 EUR netto Umsatz.`;
 const NAMED_AVERAGE =
 	'Durchschnittlicher Jahresumsatz der Geschäftsjahre 2023, 2024 und 2025 von mindestens 1.000.000,67 EUR netto.';
 const LAST_THREE_AVERAGE =
@@ -231,6 +235,10 @@ const SPECIFIC_EACH =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich des Auftrags in den letzten drei Geschäftsjahren.';
 const STAFF_EACH = 'Jährlich mindestens 10 Mitarbeiter in den letzten drei Jahren.';
 const STAFF_AVERAGE = 'Durchschnittlich mindestens 10 Mitarbeiter in den letzten drei Jahren.';
+const STAFF_AVERAGE_IN_EACH =
+	'Durchschnittliche jährliche Beschäftigtenzahl von mindestens 10 Mitarbeitern in jedem der letzten drei Jahre.';
+const STAFF_ANNUAL_AVERAGE =
+	'Die durchschnittliche jährliche Beschäftigtenzahl muss in den letzten drei Jahren mindestens 10 Mitarbeiter betragen.';
 const STAFF_SUM = 'Insgesamt mindestens 30 Mitarbeiter in den letzten drei Jahren.';
 const STAFF_TWO = 'Mindestens 10 Mitarbeiter und 2 Beschäftigte in den letzten drei Jahren.';
 const STAFF_NO_COUNT_QUOTE = 'Das Personal ist nachzuweisen.';
@@ -510,6 +518,12 @@ const ROWS: readonly Row[] = [
 		decided('NOT_READ', 'years-unread')
 	),
 	row(
+		'a stray year beside a stated count of years is NOT_READ, never a one-year window',
+		g(STRAY_YEAR),
+		firmOf({ 2023: 1, 2024: 1e6, 2025: 1 }),
+		decided('NOT_READ', 'years-unread')
+	),
+	row(
 		'fewer completed financial years than demanded is PROFILE_GAP',
 		g(EACH),
 		firmOf({ 2023: 1e6, 2024: 1e6, 2025: 1e6 }, { completedFinancialYears: 2 }),
@@ -569,11 +583,50 @@ const ROWS: readonly Row[] = [
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 9.6 }),
 		decided('SHORT_BORROWABLE', 'short')
 	),
+	// The measure is itself an average ("average annual manpower"), so an average word alone may
+	// name the measure, not the period: MET only when every year meets the floor.
 	row(
-		'a three-year staff average above the floor is MET',
+		'a staff average above the floor with one year below it is PROFILE_GAP',
 		{ code: MANPOWER, text: STAFF_AVERAGE },
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 9.8 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
+	row(
+		'a staff average with every year above the floor is MET',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 10.5 }),
 		decided('MET', 'met')
+	),
+	// No year below the floor leaves only whether equal is enough, never years on both sides.
+	row(
+		'a staff average with one year equal to the floor and none below is PROFILE_GAP on equality',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 12, 2024: 10, 2025: 12 }),
+		decided('PROFILE_GAP', 'no-comparator')
+	),
+	row(
+		'a staff average with every year equal to the floor is PROFILE_GAP on equality',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 10, 2024: 10, 2025: 10 }),
+		decided('PROFILE_GAP', 'no-comparator')
+	),
+	row(
+		'a staff average with a year below the floor and a year above it is PROFILE_GAP on the years',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 8, 2024: 10, 2025: 12 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
+	row(
+		'average annual manpower floored in each of the years, one year short, is never MET',
+		{ code: MANPOWER, text: STAFF_AVERAGE_IN_EACH },
+		staffFirm({ 2023: 15, 2024: 15, 2025: 5 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
+	row(
+		'average annual manpower over three years, one year short, is never MET',
+		{ code: MANPOWER, text: STAFF_ANNUAL_AVERAGE },
+		staffFirm({ 2023: 15, 2024: 15, 2025: 5 }),
+		decided('PROFILE_GAP', 'period-unstated')
 	),
 	row(
 		'average yearly manpower with an empty figure in one year is PROFILE_GAP',
@@ -681,7 +734,37 @@ const ROWS: readonly Row[] = [
 		'a quote with two amounts reads NOT_READ',
 		g(SEVERAL),
 		yearly(2e6),
-		decided('NOT_READ', 'several-amounts')
+		decided('NOT_READ', 'several-amounts'),
+		{ lot: 'LOT-0002' }
+	),
+	row(
+		'a quote naming only another lot is not compared for this one',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0001' }
+	),
+	// 731406-2026 in the 2026-10-22 capture publishes its "Los 1b" as LOT-0002.
+	row(
+		'a lot whose own title names another number than its id compares no lot-named quote',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 1b: HbbTV und SmartTV', lang: 'de' } }
+	),
+	row(
+		'a lot whose own title names its number with a letter after it compares no lot-named quote',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 2b: ZDFheute Backend', lang: 'de' } }
+	),
+	row(
+		'a lot whose own title names the number of its id compares its own floor',
+		g(SEVERAL),
+		yearly(2e6),
+		decided('NOT_READ', 'several-amounts'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 2: Betrieb', lang: 'de' } }
 	),
 	row(
 		'a quote with no amount while its criterion holds one reads NOT_READ',
@@ -944,7 +1027,7 @@ describe('decideCriterion, one row per state the code decides', () => {
 		).toEqual({
 			state: 'NOT_READ',
 			notCompared: false,
-			why: ['model-number-differs', 'amount-not-quoted']
+			why: ['no-amount', 'amount-not-quoted']
 		});
 	});
 
@@ -970,7 +1053,7 @@ describe('decideCriterion, one row per state the code decides', () => {
 		});
 		// The same quote with other spacing is found at the same place, so it is the same row.
 		expect(readTwice([EACH, EACH.replace(' EUR ', '  EUR ')]).everyAmountQuoted).toBe(false);
-		const total = 'Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.';
+		const total = 'Insgesamt mindestens 1.000.000 EUR netto Umsatz.';
 		expect(readTwice([EACH, total]).everyAmountQuoted).toBe(true);
 	});
 
@@ -1164,7 +1247,7 @@ const PERIOD_WORDS = [
 	'jährlich',
 	'durchschnittlich',
 	'insgesamt',
-	'in einem der',
+	'in einem der letzten',
 	'gemiddeld',
 	'jaarlijks',
 	'par an',

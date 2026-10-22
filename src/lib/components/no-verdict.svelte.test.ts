@@ -492,7 +492,14 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 
 	it('finds no verdict word on the entry page', () => {
 		const { container } = render(EntryPage, {
-			props: { data: { total: captured.length, capturedOn: CAPTURE.capturedOn, figure: null } }
+			props: {
+				data: {
+					served: captured.length,
+					total: captured.length,
+					capturedOn: CAPTURE.capturedOn,
+					figure: null
+				}
+			}
 		});
 		expect(checkedText(container)).toContain('Browse open tenders');
 		expect(findVerdictWords(container)).toEqual([]);
@@ -501,7 +508,11 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 	// The finding names the verdicts it counts, so they may show inside the figure and nowhere else on
 	// the page; with no figure the page shows none at all.
 	it('the entry page shows verdict words only inside the figure', () => {
-		const base = { total: captured.length, capturedOn: CAPTURE.capturedOn };
+		const base = {
+			served: captured.length,
+			total: captured.length,
+			capturedOn: CAPTURE.capturedOn
+		};
 		const without = render(EntryPage, { props: { data: { ...base, figure: null } } }).container;
 		expect(without.querySelector('[data-figure]')).toBeNull();
 		expect(findVerdictWords(without)).toEqual([]);

@@ -15,10 +15,12 @@ vi.mock('$lib/server/records', () => ({
 	figureFile: vi.fn(() => null)
 }));
 
-const indexWith = (query: string) => ({
+type IndexRows = Awaited<ReturnType<typeof loadIndex>>['rows'];
+
+const indexWith = (query: string, rows: IndexRows = []) => ({
 	capture: { id: '2026-10-11', fetchedAt: '2026-10-11T09:00:00.000Z', total: 120, query },
 	leftOut: [],
-	rows: []
+	rows
 });
 
 type LoadEvent = Parameters<typeof load>[0];
@@ -27,6 +29,7 @@ describe('/ load', () => {
 	it("quotes the newest capture's count, capture day and first publication day", async () => {
 		vi.mocked(loadIndex).mockResolvedValueOnce(indexWith('publication-date>=20260927'));
 		expect(await load({} as LoadEvent)).toStrictEqual({
+			served: 0,
 			total: 120,
 			capturedOn: '11 Oct 2026',
 			firstPublished: '27 Sep 2026',
@@ -35,10 +38,22 @@ describe('/ load', () => {
 		expect(loadIndex).toHaveBeenCalledWith('2026-10-11');
 	});
 
+	// TED's count covers notices the capture left out (closing before the cutoff, failed or
+	// outdated), so the count the figure and /tenders use is the rows the site serves.
+	it('counts the notices the site serves apart from the count TED stated', async () => {
+		const row = {} as IndexRows[number];
+		vi.mocked(loadIndex).mockResolvedValueOnce(
+			indexWith('publication-date>=20260927', [row, row, row])
+		);
+		const data = await load({} as LoadEvent);
+		expect(data).toMatchObject({ served: 3, total: 120 });
+	});
+
 	// toStrictEqual, because a firstPublished key holding undefined would pass a plain toEqual.
 	it('leaves firstPublished out when the capture query names no first day', async () => {
 		vi.mocked(loadIndex).mockResolvedValueOnce(indexWith('buyer-country IN (NLD)'));
 		expect(await load({} as LoadEvent)).toStrictEqual({
+			served: 0,
 			total: 120,
 			capturedOn: '11 Oct 2026',
 			figure: null

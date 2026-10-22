@@ -133,6 +133,10 @@
 			<Label>Selection criteria as published</Label>
 			{#if lot.reading?.status === 'not-read'}
 				<p class="not-read">{lot.reading.line}</p>
+			{:else if lot.reading?.status === 'read'}
+				{#each lot.reading.unplaced ?? [] as line (line)}
+					<p class="not-read">{line}</p>
+				{/each}
 			{/if}
 			{#if count > 0}
 				<ol class="clauses">

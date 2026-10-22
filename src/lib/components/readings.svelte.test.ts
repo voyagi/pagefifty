@@ -119,6 +119,24 @@ const SUBJECTS = [
 	{ name: 'the synthetic page', data: syntheticPage, shown: '610242-2026' }
 ];
 
+describe('a model answer for a clause the lot does not have', () => {
+	it('shows its not-read line once on the lot, beside the clauses it could not be placed under', () => {
+		const record = builtRecord('610242-2026');
+		const stored = storedReadings('610242-2026');
+		if (stored === undefined) throw new Error('no generated readings for 610242-2026');
+		const [reading] = stored.readings;
+		const stray = { ...reading.items[0], criterion: 99 };
+		const data = pageOf(record, {
+			...stored,
+			readings: [{ ...reading, items: [...reading.items, stray, { ...stray, criterion: 98 }] }]
+		});
+		const lot = renderPage(data).querySelector(`#${data.tender.lots[0].anchor}`);
+		const line =
+			'Not read: the model named a clause this lot does not have, so its answer is not used.';
+		expect(occurrences(textOf(lot), line)).toBe(1);
+	});
+});
+
 describe('the model readings on the example tender pages', () => {
 	it('the German lot page shows each reading under its own clause with the AI label', () => {
 		expect(existsSync(readingsPath('610242-2026'))).toBe(true);

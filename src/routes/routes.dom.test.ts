@@ -8,6 +8,7 @@ const TAGLINE = "The rule your firm can't meet alone is on page fifty. Read it f
 const PURPOSE =
 	"Pagefifty checks whether your firm meets a tender's published selection criteria, and quotes each clause from the tender's own text with its source.";
 const entryData = {
+	served: 7,
 	total: 7,
 	capturedOn: '15 Sep 2026',
 	firstPublished: '1 Sep 2026',
@@ -40,8 +41,22 @@ describe('entry route', () => {
 		).toContain('mono');
 	});
 
+	// The figure counts the notices the site serves, so the capture line leads with that count and
+	// names TED's own count beside it, never in its place.
+	it('leads with the served count when the capture serves fewer notices than TED listed', () => {
+		render(Page, { props: { data: { ...entryData, served: 5 } } });
+		expect(
+			screen.getByText(
+				'Snapshot: 5 of the 7 IT notices published from 1 Sep 2026 that TED listed as active on 15 Sep 2026.',
+				{ normalizer: squash }
+			).className
+		).toContain('mono');
+	});
+
 	it('keeps the capture line without a window when the query names no first day', () => {
-		render(Page, { props: { data: { total: 7, capturedOn: '15 Sep 2026', figure: null } } });
+		render(Page, {
+			props: { data: { served: 7, total: 7, capturedOn: '15 Sep 2026', figure: null } }
+		});
 		expect(
 			screen.getByText('Snapshot: 7 IT notices TED listed as active on 15 Sep 2026.', {
 				normalizer: squash

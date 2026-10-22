@@ -20,9 +20,9 @@ vi.mock('./coverage-facts', async (importOriginal) => {
 const CRITERIA_IN_DOCUMENTS = 'Criteria in the documents';
 const CRITERIA_IN_DOCUMENTS_REASON =
 	'Part of the criteria sit in the procurement documents or the ESPD, which this version does not read yet.';
-const ONE_CRITERION = '1 criterion, not read yet';
+const ONE_CRITERION = '1 criterion in the notice';
 const ONE_CRITERION_REASON =
-	'1 selection criterion is published in the notice, shown as published and not compared with your firm yet.';
+	'1 selection criterion is published in the notice itself. Open the tender to see how it reads.';
 const NO_CRITERIA = 'No criteria in the notice';
 const NO_CRITERIA_REASON =
 	'No lot in this notice publishes selection criteria in the notice itself.';
@@ -46,9 +46,9 @@ const ESPD = 'epo-sub-espd';
 
 const readN = (count: number) =>
 	`Read: ${count} selection criteria published in the notice for this lot.`;
-const plural = (count: number) => `${count} criteria, not read yet`;
+const plural = (count: number) => `${count} criteria in the notice`;
 const pluralReason = (count: number) =>
-	`${count} selection criteria are published in the notice, shown as published and not compared with your firm yet.`;
+	`${count} selection criteria are published in the notice itself. Open the tender to see how each one reads.`;
 const fullLine = (line: CoverageLine) => `${line.status}: ${line.text}`;
 const fullLines = (lines: CoverageLine[]) => lines.map(fullLine);
 
@@ -165,7 +165,7 @@ describe('readingStatus', () => {
 		});
 	});
 
-	it('says "1 criterion, not read yet" for exactly one criterion', () => {
+	it('says "1 criterion in the notice" for exactly one criterion', () => {
 		expect(readingStatus([lotInput(1, [NOTICE]), lotInput(0, [NOTICE])])).toEqual({
 			tag: 'criteria-not-read',
 			count: 1,
