@@ -60,6 +60,9 @@ export const ARTICLE_63_LINE =
 // or will get.
 export const REASON_LINES = {
 	GO: "Every selection criterion read in the notice is met by the figures compared. This covers only the selection criteria read, not exclusion grounds, declarations or the buyer's shortlisting.",
+	// A lot whose criteria are all for information or not assessed compared no figure at all.
+	'GO/nothing-compared':
+		"No selection criterion read in the notice sets a figure the firm must reach: each one read is for information, or is not assessed in this version. This covers only the selection criteria read, not exclusion grounds, declarations or the buyer's shortlisting.",
 	'PARTNER NEEDED': 'The firm falls short on its own on the criteria named here.',
 	'NO-GO':
 		'A criterion named here rules the firm out on its own, and the notice leaves no route through another firm.',
@@ -191,8 +194,14 @@ function documentsKey(input: LotView['verdictInput']): ReasonKey {
 	return 'criteria-in-documents';
 }
 
+const COMPARED_STATES: ReadonlySet<CriterionState | undefined> = new Set(['MET', 'MET_WITH_TASK']);
+
 function reasonOf(decided: ReadLotDecision, lot: LotView): string {
 	const { decision } = decided;
+	if (decision.verdict === 'GO') {
+		const compared = decided.criteria.some((outcome) => COMPARED_STATES.has(outcome.state));
+		return REASON_LINES[compared ? 'GO' : 'GO/nothing-compared'];
+	}
 	if (decision.verdict !== 'ASK FIRST') return REASON_LINES[decision.verdict];
 	switch (decision.reason) {
 		case 'route-unsettled':

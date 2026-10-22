@@ -1,21 +1,22 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { capturePath } from '../../test/fixtures/node';
-import { decideLotStatus, type LotContext } from '../core/compare';
+import { decideLotStatus, decideReadLot, type LotContext } from '../core/compare';
 import { summarizeLot } from '../core/coverage-facts';
 import { displayedDeadline } from '../core/deadline';
-import { lotStatusOf } from '../core/lot-reading';
+import { lotStatusOf, readLot } from '../core/lot-reading';
 import { readNotice } from '../ingest/read-notice';
 import type { LotRecord, NoticeRecord } from '../ingest/record';
 import { DEMO_PROFILE } from '../profile/demo-firm';
 import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
-import { buildTenderPage } from './tender-page';
+import { buildTenderPage, type LotView } from './tender-page';
 import {
 	ARTICLE_63_LINE,
 	REASON_LINES,
 	STATE_LABELS,
 	comparedLine,
-	lotVerdict
+	lotVerdict,
+	verdictView
 } from './verdict-view';
 
 // The example's instant: the 2026-09-15 capture's own time.
@@ -120,6 +121,27 @@ describe('lotVerdict', () => {
 		expect(view?.article63).toBeNull();
 		expect(view?.shortfalls).toEqual([]);
 		expect(view?.link).toBeNull();
+	});
+
+	it('a go whose criteria compared no figure never says a figure met them', () => {
+		const context: LotContext = {
+			legalBasis: '32014L0024',
+			deadline: '2026-10-30T17:00:00Z',
+			now: '2026-10-17T12:00:00Z',
+			coverage: { criteriaCount: 1, sources: ['epo-notice'], pointsToDocuments: false },
+			cancelIntent: false,
+			reserved: 'none'
+		};
+		const text = 'Eintragung im Handelsregister oder einem vergleichbaren Berufsregister.';
+		const reading = readLot({
+			criteria: [{ code: 'slc-suit-reg-trade', descriptions: [{ text, lang: 'de' }] }],
+			items: []
+		});
+		const decided = decideReadLot(reading, DEMO_PROFILE, context);
+		expect(decided.decision).toEqual({ verdict: 'GO' });
+		const view = verdictView(decided, {} as LotView);
+		expect(view.reason).toBe(REASON_LINES['GO/nothing-compared']);
+		expect(view.reason).not.toContain('met by the figures compared');
 	});
 
 	it('a listed lot not read on a notice the buyer means to cancel still asks first', () => {
