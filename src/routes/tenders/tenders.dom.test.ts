@@ -111,11 +111,11 @@ describe('tenders list page', () => {
 		]);
 	});
 
-	it('is the skip link target in a slate binder', () => {
+	it('is the skip link target in the main frame', () => {
 		const { container } = renderPage(dataFor(index.rows));
 		const main = document.getElementById('main');
 		expect(main?.tagName).toBe('MAIN');
-		expect(container.querySelector('main')?.classList.contains('board-slate')).toBe(true);
+		expect(container.querySelector('main')?.classList.contains('page')).toBe(true);
 	});
 
 	it('lists every capture notice once across the open and closed groups', () => {
@@ -189,7 +189,7 @@ describe('tenders list page', () => {
 		[0, 'notices'],
 		[1, 'notice'],
 		[3, 'notices']
-	])('writes a count of %i in Mono in the head and the tabs, with the noun "%s"', (n, noun) => {
+	])('writes a count of %i in Mono in the head, with the noun "%s"', (n, noun) => {
 		const rows = Array.from({ length: n }, (_, i) =>
 			rowDue(`70000${i}-2026`, '2026-11-02T10:00:00+01:00')
 		);
@@ -201,10 +201,6 @@ describe('tenders list page', () => {
 			'0',
 			String(n)
 		]);
-		const tabCounts = [...container.querySelectorAll('a.tab .count')].map(
-			(each) => each.textContent
-		);
-		expect(tabCounts).toEqual([String(n), '0']);
 	});
 
 	it('renders no verdict word anywhere on the page', () => {

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { untrack, type Snippet } from 'svelte';
-	import DeskBar from '$lib/components/DeskBar.svelte';
 	import TenderListPage from '$lib/components/TenderListPage.svelte';
 	import TenderPage from '$lib/components/TenderPage.svelte';
+	import TopBand from '$lib/components/TopBand.svelte';
 	import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
 	import type { TenderListData } from '$lib/tenders/list';
 	import type { TenderPageData } from '$lib/tenders/tender-page';
@@ -35,7 +35,7 @@
 	const path = $derived(page.kind === 'list' ? base : `${base}/${page.data.tender.noticeNumber}`);
 </script>
 
-<DeskBar {path} />
+<TopBand {path} />
 {#if page.kind === 'list'}
 	<TenderListPage data={page.data} {variant} basePath={base} />
 {:else}

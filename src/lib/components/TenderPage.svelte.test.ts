@@ -38,7 +38,7 @@ function renderPage(record: NoticeRecord, now = BEFORE, variant?: 'tenders' | 'e
 
 const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
 
-// Each fact row as "term: detail", from the list its leaf's margin holds.
+// Each fact row as "term: detail", from the list its panel's facts column holds.
 function factsOf(region: HTMLElement): Record<string, string> {
 	const rows: Record<string, string> = {};
 	for (const term of region.querySelectorAll('dt')) {
@@ -75,7 +75,7 @@ describe('TenderPage', () => {
 		expect(empty).toEqual([]);
 	});
 
-	it('indexes the 17 lots of 600457-2026, each tab counting its own criteria', () => {
+	it('indexes the 17 lots of 600457-2026, each lot showing its own criteria', () => {
 		const record = recordOf('largest');
 		renderPage(record);
 		const index = screen.getByRole('navigation', { name: 'Lots in this notice (17)' });
@@ -84,12 +84,13 @@ describe('TenderPage', () => {
 			record.lots.map((_, position) => `#lot-${position + 1}`)
 		);
 		expect(squash(links[0].textContent)).toBe(`Lot 1: ${record.lots[0].title?.text}`);
-		const tabs = record.lots.map((lot, position) =>
-			screen.getByRole('link', {
-				name: `Lot ${position + 1}, ${lot.criteria.length} ${lot.criteria.length === 1 ? 'criterion' : 'criteria'}`
-			})
+		// Each index link lands on the panel of its own lot.
+		const targets = links.map((link) =>
+			document.getElementById(link.getAttribute('href')?.slice(1) ?? '')
 		);
-		expect(tabs).toHaveLength(17);
+		expect(targets).toEqual(
+			record.lots.map((_, position) => screen.getByRole('region', { name: `Lot ${position + 1}` }))
+		);
 		const shownCodes = record.lots.map((_, position) =>
 			[
 				...screen.getByRole('region', { name: `Lot ${position + 1}` }).querySelectorAll('ol > li')
@@ -183,12 +184,7 @@ describe('TenderPage', () => {
 		expect(
 			screen.getByText('This lot publishes no selection criteria in the notice.')
 		).toBeTruthy();
-		expect(screen.getByRole('link', { name: 'Lot 1, 0 criteria' })).toBeTruthy();
-	});
-
-	it('labels the first tab Example on the example run', () => {
-		renderPage(recordOf('one-lot'), BEFORE, 'example');
-		expect(screen.getByRole('link', { name: 'Example' }).getAttribute('href')).toBe('#tender');
+		expect(screen.getByRole('region', { name: 'Lot 1' })).toBeTruthy();
 	});
 
 	// Months after the capture a bare "Time left: 15 days" would read as days left today.

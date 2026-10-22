@@ -1,11 +1,11 @@
 import { render } from 'svelte/server';
 import { describe, expect, it } from 'vitest';
-import DeskBar from './DeskBar.svelte';
+import TopBand from './TopBand.svelte';
 
 // The node project compiles components for the server, which the jsdom project cannot, so the
 // server half of the firm slot (nothing read from storage, the height kept) is held here.
 function slotMarkup(path: string): string {
-	const { body } = render(DeskBar, { props: { path } });
+	const { body } = render(TopBand, { props: { path } });
 	const match = /<(div|a)\b[^>]*data-firm-slot[^>]*>[\s\S]*?<\/\1>/.exec(body);
 	if (!match) throw new Error(`no firm slot in the server render of ${path}`);
 	return match[0];
@@ -19,10 +19,13 @@ describe('the firm slot on the server', () => {
 		expect(slot).not.toContain('href');
 	});
 
+	// The words are read as text: part of the label is set apart for screen readers only, so the
+	// markup splits it across elements.
 	it('renders the demo label on an example page, as the link to the profile', () => {
 		const slot = slotMarkup('/example');
 		expect(slot).toMatch(/^<a\b[^>]*href="\/profile"/);
-		expect(slot).toContain('Brink Data (demo firm)');
-		expect(slot).toContain('Invented figures');
+		const text = slot.replace(/<[^>]+>/g, '');
+		expect(text).toContain('Brink Data (demo firm)');
+		expect(text).toContain('Invented figures');
 	});
 });

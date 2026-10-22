@@ -168,25 +168,9 @@ describe('src/app.css', () => {
 	});
 });
 
-// The design keeps one file per Plex Sans weight, and the three are the same variable font, so the
-// app serves them as one file that the browser fetches once.
-const servedName = (designName: string) =>
-	/^plex-sans-\d{3}\.woff2$/.test(designName) ? 'plex-sans.woff2' : designName;
-
 const servedFonts = () => readdirSync('static/fonts').filter((name) => name.endsWith('.woff2'));
 
 describe('static/fonts', () => {
-	it('serves every design font byte for byte, Plex Sans once for its three weights', () => {
-		const source = readdirSync('design/assets/fonts').filter((name) => name.endsWith('.woff2'));
-		expect(source).toHaveLength(9);
-		expect(servedFonts().sort()).toEqual([...new Set(source.map(servedName))].sort());
-		expect(servedFonts()).toHaveLength(7);
-		for (const name of source) {
-			const original = readFileSync(`design/assets/fonts/${name}`);
-			expect(readFileSync(`static/fonts/${servedName(name)}`).equals(original), name).toBe(true);
-		}
-	});
-
 	it('names every served font in the stylesheet, and no font that is not served', () => {
 		const named = [...APP_CSS.matchAll(/url\('\/fonts\/([^']+)'\)/g)].map((match) => match[1]);
 		expect(named.sort()).toEqual(servedFonts().sort());

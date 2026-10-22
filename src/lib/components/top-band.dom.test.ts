@@ -1,10 +1,10 @@
 import { render, screen, within } from '@testing-library/svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetProfileStore } from '$lib/profile/store.svelte';
-import DeskBar from './DeskBar.svelte';
 import MainNav from './MainNav.svelte';
+import TopBand from './TopBand.svelte';
 
-// jsdom has no matchMedia, and the theme switch inside the desk bar asks it for the OS scheme.
+// jsdom has no matchMedia, and the theme switch inside the top band asks it for the OS scheme.
 function stubColourScheme() {
 	vi.stubGlobal(
 		'matchMedia',
@@ -60,14 +60,14 @@ describe('MainNav', () => {
 	});
 });
 
-describe('DeskBar', () => {
+describe('TopBand', () => {
 	beforeEach(stubColourScheme);
 	afterEach(() => {
 		vi.unstubAllGlobals();
 	});
 
 	it('opens with a skip link to the main content', () => {
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		const first = container.querySelector('a, button');
 		expect(first?.textContent?.trim()).toBe('Skip to content');
 		expect(first?.getAttribute('href')).toBe('#main');
@@ -77,7 +77,7 @@ describe('DeskBar', () => {
 	it('carries the wordmark, the main nav, the firm slot and the theme switch', async () => {
 		localStorage.clear();
 		resetProfileStore();
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		const header = screen.getByRole('banner');
 		expect(within(header).getByRole('link', { name: 'Pagefifty' }).getAttribute('href')).toBe('/');
 		expect(navLinks().map((link) => link.current)).toEqual(['page', null, null]);
@@ -88,16 +88,16 @@ describe('DeskBar', () => {
 	});
 
 	it('has no hamburger: every nav link is in the page, none behind a toggle', () => {
-		render(DeskBar, { props: { path: '/' } });
+		render(TopBand, { props: { path: '/' } });
 		expect(screen.queryByRole('button', { name: /menu/i })).toBeNull();
 		expect(screen.queryAllByRole('button', { expanded: false })).toHaveLength(0);
 	});
 
-	// On a phone the bar orders the theme switch by the switch's own root class, so a renamed or
+	// On a phone the band orders the theme switch by the switch's own root class, so a renamed or
 	// wrapped root would drop the switch out of its row with no other check noticing.
 	it('holds the theme switch as a direct child with the class its phone order targets', () => {
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
-		expect(container.querySelector('header.deskbar > .theme')).toBe(
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
+		expect(container.querySelector('header.band > .theme')).toBe(
 			screen.getByRole('group', { name: 'Theme' })
 		);
 	});

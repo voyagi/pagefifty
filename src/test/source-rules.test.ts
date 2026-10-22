@@ -3,10 +3,8 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 // No component or route may import the verdict module directly (the no-ui-reaches-verdict rule in
-// .dependency-cruiser.cjs covers reaching it through another module), and the errata colours mark
-// only what rules a firm out on its own, which the lot verdict alone draws (the Errata Rule).
+// .dependency-cruiser.cjs covers reaching it through another module).
 const ROOTS = [join('src', 'lib', 'components'), join('src', 'routes')];
-const ERRATA_OWNER = join('src', 'lib', 'components', 'LotVerdict.svelte');
 
 function sourceFiles(dir: string): string[] {
 	return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -19,27 +17,16 @@ function sourceFiles(dir: string): string[] {
 
 const VERDICT_IMPORT = /['"][^'"\n]*core\/verdict(?:\.ts|\.js)?['"]/;
 
-// The names are read from the stylesheet that defines them, so a renamed token is still covered.
-const ERRATA_NAMES = [
-	...new Set(readFileSync(join('src', 'app.css'), 'utf8').match(/--errata[\w-]*/g) ?? [])
-];
-
 function breaches(text: string): string[] {
-	return [
-		...(VERDICT_IMPORT.test(text) ? ['imports the verdict module'] : []),
-		...ERRATA_NAMES.filter((name) =>
-			new RegExp(`${name.replace(/-/g, '\\-')}(?![\\w-])`).test(text)
-		).map((name) => `references ${name}`)
-	];
+	return VERDICT_IMPORT.test(text) ? ['imports the verdict module'] : [];
 }
 
 describe('source rules for components and routes', () => {
 	const files = ROOTS.flatMap(sourceFiles);
 
-	it('reads real files and the errata names the stylesheet defines', () => {
+	it('reads real files', () => {
 		expect(files.filter((file) => file.endsWith('.svelte')).length).toBeGreaterThan(30);
 		expect(files.some((file) => file.endsWith('+page.server.ts'))).toBe(true);
-		expect(ERRATA_NAMES).toEqual(['--errata', '--errata-ink']);
 	});
 
 	it('catches each breach it looks for', () => {
@@ -49,32 +36,13 @@ describe('source rules for components and routes', () => {
 		expect(breaches("const v = await import('../../lib/core/verdict.ts');")).toEqual([
 			'imports the verdict module'
 		]);
-		expect(breaches('.slip { background: var(--errata); color: var(--errata-ink); }')).toEqual([
-			'references --errata',
-			'references --errata-ink'
-		]);
-		expect(breaches("import { verdictLabel } from './verdictish';\n.x { --errata2: 0 }")).toEqual(
-			[]
-		);
+		expect(breaches("import { verdictLabel } from './verdictish';")).toEqual([]);
 	});
 
-	it('finds no component or route importing the verdict module or using an errata colour', () => {
+	it('finds no component or route importing the verdict module', () => {
 		const found = files.flatMap((file) =>
-			breaches(readFileSync(file, 'utf8'))
-				.filter((breach) => file !== ERRATA_OWNER || breach === 'imports the verdict module')
-				.map((breach) => `${file}: ${breach}`)
+			breaches(readFileSync(file, 'utf8')).map((breach) => `${file}: ${breach}`)
 		);
 		expect(found).toEqual([]);
-	});
-
-	it('only LotVerdict uses an errata colour', () => {
-		const users = files.filter((file) =>
-			breaches(readFileSync(file, 'utf8')).some((breach) => breach.startsWith('references'))
-		);
-		expect(users).toEqual([ERRATA_OWNER]);
-		expect(breaches(readFileSync(ERRATA_OWNER, 'utf8'))).toEqual([
-			'references --errata',
-			'references --errata-ink'
-		]);
 	});
 });

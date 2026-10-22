@@ -67,20 +67,26 @@ describe('entry route', () => {
 		expect(screen.getByText('This is not legal advice.')).toBeTruthy();
 	});
 
-	it('files the page in a teal binder with the Start tab open and the Firm tab after it', () => {
+	it('sets the page in the main frame with the start panel first and the firm panel after it', () => {
 		const { container } = renderEntry();
-		expect(container.querySelector('main')?.classList.contains('board-teal')).toBe(true);
-		const tabs = [...container.querySelectorAll('a.tab')];
-		expect(tabs.map((tab) => [squash(tab.textContent), tab.getAttribute('aria-current')])).toEqual([
-			['Start', 'true'],
-			['Firm', null]
+		const main = container.querySelector('main');
+		expect(main?.classList.contains('page')).toBe(true);
+		const panels = [...(main?.querySelectorAll(':scope > .panel') ?? [])];
+		expect(
+			panels.map((panel) => [
+				panel.id,
+				squash(document.getElementById(panel.getAttribute('aria-labelledby') ?? '')?.textContent)
+			])
+		).toEqual([
+			['start', TAGLINE],
+			['firm', "Your firm's figures"]
 		]);
 	});
 });
 
 describe('root layout', () => {
 	beforeEach(() => {
-		// jsdom has no matchMedia, and the theme switch in the desk bar asks it for the OS scheme.
+		// jsdom has no matchMedia, and the theme switch in the top band asks it for the OS scheme.
 		vi.stubGlobal(
 			'matchMedia',
 			vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }))
@@ -97,7 +103,7 @@ describe('root layout', () => {
 		expect(document.head.querySelector('link[rel="icon"]')?.getAttribute('href')).toBeTruthy();
 	});
 
-	it('puts the desk bar above the page and preloads the two fonts every page uses', () => {
+	it('puts the top band above the page and preloads only the latin font file', () => {
 		const children = createRawSnippet(() => ({ render: () => '<p>inner page</p>' }));
 		const { container } = render(Layout, { props: { children } });
 		const header = screen.getByRole('banner');
@@ -109,9 +115,7 @@ describe('root layout', () => {
 		const preloads = [...document.head.querySelectorAll('link[rel="preload"][as="font"]')].map(
 			(link) => link.getAttribute('href')
 		);
-		expect(preloads).toEqual(
-			expect.arrayContaining(['/fonts/plex-sans.woff2', '/fonts/plex-sans-condensed-600.woff2'])
-		);
+		expect(preloads).toEqual(['/fonts/albert-sans-latin.woff2']);
 	});
 });
 

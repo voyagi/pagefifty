@@ -17,12 +17,12 @@ const staffField = () => screen.findByLabelText('Total staff');
 const stored = () => JSON.parse(localStorage.getItem(PROFILE_KEY) ?? 'null');
 
 describe('firm profile page', () => {
-	it('files the form in the ultramarine binder, which is the skip link target', async () => {
+	it('sets the form in the main frame, which is the skip link target', async () => {
 		render(Page);
 		await staffField();
 		const main = document.getElementById('main');
 		expect(main?.tagName).toBe('MAIN');
-		expect(main?.classList.contains('board-ultramarine')).toBe(true);
+		expect(main?.classList.contains('page')).toBe(true);
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Your firm profile');
 	});
 
