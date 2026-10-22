@@ -46,7 +46,7 @@
 		return {
 			quote,
 			marks,
-			lead: first === undefined ? undefined : resting[first.index],
+			lead: first === undefined ? undefined : resting[first.indexes[0]],
 			excerpt: { ...quote, text: excerpt },
 			cut: excerpt !== text
 		};

@@ -165,6 +165,25 @@ describe('the model readings on the example tender pages', () => {
 		expect(clauses[2].querySelectorAll('.requirement [data-notice-text]')).toHaveLength(0);
 	});
 
+	// Code found every quote shown here in its clause, so each reading's number sits on a mark in that
+	// clause: a word the PDF split at a line end, a list dash inside the quote and two readings of the
+	// same words included.
+	it('numbers every reading of the example lots on a mark in its own clause', () => {
+		for (const notice of ['610242-2026', '634398-2026']) {
+			const container = renderPage(examplePage(notice));
+			for (const clause of container.querySelectorAll('li.clause')) {
+				const rows = clause.querySelectorAll('.requirement').length;
+				const numbers = [...clause.querySelectorAll('blockquote mark[data-n]')].flatMap((mark) =>
+					(mark.getAttribute('data-n') ?? '').split(', ').map(Number)
+				);
+				expect(
+					[...new Set(numbers)].sort((a, b) => a - b),
+					`${notice} criterion ${clause.getAttribute('data-criterion')}`
+				).toEqual(Array.from({ length: rows }, (_, index) => index + 1));
+			}
+		}
+	});
+
 	it('every model reading carries the AI label and the marker, and no other text does', () => {
 		for (const subject of SUBJECTS) {
 			const container = renderPage(subject.data());

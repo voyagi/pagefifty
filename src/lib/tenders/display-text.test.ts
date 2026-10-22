@@ -161,15 +161,52 @@ describe('findQuotes', () => {
 			'mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen',
 			'eine Zertifizie-rung, wie'
 		]);
-		expect(found.map((each) => [each.index, text.slice(each.start, each.end)])).toEqual([
-			[0, 'mindestens ein Junior Consultant sowie \nein Senior- bzw. Lead Consultant einzusetzen'],
-			[1, 'eine Zertifizie-\nrung, wie']
+		expect(found.map((each) => [each.indexes, text.slice(each.start, each.end)])).toEqual([
+			[
+				[0],
+				'mindestens ein Junior Consultant sowie \nein Senior- bzw. Lead Consultant einzusetzen'
+			],
+			[[1], 'eine Zertifizie-\nrung, wie']
 		]);
 	});
 
-	it('leaves out a quote not in the text and one that overlaps an earlier quote', () => {
-		const found = findQuotes('alpha beta gamma delta', ['beta gamma', 'nowhere', 'gamma delta']);
-		expect(found).toEqual([{ start: 6, end: 16, index: 0 }]);
+	// The verifier's second pass drops every hyphen that is not a range, so a quote that left out
+	// the hyphen of a word the PDF split, or a list dash, verified and is found here too.
+	it('finds a quote without the hyphen of a split word or a list dash, as code verified it', () => {
+		const text =
+			'Die An-\ngebote sind fristgerecht einzureichen. Het projectteam omvat minimaal:\n- één projectmanager';
+		const found = findQuotes(text, [
+			'Die Angebote sind fristgerecht einzureichen',
+			'Het projectteam omvat minimaal: één projectmanager'
+		]);
+		expect(found.map((each) => [each.indexes, text.slice(each.start, each.end)])).toEqual([
+			[[0], 'Die An-\ngebote sind fristgerecht einzureichen'],
+			[[1], 'Het projectteam omvat minimaal:\n- één projectmanager']
+		]);
+	});
+
+	it('finds a quote whose typographic quotation marks the model wrote plainly', () => {
+		const text = 'Nachweis der „Betriebshaftpflicht“ ist beizufügen.';
+		const [found] = findQuotes(text, ['Nachweis der "Betriebshaftpflicht"']);
+		expect(text.slice(found.start, found.end)).toBe('Nachweis der „Betriebshaftpflicht“');
+	});
+
+	it('leaves out a quote not in the text and a quote too short to have verified', () => {
+		expect(findQuotes('alpha beta gamma delta epsilon', ['nowhere at all', 'beta'])).toEqual([]);
+	});
+
+	it('gives two quotes on the same words one span that lists both', () => {
+		const text = 'Eine Haftpflichtversicherung ist nachzuweisen.';
+		const quote = 'Eine Haftpflichtversicherung ist nachzuweisen';
+		expect(findQuotes(text, [quote, quote])).toEqual([
+			{ start: 0, end: quote.length, indexes: [0, 1] }
+		]);
+	});
+
+	it('widens a span over a quote that overlaps it, keeping both indexes in order', () => {
+		const text = 'alpha beta gamma delta epsilon zeta';
+		const found = findQuotes(text, ['gamma delta epsilon', 'alpha beta gamma', 'nowhere at all']);
+		expect(found).toEqual([{ start: 0, end: 30, indexes: [1, 0] }]);
 	});
 });
 

@@ -27,28 +27,33 @@
 	const shown = $derived(quote.text.trim().replace(SYMBOL_BULLETS, BULLET));
 	const runs = $derived(displayRuns(shown));
 
-	// The clause cut into the stretches each mark covers and the stretches between them; each is
-	// drawn by its runs, so a word the PDF broke at a line end reads whole wherever it falls.
+	// The clause cut into the stretches the marks cover and the stretches between them; each is
+	// drawn by its runs, so a word the PDF broke at a line end reads whole wherever it falls. Marks
+	// on the same words share one stretch, which carries every one of their numbers.
 	const parts = $derived.by(() => {
-		const pieces: { start: number; end: number; mark?: QuoteMark }[] = [];
+		const pieces: { start: number; end: number; on?: QuoteMark[] }[] = [];
 		let at = 0;
 		const found = findQuotes(
 			shown,
 			marks.map((each) => each.quote)
 		);
-		for (const { start, end, index } of found) {
+		for (const { start, end, indexes } of found) {
 			if (start > at) pieces.push({ start: at, end: start });
-			pieces.push({ start, end, mark: marks[index] });
+			pieces.push({ start, end, on: indexes.map((index) => marks[index]) });
 			at = end;
 		}
 		if (at < shown.length) pieces.push({ start: at, end: shown.length });
 		return pieces;
 	});
+
+	const numbersOf = (on: readonly QuoteMark[]) =>
+		on.flatMap((each) => (each.n === undefined ? [] : [each.n])).join(', ') || undefined;
 </script>
 
-{#snippet clause()}{#each parts as part (part.start)}{#if part.mark}<mark
-				class:decides={part.mark.decides === true}
-				data-n={part.mark.n}><ProseRuns runs={runsBetween(runs, part.start, part.end)} /></mark
+{#snippet clause()}{#each parts as part (part.start)}{#if part.on}<mark
+				class:decides={part.on.some((each) => each.decides === true)}
+				data-n={numbersOf(part.on)}
+				><ProseRuns runs={runsBetween(runs, part.start, part.end)} /></mark
 			>{:else}<ProseRuns runs={runsBetween(runs, part.start, part.end)} />{/if}{/each}{/snippet}
 
 <div class="quote-block">

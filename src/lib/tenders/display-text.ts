@@ -11,6 +11,8 @@
 //           heading line ("Mindestanforderung" over the sentence it heads)
 // paragraph a blank line, kept as a paragraph break
 
+import { quoteLocator } from '../core/quote';
+
 type RunKind = 'text' | 'hidden' | 'line' | 'paragraph';
 
 export interface TextRun {
@@ -125,33 +127,29 @@ export interface QuoteMark {
 	decides?: boolean;
 }
 
-const escaped = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-// Code checked each quote against the clause with whitespace collapsed and a line-end hyphen's break
-// dropped (core/quote.ts), so a quote is looked for here the same way: across any run of spaces or
-// line breaks, and across the break after a hyphen. A quote not found is left unmarked, and a found
-// quote overlapping an earlier one is dropped, so the text itself is never cut or repeated.
+// Each quote is looked for exactly as code checked it against the clause (core/quote.ts), so a quote
+// that verified is found. Quotes on the same words, or on overlapping words, share one span that
+// lists each of their indexes, so every reading keeps the place its quote sits and the text itself
+// is never cut or repeated.
 export function findQuotes(
 	text: string,
 	quotes: readonly string[]
-): { start: number; end: number; index: number }[] {
+): { start: number; end: number; indexes: number[] }[] {
+	const locate = quoteLocator(text);
 	const found = quotes.flatMap((quote, index) => {
-		const pattern = quote
-			.trim()
-			.split(/\s+/)
-			.filter(Boolean)
-			.map((word) => escaped(word).replaceAll('-', '-(?:[^\\S\\n]*\\n\\s*)?'))
-			.join('\\s+');
-		if (pattern === '') return [];
-		const match = new RegExp(pattern, 'u').exec(text);
-		return match === null
-			? []
-			: [{ start: match.index, end: match.index + match[0].length, index }];
+		const span = locate(quote);
+		return span === undefined ? [] : [{ ...span, index }];
 	});
 	found.sort((a, b) => a.start - b.start || a.index - b.index);
-	const kept: typeof found = [];
-	for (const each of found) {
-		if (each.start >= (kept.at(-1)?.end ?? 0)) kept.push(each);
+	const kept: { start: number; end: number; indexes: number[] }[] = [];
+	for (const { start, end, index } of found) {
+		const last = kept.at(-1);
+		if (last !== undefined && start < last.end) {
+			last.end = Math.max(last.end, end);
+			last.indexes.push(index);
+		} else {
+			kept.push({ start, end, indexes: [index] });
+		}
 	}
 	return kept;
 }
