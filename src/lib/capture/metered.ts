@@ -70,6 +70,8 @@ export function createMeteredGate({ modes, cap, log, keys }: GateOptions): Meter
 	// checks or the key loader, so it is refused rather than trusted.
 	function refusalOf(key: string): string | undefined {
 		if (cap === null) return 'no cap was set';
+		// NaN or Infinity would make the comparison below never refuse, and 1.5 would allow 2.
+		if (!Number.isSafeInteger(cap) || cap < 0) return `the cap ${cap} is not a whole number`;
 		if (key === '') return 'no key loaded';
 		if (attempts >= cap) return `the cap of ${cap} attempts is reached`;
 		return undefined;
