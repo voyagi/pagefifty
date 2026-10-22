@@ -376,6 +376,30 @@ describe('a floor stated with no amount code can read', () => {
 	});
 });
 
+describe('a floor inside a criterion this version does not assess', () => {
+	it('a registration criterion that also states a turnover floor never lets the lot go', () => {
+		const text =
+			'Eintragung im Handelsregister. Zudem ist ein Mindestjahresumsatz von 1.000.000 EUR jährlich nachzuweisen.';
+		const reading = readLot({
+			criteria: [{ code: 'slc-suit-reg-trade', descriptions: [{ text, lang: 'de' }] }],
+			items: []
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].state).not.toBe('INFO');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
+
+	it('a registration criterion with no amount stays not assessed', () => {
+		const text = 'Eintragung im Handelsregister oder einem vergleichbaren Berufsregister.';
+		const reading = readLot({
+			criteria: [{ code: 'slc-suit-reg-trade', descriptions: [{ text, lang: 'de' }] }],
+			items: []
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].requirements.map((each) => each.why)).toEqual(['not-assessed']);
+	});
+});
+
 describe('mutation detectors on the floor comparison', () => {
 	const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR netto';
 	const exact = firmWithTurnover({ 2023: 1_000_000, 2024: 1_000_000, 2025: 1_000_000 });

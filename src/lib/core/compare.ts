@@ -426,16 +426,18 @@ function decideCertificate(
 
 // Families whose state the code alone sets, whatever the model said about the clause.
 function familyOutcome(
-	family: CriterionFamily,
+	reading: CriterionReading,
 	firm: FirmFacts | null
 ): RequirementOutcome | undefined {
-	switch (family) {
+	switch (reading.family) {
 		case 'firm-judges':
 			return decided('PROFILE_GAP', firm === null ? 'no-profile' : 'firm-judges');
 		case 'insurance':
 			return withheld('insurance');
 		case 'not-assessed':
-			return decided('INFO', 'not-assessed');
+			// A registration clause can also state a floor ("Zudem ist ein Mindestjahresumsatz von
+			// 1.000.000 EUR nachzuweisen"), which INFO would let pass unread as GO.
+			return reading.textHasAmount ? withheld('family') : decided('INFO', 'not-assessed');
 		case 'not-compared':
 			return withheld('family');
 		default:
@@ -470,7 +472,7 @@ export function decideCriterion(
 	context: LotContext,
 	restricted: boolean
 ): CriterionOutcome {
-	const byFamily = familyOutcome(reading.family, firm);
+	const byFamily = familyOutcome(reading, firm);
 	if (byFamily) return outcomeOf([byFamily]);
 	const requirements = [
 		...reading.verified.map((requirement) => {
