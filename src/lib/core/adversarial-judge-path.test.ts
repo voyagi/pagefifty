@@ -369,6 +369,43 @@ describe('a clause every lot shares, with one floor per lot', () => {
 		expect(lotsNamed('Perceel 1: minimaal 1 mln EUR', 'nl')).toEqual([1]);
 		expect(lotsNamed('Lot No. 3: EUR 2 million')).toEqual([3]);
 	});
+
+	it.each([
+		['Lots 1 and 2: EUR 2 million', 'en', [1, 2]],
+		['Lose 1 und 2: 2 Mio. EUR', 'de', [1, 2]],
+		['in den Losen 2 und 4 jeweils 1 Mio. EUR', 'de', [2, 4]],
+		['Percelen 1 en 2: minimaal 1 mln EUR', 'nl', [1, 2]],
+		['Lots 1, 2 et 3 : 500 000 EUR', 'fr', [1, 2, 3]],
+		['Lose 1 bis 3: 2 Mio. EUR', 'de', [1, 2, 3]],
+		['Lots 2 to 4: EUR 1 million', 'en', [2, 3, 4]],
+		['Teillose 1 und 3: 2 Mio. EUR', 'de', [1, 3]]
+	])('reads every lot a grouped label names: %s', (text, lang, lots) => {
+		expect(lotsNamed(text, lang)).toEqual(lots);
+	});
+
+	it('keeps an amount after a single label out of the lot numbers', () => {
+		expect(lotsNamed('Los 1: 2,5 Mio. EUR', 'de')).toEqual([1]);
+		expect(lotsNamed('Lot 1, EUR 2 million', 'en')).toEqual([1]);
+	});
+
+	it('a floor a grouped label states for other lots is not this lot floor', () => {
+		const shared = readLot({
+			criteria: [
+				{
+					code: 'slc-stand-to-spec',
+					descriptions: [
+						{ text: 'Mindestumsatz pro Jahr: Lose 1 und 2: 6 Mio. EUR netto', lang: 'de' }
+					]
+				}
+			],
+			items: [
+				{ ...item('Lose 1 und 2: 6 Mio. EUR netto', '6 Mio. EUR netto'), kind: 'turnover-specific' }
+			]
+		});
+		const decided = decideReadLot(shared, MID_FIRM, { ...CONTEXT, lot: 'LOT-0003' });
+		expect(decided.criteria[0].requirements.map((each) => each.why)).toEqual(['other-lot']);
+		expect(decided.decision.verdict).not.toBe('PARTNER NEEDED');
+	});
 });
 
 describe('a floor stated with no amount code can read', () => {

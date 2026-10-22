@@ -599,17 +599,45 @@ export function namesFloor(text: string): boolean {
 	return [AT_LEAST, MORE_THAN, OVER_AMOUNT, MULTIPLE].some((pattern) => pattern.test(text));
 }
 
-// "Los 1:", "Lot n° 2", "Perceel 3": the lot numbers a text names. Read only in the languages this
-// version reads, since "Los 3 últimos ejercicios" is Spanish for "the last 3 years".
+// "Los 1:", "Lot n° 2", "Perceel 3", and grouped as "Lots 1 and 2", "Lose 1 bis 3", "Percelen 1 en
+// 2": the lot numbers a text names. A grouped label read as no label would let one lot's floor
+// stand for every lot. Read only in the languages this version reads, since "Los 3 últimos
+// ejercicios" is Spanish for "the last 3 years". A list needs a space after its comma, so the
+// amount in "Los 1: 2,5 Mio. EUR" never joins the lot numbers.
+const LOT_LIST = String.raw`(?:${SPACE}*[,&/+]${SPACE}+|${SPACE}+(?:und|and|en|et)${SPACE}+)`;
+const LOT_RANGE = String.raw`${SPACE}+(?:bis|to|tot|à)${SPACE}+`;
 const LOT_LABEL = new RegExp(
-	String.raw`(?<![\p{L}\p{N}])(?:Los|Lot|Teillos|Perceel)(?:${SPACE}*(?:Nr\.|nr\.|n°|no\.|No\.))?${SPACE}*(\d{1,3})(?!\p{N})`,
+	String.raw`(?<![\p{L}\p{N}])(?:Teillosen|Teillose|Teillos|Losen|Lose|Los|Lots|Lot|Percelen|Perceel)(?:${SPACE}*(?:Nr\.|nr\.|n°|no\.|No\.))?${SPACE}*(\d{1,3}(?!\p{N})(?:(?:${LOT_LIST}|${LOT_RANGE})\d{1,3}(?![.,]?\p{N}))*)`,
 	'giu'
 );
+const LOT_RANGE_WORD = /^(?:bis|to|tot|à)$/iu;
+// A wider or backward range keeps its two ends only, so the lots between are held back unread.
+const MAX_LOT_RANGE = 50;
 const LOT_LANGS: ReadonlySet<string> = new Set(['de', 'nl', 'fr', 'en']);
+
+function lotNumbersOf(group: string): number[] {
+	const numbers: number[] = [];
+	let range = false;
+	for (const [token, digits] of group.matchAll(/(\d+)|\p{L}+/gu)) {
+		if (digits === undefined) {
+			range = LOT_RANGE_WORD.test(token);
+			continue;
+		}
+		const lot = Number.parseInt(digits, 10);
+		const from = numbers.at(-1);
+		if (range && from !== undefined && lot > from && lot - from <= MAX_LOT_RANGE) {
+			for (let next = from + 1; next <= lot; next += 1) numbers.push(next);
+		} else {
+			numbers.push(lot);
+		}
+		range = false;
+	}
+	return numbers;
+}
 
 export function lotsNamed(text: string, lang?: string): number[] {
 	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
-	return [...text.matchAll(LOT_LABEL)].map((match) => Number.parseInt(match[1], 10));
+	return [...text.matchAll(LOT_LABEL)].flatMap((match) => lotNumbersOf(match[1]));
 }
 
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,
