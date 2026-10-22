@@ -87,6 +87,24 @@ describe('the example readings in the page model', () => {
 		expect(lot.criteria.every((criterion) => criterion.rejected?.length === 0)).toBe(true);
 	});
 
+	// An item naming a clause the lot lacks holds the lot at ASK FIRST (compare.ts), so the page says
+	// why once at lot level, where no clause would show it.
+	it('names on the lot a model answer for a clause the lot does not have', () => {
+		const record = capturedRecord('610242-2026');
+		const readings = noticeReadings('610242-2026');
+		const [stored] = readings.readings;
+		const stray = { ...stored.items[0], criterion: 99 };
+		const page = buildTenderPage(record, BEFORE_DEADLINES, {
+			...readings,
+			readings: [{ ...stored, items: [...stored.items, stray] }]
+		});
+		expect(page.lots[0].reading).toEqual({
+			status: 'read',
+			model: 'nvidia/nemotron-3-super-120b-a12b',
+			unplaced: [REJECTED_LINES['no-such-criterion']]
+		});
+	});
+
 	it('gives each requirement the language of the description its quote was found in', () => {
 		const record = capturedRecord('610242-2026');
 		const [lot] = record.lots;
