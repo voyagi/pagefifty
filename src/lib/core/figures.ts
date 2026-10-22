@@ -354,7 +354,19 @@ const MODES = {
 		'in elk van de laatste',
 		'pour chacune des'
 	]),
-	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
+	// "Summe" and "au total" as in "(Summe der letzten drei Geschäftsjahre)" and "au total sur les 3
+	// dernières années", both in the 2026-10-22 capture.
+	sum: phrases([
+		'insgesamt',
+		'kumuliert',
+		'Summe',
+		'samen',
+		'in totaal',
+		'cumulé',
+		'au total',
+		'in total',
+		'combined'
+	]),
 	// Anchored on the period word as "each" is: "in einem der folgenden Dokumente" chooses a
 	// document, not a year, and read as any-one it would pass a floor met in one year of three.
 	'any-one': phrases([

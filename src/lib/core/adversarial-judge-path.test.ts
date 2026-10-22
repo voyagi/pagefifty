@@ -281,6 +281,30 @@ describe('a general turnover floor confined to a field of business', () => {
 	});
 });
 
+describe('a floor over the sum of the years', () => {
+	// 250,000 a year: the three-year sum clears each floor below, no single year does.
+	const STEADY_FIRM = firmWithTurnover({ 2023: 250_000, 2024: 250_000, 2025: 250_000 });
+
+	it.each([
+		['de', 'Gesamtumsatz 0,5 Mio. EUR (Summe der letzten drei Geschäftsjahre)', '0,5 Mio. EUR'],
+		[
+			'fr',
+			'Le chiffre d’affaires global doit atteindre au minimum 600.000,00 € TVAC au total sur les 3 dernières années.',
+			'600.000,00 € TVAC'
+		],
+		[
+			'nl',
+			'Een minimale omzet van 600.000 EUR in totaal over de laatste drie boekjaren',
+			'600.000 EUR'
+		]
+	])('%s: a sum is never compared year by year', (lang, text, number) => {
+		expect(parsePeriod(text, lang).mode).toBe('sum');
+		const [requirement] = verdictFor(text, number, STEADY_FIRM, lang).criteria[0].requirements;
+		expect(requirement.state).toBeUndefined();
+		expect(requirement.why).toBe('period-disagrees');
+	});
+});
+
 describe('mutation detectors on the floor comparison', () => {
 	const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR netto';
 	const exact = firmWithTurnover({ 2023: 1_000_000, 2024: 1_000_000, 2025: 1_000_000 });
