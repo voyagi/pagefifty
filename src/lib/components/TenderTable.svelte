@@ -95,25 +95,25 @@
 
 	th {
 		text-align: left;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
+		font: 600 var(--step--1) / 1.3 var(--font);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: var(--ink-3);
+		color: var(--ink-2);
 		padding: 0 1rem 0.625rem 0;
-		border-bottom: 1px solid var(--acetate-edge);
+		border-bottom: 1px solid var(--line-2);
 		white-space: nowrap;
 	}
 
 	td {
 		padding: 1rem 1rem 1rem 0;
-		border-bottom: 1px solid var(--acetate-rule);
+		border-bottom: 1px solid var(--line);
 		vertical-align: top;
 	}
 
 	td + td,
 	th + th {
 		padding-left: 1rem;
-		border-left: 1px solid var(--acetate-rule);
+		border-left: 1px solid var(--line);
 	}
 
 	.num {
@@ -154,7 +154,7 @@
 		font-weight: 600;
 		line-height: 1.3;
 		max-width: 70ch;
-		text-decoration-color: var(--acetate-edge);
+		text-decoration-color: var(--line-2);
 	}
 
 	.t:hover {
@@ -199,7 +199,7 @@
 
 		tr {
 			padding: 0.875rem 0;
-			border-bottom: 1px solid var(--acetate-edge);
+			border-bottom: 1px solid var(--line-2);
 		}
 
 		td,

@@ -39,7 +39,7 @@
 	.lot-verdict {
 		margin: 0.25rem 0 1.75rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--acetate-rule);
+		border-bottom: 1px solid var(--line);
 	}
 
 	.verdict-row {
@@ -49,53 +49,39 @@
 		gap: 1rem 2rem;
 	}
 
-	/* The loudest thing in the system, in condensed caps on the leaf itself. */
+	/* The loudest thing on the record. */
 	.word {
-		font: 700 var(--step-6) / 0.85 var(--font-cond);
-		letter-spacing: -0.02em;
+		font-weight: 750;
+		font-size: var(--step-4);
+		line-height: 1;
+		letter-spacing: -0.03em;
 		text-transform: uppercase;
 		color: var(--ink);
 		overflow-wrap: anywhere;
 	}
 
-	/* Dashed is the binder's mark for what is not settled, so an open question underlines itself
-	   that way and never in vermilion. */
+	/* Dashed is the mark for what is not settled, so an open question underlines itself that way. */
 	.asking .word {
 		padding-bottom: 0.5rem;
-		border-bottom: 2px dashed var(--ink-3);
+		border-bottom: 2px dashed var(--ink-2);
 		max-width: 100%;
 	}
 
-	/* The errata slip: a separate strip of vermilion paper, punched and filed beside the verdict,
-	   and the only vermilion on the page. It rules the firm out on its own, nothing else. */
+	/* A criterion the firm misses on its own, set apart beside the verdict in reversed ink. */
 	.slip {
-		position: relative;
 		display: grid;
 		gap: 0.2rem;
 		max-width: 30rem;
-		padding: 0.75rem 1.25rem 0.875rem 2.5rem;
-		border-radius: 2px;
-		background: var(--errata);
-		color: var(--errata-ink);
-		box-shadow: var(--lift);
-	}
-
-	.slip::before {
-		content: '';
-		position: absolute;
-		left: 0.875rem;
-		top: 50%;
-		width: 0.75rem;
-		height: 0.75rem;
-		margin-top: -0.375rem;
-		border-radius: 50%;
-		background: var(--acetate);
+		padding: 0.75rem 1.25rem 0.875rem;
+		border-radius: var(--r);
+		background: var(--ink);
+		color: var(--bg);
 	}
 
 	.slip strong {
-		font: 700 var(--step--1) / 1.2 var(--font-cond);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		font-weight: 700;
+		font-size: var(--step--1);
+		line-height: 1.2;
 	}
 
 	.slip p {
@@ -106,7 +92,7 @@
 
 	.figure,
 	.ref {
-		font-family: var(--font-mono);
+		font-variant-numeric: tabular-nums;
 	}
 
 	.ref {
@@ -129,7 +115,7 @@
 	.article {
 		margin-top: 0.75rem;
 		padding-top: 0.75rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	/* A link standing alone on its line gets the full target height. */

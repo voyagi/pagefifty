@@ -10,7 +10,7 @@
 </p>
 
 <style>
-	/* Dashed on the leaf-back fill: the one meaning of a dashed edge here is "not read or not
+	/* Dashed on a tinted fill: the one meaning of a dashed edge here is "not read or not
 	   settled". */
 	.unread-strip {
 		display: flex;
@@ -19,9 +19,9 @@
 		max-width: 62ch;
 		margin-top: 1rem;
 		padding: 0.625rem 0.875rem;
-		background: var(--leaf-back);
-		color: var(--leaf-back-ink);
-		border: 1px dashed var(--leaf-back-ink);
+		background: var(--bg-2);
+		color: var(--ink-2);
+		border: 1px dashed var(--ink-2);
 		border-radius: 2px;
 		font-size: var(--step--1);
 		font-weight: 500;

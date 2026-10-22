@@ -138,7 +138,7 @@
 	.hint {
 		grid-column: 1 / -1;
 		font-size: var(--step--1);
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	.actions {

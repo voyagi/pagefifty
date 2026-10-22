@@ -21,22 +21,22 @@
 	/* The dashed stroke means "not read or not settled" (DESIGN.md Shapes); the solid ink tag
 	   belongs to a verdict, which phase 1 never shows. */
 	.vtag {
-		font: 700 var(--step--1) / 1 var(--font-cond);
+		font: 700 var(--step--1) / 1 var(--font);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		padding: 0.35rem 0.5rem;
 		border-radius: 2px;
 		border: 1px dashed var(--ink);
-		background: var(--acetate);
+		background: var(--bg);
 		color: var(--ink);
 		white-space: nowrap;
 	}
 
-	/* Face down, like a document leaf nobody has turned over yet. */
+	/* Muted on a tinted fill: documents nobody has read yet. */
 	.facedown {
-		background: var(--leaf-back);
-		color: var(--leaf-back-ink);
-		border-color: var(--leaf-back-ink);
+		background: var(--bg-2);
+		color: var(--ink-2);
+		border-color: var(--ink-2);
 	}
 
 	small {

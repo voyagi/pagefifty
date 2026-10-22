@@ -52,15 +52,15 @@
 	.run-record {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	.run-head {
 		margin-bottom: 0.75rem;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
+		font: 600 var(--step--1) / 1.3 var(--font);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	dl {
@@ -73,7 +73,7 @@
 	dt {
 		font-size: var(--step--1);
 		font-weight: 500;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	dd {

@@ -32,7 +32,7 @@
 	.coverage {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	ul {

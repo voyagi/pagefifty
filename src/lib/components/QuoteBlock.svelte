@@ -43,7 +43,7 @@
 		position: absolute;
 		left: -0.6em;
 		top: 0.1em;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	.quote:lang(de)::before {

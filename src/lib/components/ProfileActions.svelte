@@ -185,23 +185,23 @@
 	.hint {
 		margin-top: 0.75rem;
 		font-size: var(--step--1);
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	/* Set apart under a hairline, so the one control that deletes reads apart from export and import. */
 	.remove {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	.question {
 		max-width: 52ch;
 		margin-top: 1rem;
 		padding: 1rem 1.25rem;
-		border: 1px solid var(--ink-3);
+		border: 1px solid var(--ink-2);
 		border-radius: 3px;
-		background: var(--acetate);
+		background: var(--bg);
 	}
 
 	.answers {

@@ -78,7 +78,7 @@
 		grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
 		column-gap: 1.75rem;
 		padding: 1.5rem 0;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	.clause:first-child {
@@ -87,11 +87,11 @@
 
 	.clause-head {
 		padding-right: 1.25rem;
-		border-right: 1px solid var(--acetate-rule);
+		border-right: 1px solid var(--line);
 	}
 
 	h3 {
-		font: 600 var(--step-0) / 1.3 var(--font-cond);
+		font: 600 var(--step-0) / 1.3 var(--font);
 		letter-spacing: 0.01em;
 		color: var(--ink);
 		overflow-wrap: anywhere;
@@ -109,10 +109,10 @@
 		overflow-wrap: anywhere;
 	}
 
-	/* A state is a margin head, in the condensed cut the verdict states take. */
+	/* A state is a margin head, set at the weight the verdict states take. */
 	.state {
 		margin-top: 0.5rem;
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
+		font: 600 var(--step-0) / 1.25 var(--font);
 		letter-spacing: 0.01em;
 		color: var(--ink);
 	}
@@ -131,7 +131,7 @@
 		margin-top: 0.25rem;
 	}
 
-	/* The hanging quote mark needs room on the leaf side of the text edge. */
+	/* The hanging quote mark needs room on the outer side of the text edge. */
 	.quotes {
 		min-width: 0;
 		padding-left: 0.75rem;
@@ -143,7 +143,7 @@
 		margin: 1.5rem 0 0;
 		padding: 1.25rem 0 0;
 		list-style: none;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 		display: grid;
 		gap: 1.25rem;
 	}
@@ -158,7 +158,7 @@
 	.req-quote {
 		max-width: 60ch;
 		padding-left: 0.75rem;
-		border-left: 1px solid var(--acetate-edge);
+		border-left: 1px solid var(--line-2);
 		color: var(--ink-2);
 		white-space: pre-line;
 		overflow-wrap: anywhere;
@@ -168,10 +168,10 @@
 	.ai-label {
 		display: block;
 		margin-bottom: 0.25rem;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
+		font: 600 var(--step--1) / 1.3 var(--font);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	.reading {
@@ -182,14 +182,14 @@
 		overflow-wrap: anywhere;
 	}
 
-	/* Dashed is the binder's one mark for "not read". */
+	/* Dashed is the one mark for "not read". */
 	.not-read {
 		max-width: 70ch;
 		margin-top: 1rem;
 		padding: 0.5rem 0.75rem;
-		border: 1px dashed var(--ink-3);
+		border: 1px dashed var(--ink-2);
 		border-radius: 2px;
-		background: var(--acetate);
+		background: var(--bg);
 		font-size: var(--step--1);
 		color: var(--ink-2);
 	}

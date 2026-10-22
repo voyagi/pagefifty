@@ -17,11 +17,11 @@
 <style>
 	.empty {
 		padding-block: 1.5rem;
-		border-top: 1px solid var(--acetate-edge);
+		border-top: 1px solid var(--line-2);
 	}
 
 	h2 {
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
+		font: 600 var(--step-0) / 1.25 var(--font);
 		letter-spacing: 0.01em;
 	}
 

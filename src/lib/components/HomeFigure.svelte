@@ -48,7 +48,7 @@
 	}
 
 	.head {
-		font: 600 var(--step-2) / 1.1 var(--font-cond);
+		font: 600 var(--step-2) / 1.1 var(--font);
 		letter-spacing: -0.015em;
 	}
 
@@ -65,8 +65,8 @@
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		column-gap: 1.75rem;
 		margin-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
-		border-bottom: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
 	}
 
 	.count {
@@ -78,12 +78,12 @@
 	}
 
 	.label {
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
+		font: 600 var(--step-0) / 1.25 var(--font);
 		letter-spacing: 0.01em;
 	}
 
 	.number {
-		font: 500 var(--step-5) / 1 var(--font-mono);
+		font: 500 var(--step-4) / 1 var(--font);
 		letter-spacing: -0.03em;
 		font-variant-numeric: tabular-nums;
 	}
@@ -112,7 +112,7 @@
 
 	.mono,
 	.command {
-		font-family: var(--font-mono);
+		font-family: var(--font);
 		font-size: 0.9375em;
 	}
 
