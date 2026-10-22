@@ -65,28 +65,31 @@
 					<span class="b id mono">{row.noticeNumber}</span>
 				</p>
 				<p class="meta">
-					{#if row.countries.length > 0}
-						<span class="fact">{row.countries.join(', ')}</span>
-					{/if}
-					<span class="fact deadline">
-						{#if closed}<span class="closed-word">Closed</span>{/if}
-						{#if shown.kind === 'in-notice'}
-							<span class="in-notice">In notice</span>
-						{:else}
-							<DeadlineTime instant={shown.instant} />
+					<span class="facts">
+						{#if row.countries.length > 0}
+							<span class="fact">{row.countries.join(', ')}</span>
 						{/if}
-						{#if row.deadline.lotsDiffer}
-							<small>{row.deadline.openLotCount} open lots, deadlines differ</small>
+						<span class="fact deadline">
+							{#if closed}<span class="closed-word">Closed</span>{/if}
+							{#if shown.kind === 'in-notice'}
+								<span class="in-notice">In notice</span>
+							{:else}
+								<DeadlineTime instant={shown.instant} />
+							{/if}
+							{#if row.deadline.lotsDiffer}
+								<small>{row.deadline.openLotCount} open lots, deadlines differ</small>
+							{/if}
+						</span>
+						{#if row.value}
+							<span class="fact mono">{row.value}</span>
+						{:else}
+							<span class="fact">Value not published</span>
 						{/if}
 					</span>
-					{#if row.value}
-						<span class="fact mono">{row.value}</span>
-					{:else}
-						<span class="fact">Value not published</span>
-					{/if}
-					<span class="fact" class:tagged={row.reading.tag !== common}
-						><ReadingTag reading={row.reading} plain={row.reading.tag === common} /></span
-					>
+				</p>
+				<!-- What was read in the notice is its own line, so it never trails a separator. -->
+				<p class="status">
+					<ReadingTag reading={row.reading} plain={row.reading.tag === common} />
 				</p>
 				<!-- The tender's own verdict reads this mark; a row shows no verdict, so this sentence is
 				     what keeps a notice whose buyer means to cancel from reading as an ordinary open
@@ -201,26 +204,39 @@
 		margin-left: auto;
 	}
 
-	.meta {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: 0.25rem 0.5rem;
-		margin-top: 0.5rem;
+	.meta,
+	.status {
 		font-size: var(--step--1);
 		color: var(--ink-2);
 	}
 
-	/* The dot is drawn, not text, so a screen reader reads the facts without it. A tag has its own
-	   edge and needs none. */
-	.fact + .fact::before {
-		content: '·';
-		content: '·' / '';
-		margin-right: 0.5rem;
+	/* A fact that wraps never starts its line with a dot: every fact draws its dot before it, and
+	   the row sits one dot's width to the left inside a clipped box, so the dot of whichever fact
+	   starts a line falls outside the box. */
+	.meta {
+		margin-top: 0.5rem;
+		overflow: hidden;
 	}
 
-	.fact.tagged::before {
-		content: none;
+	.facts {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		row-gap: 0.25rem;
+		margin-left: -1rem;
+	}
+
+	/* The dot is drawn, not text, so a screen reader reads the facts without it. */
+	.fact::before {
+		content: '·';
+		content: '·' / '';
+		display: inline-block;
+		width: 1rem;
+		text-align: center;
+	}
+
+	.status {
+		margin-top: 0.25rem;
 	}
 
 	.deadline small {

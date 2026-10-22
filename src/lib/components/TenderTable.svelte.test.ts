@@ -74,3 +74,20 @@ describe('TenderTable and a buyer that intends to cancel', () => {
 		expect(hidden).toEqual([]);
 	});
 });
+
+// A separator drawn before a fact can start a wrapped line, so the reading status, the fact most
+// likely to wrap, is its own line and never one of the separated facts.
+describe('TenderTable row facts', () => {
+	it('sets the reading status on a line of its own, outside the separated facts', () => {
+		const { container } = renderTable();
+		const rows = [...container.querySelectorAll('li[data-notice]')];
+		expect(rows.length).toBe(2);
+		for (const row of rows) {
+			const status = row.querySelector('p.status');
+			expect(squash(status?.textContent)).not.toBe('');
+			expect(status?.closest('.meta')).toBeNull();
+			expect(row.querySelector('.meta .facts .fact .tag, .meta .facts .fact .reading')).toBeNull();
+			expect(row.querySelectorAll('.meta .facts > .fact').length).toBeGreaterThan(1);
+		}
+	});
+});
