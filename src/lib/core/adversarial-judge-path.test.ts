@@ -3,7 +3,7 @@
 // one way a floor a firm does not meet could read as met.
 import { describe, expect, it } from 'vitest';
 import { decideReadLot, type FirmFacts, type LotContext } from './compare';
-import { lotsNamed, parseCount, parseMoney, parsePeriod } from './figures';
+import { lotsNamed, lotsTitled, parseCount, parseMoney, parsePeriod } from './figures';
 import { readLot, type ModelItem } from './lot-reading';
 import { findQuote } from './quote';
 
@@ -386,6 +386,50 @@ describe('a clause every lot shares, with one floor per lot', () => {
 	it('keeps an amount after a single label out of the lot numbers', () => {
 		expect(lotsNamed('Los 1: 2,5 Mio. EUR', 'de')).toEqual([1]);
 		expect(lotsNamed('Lot 1, EUR 2 million', 'en')).toEqual([1]);
+		expect(lotsNamed('Lot 1, 2 Mio. EUR', 'de')).toEqual([1]);
+	});
+
+	it.each([
+		['Lots 1 and 2, 3 million EUR', 'en'],
+		['Lose 1 und 2, 3 Mio. EUR netto', 'de'],
+		['Lots 1 and 2, 3 000 000 EUR', 'en'],
+		['Lots 1 and 2, 3 million', 'en'],
+		['Lose 1 bis 2, 3 Mrd. EUR', 'de']
+	])('keeps an amount after a grouped label out of the lot numbers: %s', (text, lang) => {
+		expect(lotsNamed(text, lang)).toEqual([1, 2]);
+	});
+
+	it('reads no lot label in a lot title of a language this version does not read', () => {
+		expect(lotsTitled('Lote 1: los 3 servicios', 'es')).toEqual([]);
+		expect(lotsTitled('Los 2: Betrieb', 'de')).toEqual([2]);
+	});
+
+	// A quote can leave out the lot label its clause puts it under.
+	const underLabel = (text: string, quotes: readonly string[]) =>
+		readLot({
+			criteria: [{ code: 'slc-stand-to-spec', descriptions: [{ text, lang: 'de' }] }],
+			items: quotes.map((quote) => ({ ...item(quote, quote), kind: 'turnover-specific' }))
+		});
+	const HEAD =
+		'Die tätigkeitsbezogenen Umsätze müssen in jedem der letzten drei abgeschlossenen Geschäftsjahre mindestens pro Geschäftsjahr betragen:\n\n';
+
+	it('a floor quoted without the lot label its clause states is not another lot floor', () => {
+		const labelled = underLabel(`${HEAD}Los 2: 6 Mio. EUR netto`, ['6 Mio. EUR netto']);
+		const other = decideReadLot(labelled, MID_FIRM, { ...CONTEXT, lot: 'LOT-0003' });
+		expect(other.criteria[0].requirements.map((each) => each.why)).toEqual(['other-lot']);
+		expect(other.decision.verdict).not.toBe('PARTNER NEEDED');
+		const own = decideReadLot(labelled, MID_FIRM, { ...CONTEXT, lot: 'LOT-0002' });
+		expect(own.criteria[0].requirements.map((each) => each.why)).not.toContain('other-lot');
+	});
+
+	it('a floor quoted without its label under a clause naming several lots is compared for none', () => {
+		const shared = underLabel(`${HEAD}Los 1: 6 Mio. EUR netto\nLos 2: 2,5 Mio. EUR netto`, [
+			'6 Mio. EUR netto'
+		]);
+		for (const lot of ['LOT-0001', 'LOT-0002']) {
+			const decided = decideReadLot(shared, MID_FIRM, { ...CONTEXT, lot });
+			expect(decided.criteria[0].requirements[0].why).toBe('other-lot');
+		}
 	});
 
 	it('a floor a grouped label states for other lots is not this lot floor', () => {

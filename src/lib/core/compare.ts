@@ -475,9 +475,16 @@ function ownLot(context: LotContext): number | undefined {
 	return titled?.every((number) => number === own) ? own : undefined;
 }
 
-function forOtherLot(requirement: VerifiedRequirement, own: number | undefined): boolean {
+// A quote naming no lot can still sit under a lot label of its clause ("Los 2: 6 Mio. EUR netto"
+// quoted as "6 Mio. EUR netto"). Which label is not told, so it is compared only while every lot
+// the clause names is this one.
+function forOtherLot(
+	requirement: VerifiedRequirement,
+	clauseLots: readonly number[],
+	own: number | undefined
+): boolean {
 	const named = lotsNamed(requirement.item.quote, requirement.lang);
-	if (named.length === 0) return false;
+	if (named.length === 0) return clauseLots.some((lot) => lot !== own);
 	return own === undefined || !named.includes(own);
 }
 
@@ -504,7 +511,9 @@ export function decideCriterion(
 			// The model marks an item optional, scored or a request for information (the prompt in
 			// token-factory.ts), so such an item is never compared and cannot set a shortfall.
 			if (requirement.item.mandatory !== true) return withheld('optional', requirement.item);
-			if (forOtherLot(requirement, own)) return withheld('other-lot', requirement.item);
+			if (forOtherLot(requirement, reading.lots, own)) {
+				return withheld('other-lot', requirement.item);
+			}
 			return reading.family === 'certificate'
 				? decideCertificate(requirement, firm, context)
 				: decideFigure(reading, requirement, firm, context, restricted);

@@ -620,14 +620,32 @@ const LOT_RANGE_WORD = /^(?:bis|to|tot|à)$/iu;
 const MAX_LOT_RANGE = 50;
 const LOT_LANGS: ReadonlySet<string> = new Set(['de', 'nl', 'fr', 'en']);
 
-function lotNumbersOf(group: string): number[] {
+// The offsets where a number reads as an amount, by its currency or its multiplier, read or refused.
+function amountStarts(text: string, lang?: string): ReadonlySet<number> {
+	const starts = new Set<number>();
+	for (const match of text.matchAll(NUMBER)) {
+		const word = WORD_NEXT.exec(text.slice(match.index + match[0].length))?.[1] ?? '';
+		const multiplied =
+			Object.hasOwn(MAGNITUDES, word.toLowerCase()) || UNKNOWN_MAGNITUDE.test(word);
+		if (multiplied || candidate(text, match, lang)) starts.add(match.index);
+	}
+	return starts;
+}
+
+// An amount ends a lot list, since its comma reads like one more lot: "Lots 1 and 2, 3 million EUR"
+// names lots 1 and 2.
+function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): number[] {
+	const [whole, group] = match;
+	const start = match.index + whole.length - group.length;
 	const numbers: number[] = [];
 	let range = false;
-	for (const [token, digits] of group.matchAll(/(\d+)|\p{L}+/gu)) {
+	for (const token of group.matchAll(/(\d+)|\p{L}+/gu)) {
+		const digits = token[1];
 		if (digits === undefined) {
-			range = LOT_RANGE_WORD.test(token);
+			range = LOT_RANGE_WORD.test(token[0]);
 			continue;
 		}
+		if (amounts.has(start + token.index)) break;
 		const lot = Number.parseInt(digits, 10);
 		const from = numbers.at(-1);
 		if (range && from !== undefined && lot > from && lot - from <= MAX_LOT_RANGE) {
@@ -642,7 +660,8 @@ function lotNumbersOf(group: string): number[] {
 
 export function lotsNamed(text: string, lang?: string): number[] {
 	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
-	return [...text.matchAll(LOT_LABEL)].flatMap((match) => lotNumbersOf(match[1]));
+	const amounts = amountStarts(text, lang);
+	return [...text.matchAll(LOT_LABEL)].flatMap((match) => lotNumbersOf(match, amounts));
 }
 
 // The lot numbers a lot's own title names, or undefined when one has a letter after it ("Los 2b"):
@@ -653,7 +672,8 @@ export function lotsTitled(title: string, lang?: string): number[] | undefined {
 	const lettered = matches.some((match) =>
 		/^\p{L}/u.test(title.slice(match.index + match[0].length))
 	);
-	return lettered ? undefined : matches.flatMap((match) => lotNumbersOf(match[1]));
+	const amounts = amountStarts(title, lang);
+	return lettered ? undefined : matches.flatMap((match) => lotNumbersOf(match, amounts));
 }
 
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,
