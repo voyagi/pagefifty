@@ -314,6 +314,12 @@ describe('quoteLocator', () => {
 	it('finds nothing for a quote too short to have verified', () => {
 		expect(quoteLocator('Ein Zertifikat ist beizufügen.')('Zertifikat')).toBeUndefined();
 	});
+
+	it('finds nothing for a quote too short without its hyphens, as findQuote does', () => {
+		const source = 'the text holds xy only';
+		expect(findQuote('----------xy', source)).toEqual({ found: false, reason: 'not-found' });
+		expect(quoteLocator(source)('----------xy')).toBeUndefined();
+	});
 });
 
 describe('verifyRequirements on recorded replies', () => {
