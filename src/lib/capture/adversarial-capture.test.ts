@@ -5,6 +5,7 @@ import { resolveModes, resolveTransportMode } from '../server/transport-mode';
 import { parseCaptureArgs } from './args';
 import { loadProviderKeys } from './keys';
 import { createMeteredGate } from './metered';
+import { retryAfterMs } from './ted-client';
 
 const LIVE = Object.freeze({ ted: 'live', tokenFactory: 'live', tavily: 'live' } as const);
 const KEYS = { tokenFactory: 'nb-key', tavily: 'tvly-key' };
@@ -104,6 +105,25 @@ describe('the metered gate cap', () => {
 		const { send, sent } = countingSend();
 		expect((await gate.attempt('tavily', 'search', send)).kind).toBe('refused');
 		expect(sent()).toBe(0);
+	});
+});
+
+describe('a Retry-After a server can send', () => {
+	const NOW = Date.parse('2026-10-22T18:00:00Z');
+	it.each([
+		['0', undefined],
+		['-5', undefined],
+		['1.5', undefined],
+		['2030-01-01', undefined],
+		['Thu, 01 Jan 2026 00:00:00 GMT', undefined],
+		['soon', undefined],
+		['99999999999999999999', 1e23]
+	])('%j reads %s', (value, expected) => {
+		expect(retryAfterMs(value, NOW)).toBe(expected);
+	});
+
+	it('an HTTP date ahead reads as the wait until it', () => {
+		expect(retryAfterMs('Thu, 22 Oct 2026 18:00:30 GMT', NOW)).toBe(30_000);
 	});
 });
 
