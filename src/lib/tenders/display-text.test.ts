@@ -1,4 +1,4 @@
-import fc from 'fast-check';
+import { fc } from '@fast-check/vitest';
 import { describe, expect, it } from 'vitest';
 import {
 	displayRuns,

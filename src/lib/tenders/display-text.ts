@@ -11,7 +11,7 @@
 //           heading line ("Mindestanforderung" over the sentence it heads)
 // paragraph a blank line, kept as a paragraph break
 
-export type RunKind = 'text' | 'hidden' | 'line' | 'paragraph';
+type RunKind = 'text' | 'hidden' | 'line' | 'paragraph';
 
 export interface TextRun {
 	kind: RunKind;
