@@ -15,24 +15,28 @@
 </div>
 
 <style>
+	/* A named state in its own box on the page, so an empty list never reads as a page that failed
+	   to load. */
 	.empty {
-		padding-block: 1.5rem;
-		border-top: 1px solid var(--line-2);
+		padding: 1.25rem 1.5rem 1.5rem;
+		border: 1px solid var(--line);
+		border-radius: var(--r);
+		background: var(--bg);
 	}
 
 	h2 {
-		font: 600 var(--step-0) / 1.25 var(--font);
-		letter-spacing: 0.01em;
+		font: 700 var(--step-1) / 1.3 var(--font);
+		letter-spacing: -0.01em;
 	}
 
 	p {
-		max-width: 70ch;
-		margin-top: 1rem;
+		max-width: 62ch;
+		margin-top: 0.5rem;
 		color: var(--ink-2);
 		text-wrap: pretty;
 	}
 
 	.actions {
-		margin-top: 1.5rem;
+		margin-top: 1.25rem;
 	}
 </style>

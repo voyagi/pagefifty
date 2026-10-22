@@ -12,7 +12,8 @@ const read = vi.hoisted(() => vi.fn((url: string) => new Response(fromDisk(url))
 vi.mock('$app/server', () => ({ read }));
 
 const { EXAMPLE_CAPTURE } = await import('./records');
-const { loadExampleList, loadExamplePage, loadTenderList } = await import('./tenders');
+const { defaultNotice, loadExampleList, loadExamplePage, loadTenderList } =
+	await import('./tenders');
 const { loadTenderPage } = await import('./tender-page');
 
 // The 2026-09-15 capture is named, not reached through the example, since these figures are its own.
@@ -69,6 +70,22 @@ describe('loadTenderList', () => {
 		expect(data.list.counts.shown).toBe(362);
 	});
 
+	// SvelteKit reruns a load when a part of the address it read changes. Reading the search alone
+	// keeps the list as it is while the visitor opens one tender after another beside it.
+	it('reads only the search of the address, so opening a tender beside the list keeps it', async () => {
+		const read: PropertyKey[] = [];
+		const url = new URL('http://127.0.0.1/tenders/609955-2026?country=NL');
+		const watched = new Proxy(url, {
+			get(target, key) {
+				read.push(key);
+				const value = Reflect.get(target, key, target);
+				return typeof value === 'function' ? value.bind(target) : value;
+			}
+		});
+		await loadTenderList({ capture: SEPT, url: watched, now: CAPTURE_INSTANT });
+		expect([...new Set(read)]).toEqual(['searchParams']);
+	});
+
 	it('fails the whole load, never a partial list, when the index cannot be read', async () => {
 		read.mockImplementationOnce(
 			() =>
@@ -81,6 +98,33 @@ describe('loadTenderList', () => {
 				)
 		);
 		await expect(load('')).rejects.toThrow('the 2026-09-15 index could not be read');
+	});
+});
+
+// The model read two notices of the 2026-09-15 capture, both open at the capture instant.
+const READ_NOTICES = ['610242-2026', '634398-2026'];
+
+describe('defaultNotice', () => {
+	it('opens the first open notice the model read, ahead of earlier open notices', async () => {
+		const { open } = (await load('')).list;
+		expect(open[0].noticeNumber).not.toBe('610242-2026');
+		expect(defaultNotice(SEPT, open)).toBe('610242-2026');
+	});
+
+	it('opens the first open notice when the model read none of them', async () => {
+		const unread = (await load('')).list.open.filter(
+			(row) => !READ_NOTICES.includes(row.noticeNumber)
+		);
+		expect(defaultNotice(SEPT, unread)).toBe(unread[0].noticeNumber);
+	});
+
+	it('asks the capture it is given which notices the model read', async () => {
+		const { open } = (await load('')).list;
+		expect(defaultNotice('2026-02-01', open)).toBe(open[0].noticeNumber);
+	});
+
+	it('opens nothing when nothing is open', () => {
+		expect(defaultNotice(SEPT, [])).toBeNull();
 	});
 });
 

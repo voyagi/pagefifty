@@ -1,6 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
-import { loadTenderList } from '$lib/server/tenders';
-import { load } from './+page.server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { loadTenderPage } from '$lib/server/tender-page';
+import { defaultNotice, loadTenderList } from '$lib/server/tenders';
+import { load as layoutLoad } from './+layout.server';
+import { load as pageLoad } from './+page.server';
 
 // The newest capture is named apart from the example's, so reading the wrong one shows while
 // 2026-09-15 is still the only capture built.
@@ -8,19 +10,62 @@ vi.mock('$lib/server/records', () => ({
 	LATEST_CAPTURE: '2026-10-11',
 	EXAMPLE_CAPTURE: '2026-09-15'
 }));
-vi.mock('$lib/server/tenders', () => ({ loadTenderList: vi.fn(async () => ({})) }));
+const OPEN = vi.hoisted(() => [{ noticeNumber: '700001-2026' }, { noticeNumber: '700002-2026' }]);
+vi.mock('$lib/server/tenders', () => ({
+	loadTenderList: vi.fn(async () => ({ list: { open: OPEN } })),
+	defaultNotice: vi.fn(() => '700002-2026')
+}));
+vi.mock('$lib/server/tender-page', () => ({
+	loadTenderPage: vi.fn(async () => ({ tender: { noticeNumber: '700002-2026' } }))
+}));
 
-type LoadEvent = Parameters<typeof load>[0];
+type LayoutEvent = Parameters<typeof layoutLoad>[0];
+type PageEvent = Parameters<typeof pageLoad>[0];
 
-describe('/tenders load', () => {
+beforeEach(() => {
+	vi.mocked(loadTenderList).mockClear();
+	vi.mocked(defaultNotice).mockClear();
+	vi.mocked(loadTenderPage).mockClear();
+});
+
+describe('/tenders layout load', () => {
 	it('lists the newest capture, judged against the real clock', async () => {
 		const url = new URL('http://127.0.0.1/tenders?country=NL');
 		const before = Date.now();
-		await load({ url } as LoadEvent);
+		await layoutLoad({ url } as LayoutEvent);
 		const [args] = vi.mocked(loadTenderList).mock.calls[0];
 		expect(args.capture).toBe('2026-10-11');
 		expect(args.url).toBe(url);
 		expect(args.now).toBeInstanceOf(Date);
 		expect((args.now as Date).getTime()).toBeGreaterThanOrEqual(before);
+	});
+
+	it('names the tender the bare list opens, chosen from its open rows in the newest capture', async () => {
+		const data = await layoutLoad({
+			url: new URL('http://127.0.0.1/tenders')
+		} as LayoutEvent);
+		expect(vi.mocked(defaultNotice).mock.calls).toEqual([['2026-10-11', OPEN]]);
+		expect(data).toEqual({ list: { open: OPEN }, defaultNotice: '700002-2026' });
+	});
+});
+
+describe('/tenders page load', () => {
+	const pageWith = (notice: string | null) =>
+		pageLoad({ parent: async () => ({ defaultNotice: notice }) } as unknown as PageEvent);
+
+	it('loads the tender the list opens from the newest capture, judged against the real clock', async () => {
+		const before = Date.now();
+		expect(await pageWith('700002-2026')).toEqual({
+			record: { tender: { noticeNumber: '700002-2026' } }
+		});
+		const [args] = vi.mocked(loadTenderPage).mock.calls[0];
+		expect([args.capture, args.notice]).toEqual(['2026-10-11', '700002-2026']);
+		expect(args.now).toBeInstanceOf(Date);
+		expect((args.now as Date).getTime()).toBeGreaterThanOrEqual(before);
+	});
+
+	it('opens no tender, and reads none, when the list has nothing open', async () => {
+		expect(await pageWith(null)).toEqual({ record: null });
+		expect(loadTenderPage).not.toHaveBeenCalled();
 	});
 });

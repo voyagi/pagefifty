@@ -187,6 +187,11 @@ export function snapshotDays(capture: string): CaptureFacts {
 	return captureFacts(captureLine(capture));
 }
 
+// Answered from the files the build wrote, so a list can ask it of every row without a read.
+export function hasNoticeReadings(capture: string, notice: string): boolean {
+	return READING_URLS.has(`${capture}/${notice}`);
+}
+
 // A notice the capture's readings do not list answers nothing, and keeps the phase 1 view.
 export async function loadNoticeReadings(
 	capture: string,

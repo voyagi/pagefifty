@@ -4,7 +4,6 @@ import { readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { readNotice } from '$lib/ingest/read-notice';
 import type { NoticeRecord } from '$lib/ingest/record';
-import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
 import { CANCEL_INTENT_LINE } from '$lib/tenders/list';
 import { buildTenderPage } from '$lib/tenders/tender-page';
 import TenderPage from './TenderPage.svelte';
@@ -48,8 +47,10 @@ function factsOf(region: HTMLElement): Record<string, string> {
 }
 
 describe('TenderPage', () => {
+	// The facts row under the title holds the deadline, the time left, the value and the notice; the
+	// buyer's country sits beside the buyer, and the kind of work under "About this tender".
 	it('lays out 609955-2026: one h1 with its lang, the tender facts, no lot index', () => {
-		renderPage(recordOf('one-lot'));
+		const { container } = renderPage(recordOf('one-lot'));
 		const heading = screen.getByRole('heading', { level: 1 });
 		expect([heading.getAttribute('lang'), heading.hasAttribute('data-notice-text')]).toEqual([
 			'de',
@@ -60,11 +61,45 @@ describe('TenderPage', () => {
 			Deadline: '6 Oct 2026, 10:30 CEST',
 			'Time left': '15 days',
 			'TED notice': '609955-2026',
-			Country: 'Germany',
-			Kind: 'Software packages, CPV 48921000Main CPV 45315700',
 			'Estimated value': 'EUR 834,550.06'
 		});
+		expect(squash(container.querySelector('#tender .where')?.textContent)).toBe('Germany');
+		expect(factsOf(screen.getByRole('region', { name: 'About this tender' }))).toMatchObject({
+			Kind: 'Software packages, CPV 48921000Main CPV 45315700'
+		});
 		expect(screen.queryByRole('navigation', { name: /Lots in this notice/ })).toBeNull();
+	});
+
+	// The notice number in the facts row is the way to the notice on TED.
+	it('links the notice number in the facts to the notice on TED', () => {
+		renderPage(recordOf('one-lot'));
+		const facts = screen.getByRole('complementary', { name: 'Tender facts' });
+		const link = within(facts).getByRole('link', { name: '609955-2026' });
+		expect([link.getAttribute('href'), link.getAttribute('rel')]).toEqual([
+			'https://ted.europa.eu/en/notice/-/detail/609955-2026',
+			'external noreferrer'
+		]);
+	});
+
+	// A joint procurement names its first buyer in the head and every buyer under its facts.
+	it('counts the other buyers of a joint procurement in the head and names them all below', () => {
+		const record = recordOf('one-lot');
+		const second = { ...record.buyers[0], name: { text: 'Stadt Halle', lang: 'de' } };
+		const { container } = renderPage({ ...record, buyers: [record.buyers[0], second] });
+		expect(squash(container.querySelector('#tender .buyer-line')?.textContent)).toBe(
+			`${record.buyers[0].name.text} and 1 other buyer`
+		);
+		const about = screen.getByRole('region', { name: 'About this tender' });
+		expect(
+			[...about.querySelectorAll('.buyers li')].map((item) => [
+				item.textContent,
+				item.getAttribute('lang'),
+				item.hasAttribute('data-notice-text')
+			])
+		).toEqual([
+			[record.buyers[0].name.text, record.buyers[0].name.lang, true],
+			['Stadt Halle', 'de', true]
+		]);
 	});
 
 	it('never renders a fact row with an empty value', () => {
@@ -195,14 +230,11 @@ describe('TenderPage', () => {
 		expect(facts['Time left']).toBeUndefined();
 	});
 
-	// CI runs no browser driver, so this is the footnote's only check there.
-	it('names the capture day and the demo firm under the example tender page', () => {
+	// The example's footnote is the list's, under the list and the tender together, so the tender
+	// adds none of its own (TenderSplit's tests hold that the page shows it once).
+	it('leaves the example footnote to the list it opens beside', () => {
 		const { container } = renderPage(recordOf('one-lot'), BEFORE, 'example');
-		expect(
-			[...container.querySelectorAll('.demo-note')].map((note) => squash(note.textContent))
-		).toEqual([
-			`Example run from a snapshot captured on 15 Sep 2026. ${DEMO_FIRM_SHORT} is a demo firm with invented figures. Not legal advice.`
-		]);
+		expect(container.querySelector('.demo-note')).toBeNull();
 	});
 
 	it('shows no demo footnote on a live tender page', () => {

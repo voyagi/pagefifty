@@ -1,8 +1,15 @@
 import { LATEST_CAPTURE } from '$lib/server/records';
-import { loadTenderList } from '$lib/server/tenders';
+import { loadTenderPage } from '$lib/server/tender-page';
 import type { PageServerLoad } from './$types';
 
-// The real clock, read once per request: every card on the page is judged open or closed against
-// this one instant (D-06).
-export const load: PageServerLoad = ({ url }) =>
-	loadTenderList({ capture: LATEST_CAPTURE, url, now: new Date() });
+// The bare list opens the tender its layout chose beside it, or none when nothing is open. The
+// tender reads the real clock once, as /tenders/[notice] does (D-06).
+export const load: PageServerLoad = async ({ parent }) => {
+	const { defaultNotice } = await parent();
+	return {
+		record:
+			defaultNotice === null
+				? null
+				: await loadTenderPage({ capture: LATEST_CAPTURE, notice: defaultNotice, now: new Date() })
+	};
+};

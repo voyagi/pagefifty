@@ -37,9 +37,9 @@ function renderTable() {
 const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
 
 function marksIn(container: HTMLElement, notice: string): Element[] {
-	const cell = container.querySelector(`tr[data-notice="${notice}"] td.tender`);
-	if (cell === null) throw new Error(`no tender cell for ${notice}`);
-	return [...cell.querySelectorAll('[data-cancel-intent]')];
+	const row = container.querySelector(`li[data-notice="${notice}"]`);
+	if (row === null) throw new Error(`no row for ${notice}`);
+	return [...row.querySelectorAll('[data-cancel-intent]')];
 }
 
 describe('TenderTable and a buyer that intends to cancel', () => {
@@ -49,7 +49,7 @@ describe('TenderTable and a buyer that intends to cancel', () => {
 		);
 	});
 
-	it("states the sentence once in a marked row's tender cell", () => {
+	it('states the sentence once in a marked row', () => {
 		const { container } = renderTable();
 		const marks = marksIn(container, MARKED);
 		expect(marks.map((mark) => squash(mark.textContent))).toEqual([CANCEL_INTENT_LINE]);

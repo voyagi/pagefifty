@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { untrack, type Snippet } from 'svelte';
-	import TenderListPage from '$lib/components/TenderListPage.svelte';
 	import TenderPage from '$lib/components/TenderPage.svelte';
+	import TenderSplit from '$lib/components/TenderSplit.svelte';
 	import TopBand from '$lib/components/TopBand.svelte';
 	import { ACTIVE_FIRM_KEY, PROFILE_KEY, resetProfileStore } from '$lib/profile/store.svelte';
 	import type { TenderListData } from '$lib/tenders/list';
@@ -37,7 +37,7 @@
 
 <TopBand {path} />
 {#if page.kind === 'list'}
-	<TenderListPage data={page.data} {variant} basePath={base} />
+	<TenderSplit data={page.data} {variant} basePath={base} />
 {:else}
 	<TenderPage data={page.data} {variant} />
 {/if}

@@ -98,12 +98,14 @@
 {/key}
 
 <style>
+	/* One row of filters: each group keeps its chips together and the row wraps between groups. */
 	.filters {
 		display: flex;
+		flex: 1 1 auto;
 		flex-wrap: wrap;
 		align-items: flex-end;
 		gap: 1rem 1.5rem;
-		margin-bottom: 1.5rem;
+		min-width: 0;
 	}
 
 	fieldset {
@@ -113,14 +115,13 @@
 		min-width: 0;
 	}
 
+	/* Set like the date fields' labels beside them, so the row's labels read as one set. */
 	legend {
+		margin-bottom: 0.35rem;
 		padding: 0;
 		font-weight: 500;
 		font-size: var(--step--1);
-	}
-
-	legend {
-		margin-bottom: 0.5rem;
+		line-height: 1.3;
 	}
 
 	.chips {
@@ -131,8 +132,8 @@
 
 	.dates {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(10rem, 1fr));
-		gap: 0.35rem 1rem;
+		grid-template-columns: repeat(2, minmax(9.5rem, 1fr));
+		gap: 0.35rem 0.75rem;
 	}
 
 	.hint {

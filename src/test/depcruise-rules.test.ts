@@ -121,6 +121,15 @@ const VERDICT_SIDE: Record<string, string> = {
 		'../../../lib/components/TenderPage.svelte',
 		'TenderPage'
 	),
+	// The bare lists open a tender beside them, so their page components render the tender page too.
+	'src/routes/example/+page.svelte': svelteImporting(
+		'../../lib/components/TenderPage.svelte',
+		'TenderPage'
+	),
+	'src/routes/tenders/+page.svelte': svelteImporting(
+		'../../lib/components/TenderPage.svelte',
+		'TenderPage'
+	),
 	// The home figure names the verdicts in their display words, taken through verdict-view.
 	'src/lib/components/HomeFigure.svelte': svelteImporting('../tenders/verdict-view', 'figureWords'),
 	'src/routes/+page.svelte': svelteImporting('../lib/components/HomeFigure.svelte', 'HomeFigure')
@@ -129,12 +138,18 @@ const VERDICT_PLANTED: Record<string, string> = {
 	'src/lib/components/TenderTable.svelte': svelteImporting('../tenders/verdict-view', 'lotVerdict'),
 	'src/lib/components/HomeLead.svelte': svelteImporting('../tenders/verdict-view', 'figureWords'),
 	'src/routes/example/[notice]/+page.server.ts':
-		"import lotVerdict from '../../../lib/tenders/verdict-view';\nexport const load = () => ({ v: lotVerdict() });\n"
+		"import lotVerdict from '../../../lib/tenders/verdict-view';\nexport const load = () => ({ v: lotVerdict() });\n",
+	// The list's layout sits on every tender page, and the list never shows a verdict.
+	'src/routes/tenders/+layout.svelte': svelteImporting(
+		'../../lib/components/TenderPage.svelte',
+		'TenderPage'
+	)
 };
 const VERDICT_CLEAN: Record<string, string> = {
 	'src/lib/components/TenderTable.svelte': '<p>Rows</p>\n',
 	'src/lib/components/HomeLead.svelte': '<p>Lead</p>\n',
-	'src/routes/example/[notice]/+page.server.ts': 'export const load = () => ({});\n'
+	'src/routes/example/[notice]/+page.server.ts': 'export const load = () => ({});\n',
+	'src/routes/tenders/+layout.svelte': '<p>List</p>\n'
 };
 
 const PLANTED: Record<string, string> = {
@@ -334,14 +349,16 @@ describe('dependency-cruiser rules on planted import trees', () => {
 		);
 	});
 
-	// The lift covers the tender page and its two routes, the home figure and the home page, and
-	// nothing else: a list component, another home page component and the route's own server load
-	// still fail, and the verdict page and home figure chains alone pass.
+	// The lift covers the tender page and the four page components that render it, the home figure
+	// and the home page, and nothing else: a list component, the list's layout, another home page
+	// component and the route's own server load still fail, and the verdict page and home figure
+	// chains alone pass.
 	it('no-ui-reaches-verdict still fails a list component that reaches the verdict', () => {
 		expect(violators(planted, 'no-ui-reaches-verdict')).toEqual([
 			'src/lib/components/HomeLead.svelte',
 			'src/lib/components/TenderTable.svelte',
-			'src/routes/example/[notice]/+page.server.ts'
+			'src/routes/example/[notice]/+page.server.ts',
+			'src/routes/tenders/+layout.svelte'
 		]);
 		expect(violators(clean, 'no-ui-reaches-verdict')).toEqual([]);
 	});
