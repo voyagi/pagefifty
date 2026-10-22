@@ -106,6 +106,56 @@ describe('TenderSplit after a navigation', () => {
 		expect(document.activeElement).toBe(row);
 	});
 
+	// jsdom draws nothing, so scrollIntoView is recorded rather than run, and put back after.
+	function recordReveals() {
+		const original = Object.getOwnPropertyDescriptor(Element.prototype, 'scrollIntoView');
+		const reveal = vi.fn();
+		Object.defineProperty(Element.prototype, 'scrollIntoView', {
+			value: reveal,
+			configurable: true,
+			writable: true
+		});
+		const restore = () =>
+			original === undefined
+				? Reflect.deleteProperty(Element.prototype, 'scrollIntoView')
+				: Object.defineProperty(Element.prototype, 'scrollIntoView', original);
+		return { reveal, restore };
+	}
+
+	it('brings the open row into view on a first load that names it, leaving focus and the pane', () => {
+		const scrolled = onScreen(false);
+		const { reveal, restore } = recordReveals();
+		try {
+			const { pane, row } = renderSplit();
+			arrive('enter', NOTICE);
+			expect(reveal.mock.calls).toEqual([[{ block: 'nearest' }]]);
+			expect(reveal.mock.contexts[0]).toBe(row.closest('li'));
+			expect(row.getAttribute('aria-current')).toBe('page');
+			expect([pane.scrollTop, scrolled.mock.calls.length]).toEqual([240, 0]);
+			expect(document.activeElement).toBe(row);
+		} finally {
+			restore();
+		}
+	});
+
+	it('never moves the list on a click, a step back, or a phone', () => {
+		const { reveal, restore } = recordReveals();
+		try {
+			for (const [type, phone] of [
+				['link', false],
+				['popstate', false],
+				['enter', true]
+			] as const) {
+				onScreen(phone);
+				renderSplit();
+				arrive(type, NOTICE);
+			}
+			expect(reveal).not.toHaveBeenCalled();
+		} finally {
+			restore();
+		}
+	});
+
 	it.each(['enter', 'popstate'] as const)(
 		'keeps the place the browser gives a %s navigation',
 		(type) => {

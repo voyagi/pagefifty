@@ -127,9 +127,12 @@
 		background: var(--bg-2);
 	}
 
-	/* The opened tender: a tint of the brand colour and an underlined title, no side bar. */
+	/* The opened tender: a tint of the brand colour inside a 1px brand edge and an underlined title,
+	   no side bar. */
 	li.opened {
-		background: color-mix(in srgb, var(--brand) 7%, var(--bg));
+		background: color-mix(in srgb, var(--brand) 8%, var(--bg));
+		outline: 1px solid color-mix(in srgb, var(--brand) 45%, var(--bg));
+		outline-offset: -1px;
 	}
 
 	.tile {

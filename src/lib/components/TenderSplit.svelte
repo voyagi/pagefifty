@@ -78,13 +78,26 @@
 	const openedClosed = $derived(list.closed.some((row) => row.noticeNumber === opened));
 
 	let pane = $state<HTMLElement>();
+	let listColumn = $state<HTMLElement>();
+
+	// A tender opened from its own address, on a wide screen, brings its row into view beside it, so
+	// the list shows which tender is open. Focus stays where the browser put it.
+	function revealOpened() {
+		if (!onRecord || matchMedia('(max-width: 45em)').matches) return;
+		const row = listColumn?.querySelector('a[aria-current]')?.closest('li');
+		row?.scrollIntoView?.({ block: 'nearest' });
+	}
 
 	// A tender opened from the list shows from its start. On a wide screen the list keeps its place
 	// and focus stays on the row that was picked. On a phone the tender takes the list's place, so the
-	// page goes back to the top and focus moves to the tender's heading. The first load and a step
-	// back keep the place the browser gives them.
+	// page goes back to the top and focus moves to the tender's heading. A step back keeps the place
+	// the browser gives it, and the first load only brings the open row into view.
 	afterNavigate(({ type, to }) => {
-		if (type === 'enter' || type === 'popstate' || pane === undefined) return;
+		if (type === 'enter') {
+			revealOpened();
+			return;
+		}
+		if (type === 'popstate' || pane === undefined) return;
 		if (!matchMedia('(max-width: 45em)').matches) {
 			pane.scrollTop = 0;
 			return;
@@ -135,7 +148,7 @@
 	</div>
 
 	<div class="split" class:on-record={onRecord} class:with-pane={showPane}>
-		<div class="list-col">
+		<div class="list-col" bind:this={listColumn}>
 			<section id="open" aria-labelledby="list-title">
 				{#if nothingMatches}
 					<EmptyState
