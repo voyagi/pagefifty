@@ -46,14 +46,17 @@
 	});
 </script>
 
+{#snippet clause()}{#each parts as part (part.start)}{#if part.mark}<mark
+				class:decides={part.mark.decides === true}
+				data-n={part.mark.n}><ProseRuns runs={runsBetween(runs, part.start, part.end)} /></mark
+			>{:else}<ProseRuns runs={runsBetween(runs, part.start, part.end)} />{/if}{/each}{/snippet}
+
 <div class="quote-block">
 	<Label>{quote.language}</Label>
 	{#if source !== undefined}<p class="source">{source}</p>{/if}
-	<blockquote class="quote" class:clamp lang={quote.lang} data-notice-text>
-		{#each parts as part (part.start)}{#if part.mark}<mark
-					class:decides={part.mark.decides === true}
-					data-n={part.mark.n}><ProseRuns runs={runsBetween(runs, part.start, part.end)} /></mark
-				>{:else}<ProseRuns runs={runsBetween(runs, part.start, part.end)} />{/if}{/each}
+	<!-- An excerpt's lines sit in their own box inside the padding, so its clamp cuts on a line. -->
+	<blockquote class="quote" lang={quote.lang} data-notice-text>
+		{#if clamp}<span class="lines">{@render clause()}</span>{:else}{@render clause()}{/if}
 	</blockquote>
 </div>
 
@@ -102,8 +105,10 @@
 		hyphens: auto;
 	}
 
-	/* An excerpt: six lines, cut with an ellipsis; the whole clause sits behind its own control. */
-	.quote.clamp {
+	/* An excerpt: six whole lines, cut with an ellipsis; the whole clause sits behind its own
+	   control. The clamp is on the text, which has no padding of its own, so the seventh line is cut
+	   off at the sixth line's foot instead of showing its top half in the box's padding. */
+	.lines {
 		display: -webkit-box;
 		overflow: hidden;
 		-webkit-box-orient: vertical;
