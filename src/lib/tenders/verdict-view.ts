@@ -59,6 +59,8 @@ export interface LotVerdictView {
 	// The published position of the clause the verdict rests on, shown first under it; null when
 	// no criterion is left open.
 	deciding: number | null;
+	// Who decided and from what, worded by what code compared for this lot and nothing more.
+	decidedBy: string;
 }
 
 // Article 63 lets another firm lend its capacity; it never makes that firm's help sufficient, and
@@ -213,6 +215,59 @@ export function comparedLine(firm: ComparedFirm): string {
 		case 'newer':
 			return 'The firm profile in this browser was saved by a newer version of Pagefifty, so it was not read.';
 	}
+}
+
+// The line under every verdict that says who decided it. Each says only what this run did: a lot
+// where no figure or certificate of the firm was set against a clause says so, and a lot the model
+// never read does not say the model read it.
+export const DECIDED_LINES = {
+	figures: 'Decided by code from the figures compared; the model only read the clauses.',
+	certificates: 'Decided by code from the certificates compared; the model only read the clauses.',
+	both: 'Decided by code from the figures and certificates compared; the model only read the clauses.',
+	'nothing-compared':
+		'Decided by code. No figure or certificate of the firm was compared for this lot; the model only read the clauses.',
+	unread:
+		'Decided by code from what the notice states. The model read no clause of this lot, and nothing was compared with the firm.'
+} as const satisfies Readonly<Record<string, string>>;
+
+// The why codes compare.ts gives a requirement only once it has set a figure from the profile
+// against a floor read from a verified quote (fromCheck, shortfall, turnoverCheck's year count).
+const FIGURE_WHYS: ReadonlySet<OutcomeWhy> = new Set<OutcomeWhy>([
+	'met',
+	'short',
+	'short-restricted',
+	'route-by-law',
+	'no-comparator',
+	'net-below-gross-floor',
+	'period-unstated',
+	'fewer-years'
+]);
+
+// The why codes certificateState gives once it has looked for a certificate the quote names among
+// the profile's own.
+const CERTIFICATE_WHYS: ReadonlySet<OutcomeWhy> = new Set<OutcomeWhy>([
+	'not-held',
+	'expired',
+	'certificate-scope',
+	'undated',
+	'no-deadline'
+]);
+
+// A specific turnover the firm's general figure passes is left to the firm (decideFigure), after
+// the figure was compared; the same why code set by the clause's kind alone carries no item.
+const comparedFigure = (requirement: RequirementLike) =>
+	FIGURE_WHYS.has(requirement.why) ||
+	(requirement.why === 'firm-judges' && requirement.item !== undefined);
+
+function decidedLine(decided: ReadLotDecision, lot: LotView): string {
+	if (lot.verdictInput?.status.status !== 'read') return DECIDED_LINES.unread;
+	const requirements = decided.criteria.flatMap((outcome) => outcome.requirements);
+	const figures = requirements.some(comparedFigure);
+	const certificates = requirements.some((each) => CERTIFICATE_WHYS.has(each.why));
+	if (figures && certificates) return DECIDED_LINES.both;
+	if (figures) return DECIDED_LINES.figures;
+	if (certificates) return DECIDED_LINES.certificates;
+	return DECIDED_LINES['nothing-compared'];
 }
 
 const LINES: Readonly<Record<string, string>> = REASON_LINES;
@@ -402,7 +457,8 @@ export function verdictView(
 		}),
 		shortfalls: shortfallsOf(decided, lot),
 		article63: decision.verdict === 'PARTNER NEEDED' ? ARTICLE_63_LINE : null,
-		deciding: decidingOf(decided)
+		deciding: decidingOf(decided),
+		decidedBy: decidedLine(decided, lot)
 	};
 }
 

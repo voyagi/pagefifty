@@ -131,7 +131,12 @@
 		</ul>
 	</div>
 
-	<p class="foot">Read with NVIDIA Nemotron on Nebius. Numbers compared by code.</p>
+	<!-- What this lot's run did, from the verdict itself: a lot no figure was compared on never
+	     says figures were compared, and a lot the model never read names no model. -->
+	<p class="foot">
+		{#if lot.reading?.status === 'read'}Read with NVIDIA Nemotron on Nebius.{/if}
+		{view.decidedBy}
+	</p>
 </article>
 
 <style>

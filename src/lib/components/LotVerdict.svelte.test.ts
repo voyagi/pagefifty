@@ -14,6 +14,7 @@ import { CANCEL_INTENT_LINE, captureFacts } from '$lib/tenders/list';
 import { buildTenderPage, type TenderPageData } from '$lib/tenders/tender-page';
 import {
 	ARTICLE_63_LINE,
+	DECIDED_LINES,
 	NEXT_LINES,
 	REASON_LINES,
 	STATE_LABELS,
@@ -273,11 +274,62 @@ describe('what to check next, what the verdict means and who decided it', () => 
 		);
 	});
 
-	it('says inside the verdict that code decided it and the model only read the clauses', () => {
-		const region = verdictOf(renderExample(examplePage('610242-2026')), 'lot-1');
-		expect(textOf(region)).toContain(
-			'Decided by code from the figures compared; the model only read the clauses.'
+	it('every decided-by line names code as the decider, gives no advice and holds no verdict word', () => {
+		for (const sentence of Object.values(DECIDED_LINES)) {
+			expect(sentence).toMatch(/^Decided by code\b.{20,}\.$/);
+			for (const phrase of BANNED) expect(sentence.toLowerCase()).not.toContain(phrase);
+			const shown = document.createElement('p');
+			shown.textContent = sentence;
+			expect(findVerdictWords(shown)).toEqual([]);
+		}
+	});
+
+	// The line under a verdict says what code compared on that lot and nothing more.
+	it('says inside the verdict who decided it, worded by what this run compared', () => {
+		// The German example lot leaves its clauses to the firm, shows two as published and assesses
+		// two not at all, so no figure of the demo firm meets any of its clauses.
+		const example = verdictOf(renderExample(examplePage('610242-2026')), 'lot-1');
+		expect(textOf(example)).toContain(DECIDED_LINES['nothing-compared']);
+		expect(textOf(example)).not.toContain(DECIDED_LINES.figures);
+		cleanup();
+		const turnover = verdictOf(
+			renderExample(
+				syntheticPage([
+					{ criteria: [turnoverCriterion('500.000')], items: [turnoverItem(1, '500.000')] }
+				])
+			),
+			'lot-1'
 		);
+		expect(textOf(turnover)).toContain(DECIDED_LINES.figures);
+		cleanup();
+		const text = 'Zertifizierung nach ISO 27001 für den Rechenzentrumsbetrieb.';
+		const certificate = verdictOf(
+			renderExample(
+				syntheticPage([
+					{
+						criteria: [criterion('slc-sche-qu-cert-indep', text)],
+						items: [item(1, 'certificate', 'Zertifizierung nach ISO 27001')]
+					}
+				])
+			),
+			'lot-1'
+		);
+		expect(textOf(certificate)).toContain(DECIDED_LINES.certificates);
+		cleanup();
+		// The Dutch lot's criteria sit in the procurement documents, so the model read none of it.
+		const record = builtRecord('604724-2026');
+		const unread = verdictOf(
+			renderExample(
+				pageOf(record, {
+					notice: '604724-2026',
+					lots: record.lots.map((lot) => ({ lot: lot.id, status: 'no-criteria' as const })),
+					readings: []
+				})
+			),
+			'lot-1'
+		);
+		expect(textOf(unread)).toContain(DECIDED_LINES.unread);
+		expect(textOf(unread)).not.toContain('only read the clauses');
 	});
 });
 

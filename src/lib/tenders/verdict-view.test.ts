@@ -12,6 +12,7 @@ import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
 import { buildTenderPage } from './tender-page';
 import {
 	ARTICLE_63_LINE,
+	DECIDED_LINES,
 	REASON_LINES,
 	STATE_LABELS,
 	comparedLine,
@@ -151,6 +152,7 @@ describe('the verdict copy', () => {
 		const copy = [
 			...Object.values(REASON_LINES),
 			...Object.values(STATE_LABELS),
+			...Object.values(DECIDED_LINES),
 			ARTICLE_63_LINE,
 			...(['own', 'none', 'newer'] as const).map((kind) => comparedLine({ kind })),
 			comparedLine({ kind: 'demo', name: 'Brink Data B.V.' })

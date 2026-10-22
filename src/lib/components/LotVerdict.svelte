@@ -39,9 +39,7 @@
 			<p class="link"><DocumentsLink documents={view.link.documents} /></p>
 		{/if}
 		<p class="compared">{compared}</p>
-		<p class="decided">
-			Decided by code from the figures compared; the model only read the clauses.
-		</p>
+		<p class="decided">{view.decidedBy}</p>
 	</div>
 </section>
 

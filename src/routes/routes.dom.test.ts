@@ -9,7 +9,7 @@ import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
 import { NoticeReadingsSchema, type NoticeReadings } from '$lib/snapshot/readings';
 import { captureFacts } from '$lib/tenders/list';
 import { buildTenderPage, type TenderPageData } from '$lib/tenders/tender-page';
-import { lotVerdict } from '$lib/tenders/verdict-view';
+import { DECIDED_LINES, lotVerdict } from '$lib/tenders/verdict-view';
 import Layout from './+layout.svelte';
 import Page from './+page.svelte';
 
@@ -124,9 +124,14 @@ describe('entry route', () => {
 		const tags = [...(card?.querySelectorAll('[data-verdict-word]') ?? [])];
 		expect(tags).toHaveLength(1);
 		expect(Object.values(VERDICT_LABELS)).toContain(squash(tags[0]?.textContent));
-		expect(squash(card?.textContent)).toContain(
-			'Read with NVIDIA Nemotron on Nebius. Numbers compared by code.'
+		// The card's last line says what this lot's run did: the demo firm meets no figure on this
+		// lot, so it never says figures were compared.
+		const view = lotVerdict(data.tender.lots[0], DEMO_PROFILE, data.tender.now);
+		expect(squash(card?.querySelector('.foot')?.textContent)).toBe(
+			`Read with NVIDIA Nemotron on Nebius. ${DECIDED_LINES['nothing-compared']}`
 		);
+		expect(view?.decidedBy).toBe(DECIDED_LINES['nothing-compared']);
+		expect(squash(card?.textContent)).not.toContain('Numbers compared by code.');
 	});
 
 	// The clause that decides is the one the verdict rests on, quoted from the notice, its verified
