@@ -45,23 +45,28 @@ describe('/tenders layout load', () => {
 			url: new URL('http://127.0.0.1/tenders')
 		} as LayoutEvent);
 		expect(vi.mocked(defaultNotice).mock.calls).toEqual([['2026-10-11', OPEN]]);
-		expect(data).toEqual({ list: { open: OPEN }, defaultNotice: '700002-2026' });
+		const [args] = vi.mocked(loadTenderList).mock.calls[0];
+		expect(data).toEqual({ list: { open: OPEN }, defaultNotice: '700002-2026', now: args.now });
 	});
 });
 
 describe('/tenders page load', () => {
+	// The instant the layout judged its list at, set well before this run so a fresh clock read shows.
+	const LISTED = new Date('2026-10-22T11:59:59.000Z');
 	const pageWith = (notice: string | null) =>
-		pageLoad({ parent: async () => ({ defaultNotice: notice }) } as unknown as PageEvent);
+		pageLoad({
+			parent: async () => ({ defaultNotice: notice, now: LISTED })
+		} as unknown as PageEvent);
 
-	it('loads the tender the list opens from the newest capture, judged against the real clock', async () => {
-		const before = Date.now();
+	// The list and the tender it opens are judged at one instant, so a deadline passing between two
+	// clock reads can never show the tender open in the list and closed beside it.
+	it('loads the tender the list opens from the newest capture, at the instant the list was judged', async () => {
 		expect(await pageWith('700002-2026')).toEqual({
 			record: { tender: { noticeNumber: '700002-2026' } }
 		});
 		const [args] = vi.mocked(loadTenderPage).mock.calls[0];
 		expect([args.capture, args.notice]).toEqual(['2026-10-11', '700002-2026']);
-		expect(args.now).toBeInstanceOf(Date);
-		expect((args.now as Date).getTime()).toBeGreaterThanOrEqual(before);
+		expect(args.now).toBe(LISTED);
 	});
 
 	it('opens no tender, and reads none, when the list has nothing open', async () => {

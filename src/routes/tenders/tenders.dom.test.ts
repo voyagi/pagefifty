@@ -67,7 +67,7 @@ function renderPage(
 ) {
 	return render(Layout, {
 		props: {
-			data: { ...data, defaultNotice },
+			data: { ...data, defaultNotice, now: NOW },
 			params: notice === undefined ? {} : { notice },
 			children: RECORD
 		}
@@ -81,7 +81,7 @@ describe('tenders list page', () => {
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Open IT tenders');
 		const captureLine = container.querySelector('.capture .mono');
 		expect(squash(captureLine?.textContent)).toBe('Snapshot captured from TED on 15 Sep 2026');
-		render(Page, { props: { data: { ...data, defaultNotice: null, record: null } } });
+		render(Page, { props: { data: { ...data, defaultNotice: null, now: NOW, record: null } } });
 		expect(document.title).toBe('Open IT tenders in NL, BE and DE - Pagefifty');
 	});
 
