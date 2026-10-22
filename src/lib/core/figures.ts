@@ -144,8 +144,11 @@ function powerWithCurrencyBefore(rest: string): number | 'refused' {
 	return MAGNITUDES[word.toLowerCase()] ?? 0;
 }
 
+// ",-" or ",--" closes a whole amount ("3.000.000,- €"), so the currency after it still counts.
+const ZERO_CENTS = /^,[-–]{1,2}/u;
+
 function candidate(text: string, match: RegExpExecArray, lang?: string): Candidate | undefined {
-	const rest = text.slice(match.index + match[0].length);
+	const rest = text.slice(match.index + match[0].length).replace(ZERO_CENTS, '');
 	let power = powerAfter(rest);
 	if (power === 'no currency') {
 		if (!CURRENCY_BEFORE.test(text.slice(0, match.index))) return undefined;

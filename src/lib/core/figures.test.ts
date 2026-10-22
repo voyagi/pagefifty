@@ -82,6 +82,10 @@ describe('parseMoney forms', () => {
 		['1,250 millions d’euros', 'fr', one(125_000_000)],
 		['1,250 miljoen euro', 'nl', one(125_000_000)],
 		['2,154 Mio. € netto', 'de', one(215_400_000, 'net')],
+		// ",-" closes a whole amount in German and Dutch money writing.
+		['3.000.000,- €', 'de', one(300_000_000)],
+		['3.000.000,-- EUR', 'de', one(300_000_000)],
+		['€ 50.000,-', 'nl', one(5_000_000)],
 		['1.500,5 €', 'de', one(150_050)],
 		['250000 EUR', 'de', one(25_000_000)],
 		['0,29 Mio. EUR', 'de', one(29_000_000)],
