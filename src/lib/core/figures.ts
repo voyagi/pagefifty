@@ -577,6 +577,28 @@ const BUSINESS_FIELD = phrases(
 
 export const namesBusinessField = (text: string): boolean => BUSINESS_FIELD.test(text);
 
+// A floor set as a multiple of the contract value names no amount ("das Zweifache des geschätzten
+// Auftragswerts"), and neither does one tied to the value itself.
+const MULTIPLE = phrases(
+	[
+		'twice',
+		'two times',
+		'three times',
+		'tweemaal',
+		'twee keer',
+		'deux fois',
+		'trois fois',
+		'le double',
+		'het dubbele'
+	],
+	['zweifach', 'dreifach', 'doppelt']
+);
+
+// Whether a text states a floor, with or without an amount code can read.
+export function namesFloor(text: string): boolean {
+	return [AT_LEAST, MORE_THAN, OVER_AMOUNT, MULTIPLE].some((pattern) => pattern.test(text));
+}
+
 // "Los 1:", "Lot n° 2", "Perceel 3": the lot numbers a text names. Read only in the languages this
 // version reads, since "Los 3 últimos ejercicios" is Spanish for "the last 3 years".
 const LOT_LABEL = new RegExp(

@@ -356,6 +356,26 @@ describe('a clause every lot shares, with one floor per lot', () => {
 	});
 });
 
+describe('a floor stated with no amount code can read', () => {
+	// The prompt gives "" as the number text when no number is written, so the model's agreement
+	// cannot hold such a floor back.
+	it.each([
+		['de', 'Der Mindestjahresumsatz muss das Zweifache des geschätzten Auftragswerts betragen.'],
+		['de', 'Der Jahresumsatz muss mindestens dem geschätzten Auftragswert entsprechen.'],
+		['en', 'The yearly turnover must be at least twice the estimated contract value.'],
+		['fr', "Le chiffre d'affaires annuel doit être au moins égal à deux fois la valeur du marché."]
+	])('%s: "%s" is never a request for information', (lang, text) => {
+		const decided = verdictFor(text, '', SMALL_FIRM, lang);
+		expect(decided.criteria[0].state).toBe('NOT_READ');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
+
+	it('a request for a figure with no floor stays for information', () => {
+		const text = 'Erklärung über den Gesamtumsatz der letzten drei Geschäftsjahre.';
+		expect(verdictFor(text, '', SMALL_FIRM).criteria[0].state).toBe('INFO');
+	});
+});
+
 describe('mutation detectors on the floor comparison', () => {
 	const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR netto';
 	const exact = firmWithTurnover({ 2023: 1_000_000, 2024: 1_000_000, 2025: 1_000_000 });
