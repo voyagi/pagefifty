@@ -173,6 +173,10 @@ describe('parseMoney comparator words', () => {
 		['supérieur à', 'fr', 'more-than'],
 		['more than', 'en', 'more-than'],
 		['exceeding', 'en', 'more-than'],
+		['mind.', 'de', 'at-least'],
+		// "über" before a noun is the preposition of a declaration, not a comparator.
+		['Eigenerklärung über einen Jahresumsatz von mindestens', 'de', 'at-least'],
+		['Erklärung über den Umsatz von', 'de', 'unstated'],
 		['mindestens mehr als', 'de', 'unstated'],
 		['Umsatz von', 'de', 'unstated'],
 		['minimalistisch', 'de', 'unstated']

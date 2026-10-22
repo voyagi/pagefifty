@@ -183,6 +183,7 @@ const NET_WORD = phrases(['net']);
 const AT_LEAST = phrases(
 	[
 		'mindestens',
+		'mind.',
 		'min.',
 		'minimaal',
 		'minimale',
@@ -197,9 +198,14 @@ const AT_LEAST = phrases(
 	],
 	['Mindest']
 );
+// "über" is also the preposition of nearly every German declaration ("Eigenerklärung über den
+// Umsatz"), so it names a comparator only directly before an amount.
+const OVER_AMOUNT = new RegExp(
+	String.raw`(?<![\p{L}\p{N}])über${SPACE}+(?:(?:EUR|€)${SPACE}*)?\d`,
+	'iu'
+);
 const MORE_THAN = phrases([
 	'mehr als',
-	'über',
 	'meer dan',
 	'plus de',
 	'supérieur à',
@@ -219,7 +225,10 @@ function basisOf(text: string, lang?: string): Basis {
 
 function comparatorOf(text: string): Comparator {
 	return oneOf<Comparator>(
-		{ 'at-least': AT_LEAST.test(text), 'more-than': MORE_THAN.test(text) },
+		{
+			'at-least': AT_LEAST.test(text),
+			'more-than': MORE_THAN.test(text) || OVER_AMOUNT.test(text)
+		},
 		'unstated'
 	);
 }
