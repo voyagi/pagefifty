@@ -370,6 +370,18 @@ describe('a floor stated with no amount code can read', () => {
 		expect(decided.decision.verdict).not.toBe('GO');
 	});
 
+	it('a quote leaving out the floor its clause states is never a request for information', () => {
+		const text =
+			'Angabe des Gesamtumsatzes der letzten drei Geschäftsjahre. Mindestumsatz in EUR: 500.000';
+		const reading = readLot({
+			criteria: [{ code: 'slc-stand-to-gen', descriptions: [{ text, lang: 'de' }] }],
+			items: [item('Angabe des Gesamtumsatzes der letzten drei Geschäftsjahre', '')]
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].state).toBe('NOT_READ');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
+
 	it('a request for a figure with no floor stays for information', () => {
 		const text = 'Erklärung über den Gesamtumsatz der letzten drei Geschäftsjahre.';
 		expect(verdictFor(text, '', SMALL_FIRM).criteria[0].state).toBe('INFO');

@@ -339,9 +339,10 @@ function readFigure(
 		// ... mindestens 25", reads no amount anywhere. The prompt gives "" for a clause with no
 		// threshold (token-factory.ts), so a number the model names withholds the clause rather than
 		// let INFO pass a smaller firm as GO. A floor with no number at all ("das Zweifache des
-		// geschätzten Auftragswerts") gets "" too, so a quote stating a floor is not read either.
+		// geschätzten Auftragswerts") gets "" too, so a quote or a clause stating a floor is not read
+		// either: a quote can leave out the floor its clause goes on to state.
 		if (item.numberText.trim() !== '') return decided('NOT_READ', 'model-number-differs', item);
-		return namesFloor(item.quote)
+		return namesFloor(item.quote) || namesFloor(reading.text)
 			? decided('NOT_READ', 'no-amount', item)
 			: decided('INFO', 'request-without-minimum', item);
 	}
