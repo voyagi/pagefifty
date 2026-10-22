@@ -32,6 +32,11 @@ const MARKERS = [...TURNOVER.map(([, value]) => value), STAFF, CERTIFICATE, VALI
 const PROBE = 'pf-probe-5e2a';
 // The theme switch marks its pressed button only once the app has started.
 const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
+const SITE = '127.0.0.1:8788';
+// The line a verdict region carries once the page has compared the profile kept in this browser.
+const OWN_FIRM = 'Compared with the firm profile kept in this browser.';
+const FED_CHECK =
+	'the profile-fed verdict page sends no profile marker and no request off the site';
 
 const BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -188,6 +193,59 @@ try {
 			shown.country === built.countries.join(', '),
 		`notice "${shown.notice}", ${shown.lots} lots, country "${shown.country}"; built index: ${built.notice}, ${built.lots} lots, ${built.countries.join(', ')}`
 	);
+	// The profile-fed verdict page: the first notice of the live list the model read (config.latest,
+	// from the build), reached by its row, compares the stored profile in the browser. Every request
+	// from the click to that verdict on screen is held to the markers and to the site's own host.
+	const fed = config.latest.readProbe;
+	if (fed === null) {
+		checks.push({
+			name: `${FED_CHECK} did not run: the newest capture holds no model reading`,
+			ok: true,
+			didNotRun: true,
+			detail: `no reading run in ${config.latest.id}`
+		});
+	} else {
+		await page.goto('http://127.0.0.1:8788/tenders');
+		await page.waitForSelector(HYDRATED, { timeout: 10000 });
+		const fedGroup = await page.evaluate(
+			(notice) =>
+				document.querySelector(`tr[data-notice="${notice}"]`)?.closest('details')
+					? 'closed'
+					: 'open',
+			fed.notice
+		);
+		if (fedGroup === 'closed') await page.click('#closed summary');
+		const fromClick = captured.length;
+		await page.click(`tr[data-notice="${fed.notice}"] a`);
+		await page.waitForFunction((path) => location.pathname === path, `/tenders/${fed.notice}`, {
+			timeout: 10000
+		});
+		await page.waitForFunction(
+			([anchor, line]) =>
+				(document.querySelector(`#${anchor} [data-verdict]`)?.textContent ?? '').includes(line),
+			[fed.anchor, OWN_FIRM],
+			{ timeout: 10000 }
+		);
+		const word = await page.evaluate(
+			(anchor) =>
+				document.querySelector(`#${anchor} [data-verdict-word]`)?.textContent.trim() ?? '',
+			fed.anchor
+		);
+		const sent = captured.slice(fromClick);
+		const fedHits = MARKERS.map((marker) => ({ marker, ...hitsIn(sent, marker) })).filter(
+			(hit) => hit.url + hit.headers + hit.body > 0
+		);
+		// The sandbox has no URL class, so the host is cut from the address by hand.
+		const offSite = sent
+			.map((request) => request.url)
+			.filter((url) => /^https?:/.test(url))
+			.filter((url) => url.replace(/^https?:\/\//, '').split('/')[0] !== SITE);
+		check(
+			FED_CHECK,
+			word !== '' && sent.length > 0 && fedHits.length === 0 && offSite.length === 0,
+			`${fed.notice} ${fed.anchor}: verdict "${word}" compared with the stored profile, ${sent.length} requests from the click to the verdict, marker hits ${JSON.stringify(fedHits)}, off the site ${JSON.stringify(offSite)}`
+		);
+	}
 	// The example's documents and read notices (config.example, from the build) are reached by their
 	// rows. The read notice's page computes a verdict in the browser, so its requests are searched
 	// for the markers too: the verdict there is the demo firm's, and the stored profile must stay in

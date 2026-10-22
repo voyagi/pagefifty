@@ -30,8 +30,8 @@ import { basename, join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { cetDayEnd } from '../src/lib/core/deadline.ts';
 import { captureDay, firstPublishedDay, newestCapture } from '../src/lib/snapshot/capture-id.ts';
-import { SnapshotIndexSchema } from '../src/lib/snapshot/index-row.ts';
-import { ReadingRunSchema } from '../src/lib/snapshot/readings.ts';
+import { NoticeRecordSchema, SnapshotIndexSchema } from '../src/lib/snapshot/index-row.ts';
+import { NoticeReadingsSchema, ReadingRunSchema } from '../src/lib/snapshot/readings.ts';
 import { SearchRunSchema } from '../src/lib/snapshot/search-run.ts';
 import {
 	DEV_BROWSER_TMP,
@@ -42,6 +42,7 @@ import {
 	checkDevBrowser,
 	exampleFacts,
 	marginWarnings,
+	partnerProbe,
 	readResult,
 	releaseRunLock,
 	runDriver,
@@ -163,8 +164,69 @@ function latestCapture() {
 			notice: first.noticeNumber,
 			lots: first.lots.length,
 			countries: first.country.map((code) => names.get(code))
+		},
+		readProbe: readProbeOf(id, rows)
+	};
+}
+
+// The first notice in publication order of the newest capture with a lot the model read, and that
+// lot's anchor on its tender page, so the canary watches the verdict a stored profile gives there.
+// Required once the capture holds a reading run, and null before one does.
+function readProbeOf(id, rows) {
+	const folder = join(GENERATED, id);
+	if (!existsSync(join(folder, 'reading-run.json'))) return null;
+	for (const row of [...rows].sort(noticeOrder)) {
+		const path = join(folder, 'readings', `${row.noticeNumber}.json`);
+		if (!existsSync(path)) continue;
+		const read = new Set(
+			builtJson(path, NoticeReadingsSchema)
+				.lots.filter((lot) => lot.status === 'read')
+				.map((lot) => lot.lot)
+		);
+		const record = builtJson(
+			join(folder, 'records', `${row.noticeNumber}.json`),
+			NoticeRecordSchema
+		);
+		const at = record.lots.findIndex((lot) => read.has(lot.id));
+		if (at >= 0) return { notice: row.noticeNumber, anchor: `lot-${at + 1}` };
+	}
+	throw new HarnessError(
+		2,
+		`${folder} holds a reading run and no notice with a read lot, so the canary's profile-fed verdict check has nothing to visit`
+	);
+}
+
+// The partner-line fixture firm: the three completed years the profile form asks for this year
+// (derive.ts turnoverYears, written a second time because Node cannot import it), every general net
+// turnover 1 euro, and every other field empty, as the form stores it.
+const PARTNER_TURNOVER = 1;
+function partnerFirm(today) {
+	const year = today.getFullYear();
+	const years = [year - 3, year - 2, year - 1];
+	return {
+		years,
+		turnover: String(PARTNER_TURNOVER),
+		profile: {
+			registration: {},
+			authorisations: [],
+			securityClearances: [],
+			completedFinancialYears: 3,
+			turnover: years.map((each) => ({ year: each, generalNet: PARTNER_TURNOVER, specific: [] })),
+			staff: { byRole: [], yearlyAverages: [] },
+			insurance: [],
+			certificates: [],
+			references: [],
+			countries: [],
+			languages: []
 		}
 	};
+}
+
+function partnerFacts() {
+	const now = new Date();
+	const firm = partnerFirm(now);
+	const probe = partnerProbe(GENERATED, firm.profile, now);
+	return probe === null ? null : { ...probe, ...firm };
 }
 
 function builtJson(path, schema) {
@@ -243,13 +305,20 @@ function logChecks(log, logRules) {
 	});
 }
 
-function runDrivers(runId, latest, trust, example) {
+function runDrivers(runId, latest, trust, example, partner) {
 	const checks = [];
 	const logRules = [];
 	const times = [];
 	for (const [index, driverPath] of driverPaths().entries()) {
 		const resultName = `pagefifty-e2e-${runId}-${index}.json`;
-		writeRunConfig('pagefifty-e2e-run.json', { runId, resultName, latest, trust, example });
+		writeRunConfig('pagefifty-e2e-run.json', {
+			runId,
+			resultName,
+			latest,
+			trust,
+			example,
+			partner
+		});
 		const started = Date.now();
 		const run = runDriver({
 			browserName: 'pagefifty-e2e',
@@ -335,7 +404,11 @@ async function main() {
 		if (!args.has('--no-build')) buildWorker();
 		const latest = latestCapture();
 		console.log(
-			`[e2e] newest capture ${latest.id}: ${latest.rows} rows of ${latest.total} listed, probe ${latest.probe.notice}`
+			`[e2e] newest capture ${latest.id}: ${latest.rows} rows of ${latest.total} listed, probe ${latest.probe.notice}, read probe ${latest.readProbe ? `${latest.readProbe.notice} ${latest.readProbe.anchor}` : 'none'}`
+		);
+		const partner = partnerFacts();
+		console.log(
+			`[e2e] partner probe ${partner ? `${partner.notice} ${partner.anchor}` : 'none: no lot of the newest capture reads PARTNER NEEDED for the fixture firm'}`
 		);
 		const trust = trustFacts();
 		console.log(
@@ -347,7 +420,7 @@ async function main() {
 		const logFile = join(DEV_BROWSER_TMP, `pagefifty-e2e-${runId}-wrangler.log`);
 		worker = await startWorker({ port: PORT, logFile });
 		console.log(`[e2e] wrangler dev pid ${worker.pid} on ${BASE_URL}, log ${logFile}`);
-		const { checks, logRules, times } = runDrivers(runId, latest, trust, example);
+		const { checks, logRules, times } = runDrivers(runId, latest, trust, example, partner);
 		const log = logRules.length > 0 ? await settledLog(logFile) : '';
 		code = verdict([...checks, ...logChecks(log, logRules)]);
 		for (const line of marginWarnings(times, DRIVER_SECONDS)) {
