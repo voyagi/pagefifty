@@ -216,6 +216,7 @@
 		line-height: 1.5;
 		color: var(--ink);
 		overflow-wrap: anywhere;
+		text-wrap: pretty;
 	}
 
 	.provenance {

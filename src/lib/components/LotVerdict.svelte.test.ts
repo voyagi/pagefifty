@@ -366,6 +366,26 @@ describe('the clause that decides', () => {
 		).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
 	});
 
+	// The pinned record order: the lot's name, its verdict, the clause that decides, the other
+	// requirements, and only then the lot's facts, so no fact pushes the verdict down the pane.
+	it("puts the verdict right under the lot's name and its facts after the requirements", () => {
+		const lot = renderExample(examplePage('610242-2026')).querySelector('#lot-1');
+		const order = [
+			'h2',
+			'.lot-verdict',
+			'.requirements .clause',
+			'details.others',
+			'.lot-facts'
+		].map((selector) => lot?.querySelector(selector));
+		expect(order.every((each) => each instanceof Element)).toBe(true);
+		for (const [index, each] of order.slice(1).entries()) {
+			expect(order[index]?.compareDocumentPosition(each as Element)).toBe(
+				Node.DOCUMENT_POSITION_FOLLOWING
+			);
+		}
+		expect(lot?.querySelector('.lot-name')?.nextElementSibling).toBe(order[1]);
+	});
+
 	it('leads with the short criterion on a lot the firm falls short on alone', () => {
 		const container = renderExample(
 			syntheticPage([

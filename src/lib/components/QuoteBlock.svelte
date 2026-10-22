@@ -131,10 +131,10 @@
 		text-underline-offset: 4px;
 	}
 
-	/* The words the verdict rests on: weight and an underline in the brand green, never a
-	   highlighter wash. */
+	/* The words the verdict rests on: a solid underline in the brand green, never a highlighter wash.
+	   No added weight: a deciding quote can run most of a clause, and bold over all of it reads as
+	   noise rather than as the words that decide. */
 	mark.decides {
-		font-weight: 700;
 		text-decoration: underline 2px var(--brand);
 	}
 

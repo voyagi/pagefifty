@@ -190,9 +190,10 @@
 		}
 	}
 
+	/* On a phone the claim scales with the screen between the headline and display sizes. */
 	@media (max-width: 45em) {
 		.tagline {
-			font-size: 2.25rem;
+			font-size: clamp(var(--step-3), 9vw, var(--step-4));
 		}
 	}
 </style>

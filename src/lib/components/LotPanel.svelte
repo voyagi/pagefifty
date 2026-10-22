@@ -62,71 +62,15 @@
 	<span lang={text.lang} data-notice-text>{text.text}</span>
 {/snippet}
 
+<!-- A record reads as the portals' do: the lot's name, its verdict, the clause that decides it, the
+     other requirements, then the lot's facts with the rest of what the notice publishes. -->
 <Panel id={lot.anchor} labelledby={headingId} ruled>
-	<div class="lot-head">
-		<div class="lot-name">
-			<h2 id={headingId}>Lot {lot.number}</h2>
-			{#if lot.title}
-				<p class="lot-title">{@render noticeText(lot.title)}</p>
-			{/if}
-			<p class="lot-id mono">{lot.id}</p>
-		</div>
-		<dl class="lot-facts">
-			<div>
-				<dt>Deadline</dt>
-				<dd>
-					{#if lot.deadline.kind === 'in-notice'}
-						In notice
-					{:else}
-						{#if lot.closed}<span class="closed">Closed</span>{/if}
-						<DeadlineTime instant={lot.deadline.instant} />
-						<span class="sub">{lot.deadlineKind}</span>
-					{/if}
-				</dd>
-			</div>
-			<div>
-				<dt>Estimated value</dt>
-				<dd>
-					{#if lot.value !== null}<span class="mono">{lot.value}</span>{:else}Value not published{/if}
-				</dd>
-			</div>
-			<div>
-				<dt>Selection criteria</dt>
-				<dd><span class="mono">{count}</span></dd>
-			</div>
-			{#if lot.criteriaSource !== undefined}
-				<div>
-					<dt>Criteria source</dt>
-					<dd>{lot.criteriaSource}</dd>
-				</div>
-			{/if}
-			<div>
-				<dt>Legal basis</dt>
-				<dd>
-					{#if lot.legalBasis.name !== undefined}{lot.legalBasis.name}{:else}<span class="mono"
-							>{lot.legalBasis.code}</span
-						>{/if}
-					{#each lot.legislation as reference, index (index)}
-						<span class="sub"
-							><span class="mono">{reference.id}</span>{#if reference.description}, {@render noticeText(
-									reference.description
-								)}{/if}</span
-						>
-					{/each}
-				</dd>
-			</div>
-			{#if lot.reserved !== undefined}
-				<div>
-					<dt>Reserved participation</dt>
-					<dd><span class="mono">{lot.reserved}</span></dd>
-				</div>
-			{:else if lot.reservedUnstated}
-				<div>
-					<dt>Reserved participation</dt>
-					<dd>Not stated in the notice</dd>
-				</div>
-			{/if}
-		</dl>
+	<div class="lot-name">
+		<h2 id={headingId}>Lot {lot.number}</h2>
+		{#if lot.title}
+			<p class="lot-title">{@render noticeText(lot.title)}</p>
+		{/if}
+		<p class="lot-id mono">{lot.id}</p>
 	</div>
 
 	{#if verdict === 'loading'}
@@ -180,6 +124,63 @@
 		{/if}
 	</div>
 
+	<dl class="lot-facts">
+		<div>
+			<dt>Deadline</dt>
+			<dd>
+				{#if lot.deadline.kind === 'in-notice'}
+					In notice
+				{:else}
+					{#if lot.closed}<span class="closed">Closed</span>{/if}
+					<DeadlineTime instant={lot.deadline.instant} />
+					<span class="sub">{lot.deadlineKind}</span>
+				{/if}
+			</dd>
+		</div>
+		<div>
+			<dt>Estimated value</dt>
+			<dd>
+				{#if lot.value !== null}<span class="mono">{lot.value}</span>{:else}Value not published{/if}
+			</dd>
+		</div>
+		<div>
+			<dt>Selection criteria</dt>
+			<dd><span class="mono">{count}</span></dd>
+		</div>
+		{#if lot.criteriaSource !== undefined}
+			<div>
+				<dt>Criteria source</dt>
+				<dd>{lot.criteriaSource}</dd>
+			</div>
+		{/if}
+		<div>
+			<dt>Legal basis</dt>
+			<dd>
+				{#if lot.legalBasis.name !== undefined}{lot.legalBasis.name}{:else}<span class="mono"
+						>{lot.legalBasis.code}</span
+					>{/if}
+				{#each lot.legislation as reference, index (index)}
+					<span class="sub"
+						><span class="mono">{reference.id}</span>{#if reference.description}, {@render noticeText(
+								reference.description
+							)}{/if}</span
+					>
+				{/each}
+			</dd>
+		</div>
+		{#if lot.reserved !== undefined}
+			<div>
+				<dt>Reserved participation</dt>
+				<dd><span class="mono">{lot.reserved}</span></dd>
+			</div>
+		{:else if lot.reservedUnstated}
+			<div>
+				<dt>Reserved participation</dt>
+				<dd>Not stated in the notice</dd>
+			</div>
+		{/if}
+	</dl>
+
 	{#each published as entry (entry.label)}
 		<section class="published" aria-label={entry.label}>
 			<Label>{entry.label}</Label>
@@ -194,7 +195,7 @@
 </Panel>
 
 <style>
-	/* The lot's name and title on one line where they fit, its facts as one small row under them. */
+	/* The lot's name and title on one line where they fit. */
 	.lot-name {
 		display: flex;
 		flex-wrap: wrap;
@@ -223,12 +224,13 @@
 		overflow-wrap: anywhere;
 	}
 
-	/* The lot's facts as one strip on a wash, so they read as a set and not as loose lines. */
+	/* The lot's facts as one strip on a wash, so they read as a set and not as loose lines. They follow
+	   the requirements, as the rest of what the notice publishes does. */
 	.lot-facts {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.625rem 1.75rem;
-		margin: 0.875rem 0 0;
+		margin: 1.75rem 0 0;
 		padding: 0.75rem 1rem 0.8125rem;
 		border-radius: var(--r);
 		background: var(--bg-2);

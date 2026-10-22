@@ -311,7 +311,7 @@ Text contrast clears WCAG AA with room in both themes. Ink on Paper is about 18:
 
 ### Hierarchy
 
-- **Display** (750, 2.75rem, 1.06): the start page claim only, held to 20ch and balanced, 2.25rem on phones.
+- **Display** (750, 2.75rem, 1.06): the start page claim only, held to 20ch and balanced. On phones it scales with the screen between Headline and Display size (about 2.2rem at 390 wide).
 - **Headline** (750, 1.75rem, 1.15, -0.03em): the opened tender's title (held to 30ch), and the h1 of the profile, privacy, AI and error pages.
 - **Title** (750, 1.375rem, 1.2, -0.025em): the tender list's heading and the example card's title. The home figure's heading uses the same size at 700.
 - **Subhead** (700, 1.0625rem, 1.3): a lot's heading, a panel heading, the empty state's heading.
@@ -342,7 +342,7 @@ Every page opens with the band: wordmark at the left, the three text links (Tend
 
 **Tenders and the example run.** A title line carries the heading, the counts and, at the far right, the one sort order stated as text with no control. A capture line follows on the ground, then the filter row (country chips, type of work chips, two deadline dates, Apply) in its own box. Then the split view, 1rem below: the list column takes min(480px, 42%) and the opened tender takes the rest, each its own box with 1rem of ground between them. Each column scrolls on its own, and both end 1rem above the bottom of the window so each box shows its lower edge, measured from where the split starts on every navigation and resize (20rem at least on a very short window). So an open row deep in the list shows beside the head, and reaching the end of either column never moves the page. List rows fill the list's box edge to edge, so a row's tint reads as the row. The pane has 1.75rem of padding on its left and 1.25rem on its right. On a phone the list and the tender run to both edges of the screen as white bands, and the filter button stands on the ground without a box.
 
-**A tender record.** Buyer tile and buyer, the title, a facts row with icons (deadline, time left, estimated value, the notice number linked to TED), the source actions, then one panel per lot. A lot shows its facts row, the verdict, the clause that decides right under it, and the other requirements folded behind a summary. The record ends with its source line and an "About this tender" grid.
+**A tender record.** Buyer tile and buyer, the title, a facts row with icons (deadline, time left, estimated value, the notice number linked to TED), the source actions, then one panel per lot. A lot shows its name, the verdict right under it, the clause that decides right under that, the other requirements folded behind a summary, and then its facts strip, so no fact pushes the verdict down the pane. The record ends with its source line and an "About this tender" grid.
 
 **Profile.** Five panels with a 15rem facts column. Form fields run four to a row from 68.75em, two below that, and one on phones.
 
@@ -476,9 +476,9 @@ Each criterion carries a state, drawn as a mark and a word at 600, 0.8125rem, in
 
 - **Criterion heading:** the criterion's English label at 650 and Subhead size, its code and "Criterion n of m" in Small Secondary Ink, and the state at the right. The buyer's parameters follow as published. Each criterion is separated from the next by a Rule with 1.5rem above and below.
 - **Quote box:** one box with a 1px Strong Rule edge and 8px corners. Its caption, on a Wash strip, names the clause's language as a Label and the source in words ("Quoted from TED notice n"). Under a Rule, the buyer's words sit on Paper, carrying the clause's own `lang`. An excerpt clamps to six whole lines with the whole clause one click away.
-- **Lot facts:** a lot's deadline, value, criteria count, source and legal basis sit together on one Wash strip with 8px corners under the lot's heading.
+- **Lot facts:** a lot's deadline, value, criteria count, source and legal basis sit together on one Wash strip with 8px corners after the lot's requirements.
 - **Marked quotes:** a quote the model read is underlined with a dotted 1px Secondary Ink rule, offset 4px, led by a small numbered badge (Deep Wash, 6px corners, 700) that matches the number of its reading.
-- **Deciding words:** the words the verdict rests on are set at 700 with a 2px green underline. Never a highlighter wash.
+- **Deciding words:** the words the verdict rests on carry a 2px green underline at the text's own weight, since a deciding quote can run most of a clause. Never a highlighter wash, never bold.
 - **AI reading:** a Label, then the numbered readings in Ink, held to 72ch. A provenance line in Small Secondary Ink says how the quotes were checked and links the notice on TED.
 - **Other requirements:** folded under a 44px bar with a Strong Rule edge and 8px corners, "Other requirements in this lot (n)", whose chevron turns when open and which fills with Wash under the pointer.
 
@@ -537,7 +537,7 @@ Light, Dark and Device, with Device the default. A script in the document head s
 - **Don't** round anything past 8px or draw a box as a pill or a circle.
 - **Don't** add a second typeface, a monospace or a condensed cut.
 - **Don't** set labels or tags in capitals or tracked caps.
-- **Don't** highlight the deciding words with a wash. Weight and the green underline carry them.
+- **Don't** highlight the deciding words with a wash or set them in bold. The green underline carries them.
 - **Don't** show a verdict word on a list row or anywhere outside a verdict region.
 - **Don't** put a sort control on the tender list. Its one order is stated as text.
 - **Don't** use a dashed edge as decoration.
