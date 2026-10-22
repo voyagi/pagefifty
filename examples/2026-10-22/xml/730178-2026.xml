@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>203ef897-3816-48ef-b22f-890fcc9e0056-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Es wurden zwei Anpassungen vorgenommen:  1. Verlängerung der Angebotsfrist auf den 06.11.2026 10:00 Uhr  2. Ergänzung eines gleichwertigen Zusatzes für die Cisco-Partnerschaft</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-21+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+							<efbc:ReasonDescription languageID="DEU">Es wurden zwei Anpassungen vorgenommen:  1. Verlängerung der Angebotsfrist auf den 06.11.2026 10:00 Uhr  2. Ergänzung eines gleichwertigen Zusatzes für die Cisco-Partnerschaft</efbc:ReasonDescription>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:GroupLeadIndicator>true</efbc:GroupLeadIndicator>
+							<efac:Company>
+								<cbc:WebsiteURI>https://mul-ct.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Medizinische Universität Lausitz - Carl Thiem</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Thiemstraße 111</cbc:StreetName>
+									<cbc:CityName>Cottbus</cbc:CityName>
+									<cbc:PostalZone>03048</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE402</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 368072854</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">CTK-Poliklinik GmbH (MVZ)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Thiemstraße 111</cbc:StreetName>
+									<cbc:CityName>Cottbus</cbc:CityName>
+									<cbc:PostalZone>03048</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE402</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE813850781</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Landes Brandenburg beim  Ministerium für Wirtschaft, Arbeit und Energie</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Heinrich-Mann-Allee 107</cbc:StreetName>
+									<cbc:CityName>Potsdam</cbc:CityName>
+									<cbc:PostalZone>14473</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE404</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00730178-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">5355f256-3002-447c-b9c2-06ecb35be939</cbc:ID>
+	<cbc:ContractFolderID>c1498281-3f65-41e0-9c22-e05b1686ada7</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-21+02:00</cbc:IssueDate>
+	<cbc:IssueTime>13:27:29+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-21+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://mul-ct.de/</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0002</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Beschreibung und Nachweis über die Anlage 2F2 Eigenerklärungen zur Eignung; auf die §§ 123, 124 GWB wird verwiesen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">1. Ein Nachprüfungsantrag zur Vergabekammer ist nach § 160 Abs. 3 S. 1 Nr. 4 GWB unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. *** 2. Insbesondere § 160 Abs. 3 Satz 1 Nr. 1, Nr. 2 und 3 GWB sowie § 134 Abs. 2 GWB sind zu beachten. *** 3. Die Frist zur Geltendmachung der Unwirksamkeit des Vertragsschlusses nach § 135 GWB endet spätestens 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union, vgl. § 135 Abs. 2 Satz 2 GWB.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">MUL CT 05/2026</cbc:ID>
+		<cbc:Name languageID="DEU">Dienstleistungskontingent Netzwerk- und PC-Support</cbc:Name>
+		<cbc:Description languageID="DEU">Vertragsgegenstand ist die Vergabe eines Dienstleistungsvertrags für die Unterstützung der IT im Bereich des Netzwerks- und PCs-Supports der MUL-CT.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP9Y5CHXYB#
+
+
+Diese Rahmenvereinbarung wird vom Auftraggeber mit mehreren Auftragnehmern im jeweiligen Los abgeschlossen.   Pro Los sind maximal drei Parteien auf Auftragnehmerseite vorgesehen.  Für jeden Abruf aus der Rahmenvereinbarung wird der Auftraggeber je Los unter den Vertragspartnern einen erneuten Aufruf zum (Mini-)Wettbewerb durchführen. Die Vergabe von Einzelaufträgen nach vorgenanntem Aufruf zum Wettbewerb stellt sich pro Los wie folgt dar:  - Der Auftraggeber bittet alle Vertragspartner in Textform um die Abgabe eines Angebots für den beabsichtigten Einzelabruf (z.B. Service Jahr 2027). Die Beschreibung der zu liefernden Leistung ergibt sich aus den Informationen in der einzelnen Aufforderung zur Abgabe eines Angebots bzw. aus der Leistungsbeschreibung.  - Die Auftragsvergabe im jeweiligen Einzelabruf erfolgt je Los an den Vertragspartner, der das wirtschaftlichste Angebot abgegeben hat. Das wirtschaftlichste Angebot bestimmt sich durch den aktualisierten Preis der Leistung aus dem Miniwettbewerb im Zuschlagskriterium Nr. 1 (der aber nicht höher sein darf als im Angebot aus dem Offenen Verfahren) sowie die feststehende Qualifikation aus dem Zuschlagskriterium Nr. 2 als maßgebliche Entscheidungsgrundlagen.  Die Angebotspreise der an den Auftraggeber übermittelten Angebote werden nach Auftragsvergabe nicht gegenüber den jeweils anderen Vertragspartnern bekannt gegeben.  Die Rahmenvereinbarung selbst begründet dabei keine Verpflichtung des Auftraggebers, tatsächlich eine bestimmte Menge oder einen bestimmten Wert an Leistungen abzurufen - der Auftraggeber ist lediglich berechtigt, nicht aber verpflichtet, die vereinbarten Leistungen in Anspruch zu nehmen. Abrufe erfolgen daher unverbindlich und nach Bedarf, sodass dem Auftragnehmer aus der bloßen Aufnahme in die Rahmenvereinbarung kein einklagbarer Anspruch auf Erteilung konkreter Einzelaufträge erwächst.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Thiemstraße 111</cbc:StreetName>
+				<cbc:CityName>Cottbus</cbc:CityName>
+				<cbc:PostalZone>03048</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE402</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis des Partnerstatus als "Cisco Gold Partner" oder als gleichwertiger Nachweis eine aktuelle Cisco-Partnerdesignation anerkannt, die eine nachweisbare Expertise im Bereich Enterprise Networking belegt. Insbesondere werden Nachweise als Cisco Networking Partner sowie entsprechende höherwertige Ausprägungen (z. B. Preferred-Status innerhalb des jeweiligen Portfolios) als geeignet angesehen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Einreichung zusätzlicher Nachweise und Erklärungen durch den Bieter ist zulässig. Hat der Auftraggeber nach Auswertung der eingereichten Erklärungen und Nachweise Zweifel an der Eignung eines Bieters, kann er den Bieter zur Erläuterung der von ihm eingereichten Unterlagen auffordern; im Übrigen behält sich der Auftraggeber die Nachforderung analog § 56 VgV vor.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">17 Erklärung Nichtvorliegen von Ausschlussgründen (§ 123 GWB) 18 Erklärung Nichtvorliegen von Ausschlussgründen (§ 124 GWB) 19 Eigenerklärung Russlandsanktionen 20 Erklärung zur Einhaltung des MiLoG 21 Eigenerklärung zur Anerkennung der Antikorruptionserklärung 22 Erklärung Unternehmensdaten 23 Verpflichtungserklärung Tariftreue Mindestentgelt BbgVergG 24 Verpflichtungserklärung Mindestanforderungen Nachunternehmer Verleiher BbgVergG 25 Erklärung Frauenförderverordnung 26 Information und Erklärung zur Einhaltung des Infektionsschutzgesetzes 27 Nach § 6 Abs. 1 WRegG ist ein öffentlicher Auftraggeber vor der Erteilung eines Zuschlags in einem Verfahren über die Vergabe öffentlicher Aufträge mit einem geschätzten Auftragswert ab 50.000 Euro ohne Umsatzsteuer verpflichtet, das Wettbewerbsregister zu demjenigen Bieterunternehmen abzufragen, das den Auftrag erhalten soll.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Fachgespräch</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>35.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Organisation, Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">1. Ein Nachprüfungsantrag zur Vergabekammer ist nach § 160 Abs. 3 S. 1 Nr. 4 GWB unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. *** 2. Insbesondere § 160 Abs. 3 Satz 1 Nr. 1, Nr. 2 und 3 GWB sowie § 134 Abs. 2 GWB sind zu beachten. *** 3. Die Frist zur Geltendmachung der Unwirksamkeit des Vertragsschlusses nach § 135 GWB endet spätestens 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union, vgl. § 135 Abs. 2 Satz 2 GWB.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-20+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>3</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-w-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Netzwerk-Support</cbc:Name>
+			<cbc:Description languageID="DEU">Die Medizinische Universität Lausitz - Carl Thiem ist eine junge Universitätsmedizin und der größte Arbeitgeber in Cottbus mit rund 1.200 Betten und knapp 3.000 Mitarbeitenden aus mehr als 40 Ländern. Als bedeutendes Leitkrankenhaus und Universität gestaltet es die Zukunft der Gesundheitsversorgung in der Modellregion Gesundheit Lausitz. Die MUL - CT bietet eine umfassende Maximalversorgung mit 22 Kliniken und 4 Instituten für jährlich über 150.000 Patienten sowie ein inspirierendes Umfeld für Forschung und Lehre. Die MUL - CT vereint dabei Forschung, Lehre und Krankenversorgung in einem innovativen Rahmen und bietet vielfältige Karrierechancen, erstklassige Weiterbildungsprogramme und eine hochmoderne Arbeitsumgebung im Herzen von Cottbus.  Weitere Informationen finden Sie unter www.mul-ct.de.  Vertragsgegenstand ist die Vergabe eines Dienstleistungsvertrags für die Unterstützung der IT der MUL-CT.  Es werden zwei Aufgabenbereiche vergeben:  Los 1: Netzwerk-Support  Der Bedarf an Unterstützung wird dabei auf 240 Tage pro Jahr (auf Basis von 8h/Tag und unabhängig von der Aufteilung der Tage in den einzelnen Rollen) geschätzt. Die Höchstmenge der Rahmenvereinbarung umfasst ein Abrufkontingent von maximal 1200 Personentagen über die 48-monatige Laufzeit.  Los 2: PC-Support  Der Bedarf an Unterstützung wird dabei auf 240 Tage pro Jahr (auf Basis von 8h/Tag und unabhängig von der Aufteilung der Tage in den einzelnen Rollen) geschätzt. Die Höchstmenge der Rahmenvereinbarung umfasst ein Abrufkontingent von maximal 1200 Personentagen über die 48-monatige Laufzeit.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">A) Die Vergabeunterlagen stehen ausschließlich auf der Vergabeplattform Vergabemarktplatz Brandenburg zum Herunterladen zur Verfügung. Sofern während des Vergabeverfahrens Änderungen an den Vergabeunterlagen vorgenommen oder zusätzliche Informationen bereitgestellt werden, erfolgt dies ebenfalls ausschließlich auf elektronischem Weg über die Vergabeplattform. Die potentiellen Bieter werden hierüber nur gesondert informiert, wenn Sie sich auf der Vergabeplattform registrieren. Anderenfalls obliegt es den Bietern selbst, regelmäßig zu prüfen, ob auf der Vergabeplattform neue Informationen zum Verfahren bereitstehen. **** B) Die Angebote sind in Textform ausschließlich über die Vergabeplattform Vergabemarktplatz Brandenburg einzureichen. Auf postalischem Wege oder per E-Mail übermittelte Angebote sind nicht zugelassen. **** C) Die Bieter haben eine Eigenerklärung darüber einzureichen, ob Ausschlussgründe nach § 123 Abs. 1 bis 4 GWB und § 124 Abs. 1 GWB, nach §§ 21 Abs. 1 und Abs. 3 i. V. m. § 23 Abs. 2 und Abs. 3 AEntG, nach §§ 19 Abs. 1 und Abs. 3 i. V. m. § 21 MiLoG und nach § 21 SchwarzArbG vorliegen (s. Formblätter Anlage 2F2.1 ff. zur Eignung in den Vergabeunterlagen). Darüber hinaus haben die Bieter die Eigenerklärungen "Mustererklärung Mindestentgelt" und "Scientologyschutzerklärung" einzureichen, sofern unter Ziffer III dieser Bekanntmachung gefordert. **** D) Sofern sich Bietergemeinschaften beteiligen, ist mit dem Angebot eine von allen Mitgliedern der Bietergemeinschaft unterzeichnete Bietergemeinschaftserklärung vorzulegen, in der u. a. ein bevollmächtigter Vertreter benannt wird und die gesamtschuldnerische Haftung der Mitglieder im Auftragsfall erklärt wird. Das Formblatt Eignung und die weiteren Eigenerklärungen sind in diesem Fall von jedem Mitglied der Bietergemeinschaft vorzulegen. Die Eignung der Mitglieder einer ordnungsgemäß teilnehmenden Bietergemeinschaft (Referenzen, Umsatzzahlen etc.) wird kumulativ berücksichtigt. **** E) Die Formblätter zur Eignung (Anlage 2) sind auch zu verwenden von Nachunternehmen, welche Teile des Auftrags erbringen sollen (Unteraufträge gemäß § 36 VgV), und Drittunternehmen, auf deren Eignung sich der Bieter/die Bietergemeinschaft beruft (Eignungsleihe gemäß § 47 VgV). Nachunternehmen müssen lediglich die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Anlage 2F2.1.) abgeben. Drittunternehmen müssen ebenfalls die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Anlgae 2F2.1) abgeben. Darüber hinaus sind Angaben zu denjenigen Eignungskriterien zu machen, die der Bieter/die Bietergemeinschaft im Rahmen der Eignungsleihe in Anspruch nehmen will. **** F) Fragen zu den Vergabeunterlagen (Bieterfragen) sind im Hinblick auf § 20 Abs. 3 Nr. 1 VgV spätestens bis zum 9. Kalendertag vor Ablauf der Angebotsfrist in Textform über den entsprechenden Projektraum des Vergabeportals zu stellen.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Thiemstraße 111</cbc:StreetName>
+					<cbc:CityName>Cottbus</cbc:CityName>
+					<cbc:PostalZone>03048</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE402</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis Status Microsoft Solutions Partner for Modern Work oder einen gleichwertigen Nachweis der Herstellerqualifikation</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Einreichung zusätzlicher Nachweise und Erklärungen durch den Bieter ist zulässig. Hat der Auftraggeber nach Auswertung der eingereichten Erklärungen und Nachweise Zweifel an der Eignung eines Bieters, kann er den Bieter zur Erläuterung der von ihm eingereichten Unterlagen auffordern; im Übrigen behält sich der Auftraggeber die Nachforderung analog § 56 VgV vor.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">17 Erklärung Nichtvorliegen von Ausschlussgründen (§ 123 GWB) 18 Erklärung Nichtvorliegen von Ausschlussgründen (§ 124 GWB) 19 Eigenerklärung Russlandsanktionen 20 Erklärung zur Einhaltung des MiLoG 21 Eigenerklärung zur Anerkennung der Antikorruptionserklärung 22 Erklärung Unternehmensdaten 23 Verpflichtungserklärung Tariftreue Mindestentgelt BbgVergG 24 Verpflichtungserklärung Mindestanforderungen Nachunternehmer Verleiher BbgVergG 25 Erklärung Frauenförderverordnung 26 Information und Erklärung zur Einhaltung des Infektionsschutzgesetzes 27 Nach § 6 Abs. 1 WRegG ist ein öffentlicher Auftraggeber vor der Erteilung eines Zuschlags in einem Verfahren über die Vergabe öffentlicher Aufträge mit einem geschätzten Auftragswert ab 50.000 Euro ohne Umsatzsteuer verpflichtet, das Wettbewerbsregister zu demjenigen Bieterunternehmen abzufragen, das den Auftrag erhalten soll.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Fachgespräch</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>35.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Organisation, Qualifikation und Erfahrung des mit der Ausführung des Auftrags betrauten Personals</cbc:Name>
+						<cbc:Description languageID="DEU">gemäß Vergabeunterlagen</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">1. Ein Nachprüfungsantrag zur Vergabekammer ist nach § 160 Abs. 3 S. 1 Nr. 4 GWB unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. *** 2. Insbesondere § 160 Abs. 3 Satz 1 Nr. 1, Nr. 2 und 3 GWB sowie § 134 Abs. 2 GWB sind zu beachten. *** 3. Die Frist zur Geltendmachung der Unwirksamkeit des Vertragsschlusses nach § 135 GWB endet spätestens 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union, vgl. § 135 Abs. 2 Satz 2 GWB.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://vergabemarktplatz.brandenburg.de/VMPSatellite/notice/CXP9Y5CHXYB</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-20+02:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+02:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>3</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-w-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">PC-Support</cbc:Name>
+			<cbc:Description languageID="DEU">Die Medizinische Universität Lausitz - Carl Thiem ist eine junge Universitätsmedizin und der größte Arbeitgeber in Cottbus mit rund 1.200 Betten und knapp 3.000 Mitarbeitenden aus mehr als 40 Ländern. Als bedeutendes Leitkrankenhaus und Universität gestaltet es die Zukunft der Gesundheitsversorgung in der Modellregion Gesundheit Lausitz. Die MUL - CT bietet eine umfassende Maximalversorgung mit 22 Kliniken und 4 Instituten für jährlich über 150.000 Patienten sowie ein inspirierendes Umfeld für Forschung und Lehre. Die MUL - CT vereint dabei Forschung, Lehre und Krankenversorgung in einem innovativen Rahmen und bietet vielfältige Karrierechancen, erstklassige Weiterbildungsprogramme und eine hochmoderne Arbeitsumgebung im Herzen von Cottbus.  Weitere Informationen finden Sie unter www.mul-ct.de.  Vertragsgegenstand ist die Vergabe eines Dienstleistungsvertrags für die Unterstützung der IT der MUL-CT.  Es werden zwei Aufgabenbereiche vergeben:  Los 1: Netzwerk-Support  Der Bedarf an Unterstützung wird dabei auf 240 Tage pro Jahr (auf Basis von 8h/Tag und unabhängig von der Aufteilung der Tage in den einzelnen Rollen) geschätzt. Die Höchstmenge der Rahmenvereinbarung umfasst ein Abrufkontingent von maximal 1200 Personentagen über die 48-monatige Laufzeit.  Los 2: PC-Support  Der Bedarf an Unterstützung wird dabei auf 240 Tage pro Jahr (auf Basis von 8h/Tag und unabhängig von der Aufteilung der Tage in den einzelnen Rollen) geschätzt. Die Höchstmenge der Rahmenvereinbarung umfasst ein Abrufkontingent von maximal 1200 Personentagen über die 48-monatige Laufzeit.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">A) Die Vergabeunterlagen stehen ausschließlich auf der Vergabeplattform Vergabemarktplatz Brandenburg zum Herunterladen zur Verfügung. Sofern während des Vergabeverfahrens Änderungen an den Vergabeunterlagen vorgenommen oder zusätzliche Informationen bereitgestellt werden, erfolgt dies ebenfalls ausschließlich auf elektronischem Weg über die Vergabeplattform. Die potentiellen Bieter werden hierüber nur gesondert informiert, wenn Sie sich auf der Vergabeplattform registrieren. Anderenfalls obliegt es den Bietern selbst, regelmäßig zu prüfen, ob auf der Vergabeplattform neue Informationen zum Verfahren bereitstehen. **** B) Die Angebote sind in Textform ausschließlich über die Vergabeplattform Vergabemarktplatz Brandenburg einzureichen. Auf postalischem Wege oder per E-Mail übermittelte Angebote sind nicht zugelassen. **** C) Die Bieter haben eine Eigenerklärung darüber einzureichen, ob Ausschlussgründe nach § 123 Abs. 1 bis 4 GWB und § 124 Abs. 1 GWB, nach §§ 21 Abs. 1 und Abs. 3 i. V. m. § 23 Abs. 2 und Abs. 3 AEntG, nach §§ 19 Abs. 1 und Abs. 3 i. V. m. § 21 MiLoG und nach § 21 SchwarzArbG vorliegen (s. Formblätter Anlage 2F2.1 ff. zur Eignung in den Vergabeunterlagen). Darüber hinaus haben die Bieter die Eigenerklärungen "Mustererklärung Mindestentgelt" und "Scientologyschutzerklärung" einzureichen, sofern unter Ziffer III dieser Bekanntmachung gefordert. **** D) Sofern sich Bietergemeinschaften beteiligen, ist mit dem Angebot eine von allen Mitgliedern der Bietergemeinschaft unterzeichnete Bietergemeinschaftserklärung vorzulegen, in der u. a. ein bevollmächtigter Vertreter benannt wird und die gesamtschuldnerische Haftung der Mitglieder im Auftragsfall erklärt wird. Das Formblatt Eignung und die weiteren Eigenerklärungen sind in diesem Fall von jedem Mitglied der Bietergemeinschaft vorzulegen. Die Eignung der Mitglieder einer ordnungsgemäß teilnehmenden Bietergemeinschaft (Referenzen, Umsatzzahlen etc.) wird kumulativ berücksichtigt. **** E) Die Formblätter zur Eignung (Anlage 2) sind auch zu verwenden von Nachunternehmen, welche Teile des Auftrags erbringen sollen (Unteraufträge gemäß § 36 VgV), und Drittunternehmen, auf deren Eignung sich der Bieter/die Bietergemeinschaft beruft (Eignungsleihe gemäß § 47 VgV). Nachunternehmen müssen lediglich die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Anlage 2F2.1.) abgeben. Drittunternehmen müssen ebenfalls die Eigenerklärung zum Nichtvorliegen von Ausschlussgründen (Anlgae 2F2.1) abgeben. Darüber hinaus sind Angaben zu denjenigen Eignungskriterien zu machen, die der Bieter/die Bietergemeinschaft im Rahmen der Eignungsleihe in Anspruch nehmen will. **** F) Fragen zu den Vergabeunterlagen (Bieterfragen) sind im Hinblick auf § 20 Abs. 3 Nr. 1 VgV spätestens bis zum 9. Kalendertag vor Ablauf der Angebotsfrist in Textform über den entsprechenden Projektraum des Vergabeportals zu stellen.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Thiemstraße 111</cbc:StreetName>
+					<cbc:CityName>Cottbus</cbc:CityName>
+					<cbc:PostalZone>03048</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE402</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

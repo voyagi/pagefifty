@@ -47,6 +47,7 @@ let DEMO_PROFILE;
 let captureDay;
 let exampleCaptureOf;
 let isCaptureId;
+let newestCapture;
 let CaptureLineSchema;
 let NoticeRecordSchema;
 let SnapshotIndexSchema;
@@ -65,7 +66,7 @@ function loadSiteRules() {
 	({ lotStatusOf } = requireFromHarness('../src/lib/core/lot-reading.ts'));
 	({ VERDICT_LABELS } = requireFromHarness('../src/lib/core/verdict.ts'));
 	({ DEMO_PROFILE } = requireFromHarness('../src/lib/profile/demo-firm.ts'));
-	({ captureDay, exampleCaptureOf, isCaptureId } = requireFromHarness(
+	({ captureDay, exampleCaptureOf, isCaptureId, newestCapture } = requireFromHarness(
 		'../src/lib/snapshot/capture-id.ts'
 	));
 	({ CaptureLineSchema, NoticeRecordSchema, SnapshotIndexSchema } = requireFromHarness(
@@ -728,6 +729,14 @@ export function reasonLines(viewText, constantsText) {
 	);
 }
 
+function textConstant(viewText, name) {
+	const found = [...lf(viewText).matchAll(TEXT_CONSTANT)].find(([, each]) => each === name);
+	if (found === undefined) {
+		throw new HarnessError(2, `${VERDICT_VIEW} defines no ${name} to expect`);
+	}
+	return unescaped(found[2]);
+}
+
 export function reasonLine(lines, key) {
 	const line = lines.get(key);
 	if (line === undefined) {
@@ -1008,4 +1017,44 @@ export function exampleFacts(generatedDir) {
 		properties: PROBE_PROPERTIES,
 		probes
 	};
+}
+
+// The live list serves the newest capture, so the partner-line driver visits the first notice there,
+// in publication order, with a lot that lotStatusOf and decideLotStatus read as PARTNER NEEDED for the
+// firm it enters, at the instant the live page compares at. The word and the Article 63 line it
+// expects are the site's own; null when no lot reads so.
+export function partnerProbe(generatedDir, firm, now = new Date()) {
+	loadSiteRules();
+	const id = newestCapture(captureLines(generatedDir).map(([each]) => each));
+	const folder = join(generatedDir, id);
+	const index = readBuilt(join(folder, 'index.json'), SnapshotIndexSchema, 'a built index');
+	for (const row of [...index.rows].sort(publicationOrder)) {
+		const notice = row.noticeNumber;
+		const record = readBuilt(
+			join(folder, 'records', `${notice}.json`),
+			NoticeRecordSchema,
+			'a built record'
+		);
+		const readingsPath = join(folder, 'readings', `${notice}.json`);
+		const readings = existsSync(readingsPath)
+			? readBuilt(readingsPath, NoticeReadingsSchema, 'built readings')
+			: undefined;
+		const at = record.lots.findIndex(
+			(lot) =>
+				decideLotStatus(lotStatusOf(lot, readings), firm, {
+					...lotContextOf(record, lot),
+					now: now.toISOString()
+				})?.decision.verdict === 'PARTNER NEEDED'
+		);
+		if (at >= 0) {
+			return {
+				capture: id,
+				notice,
+				anchor: `lot-${at + 1}`,
+				word: VERDICT_LABELS['PARTNER NEEDED'],
+				article63: textConstant(readText(VERDICT_VIEW), 'ARTICLE_63_LINE')
+			};
+		}
+	}
+	return null;
 }

@@ -268,6 +268,19 @@ const SEPT_RUN = [
 	['Quotes verified', '24'],
 	['Quotes rejected', '0']
 ];
+// The final capture's readings run, the example's since 2026-10-22.
+const FINAL_RUN = [
+	['Model', 'nvidia/nemotron-3-super-120b-a12b'],
+	['Provider', 'Nebius Token Factory'],
+	['Region', 'us-central1'],
+	['Run date', '2026-10-22'],
+	['Input tokens', '293,177'],
+	['Output tokens', '208,761'],
+	['Reasoning tokens', '0'],
+	['Cost in USD', '0.275838'],
+	['Quotes verified', '1,789'],
+	['Quotes rejected', '76']
+];
 const FIRM_JUDGES =
 	'Only the firm can judge whether its references, staff or line of business fit what the buyer names.';
 const NOT_NAMED =
@@ -359,41 +372,78 @@ interface NoticeFacts {
 }
 
 describe('the example capture the browser runs follow', () => {
-	it('exampleFacts picks the 2026-09-15 probes while it is the example', () => {
+	// Every 2026-09-15 row planted alone, so the probe rules run on the notices named here whichever
+	// capture the real build makes the example.
+	const septNotices = () =>
+		(readJson(join(GENERATED, SEPT, 'index.json')).rows ?? []).map((row) =>
+			String(row.noticeNumber)
+		);
+	const septSearch = () => readJson(join(GENERATED, SEPT, 'searches', '610242-2026.json'));
+
+	it('exampleFacts picks the 2026-09-15 probes on that capture', () => {
+		withPlantedRoot((root) => {
+			plantCapture(root, SEPT, { notices: septNotices() });
+			const example = exampleFacts(root);
+			expect([
+				example.id,
+				example.capturedOn,
+				example.capturedAt,
+				example.rows,
+				example.open,
+				example.closed
+			]).toEqual([SEPT, '15 Sep 2026', '21:50 CEST', 362, 349, 13]);
+			expect(example.run).toEqual(SEPT_RUN);
+			const probes = example.probes as Record<string, NoticeFacts | null>;
+			const { mostLots, documents, oneLot, read, readOtherLanguage, restricted, noCriteria } =
+				probes as Record<string, NoticeFacts>;
+			expect([mostLots.notice, mostLots.lots]).toEqual(['600457-2026', 17]);
+			expect([read.notice, read.readings]).toEqual(['610242-2026', 14]);
+			expect(read.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
+				['Ask first', FIRM_JUDGES]
+			]);
+			expect([readOtherLanguage.notice, readOtherLanguage.readings]).toEqual(['634398-2026', 10]);
+			expect(readOtherLanguage.language).not.toBe(read.language);
+			expect(readOtherLanguage.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
+				['Ask first', NOT_NAMED]
+			]);
+			expect(documents.lotFacts.some((lot) => lot.coverage.sourceUnread)).toBe(true);
+			expect(documents.documents).toEqual({ href: expect.any(String), restricted: false });
+			expect(documents.quoteLangs.length).toBeGreaterThan(0);
+			expect([oneLot.lots, oneLot.quoteLangs.length > 0]).toEqual([1, true]);
+			expect(restricted.documents).toEqual({ href: expect.any(String), restricted: true });
+			expect(noCriteria.lotFacts.every((lot) => lot.coverage.criteriaInNotice === 0)).toBe(true);
+			expect(noCriteria.lotFacts.some((lot) => lot.coverage.namesDocuments)).toBe(true);
+			for (const probe of Object.values(probes)) {
+				expect(probe?.title).toEqual(expect.any(String));
+				expect(probe?.lotFacts).toHaveLength(probe?.lots ?? -1);
+			}
+		});
+	});
+
+	// The real build's example is the final capture: every notice open at its capture instant, its
+	// own run record, and a notice for every probe the browser runs visit.
+	it('exampleFacts follows the final capture the real build makes the example', () => {
 		const example = exampleFacts(GENERATED);
-		expect([
-			example.id,
-			example.capturedOn,
-			example.capturedAt,
-			example.rows,
-			example.open,
-			example.closed
-		]).toEqual([SEPT, '15 Sep 2026', '21:50 CEST', 362, 349, 13]);
-		expect(example.run).toEqual(SEPT_RUN);
+		expect([example.id, example.capturedOn, example.rows, example.open, example.closed]).toEqual([
+			'2026-10-22',
+			'22 Oct 2026',
+			323,
+			323,
+			0
+		]);
+		expect(example.run).toEqual(FINAL_RUN);
 		const probes = example.probes as Record<string, NoticeFacts | null>;
-		const { mostLots, documents, oneLot, read, readOtherLanguage, restricted, noCriteria } =
-			probes as Record<string, NoticeFacts>;
-		expect([mostLots.notice, mostLots.lots]).toEqual(['600457-2026', 17]);
-		expect([read.notice, read.readings]).toEqual(['610242-2026', 14]);
-		expect(read.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
-			['Ask first', FIRM_JUDGES]
-		]);
-		expect([readOtherLanguage.notice, readOtherLanguage.readings]).toEqual(['634398-2026', 10]);
-		expect(readOtherLanguage.language).not.toBe(read.language);
-		expect(readOtherLanguage.lotFacts.map((lot) => [lot.verdict, lot.reason])).toEqual([
-			['Ask first', NOT_NAMED]
-		]);
-		expect(documents.lotFacts.some((lot) => lot.coverage.sourceUnread)).toBe(true);
-		expect(documents.documents).toEqual({ href: expect.any(String), restricted: false });
-		expect(documents.quoteLangs.length).toBeGreaterThan(0);
-		expect([oneLot.lots, oneLot.quoteLangs.length > 0]).toEqual([1, true]);
-		expect(restricted.documents).toEqual({ href: expect.any(String), restricted: true });
-		expect(noCriteria.lotFacts.every((lot) => lot.coverage.criteriaInNotice === 0)).toBe(true);
-		expect(noCriteria.lotFacts.some((lot) => lot.coverage.namesDocuments)).toBe(true);
-		for (const probe of Object.values(probes)) {
-			expect(probe?.title).toEqual(expect.any(String));
-			expect(probe?.lotFacts).toHaveLength(probe?.lots ?? -1);
-		}
+		expect(
+			Object.fromEntries(Object.entries(probes).map(([name, probe]) => [name, probe?.notice]))
+		).toEqual({
+			mostLots: '708524-2026',
+			documents: '693066-2026',
+			oneLot: '693139-2026',
+			read: '693066-2026',
+			readOtherLanguage: '696976-2026',
+			restricted: '699958-2026',
+			noCriteria: '693836-2026'
+		});
 	});
 
 	it('a missing required probe stops the run naming it', () => {
@@ -422,8 +472,6 @@ describe('the example capture the browser runs follow', () => {
 	});
 
 	it('exampleFacts carries the read probe search results', () => {
-		const built = exampleFacts(GENERATED).probes.read as NoticeFacts & { searchResults: unknown };
-		expect([built.notice, built.searchResults]).toEqual(['610242-2026', 5]);
 		const notices = ['600457-2026', '609955-2026', '610242-2026'];
 		const searched = (results: Json[]) => ({
 			notice: '610242-2026',
@@ -433,6 +481,7 @@ describe('the example capture the browser runs follow', () => {
 		});
 		const cases: [string, Record<string, Json> | undefined, number | null][] = [
 			['no searches', undefined, null],
+			['the recorded search', { '610242-2026': septSearch() }, 5],
 			['searched with no result', { '610242-2026': searched([]) }, 0],
 			[
 				'searched with one result',

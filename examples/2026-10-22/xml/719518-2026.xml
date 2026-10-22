@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.engagement-global.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Engagement Global gGmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Friedrich-Ebert-Allee 40</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>992-80047-09</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.bundeskartellamt.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammern des Bundes</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kaiser-Friedrich-Straße 16</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53113</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>t:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00719518-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">202/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-19+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">c1f7a99f-30c9-463c-882c-023a7be6c87c</cbc:ID>
+	<cbc:ContractFolderID>c8888ab9-f660-4695-9fe6-644f6531cdaa</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-16+02:00</cbc:IssueDate>
+	<cbc:IssueTime>10:39:26+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-16+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Es sind die Rügeobliegenheiten des § 160 Abs. 3 Satz 1 GWB und insbesondere die Frist in § 160 Abs. 3 Satz 1 Nr. 4 GWB zu beachten. § 160 Abs. 3 Satz 1 GWB lautet wie folgt: "Der Antrag ist unzulässig, soweit 1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt; 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind; 5) ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt."</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">EG-2026-0222</cbc:ID>
+		<cbc:Name languageID="DEU">Leistungen zur Unterstützung bei der Durchführung des Schulwettbewerbs zur Entwicklungspolitik und seiner Begleitmaßnahme - dem Song Contest "Dein Song für EINE WELT!" im Zeitraum vom 02. Januar 2027 bis zum 31. Dezember 2028</cbc:Name>
+		<cbc:Description languageID="DEU">Engagement Global führt im Auftrag des Bundesministeriums für wirtschaftliche Zusammenarbeit und Entwicklung den Schulwettbewerb zur Entwicklungspolitik und seiner Begleitmaßnahme - dem Song Contest "Dein Song für EINE WELT" im Zweijahresrhythmus durch. Gegenstand der Vergabe ist der Abschluss von Rahmenverträgen über Leistungen zur Unterstützung des Schulwettbewerbs und des Song Contests in den Jahren 2027-2028. 
+
+Die Leistungen sind in folgende vier Lose aufgeteilt: 
+- Los 1: Leistungen im Bereich Technik (Datenbanken, Websites, Anmeldemodule)
+ - Los 2: Inhalte (grafische und inhaltliche Gestaltung der Websites und Lernmaterialien, Aufnahme der Wettbewerbsbeiträge, Urkundenmanagement, Partnerakquise) 
+- Los 3: Veranstaltungsmanagement (Bewertungsverfahren durch Jurys, Vorabendprogramm, Preisverleihung) 
+- Los 4: Musikalische Komponenten. 
+Für jedes Los soll ein separater Rahmenvertrag geschlossen werden. 
+
+Es können Angebote für ein Los oder mehrere Lose abgegeben werden.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXU9YYDYTGQE1NYL#
+
+
+Rückfragen zu den Vergabeunterlagen oder zum Vergabeverfahren können bis spätestens zum 5. November 2026, 12:00 Uhr ausschließlich in Textform per Nachricht über den Menüpunkt "Kommunikation" des Projektraums des Deutschen Vergabeportals zum vorliegenden Vergabeverfahren gestellt werden. 
+Engagement Global behält sich vor, bei  für den Nachweis der Eignung geforderten Angaben zu Referenzen sich von den Bietern - sofern erforderlich - auch Ansprechpartner des jeweiligen Auftraggebers mit Kontaktdaten benennen zu lassen.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">79952000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die Auftragnehmer des jeweiligen Loses sind in der Wahl des Ortes der Leistungserbringung grundsätzlich frei. Soweit erforderlich sind Leistungen (deutschlandweit) an den Orten zu erbringen, an denen Veranstaltungen für den Schulwettbewerb und Song Contest stattfinden. Die Auftragnehmer sind bereit, wenn nötig, an den Standort von Engagement Global nach Bonn zu reisen.</cbc:Description>
+			<cac:Address>
+				<cbc:Region>anyw-eea</cbc:Region>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Übersichten Eignungskriterien Lose 1 bis 4 (Mit dem Angebot; Mittels Eigenerklärung): Diese Übersichten werden den Bietern als PDF-Datei zur Einsichtnahme bereitgestellt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eintragung in das Berufs- oder Handelsregister - Aktueller Nachweis über die Eintragung in das Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes, in dem das Unternehmen ansässig ist. Der Auszug/Ausdruck (eingescannte Kopie ist ausreichend) darf zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als sechs Monate sein. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz und Umsatz im Tätigkeitsbereich des Auftrags - Eigenerklärung (unternehmensbezogen) über den Gesamtumsatz des anbietenden Unternehmens und den Umsatz mit Leistungen, die mit den ausgeschriebenen Leistungen vergleichbar sind - jeweils bezogen auf die letzten drei Geschäftsjahre (Geschäftsjahre 2023, 2024 und 2025), sofern verfügbar. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Eigenerklärung (unternehmensbezogen), dass der Bieter über eine ausreichende Betriebshaftpflichtversicherung mit folgenden Mindestdeckungssummen pro Schadensfall (jährlich, jeweils 2-fach maximiert) verfügt oder sich verpflichtet, im Auftragsfalle eine solche abzuschließen, die er im während der Vertragslaufzeit unterhalten wird:
+Personenschäden: 2.000.000,00 Euro, Sachschäden: 1.000.000,00 Euro und  allgemeine Vermögensschäden: 100.000,00 Euro.
+Soweit der Bieter derzeit über keine ausreichende Betriebshaftpflichtversicherung verfügt, hat er zu versichern, dass er im Falle der Zuschlagserteilung eine Betriebshaftpflichtversicherung gemäß den vorgenannten Bedingungen abschließen wird. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen. Es ist auch ausreichend, wenn eine auf die Bietergemeinschaft bzw. Arbeitsgemeinschaft selbst lautende Betriebshaftpflichtversicherung geschlossen wird.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Benennung der für die Leistungserbringung vorgesehenen Personen (samt Nachweis des Erfüllens von Mindestanforderungen) - Benennung der für die Leistungserbringung vorgesehenen Personen unter Einreichung der jeweiligen Lebensläufe sowie einer Beschreibung der Qualifikation und Erfahrung in dem Leistungsbereich, in dem die Person eingesetzt werden soll. 
+In dem für die Leistungserbringung vorgesehenen Team müssen folgende Positionen/Funktionen besetzt sein: Mindestens 1 Seniorprogrammierer, mindestens 2 Juniorprogrammierer sowie mindestens 2 Personen im Bereich Content Management der Website.
+Bei Personen, bei denen es sich nicht um eigene (angestellte) Mitarbeitende des Bieters handelt, sondern um freie Mitarbeitende/Unterauftragnehmer, ist dies kenntlich zu machen. 
+Bei Nichteinhaltung zum Ausschluss führende Mindestanforderungen sind:
+1. Mindestens die Person, die für die Durchführung des Projekts verantwortlich sein soll (Projektleitung) sowie deren Vertretung sind deutsche Muttersprachler ODER verfügen über Kenntnisse der deutschen Sprache auf dem Niveau C1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen (www.europaeischer-referenzrahmen.de), nachzuweisen über eine entsprechende Eigenerklärung, z.B. im Lebenslauf. 
+2. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über ein TCCI-Zertifikat (TYPO3 CMS Certified Integrator), nachzuweisen über eine entsprechende Eigenerklärung z.B. im Lebenslauf.
+3. Die Person, die für die Durchführung des Projekts verantwortlich sein soll (Projektleitung) muss über folgende Erfahrungen verfügen:
+-  mindestens 3 Jahre Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+-  Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten (in dem Leistungsbereich technische Betreuung einer Datenbank ODER Verwaltung eines Content Management Systems ODER technische und/oder inhaltliche Betreuung einer Website mit oder ohne Programmierung von Funktionalitäten)
+nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen). 
+4. Die Person, die die Vertretung der Projektleitung bei temporärer Abwesenheit übernimmt, muss über folgende Erfahrungen verfügen:
+- mindestens 1 Jahr Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung/Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten (in dem Leistungsbereich technische Betreuung einer Datenbank ODER Verwaltung eines Content Management System ODER technische und/oder inhaltliche Betreuung einer Website mit oder ohne Programmierung von Funktionalitäten), nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erfahrung mit TYPO3-Programmierungen - Erfahrung (unternehmensbezogen) mit TYPO3-Programmierungen, nachzuweisen durch die Angabe von mindestens 3 Referenzen aus den letzten 3 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erfahrungen mit TYPO3-Backend-Verwaltungsmodulen - Erfahrungen (unternehmensbezogen) mit TYPO3-Backend-Verwaltungsmodulen (zweckdienlicher Einsatz von Modulen/Extensions und deren Verknüpfung mit oder ohne Programmierung von individuellen Extensions) nachzuweisen durch die Angabe von mindestens 3 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungsbeschreibung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Engagement Global wird in dem nach § 56 VgV zulässigen Rahmen die Bieter auffordern, fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Mit Angebotsabgabe sind von den Bietern zum Nachweis des Nichtvorliegens von Ausschlussgründen folgende Erklärungen einzureichen:
+ 
+- Eigenerklärung zum Nichtvorliegen der Ausschlussgründe i.S.d. §§ 123, 124 GWB (im Fall der Bildung einer Bietergemeinschaft ist die Eigenerklärung von jedem Mitglied der Bietergemeinschaft abzugeben).
+
+- Eigenerklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. Art. 5k der Verordnung (EU) Nr. 833/2014 in der Fassung der Verordnung (EU) 2025/2033 im Hinblick auf restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">59</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es sind die Rügeobliegenheiten des § 160 Abs. 3 Satz 1 GWB und insbesondere die Frist in § 160 Abs. 3 Satz 1 Nr. 4 GWB zu beachten. § 160 Abs. 3 Satz 1 GWB lautet wie folgt: "Der Antrag ist unzulässig, soweit 1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt; 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind; 5) ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Technik</cbc:Name>
+			<cbc:Description languageID="DEU">Das Los 1 (Technik) beinhaltet Leistungen im Bereich Technik (Datenbanken, Websites, Anmeldemodule) für den Schulwettbewerb und Song Contest. Hierzu zählen insbesondere: Technische Betreuung der Datenbanken, Bereinigung und Exporte in Verbindung mit Datenbanken, Archivierung der Wettbewerbsbeiträge, Betrieb und technische Betreuung der Websites für den Schulwettbewerb und Song Contes, Weiterleitung der Bestellungen, Freischaltung der überarbeiteten Websites und deren Funktionen, Erstellen von Website-Unterseiten für den Schulwettbewerb und Song Contest, Veröffentlichung der Ausschreibungsunterlagen und Lernmaterialien für die Wettbewerbe auf den Websites, Installation neuer Funktionen auf den Websites, fortlaufende Überprüfung der responsiven Technik der Websites und Betreuung des User Voting-Tools im Song Contest. Wegen der Einzelheiten wird auf die Leistungsbeschreibung verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Auftragnehmer des jeweiligen Loses sind in der Wahl des Ortes der Leistungserbringung grundsätzlich frei. Soweit erforderlich sind Leistungen (deutschlandweit) an den Orten zu erbringen, an denen Veranstaltungen für den Schulwettbewerb und Song Contest stattfinden. Die Auftragnehmer sind bereit, wenn nötig, an den Standort von Engagement Global nach Bonn zu reisen.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-eea</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-02+01:00</cbc:StartDate>
+				<cbc:EndDate>2028-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Übersichten Eignungskriterien Lose 1 bis 4 (Mit dem Angebot; Mittels Eigenerklärung): Diese Übersichten werden den Bietern als PDF-Datei zur Einsichtnahme bereitgestellt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eintragung in das Berufs- oder Handelsregister - Aktueller Nachweis über die Eintragung in das Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes, in dem das Unternehmen ansässig ist. Der Auszug/Ausdruck (eingescannte Kopie ist ausreichend) darf zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als sechs Monate sein. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz und Umsatz im Tätigkeitsbereich des Auftrags - Eigenerklärung (unternehmensbezogen) über den Gesamtumsatz des anbietenden Unternehmens und den Umsatz mit Leistungen, die mit den ausgeschriebenen Leistungen vergleichbar sind - jeweils bezogen auf die letzten drei Geschäftsjahre (Geschäftsjahre 2023, 2024 und 2025), sofern verfügbar. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Eigenerklärung (unternehmensbezogen), dass der Bieter über eine ausreichende Betriebshaftpflichtversicherung mit folgenden Mindestdeckungssummen pro Schadensfall (jährlich, jeweils 2-fach maximiert) verfügt oder sich verpflichtet, im Auftragsfalle eine solche abzuschließen, die er im während der Vertragslaufzeit unterhalten wird:
+Personenschäden: 2.000.000,00 Euro, Sachschäden: 1.000.000,00 Euro und allgemeine Vermögensschäden: 100.000,00 Euro.
+Soweit der Bieter derzeit über keine ausreichende Betriebshaftpflichtversicherung verfügt, hat er zu versichern, dass er im Falle der Zuschlagserteilung eine Betriebshaftpflichtversicherung gemäß den vorgenannten Bedingungen abschließen wird.  (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen. Es ist auch ausreichend, wenn eine auf die Bietergemeinschaft bzw. Arbeitsgemeinschaft selbst lautende Betriebshaftpflichtversicherung geschlossen wird.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Benennung der für die Leistungserbringung vorgesehenen Personen (samt Nachweis des Erfüllens von Mindestanforderungen) - Benennung der für die Leistungserbringung vorgesehenen Personen unter Einreichung der jeweiligen Lebensläufe sowie einer Beschreibung der Qualifikation und Erfahrung in dem Leistungsbereich, in dem die Person eingesetzt werden soll. 
+Die Mindestgröße des für die Leistungserbringung vorgesehenen Teams beträgt 3 Personen.
+Bei Personen, bei denen es sich nicht um eigene (angestellte) Mitarbeitende des Bieters handelt, sondern um freie Mitarbeitende/Unterauftragnehmer, ist dies kenntlich zu machen. 
+Bei Nichteinhaltung zum Ausschluss führende Mindestanforderungen sind:
+1. Alle für die Leistungserbringung vorgesehenen Personen sind deutsche Muttersprachler ODER  verfügen über Kenntnisse der deutschen Sprache auf dem Niveau C2 des Gemeinsamen Europäischen Referenzrahmens für Sprachen (www.europaeischer-referenzrahmen.de), nachzuweisen über eine entsprechende Eigenerklärung, z.B. im Lebenslauf.
+2. Die Person, die für die Durchführung des Projekts verantwortlich sein soll (Projektleitung) muss über folgende Erfahrungen verfügen:
+- mindestens 3 Jahre Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten (im Leistungsbereich Design bzw. Layout ODER Konzeption bzw. Erstellung von Informationsmaterialien ODER Konzeption bzw. Erstellung von didaktischen Materialien ODER der Konzeption bzw. Erstellung von Erklärvideos ODER der Konzeption der Darstellung von Inhalten auf Websites ODER der Konzeption bzw. Produktion von Filmen oder Videos) nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens,  einer kurzen Beschreibung der erbrachten Leistungen sowie einer Beschreibung der Zielgruppe, für die die Leistungen erbracht wurden).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind:Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahren, Lehrkräfte.
+3. Die Person, die die Vertretung der Projektleitung bei temporärer Abwesenheit übernimmt, muss über folgende Erfahrungen verfügen:
+- mindestens 1 Jahr Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten, (im Leistungsbereich Design bzw. Layout ODER Konzeption bzw. Erstellung von Informationsmaterialien ODER Konzeption bzw. Erstellung von didaktischen Materialien ODER der Konzeption bzw. Erstellung von Erklärvideos ODER der Konzeption der Darstellung von Inhalten auf Websites ODER der Konzeption bzw. Produktion von Filmen oder Videos), nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens,  einer kurzen Beschreibung der erbrachten Leistungen sowie einer Beschreibung der Zielgruppe, für die die Leistungen erbracht wurden).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind: Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahren, Lehrkräfte.
+4. Mindestens 2 für die Leistungserbringung vorgesehene Personen verfügen jeweils über mindestens 3 Jahre Berufserfahrung im Bereich Webdesign und/oder Grafikdesign, wobei diese in Bezug auf Print- und/oder Online-Produkte gewonnen worden sein kann. 
+Nachzuweisen über entsprechende Angaben, vorzugsweise im jeweiligen Lebenslauf.
+5. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über mindestens 3 Jahre Berufserfahrung in der Bildungsverwaltung oder im Bildungsmanagement oder in der Zusammenarbeit mit Bildungsverwaltungsinstituten, 
+nachzuweisen durch entsprechende Angaben, vorzugsweise im Lebenslauf.
+6. Mindestens 1 weitere für die Leistungserbringung vorgesehene Person verfügt über Berufserfahrung in der Filmproduktion ODER in der Redaktion von Schnittkonzepten aus den Bereichen Entwicklungspolitik ODER politische Bildung ODER entwicklungspolitische Bildung, nachzuweisen durch mindestens 3 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, einer kurzen Beschreibung der erbrachten Leistungen und des Inhalts und Themas des jeweiligen Films). 
+7. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über Berufserfahrung in der Animation von Filmen, 
+nachzuweisen durch mindestens 3 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, einer kurzen Beschreibung der erbrachten Leistungen [in der Animation] und einer kurzen Beschreibung des Inhalts des jeweiligen Films). 
+8. Mindestens 1 für die Leistungserbringung als Kameraperson vorgesehene Person, die nicht für redaktionelle Arbeiten vorgesehen ist, verfügt über Berufserfahrung als Kameraperson bei der Produktion von Filmen mit Kindern und Jugendlichen als Protagonisten, nachzuweisen durch mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Leistungszeitraums, einer kurzen Beschreibung der erbrachten Leistungen sowie einer kurzen Darstellung, ob es sich bei den Protagonisten des jeweiligen Referenzfilms um Kinder und Jugendliche handelt).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Engagement Global wird in dem nach § 56 VgV zulässigen Rahmen die Bieter auffordern, fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Mit Angebotsabgabe sind von den Bietern zum Nachweis des Nichtvorliegens von Ausschlussgründen folgende Erklärungen einzureichen:
+ 
+- Eigenerklärung zum Nichtvorliegen der Ausschlussgründe i.S.d. §§ 123, 124 GWB (im Fall der Bildung einer Bietergemeinschaft ist die Eigenerklärung von jedem Mitglied der Bietergemeinschaft abzugeben).
+
+- Eigenerklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. Art. 5k der Verordnung (EU) Nr. 833/2014 in der Fassung der Verordnung (EU) 2025/2033 im Hinblick auf restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">59</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es sind die Rügeobliegenheiten des § 160 Abs. 3 Satz 1 GWB und insbesondere die Frist in § 160 Abs. 3 Satz 1 Nr. 4 GWB zu beachten. § 160 Abs. 3 Satz 1 GWB lautet wie folgt: "Der Antrag ist unzulässig, soweit 1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt; 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind; 5) ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Inhalte</cbc:Name>
+			<cbc:Description languageID="DEU">Das Los 2 (Inhalte) umfasst Leistungen im Bereich Inhalte (grafische und inhaltliche Gestaltung der Websites und Lernmaterialien, Aufnahme der Wettbewerbsbeiträge, Juryverfahren, Urkundenmanagement, Partnerakquise) für den Schulwettbewerb und Song Contest. Hierzu zählen insbesondere folgende Leistungen: Erstellung des Gesamtdesigns für den Schulwettbewerb und Song Contest (Design, Name, Thema), Umsetzung des Gesamtdesigns in allen Kommunikationsmitteln für Print und digitale Verwendung (Printmaterialien, Online-Auftritte, Website, Newsletter, Social Media), Gestaltung der Lernmaterialien, Erstellung der Ausschreibungsunterlagen zur Bewerbung der Wettbewerbe, Newsletter in elektronischer Form als barrierefreie Version, laufende Aktualisierung der Websites, Aufnahme der Wettbewerbsbeiträge für den Song Contest, Durchführung des Urkundenmanagements, Durchführung der Partnerakquise für den Schulwettbewerb und Song Contest und Verwaltung der Partnergelder, Frühjahrsmailing zur Bewerbung der Wettbewerbe, Gestaltungsvorlagen für Unterlagen für Veranstaltungen, Unterstützung bei der Prüfung von Beiträgen, Vorschläge für inhaltliche Erweiterungen der Websites. Wegen der Einzelheiten wird auf die Leistungsbeschreibung verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79822500</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72413000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79823000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">92110000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Auftragnehmer des jeweiligen Loses sind in der Wahl des Ortes der Leistungserbringung grundsätzlich frei. Soweit erforderlich sind Leistungen (deutschlandweit) an den Orten zu erbringen, an denen Veranstaltungen für den Schulwettbewerb und Song Contest stattfinden. Die Auftragnehmer sind bereit, wenn nötig, an den Standort von Engagement Global nach Bonn zu reisen.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-eea</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-02+01:00</cbc:StartDate>
+				<cbc:EndDate>2028-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Übersichten Eignungskriterien Lose 1 bis 4 (Mit dem Angebot; Mittels Eigenerklärung): Diese Übersichten werden den Bietern als PDF-Datei zur Einsichtnahme bereitgestellt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eintragung in das Berufs- oder Handelsregister - Aktueller Nachweis über die Eintragung in das Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes, in dem das Unternehmen ansässig ist. Der Auszug/Ausdruck (eingescannte Kopie ist ausreichend) darf zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als sechs Monate sein. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz und Umsatz im Tätigkeitsbereich des Auftrags - Eigenerklärung (unternehmensbezogen) über den Gesamtumsatz des anbietenden Unternehmens und den Umsatz mit Leistungen, die mit den ausgeschriebenen Leistungen vergleichbar sind - jeweils bezogen auf die letzten drei Geschäftsjahre (Geschäftsjahre 2023, 2024 und 2025), sofern verfügbar. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Eigenerklärung (unternehmensbezogen), dass der Bieter über eine ausreichende Betriebshaftpflichtversicherung mit folgenden Mindestdeckungssummen pro Schadensfall (jährlich, jeweils 2-fach maximiert) verfügt oder sich verpflichtet im Auftragsfalle abzuschließen, die er im während der Vertragslaufzeit unterhalten wird: Personenschäden: 2.000.000,00 Euro, Sachschäden: 1.000.000,00 Euro und allgemeine Vermögensschäden: 100.000,00 Euro.
+Soweit der Bieter derzeit über keine ausreichende Betriebshaftpflichtversicherung verfügt, hat er zu versichern, dass er im Falle der Zuschlagserteilung eine Betriebshaftpflichtversicherung gemäß den vorgenannten Bedingungen abschließen wird.(Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen. Es ist auch ausreichend, wenn eine auf die Bietergemeinschaft bzw. Arbeitsgemeinschaft selbst lautende Betriebshaftpflichtversicherung geschlossen wird.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Benennung der für die Leistungserbringung vorgesehenen Personen (samt Nachweis des Erfüllens von Mindestanforderungen) - Benennung der für die Leistungserbringung vorgesehenen Personen unter Einreichung der jeweiligen Lebensläufe sowie einer Beschreibung der Qualifikation und Erfahrung in dem Leistungsbereich, in dem die Person eingesetzt werden soll. 
+Die Mindestgröße des für die Leistungserbringung vorgesehenen Teams beträgt 4 Personen.
+Bei Personen, bei denen es sich nicht um eigene (angestellte) Mitarbeitende des Bieters handelt, sondern um freie Mitarbeitende/Unterauftragnehmer, ist dies kenntlich zu machen. 
+Bei Nichteinhaltung zum Ausschluss führende Mindestanforderungen sind:
+1. Alle für die Leistungserbringung vorgesehenen Personen sind deutsche Muttersprachler ODER verfügen über Kenntnisse der deutschen Sprache auf dem Niveau C1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen (www.europaeischer-referenzrahmen.de), nachzuweisen über eine entsprechende Eigenerklärung, z.B. im Lebenslauf.
+2. Die Person, die für die Durchführung des Projekts verantwortlich sein soll (Projektleitung), muss über folgende Erfahrungen verfügen:
+- mindestens 3 Jahre Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten im Bereich Veranstaltungsorganisation/ Veranstaltungsmanagement, nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens, einer kurzen Beschreibung der erbrachten Leistungen sowie einer Beschreibung der Zielgruppe).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind: Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahren, Lehrkräfte.
+ 3. Die Person, die die Vertretung der Projektleitung bei temporärer Abwesenheit übernimmt, muss über folgende Erfahrungen verfügen:
+- mindestens 1 Jahr Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten im Bereich Veranstaltungsorganisation/ Veranstaltungsmanagement, nachzuweisen durch die Angabe von mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens, einer kurzen Beschreibung der erbrachten Leistungen sowie einer Beschreibung der Zielgruppe, für die die Leistungen erbracht wurden).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind: Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahren, Lehrkräfte.
+4. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über mindestens 3 Jahre Berufserfahrung in leitender Funktion im Bereich Veranstaltungsorganisation, Veranstaltungsmanagement, nachzuweisen durch entsprechende Angaben, vorzugsweise im jeweiligen Lebenslauf.
+5. Mindestens 2 weitere für die Leistungserbringung vorgesehene Personen verfügen jeweils über mindestens 2 Jahre Berufserfahrung im Bereich Veranstaltungsorganisation, Veranstaltungsmanagement, nachzuweisen durch entsprechende Angaben, vorzugsweise im jeweiligen Lebenslauf.
+6. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über Berufserfahrung in der Organisation bzw. dem Management von Veranstaltungen mit aktiver Beteiligung prominenter Personen aus Politik ODER Wirtschaft ODER Kultur ODER Medien, nachzuweisen durch mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Leistungszeitraums, einer kurzen Beschreibung der erbrachten Leistungen sowie einer kurzen Darstellung der Beteiligung prominenter Personen). 
+7. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über Berufserfahrung in der Organisation bzw. dem Management von Veranstaltungen mit der Zielgruppe Kinder und Jugendliche, nachzuweisen durch mindestens 2 Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Leistungszeitraums, einer kurzen Beschreibung der erbrachten Leistungen sowie einer kurzen Darstellung der Zielgruppe).
+8. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über Erfahrung im Veranstaltungsmanagement im Bereich Veranstaltungstechnik (für ein musikalisches Programm mit mindestens 200 aktiv zuhörenden Gästen), nachzuweisen durch mindestens 2 Referenzveranstaltungen aus den letzten 5 Jahren (unter Angabe der Auftraggebers bzw. Veranstalters, des Leistungszeitraums sowie einer Beschreibung der erbrachten Leistungen, aus der insbesondere auch hervorgeht: die Anzahl der Teilnehmenden an der Veranstaltung sowie der Umfang der eingesetzten Ton- und Lichttechnik sowie des eingesetzten Personals.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Engagement Global wird in dem nach § 56 VgV zulässigen Rahmen die Bieter auffordern, fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Mit Angebotsabgabe sind von den Bietern zum Nachweis des Nichtvorliegens von Ausschlussgründen folgende Erklärungen einzureichen:
+ 
+- Eigenerklärung zum Nichtvorliegen der Ausschlussgründe i.S.d. §§ 123, 124 GWB (im Fall der Bildung einer Bietergemeinschaft ist die Eigenerklärung von jedem Mitglied der Bietergemeinschaft abzugeben).
+
+- Eigenerklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. Art. 5k der Verordnung (EU) Nr. 833/2014 in der Fassung der Verordnung (EU) 2025/2033 im Hinblick auf restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">59</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es sind die Rügeobliegenheiten des § 160 Abs. 3 Satz 1 GWB und insbesondere die Frist in § 160 Abs. 3 Satz 1 Nr. 4 GWB zu beachten. § 160 Abs. 3 Satz 1 GWB lautet wie folgt: "Der Antrag ist unzulässig, soweit 1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt; 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind; 5) ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Veranstaltungsmanagement</cbc:Name>
+			<cbc:Description languageID="DEU">Das Los 3 (Veranstaltungsmanagement) beinhaltet Leistungen im Veranstaltungsmanagement (Bewertungsverfahren, Vorabendprogramm, Preisverleihung) für den Schulwettbewerb und Song Contest. Hierzu zählen insbesondere: Unterstützung bei der Organisation des Vorabendprogramms und der Preisverleihung des Schulwettbewerbs einschließlich Technik, Mobiliar und Transfers. Organisation von Planungstreffen. Bereitstellen der Betreuungspersonen für die Veranstaltungen. Erstellen von Schildern für Wegführung und Roll-Ups, Bannern etc. Organisation der Sicherheit der Veranstaltungen sowie Einholung erforderlicher Genehmigungen, Abschluss von Versicherungen. Organisation des Transfers von Teilnehmenden. Unterstützung bei der Durchführung von Veranstaltungen. Aufbereitung und Übersendung von Informationsmaterialien an Lehrkräfte. Unterstützung bei der Planung und Durchführung einer Jugendveranstaltung inklusive Konzert für den Schulwettbewerb und Song Contest einschließlich der Technik für die Veranstaltung. Wegen der Einzelheiten wird auf die Leistungsbeschreibung verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79952000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Auftragnehmer des jeweiligen Loses sind in der Wahl des Ortes der Leistungserbringung grundsätzlich frei. Soweit erforderlich sind Leistungen (deutschlandweit) an den Orten zu erbringen, an denen Veranstaltungen für den Schulwettbewerb und Song Contest stattfinden. Die Auftragnehmer sind bereit, wenn nötig, an den Standort von Engagement Global nach Bonn zu reisen.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-eea</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-02+01:00</cbc:StartDate>
+				<cbc:EndDate>2028-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Übersichten Eignungskriterien Lose 1 bis 4 (Mit dem Angebot; Mittels Eigenerklärung): Diese Übersichten werden den Bietern als PDF-Datei zur Einsichtnahme bereitgestellt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eintragung in das Berufs- oder Handelsregister - Aktueller Nachweis über die Eintragung in das Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Landes, in dem das Unternehmen ansässig ist. Der Auszug/Ausdruck (eingescannte Kopie ist ausreichend) darf zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als sechs Monate sein. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz und Umsatz im Tätigkeitsbereich des Auftrags - Eigenerklärung (unternehmensbezogen) über den Gesamtumsatz des anbietenden Unternehmens und den Umsatz mit Leistungen, die mit den ausgeschriebenen Leistungen vergleichbar sind - jeweils bezogen auf die letzten drei Geschäftsjahre (Geschäftsjahre 2023, 2024 und 2025), sofern verfügbar. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Eigenerklärung (unternehmensbezogen), dass der Bieter über eine ausreichende Betriebshaftpflichtversicherung mit folgenden Mindestdeckungssummen pro Schadensfall (jährlich, jeweils 2-fach maximiert) verfügt oder sich verpflichtet, im Auftragsfalle eine solche abzuschließen, die er im während der Vertragslaufzeit unterhalten wird:
+Personenschäden: 2.000.000,00 Euro, Sachschäden: 1.000.000,00 Euro und allgemeine Vermögensschäden: 100.000,00 Euro.
+Soweit der Bieter derzeit über keine ausreichende Betriebshaftpflichtversicherung verfügt, hat er zu versichern, dass er im Falle der Zuschlagserteilung eine Betriebshaftpflichtversicherung gemäß den vorgenannten Bedingungen abschließen wird.  (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen. Es ist auch ausreichend, wenn eine auf die Bietergemeinschaft bzw. Arbeitsgemeinschaft selbst lautende Betriebshaftpflichtversicherung geschlossen wird.)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Benennung der für die Leistungserbringung vorgesehenen Personen (samt Nachweis des Erfüllens von Mindestanforderungen) - Benennung der für die Leistungserbringung vorgesehenen Personen unter Einreichung der jeweiligen Lebensläufe sowie einer Beschreibung der Qualifikation und Erfahrung in dem Leistungsbereich, in dem die Person eingesetzt werden soll. 
+Die Mindestgröße des für die Leistungserbringung vorgesehenen Teams beträgt 5 Personen.
+Bei Personen, bei denen es sich nicht um eigene (angestellte) Mitarbeitende des Bieters handelt, sondern um freie Mitarbeitende/Unterauftragnehmer, ist dies kenntlich zu machen. 
+Bei Nichteinhaltung zum Ausschluss führende Mindestanforderungen sind:
+1. Alle für die Leistungserbringung vorgesehenen Personen sind deutsche Muttersprachler ODER  verfügen über Kenntnisse der deutschen Sprache auf dem Niveau C1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen (www.europaeischer-referenzrahmen.de), nachzuweisen über eine entsprechende Eigenerklärung, z.B. im Lebenslauf.
+2. Die Person, die für die Durchführung des Projekts verantwortlich sein soll (Projektleitung), muss über folgende Erfahrungen verfügen:
+- mindestens 3 Jahre Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten (im Leistungsbereich Organisation bzw. Durchführung von Studioproduktionen /Songproduktionen ODER Organisation bzw. Durchführung musikalischer Coachings ODER Organisation bzw. Durchführung musikalischer Workshops ODER Organisation bzw. Durchführung von musikalischen Auftritten bei Veranstaltungen ODER Organisation bzw. Durchführung von Konzerten), nachzuweisen durch die Angabe von mindestens zwei Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen und Beschreibung der Zielgruppe).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind: Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahre, Lehrkräfte. 
+3. Die Person, die die Vertretung der Projektleitung bei temporärer Abwesenheit übernimmt, muss über folgende Erfahrungen verfügen:
+- mindestens 1 Jahr Berufserfahrung in der Leitung und Steuerung von Projekten, nachzuweisen über entsprechende Angaben, vorzugsweise im Lebenslauf,
+- Erfahrung in der Erbringung /Durchführung von mit dem Auftragsgegenstand vergleichbaren Leistungen /Projekten (im Leistungsbereich Organisation bzw. Durchführung von Studioproduktionen /Songproduktionen ODER Organisation bzw. Durchführung musikalischer Coachings ODER Organisation bzw. Durchführung musikalischer Workshops ODER Organisation bzw. Durchführung von musikalischen Auftritten bei Veranstaltungen ODER Organisation bzw. Durchführung von Konzerten), nachzuweisen durch die Angabe von mindestens zwei Referenzen aus den letzten 5 Jahren (unter Angabe des Auftraggebers, des Zeitraums der Leistungserbringung, des Auftragsvolumens und einer kurzen Beschreibung der erbrachten Leistungen und Beschreibung der Zielgruppe).
+Mindestens 1 Referenz muss sich explizit an mindestens 1 der im Folgenden aufgeführten Zielgruppen des Schulwettbewerbs und seiner Begleitmaßnahme Song Contest gerichtet haben. Diese sind: Schülerinnen und Schüler, Kinder und Jugendliche zwischen 10 und 25 Jahre, Lehrkräfte.
+4. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über mindestens 5 Jahre Berufserfahrung in leitender Funktion im Bereich professioneller Musikproduktion sowie über mindestens 3 Jahre Berufserfahrung in der Musikproduktion und Tonstudioarbeit mit Kindern und Jugendlichen von 10 bis 25 Jahre, 
+nachzuweisen durch entsprechende Angaben, vorzugsweise im Lebenslauf.
+5. Mindestens 1 für die Leistungserbringung vorgesehene Person verfügt über mindestens 5 Jahre Berufserfahrung im Bereich Komposition/Songwriting, nachzuweisen durch entsprechende Angaben, vorzugsweise im jeweiligen Lebenslauf, unter Benennung von mindestens 10 selbstgeschriebenen und/oder selbstkomponierten Songs.
+6. Mindestens 2 für die Leistungserbringung vorgesehene Personen verfügen jeweils über mindestens 3 Jahre Berufserfahrung im Bereich musikalisches Coaching und/oder Leitung von musikalischen Workshops sowie über mindestens 3 Jahre Berufserfahrung im musikalischen Coaching mit Kindern und Jugendlichen von 10 bis 25 Jahre, nachzuweisen durch entsprechende Angaben, vorzugsweise im jeweiligen Lebenslauf.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Engagement Global wird in dem nach § 56 VgV zulässigen Rahmen die Bieter auffordern, fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Mit Angebotsabgabe sind von den Bietern zum Nachweis des Nichtvorliegens von Ausschlussgründen folgende Erklärungen einzureichen:
+ 
+- Eigenerklärung zum Nichtvorliegen der Ausschlussgründe i.S.d. §§ 123, 124 GWB (im Fall der Bildung einer Bietergemeinschaft ist die Eigenerklärung von jedem Mitglied der Bietergemeinschaft abzugeben).
+
+- Eigenerklärung zum Nichtvorliegen von Ausschlussgründen i.S.d. Art. 5k der Verordnung (EU) Nr. 833/2014 in der Fassung der Verordnung (EU) 2025/2033 im Hinblick auf restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren. (Im Fall der Bildung einer Bietergemeinschaft für jedes Mitglied gesondert vorzulegen.)</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">59</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es sind die Rügeobliegenheiten des § 160 Abs. 3 Satz 1 GWB und insbesondere die Frist in § 160 Abs. 3 Satz 1 Nr. 4 GWB zu beachten. § 160 Abs. 3 Satz 1 GWB lautet wie folgt: "Der Antrag ist unzulässig, soweit 1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt; 2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden; 4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind; 5) ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt."</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>4</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>4</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXU9YYDYTGQE1NYL</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">musikalische Komponenten</cbc:Name>
+			<cbc:Description languageID="DEU">Das Los 4 (musikalische Komponenten) beinhaltet Leistungen zur Beratung und Unterstützung bei den musikalischen Komponenten zum Song Contest. Hierzu zählen insbesondere: Beratungen in Bezug auf die einzusetzende Technik für die 1. Jury und für das Finale, Beratung bei der Erstellung der Ablaufplanung und Betreuung der Auftritte der Top 5 Finalistinnen und Finalisten des Song Contests und weiterer Künstler, Abstimmung des Gesamtkonzepts für das Finale. Erstellen eines Produktionsplans sowie Organisation und Durchführung von Songproduktionen (Erstellen von Schallaufnahmen) samt Coachings aller Gewinner*innen(-gruppen). Mastering und Albumzusammenstellung zum Zweck der Veröffentlichung auf Musikstreamingplattformen. Beschaffung der Backingtracks zu den Songs der Top 5. Nachbereitung von Gewinnersongs. Organisation von Proben und Coachings für Gewinner*innen(-gruppen) sowie Akquisition von Musikern zur Unterstützung des Vorabendprogramms des Schulwettbewerbs. Unterstützung bei der Organisation und Durchführung eines zweitägigen Workshopprogramms mit musikalischen Inhalten bei einer Jugendveranstaltung. Wegen der Einzelheiten wird auf die Leistungsbeschreibung verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">92370000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79952000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79998000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Auftragnehmer des jeweiligen Loses sind in der Wahl des Ortes der Leistungserbringung grundsätzlich frei. Soweit erforderlich sind Leistungen (deutschlandweit) an den Orten zu erbringen, an denen Veranstaltungen für den Schulwettbewerb und Song Contest stattfinden. Die Auftragnehmer sind bereit, wenn nötig, an den Standort von Engagement Global nach Bonn zu reisen.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-eea</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:StartDate>2027-01-02+01:00</cbc:StartDate>
+				<cbc:EndDate>2028-12-31+01:00</cbc:EndDate>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

@@ -102,6 +102,10 @@
 		text-wrap: pretty;
 	}
 
+	dd {
+		margin: 0;
+	}
+
 	.rule {
 		margin-top: 0.875rem;
 		max-width: 70ch;
