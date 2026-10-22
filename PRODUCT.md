@@ -46,6 +46,22 @@ It never gives a verdict the source does not support. Eligibility checkers answe
 - Voice: plain, concrete and calm, written for a busy owner at the end of a long day. Active voice, real verbs. Always states that it is not legal advice.
 - Language: English interface first. Each clause is shown in its original language beside the plain English reading.
 - Lane words kept out of the name, tagline and video title: tender, bid, procurement, radar, match.
+- The familiar base, pinned 2026-10-21 from the tender portals this audience already uses (TED, TenderNed, DTVP,
+  Mercell, Altura; leaning most on TenderNed and Mercell). A direction may change colour, type and shapes, never
+  these:
+  - The wordmark at the top left, plain text links, the firm at the right. The leaders have no theme control,
+    so its place is free.
+  - Finding comes first: the filters (country, type of work, deadline) sit at the top of the tenders list or in
+    a left column, with a result count and the sort order stated.
+  - Each tender shows its title as a link, the buyer, the deadline, the notice number, the estimated value and a
+    small reading-status tag.
+  - A tender opens as a record: the notice number and title, the verdict, the deciding clause, then the rest in
+    a fixed order, with the source one click away.
+  - The portals' own words: notice, buyer, deadline, procedure, lot.
+  - One neutral sans on every working surface. An expressive face only on the start page and headlines.
+  - Medium to high density: a list shows several tenders on a laptop screen, as the portals do (three cards on
+    TenderNed, seven table rows on DTVP), never one big card at a time.
+  - One strong colour, used calmly, with reading text at full contrast. Light, Dark and Device themes.
 
 ## Evidence on Hand
 
