@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">BKK Dachverband e.V.</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:CityName>Berlin</cbc:CityName>
+									<cbc:PostalZone>10117</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE300</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE309026164</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Bundes</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53123</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>49 228 9499-0</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00699142-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">196/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-09+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">70e182b5-5047-4028-81a9-f642fffc34e3</cbc:ID>
+	<cbc:ContractFolderID>4c3eeb3f-9ebd-42e8-99e9-1199ad9700d3</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-08+02:00</cbc:IssueDate>
+	<cbc:IssueTime>09:53:24+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-08+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">org-sub</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">(1) Rügen wegen erkannter Verstöße gegen Vergabevorschriften sind innerhalb einer Frist von zehn Kalendertagen zu erheben, § 160 Abs. 3 S. 1 Nr. 1 GWB. (2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung gerügt werden, § 160 Abs. 3 S. 1 Nr. 2 GWB. (3) Ergänzend wird auf § 160 Abs. 3 S. 1 Nr. 4 GWB hingewiesen. Hiernach ist ein Nachprüfungsantrag unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung vergangen sind, einer Rüge nicht abhelfen zu wollen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Die wichtigsten Merkmale ergeben sich aus den 2_Bewerbungsbedingungen.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4Y9MM2QV</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">BKK Gesundheitsfinder</cbc:ID>
+		<cbc:Name languageID="DEU">BKK GesundheitsFinder &amp; Co. - Betrieb und Weiterentwicklung von Webanwendungen</cbc:Name>
+		<cbc:Description languageID="DEU">Betrieb, Pflege, Support und Weiterentwicklung von Webanwendungen</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4Y9MM2QV#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Einzelheiten ergeben sich aus der 3_Leistungsbeschreibung_Gesundheitsfinder und dem 4_Vertrag_Gesundheitsfinder.</cbc:Description>
+			<cac:Address>
+				<cbc:Region>anyw-cou</cbc:Region>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">(1)Zum Nachweis der Befähigung und Erlaubnis zur Berufsausübung  hat der Bieter folgende Angaben und Erklärungen abzugeben bzw. Unterlagen als Nachweis vorzulegen: - Handelsregisterauszug: Nachweis der Eintragung im Handelsregister des Staates, in dem der Bieter niedergelassen ist, der nicht älter als drei Monate zum Zeitpunkt des Ablaufs der Angebotsfrist sein darf. Ist ein Bieter nach dem Recht des Staates, in dem er niedergelassen ist, nicht zur Eintragung in ein Berufs- oder Handelsregister verpflichtet, hat er darüber und über die Gründe (z.B. die Rechtsform) eine entsprechende Eigenerklärung abzugeben. - Alternativer Nachweis: Sofern der Bieter nicht im Handelsregister verzeichnet ist, genügt der Nachweis der erlaubten Berufsausübung auf andere Weise (z.B. Eintragung in ein Partnerschafts- oder Vereinsregister, Mitgliedschaft in einer wirtschaftsständischen Vereinigung).  (2) Zur Nachweisführung ist die 2.4_Erklärung Befähigung und Erlaubnis zur Berufsausübung zu verwenden. Ergänzende Nachweise (z. B. Handelsregisterauszug) sind als eigene Anlagen zum Angebot beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit (Ziffer 5.1.9 der Auftragsbekanntmachung) hat der Bieter folgende Erklärungen abzugeben: - Gesamtumsatz: Jahresumsatz in EUR (netto) bezogen auf die letzten drei abgeschlossenen Geschäftsjahre (2025, 2024, 2023) vor Ablauf der Angebotsfrist. Mindestanforderung:   Der Gesamtumsatz muss mindestens 800.000 Euro pro Jahr betragen.   Zur Nachweisführung ist die 2.5_Erklärung wirtschaftliche und finanzielle Leistungsfähigkeit zu verwenden. Ergänzende Nachweise  sind als eigene Anlagen zum Angebot beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit hat der Bieter folgen-de Erklärungen abzugeben: - Spezifischer Umsatz: Jahresumsatz bezogen auf den Tätigkeitsbereich des Auftrags in EUR (netto) bezogen auf die letzten drei Geschäftsjahre vor Ablauf der Angebotsfrist (2025, 2024 und 2023). Der Tätigkeitsbereich umfasst die Weiterentwicklung und Be-trieb von Online-Applikationen. Mindestanforderung:  Der spezifische Jahresumsatz muss mindestens 500.000 Euro pro Jahr betragen. Zur Nachweisführung ist die 2.5_Erklärung wirtschaftliche und finanzielle Leistungsfähigkeit zu verwenden. Ergänzende Nachweise  sind als eigene Anlagen zum Angebot beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit hat der Bieter folgende Erklärungen abzugeben: - Nachweis einer Betriebshaftpflichtversicherung für Personen-, Sach- und Vermögensschäden für Tätigkeiten, die Gegenstand dieses Auftrags sind. Der Nachweis darf zum Zeitpunkt des Ablaufs der Angebotsfrist nicht älter als sechs Monate sein und muss die mit dem Versicherungsunternehmen vereinbarten Deckungssummen ausweisen. Mindestanforderung: Die Deckungssumme der Betriebshaftpflichtversicherung muss je Schadenfall die folgenden Mindestdeckungssummen ausweisen:  - Personenschäden:  mind. EUR 2.000.000,00 - Sachschäden:   mind. EUR 2.000.000,00 - Vermögensschäden:   mind. EUR 500.000,00  Sofern ein Bieter noch nicht über einen Versicherungsschutz verfügt oder die Mindestanforderungen an die Deckungssummen nicht vollständig erfüllt, ist eine Erklärung eines Versicherungsunternehmens einzureichen, nach der der Versicherer sich dazu bereit er-klärt, eine entsprechende Versicherung abzuschließen bzw. den bestehenden Deckungsschutz so zu erweitern, dass die genannten Voraussetzungen vollständig erfüllt sind. Zur Nachweisführung ist die 2.5_Erklärung wirtschaftliche und finanzielle Leistungsfähigkeit zu verwenden. Ergänzende Nachweise (z.B. Versicherungsnachweis) sind als eigene An-lagen zum Angebot beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis der technischen und beruflichen Leistungsfähigkeit hat der Bieter die nachfolgenden Erklärungen abzugeben: (a) Geeignete Referenzen über früher ausgeführte Aufträge in Form einer Liste der in den letzten vier Jahren vor Ablauf der Teilnahmeantragsfrist erbrachten wesentlichen Leistungen, mit folgenden Angaben:  - Beschreibung der erbrachten Leistungen nach Art, Umfang und Schwierigkeiten (insb. Betrieb) - und /oder (Weiter-) Entwicklung mehrerer hochverfügbarer Web-Anwendungen auf MVC-Basis / LAMP-Stack/ Auftrag im Branchenumfeld des Gesundheitswesens / und/oder Weiterentwicklung mehrerer Web-Anwendungen auf MVC-Basis / LAMP-Stack /Betrieb und/oder Weiterentwicklung von Leistungserbringerauskunftssystemen im Arzt-/Hebammen-/Krankenhaus-/Pflegebereich/Umgang mit Qualitätsdaten im Kontext des SGB V/XI - erhöhten Datenschutz-Anforderungen und IT-Security - Auftragswert in EUR (netto) - Leistungszeitraum - Erklärung über die Ausführung der Leistungen als Auftragnehmer, Unterauftragnehmer oder als Mitglied einer Arbeitsgemeinschaft - Kompetenter Ansprechpartner beim Auftraggeber (Referenzgeber) mit Kontaktdaten Mindestanforderung: Es sind mindestens drei Referenzen (jeweils separate Aufträge) über Leistungen nach-zuweisen, die mit den Leistungen des hier zu vergebenden Auftrags nach Art, Umfang und Schwierigkeit vergleichbar sind. Dies ist der Fall, wenn die folgenden Leistungsbereiche und der Auftragsumfang vollständig durch die Referenzen erfüllt sind: - Leistungsbereiche:  o Leistungsbereich 1: Ein Referenzprojekt , das den Betrieb mehrerer Web-Anwendungen auf MVC-Basis / LAMP-Stack und/oder Weiterentwicklung mehrerer Web-Anwendungen auf MVC-Basis / LAMP-Stack umfasst. o Leistungsbereich 2: Betrieb und / oder Weiterentwicklung von Leistungserbringerauskunftssystemen im Arzt-/Hebammen-/Krankenhaus-/Pflegebereich. o Leistungsbereich 3: Umgang mit Qualitäts- und Transparenzdaten im Kontext der §§ 136 b Absatz 1 Satz 1 Nummer 3 SGB V und 115 Absatz 1a sowie 7 Ab-satz3 SGB XI. Eine Referenz kann alle drei muss aber mindestens einen der vorstehenden Leistungsbereiche umfassen. Entscheidend für die Erfüllung der Mindestanforderung ist es, dass jeder Leistungsbereich von mindestens einer Referenz abgedeckt wird und jede der mindestens drei einzureichenden Referenzen einen Leistungsbereich zum Gegenstand hat. o Auftragsumfang: Der Projektumfang je Referenz muss &gt; 300.000,00 EUR netto betragen.  Zur Abgabe der geforderten Erklärungen ist der entsprechende Abschnitt in der 2.6_Erklärung technische und berufliche Leistungsfähigkeit auszufüllen und gegebenen-falls, um eigene Anlagen nach Bedarf zu ergänzen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Zum Nachweis der technischen und beruflichen Leistungsfähigkeit hat der Bieter die nachfolgenden Erklärungen abzugeben: Personal: Erklärung, aus der jeweils die jährliche Zahl  - der festangestellten Mitarbeiter, - der Führungskräfte, - der festangestellten Mitarbeiter im Tätigkeitsbereich " Projektmanagement", - der festangestellten Mitarbeiter im Tätigkeitsbereich "Software-Entwicklung, Software testen" und  - der festangestellten Mitarbeiter im Tätigkeitsbereich "UX/UI-Design, Web Design"  des Bewerbers in den letzten drei Jahren (2024, 2025, 2026) ersichtlich ist. Mindestanforderung: Im Durchschnitt der letzten drei Jahre vor Ablauf der Teilnahmeantragsfrist müssen die nachstehenden Mindestbeschäftigtenzahlen je Tätigkeitsbereich erfüllt sein: - Festangestellte Mitarbeiter im Tätigkeitsbereich "Projektmanagement": mindestens 3 - Festangestellte Mitarbeiter im Tätigkeitsbereich "Software-Entwicklung, Software testen": mindesten 5 - Festangestellte Mitarbeiter im Tätigkeitsbereich "UX/UI-Design, Web-Design": mindestens 3 Zur Abgabe der gemäß geforderten Erklärungen ist der entsprechende Abschnitt in der 2.6_Erklärung technische und berufliche Leistungsfähigkeit auszufüllen und gegebenenfalls, um eigene Anlagen nach Bedarf zu ergänzen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Bieter haben sich zum Nichtvorliegen der in § 123 GWB und § 124 GWB genannten Aus-schlussgründe zu erklären. Diese Erklärung umfasst auch das Nichtvorliegen der in § 124 Abs. 2 GWB i.V.m. § 19 Abs. 1 i.V.m. § 21 Mindestlohngesetz (MiLoG), § 124 Abs. 2 GWB i.V.m. § 21 Abs. 1 i.V.m. § 23 Arbeitnehmer-Entsendegesetz (AEntG), § 124 Abs. 2 GWB i.V.m. § 98c Abs. 1 S. 1 Aufenthaltsgesetz (AufenthG), § 124 Abs. 2 GWB i.V.m. § 21 Abs. 1 S. 1, 2 Schwarzarbeitsbekämpfungsgesetz (SchwarzArbG), § 124 Abs. 2 GWB i.V.m. § 22 Abs. 2 Lieferkettensorgfaltspflichtengesetz (LkSG) und § 124 Abs. 2 GWB i.V.m. § 14 Bundestariftreuegesetz (BTTG) genannten Ausschlussgründe. Für die Erklärung ist 2.7_Erklärung Aus-schlussgründe zu verwenden. (2) Die Auftraggeberin weist darauf hin, dass sie nach § 19 Abs. 4 MiLoG, § 21 Abs. 4 AEntG, § 21 Abs. 1 S. 5 SchwarzArbG und § 98c Abs. 3 AufenthG i.V.m. § 21 Abs. 4 AEntG verpflichtet ist, vor der Erteilung des Zuschlags für den Bieter, der den Zuschlag erhalten soll, eine Auskunft aus dem Wettbewerbsregister nach § 6 Abs. 1 WRegG über das (Nicht-)Vorliegen der jeweiligen Ausschlussgründe anzufordern. (3) Liegt bei einem Bieter ein Ausschlussgrund nach § 123 GWB oder § 124 GWB vor, hat dieser Selbstreinigungsmaßnahmen zu ergreifen. Hierzu ist nachzuweisen, dass er  1. für jeden durch eine Straftat oder ein Fehlverhalten verursachten Schaden einen Ausgleich gezahlt oder sich zur Zahlung eines Ausgleichs verpflichtet hat,  2. die Tatsachen und Umstände, die mit der Straftat oder dem Fehlverhalten und dem dadurch verursachten Schaden in Zusammenhang stehen, durch eine aktive Zusammenarbeit mit den Ermittlungsbehörden und dem öffentlichen Auftraggeber umfassend geklärt hat, und  3. konkrete technische, organisatorische und personelle Maßnahmen ergriffen hat, die geeignet sind, weitere Straftaten oder weiteres Fehlverhalten zu vermeiden.  (4) Die Auftraggeberin bewertet die vom Bieter ergriffenen Selbstreinigungsmaßnahmen und berücksichtigt die Schwere und die besonderen Umstände der Straftat oder des Fehlverhaltens. Erachtet die Auftraggeberin die Selbstreinigungsmaßnahmen als unzureichend, so begründet er diese Entscheidung gegenüber dem Bieter. (5) Auch bei einem Verstoß gegen § 124 Abs. 2 GWB i.V.m. § 19 Abs. 1 i.V.m. § 21 MiLoG, § 124 Abs. 2 GWB i.V.m. § 21 Abs. 1 i.V.m. § 23 AEntG, § 124 Abs. 2 GWB i.V.m. § 98c Abs. 1 S. 1 AufenthG, § 124 Abs. 2 GWB i.V.m. § 22 Abs. 2 LkSG und § 124 Abs. 2 GWB i.V.m. § 14 BTTG wird der Bieter nicht ausgeschlossen, wenn er die Wiederherstellung der Zuverlässigkeit nachgewiesen hat. (6) Kommt der Bieter seinen Verpflichtungen zur Zahlung von Steuern, Abgaben und Beiträgen zur Sozialversicherung nicht nach und ist dies durch eine rechtskräftige Gerichts- oder bestandskräftige Verwaltungsentscheidung festgestellt (§ 123 Abs. 4 S. 1 Nr. 1 GWB), unter-bleibt ein Ausschluss, wenn der Bieter nachweist, dass er seinen Verpflichtungen dadurch nachgekommen ist, dass er die Zahlung vorgenommen oder sich zur Zahlung der Steuern, Abgaben und Beiträge zur Sozialversicherung einschließlich Zinsen, Säumnis- und Strafzuschlägen verpflichtet hat. (7) Öffentliche Auftraggeber sind bei Aufträgen oberhalb der EU-Schwellenwerte verpflichtet, die in der am 8. April 2022 im EU-Amtsblatt veröffentlichten Verordnung (EU) 2022/576 des Rates vom 8. April 2022 zur Änderung der Verordnungen (EU) Nr. 833/2014 (nachfolgend: Sanktions-VO) normierten Sanktionen umzusetzen. Nach Art. 5k der Sanktion-VO besteht insbesondere ein Zuschlagsverbot. Das Zuschlagsverbot besagt, dass Personen oder Unter-nehmen, die der Sanktions-VO unterliegen, keine öffentlichen Aufträge mehr erhalten dürfen. Von allen Bietern bzw. sämtlichen Mitgliedern einer Bietergemeinschaft ist deshalb die entsprechende Erklärung im Rahmen der 2.7_Eigenerklärung Ausschlussgründe abzugeben. Angebote von Unternehmen, die diese Erklärung nicht abgeben, sind vom Verfahren auszuschließen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4Y9MM2QV/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Es wird auf die 2_Bewerbungsbedingungen verwiesen.  Eignungsleihe und Bietergemeinschaften:  Ein Unternehmen kann sich, auch als Mitglied einer Bietergemeinschaft, zum Nachweis seiner Leistungsfähigkeit und Fachkunde der Fähigkeiten Dritter (z.B. Unterauftragnehmer) bedienen, ungeachtet des rechtlichen Charakters der zwischen ihm und diesen Dritten bestehen-den Verbindungen. Jeder Dritte, auf dessen Eignung sich der Bieter bezieht, muss die 2.3_Erklärung Eignungslei-he ausfüllen und unterzeichnet mit dem Angebot des Bieters einreichen. Zudem muss dieser Dritte seine wirtschaftliche und finanzielle sowie technische und berufliche Leistungsfähigkeit nach Maßgabe der Anforderungen in der Auftragsbekanntmachung und dieser Bewerbungsbedingungen unter Verwendung der gestellten Formblätter 2.5_Erklärung wirtschaftliche und finanzielle Leistungsfähigkeit und 2.6_Erklärung technische und berufliche Leistungsfähigkeit in dem Umfang nachweisen, in dem sich der Bieter darauf beruft. Unabhängig davon muss auch der Dritte, auf dessen Eignung sich der Bieter beruft, seine Befähigung und Erlaubnis zur Berufsausübung (Ziffer 6.2) sowie das Nichtvorliegen der in § 123 GWB und § 124 GWB genannten Ausschlussgründe (Ziffer 0) nach Maßgabe der Auftragsbekanntmachung und dieser Bewerbungsbedingungen und unter Verwendung der gestellten Formblätter 2.4_Erklärung Befähigung und Erlaubnis zur Berufsausübung und 2.7_Erklärung Ausschlussgründe individuell und vollständig nachweisen. (4) Ein Bieter kann im Hinblick auf Nachweise für die erforderliche berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen nur dann in Anspruch nehmen, wenn diese die Leistung erbringen, für die diese Kapazitäten benötigt werden.  (5) Im Rahmen der Eignungsprüfung wird überprüft, ob das Drittunternehmen, deren Kapazitäten der Bieter für die Erfüllung der Eignungskriterien in Anspruch nehmen möchte, die entsprechenden Eignungskriterien erfüllt und ob Ausschlussgründe vorliegen.  (6) Erfüllt das Drittunternehmen die entsprechenden Eignungskriterien nicht vollständig oder liegt ein zwingender Ausschlussgrund vor, muss der Bieter dieses Unternehmen ersetzen. Die Auftraggeberin behält sich vor, die Ersetzung des Drittunternehmens zu verlangen, wenn ein fakultativer Ausschlussgrund vorliegt. Hierfür wird dem Bieter eine angemessene Frist gesetzt. (7) Es wird verlangt, dass der Bieter und das Drittunternehmen gemeinsam für die Auftragsausführung entsprechend dem Umfang der Eignungsleihe haften, § 47 Abs. 3 VgV.   Die Teilnahme am Vergabeverfahren als Bietergemeinschaft ist zulässig. Der Koordinierungs-aufwand darf allerdings nicht bei der Auftraggeberin liegen. Ist eine Teilnahme als Bietergemeinschaft beabsichtigt, so hat die Bietergemeinschaft einen bevollmächtigten Vertreter zu benennen, der das 2.1_Angebotsschreiben unterschreibt und im weiteren Verfahren Ansprechpartner der Bietergemeinschaft für die Auftraggeberin ist.  (2) Jedes Mitglied der Bietergemeinschaft hat die zum Nachweis der Eignung vorgegebenen Formblätter - 2.4_Erklärung Befähigung und Erlaubnis zur Berufsausübung, - 2.5_Erklärung wirtschaftliche und finanzielle Leistungsfähigkeit, - 2.6_Erklärung technische und berufliche Leistungsfähigkeit und - 2.7_Erklärung Ausschlussgründe - 2.9_Qualifikation Personal gesondert auszufüllen. Zusätzlich füllt die Bietergemeinschaft 2.2_Erklärung Bietergemeinschaft aus, in dem auch der vorgenannte bevollmächtigte Vertreter benannt wird.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Etwaige Ausführungsbedingungen sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Siehe 2_Bewerbungsbedingungen_Gesundheitsfinder.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualität</cbc:Name>
+						<cbc:Description languageID="DEU">Siehe 2_Bewerbungsbedingungen_Gesundheitsfinder.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4Y9MM2QV</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">3</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">(1) Rügen wegen erkannter Verstöße gegen Vergabevorschriften sind innerhalb einer Frist von zehn Kalendertagen zu erheben, § 160 Abs. 3 S. 1 Nr. 1 GWB. (2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, müssen bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung gerügt werden, § 160 Abs. 3 S. 1 Nr. 2 GWB. (3) Ergänzend wird auf § 160 Abs. 3 S. 1 Nr. 4 GWB hingewiesen. Hiernach ist ein Nachprüfungsantrag unzulässig, soweit mehr als 15 Kalendertage nach Eingang der Mitteilung vergangen sind, einer Rüge nicht abhelfen zu wollen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4Y9MM2QV</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-10+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-02+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">BKK Gesundheitsfinder</cbc:ID>
+			<cbc:Name languageID="DEU">BKK GesundheitsFinder &amp; Co. - Betrieb und Weiterentwicklung von Webanwendungen</cbc:Name>
+			<cbc:Description languageID="DEU">Folgende Leistungen sind von dem Auftrag erfasst.  1. Betriebsübernahme der bestehenden BKK GesundheitsFinder nebst Einarbeitung   2. Jährlicher Import und Veröffentlichung der Qualitätsberichte beim BKK KlinikFinder   3. Technischer Betrieb inkl. Softwarewartung und -pflege der BKK GesundheitsFinder   4. Weiterentwicklung der BKK GesundheitsFinder   Es wird für weitere Einzelheiten zur Leistung auf die Vergabeunterlagen, insbesondere die 3_Leistungsbeschreibung_Gesundheitsfinder verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Einzelheiten ergeben sich aus der 3_Leistungsbeschreibung_Gesundheitsfinder und dem 4_Vertrag_Gesundheitsfinder.</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-cou</cbc:Region>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>24</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Der Vertrag kann zweimal um ein weiteres Jahr verlängert werden. Der Auftraggeber wird dem Auftragnehmer spätestens 3 Monate vor Ablauf der jeweiligen Vertragslaufzeit schriftlich die Verlängerung des Vertrages um jeweils ein Jahr anzeigen.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

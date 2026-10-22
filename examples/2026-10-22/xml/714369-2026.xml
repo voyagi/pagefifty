@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:GroupLeadIndicator>true</efbc:GroupLeadIndicator>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.felsenland-suedeifel.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Felsenland Südeifel Tourismus GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Neuerburgerstraße 6</cbc:StreetName>
+									<cbc:CityName>Bollendorf</cbc:CityName>
+									<cbc:PostalZone>54669</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>072325005000-001-69</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.gerolsteiner-land.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">TOURISTIK GmbH Gerolsteiner Land</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Burgstraße 6</cbc:StreetName>
+									<cbc:CityName>Hillesheim</cbc:CityName>
+									<cbc:PostalZone>54576</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB24</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07339028-GEROLSTEINERLAND2007-93</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.eifel-direkt.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Zweckverband Feriengebiet Bitburger Land</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Römermauer 6</cbc:StreetName>
+									<cbc:CityName>Bitburg</cbc:CityName>
+									<cbc:PostalZone>54634</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>072325008000-001-20</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.ferienregion-pruem.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0004</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Verbandsgemeinde Prüm</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Hahnplatz 1</cbc:StreetName>
+									<cbc:CityName>Prüm</cbc:CityName>
+									<cbc:PostalZone>54595</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>072325006000-001-85</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.islek.info</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0005</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Verbandsgemeinde Arzfeld</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Luxemburger Str. 6</cbc:StreetName>
+									<cbc:CityName>Arzfeld</cbc:CityName>
+									<cbc:PostalZone>54687</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>072325001000-001-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.webeler-rechtsanwaelte.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0006</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Webeler Rechtsanwälte</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Löhrstraße 99</cbc:StreetName>
+									<cbc:CityName>Koblenz</cbc:CityName>
+									<cbc:PostalZone>56068</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB11</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE203132968</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://mwtek.rlp.de/ministerium/zugeordnete-institutionen-1/vergabekammer</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0007</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Ministerium für Wirtschaft, Tourismus, Energie und Klima - Vergabekammer -</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0008</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00714369-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">200/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-15+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">9a7a260d-fde4-44f8-9692-1027b077022b</cbc:ID>
+	<cbc:ContractFolderID>a914f339-2ed9-4a48-af66-982fe13f3a80</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-13+02:00</cbc:IssueDate>
+	<cbc:IssueTime>15:41:12+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-13+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">rcr</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:ServiceProviderParty>
+				<cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+				<cac:Party>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0006</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:Party>
+			</cac:ServiceProviderParty>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0008</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">rcr</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0002</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0003</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0004</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0005</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Erklärung des Bewerbers, dass er seiner Verpflichtung zur Zahlung von Steuern nachgekommen ist.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Erklärung des Bewerbers, dass er seiner Verpflichtung zur Zahlung von Sozialversicherungsbeiträgen nachgekommen ist.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Von Bewerbern/Bietern erkannte Verstöße der vergebenden Stelle gegen das geltende Vergaberecht hat der Bieter gegenüber dem Auftraggeber innerhalb von 10 Kalendertagen zu rügen. Erklärt der Auftraggeber, dass er der Rüge nicht abhelfen will, hat der Bieter binnen einer Frist von 15 Tagen nach Eingang der Mitteilung bei folgender Stelle schriftlich einen Nachprüfungsantrag zu stellen: Ministerium für Wirtschaft, Tourismus, Energie und Klima - Vergabekammer - Stiftsstraße 9 55116 Mainz Deutschland E-Mail: [removed] Telefon: [removed] Fax: [removed]</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0007</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">In der ersten Phase - Teilnahmewettbewerb - wird die Eignung der Bieter geprüft. 3-5 der am besten geeigneten Bewerber werden zur Angebotsabgabe aufgefordert. Die Angebote sollen in einer oder mehreren Runden verhandelt werden. Der Zuschlag auf das Erstangebot bleibt vorbehalten.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YK7MWB3</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">275/26</cbc:ID>
+		<cbc:Name languageID="DEU">Virtuelle Tourist-Information - KI-basierte Gästeberatung, Los 1 - Hardware (Digitale Kioske &amp; Monitore)</cbc:Name>
+		<cbc:Description languageID="DEU">Die Felsenland Südeifel Tourismus GmbH errichtet gemeinsam mit vier Projektpartnern (TOURISTIK GmbH Gerolsteiner Land, Zweckverband Feriengebiet Bitburger Land, Verbandsgemeinde Prüm / Tourist-Information Prümer Land, Verbandsgemeinde Arzfeld / Tourist-Information Islek) im Rahmen des Projekts "Virtuelle Tourist-Information - KI-basierte Gästeberatung" eine flächendeckende, 24/7 verfügbare, mehrsprachige und barrierefreie touristische Informations- und Beratungsinfrastruktur in der Südeifel und im Gerolsteiner Land.  Das Vorhaben wird aus Mitteln des EFRE Rheinland-Pfalz 2021-2027 (Öffentliche Tourismusinfrastruktur - Tourismus 4.0) gefördert.  Gegenstand dieser Bekanntmachung ist Los 1 - Hardware: die Lieferung, Montage und Inbetriebnahme von 18 digitalen Informationskiosken und Touchscreen-Monitoren an 18 Standorten in der Region sowie der zugehörige Wartungs- und Monitoring-Service bis zum 31.12.2038.  Die Lose 2 (Digitale Service-Plattform - CMS und Ausspielsysteme) und 3 (KI-Beratungssystem) werden gesondert ausgeschrieben. Bietergemeinschaften aus Hardware-Herstellern und Software-/KI-Entwicklern sind ausdrücklich erwünscht.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YK7MWB3#
+
+
+1. Die Teilnahmeanträge sind mit den geforderten Erklärungen und Nachweisen innerhalb der Teilnahmefrist elektronisch - nur über das Bietertool der Vergabeplattform einzureichen. Hierzu kann das veröffentlichte vorbereitete Teilnahmeformular genutzt werden. Hinsichtlich der Eigenerklärungen kann der Nachweis vorläufig durch eine Einheitliche Europäische Eigenerklärung geführt werden. Maßgeblich bleibt jedoch der Inhalt der Bekanntmachung. 2. Das Vergabeverfahren wird elektronisch über die Vergabeplattform geführt. Das bieterindividuelle Postfach auf der Vergabeplattform fungiert als "elektronischer Briefkasten" der Bieter und ist für den Zugang von Erklärungen, Nachforderungen pp. im Vergabeverfahren maßgeblich und verbindlich. 3. Der Versand der Einladungen zum Verhandlungsgespräch, der Informationsschreiben gemäß § 134 GWB und sonstiger Schriftverkehr, wie z.B. Nachforderungen, erfolgt ebenso über das Bieterpostfach der Vergabeplattform.  4. Eine Ausnahme von der Nutzung der Vergabeplattform besteht für das Zuschlagsschreiben. Dieses kann vom Auftraggeber direkt an die vom Bieter angegebene E-Mail-Adresse versandt werden. 5. Im Falle der Bewerbung einer Arbeits-/Bietergemeinschaft erfolgt die Korrespondenz ausschließlich über den bevollmächtigten Partner der Arbeits-/Bietergemeinschaft. 6. Werden die Leistungen von einer Bietergemeinschaft angeboten, sind die Auskünfte für jedes Mitglied der Bietergemeinschaft zu erklären. Will sich der Bieter bei der Leistungserbringung Dritter bedienen, sind die Auskünfte auf Verlangen auch von Dritten abzugeben. 7. Der Auftraggeber beabsichtigt, die Lose 1 bis 3 zeitlich parallel zu vergeben. Die Auftragnehmer der drei Lose sind zur Zusammenarbeit auf Grundlage der übergreifenden Servicelevel-Vereinbarung (Meta-SLA) verpflichtet. 8. Mit dem Angebot ist das Formblatt "Erklärung Meta-SLA-Mitwirkung" (Anlage A-Meta-F) einzureichen.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">30231320</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">30231300</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">51610000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">50320000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die Leistung wird an 18 Standorten in der Region erbracht: Bitburg, Kyllburg, Speicher, Biersdorf am See, Hillesheim, Gerolstein, Waxweiler, Prüm, Bleialf, Schönecken, Körperich, Mettendorf, Echternacherbrück, Neuerburg, Irrel und Ernzen. Die verbindliche Standortliste einschließlich Lageplänen ist Bestandteil der Vergabeunterlagen (Anlage A1).</cbc:Description>
+			<cac:Address>
+				<cbc:Region>anyw-cou</cbc:Region>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Erklärung, ob und hinsichtlich welcher Leistungen sich der Bewerber der Kapazitäten anderer Unternehmer bedient und ihm die dann erforderlichen Mittel zur Verfügung stehen.  2. Angaben des Teils des Auftrages, den der Bewerber unter Umständen an Dritte vergeben will.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erläuterung zur Anzahl der Beschäftigten und deren Ausbildung innerhalb der letzten 3 Jahre (Führungspersonal, Ingenieure, Techniker, Servicepersonal) (§ 122 Abs. 2 Nr. 3 GWB).</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestanforderung an die Erfahrung des Bewerbers:  Mindestens 2 Referenzen über die Lieferung und Inbetriebnahme digitaler Informationskioske bzw. Stelen oder vergleichbarer Touchscreen-Systeme aus den letzten 5 Jahren. Mindestens eine dieser Referenzen muss Outdoor-Geräte im Dauerbetrieb umfassen.  Anzugeben sind jeweils der Auftraggeber nebst Ansprechpartner, der Leistungszeitraum, die Anzahl und Art der gelieferten Geräte, der Leistungsumfang (Lieferung, Inbetriebnahme, Wartung/Monitoring) sowie der Auftragswert.  Es ist möglich, ein Mehr an Eignung durch weitere Referenzen nachzuweisen. Bei gleichqualifizierten Bewerbern entscheidet hinsichtlich der Teilnehmerauswahl das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-tech-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Tabellarische Liste, in der die zur Leistungserbringung vorgesehenen Personen namentlich und unter Angabe der jeweiligen Qualifikation, die auf Verlangen durch Vorlage von Ausbildungs- oder Studiennachweisen oder sonstigen vergleichbaren Belegen nachzuweisen ist, und unter Angabe der Berufserfahrung in Jahren genannt werden (§ 122 Abs. 2 Nr. 1 GWB).  2. Mindestanforderung an den technischen Service: mindestens zwei qualifizierte Servicetechniker, die bundesweit für Vor-Ort-Einsätze zur Verfügung stehen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-facil-tools</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Nachweis der Eignung der angebotenen Geräte für den 24/7-Dauerbetrieb sowie der Einhaltung der geforderten Schutzklassen (Herstellererklärung, technische Datenblätter oder Prüfprotokolle).  2. Erläuterung der für Fernwartung und Hardwaremonitoring eingesetzten technischen Ausstattung und Software einschließlich der Verfahren für den Datenaustausch und die Datensicherung.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über den Gesamtumsatz des Bewerbers in den letzten 3 Geschäftsjahren (§ 122 Abs. 2 Nr. 2 GWB).</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Gehört der Bewerber einer Gruppe von Unternehmen an, hat er mit seinem Teilnahmeantrag zu erklären, inwieweit er mit den weiteren Unternehmen verknüpft ist. 2. Erklärung des Bewerbers, dass er nicht zu den in Artikel 5 k) Absatz 1 der Verordnung (EU) Nr. 833/2014 in der Fassung des Art. 1 Ziff. 23 der Verordnung (EU) 2022/576 des Rates vom 8. April 2022 (SanktionenVO) genannten Unternehmen oder Personen mit Russlandbezug gehört. Gehört der Bewerber einer Gruppe von Unternehmen an, hat er mit seinem Teilnahmeantrag zu erklären, dass dies auch nicht auf die verbundenen Unternehmen zutrifft.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Mindestanforderung:  Der Bewerber muss über eine Betriebs- bzw. Berufshaftpflichtversicherung verfügen, deren Deckungssumme für Personenschäden mindestens 1 Mio. EUR und zusätzlich für sonstige Sach- und Vermögensschäden mindestens 1 Mio. EUR beträgt. Dies ist durch eine Bescheinigung über die Haftpflichtversicherung oder durch eine Erklärung der Versicherung nachzuweisen, dass die Versicherungssumme im Auftragsfall zur Verfügung stehen wird. Die geforderten Nachweise sind in Textform einzureichen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über den Umsatz für Lieferungen und Leistungen, die mit den ausgeschriebenen Leistungen vergleichbar sind, in den letzten 3 Geschäftsjahren (§ 122 Abs. 2 Nr. 2 GWB).</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Ist der Bewerber eine juristische Person, hat er mit seinem Teilnahmeantrag einen Handelsregisterauszug oder einen den Rechtsvorschriften seines Heimatstaates entsprechenden Nachweis vorzulegen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erfahrung des Bewerbers mit der Lieferung und Inbetriebnahme vergleichbarer Geräte anhand der eingereichten Referenzen, die die Mindestanforderungen an die geforderten Referenzen erfüllen.  Es ist möglich, ein Mehr an Eignung durch weitere Referenzen nachzuweisen. Bei gleichqualifizierten Bewerbern entscheidet hinsichtlich der Teilnehmerauswahl das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Berufserfahrung der zur Leistungserbringung vorgesehenen Personen in Jahren (Projektleitung und stellvertretende Projektleitung).  Bei gleichqualifizierten Bewerbern entscheidet hinsichtlich der Teilnehmerauswahl das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesammelte Berufserfahrung der zur Leistungserbringung vorgesehenen Personen anhand der eingereichten Referenzen, die die Mindestanforderungen erfüllen. Jeweils für die zur Leistungserbringung vorgesehene Person (Projektleiter und stellv. Projektleiter).  Es ist möglich, ein Mehr an Eignung durch weitere Referenzen nachzuweisen. Bei gleichqualifizierten Bewerbern entscheidet hinsichtlich der Teilnehmerauswahl das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">par-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YK7MWB3/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, wenn dies aus Gründen eines ausreichenden Wettbewerbs erforderlich ist, fehlende unvollständige oder fehlerhafte Unterlagen nachzufordern, soweit dies rechtlich zulässig ist, insbesondere im Sinne des § 56 VgV.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">1. Die verbindliche Mitwirkung an der übergreifenden Servicelevel-Vereinbarung (Meta-SLA, Anlage A-Meta) ist Bedingung der Auftragsausführung. Die Reaktionszeiten der Meta-SLA sind Mindestanforderungen, die verbessert werden dürfen. 2. Die gelieferten Geräte müssen die Ausspielung barrierefreier Inhalte nach WCAG 2.2 Level AA entsprechend den Anforderungen des Barrierefreiheitsstärkungsgesetzes (BFSG) ermöglichen. 3. Die Geräte müssen den Anforderungen des Grundsatzes "Do No Significant Harm" (DNSH) gemäß Art. 9 der EU-Dachverordnung entsprechen. Der jährliche Energieverbrauch je Gerät ist im Angebot anzugeben. 4. Der Auftragnehmer hat eine DSGVO-Konformitätserklärung vorzulegen. 5. EU-Emblem und EFRE-Förderhinweis sind auf allen öffentlich sichtbaren Geräten nach den Vorgaben des Auftraggebers anzubringen. Die Unterlagen sind mindestens 10 Jahre nach Projektende aufzubewahren. 6. Die Leistungen sind mit den Auftragnehmern der Lose 2 und 3 abzustimmen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>20.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis der Leistung (Investitionskosten)</cbc:Name>
+						<cbc:Description languageID="DEU">Das Angebot mit dem wirtschaftlich günstigsten Preis erhält 10 Punkte. Ein Angebot mit einem doppelt so hohen Preis erhält 0 Punkte. Dazwischen wird interpoliert. Maßgeblich ist der Gesamtpreis über die Laufzeit bis zum 31.12.2038, gebildet aus den einmaligen Investitionskosten (Lieferung, Montage, Inbetriebnahme, Lizenzen Hardwaremonitoring) über 10 Jahre.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>15.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis der Leistung (Wartungskosten)</cbc:Name>
+						<cbc:Description languageID="DEU">Das Angebot mit dem wirtschaftlich günstigsten Preis erhält 10 Punkte. Ein Angebot mit einem doppelt so hohen Preis erhält 0 Punkte. Dazwischen wird interpoliert. Maßgeblich ist der Gesamtpreis über die Laufzeit bis zum 31.12.2038, gebildet aus den laufenden Kosten (Wartung) über 10 Jahre.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>35.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Technische Qualität der Hardware</cbc:Name>
+						<cbc:Description languageID="DEU">Ein Angebot erhält 0-3 Punkte, das die technischen Anforderungen nur knapp oder mit Abweichungen erfüllt, die den Betrieb an stark frequentierten Outdoor-Standorten beeinträchtigen können, insbesondere bei Ablesbarkeit, Schutzklasse, Spracherfassung, Sensorik oder Lebensdauer. 4-6 Punkte erhält ein Angebot, das die technischen Anforderungen vollständig erfüllt, einen störungsarmen 24/7-Dauerbetrieb erwarten lässt und die geforderten Nachweise (Herstellererklärungen, technische Datenblätter, Prüfprotokolle) schlüssig vorlegt. 7-10 Punkte erhält ein Angebot, das darüber hinausgeht, insbesondere durch eine höhere Ablesbarkeit (insbesondere trotz Sonneneinstrahlung) und Robustheit, eine belastbare Spracherfassung im Außenbereich, eine weitergehende Sensorik sowie einen durchgängig modularen Aufbau nachvollziehbar dargelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>10.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Wartungs- und Monitoring-Konzept</cbc:Name>
+						<cbc:Description languageID="DEU">Ein Angebot erhält 0-3 Punkte, bei dem auf ein Wartungs- und Monitoring-Konzept kein oder nur wenig Wert gelegt wird und bei dem Zuständigkeiten, Erreichbarkeit und Abläufe im Störungsfall unklar bleiben. 4-6 Punkte erhält ein Angebot, das ein schlüssiges Konzept für das Basis-Monitoring, die Fernwartung und den Always-On-Service vorlegt und die Einhaltung der geforderten Reaktions- und Wiederherstellungszeiten erwarten lässt. 7-10 Punkte erhält ein Angebot, bei dem darüber hinaus Störungen proaktiv erkannt und gemeldet werden, eine klare Eskalationslogik und Vertretungsregelung dargestellt wird, kurze Wege für Vor-Ort-Einsätze durch regional verfügbare Servicepartner gewährleistet sind und ein aussagekräftiges Reporting angeboten wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Reaktionszeiten bei Schnittstellenstörungen (Meta-SLA)</cbc:Name>
+						<cbc:Description languageID="DEU">Ein Angebot erhält 0-3 Punkte, das die Mindestfristen der Meta-SLA je Schweregrad nicht oder nur teilweise einhält. 4 Punkte erhält ein Angebot, das die Mindestfristen der Meta-SLA je Schweregrad einhält. 5-7 Punkte erhält ein Angebot, das die Mindestfristen über alle Schweregrade hinweg um mindestens 25 % unterschreitet. 8-10 Punkte erhält ein Angebot, das die Mindestfristen über alle Schweregrade hinweg um mindestens 50 % unterschreitet.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualifikation und Erfahrung des zur Auftragsausführung vorgesehenen Personals</cbc:Name>
+						<cbc:Description languageID="DEU">Ein Angebot erhält 0-3 Punkte, bei dem die benannten Personen keine oder nur geringe Erfahrung mit vergleichbaren Projekten aufweisen. 4-6 Punkte erhält ein Angebot, bei dem die benannten Personen über Erfahrung aus vergleichbaren Projekten verfügen und eine reibungsarme Auftragsausführung erwarten lassen. 7-10 Punkte erhält ein Angebot, bei dem die benannten Personen über einschlägige Erfahrung mit Projekten im Tourismus oder im öffentlichen Sektor sowie mit der Einbindung der Hardware in fremde Software- und Ausspielsysteme verfügen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>10.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Nachhaltigkeit</cbc:Name>
+						<cbc:Description languageID="DEU">Ein Angebot erhält 0-3 Punkte, das zum Energieverbrauch, zur Reparierbarkeit und zur Lebensdauer der Geräte keine oder nur pauschale Angaben enthält. 4-6 Punkte erhält ein Angebot, das den jährlichen Energieverbrauch je Gerät nachvollziehbar ausweist und die Reparierbarkeit sowie die Ersatzteilverfügbarkeit belegt. 7-10 Punkte erhält ein Angebot, das darüber hinaus einen deutlich unterdurchschnittlichen Energiebedarf, eine automatische Leistungsanpassung im Betrieb sowie Nachweise zu Energieeffizienz, Materialeinsatz und Rücknahme bzw. Verwertung der Geräte vorlegt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0006</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YK7MWB3</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Von Bewerbern/Bietern erkannte Verstöße der vergebenden Stelle gegen das geltende Vergaberecht hat der Bieter gegenüber dem Auftraggeber innerhalb von 10 Kalendertagen zu rügen. Erklärt der Auftraggeber, dass er der Rüge nicht abhelfen will, hat der Bieter binnen einer Frist von 15 Tagen nach Eingang der Mitteilung bei folgender Stelle schriftlich einen Nachprüfungsantrag zu stellen: Ministerium für Wirtschaft, Tourismus, Energie und Klima - Vergabekammer - Stiftsstraße 9 55116 Mainz Deutschland E-Mail: [removed] Telefon: [removed] Fax: [removed]</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0007</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YK7MWB3</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-13+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">275/26</cbc:ID>
+			<cbc:Name languageID="DEU">Virtuelle Tourist-Information - KI-basierte Gästeberatung, Los 1 - Hardware (Digitale Kioske &amp; Monitore)</cbc:Name>
+			<cbc:Description languageID="DEU">Los 1 - Hardware (Digitale Kioske und Monitore) - Gegenstand dieser Ausschreibung  Zu liefern, zu montieren und in Betrieb zu nehmen sind insgesamt 18 Einheiten: - 12 Outdoor-Informationsstelen (mind. 55", IP 65 / IK 10, freistehend, Hochformat) - 3 Indoor-Informationsstelen (mind. 49", freistehend, Hochformat) - 2 Outdoor-Touchscreen-Monitore (mind. 49", IP 65, Wandmontage) - 1 Indoor-Touchscreen-Monitor (mind. 49", Wandmontage)  Alle Geräte sind für den 24/7-Dauerbetrieb auszulegen und müssen kapazitiven Multitouch (mind. 10 Punkte), die Ausspielung mehrsprachiger Inhalte (DE, EN, NL, FR) sowie eine WCAG 2.2 Level AA-konforme Darstellung (BFSG) unterstützen. Die Displays müssen eine mittlere Lebensdauer von mindestens 60.000 Betriebsstunden aufweisen; Einzelkomponenten (Display, PC, Netzteil, Lüfter) müssen einzeln austauschbar sein. Die Ersatzteilversorgung ist für mindestens 10 Jahre zu bestätigen.  Die Outdoor-Geräte sind mit einem Mikrofon-Array mit Beamforming, hardwareseitiger Echo-Cancellation und wetterfesten, vandalismusgeschützten Lautsprechern auszustatten, da über die Geräte eine sprachgesteuerte KI-Beratung ausgespielt wird. Sensible Komponenten (PC-/Medienrechner) müssen im Gefahrenfall (z. B. Hochwasserwarnung) kurzfristig demontiert, gesichert und wieder eingesetzt werden können.  Der Leistungsumfang umfasst ferner die technische Inbetriebnahme vor Ort (Netzwerkkonfiguration, Displayeinstellungen, Fernwartungszugang, Abnahmeprotokoll) sowie ein Basis-Monitoring einschließlich Fernwartung und Always-On-Service bis zum 31.12.2038 (24/7-Überwachung des Gerätestatus, automatische Statusbenachrichtigungen, Remote-Diagnose und -Neustart, Einspielen sicherheitsrelevanter Updates, Nutzungsstatistik, GSM-Modul je Outdoor-Stele für den internetunabhängigen Neustart).  Bauliche Maßnahmen (Fundament, Stromanschluss, Kabelverlegung, Internetanbindung) werden durch den Auftraggeber bzw. die Standortverantwortlichen erbracht und sind nicht Gegenstand dieses Loses.  Die Hardware bildet die physische Grundlage für die Ausspielung der Inhalte aus Los 2 (Digitale Service-Plattform) und des KI-Beratungssystems aus Los 3. Die Leistungen sind mit den Auftragnehmern der Lose 2 und 3 abzustimmen; die übergreifende Servicelevel-Vereinbarung (Meta-SLA) ist verbindlich.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Der Auftrag wird aus Mitteln des EFRE Rheinland-Pfalz 2021-2027 gefördert. Die EFRE-konforme Belegdokumentation sowie die Publizitätspflichten (EU-Emblem und EFRE-Förderhinweis auf allen öffentlich sichtbaren Geräten) sind einzuhalten. Bietergemeinschaften aus Hardware-Herstellern und Software-/KI-Entwicklern sind ausdrücklich erwünscht. Die laufenden Kosten sind über die Gesamtlaufzeit bis zum 31.12.2038 zu kalkulieren; eine Preisgleitung von höchstens 4 % p. a. ist zulässig.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30231320</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">30231300</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">51610000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">50320000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Leistung wird an 18 Standorten in der Region erbracht: Bitburg, Kyllburg, Speicher, Biersdorf am See, Hillesheim, Gerolstein, Waxweiler, Prüm, Bleialf, Schönecken, Körperich, Mettendorf, Echternacherbrück, Neuerburg, Irrel und Ernzen. Die verbindliche Standortliste einschließlich Lageplänen ist Bestandteil der Vergabeunterlagen (Anlage A1).</cbc:Description>
+				<cac:Address>
+					<cbc:Region>anyw-cou</cbc:Region>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DescriptionCode listName="duration">UNKNOWN</cbc:DescriptionCode>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Optional zu beauftragen sind die im Leistungsverzeichnis gesondert auszupreisenden Positionen: LTE-Module je Gerät (Positionen 1.2, 1.4, 1.6 und 1.8) sowie die erweiterten Monitoring-Funktionen (detaillierte Bandbreitenmessung je Gerät, Touch-Zählung und -auswertung, erweiterte Sensorik wie Rauchmelder, Kollisions- und Neigungssensoren, Lüfterüberwachung, Heizungssteuerung). Diese Positionen sind im Angebot preislich auszuweisen. Eine Beauftragung erfolgt nur nach ausdrücklicher Erklärung des Auftraggebers.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

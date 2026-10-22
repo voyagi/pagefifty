@@ -10,7 +10,7 @@ export const MAX_NOTICE_BYTES = 2 * 1024 * 1024;
 
 export type ReadFailure = {
 	ok: false;
-	kind: 'too-large' | 'doctype' | 'malformed';
+	kind: 'too-large' | 'doctype' | 'malformed' | 'deadline-offsets';
 	detail: string;
 };
 
@@ -188,5 +188,5 @@ export function readNotice(
 		return fail('malformed', `publication id ${published} is not notice ${noticeNumber}`);
 	}
 	const built = toNoticeRecord(parsed.tree, noticeNumber);
-	return built.ok ? built : fail('malformed', built.detail);
+	return built.ok ? built : fail(built.kind ?? 'malformed', built.detail);
 }

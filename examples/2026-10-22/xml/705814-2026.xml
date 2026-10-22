@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.rundfunkbeitrag.de/der_rundfunkbeitrag/beitragsservice/ausschreibungen/index_ger.html</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">ARD ZDF Deutschlandradio Beitragsservice</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Freimersdorfer Weg 6</cbc:StreetName>
+									<cbc:CityName>Köln</cbc:CityName>
+									<cbc:PostalZone>50829</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA23</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>T:[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.brms.nrw.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen (Bezirksregierung Münster)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00705814-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">198/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-13+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">d33135d7-089d-4d2c-baf4-2b122562cfa7</cbc:ID>
+	<cbc:ContractFolderID>bb391290-ea3e-4f6e-bdc4-5476ab1931e2</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-12+02:00</cbc:IssueDate>
+	<cbc:IssueTime>12:27:26+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-12+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://www.dtvp.de</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">vgl. Anlage A6</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Die Vergabestelle weist darauf hin, dass ein Antrag auf Einleitung eines Nachprüfungsverfahrens gemäß § 160 Abs. 3 Satz 1 GWB unzulässig ist, soweit 
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber der Vergabestelle nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; 
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegen-über der Vergabestelle gerügt werden; 
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Angebotsabgabe oder zur Bewerbung gegenüber der Vergabestelle gerügt werden; 
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung der Vergabestelle, einer Rüge nicht abhelfen zu wollen, vergangen sind. 
+
+Weitere Einzelheiten hierzu können dem Gesetz gegen Wettbewerbsbeschränkungen (GWB), insbesondere §§ 160 ff. GWB, entnommen werden. Das GWB kann unter www.gesetze-im-internet.de eingesehen werden.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0YMWDY6381AAF</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">BW 04/26</cbc:ID>
+		<cbc:Name languageID="DEU">Einführung von Ki in der Eingangsverarbeitung</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand des Verfahrens: 
+Der Beitragsservice von ARD, ZDF und Deutschlandradio beschafft einen KI-basierten Service zur automatisierten Verarbeitung eingehender schriftlicher Sendungen (Papier/Scan, E-Mail, Fax), der als Managed Service (IaaS, PaaS, SaaS) auf einer souveränen Cloud betrieben werden soll. Der KI-Service klassifiziert die Sendungen nach der Dokumentart-Systematik des Beitragsservice (DAK/SDAK), erkennt das fachliche Anliegen und extrahiert die für die Weiterverarbeitung erforderlichen Fachdaten. Die Ergebnisse werden jeweils mit einem Confidence-Score als strukturierte JSON-Objekte an den bestehenden Verarbeitungsprozess zurückgegeben. 
+Der KI-Service wird nicht als Ersatz, sondern als Bypass zur bestehenden Eingangsverarbeitung eingeführt. Die Aussteuerung der Sendungen erfolgt über vom Beitragsservice bereitgestellte intelligente Weichen; die Kernsysteme bleiben unverändert. Nicht Gegenstand der Ausschreibung sind das Scannen bzw. die Digitalisierung der Sendungen, die Ein- und Ausgangsschnittstellen der Gesamt-Eingangsverarbeitung sowie die intelligenten Weichen selbst. 
+
+Der Leistungsgegenstand gliedert sich in drei Bausteine: 
+
+Baustein 1 - Cloud-Infrastruktur: Bereitstellung einer souveränen, hochverfügbaren und skalierbaren Cloud-Umgebung als IaaS einschließlich bedarfsgerecht skalierbarer CPU-, GPU-, Speicher- und Netzwerkressourcen für KI-Workloads. Es ist beabsichtigt, einen Vertrag über die Bausteine 1 und 2 mit einer 4-jährigen Festlaufzeit abzuschließen.
+
+Baustein 2 - Managed Service: Betrieb der KI-Plattform als PaaS und SaaS, insbesondere Monitoring, Logging, Incident- und Problem-Management, Patch- und Release-Management, Backup und Recovery, Kapazitätsmanagement sowie Bereitstellung und Betrieb eines standardisierten KI-Serving-Stacks (u. a. Container-Orchestrierung, Inferenz). Der Beitragsservice behält die Hoheit über Fachlogik, Agenten sowie Auswahl und Wechsel der KI-Modelle. Es ist beabsichtigt, einen Vertrag über die Bausteine 1 und 2 mit einer 4-jährigen Festlaufzeit abzuschließen.
+
+Baustein 3 - Entwicklung einer individuellen Input-Management-Lösung ("KI-Service"): Konzeption, Entwicklung, Integration und Produktivsetzung einer individuellen Lösung auf Basis der bereitgestellten Plattform, einschließlich Einrichtung von Klassifikation und Extraktion je Sachverhalt, Nachweis der vereinbarten Erkennungsqualität, Schulung, Dokumentation und Unterstützung der Abnahme. Der KI-Service inkl. sämtlicher Arbeitsergebnisse (u. a. Quellcode, Konfigurationen, Prompt-Artefakte, Datenmodelle, Schnittstellenbeschreibungen, Tests, Dokumentation) geht mit zeitlich, räumlich und inhaltlich unbeschränkten Nutzungsrechten auf den Beitragsservice über. Dem Beitragsservice ist zudem das Recht einzuräumen, den KI-Service uneingeschränkt zu nutzen, zu betreiben, zu verändern und weiterzuentwickeln sowie durch Dritte betreiben oder weiterentwickeln lassen können. Es darf keine Abhängigkeit vom ursprünglichen Auftragnehmer entstehen und ein Anbieterwechsel muss grundsätzlich möglich sein. Die Lösung ist vorrangig auf Basis von Open-Source-Komponenten mit permissiven Lizenzen zu realisieren. Ergänzend ist ein Dienstleistungskontingent für weitere Sachverhalte vergleichbarer Komplexität und für Optimierungen nach der Produktivnahme bzw. Abnahme vorzusehen. 
+
+Fachlicher Umfang und Mengengerüst: 
+Schwerpunkt sind rund 1,8 Mio. formlose Schreiben pro Jahr, die bislang weder automatisch klassifiziert noch inhaltlich ausgewertet werden. Hinzu kommen rund 4,7 Mio. formgebundene Schreiben aus fünf Sachverhalten: Befreiungen, Abmeldungen, Drittschuldnererklärungen, Klärungsverfahren aufgrund Sterbefall sowie Bank- und Adressänderungen. Für die Dimensionierung ist von mindestens 6,5 Mio. Sendungen pro Jahr auszugehen (ca. 25.000 Sendungen je Arbeitstag, Spitzenwert ca. 26.700). Der Handschriftanteil liegt bei ca. 20 %. Teilweise sind besondere Kategorien personenbezogener Daten nach Art. 9 DSGVO (z. B. Gesundheitsangaben) zu verarbeiten. 
+
+Wesentliche funktionale Anforderungen sind insbesondere: 
+- KI-gestützte Texterkennung (OCR) über den gesamten Dokumentinhalt einschließlich mehrseitiger Dokumente und Anlagen; 
+- inhaltsbasierte Klassifikation und Anliegenerkennung mittels Textverständnis statt Formularankern, einschließlich Erkennung mehrerer Anliegen je Sendung und Trennung mehrerer Dokumente; 
+- Extraktion der Identifikationsfelder (u. a. Beitragsnummer, Name, Anschrift) und der je Sachverhalt benötigten Fachdaten, auch aus beigefügten Nachweisen; 
+- Erkennung handschriftlicher Inhalte einschließlich freier Randnotizen, Ankreuzfelder und Prüfung auf Vorhandensein von Unterschriften; 
+- Confidence-Scores je Ergebnis und Feld; keine Übernahme nicht belegbarer Inhalte; Schutz vor Prompt Injection; 
+- integrierter Human-in-the-Loop-Pfad mit konfigurierbaren Aussteuerungsregeln und einer barrierefreien (BITV 2.0), deutschsprachigen, vollständig tastaturbedienbaren Nachbearbeitungsoberfläche; 
+- Aufnahme weiterer Dokumentklassen ohne Neuaufsatz des Systems durch den Beitragsservice selbst; kein Training von Modellgewichten mit personenbezogenen Daten der Beitragszahlenden; 
+- modellagnostische Architektur (vorzugsweise Open-Weight-Modelle), REST-Schnittstellen, Container-/Microservice-Architektur, UTF-8, Reporting (u. a. Precision/Recall/F1 je Dokumentklasse) und Anbindung an die Monitoring-Werkzeuge des Beitragsservice. 
+
+Die Beschreibung der ausgeschriebenen Leistungen wird unter Ziffer 5.1. dieser Bekanntmachung fortgesetzt.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0YMWDY6381AAF#
+
+
+Information zum Erhalt weiterführender Unterlagen im Verhandlungsverfahren: Gemäß § 41 Abs. 3 VgV ist der Beitragsservice vorliegend aufgrund der Schutzwürdigkeit der vertraulichen Informationen nicht verpflichtet, die weiterführenden Unterlagen (bspw. Vergabeunterlagen und Aufforderungen zur Angebotsabgabe) uneingeschränkt und vollständig für einen direkten Zugriff im Sinne des § 41 Abs. 1 VgV zu veröffentlichen. Um die erforderliche Geheimhaltung der vertraulichen Informationen zu gewährleisten, werden die weiterführenden Unterlagen daher nur an die ausgewählten Bieter für die nachfolgende Angebots- und Verhandlungsphase herausgegeben. Zwingende Voraussetzung für die Bereitstellung der Vergabeunterlagen ist die Abgabe der in Anlage A10 "Geheimhaltungsverpflichtung" enthaltenen Geheimhaltungserklärung mit dem Teilnahmeantrag.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72230000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Es besteht die Möglichkeit eines Standortwechsels des Beitragsservice während der Vertragslaufzeit. Der jeweilige Standort des Beitragsservice gilt als Erfüllungsort.</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Freimersdorfer Weg 6</cbc:StreetName>
+				<cbc:CityName>Köln</cbc:CityName>
+				<cbc:PostalZone>50829</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA23</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A4 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A5 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A6 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A6 - Anhang (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A7 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A8 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A9 (Mit dem Teilnahmeantrag; Mittels Eigenerklärung):</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A6 - Allgemeine Eigenerklärungen (§§ 123, 124 GWB) - Zum Nachweis der Befähigung zur Berufsausübung erklärt der Bewerber/die Bewerbergemeinschaft/der Unterauftragnehmer/der Eignungsverleiher, 
+a) dass eine Person, deren Verhalten nach § 123 Absatz 3 GWB mir/unserem Unternehmen zuzurechnen ist, oder ich/wir als Unternehmen nicht wegen einer der in § 123 Abs. 1 GWB aufgezählten bzw. diesen gemäß § 123 Abs. 2 GWB gleichgestellten Straftatbeständen rechtskräftig verurteilt wurde(n) oder gegen mich/uns als Unternehmen eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist; 
+b) dass ich/wir als Unternehmen unseren Verpflichtungen zur ordnungs- und fristgemäßen Zahlung von Steuern, Abgaben oder Beiträgen zur Sozialversicherung gemäß den gesetzlichen Bestimmungen des Staats, in dem wir ansässig sind, regelmäßig nachgekommen bin/sind und diesbezüglich keine rechtskräftige Gerichts- oder bestandkräftige Verwaltungsentscheidung vor-liegt bzw. meinen/unseren Verpflichtungen dadurch nachgekommen bin/sind, dass ich mich/wir uns zur Zahlung von Steuern, Abgaben und Beiträgen zur Sozialversicherung einschließlich Zinsen, Säumnis- und Strafzuschlägen verpflichten habe(n) und zukünftig ordnungsgemäß nachkommen werde(n) und zum Zeitpunkt der Abgabe dieser Eigenerklärung keine fälligen Rückstände bestehen; 
+c) dass ich/wir als Unternehmen bei der Ausführung öffentlicher Aufträge nicht gegen geltende umwelt-, sozial- oder arbeitsrechtliche Verpflichtungen verstoßen habe(n); 
+d) dass ich/wir als Unternehmen nicht zahlungsunfähig bin/sind, über das Vermögen des Unternehmens kein Insolvenzverfahren oder ein vergleichbares Verfahren beantragt oder eröffnet worden ist, die Eröffnung eines solchen Verfahrens nicht mangels Masse abgelehnt worden ist und sich das Unternehmen nicht im Verfahren der Liquidation befindet oder seine Tätigkeit eingestellt hat; (Sofern ein Insolvenzverfahren oder ein vergleichbares gesetzliches Verfahren über das Vermögen des Unternehmens eröffnet wurde oder die Eröffnung eines solchen Verfahrens beantragt oder dieser Antrag mangels Masse abgelehnt worden ist, erkläre(n) ich/wir, dass ich/wir zusätzlich aktuelle Nachweise beigefügt habe(n), die meine/unsere wirtschaftliche und finanzielle Leistungsfähigkeit belegen.) 
+e) dass ich/wir als Unternehmen bzw. eine Person, deren Verhalten mir/dem Unternehmen zuzurechnen ist, im Rahmen der beruflichen Tätigkeit keine schwere Verfehlung begangen habe(n) bzw. hat, durch die die Integrität des Unternehmens in Frage gestellt wird; 
+f) dass ich/wir als Unternehmen keine Vereinbarungen mit anderen Unternehmen getroffen habe(n), die eine Verhinderung, Einschränkung oder Verfälschung des Wettbewerbs bezwecken oder bewirken; 
+g) dass keine Umstände vorliegen, die einen Interessenskonflikt bei der Durchführung des Vergabeverfahrens begründen könnten, der die Unparteilichkeit und Unabhängigkeit des öffentlichen Auftraggebers bzw. für den öffentlichen Auftraggeber tätige Personen zu beeinträchtigen vermag; 
+h) dass trotz einer etwaigen Einbeziehung unseres Unternehmens bereits in die Vorbereitung des Vergabeverfahrens keine Wettbewerbsverzerrung eingetreten ist; 
+i) dass ich/wir als Unternehmen bei der Ausführung eines früheren öffentlichen Auftrages die wesentlichen Anforderungen des öffentlichen Auftrages stets ordnungsgemäß und fristgerecht erbracht habe(n); 
+j) dass ich/wir im vorliegenden Vergabeverfahren keine unzutreffenden Erklärungen auch in Bezug auf Ausschlussgründe und Eignungsanforderungen abgegeben habe(n) und in der Lage bin/sind, die geforderten Nachweise - soweit erforderlich - zu übermitteln; 
+k) dass ich/wir als Unternehmen - nicht versucht habe(n), die Entscheidungsfindung des öffentlichen Auftraggebers in unzulässiger Weise zu beeinflussen, - nicht versucht habe(n), vertrauliche Informationen zu erhalten, durch die ich/wir unzulässige Vorteile beim Vergabeverfahren erlangen könnte(n), - nicht fahrlässig oder vorsätzlich irreführende Informationen übermittelt haben, die die Vergabeentscheidung des öffentlichen Auftraggebers erheblich beeinflussen könnten oder versucht habe(n), solche Informationen zu übermitteln. 
+l) dass ich/wir als Unternehmen insbesondere unsere Verpflichtungen zur Zahlung des Mindestlohns nach dem Mindestlohngesetz (MiLoG) und zur Gewährung von Arbeitsbedingungen nach dem Arbeitnehmer-Entsendegesetz (AEntG) erfülle(n) und nicht gegen das Schwarzarbeitsbekämpfungsgesetz (SchwarzArbG) verstoße(n) oder verstoßen habe(n) und die Voraussetzungen von § 19 MiLoG, § 21 AEntG bzw. § 21 SchwarzArbG nicht vorliegen, d.h. ich/unser Unternehmen nicht wegen eines Verstoßes nach § 21 MiLoG, § 23 AEntG bzw. § 8 ff. SchwarzArbG mit einer Geldbuße von wenigstens 2.500 Euro belegt worden bin/ist; 
+m) dass ich/wir als Unternehmen in das Berufs- oder Handelsregister eingetragen bin/sind, sofern dies gesetzlich in dem Staat, in dem ich/wir ansässig bin/sind, vorgeschrieben ist bzw. dass eine Eintragung in das Berufs- oder Handelsregister nach den jeweiligen für unser Unternehmen einschlägigen gesetzlichen Regelungen nicht vorgeschrieben ist; 
+n) dass ich/unser Unternehmen nicht im Wettbewerbsregister bzw. Gewerbezentralregister eingetragen bin/ist und gegen mich/unser Unternehmen eine solche Eintragung auch nicht droht. 
+o) dass ich/wir als Unternehmen bei der Ausführung aller öffentlichen Aufträge und des vorliegend ausgeschriebenen öffentlichen Auftrags die "Verordnung (EU) 2022/576 des Rates vom 8. April 2022 zur Änderung der Verordnung (EU) Nr. 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren" vollumfänglich einhalten und damit alle Verbote und Sanktionen gegenüber Russland korrekt umsetze(n). 
+Ich/Wir erkläre/n außerdem weiterhin, dass im Fall des Vorliegens von Ausschlussgründen nach §§ 123,124 GWB Selbstreinigungsmaßnahmen ergriffen wurden und erläutere/n diese.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A7 - Eigenerklärung (§ 45 VgV) - Zum Nachweise der finanziellen und wirtschaftlichen Leistungsfähigkeit erklärt der Bewerber bzw. die Bewerber -/Bietergemeinschaft/der Eignungsverleiher (Anlage A7): 
+Ich/Wir erkläre(n) hiermit, 
+
+- dass der durchschnittliche jährliche Gesamtumsatz des Unternehmens in den letzten drei abgeschlossenen Geschäftsjahren mindestens 3 Mio. EUR betrug und 
+- dass der auf vergleichbare IT-/KI-Dienstleistungen entfallende jährliche Um-satz mindestens 1 Mio. EUR. 
+Auf Verlangen der Vergabestelle wird ein entsprechender Nachweis vorgelegt.
+
+- dass ich/wir bzw. mein/unser Unternehmen über eine Berufs- bzw. Betriebshaftpflichtversicherung verfügen bzw. im Fall der Zuschlagserteilung eine solche unverzüglich abschließen werden. Die Versicherung hat mindestens folgende Deckungssummen je Schadensereignis aufzuweisen: 
+- von EUR 2.000.000,00 pauschal für Personen- und Sachschäden, 
+- von EUR 3.000.000,00 für Vermögensschäden. 
+Die Deckungssummen stehen jeweils 2-fach maximiert pro Versicherungsjahr zur Verfügung. 
+Ich/Wir garantiere(n) bei Vorliegen einer Bietergemeinschaft bzw. im Fall der Eignungsleihe, dass die bestehende bzw. abzuschließende Berufs-/Betriebshaftpflichtversicherung im Zuschlagsfall auch das konkrete Auftragsverhältnis umfasst. 
+Ich/Wir verpflichte(n) mich/uns, auf gesondertes Verlangen der Vergabestelle, einen entsprechenden Nachweis durch Vorlage einer Kopie der Versicherungsurkunde zu erbringen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A8 - Besondere Eignungsanforderungen (§ 46 VgV) - Zum Nachweis seiner/ihrer technischen und beruflichen Leistungsfähigkeit erklärt der Bewerber bzw. die Bewerber-/Bietergemeinschaft/der Unterauftragnehmer als Eignungsverleiher (Anlage A8),
+
+a) dass ich/wir im Fall der Zuschlagserteilung bei der Leistungserbringung die jeweils geltenden gesetzlichen Datenschutzregelungen (insbesondere zur Auftragsdatenverarbeitung nach EU-Datenschutzgrundverordnung) während der gesamten Vertragslaufzeit einhalten werde(n);
+
+b) dass ich/wir als Unternehmen im Fall der Zuschlagserteilung bei der Leistungserbringung alle relevanten Sicherheitserfordernisse angelehnt an die ISO 27001f. oder einen vergleichbaren nationalen Standard (bspw. IT-Grundschutz des Bundesamts für Sicherheit in der Informationstechnik) des Mitgliedsstaats, in dem der Auftragnehmer seinen Sitz hat, während der gesamten Vertragslaufzeit einhalten werde(n);</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A9 - Referenzlisten - Darüber hinaus hat der Bewerber/die Bewerbergemeinschaft/der Eignungsverleiher zum Nachweis seiner/ihrer technischen und beruflichen Leistungsfähigkeit zusätzlich eine Referenzliste (Anlage A9) mit seinem Teilnahmeantrag vorzulegen:
+
+Die Referenzliste ist unter Verwendung der Anlage A9 "Referenzliste" einzureichen, der auch die inhaltlichen Anforderungen an die Referenzen zu entnehmen sind.
+
+1. Referenzliste "Entwicklung einer Input Management Lösung"
+
+Der Bewerber hat zum einen eine Referenzliste "Entwicklung einer Input Management Lösung" mit mindestens 3 Referenzen vorzulegen, die insbesondere folgende Mindestvorgaben erfüllen müssen:
+
+- Aufgabenbereich "Konzeption und Entwicklung KI-gestützter Eingangs-/Dokumentenverarbeitung (Klassifikation, Extraktion, Verarbeitung formloser Schreiben)" 
+- Zeitraum: innerhalb der letzten drei Jahre (d.h. laufende Vertragsverhältnisse, die bereits mindestens 12 Monate bestehen oder abgeschlossene Vertrags-verhältnisse),
+- mindestens eine der angegebenen Referenzen muss ein Verarbeitungsvolu-men von mindestens 1 Mio. Sendungen/Vorgängen pro Jahr aufweisen.
+
+Darüber hinaus sind folgende Angaben zu jeder Referenz zu machen:
+
+- Angabe des Referenzkunden (Name und Sitz des Referenzunternehmens),
+- Tätigkeitsfeld des Referenzkunden,
+- Ansprechpartner des Referenzunternehmens
+(inkl. Kontaktdaten: E-Mail-Adresse und/oder Telefonnummer),
+- Angabe, ob der Bewerber/das Mitglied der Bewerbergemeinschaft/der Eig-nungsverleiher unmittelbarer Vertragspartner des angegebenen Referenzkun-den ist,
+- Vertragslaufzeit (TT.MM.JJJJ - TT.MM.JJJJ),
+- Erläuterung der Vergleichbarkeit der angegebenen Referenz mit den ausge-schriebenen Leistungen,
+- Angabe der eingesetzten Kerntechnologien/-module (insb. KI-/ML-Komponenten), 
+- Angabe des Betriebsmodells (z. B. On-Premises, Managed SaaS, Hosting-Standort)
+- Angabe des Projektstatus (abgeschlossen/laufend).
+
+2. Referenzliste "Betrieb einer souveränen Cloud-Umgebung innerhalb des EWR mit Bereitstellung von Plattform-Services (PaaS und IaaS)"
+
+Der Bewerber hat zum anderen eine Referenzliste "Betrieb einer souveränen Cloud-Umgebung innerhalb des EWR mit Bereitstellung von Plattform-Services" mit mindestens 2 Referenzen vorzulegen, die insbesondere folgende Mindestvorgaben erfüllen müssen:
+
+- Aufgabenbereich "Betrieb einer souveränen Cloud-Umgebung innerhalb des EWR mit Bereitstellung von Plattform-Services" (Compute, Storage, Netz-werk, Backup, Disaster Recovery + Datenbanken, Container/Kubernetes, Mi-ddleware, Messaging, Identity, ggf. KI-Dienste)
+- Zeitraum: innerhalb der letzten drei Jahre (d.h. laufende Vertragsverhältnisse, die bereits mindestens 12 Monate bestehen oder abgeschlossene Vertrags-verhältnisse).
+
+Darüber hinaus sind folgende Angaben zu jeder Referenz zu machen:
+
+- Angabe des Referenzkunden (Name und Sitz des Referenzunternehmens),
+- Tätigkeitsfeld des Referenzkunden,
+- Ansprechpartner des Referenzunternehmens
+(inkl. Kontaktdaten: E-Mail-Adresse und/oder Telefonnummer),
+- Angabe, ob der Bewerber/das Mitglied der Bewerbergemeinschaft/der Eig-nungsverleiher unmittelbarer Vertragspartner des angegebenen Referenzkunden ist,
+- Vertragslaufzeit (TT.MM.JJJJ - TT.MM.JJJJ),
+- Erläuterung der Vergleichbarkeit der angegebenen Referenz mit den ausge-schriebenen Leistungen,
+- Angabe der eingesetzten Kerntechnologien/-module (insb. KI-/ML-Komponenten), 
+- Angabe des Betriebsmodells (z. B. On-Premises, Managed SaaS, Hosting-Standort)
+- Angabe des Projektstatus (abgeschlossen/laufend).
+
+Hinweise: 
+- Neue Vertragsverhältnisse, deren Laufzeit noch nicht begonnen hat, sind nicht als Referenznachweis zugelassen.
+- Teilnahmeanträge, die die Mindestvorgaben nicht erfüllen, werden vom weiteren Verfahren ausgeschlossen.
+- Teilnahmeanträge mit einer unvollständigen Referenzliste (insbesondere 
+fehlende Angaben zum/zur Ansprechpartner/in des Referenzunternehmens) können vom weiteren Verfahren ausgeschlossen werden.
+- Es ist nicht ausreichend, wenn der Ansprechpartner des Referenzunternehmens dem Beitragsservice nur auf Anfrage konkret benannt wird, da der Beitragsservice beabsichtigt, die angegebene Referenz zu überprüfen. Im Zweifel hat der Bewerber den Ansprechpartner des Referenzunterneh-mens zuvor um seine Einwilligung zu bitten, um datenschutzrechtliche Be-denken auszuräumen.
+- Bitte stellen Sie sicher, dass der/die Ansprechpartner/in des Referenzunternehmens dem Beitragsservice vom 12.11.2026 bis zum 26.11.2026 für ein Gespräch zur Verfügung steht. Der Beitragsservice beabsichtigt, die eingereichten Referenzen telefonisch zu überprüfen. Der Beitragsservice behält sich vor, den Teilnahmeantrag vom weiteren Verfahren auszuschließen, wenn im angegebenen Zeitraum keine oder nur eine unvollständige Referenzprüfung erfolgen kann.
+- Im Rahmen der Auswahl des begrenzten Bieterkreises werden die 3 besten Referenzen der ersten Referenzliste "Entwicklung einer Input Management Lösung" bewertet (vgl. Ziffer 14. der Teilnahmebedingungen, Teil A. der Teilnahmebroschüre).</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anlage A9 - Bewertung Referenzlisten - Objektive nichtdiskriminierende Kriterien für die Auswahl der begrenzten Zahl von Bewerbern:
+
+Der Beitragsservice behält sich vor, bei einer großen Anzahl von eingegangenen Teilnahmeanträgen den Kreis der Bewerber bereits im Rahmen des Teilnahmewettbewerbs einzuschränken.
+
+Der Beitragsservice wird die Auswahl der Bewerber für das nachfolgende Verhandlungsverfahren so durchführen, dass maximal vier Bewerber zur Angebotsabgabe aufgefordert werden.
+
+Die Auswahl der Bewerber, die zur Angebotsabgabe aufgefordert werden, erfolgt auf Grundlage der vom Bewerber eingereichten Referenzliste "Entwicklung einer Input Management Lösung".
+
+Wenn die Referenzliste "Entwicklung einer Input Management Lösung" des Bewerbers die Mindestvorgaben vollumfänglich erfüllt und er auch im Übrigen seine Eignung nachgewiesen hat, erfolgt eine Bewertung der von ihm eingereichten Referenzen in der Referenzliste "Entwicklung einer Input Management Lösung". So-fern und soweit der Bewerber mehr als 3 Referenzen eingereicht hat, werden ausschließlich die 3 am besten bewerteten Referenzen der Referenzliste "Entwicklung einer Input Management Lösung" berücksichtigt.
+
+Pro Referenz kann der Bewerber maximal 90 Punkte erhalten, insgesamt werden mithin maximal 270 Punkte pro Bewerber vergeben.
+
+Die zur Verfügung stehenden max. 90 Punkte pro Referenzauftrag teilen sich wie folgt auf:
+
+1. Inhaltsbasierte Dokumentenklassifikation (KI-/NLP-basiert)
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+2. Verarbeitung formloser Post
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+3. Semantische Textanalyse / Fachdatenextraktion
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+4. Handschrifterkennung in der Dokumentverarbeitung
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+5. Erschließung "schwieriger" Dokumente / Sonderformate
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+6. API-Integration / Anbindung an Stammdaten-/Fachverfahren
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+7. Monitoring-/Reporting-Dashboards im produktiven Betrieb
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+8. Confidence-Scoring / KI-gestützte Vorbewertung
+Punktevergabe: 
+0 = nicht nachgewiesen
+5 = teilweise nachgewiesen
+10 = produktiv nachgewiesen
+
+9. Verarbeitungsvolumen in Sendungen/Vorgängen pro Jahr
+Punktevergabe: 
+0 = bis zu 1.000.000 
+5 = zwischen 1.000.001 und 3.000.000
+10 = mehr als 3.000.000 
+
+Es liegt im Interesse der Bewerber, dem Auftraggeber alle notwendigen Informationen zur Verfügung zu stellen, um die angegebenen Kriterien möglichst umfassend bewerten zu können.
+
+Weitere Einzelheiten sind der Teilnahmebroschüre (insbesondere Teil A. Teilnahmebedingungen sowie Anlage A9 "Referenzlisten") zu entnehmen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>1000.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXS0YMWDY6381AAF/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Beitragsservice behält sich vor, von der Nachforderungsmöglichkeit gemäß § 56 VgV nach pflichtgemäßem Ermessen Gebrauch zu machen, soweit dies gesetzlich zulässig ist.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">keine</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://satellite.dtvp.de/Satellite/notice/CXS0YMWDY6381AAF</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Vergabestelle weist darauf hin, dass ein Antrag auf Einleitung eines Nachprüfungsverfahrens gemäß § 160 Abs. 3 Satz 1 GWB unzulässig ist, soweit 
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber der Vergabestelle nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; 
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegen-über der Vergabestelle gerügt werden; 
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Angebotsabgabe oder zur Bewerbung gegenüber der Vergabestelle gerügt werden; 
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung der Vergabestelle, einer Rüge nicht abhelfen zu wollen, vergangen sind. 
+
+Weitere Einzelheiten hierzu können dem Gesetz gegen Wettbewerbsbeschränkungen (GWB), insbesondere §§ 160 ff. GWB, entnommen werden. Das GWB kann unter www.gesetze-im-internet.de eingesehen werden.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXS0YMWDY6381AAF</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-26+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-04+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">BW 04/26</cbc:ID>
+			<cbc:Name languageID="DEU">Einführung von Ki in der Eingangsverarbeitung</cbc:Name>
+			<cbc:Description languageID="DEU">Fortsetzung der Beschreibung der ausgeschriebenen Leistungen aus Ziffer 2.1. dieser Bekanntmachung.
+
+Betrieb, Datensouveränität und Sicherheit:
+Die Lösung ist in einer souveränen Cloud-Umgebung zu betreiben. Speicherung und Verarbeitung sämtlicher Daten haben ausschließlich in Rechenzentren innerhalb des Europäischen Wirtschaftsraums (EWR) zu erfolgen. 
+
+Ausgeschlossen sind jede Datenweiterleitung in Drittstaaten sowie jeder Zugriff aus Drittstaaten, auch im Rahmen von Support und Administration, und jeder Zugriff auf Grundlage außereuropäischer Rechtsvorschriften mit extraterritorialer Wirkung (insbesondere US CLOUD Act); maßgeblich ist auch die gesellschaftsrechtliche Verflechtung des Bieters/Auftragnehmers. Die Daten sind mit kundenverwalteten Schlüsseln (HSM) zu verschlüsseln, ohne Zugriff des Cloud-Anbieters auf die Schlüssel. Ein persistenter oder administrativer Zugriff von Personal des Auftragnehmers auf Klartextdaten ist ausgeschlossen. Die Daten dürfen nicht für Training, Modellverbesserung oder Telemetrie genutzt werden. Alle an der Leistung beteiligten Stellen sind offenzulegen.
+
+Gefordert sind u. a. ein BSI-C5-Testat für den Cloud-Dienst sowie eine ISO/IEC-27001-Zertifizierung des Rechenzentrumsbetreibers und aller datenverarbeitenden Unterauftragnehmer, die Einhaltung von DSGVO und KI-Verordnung, die Erstellung eines leistungsbezogenen Datenschutz- und Sicherheitskonzepts während der Projektphase, Prüfungsrechte des Beitragsservice sowie Vorkehrungen für einen geordneten Ausstieg und für den Ausfall des Auftragnehmers. 
+
+Service Level sind u.a.: Servicezeit Montag bis Freitag 06:00-19:00 Uhr, Verfügbarkeit ? 99,5 % im Monatsmittel, Wiederherstellung bei Störungen der Priorität 1 innerhalb von 8 Stunden, deutschsprachiger Support ausschließlich aus dem EWR, 24/7-Monitoring sowie monatliche Service- und Qualitätsberichte.
+ 
+Zeitrahmen:
+Vorgesehen sind die Zuschlagserteilung Anfang 2027, die Produktivsetzung des ersten Sachverhalts spätestens Anfang 2028 und die Abbildung aller Sachverhalte über den KI-Service bis Ende 2028. Weitere Ausbaustufen bis 2030 sind nicht Gegenstand dieses Verfahrens.
+ 
+Weitere Einzelheiten können der Teilnahmebroschüre sowie im weiteren Verlauf des Vergabeverfahrens den Vergabeunterlagen entnommen werden.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Einlegung von Rechtsbehelfen:
+Die Vergabestelle weist darauf hin, dass ein Antrag auf Einleitung eines Nachprüfungsverfahrens gemäß § 160 Abs. 3 Satz 1 GWB unzulässig ist, soweit 
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegen-über der Vergabestelle nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt; 
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegenüber der Vergabestelle gerügt werden; 
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Angebotsabgabe oder zur Bewerbung gegenüber der Vergabestelle gerügt werden; 
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung der Vergabestelle, einer Rüge nicht abhelfen zu wollen, vergangen sind. Weitere Einzelheiten hierzu können dem Gesetz gegen Wettbewerbsbeschränkungen (GWB), insbesondere §§ 160 ff. GWB, entnommen werden.Das GWB kann unter
+www.gesetze-im-internet.de
+eingesehen werden.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72200000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72230000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72250000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72260000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Es besteht die Möglichkeit eines Standortwechsels des Beitragsservice während der Vertragslaufzeit. Der jeweilige Standort des Beitragsservice gilt als Erfüllungsort.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Freimersdorfer Weg 6</cbc:StreetName>
+					<cbc:CityName>Köln</cbc:CityName>
+					<cbc:PostalZone>50829</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA23</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
