@@ -1,17 +1,27 @@
 <script lang="ts">
+	// codeHidden keeps the code in the chip's name for a screen reader and off the screen, where the
+	// label already says the same thing.
 	let {
 		name,
 		value,
 		label,
 		code,
+		codeHidden = false,
 		checked = false
-	}: { name: string; value: string; label: string; code?: string; checked?: boolean } = $props();
+	}: {
+		name: string;
+		value: string;
+		label: string;
+		code?: string;
+		codeHidden?: boolean;
+		checked?: boolean;
+	} = $props();
 </script>
 
 <label class="chip">
 	<input type="checkbox" {name} {value} {checked} />
 	<span>{label}</span>
-	{#if code}<span class="mono">{code}</span>{/if}
+	{#if code}<span class="mono" class:visually-hidden={codeHidden}>{code}</span>{/if}
 </label>
 
 <style>

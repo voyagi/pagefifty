@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/svelte';
 import { createRawSnippet } from 'svelte';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { parseFilters, type FilterState } from '$lib/core/filters';
 import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
 import type { IndexRow } from '$lib/snapshot/index-row';
@@ -110,6 +110,33 @@ describe('FilterForm', () => {
 		expect(screen.getByRole('link', { name: 'Clear filters' }).getAttribute('href')).toBe(
 			'/example'
 		);
+	});
+
+	// A phone folds the filters behind this button; the stylesheet does the hiding, so the test reads
+	// the control a reader meets: its count, its state and the applied filters kept beside it.
+	it('folds the filters behind a button that counts the applied ones and keeps them in view', async () => {
+		const state: FilterState = { countries: ['NL'], cpv: ['72'], from: '2026-10-01' };
+		const { container } = render(FilterForm, { props: { state, basePath: '/tenders' } });
+		const toggle = screen.getByRole('button', { name: 'Filters (3)' });
+		const form = container.querySelector('form') as HTMLFormElement;
+		expect(toggle.getAttribute('aria-controls')).toBe(form.id);
+		expect(form.id).not.toBe('');
+		expect(toggle.getAttribute('aria-expanded')).toBe('false');
+		expect(squash(container.querySelector('.applied')?.textContent)).toBe(
+			'Netherlands, IT services, deadline on or after 1 Oct 2026'
+		);
+		toggle.click();
+		await vi.waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('true'));
+		toggle.click();
+		await vi.waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('false'));
+	});
+
+	it('counts no filter as none and shows no applied line', () => {
+		const { container } = render(FilterForm, {
+			props: { state: NO_FILTER, basePath: '/tenders' }
+		});
+		expect(screen.getByRole('button', { name: 'Filters (0)' })).toBeTruthy();
+		expect(container.querySelector('.applied')).toBeNull();
 	});
 
 	// A plain GET form sends a blank date field as "from=" and "to=", which is no bound, not junk.

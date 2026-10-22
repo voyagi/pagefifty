@@ -98,6 +98,7 @@
 <PageMain>
 	<div class="index" class:on-record={onRecord}>
 		<header class="index-head">
+			<!-- The count, and at the right the one order the list has, stated rather than offered. -->
 			<div class="title-line">
 				<h1 id="list-title">{example ? 'Example run' : 'Open IT tenders'}</h1>
 				<p class="counts">
@@ -105,6 +106,7 @@
 								>{part}</span
 							>{:else}{part}{/if}{/each}
 				</p>
+				<p class="sort"><Icon name="sort" />Sorted by deadline, soonest first</p>
 			</div>
 			<div class="capture">
 				{#if example}
@@ -118,13 +120,12 @@
 					</p>
 				{/if}
 				<p class="caveat">{caveat}</p>
+				<p class="gloss">Reading status: what Pagefifty read in each notice.</p>
 			</div>
-			<p class="gloss">Reading status: what Pagefifty read in each notice.</p>
 		</header>
 
 		<div class="filter-row">
 			<FilterForm state={data.filters} {basePath} />
-			<p class="sort"><Icon name="sort" />Sorted by deadline, soonest first</p>
 		</div>
 		{#if data.dropped}
 			<p class="status" role="status">
@@ -203,7 +204,7 @@
 <style>
 	.index-head {
 		display: grid;
-		gap: 0.375rem;
+		gap: 0.25rem;
 	}
 
 	.title-line {
@@ -240,19 +241,10 @@
 		white-space: nowrap;
 	}
 
-	.gloss {
-		font-size: var(--step--1);
-		line-height: 1.4;
-		color: var(--ink-2);
-	}
-
+	/* The filters in one row under the head, so the list starts high on the first screen. */
 	.filter-row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		gap: 1rem 2rem;
-		margin-top: 1.25rem;
-		padding-bottom: 1.25rem;
+		margin-top: 0.875rem;
+		padding-bottom: 0.875rem;
 		border-bottom: 1px solid var(--line);
 	}
 
@@ -262,7 +254,6 @@
 		align-items: center;
 		gap: 0.375rem;
 		margin-left: auto;
-		min-height: 38px;
 		font-size: var(--step--1);
 		color: var(--ink-2);
 		white-space: nowrap;
