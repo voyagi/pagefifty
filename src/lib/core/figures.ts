@@ -319,7 +319,15 @@ const MODES = {
 		'par année',
 		'per year',
 		'each year',
-		'yearly'
+		'yearly',
+		// "In each of the last three years": anchored on the period word, so "in each of the lots"
+		// names no period.
+		'in each of the last',
+		'each of the last',
+		'in jedem der letzten',
+		'in jedem der vergangenen',
+		'in elk van de laatste',
+		'pour chacune des'
 	]),
 	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
 	'any-one': phrases(['in einem der', 'in één van', "au cours d'un des", 'in any one of'])

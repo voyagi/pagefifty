@@ -298,7 +298,16 @@ function staffCheck(
 	const window = windowOf(requirement.period, recorded, context);
 	if (window === undefined) return 'missing';
 	const figures = window.map((year) => held.get(year));
-	return checkYears(requirement.period.mode, figures, count, COUNT_SCALE);
+	const { mode } = requirement.period;
+	if (mode !== 'average') return checkYears(mode, figures, count, COUNT_SCALE);
+	// The staff measure is itself an average ("average annual manpower", "durchschnittliche
+	// jährliche Beschäftigtenzahl"), so an average word alone may name the measure rather than a
+	// mean over the years: MET only when every year meets the floor, a shortfall when even the
+	// mean falls short (then some year does too), and anything between stays open.
+	const everyYear = checkYears('unstated', figures, count, COUNT_SCALE);
+	if (everyYear === 'pass') return 'pass';
+	const mean = checkYears('average', figures, count, COUNT_SCALE);
+	return mean === 'fail' || mean === 'missing' ? mean : 'period-unstated';
 }
 
 // The amount, and the model's agreement with it, before any figure of the firm is read.

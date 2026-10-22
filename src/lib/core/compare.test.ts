@@ -231,6 +231,10 @@ const SPECIFIC_EACH =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich des Auftrags in den letzten drei Geschäftsjahren.';
 const STAFF_EACH = 'Jährlich mindestens 10 Mitarbeiter in den letzten drei Jahren.';
 const STAFF_AVERAGE = 'Durchschnittlich mindestens 10 Mitarbeiter in den letzten drei Jahren.';
+const STAFF_AVERAGE_IN_EACH =
+	'Durchschnittliche jährliche Beschäftigtenzahl von mindestens 10 Mitarbeitern in jedem der letzten drei Jahre.';
+const STAFF_ANNUAL_AVERAGE =
+	'Die durchschnittliche jährliche Beschäftigtenzahl muss in den letzten drei Jahren mindestens 10 Mitarbeiter betragen.';
 const STAFF_SUM = 'Insgesamt mindestens 30 Mitarbeiter in den letzten drei Jahren.';
 const STAFF_TWO = 'Mindestens 10 Mitarbeiter und 2 Beschäftigte in den letzten drei Jahren.';
 const STAFF_NO_COUNT_QUOTE = 'Das Personal ist nachzuweisen.';
@@ -569,11 +573,31 @@ const ROWS: readonly Row[] = [
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 9.6 }),
 		decided('SHORT_BORROWABLE', 'short')
 	),
+	// The measure is itself an average ("average annual manpower"), so an average word alone may
+	// name the measure, not the period: MET only when every year meets the floor.
 	row(
-		'a three-year staff average above the floor is MET',
+		'a staff average above the floor with one year below it is PROFILE_GAP',
 		{ code: MANPOWER, text: STAFF_AVERAGE },
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 9.8 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
+	row(
+		'a staff average with every year above the floor is MET',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 10.5 }),
 		decided('MET', 'met')
+	),
+	row(
+		'average annual manpower floored in each of the years, one year short, is never MET',
+		{ code: MANPOWER, text: STAFF_AVERAGE_IN_EACH },
+		staffFirm({ 2023: 15, 2024: 15, 2025: 5 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
+	row(
+		'average annual manpower over three years, one year short, is never MET',
+		{ code: MANPOWER, text: STAFF_ANNUAL_AVERAGE },
+		staffFirm({ 2023: 15, 2024: 15, 2025: 5 }),
+		decided('PROFILE_GAP', 'period-unstated')
 	),
 	row(
 		'average yearly manpower with an empty figure in one year is PROFILE_GAP',
