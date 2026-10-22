@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2 UBL-ContractNotice-2.3.xsd">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efac:Changes>
+            <efbc:ChangedNoticeIdentifier>83ac2016-de50-4c4f-9c25-c7a02f88005f-01</efbc:ChangedNoticeIdentifier>
+            <efac:ChangeReason>
+              <cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+              <efbc:ReasonDescription languageID="ENG">Extended deadline for receipt of tenders and modified date for opening.</efbc:ReasonDescription>
+            </efac:ChangeReason>
+          </efac:Changes>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://ec.europa.eu/info/departments/informatics_en</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID>ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">European Commission, DG DIGIT - Digital Services</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Rue de la Loi 107</cbc:StreetName>
+                  <cbc:Department>DIGIT.R - Change Management and Resources</cbc:Department>
+                  <cbc:CityName>Brussels</cbc:CityName>
+                  <cbc:PostalZone>B-1000</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">BE100</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">BEL</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>COM</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>http://curia.europa.eu</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">Court of Justice of the European Union</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Rue du Fort Niedergrünewald</cbc:StreetName>
+                  <cbc:CityName>Luxembourg</cbc:CityName>
+                  <cbc:PostalZone>L-2925</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">LU000</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">LUX</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>CURIA</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cbc:WebsiteURI>https://commission.europa.eu/</cbc:WebsiteURI>
+                <cac:PartyIdentification>
+                  <cbc:ID>ORG-0003</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="ENG">European Commission</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:StreetName>Mondrian (CDMA), Rue du Champ de Mars 21</cbc:StreetName>
+                  <cbc:CityName>Brussels</cbc:CityName>
+                  <cbc:PostalZone>B-1050</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">BE100</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">BEL</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>EUCOM</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00712183-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">200/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-15+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">7ffaf0d9-b968-47ad-91a8-5caa77a694a4</cbc:ID>
+  <cbc:ContractFolderID>41ca3c4f-8cc1-4510-8209-8b8059fdaebc</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-10-14+02:00</cbc:IssueDate>
+  <cbc:IssueTime>13:22:12+02:00</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32024R2509</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>ENG</cbc:NoticeLanguageCode>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">eu-ins-bod-ag</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID>ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:ServiceProviderParty>
+        <cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode>
+        <cac:Party>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0003</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:Party>
+      </cac:ServiceProviderParty>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="ENG">For the full list of exclusion grounds please consult the procurement documents.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:ID>EC-DIGIT/2025/OP/0071</cbc:ID>
+    <cbc:Name languageID="ENG">Efficient, experience-driven, proactive and resilient solutions and support services</cbc:Name>
+    <cbc:Description languageID="ENG">The subject of this call for tenders is the service portfolio related to the European Commission’s Digital Workplace (DWP) and its customers and users, ensuring the provision of efficient, end-user experience driven, proactive and resilient solutions and support services. The procedure aims to ensure the operational continuity while driving progress through the adoption of latest technologies aligning to the evolving business objectives of the European Commission, targeting the services falling within the scope of the current framework contract DI-07810, awarded under Lot 1 of the open call for tenders DIGIT/A3/PO/2018/015 EUSS-SM and expiring in June 2027. The service portfolio covers Digital Workplace support services, device lifecycle management, endpoint management and technical (backend) services ranging from support activities and operations to related engineering activities. The procedure will contain one lot to ensure full end-to-end delivery and maximized quality of service in a modern managed services approach.</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+    <cbc:Note languageID="ENG">FOREIGN SUBSIDIES REGULATION applicability: Any economic operator participating in this public procurement procedure shall notify the contracting authority of all foreign financial contributions of at least EUR 4 million per third country received in the last three years prior to the notification pursuant to Article 28(1) of Regulation (EU) 2022/2560. In all other cases they shall submit a declaration pursuant to Article 29(1) of Regulation (EU) 2022/2560, listing all foreign financial contributions received in the last three years prior to the declaration confirming that such contributions are not notifiable. When no foreign financial contributions were received in the last three years prior to the declaration, a declaration is still necessary to confirm that no FFCs were received. Notifications or declarations shall be submitted by using the Form FS-PP available at https://single-market-economy.ec.europa.eu/single-market/public-procurement/foreign-subsidies-regulation_en  .In case of unavailability or disruptions in the functioning of the electronic means of communication provided in Section 5.1.11 in the last 5 calendar days before the time limit for receipt indicated in Section 5.1.12, the contracting authority reserves the right to extend this time limit and publish the extension at the Internet address provided in Section 5.1.11, without a preceding publication of a corrigendum to this notice. Economic operators interested in this procurement are invited to subscribe to the call for tenders at the address in Section 5.1.11 in order to get notified when new information or documents are published.
+</cbc:Note>
+    <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:RealizedLocation>
+      <cbc:Description languageID="ENG">Please consult the procurement documents.</cbc:Description>
+      <cac:Address>
+        <cbc:Region>anyw-eea</cbc:Region>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+    <cac:TenderingTerms>
+      <cbc:FundingProgramCode listName="eu-funded">eu-funds</cbc:FundingProgramCode>
+      <cac:CallForTendersDocumentReference>
+        <cbc:ID>default-text</cbc:ID>
+        <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+        <cbc:LanguageID>ENG</cbc:LanguageID>
+        <cbc:DocumentStatusCode listName="document-status">official</cbc:DocumentStatusCode>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/tender-details/41ca3c4f-8cc1-4510-8209-8b8059fdaebc-CN?#anchorDocuments</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="fsr">true</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:AwardingTerms>
+        <cac:AwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>70</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+            <cbc:Description languageID="ENG">Please consult the procurement documents.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+          <cac:SubordinateAwardingCriterion>
+            <ext:UBLExtensions>
+              <ext:UBLExtension>
+                <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                    <efac:AwardCriterionParameter>
+                      <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                      <efbc:ParameterNumeric>30</efbc:ParameterNumeric>
+                    </efac:AwardCriterionParameter>
+                  </efext:EformsExtension>
+                </ext:ExtensionContent>
+              </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+            <cbc:Description languageID="ENG">Please consult the procurement documents.</cbc:Description>
+          </cac:SubordinateAwardingCriterion>
+        </cac:AwardingCriterion>
+      </cac:AwardingTerms>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://webgate.ec.europa.eu/digit/opsys/esubmission?cftUuid=41ca3c4f-8cc1-4510-8209-8b8059fdaebc</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="MONTH">9</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0001</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>BUL</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>CES</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>DAN</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>DEU</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>ELL</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>ENG</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>SPA</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>EST</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>FIN</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>FRA</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>GLE</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>HRV</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>HUN</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>ITA</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>LIT</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>LAV</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>MLT</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>NLD</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>POL</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>POR</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>RON</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>SLK</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>SLV</cbc:ID>
+      </cac:Language>
+      <cac:Language>
+        <cbc:ID>SWE</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efbc:AccessToolName>Funding and Tenders Portal</efbc:AccessToolName>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+      <cbc:AccessToolsURI>https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/tender-details/41ca3c4f-8cc1-4510-8209-8b8059fdaebc-CN?#anchorDocuments</cbc:AccessToolsURI>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+        <cbc:EndTime>17:00:59+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AdditionalInformationRequestPeriod>
+        <cbc:EndDate>2026-11-04+01:00</cbc:EndDate>
+        <cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+      </cac:AdditionalInformationRequestPeriod>
+      <cac:NoticeDocumentReference>
+        <cbc:ID>304838-2026</cbc:ID>
+      </cac:NoticeDocumentReference>
+      <cac:OpenTenderEvent>
+        <cbc:OccurrenceDate>2026-11-16+01:00</cbc:OccurrenceDate>
+        <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+      </cac:OpenTenderEvent>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:FrameworkAgreement>
+        <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+        <cbc:Justification languageID="ENG">The extended FwC duration is necessary for the following reasons:
+•	Experience in predecessor contracts has shown that the volume of activities and the related workforces necessary to be supplied by the contractor need to be planned over a longer contractual period to ensure a longer return on investment period from both sides.
+•	Phase-in/phase-over activities at the start of the contract are followed by a long ramp-up period (1-2 years) to come to the expected quality of delivery. This period covers not only the contractual phase in but also the ramp up to the level of quality expected.
+•	To bring its service delivery to the expected quality, the contractor will have to make investments not only in human resources (recruitment, training, getting knowledgeable about the EC setting), but equally in technological integrations. Those investments will have a higher output for the EC, if the contractor is investing in more sustainable integrations as the period of usage will be longer.  
+•	Transformational activities in the DWP domain, expected to be performed and taken on during the duration of the contract have a timeline for several years and a disruption in the contractual setup during the transformation would be disruptive.
+•	Ramp-down activities from the contractor and the end of transformational activities will start at least one year prior to the contract end-date to ensure a stable situation at the contract transition at the end of the contract.
+Taking these constraints into account (3 years for a full phase-in, phase-out, ramp-up and ramp-down), the period of stable service delivery has to be maximized as much as possible and this would not be possible with a standard 4 years contractual period.
+In making the reconduction of the contract dependent of the contractual performance and the evolution of the underlying DWP solutions and flexible with a minimum and maximum period, the contract will cater for the necessary robustness for solid service delivery.</cbc:Justification>
+      </cac:FrameworkAgreement>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID>EC-DIGIT/2025/OP/0071</cbc:ID>
+      <cbc:Name languageID="ENG">Efficient, experience-driven, proactive and resilient solutions and support services</cbc:Name>
+      <cbc:Description languageID="ENG">The subject of this call for tenders is the service portfolio related to the European Commission’s Digital Workplace (DWP) and its customers and users, ensuring the provision of efficient, end-user experience driven, proactive and resilient solutions and support services. The procedure aims to ensure the operational continuity while driving progress through the adoption of latest technologies aligning to the evolving business objectives of the European Commission, targeting the services falling within the scope of the current framework contract DI-07810, awarded under Lot 1 of the open call for tenders DIGIT/A3/PO/2018/015 EUSS-SM and expiring in June 2027. The service portfolio covers Digital Workplace support services, device lifecycle management, endpoint management and technical (backend) services ranging from support activities and operations to related engineering activities. The procedure will contain one lot to ensure full end-to-end delivery and maximized quality of service in a modern managed services approach.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:RealizedLocation>
+        <cbc:Description languageID="ENG">Please consult the procurement documents.</cbc:Description>
+        <cac:Address>
+          <cbc:Region>anyw-eea</cbc:Region>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:DurationMeasure unitCode="MONTH">84</cbc:DurationMeasure>
+      </cac:PlannedPeriod>
+      <cac:ContractExtension>
+        <cbc:OptionsDescription languageID="ENG">provided they are in conformity with the basic project, new services or works consisting in the repetition of similar services or works, may be entrusted up to 50 % of the initial contract to the initial contractor by negotiated procedure without prior publication of a contract notice.</cbc:OptionsDescription>
+        <cbc:MaximumNumberNumeric>3</cbc:MaximumNumberNumeric>
+        <cac:Renewal>
+          <cac:Period>
+            <cbc:Description languageID="ENG">The framework contract is concluded for an initial period of 48 (forty-eight)     months, renewable 3 (three) time(s). Please consult the draft framework contract in the procurement documents.</cbc:Description>
+          </cac:Period>
+        </cac:Renewal>
+      </cac:ContractExtension>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

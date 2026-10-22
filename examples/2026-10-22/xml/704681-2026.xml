@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Landkreis Schmalkalden-Meiningen, Eigenbetrieb "Kommunaler IT-Service"</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Obertshäuser Platz 1</cbc:StreetName>
+									<cbc:CityName>Meiningen</cbc:CityName>
+									<cbc:PostalZone>98617</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEG0Q</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>16066000-0001-58</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Freistaats Thüringen beim Thüringer Landesverwaltungsamt - Referat 250</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Jorge-Semprún-Platz 4</cbc:StreetName>
+									<cbc:CityName>Weimar</cbc:CityName>
+									<cbc:PostalZone>99423</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEG0G</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>16900334-0001-29</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer des Freistaates Thüringen beim Thüringer Landesverwaltungsamt, Referat  250</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Jorge-Semprún-Platz 4</cbc:StreetName>
+									<cbc:CityName>Weimar</cbc:CityName>
+									<cbc:PostalZone>99423</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEG0G</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>16900334-0001-29</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00704681-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">198/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-13+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">ba361dc1-4c16-4bf4-b166-126f80deacdc</cbc:ID>
+	<cbc:ContractFolderID>6644a421-516b-4bbc-84e6-2572aeb6a802</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-09+02:00</cbc:IssueDate>
+	<cbc:IssueTime>20:37:02+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-09+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Unternehmen können die Verletzung von Vergabevorschriften im Rahmen eines Nachprüfungsverfahrens vor der zuständigen Vergabekammer geltend machen. Ein Nachprüfungsantrag ist gemäß § 160 Abs. 3 GWB unzulässig, soweit:  1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat,  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,  3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,  4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.  Der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YHJMWM2</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">SM_AW-Software_2026</cbc:ID>
+		<cbc:Name languageID="DEU">Vergabe von Lieferungs-, Beratungs- und Umsetzungsleistungen zur Einführung und Integration einer Abfallwirtschaftssoftware für den Landkreis Schmalkalden-Meiningen</cbc:Name>
+		<cbc:Description languageID="DEU">Der Landkreis Schmalkalden-Meiningen, Kommunaler IT-Service, schreibt Lieferungs-, Beratungs- und Umsetzungsleistungen zur Einführung und Integration einer Abfallwirtschaftssoftware aus.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YHJMWM2#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CityName>Schmalkalden-Meiningen</cbc:CityName>
+				<cbc:CountrySubentityCode listName="nuts">DEG0Q</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vorbemerkung: Die Eignung ist für jedes Mitglied einer Bewerbergemeinschaft gesondert nachzuweisen. Soweit nachfolgend nichts Abweichendes geregelt wird, sind daher alle Eignungsnachweise von jedem Mitglied einer Bewerbergemeinschaft vorzulegen. Ein Bewerber kann sich zum Nachweis seiner Eignung auf andere Unternehmen stützen, ungeachtet des rechtlichen Charakters der zwischen ihm und diesem Unternehmen bestehenden Verbindungen (Eignungsleihe). Diese Möglichkeit besteht unabhängig von der Rechtsnatur der zwischen dem Bewerber und den anderen Unternehmen bestehenden Verbindungen. In diesem Fall ist auf Verlangen der Vergabestelle nachzuweisen, dass dem Bewerber die erforderlichen Mittel tatsächlich zur Verfügung stehen werden, indem beispielsweise eine entsprechende Verpflichtungserklärung dieses Unternehmens vorgelegt wird. Die Unternehmen, auf die sich ein Bewerber zum Nachweis seiner Eignung stützt, müssen die Eignung hinsichtlich derjenigen Eignungskriterien erfüllen, zu deren Nachweis sich der Bewerber auf die Eignung des Unternehmens stützt. Zudem ist auf Verlangen der Vergabestelle für dieses Unternehmen eine Erklärung über das Vorliegen von Ausschlussgründen nach §§ 123, 124 GWB vorzulegen. Sofern ein Bewerber im Hinblick auf die berufliche Leistungsfähigkeit oder die einschlägige berufliche Erfahrung (insbes. Referenzen) ganz oder teilweise die Kapazitäten anderer Unternehmen in Anspruch nimmt, so muss dieses Unternehmen auch die Leistung erbringen, für die die Kapazitäten benötigt werden. 1) Mit dem Teilnahmeantrag vorzulegende Nachweise, Erklärungen und Dokumente: - Eigenerklärung über das Nichtvorliegen von Ausschlussgründen nach § 123 GWB, - Eigenerklärung über das Nichtvorliegen von Ausschlussgründen nach § 124 GWB, - Eigenerklärung zu Artikel 5k der Verordnung (EU) 2022 /576, - Eigenerklärung zu §19 Mindestlohngesetz (MiLoG), - Eigeberklärung über die Erfüllung der gewerberechtlichen Voraussetzungen und Eintragung im Berufs- oder Handelsregister. 2) Auf Verlangen der Vergabestelle sind innerhalb einer gesetzten Frist folgende Unterlagen nachzureichen: - Unbedenklichkeitsbescheinigungen des Finanzamtes,  - Unbedenklichkeitsbescheinigung mindestens eines Sozialversicherungsträgers sowie der Berufsgenossenschaft, - die Führungszeugnisse aller Geschäftsführer (falls kein Geschäftsführer bestellt, aller Inhaber), - die Gewerbeanmeldung (falls diese nach dem Gesellschaftsrecht des Staates, in dem das Unternehmen ansässig ist, vorgeschrieben ist). 3) Die Vergabestelle wird zur Vorbereitung der vergaberechtlichen Entscheidung Auskünfte aus dem Wettbewerbsregister einholen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1) Mit dem Teilnahmeantrag vorzulegende Nachweise, Erklärungen und Dokumente: - Eigenerklärung über den Gesamtumsatz sowie den Umsatz im Bereich der ausgeschriebenen (angebotenen) Leistungen in den letzten drei abgeschlossenen Geschäftsjahren, - Eigenerklärung, dass eine Betriebs-, Produkt- und Vermögensschaden-Haftpflichtversicherung für IT-Unternehmen mit einer Deckungssumme von jeweils mindestens 1,5 Mio. Euro für Sach- und Personenschäden sowie für Vermögensschäden - jeweils pro Einzelfall - vorliegt bzw. eine solche im Auftragsfalle abgeschlossen wird. 2) Auf Verlangen der Vergabestelle sind innerhalb einer gesetzten Frist folgende Unterlagen nachzureichen: - der jüngste bestätigte Jahresabschlussbericht bzw. - die Bilanz sowie die GuV der letzten drei abgeschlossenen Geschäftsjahre, - Nachweis einer abgeschlossenen Betriebs-, Produkt- und Vermögensschaden-Haftpflichtversicherung mit den jeweils geforderten Deckungssummen oder die Erklärung(en) eines Versicherers, im Auftragsfalle einen entsprechenden Versicherungsschutz in der geforderten Höhe zu stellen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1) Mit dem Teilnahmeantrag vorzulegende Nachweise, Erklärungen und Dokumente: - Eigenerklärung über das Vorliegen von mindestens 2 Referenzen für die Einführung, die Migration oder das Customizing einer Abfallgebührenveranlagungssoftware innerhalb der letzten 36 Monate vor Einreichung des Teilnahmeantrags, - Eigenerklärung über das Vorliegen von mindestens 2 Referenzen für das erfolgreiche Projektmanagement eines im Hinblick auf die Anzahl der eingesetzten Mitarbeiter, die Systemlandschaft und die Laufzeit vergleichbaren Projektes des vorgesehenen Projektleiters innerhalb der letzten 36 Monate vor Einreichung des Teilnahmeantrags, - Eigenerklärung über das Vorliegen von mindestens einer Referenz (innerhalb der letzten 36 Monate vor Einreichung des Teilnahmeantrags) für den Betrieb des vorgesehenen Softwareprodukts mit mindestens folgenden Funktionen:  &gt; Behälterverwaltung &gt; Behälteraufträge (Restmüll, Biomüll) inkl. Auftragsstatusverfolgung &gt; Auswertung von Telematikdaten &gt; Reklamationen inkl. Auftragsstatusverfolgung &gt; Benutzerdefinierte Erstellung von Reports &gt; Unterstützung arbeitsteiliger Abläufe über benutzerdefinierte Workflows  &gt; Gebührenveranlagung für Abfallgebühren (Jahresgebühren, Leistungsgebühren) sowie Abrechnung von fakultativen Leistungen (z.B. Sperrmüllgebühr) &gt; Online-Dienste (Kundenportal) Der Nachweis kann durch den Nachweis eines Referenzprojektes, das den Funktionsumfang vollständig abdeckt oder durch den Nachweis mehrerer Referenzprojekte, die kumuliert den vorstehenden Funktionsumfang abdecken, erfolgen. 2) Auf Verlangen der Vergabestelle sind die Referenzen (mindestens mit Angabe des Auftraggebers, des Auftragnehmers, der vertraglichen Bindung, des Leistungsinhaltes/-umfangs, des Leistungszeitraums/der Projektzeit, des Projektstatus [laufend, abgeschlossen, erfolgreicher Wirkbetrieb]) zu benennen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-proc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1) Mit dem Teilnahmeantrag vorzulegende Nachweise, Erklärungen und Dokumente: - Eigenerklärung, dass das vorgesehene Softwareprodukt einen ordnungsgemäßen und sicheren Betrieb im Hinblick auf Datenorganisation, Datenstruktur und Verarbeitungsregeln sicherstellt. 2) Auf Verlangen der Vergabestelle ist hierzu die Bestätigung eines Wirtschaftsprüfers oder einer vergleichbaren Institution über die Prüfung und Freigabe des vorgesehenen Softwareprodukts in Bezug auf die geltenden Vorschriften der Rechnungslegung vorzulegen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YHJMWM2/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, die Bieter im Rahmen des vergaberechtlich Zulässigen aufzufordern, fehlende, unvollständige oder fehlerhafte unternehmensbezogene Unterlagen, insbesondere Eigenerklärungen, Angaben, Bescheinigungen oder sonstige Nachweise, nachzureichen, zu vervollständigen oder zu korrigieren, oder fehlende oder unvollständige leistungsbezogene Unterlagen nachzureichen oder zu vervollständigen. Ein Anspruch der Bieter hierauf besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">(1) Zur Absicherung der Erfüllung der Leistungen, von Gewährleistungsansprüchen, Schadensersatzansprüchen sowie von Erstattungsansprüchen aufgrund Überzahlungen hat der Auftragnehmer eine Bürgschaft in Höhe von 5 % der Brutto-Auftragssumme ohne den Systemservice zu leisten (2) Der Auftragnehmer verpflichtet sich im Fall der Auftragsvergabe, zur Deckung etwaiger Ersatzansprüche für Personen-, Sach- und Vermögensschäden eine ausreichende Versicherung, mindestens jedoch mit einer Deckungssumme von 1,5 Millionen Euro abzuschließen und während der Vertragslaufzeit aufrecht zu erhalten. (3) Der Auftragnehmer ist verpflichtet, die Bestimmungen des Thüringer Vergabegesetzes und die daraus resultierenden Anforderungen und Verpflichtungen einzuhalten.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>300.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Description languageID="DEU">Bewertet wird der angebotene Preis (Gesamtentgelt) unter Berücksichtigung der gemäß Angebotsformular ermittelbaren Entgelte pro Jahr. Der Bewertungszeitraum entspricht der Vertragslaufzeit (5 Jahre).</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>450.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzept zur angebotenen Softwarelösung</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat in diesem Konzept die angebotene Softwarelösung zu beschreiben und hierbei insbesondere zu folgenden Punkten nähere Ausführungen zu machen: a) Funktionalitäten des Systems  b) Handling des Systems c) Anpassungsfähigkeit/Flexibilität des Systems d) Schnittstellen e) Datensicherheit und Datenschutz</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>100.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Umsetzungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat in diesem Konzept seine Herangehensweise an die Implementierung der Applikation darzulegen. Dabei soll insbesondere beschrieben werden, wie er vorgeht, um eine zuverlässige Verfügbarkeit der Software mit all seinen Funktionen termingerecht sicherzustellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>50.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Migrationskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Der Bieter hat sein vorgesehenes Konzept zur Datenmigration darzustellen. Hierbei ist insbesondere die Vorgehensweise inhaltlich sowie zeitlich darzustellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Test- und Qualitätssicherungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">In diesem Konzept ist die Vorgehensweise zur Implementierung der Software ab dem Testbetrieb darzustellen. Dabei soll insbesondere inhaltlich und terminlich (Meilensteine) dargestellt werden, wie der Auftraggeber in diesen Prozess einbezogen werden wird und wie der Bieter zur Sicherstellung eines strukturierten Qualitätssicherungsprozesses vorgeht.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Schulungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">In diesem Konzept soll individuell für die einzelnen User-Gruppen insbesondere dargestellt werden, - wie hoch die Belastung der Mitarbeiter ist - wie der Wissenstransfer stattfinden soll - an welchem System geschult werden soll - wo geschult werden soll - wie viele Schulungen je Themenblock angeboten werden</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Go-Live-Konzept</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet wird, wie das Go-Live Konzept hinsichtlich Betreuung während und nach dem Start aussieht, wie evtl. auftretende Probleme hierbei behoben wer-den sollen, mit wie viel Unterstützung in welchem Zeitraum zu rechnen ist usw.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>25.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzept zur Softwarepflege (Wartung &amp; Service)</cbc:Name>
+						<cbc:Description languageID="DEU">Bewertet wird die beschriebene Konzeption zur Softwarepflege.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YHJMWM2</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Unternehmen können die Verletzung von Vergabevorschriften im Rahmen eines Nachprüfungsverfahrens vor der zuständigen Vergabekammer geltend machen. Ein Nachprüfungsantrag ist gemäß § 160 Abs. 3 GWB unzulässig, soweit:  1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat,  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,  3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,  4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.  Der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YHJMWM2</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-10+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-02+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">SM_AW-Software_2026</cbc:ID>
+			<cbc:Name languageID="DEU">Vergabe von Lieferungs-, Beratungs- und Umsetzungsleistungen zur Einführung und Integration einer Abfallwirtschaftssoftware für den Landkreis Schmalkalden-Meiningen</cbc:Name>
+			<cbc:Description languageID="DEU">(1) Der zu vergebende Auftrag umfasst die Erstellung eines Gesamtsystems für die Abfallwirtschaft im Landkreis Schmalkalden-Meiningen.  Die Abfallwirtschaftssoftware als zentrales Element für die Abwicklung der abfallwirtschaftlichen Leistungen dient insbesondere der: - Abwicklung des gesamten Prozesses der Gebührenveranlagung - Abwicklung von Aufträgen - Interaktion mit den Bürgen/Kunden (Online-Dienste).  Eine wesentliche Besonderheit für das System ist, dass stichtagsbezogen die bestehenden Daten (u.a. Stammdaten, Behälterdaten) aus dem heutigen System zu integrieren sind. (2) Die auszuschreibende Leistung umfasst die folgenden Leistungen: - Lieferung eines Softwaresystems inkl. aller dazugehörigen Zugriffslizenzen - Anbindung / Schnittstellen zu Vorsystemen und zu nachgelagerten Systemen  - Anbindung / Schnittstellen zu operativ tätigen Unternehmen / Bereichen - Einführung, Migration und Customizing &gt; Vorlage eines detaillierten Feinkonzeptes für die Durchführung  der Leistungen &gt; Installation des Systems &gt; Customizing des Systems  &gt; Migration von Altdaten - Weitere Leistungsbestandteile: &gt; Erstellung und Umsetzung eines Rollen- und Berechtigungskonzeptes &gt; Schulung von Mitarbeitern in der Anwendung (Key-User), Administration und im Customizing der Anwendungen &gt; Produktivsetzung des Systems einschließlich der Durchführung von Tests &gt; Go-Live-Support &gt; Systemservice inkl. Pflege- und Wartungsleistungen. (3) Die Produktivsetzung ("Go-Live") ist zum 01.01.2028 vorgesehen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Den Angeboten sind folgende Bedingungen als Mindestkriterien (vgl. § 17 Abs. 10 VgV) unverändert zu Grunde zu legen: - die Bestimmung der Zuschlagskriterien sowie - gesetzlich zwingend zu erfüllende oder einzuhaltende Vorgaben. Vorschläge der Bieter zur Abänderung der Vergabeunterlagen können als Grundlage für spätere Verhandlungen zusammen mit den Angeboten eingereicht werden. Hierzu zählen auch Vorschläge zum vorgesehenen Termin der Produktivsetzung ("Go-Live").</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CityName>Schmalkalden-Meiningen</cbc:CityName>
+					<cbc:CountrySubentityCode listName="nuts">DEG0Q</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">5</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

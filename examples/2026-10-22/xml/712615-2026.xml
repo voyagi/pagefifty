@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Translationale Onkologie an der Universitätsmedizin der Johannes Gutenberg-Universität Mainz gGmbH (TRON)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Freiligrathstraße 12</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55131</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 269156552</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Rheinland-Pfalz</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00712615-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">200/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-15+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">41de0297-c9e9-4455-b890-613434a06c57</cbc:ID>
+	<cbc:ContractFolderID>43cd5982-9cc7-4d13-abb3-f4ce9402b22c</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-13+02:00</cbc:IssueDate>
+	<cbc:IssueTime>23:14:24+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-13+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">pub-undert</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Kalendertagen nach Kenntnisnahme rügen.  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach §160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen.  3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen.  4) Ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Die Leistungen werden in einem einheitlichen, europaweiten Verhandlungsverfahren mit vorgeschaltetem Teilnahmewettbewerb an einen einzigen Auftragnehmer vergeben.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D6VMWLY</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">TRON</cbc:ID>
+		<cbc:Name languageID="DEU">Bereitstellung von Mobilfunkdiensten und mobilen Endgeräten im Mietmodell (DaaS)</cbc:Name>
+		<cbc:Description languageID="DEU">Die TRON - Translationale Onkologie an der Universitätsmedizin der Johannes Gutenberg-Universität Mainz gemeinnützige GmbH beabsichtigt die Vergabe der Bereitstellung von Mobilfunkleistungen und mobilen Endgeräten im Mietmodell (Device as a Service) nebst Serviceleistungen.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4D6VMWLY#</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32250000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">64212000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">50330000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Lieferorte und Verwendungsstellen gemäß Vergabeunterlagen</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Freiligrathstraße 12</cbc:StreetName>
+				<cbc:CityName>Mainz</cbc:CityName>
+				<cbc:PostalZone>55131</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Für die Bewerbung zur Teilnahme am Wettbewerb werden Unterlagen zur Verfügung gestellt, soweit Bewerber bzw. Bewerbergemeinschaften nicht eigenständige Dokumente und Nachweise zu erstellen und dem Teilnahmeantrag beizufügen haben. Die Bewerbung hat unter Verwendung der zur Verfügung gestellten Unterlagen zu erfolgen. Formlose Bewerbungen werden nicht berücksichtigt. Die in der Auftragsbekanntmachung geforderten Nachweise sind mit dem Antrag vorzulegen.  1. Eigenerklärung über das Nichtvorliegen von Ausschlussgründen in Anlehnung an §§ 123, 124 GWB.  2. Aktueller Nachweis über die Eintragung in das Berufs- oder Handelsregister oder die Handwerksrolle.  3. Angaben, ob und auf welche Art der Bieter wirtschaftlich mit Unternehmen verknüpft ist oder ob und auf welche Art er auf den Auftrag bezogen in relevanter Weise mit anderen zusammenarbeitet  4. Eigenerklärung zur Verordnung (EU) 2022/576 des Rates der Europäischen Union vom 8. April 2022 zur Änderung der Verordnung (EU) Nr. 833/2014 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren (Art. 5k EU-VO Nr. 833/2014) - Russland-Sanktions-Erklärung.  5. Eigenerklärung zu § 22 des Gesetzes über die unternehmerischen Sorgfaltspflichten zur Vermeidung von Menschenrechtsverletzungen in Lieferketten (Lieferkettensorgfaltspflichtengesetz - LkSG  6. Eigenerklärung nach § 4 Abs. 2 des rheinland-pfälzischen Landesgesetzes zur Gewährleistung von Tariftreue und Mindestentgelt bei öffentlichen Auftragsvergaben  Bewerbergemeinschaften müssen die geforderten Nachweise, Erklärungen und sonstige Angaben - mit Ausnahme der geforderten Referenzen - von allen Mitgliedern der Bewerbergemeinschaft einreichen.  Der Teilnahmewettbewerb dient der abschließenden Eignungsprüfung, d. h. die Eignungsunterlagen sind auch für etwaige Nachunternehmer nebst entsprechenden Verpflichtungserklärungen vorzulegen. Nicht ausreichend ist es insbesondere, solche Unternehmen erst nach Abschluss des Teilnahmewettbewerbs zu benennen. Ein Bewerber, der nicht selbst über die zur Ausführung eines Auftrags erforderlichen technischen Mittel verfügt, hat in seinem Teilnahmeantrag von sich aus darzulegen und den Nachweis zu erbringen, welche Unternehmen, die solche technischen Mittel besitzen, er sich bei der Ausführung des Auftrages in der Weise bedienen wird, dass diese Mittel als ihm tatsächlich zu Gebote stehend anzusehen sind. Die Vergabestelle wird bei sog. "eignungsvermittelnden Nachunternehmern" eine umfassende Eignungsprüfung durchführen. Sämtliche in der EU-Bekanntmachung geforderten Eignungsnachweise sind auch für "eignungsvermittelnde Nachunternehmer" vorzulegen.   Will sich der Bewerber bzw. die Bewerbergemeinschaft bei der Erfüllung des Auftrages der Leistungen anderer Unternehmen (Nachunternehmer) bedienen, sind die Eignungsnachweise bezogen auf den übertragenen Leitungsbereich des Nachunternehmers vollständig auch von diesem zu erbringen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Nachweis über das Bestehen eines Versicherungsschutzes gem. den nachfolgend genannten Mindestanforderungen bzw. Eigenerklärung darüber, im Auftragsfall eine entsprechende Versicherung abzuschließen und diese während der gesamten Vertragslaufzeit aufrecht zu erhalten.  - Es gelten folgende Mindestanforderungen: Mindestdeckungssummen je Versicherungs-fall (zweifach maximiert pro Jahr): EUR 2,0 Mio. für Personen- und Sachschäden sowie EUR 1,0 Mio. für Vermögensschäden.  2. Angaben über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren sowie über den mit dem hiesigen Auftragsgegenstand vergleichbaren Umsatz. Mindestanforderung: Der Gesamtumsatz darf im Mittel der letzten drei abgeschlossenen Geschäftsjahre 1,2 Mio. EUR (netto) nicht unterschritten haben.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">1. Eigenerklärung zum Unternehmen mit Aussagen zu: Hauptsitz des Unternehmens, Gründungsjahr, Gesellschafter / ggf. Konzernzugehörigkeit, Standorte, von denen aus der Auftraggeber betreut werden soll, Anzahl der im letzten abgeschlossenen Geschäftsjahr beschäftigten Arbeitskräfte insgesamt.  2. Referenzen über vergleichbare Leistungen entsprechend der Angaben dieser EU-Bekanntmachung, vorbehaltlich der datenschutzrechtlichen Zulässigkeit einer Mitteilung, einschließlich Angabe des Auftraggebers, der Projektbezeichnung, des Leistungszeitraums (jeweils Monat/Jahr) sowie eines Ansprechpartners beim Referenzauftraggeber nebst Telefonnummer und E-Mail-Adresse. Es sind mindestens zwei Referenzen unter Verwendung des zur Verfügung gestellten Referenzbogens einzureichen. Jede Referenz muss die folgenden Mindestanforderungen (a) bis (e) erfüllen: (a) Bereitstellung von mindestens 150 Mobilfunkanschlüssen nebst mobilen Endgeräten (Smartphones) im Miet-, Leasing- oder DaaS-Modell für einen gewerblichen oder öffentlichen Auftraggeber; (b) die Referenz umfasst Lifecycle-Serviceleistungen, mindestens: Rollout, Störungs- und Austauschmanagement sowie Rücknahme mit zertifizierter Datenlöschung; (c) die Referenz betrifft die Bereitstellung eines webbasierten Vertrags- bzw. Assetmanagement-Portals oder einer vergleichbaren Managed-Mobility-Plattform; (d) das Auftragsvolumen der Referenz beträgt mindestens 200.000 EUR (netto); (e) das Ende der Referenzleistung liegt nicht länger als drei Jahre vor Veröffentlichung dieser Bekanntmachung zurück; laufende Verträge werden berücksichtigt, sofern die Leistungserbringung zum Zeitpunkt der Bekanntmachung seit mindestens zwölf Monaten andauert. Mindestens eine Referenz muss zusätzlich die folgende Anforderung (f) erfüllen: (f) die Referenz umfasst die Einbindung der Endgeräte in eine zentrale Unternehmensverwaltung (Mobile Device Management). Referenzen, die die Mindestanforderungen (a) bis (e) nicht erfüllen, werden nicht gewertet. Erfüllen weniger als zwei Referenzen die Mindestanforderungen (a) bis (e) oder erfüllt keine Referenz zusätzlich die Anforderung (f), wird der Teilnahmeantrag ausgeschlossen.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>90.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Auswahlkriterien kommen zur Anwendung, wenn mehr Bewerber bzw. Bewerbergemeinschaften die Eignungskriterien erfüllen, als nach den Regelungen dieser EU-Bekanntmachung für die Aufforderung zur Angebotsabgabe vorgesehen sind (fünf). Gehen weniger als fünf geeignete Teilnahmeanträge ein, wird das Verfahren mit den geeigneten Bewerbern fortgeführt (§ 51 Abs. 3 VgV).  Die Auswahl der Bewerber bzw. Bewerbergemeinschaften, die zur Angebotsabgabe aufgefordert werden, erfolgt anhand einer Punktwertung der eingereichten Unternehmensreferenzen. Insgesamt können maximal 90 Wertungspunkte erreicht werden. Es wird der Inhalt der maximal drei einzureichenden Unternehmens-Referenzen bewertet. Es wird die Vergleichbarkeit der eingereichten Referenzen zum hier ausgeschriebenen Leistungsumfang (vgl. Leistungsverzeichnis) bewertet. Hierzu ist es erforderlich, dass die ausführliche Beschreibung der erbrachten Leistungen im Referenzbogen möglichst umfangreich erfolgt. Pro Referenz können maximal 30 Wertungspunkte erreicht werden. Die Punkte je Referenz werden wie folgt vergeben: je 4 Punkte für (1) mindestens 300 bereitgestellte Anschlüsse/Geräte, (2) ein Auftragsvolumen von mindestens 400.000 EUR netto, (3) Apple-Endgeräte mit Eignung zur Einbindung in ABM/ADE und (4) die MDM-Plattform Intune (keine Punkte bei einer sonstigen Plattform). Weitere bis zu 14 Punkte werden dafür vergeben, in welchem Umfang die beschriebenen Leistungen weitere wesentliche Elemente der ausgeschriebenen Leistung abdecken: 10-14 Punkte bei nahezu vollständiger, 7-9 Punkte bei überwiegender, 3-6 Punkte bei teilweiser und 0-2 Punkte bei fehlender oder nur unwesentlicher Abdeckung.  Die Wertungspunkte aller Referenzen werden zu einer Gesamtpunktzahl addiert. Die fünf Bewerber mit der höchsten Gesamtpunktzahl werden zur Angebotsabgabe aufgefordert. Bei Punktgleichheit auf Rang 5 entscheidet das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4D6VMWLY/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+				<cbc:CompanyLegalForm languageID="DEU">Gesamtschuldnerisch haftend</cbc:CompanyLegalForm>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Nachforderung fehlender Unterlagen richtet sich nach den Vorgaben gem. § 56 VgV. Werden fehlende Unterlagen nachgefordert und nicht bzw. nur unvollständig nachgereicht, kann dies zum Ausschluss vom Verfahren führen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>40.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Angebotspreis</cbc:Name>
+						<cbc:Description languageID="DEU">Wertungspreis (netto) gemäß Preisblatt: fiktiver Gesamtpreis über die Grundlaufzeit von 36 Monaten einschließlich gewichteter optionaler Positionen. Nähere Angaben, insbesondere die Bewertungsformel, sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>60.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Service- und Umsetzungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Es wird auf die Angebotsbedingungen verwiesen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4D6VMWLY</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">1) Etwaige Vergabeverstöße muss der Bewerber/Bieter gemäß § 160 Abs. 3 Nr. 1 GWB innerhalb von 10 Kalendertagen nach Kenntnisnahme rügen.  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, sind nach §160 Abs. 3 Nr. 2 GWB spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Abgabe der Bewerbung oder der Angebote gegenüber dem Auftraggeber zu rügen.  3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, sind nach § 160 Abs. 3 Nr. 3 GWB spätestens bis zum Ablauf der Frist zur Bewerbungs- oder Angebotsabgabe gegenüber dem Auftraggeber zu rügen.  4) Ein Vergabenachprüfungsantrag ist nach § 160 Abs. 3 Nr. 4 GWB innerhalb von 15 Kalendertagen nach der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der Vergabekammer einzureichen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D6VMWLY</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-20+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-13+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">TRON</cbc:ID>
+			<cbc:Name languageID="DEU">Bereitstellung von Mobilfunkdiensten und mobilen Endgeräten im Mietmodell (DaaS)</cbc:Name>
+			<cbc:Description languageID="DEU">Bereitgestellt werden zunächst ca. 320 Mobilfunkanschlüsse nebst fabrikneuen mobilen Endgeräten (Apple iPhone nebst Zubehör) für eine Grundlaufzeit von 36 Monaten. Der Auftraggeber ist berechtigt, die Menge während der Vertragslaufzeit zu erhöhen. Daneben bestehen Optionen zur zweimaligen Verlängerung der Laufzeit um jeweils zwölf Monate.  Der Vertrag wird als Rahmenvereinbarung mit einem einzigen Unternehmen geschlossen. Die Höchstmenge der insgesamt abrufbaren Mobilfunkanschlüsse nebst Mietgeräten beträgt bis zu 450 Anschlüsse nebst Mietgeräten. Der Höchstwert der Rahmenvereinbarung entspricht dem auf die Höchstmenge entfallenden Entgelt einschließlich optionaler Leistungen. Mit Erreichen der Höchst-menge bzw. des Höchstwerts ist die Rahmenvereinbarung erschöpft und entfaltet keine Wirkung mehr.  Der Auftragnehmer erbringt sämtliche Leistungen des Gerätelebenszyklus von der Bestellung über Rollout, Betrieb, Störungs- und Austauschmanagement bis zur Rücknahme mit zertifizierter Datenlöschung (BSI-Vorgaben bzw. NIST SP 800-88) und Wiedervermarktung sowie die zugehörigen Mobilfunkleistungen (Telefonie-, SMS- und Datendienste einschließlich Roaming) und stellt ein webbasiertes Vertrags- und Assetmanagement-Portal bereit.  Sämtliche Endgeräte müssen für die Einbindung in Apple Business Manager / Automated Device Enrollment geeignet sein und werden über die MDM-Umgebung des Auftraggebers (Microsoft Intune) verwaltet.  Weitere Angaben und Informationen sind den Vergabeunterlagen, insbesondere dem Leistungsverzeichnis, zu entnehmen. Das Leistungsverzeichnis dient im Zuge des Teilnahmewettbewerbs zu-nächst der Information der Bewerber. Nach Abschluss des Teilnahmewettbewerbs werden die aus-gewählten Bieter zur Abgabe eines Angebotes aufgefordert. Hierzu werden gesonderte Verfahrensnachrichten erfolgen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#
+
+
+Nähere Angaben zum beabsichtigten Verfahrensablauf: Zunächst wird der mit dieser Bekanntmachung eingeleitete EU-weite Teilnahmewettbewerb durchgeführt. Nach Abschluss des Teilnahmewettbewerbs wird die Angebots- und Verhandlungsphase mit einer Begrenzten Anzahl an Bietern mit höchstens fünf Bietern durchgeführt. Die Auswahl der Bewerber, welche zur Angebotsabgabe aufgefordert werden, erfolgt nach den in dieser Bekanntmachung festgelegten objektiven Auswahlkriterien.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32250000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">64212000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">50330000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Lieferorte und Verwendungsstellen gemäß Vergabeunterlagen</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Freiligrathstraße 12</cbc:StreetName>
+					<cbc:CityName>Mainz</cbc:CityName>
+					<cbc:PostalZone>55131</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB35</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">36</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Mengenoption: Erhöhung der Anzahl der Anschlüsse und Mietgeräte auf bis zu 450 Geräte und Anschlüsse während der Vertragslaufzeit. Laufzeitoption: zweimalige Verlängerung um jeweils zwölf Monate. Ferner optionale Leistungen gemäß Preisblatt.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Der Auftraggeber kann die Laufzeit durch einseitige Erklärung in Textform bis spätestens drei Monate vor Laufzeitende zweimal um jeweils zwölf Monate nach Maßgabe des Vertrages verlängern.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

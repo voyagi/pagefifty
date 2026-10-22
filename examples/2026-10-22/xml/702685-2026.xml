@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Universität Trier</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Universitätsring 15</cbc:StreetName>
+									<cbc:CityName>Trier</cbc:CityName>
+									<cbc:PostalZone>54296</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB21</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-HSUNITR000000-49</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Rheinland-Pfalz beim Ministerium für Wirtschaft, Tourismus, Energie und Klima</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>07-0001801100000-05</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00702685-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">197/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-12+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">143707d8-35c9-477e-81a2-1d89d9544ff1</cbc:ID>
+	<cbc:ContractFolderID>f76a27b3-425c-41d9-a64b-9975bc03ac78</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-08+02:00</cbc:IssueDate>
+	<cbc:IssueTime>18:55:05+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-08+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Es ist eine Eigenerklärung zum Nichtvorliegen von Ausschlussgründen vorzulegen: Eigenerklärung zum Nichtvorliegen von zwingenden Ausschlussgründen nach § 123 GWB und zum Nichtvorliegen fakultativer Ausschlussgründe nach § 124 GWB.  Für das Nichtvorliegen folgender Ausschlussgründe sind explizite Nachweispflichten zu erfüllen: - Verstöße gegen Verpflichtungen zur Zahlung von Steuern oder Abgaben - Verstöße gegen Verpflichtungen zur Zahlung von Sozialversicherungsbeiträgen --&gt; zu erbringender Nachweis: Unbedenklichkeitsbescheinigung der tariflichen Sozialkasse (sofern Beitragspflicht besteht) und des Finanzamtes  - Verstöße gegen sozialrechtliche Verpflichtungen - Verstöße gegen arbeitsrechtliche Verpflichtungen --&gt;zu erbringender Nachweis: Mustererklärung nach § 4 LTTG  Ab einer Auftragssumme von 30.000 Euro netto wird der Auftraggeber für den Bieter, auf dessen Angebot der Zuschlag erteilt werden soll, einen Auszug aus dem Wettbewerbsregister anfordern.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der Integrität und Rechtstreue der Auftragnehmer.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Wahrung der öffentlichen Sicherheit und zur Einhaltung gesetzlicher Vorgaben.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Vermeidung von Geschäftsbeziehungen mit Unternehmen, die gegen grundlegende Compliance-Anforderungen verstoßen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung eines rechtmäßigen und vertrauenswürdigen Wettbewerbs.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Wahrung der Integrität des Vergabeverfahrens und zur Korruptionsprävention.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Einhaltung grundlegender menschenrechtlicher und sozialer Standards.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der wirtschaftlichen Zuverlässigkeit und Gesetzestreue der Bieter.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Gewährleistung der Einhaltung sozialversicherungsrechtlicher Verpflichtungen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Förderung nachhaltiger und rechtskonformer Auftragsausführung.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der Einhaltung geltender sozialrechtlicher Standards.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Gewährleistung der Einhaltung arbeitsrechtlicher Vorschriften und fairer Arbeitsbedingungen.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der ordnungsgemäßen und wirtschaftlich stabilen Auftragsausführung.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Minimierung von Risiken für die Vertragserfüllung.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss, da die ordnungsgemäße Leistungserbringung nicht gewährleistet werden kann.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss aufgrund erheblicher Zweifel an der wirtschaftlichen Leistungsfähigkeit.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der Zuverlässigkeit und Integrität der Auftragnehmer.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Gewährleistung eines fairen und unverfälschten Wettbewerbs.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung der Gleichbehandlung aller Bieter und der Transparenz des Vergabeverfahrens.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Vermeidung unzulässiger Wettbewerbsvorteile.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Sicherstellung einer ordnungsgemäßen und zuverlässigen Auftragsausführung.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+				<cbc:Description languageID="DEU">Ausschluss zur Wahrung der Transparenz, Gleichbehandlung und Integrität des Vergabeverfahrens.</cbc:Description>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung oder in den Vergabeunterlagen erkennbar sind, sind spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber zu rügen. Im Übrigen sind Verstöße gegen Vergabevorschriften innerhalb einer Frist von 10 Kalendertagen nach Kenntnis gegenüber dem Auftraggeber zu rügen.  Ein Nachprüfungsantrag ist innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der zuständigen Vergabekammer zu stellen (§ 160 Gesetz gegen Wettbewerbsbeschränkungen (GWB)).  Die o. a. Fristen gelten nicht, wenn der Auftraggeber gemäß § 135 Absatz 1 Nr. 2 GWB den Auftrag ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist.  Setzt sich ein Auftraggeber über die Unwirksamkeit eines geschlossenen Vertrages hinweg, indem er die Informations- und Wartepflicht missachtet (§ 134 GWB) oder ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist, kann die Unwirksamkeit nur festgestellt werden, wenn sie im Nachprüfungsverfahren innerhalb von 30 Kalendertagen nach der Information der betroffenen Bieter und Bewerber durch den öffentlichen Auftraggeber über den Abschluss des Vertrags, jedoch nicht später als 6 Monate nach Vertragsschluss geltend gemacht worden ist. Hat der Auftraggeber die Auftragsvergabe im Amtsblatt der Europäischen Union bekannt gemacht, endet die Frist 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union (§ 135 GWB).</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Die Vergabe erfolgt im offenen Verfahren gemäß §§ 15 ff. VgV i. V. m. §§ 97 ff. GWB. Die Ausschreibung wird EU-weit bekannt gemacht und im Supplement zum Amtsblatt der EU (TED - Tenders Electronic Daily) veröffentlicht. Angebote sind ausschließlich elektronisch einzureichen; Angebote in Papierform oder per E-Mail werden nicht berücksichtigt. Enthalten die Ausschreibungsunterlagen nach Auffassung des Bieters Unklarheiten, so hat der Bieter unverzüglich den Auftraggeber vor Angebotsabgabe in elektronischer Form über das Vergabeportal des Landes Rheinland-Pfalz darauf hinzuweisen.   Fragen zum Verfahren und zu den Vergabeunterlagen können bis 11 Kalendertage vor Ablauf der Angebotsfrist über die Vergabeplattform gestellt werden. Nach Ablauf der Frist eingehende Fragen können aus Gründen der Gleichbehandlung unbeantwortet bleiben. Die Beantwortung erfolgt nach § 20 Abs. 3 Nr. 1 VgV spätestens 6 Kalendertage vor Ablauf der Angebotsfrist über die Vergabeplattform.  Grundsätzlich hat jegliche Kommunikation zwischen Bewerbern und Vergabestelle über die elektronische Vergabeplattform zu erfolgen. Telefonische Anfragen oder Anfragen per E-Mail sind unzulässig und werden nicht beantwortet.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYDCYS0E</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">6000018364-25_EU</cbc:ID>
+		<cbc:Name languageID="DEU">RFID-Konvertierung: Umrüstung von Buchmedien</cbc:Name>
+		<cbc:Description languageID="DEU">Es soll die Umrüstung von ca. 1.375.000 Buchmedien an zwei Bibliotheksstandorten auf dem Campus der Universität Trier durchgeführt werden. Aufgrund von Aussonderungen und fehlenden Medien kann diese Anzahl um bis zu 10% nach unten abweichen.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXPDYDCYS0E#
+
+
+Digitale Rechnungen im Format PDF: [removed]  Elektronische Rechnungen im Format X-Rechnung/ZUGFeRD: Rechnungen per E-Mail müssen IMMER an folgende Mailadresse geschickt werden: [removed]  Leitweg-ID:  07-HSUNITR000000-49</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">545875.00</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">79995000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72920000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Die Umrüstung erfolgt beim Auftraggeber an zwei Standorten in Trier (Details vgl. Leistungsbeschreibung). Es besteht die Möglichkeit, die Örtlichkeiten vor der Angebotsabgabe zu besichtigen. Sofern Sie davon Gebrauch machen möchten, richten Sie bitte eine entsprechende Anfrage über das Vergabeportal/Kommunikation, um einen Termin zu vereinbaren.</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Universitätsring 15</cbc:StreetName>
+				<cbc:CityName>Trier</cbc:CityName>
+				<cbc:PostalZone>54296</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEB21</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vorzulegende Nachweise und Erklärungen  Gemäß §§ 42 - 50 VgV werden bei der Auswahl der Angebote, die für den Zuschlag in Betracht kommen, nur Bieter berücksichtigt, die für die Erfüllung der vertraglichen Verpflichtungen die erforderliche Eignung (Fachkunde, Leistungsfähigkeit und Zuverlässigkeit) besitzen. Dieser Nachweis muss ebenfalls für alle Subunternehmer erbracht werden.  Abgabe Musterformblatt für vorzulegende Nachweise und Erklärungen oder Einheitliche Europäische Eigenerklärung (EEE)/ Eigenerklärung zu:  2. Wirtschaftliche und finanzielle Leistungsfähigkeit  Der Bieter bzw. die Bietergemeinschaft sowie jedes Unternehmen, auf dessen Ressourcen der Bieter bzw. die Bietergemeinschaft zum Nachweis seiner/ihrer Eignung nach § 47 VgV (Eignungsleihe) verweist, müssen folgende Eigenerklärungen abgeben und die nachstehenden Nachweise erbringen:  I. Umsatzerklärung  Eigenerklärung zum Gesamtumsatz des Unternehmens sowie den Umsatz bezüglich der besonderen Leistungsart, die Gegenstand der Vergabe ist, jeweils bezogen auf die letzten drei Geschäftsjahre.  Eigenerklärung, dass der Bieter bzw. die Bietergemeinschaft über eine ausreichende Berufs- bzw. Betriebshaftpflichtversicherung verfügt oder eine Haftpflichtversicherung mit marktüblichen Haftpflichtdeckungssummen im Falle der Auftragserteilung abgeschlossen wird.  --&gt; zu erbringender Nachweis: Einreichung eines gültigen Versicherungsscheins</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vorzulegende Nachweise und Erklärungen  Gemäß §§ 42 - 50 VgV werden bei der Auswahl der Angebote, die für den Zuschlag in Betracht kommen, nur Bieter berücksichtigt, die für die Erfüllung der vertraglichen Verpflichtungen die erforderliche Eignung (Fachkunde, Leistungsfähigkeit und Zuverlässigkeit) besitzen. Dieser Nachweis muss ebenfalls für alle Subunternehmer erbracht werden.  Abgabe Musterformblatt für vorzulegende Nachweise und Erklärungen oder Einheitliche Europäische Eigenerklärung (EEE)/ Eigenerklärung zu:  3. Technische und berufliche Leistungsfähigkeit  I. Referenzen  Der Bieter muss zum Nachweis seiner Eignung mindestens ein Referenzprojekt ähnlicher Art und Größe nachweisen.  Mehrere Verträge oder Aufträge, die für denselben Auftraggeber erbracht wurden, werden nicht als eine, sondern als getrennte Referenzen bewertet. Die Referenzen beinhalten die Bezeichnung der Leistung, des Auftragswertes, des Liefer- bzw. Erbringungszeitpunktes, des Auftraggebers und des jeweiligen Ansprechpartners. Der Auftraggeber behält sich bei Bietern bzw. Bietergemeinschaften, deren Angebot in die engere Wahl kommt vor, die Referenzen bei den genannten Ansprechpartnern zu überprüfen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Vorzulegende Nachweise und Erklärungen  Gemäß §§ 42 - 50 VgV werden bei der Auswahl der Angebote, die für den Zuschlag in Betracht kommen, nur Bieter berücksichtigt, die für die Erfüllung der vertraglichen Verpflichtungen die erforderliche Eignung (Fachkunde, Leistungsfähigkeit und Zuverlässigkeit) besitzen. Dieser Nachweis muss ebenfalls für alle Subunternehmer erbracht werden.  Abgabe Musterformblatt für vorzulegende Nachweise und Erklärungen oder Einheitliche Europäische Eigenerklärung (EEE)/ Eigenerklärung zu:  1. Befähigung zur Berufsausübung einschließlich Auflagen hinsichtlich der Eintragung in einem Berufs- oder Handelsregister  Eigenerklärung zum Nichtvorliegen von zwingenden Ausschlussgründen nach § 123 GWB und zum Nichtvorliegen fakultativer Ausschlussgründe nach § 124 GWB.  Erklärung, dass Sie:  - den gesetzlichen Verpflichtungen zur fristgerechten Zahlung der Steuern, Abgaben und Beiträgen zur Sozialversicherung ordnungsgemäß nachgekommen sind,  --&gt; zu erbringender Nachweis: Unbedenklichkeitsbescheinigung der tariflichen Sozialkasse (sofern Beitragspflicht besteht) und des Finanzamtes  - den Verpflichtungen aus dem Gesetz über die Beschäftigung Schwerbehinderter ordnungsgemäß nachgekommen sind,  - nicht rechtskräftig verurteilt worden sind oder gegen uns eine Geldbuße nach § 30 des Gesetzes über Ordnungswidrigkeiten rechtskräftig festgesetzt worden ist nach  o § 129 des Strafgesetzbuchs (Bildung krimineller Vereinigungen), § 129a des Strafgesetzbuchs (Bildung terroristischer Vereinigungen) oder § 129b des Strafgesetzbuchs (Kriminelle und terroristische Vereinigungen im Ausland),  o § 89c des Strafgesetzbuchs (Terrorismusfinanzierung) oder wegen der Teilnahme an einer solchen Tat oder wegen der Bereitstellung oder Sammlung finanzieller Mittel in Kenntnis dessen, dass diese finanziellen Mittel ganz oder teilweise dazu verwendet werden oder verwendet werden sollen, eine Tat nach § 89a Absatz 2 Nummer 2 des Strafgesetzbuchs zu begehen,  o § 261 des Strafgesetzbuchs (Geldwäsche; Verschleierung unrechtmäßig erlangter Vermögenswerte),  o § 263 des Strafgesetzbuchs (Betrug), soweit sich die Straftat gegen den Haus-halt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in ihrem Auftrag verwaltet werden,  o § 264 des Strafgesetzbuchs (Subventionsbetrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in ihrem Auftrag verwaltet werden,  o § 299 des Strafgesetzbuchs (Bestechlichkeit und Bestechung im geschäftlichen Verkehr),  o § 108e des Strafgesetzbuchs (Bestechlichkeit und Bestechung von Mandatsträgern),  o den §§ 333 und 334 des Strafgesetzbuchs (Vorteilsgewährung und Bestechung), jeweils auch in Verbindung mit § 335a des Strafgesetzbuchs (Ausländische und internationale Bedienstete),  o Artikel 2 § 2 des Gesetzes zur Bekämpfung internationaler Bestechung (Bestechung ausländischer Abgeordneter im Zusammenhang mit internationalem Geschäftsverkehr) oder  o den §§ 232, 232a Absatz 1 bis 5, den §§ 232b bis 233a des Strafgesetzbuches (Menschenhandel, Zwangsprostitution, Zwangsarbeit, Ausbeutung der Arbeits-kraft, Ausbeutung unter Ausnutzung einer Freiheitsberaubung).  - über unser Vermögen nicht das Insolvenzverfahren oder ein vergleichbares gesetzliches Verfahren eröffnet oder die Eröffnung beantragt oder dieser Antrag mangels Masse abgelehnt wurde,  - uns nicht in Liquidation befinden,  - keine Verfehlungen begangen haben, die unsere Zuverlässigkeit als Bewerber in Frage stellt, insbesondere wir uns nicht an Preisabsprachen beteiligt haben bzw. beteiligen werden,  - unserer Verpflichtung zur Gewährleistung von Tariftreue, Mindestentgelt und Mindestarbeitsentgelt bei öffentlichen Auftragsvergaben ordnungsgemäß nachgekommen sind  --&gt; zu erbringender Nachweis: Mustererklärung nach § 4 LTTG  und  - wegen illegaler Beschäftigung von Arbeitskräften in den letzten 3 Jahren nicht mit einer Freiheitsstrafe von mehr als 3 Monaten oder einer Geldstrafe von mehr als 90 Tagessätzen oder einer Geldbuße von mehr als 2.500 EUR belegt worden sind und  - die gewerberechtlichen Voraussetzungen für die Ausführung der angebotenen Leistung erfüllen  --&gt; zu erbringender Nachweis: Eintragung im Handels-/Berufsregister nach § 44 VgV bzw. ein vergleichbarer Nachweis</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Beinhaltet das Angebot Beratungs- oder Schulungsleistungen, wird das eingesetzte Personal nicht die "Technologie von L. Ron Hubbard" zur Erfüllung des Auftrags an-wenden, lehren oder in sonstiger Weise verbreiten.  Der / die Bewerber / Bieter gehört / gehören nicht zu den in Artikel 5 k) Absatz 1 der Verordnung (EU) Nr. 833/2014 in der Fassung des Art. 1 Ziff. 23 der Verordnung (EU) 2022/576 des Rates vom 8. April 2022 über restriktive Maßnahmen angesichts der Handlungen Russlands, die die Lage in der Ukraine destabilisieren, genannten Personen oder Unternehmen, die einen Bezug zu Russland im Sinne der Vorschrift aufweisen.  Wissentlich falsche Erklärungen im Formblatt oder in der EEE führen  zum Ausschluss vom Wettbewerb und von weiteren Auftragserteilungen.  Die auftraggebende Stelle hat jederzeit das Recht die Eigenerklärungen zu überprüfen und notwendige Bescheinigungen, Nachweise und/oder Bestätigungen zuständiger Stellen anzufordern.  Personenbezogene Daten zum Zweck des Vergabeverfahrens und ggf. zustande kommenden Vertragsverhältnisses dürfen verarbeitet und gespeichert werden.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bieter erklärt, dass er - soweit für die angebotenen Leistungen relevant - Maß-nahmen zur Sicherstellung der Integrität und Nachvollziehbarkeit der Lieferkette er-folgt hat und - soweit gesetzlich vorgesehen - insbesondere die Vorgaben des Lieferkettensorgfaltspflichtengesetz bzw. allgemeine Anforderungen an eine nachhaltige und transparente Lieferkette berücksichtigt.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYDCYS0E/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eignungsunterlagen können nachgefordert werden.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Umrüstung soll zwischen dem 01.12.2026 und dem 30.06.2027 stattfinden, die Dauer dieser Tätigkeiten darf fünf Monate nicht überschreiten.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">dec-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>1.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis pro Umrüstung Buchmedien</cbc:Name>
+						<cbc:Description languageID="DEU">Den Zuschlag erhält das wirtschaftlichste Angebot im Sinne des besten Preis-Leistungs-Verhältnisses (§ 127 Abs. 1 GWB).  Ausschlaggebendes Kriterium ist ausschließlich der Preis, sofern alle Mindestanforderungen der Vergabeunterlagen, insbesondere des Leistungsverzeichnisses, erfüllt sind.  Bei Preisgleichheit mehrerer Angebote entscheidet das Los über die Zuschlagserteilung.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYDCYS0E</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung oder in den Vergabeunterlagen erkennbar sind, sind spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber zu rügen. Im Übrigen sind Verstöße gegen Vergabevorschriften innerhalb einer Frist von 10 Kalendertagen nach Kenntnis gegenüber dem Auftraggeber zu rügen.  Ein Nachprüfungsantrag ist innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, bei der zuständigen Vergabekammer zu stellen (§ 160 Gesetz gegen Wettbewerbsbeschränkungen (GWB)).  Die o. a. Fristen gelten nicht, wenn der Auftraggeber gemäß § 135 Absatz 1 Nr. 2 GWB den Auftrag ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist.  Setzt sich ein Auftraggeber über die Unwirksamkeit eines geschlossenen Vertrages hinweg, indem er die Informations- und Wartepflicht missachtet (§ 134 GWB) oder ohne vorherige Veröffentlichung einer Bekanntmachung im Amtsblatt der Europäischen Union vergeben hat, ohne dass dies aufgrund Gesetzes gestattet ist, kann die Unwirksamkeit nur festgestellt werden, wenn sie im Nachprüfungsverfahren innerhalb von 30 Kalendertagen nach der Information der betroffenen Bieter und Bewerber durch den öffentlichen Auftraggeber über den Abschluss des Vertrags, jedoch nicht später als 6 Monate nach Vertragsschluss geltend gemacht worden ist. Hat der Auftraggeber die Auftragsvergabe im Amtsblatt der Europäischen Union bekannt gemacht, endet die Frist 30 Kalendertage nach Veröffentlichung der Bekanntmachung der Auftragsvergabe im Amtsblatt der Europäischen Union (§ 135 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://landesverwaltung.vergabe.rlp.de/VMPSatellite/notice/CXPDYDCYS0E</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-10+01:00</cbc:EndDate>
+				<cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-30+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:OpenTenderEvent>
+				<cbc:OccurrenceDate>2026-11-10+01:00</cbc:OccurrenceDate>
+				<cbc:OccurrenceTime>11:00:00+01:00</cbc:OccurrenceTime>
+			</cac:OpenTenderEvent>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">6000018364-25_EU</cbc:ID>
+			<cbc:Name languageID="DEU">RFID-Konvertierung: Umrüstung von Buchmedien</cbc:Name>
+			<cbc:Description languageID="DEU">Ort der Leistungserbringung  Die Umrüstung erfolgt beim Auftraggeber an zwei Standorten in Trier (Details vgl. Leistungsbeschreibung). Es besteht die Möglichkeit, die Örtlichkeiten vor der Angebotsabgabe zu besichtigen. Sofern Sie davon Gebrauch machen möchten, richten Sie bitte eine entsprechende Anfrage über das Vergabeportal/Kommunikation, um einen Termin zu vereinbaren.   Konzept  Folgende inhaltliche Themenpunkte sollten sich im Konzept wiederfinden:  Darlegung der vorgesehenen Herangehensweise für die angebotene Dienstleistung. Aus der Beschreibung (zur späteren Abstimmung der Termine und der technischen Ressourcen) müssen auch mindestens folgende Angaben hervorgehen: Teamstärke, Anzahl der Teams, Gesamtzahl der Personen, vorgesehene Arbeitszeiten und Erläuterungen zur Gestaltung der Vertretung im Urlaubs- oder Krankheitsfall.  Vorhandene Infrastruktur zur Bewältigung der Aufgabe. Insbesondere muss daraus hervorgehen, wie der Anbieter auf eine Konvertierung auf Basis der UHF-Technologie vorbereitet ist. Darüber hinaus soll erkennbar sein, dass die eingesetzte Infrastruktur den baulichen Gegebenheiten der Universitätsbibliothek für die Konvertierungsarbeiten gerecht wird. Hierzu gehört auch, dass ein Arbeiten zumindest teilweise ohne Internetanbindung möglich sein muss.  Zudem muss das eingesetzte Personal für die Bedienung der Software sowie für Abstimmungen und Rückfragen bei dem Personal des Auftraggebers in der Lage sein, in deutscher Sprache zu kommunizieren. Mit der Angebotsabgabe sichert der Bieter diese Anforderung per Eigenerklärung zu.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">79995000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72920000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Die Umrüstung erfolgt beim Auftraggeber an zwei Standorten in Trier (Details vgl. Leistungsbeschreibung). Es besteht die Möglichkeit, die Örtlichkeiten vor der Angebotsabgabe zu besichtigen. Sofern Sie davon Gebrauch machen möchten, richten Sie bitte eine entsprechende Anfrage über das Vergabeportal/Kommunikation, um einen Termin zu vereinbaren.</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Universitätsring 15</cbc:StreetName>
+					<cbc:CityName>Trier</cbc:CityName>
+					<cbc:PostalZone>54296</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB21</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">5</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
