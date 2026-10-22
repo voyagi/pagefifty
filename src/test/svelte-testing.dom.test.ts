@@ -12,7 +12,9 @@ describe('Svelte testing setup in the jsdom project', () => {
 
 	// The two tests below run in order: the second proves the first one's page was removed.
 	it('renders a page into the document', () => {
-		render(Page, { props: { data: { total: 1, capturedOn: '15 Sep 2026', figure: null } } });
+		render(Page, {
+			props: { data: { total: 1, capturedOn: '15 Sep 2026', figure: null, example: null } }
+		});
 		expect(document.querySelectorAll('h1')).toHaveLength(1);
 	});
 

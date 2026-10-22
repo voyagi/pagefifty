@@ -492,28 +492,44 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 
 	it('finds no verdict word on the entry page', () => {
 		const { container } = render(EntryPage, {
-			props: { data: { total: captured.length, capturedOn: CAPTURE.capturedOn, figure: null } }
+			props: {
+				data: {
+					total: captured.length,
+					capturedOn: CAPTURE.capturedOn,
+					figure: null,
+					example: null
+				}
+			}
 		});
 		expect(checkedText(container)).toContain('Browse open tenders');
 		expect(findVerdictWords(container)).toEqual([]);
 	});
 
-	// The finding names the verdicts it counts, so they may show inside the figure and nowhere else on
-	// the page; with no figure the page shows none at all.
-	it('the entry page shows verdict words only inside the figure', () => {
+	// The finding names the verdicts it counts, so they may show inside the figure; the example card
+	// shows the verdict of one listed lot, inside its own verdict regions. Nowhere else on the page
+	// does one show, and with neither the page shows none at all.
+	it('the entry page shows verdict words only inside the figure or the example card verdict regions', () => {
 		const base = { total: captured.length, capturedOn: CAPTURE.capturedOn };
-		const without = render(EntryPage, { props: { data: { ...base, figure: null } } }).container;
+		const without = render(EntryPage, {
+			props: { data: { ...base, figure: null, example: null } }
+		}).container;
 		expect(without.querySelector('[data-figure]')).toBeNull();
 		expect(findVerdictWords(without)).toEqual([]);
 		cleanup();
+		const listed = captured.find((each) => each.name === LISTED[0]);
+		if (listed === undefined) throw new Error(`${LISTED[0]} is not in the capture`);
 		const shown = render(EntryPage, {
-			props: { data: { ...base, figure: SPREAD_FIGURE } }
+			props: { data: { ...base, figure: SPREAD_FIGURE, example: pageData(listed) } }
 		}).container;
 		const figure = shown.querySelector('[data-figure]');
 		expect(figure).not.toBeNull();
-		expect(findVerdictWords(shown, { outsideFigure: true })).toEqual([]);
+		expect(findVerdictWords(shown, { outsideFigure: true, outsideVerdict: true })).toEqual([]);
 		const inside = figure === null ? [] : findVerdictWords(figure);
 		expect(new Set(inside)).toEqual(new Set(Object.values(VERDICT_LABELS)));
+		const regions = [...shown.querySelectorAll('[data-verdict]')];
+		expect(regions.length).toBeGreaterThan(0);
+		expect(regions.filter((region) => region.closest('[data-example]') === null)).toEqual([]);
+		expect(verdictRegionWords(shown)).toEqual(['Ask first']);
 	});
 
 	it.each([

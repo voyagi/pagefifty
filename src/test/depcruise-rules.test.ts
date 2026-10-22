@@ -130,13 +130,17 @@ const VERDICT_SIDE: Record<string, string> = {
 		'../../lib/components/TenderPage.svelte',
 		'TenderPage'
 	),
-	// The home figure names the verdicts in their display words, taken through verdict-view.
+	// The home figure names the verdicts in their display words, taken through verdict-view, and the
+	// entry page decides the example card's verdict itself.
 	'src/lib/components/HomeFigure.svelte': svelteImporting('../tenders/verdict-view', 'figureWords'),
-	'src/routes/+page.svelte': svelteImporting('../lib/components/HomeFigure.svelte', 'HomeFigure')
+	'src/routes/+page.svelte':
+		"<script lang=\"ts\">\n\timport HomeFigure from '../lib/components/HomeFigure.svelte';\n\timport lotVerdict from '../lib/tenders/verdict-view';\n</script>\n\n<p>{HomeFigure}{lotVerdict}</p>\n"
 };
 const VERDICT_PLANTED: Record<string, string> = {
 	'src/lib/components/TenderTable.svelte': svelteImporting('../tenders/verdict-view', 'lotVerdict'),
 	'src/lib/components/HomeLead.svelte': svelteImporting('../tenders/verdict-view', 'figureWords'),
+	// The example card shows the verdict the entry page hands it and decides none of its own.
+	'src/lib/components/ExampleCard.svelte': svelteImporting('../tenders/verdict-view', 'lotVerdict'),
 	'src/routes/example/[notice]/+page.server.ts':
 		"import lotVerdict from '../../../lib/tenders/verdict-view';\nexport const load = () => ({ v: lotVerdict() });\n",
 	// The list's layout sits on every tender page, and the list never shows a verdict.
@@ -148,6 +152,7 @@ const VERDICT_PLANTED: Record<string, string> = {
 const VERDICT_CLEAN: Record<string, string> = {
 	'src/lib/components/TenderTable.svelte': '<p>Rows</p>\n',
 	'src/lib/components/HomeLead.svelte': '<p>Lead</p>\n',
+	'src/lib/components/ExampleCard.svelte': '<p>Card</p>\n',
 	'src/routes/example/[notice]/+page.server.ts': 'export const load = () => ({});\n',
 	'src/routes/tenders/+layout.svelte': '<p>List</p>\n'
 };
@@ -350,11 +355,12 @@ describe('dependency-cruiser rules on planted import trees', () => {
 	});
 
 	// The lift covers the tender page and the four page components that render it, the home figure
-	// and the home page, and nothing else: a list component, the list's layout, another home page
-	// component and the route's own server load still fail, and the verdict page and home figure
-	// chains alone pass.
+	// and the home page, which decides the example card's verdict, and nothing else: a list
+	// component, the list's layout, another home page component, the example card and the route's
+	// own server load still fail, and the verdict page and home page chains alone pass.
 	it('no-ui-reaches-verdict still fails a list component that reaches the verdict', () => {
 		expect(violators(planted, 'no-ui-reaches-verdict')).toEqual([
+			'src/lib/components/ExampleCard.svelte',
 			'src/lib/components/HomeLead.svelte',
 			'src/lib/components/TenderTable.svelte',
 			'src/routes/example/[notice]/+page.server.ts',
