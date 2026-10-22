@@ -123,9 +123,11 @@ const MAGNITUDES: Readonly<Record<string, number>> = {
 	millions: 6
 };
 // A floor read without its multiplier would be met by every firm ("2 Mrd. EUR" as 2 euros), so a
-// word that may be a multiplier this parser does not know refuses the amount instead.
+// word that may be a multiplier this parser does not know refuses the amount instead. After a
+// currency that comes first ("EUR 1 Mill.", "€1m", "EUR 2 Md") only this list stands between the
+// word and a reading in euros, so it names the short forms too.
 const UNKNOWN_MAGNITUDE =
-	/^(?:mrd|milliarden?|mia|bn|billions?|milliards?|miljard|k|tsd|tausend|duizend|mille|thousand)\.?$/iu;
+	/^(?:mrd|milliarden?|mia|bn|bln|b|billions?|milliards?|miljard|mld|md|mds|m|mm|mn|mill|mil|k|tsd|tausend|duizend|mille|thousand)\.?$/iu;
 
 type Candidate = { refused: true } | { refused: false; numeral: Numeral; power: number };
 
