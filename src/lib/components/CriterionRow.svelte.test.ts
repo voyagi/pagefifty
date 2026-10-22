@@ -21,8 +21,8 @@ function recordOf(role: RoleName, which = 0): NoticeRecord {
 	return result.record;
 }
 
-function renderRow(criterion: CriterionView) {
-	return render(CriterionRow, { props: { criterion } });
+function renderRow(criterion: CriterionView, notice: string) {
+	return render(CriterionRow, { props: { criterion, notice } });
 }
 
 const countOf = (text: string, part: string) => text.split(part).length - 1;
@@ -30,7 +30,7 @@ const countOf = (text: string, part: string) => text.split(part).length - 1;
 describe('CriterionRow', () => {
 	it('heads a criterion with its EU code-list label, then its code and place in Mono', () => {
 		const [criterion] = buildTenderPage(recordOf('one-lot'), NOW).lots[0].criteria;
-		const { container } = renderRow(criterion);
+		const { container } = renderRow(criterion, '609955-2026');
 		expect(screen.getByRole('heading', { level: 3 }).textContent?.trim()).toBe(
 			'Other economic or financial requirements'
 		);
@@ -39,15 +39,31 @@ describe('CriterionRow', () => {
 		expect(container.querySelector('.parameters')).toBeNull();
 	});
 
+	// The source is named in words where the buyer's words begin, not only behind a link.
+	it('names the TED notice the clause is quoted from above the quote', () => {
+		const record = recordOf('one-lot');
+		const [criterion] = buildTenderPage(record, NOW).lots[0].criteria;
+		const { container } = renderRow(criterion, record.noticeNumber);
+		const source = screen.getByText(`Quoted from TED notice ${record.noticeNumber}`);
+		expect(
+			source.compareDocumentPosition(container.querySelector('blockquote') as Node) &
+				Node.DOCUMENT_POSITION_FOLLOWING
+		).toBeTruthy();
+		expect(source.closest('a')).toBeNull();
+	});
+
 	it('lists each published parameter by its EU code-list name, or by its code in Mono', () => {
 		const [criterion] = buildTenderPage(recordOf('one-lot'), NOW).lots[0].criteria;
-		renderRow({
-			...criterion,
-			parameters: [
-				{ label: 'Weight (points, exact)', value: '70.0' },
-				{ code: 'number-weight new-code', value: '3' }
-			]
-		});
+		renderRow(
+			{
+				...criterion,
+				parameters: [
+					{ label: 'Weight (points, exact)', value: '70.0' },
+					{ code: 'number-weight new-code', value: '3' }
+				]
+			},
+			'609955-2026'
+		);
 		const list = screen.getByRole('list', { name: 'Parameters as published' });
 		const items = [...list.querySelectorAll('li')].map((each) =>
 			each.textContent?.replace(/\s+/g, ' ').trim()
@@ -61,13 +77,16 @@ describe('CriterionRow', () => {
 	});
 
 	it('shows a code the EU code list does not hold in Mono, and says it has no label', () => {
-		const { container } = renderRow({
-			code: 'slc-not-in-the-list',
-			position: 2,
-			of: 3,
-			descriptions: [{ text: 'Nachweis', lang: 'de', language: 'German' }],
-			parameters: []
-		});
+		const { container } = renderRow(
+			{
+				code: 'slc-not-in-the-list',
+				position: 2,
+				of: 3,
+				descriptions: [{ text: 'Nachweis', lang: 'de', language: 'German' }],
+				parameters: []
+			},
+			'609955-2026'
+		);
 		const heading = screen.getByRole('heading', { level: 3 });
 		expect(heading.querySelector('.mono')?.textContent).toBe('slc-not-in-the-list');
 		expect(screen.getByText('No English label in the EU code list for this code.')).toBeTruthy();
@@ -75,8 +94,9 @@ describe('CriterionRow', () => {
 	});
 
 	it('renders one quote per published language, French then Dutch, each with its lang', () => {
-		const [criterion] = buildTenderPage(recordOf('multilingual-criterion'), NOW).lots[0].criteria;
-		const { container } = renderRow(criterion);
+		const record = recordOf('multilingual-criterion');
+		const [criterion] = buildTenderPage(record, NOW).lots[0].criteria;
+		const { container } = renderRow(criterion, record.noticeNumber);
 		const quotes = [...container.querySelectorAll('blockquote')];
 		expect(quotes.map((quote) => quote.getAttribute('lang'))).toEqual(['fr', 'nl']);
 		expect(quotes.every((quote) => quote.hasAttribute('data-notice-text'))).toBe(true);
@@ -94,7 +114,7 @@ describe('CriterionRow', () => {
 		if (criterion === undefined) throw new Error('600779-2026 holds no Symbol-font bullet');
 		const published = criterion.descriptions[0].text;
 		const marks = SYMBOL_BULLETS.reduce((total, mark) => total + countOf(published, mark), 0);
-		const { container } = renderRow(criterion);
+		const { container } = renderRow(criterion, record.noticeNumber);
 		const shown = container.querySelector('blockquote')?.textContent ?? '';
 		expect(SYMBOL_BULLETS.map((mark) => countOf(shown, mark))).toEqual([0, 0]);
 		expect(countOf(shown, BULLET) - countOf(published, BULLET)).toBe(marks);
@@ -104,7 +124,7 @@ describe('CriterionRow', () => {
 
 	it('keeps the line breaks of the published text', () => {
 		const [criterion] = buildTenderPage(recordOf('one-lot'), NOW).lots[0].criteria;
-		const { container } = renderRow(criterion);
+		const { container } = renderRow(criterion, '609955-2026');
 		const shown = container.querySelector('blockquote')?.textContent ?? '';
 		expect(shown).toBe(criterion.descriptions[0].text.trim());
 		expect(shown).toContain('\n');

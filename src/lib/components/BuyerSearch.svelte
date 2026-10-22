@@ -22,7 +22,7 @@
 </script>
 
 <Panel id="web-search" labelledby="web-search-title">
-	<div class="grid">
+	<div class="search">
 		<h2 class="head" id="web-search-title">Earlier awards of this buyer</h2>
 		<div class="body" data-web-search>
 			<Label>Web search results, not checked</Label>
@@ -53,31 +53,20 @@
 </Panel>
 
 <style>
-	/* Laid out as the documents panel: the heading takes up to 15rem and the body the rest, moving
-	   under the heading when a long title leaves no room beside it. */
-	.grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem 1.75rem;
-		align-items: start;
-	}
-
-	.head {
-		flex: 0 1 15rem;
-		min-width: 12rem;
-		padding-right: 1.25rem;
-		font-weight: 700;
-		font-size: var(--step-0);
-		line-height: 1.2;
-	}
-
-	.body {
-		flex: 1 1 0%;
+	/* Set apart from the tender's own panels: what a web search found, said to be unchecked before
+	   any result is listed. */
+	.search {
 		max-width: 72ch;
 	}
 
-	.note,
-	.none {
+	.head {
+		margin-bottom: 0.5rem;
+		font-weight: 700;
+		font-size: var(--step-1);
+		line-height: 1.3;
+	}
+
+	.note {
 		color: var(--ink-2);
 	}
 
@@ -88,9 +77,10 @@
 	}
 
 	.results {
-		margin: 0.5rem 0 0;
+		margin: 0.75rem 0 0;
 		padding: 0;
 		list-style: none;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.results li {
@@ -104,11 +94,14 @@
 		display: inline-block;
 		padding-block: 0.8125rem 0.25rem;
 		min-height: 2.75rem;
+		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.title {
 		display: block;
 		padding-block: 0.8125rem 0.25rem;
+		font-weight: 600;
 	}
 
 	.host {
@@ -117,13 +110,5 @@
 		font-size: var(--step--1);
 		line-height: 1.3;
 		color: var(--ink-2);
-	}
-
-	@media (max-width: 45em) {
-		.head,
-		.body {
-			flex-basis: 100%;
-			min-width: 0;
-		}
 	}
 </style>

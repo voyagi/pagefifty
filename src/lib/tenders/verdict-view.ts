@@ -14,6 +14,7 @@ import { coverage } from '../core/coverage-facts';
 import type { LotReading } from '../core/lot-reading';
 import {
 	VERDICT_LABELS,
+	type AskFirstReason,
 	type CriterionState,
 	type LotDecision,
 	type LotVerdict
@@ -27,12 +28,16 @@ export type { FirmFacts };
 export type ComparedFirm =
 	{ kind: 'demo'; name: string } | { kind: 'own' } | { kind: 'none' } | { kind: 'newer' };
 
+// The icon drawn beside a verdict or a state. Shape and word tell them apart, never colour.
+type Mark = 'met' | 'short' | 'partner' | 'users' | 'unread' | 'info';
+
 interface CriterionStateView {
 	state: CriterionState | 'not-compared' | 'not-assessed';
 	word: string;
+	mark: Mark;
 }
 
-// A criterion the firm misses on its own, as the errata slip names it.
+// A criterion the firm misses on its own, as its shortfall row under the verdict names it.
 interface Shortfall {
 	label: string;
 	position: number;
@@ -43,11 +48,17 @@ interface Shortfall {
 export interface LotVerdictView {
 	decision: LotDecision;
 	label: string;
+	mark: Mark;
+	gloss: string;
+	next: string;
 	reason: string;
 	link: { kind: 'profile' } | { kind: 'documents'; documents: DocumentsLink } | null;
 	criteria: CriterionStateView[];
 	shortfalls: Shortfall[];
 	article63: string | null;
+	// The published position of the clause the verdict rests on, shown first under it; null when
+	// no criterion is left open.
+	deciding: number | null;
 }
 
 // Article 63 lets another firm lend its capacity; it never makes that firm's help sufficient, and
@@ -124,6 +135,36 @@ export const REASON_LINES = {
 
 type ReasonKey = keyof typeof REASON_LINES;
 
+type NextKey =
+	Exclude<LotVerdict, 'ASK FIRST'> | AskFirstReason | 'profile-field-missing/no-profile';
+
+// What to check next, after "Next:", one line per verdict and per ask-first reason. Each names
+// something to read or check, never a step toward bidding, and none is a verdict word. "Below"
+// points at the reason line and the clause that decides, which follow it.
+export const NEXT_LINES: Readonly<Record<NextKey, string>> = {
+	GO: 'check the exclusion grounds and declarations, which this reading does not cover.',
+	'PARTNER NEEDED': 'check whether another firm can lend the capacity named below.',
+	'NO-GO':
+		'nothing in the criteria read leaves a route; the clause below is the one that rules it out.',
+	'cancel-intent': 'check the notice on TED for the cancellation.',
+	'route-unsettled': 'check whether the clause below lets another firm help.',
+	'profile-field-missing': 'check the requirement named below against your own records.',
+	'profile-field-missing/no-profile': 'set up a firm profile.',
+	'not-read': 'read the criterion named below yourself.',
+	'not-compared': 'read the criterion named below yourself.',
+	'criteria-in-documents': 'read the procurement documents, which were not read.',
+	'no-criteria-in-notice': 'read the notice on TED for criteria set elsewhere.'
+};
+
+// The profile link is set exactly when no profile was there to compare, which a figure check
+// cannot follow.
+export function nextLine(view: Pick<LotVerdictView, 'decision' | 'link'>): string {
+	const { decision } = view;
+	if (decision.verdict !== 'ASK FIRST') return NEXT_LINES[decision.verdict];
+	if (view.link?.kind === 'profile') return NEXT_LINES['profile-field-missing/no-profile'];
+	return NEXT_LINES[decision.reason];
+}
+
 // None of these is a verdict word: a state belongs to one criterion, a verdict to the lot.
 export const STATE_LABELS: Readonly<Record<CriterionStateView['state'], string>> = {
 	MET: 'Met',
@@ -136,6 +177,28 @@ export const STATE_LABELS: Readonly<Record<CriterionStateView['state'], string>>
 	NOT_READ: 'Not read',
 	'not-compared': 'Not compared in this version',
 	'not-assessed': 'Not assessed'
+};
+
+// A short state crosses its ring out, unless a partner could close it; what is only shown or left
+// open carries the information ring, and what was not read the dashed one.
+const STATE_MARKS: Readonly<Record<CriterionStateView['state'], Mark>> = {
+	MET: 'met',
+	MET_WITH_TASK: 'met',
+	INFO: 'info',
+	SHORT_BORROWABLE: 'partner',
+	SHORT_FIXED: 'short',
+	SHORT_ROUTE_UNSETTLED: 'short',
+	PROFILE_GAP: 'info',
+	NOT_READ: 'unread',
+	'not-compared': 'info',
+	'not-assessed': 'info'
+};
+
+const VERDICT_MARKS: Readonly<Record<LotVerdict, Mark>> = {
+	GO: 'met',
+	'PARTNER NEEDED': 'users',
+	'NO-GO': 'short',
+	'ASK FIRST': 'info'
 };
 
 export function comparedLine(firm: ComparedFirm): string {
@@ -285,22 +348,61 @@ function shortfallsOf(decided: ReadLotDecision, lot: LotView): Shortfall[] {
 	});
 }
 
+// The state each verdict and ask-first reason rests on. A reason with no criterion in that state
+// (a reservation, an item placed under no clause, the documents) falls back to the first criterion
+// left open; met and information-only criteria are never open.
+const RESTS_ON: Partial<
+	Record<LotVerdict | AskFirstReason, (outcome: CriterionOutcome) => boolean>
+> = {
+	'NO-GO': (outcome) => outcome.state === 'SHORT_FIXED',
+	'PARTNER NEEDED': (outcome) => outcome.state === 'SHORT_BORROWABLE',
+	'route-unsettled': (outcome) => outcome.state === 'SHORT_ROUTE_UNSETTLED',
+	'profile-field-missing': (outcome) => outcome.state === 'PROFILE_GAP',
+	'not-read': (outcome) => outcome.state === 'NOT_READ',
+	'not-compared': (outcome) => outcome.notCompared
+};
+
+const SETTLED: ReadonlySet<CriterionStateView['state']> = new Set([
+	'MET',
+	'MET_WITH_TASK',
+	'INFO',
+	'not-assessed'
+]);
+
+function decidingOf(decided: ReadLotDecision): number | null {
+	const { decision, criteria } = decided;
+	const rests = RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict];
+	const resting = rests === undefined ? -1 : criteria.findIndex(rests);
+	const index =
+		resting >= 0 ? resting : criteria.findIndex((outcome) => !SETTLED.has(stateOf(outcome)));
+	return index >= 0 ? index + 1 : null;
+}
+
+// The figure's gloss as a sentence of its own under the verdict.
+const sentence = (gloss: string) => `${gloss.charAt(0).toUpperCase()}${gloss.slice(1)}.`;
+
 export function verdictView(
 	decided: ReadLotDecision,
 	lot: LotView,
 	shared?: DocumentsLink
 ): LotVerdictView {
+	const { decision } = decided;
+	const link = linkOf(decided, lot, shared);
 	return {
-		decision: decided.decision,
-		label: VERDICT_LABELS[decided.decision.verdict],
+		decision,
+		label: VERDICT_LABELS[decision.verdict],
+		mark: VERDICT_MARKS[decision.verdict],
+		gloss: sentence(verdictGloss(decision.verdict)),
+		next: nextLine({ decision, link }),
 		reason: reasonOf(decided, lot),
-		link: linkOf(decided, lot, shared),
+		link,
 		criteria: decided.criteria.map((outcome) => {
 			const state = stateOf(outcome);
-			return { state, word: STATE_LABELS[state] };
+			return { state, word: STATE_LABELS[state], mark: STATE_MARKS[state] };
 		}),
 		shortfalls: shortfallsOf(decided, lot),
-		article63: decided.decision.verdict === 'PARTNER NEEDED' ? ARTICLE_63_LINE : null
+		article63: decision.verdict === 'PARTNER NEEDED' ? ARTICLE_63_LINE : null,
+		deciding: decidingOf(decided)
 	};
 }
 
@@ -313,6 +415,12 @@ const FIGURE_GLOSSES: Readonly<Record<LotVerdict, string>> = {
 	'ASK FIRST': 'not read in full, or a question left open'
 };
 
+// What a verdict means, in the words the home figure glosses its counts with, so the figure and the
+// tender page never explain one verdict two ways.
+export function verdictGloss(verdict: LotVerdict): string {
+	return FIGURE_GLOSSES[verdict];
+}
+
 // The home figure's words, in the tender page's display labels: one set of verdict words for both.
 // The rows follow the figure file's count order; the lot rule follows the order mostLenient ranks.
 export function figureWords(): {
@@ -322,7 +430,7 @@ export function figureWords(): {
 	const row = (key: FigureCount, verdict: LotVerdict) => ({
 		key,
 		label: VERDICT_LABELS[verdict],
-		gloss: FIGURE_GLOSSES[verdict]
+		gloss: verdictGloss(verdict)
 	});
 	const L = VERDICT_LABELS;
 	return {

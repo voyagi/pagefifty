@@ -40,12 +40,17 @@
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 0.5rem;
+		gap: 0.375rem;
 		max-width: 72ch;
+		font-size: var(--step--1);
+		line-height: 1.5;
+		color: var(--ink-2);
 	}
 
+	/* The status word leads each line in the text colour; what it qualifies follows, quieter. */
 	strong {
 		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.documents {

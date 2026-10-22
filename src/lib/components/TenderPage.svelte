@@ -13,12 +13,12 @@
 	import BuyerSearch from './BuyerSearch.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import ExternalIcon from './ExternalIcon.svelte';
-	import FacedownLeaf from './FacedownLeaf.svelte';
 	import Icon from './Icon.svelte';
 	import Label from './Label.svelte';
-	import LotLeaf from './LotLeaf.svelte';
+	import LotPanel from './LotPanel.svelte';
 	import RunRecord from './RunRecord.svelte';
 	import SourceLinks from './SourceLinks.svelte';
+	import UnreadDocuments from './UnreadDocuments.svelte';
 	import UnreadStrip from './UnreadStrip.svelte';
 
 	// One tender, as the pane beside the list shows it and as its own address shows it on a phone.
@@ -146,7 +146,7 @@
 	</header>
 
 	{#each tender.lots as lot (lot.anchor)}
-		<LotLeaf {lot} verdict={verdictOf(lot)} />
+		<LotPanel {lot} notice={tender.noticeNumber} verdict={verdictOf(lot)} />
 	{/each}
 
 	{#if tender.search !== undefined}
@@ -154,7 +154,7 @@
 	{/if}
 
 	{#if tender.documentsUnread}
-		<FacedownLeaf documents={tender.documents} {criteriaShown} />
+		<UnreadDocuments documents={tender.documents} {criteriaShown} />
 	{/if}
 
 	<!-- The capture day comes from the capture itself, so a new capture renames it. -->
@@ -340,6 +340,13 @@
 		font-weight: 400;
 		font-size: var(--step--1);
 		color: var(--ink-2);
+	}
+
+	/* The first lot follows the head, not another panel, so it takes the panel rule from here. */
+	.head + :global(.panel) {
+		margin-top: 2rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--line);
 	}
 
 	.record-foot {

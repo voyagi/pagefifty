@@ -14,11 +14,16 @@ import { CANCEL_INTENT_LINE, captureFacts } from '$lib/tenders/list';
 import { buildTenderPage, type TenderPageData } from '$lib/tenders/tender-page';
 import {
 	ARTICLE_63_LINE,
+	NEXT_LINES,
 	REASON_LINES,
 	STATE_LABELS,
 	comparedLine,
+	figureWords,
+	nextLine,
+	verdictGloss,
 	verdictView
 } from '$lib/tenders/verdict-view';
+import { findVerdictWords } from '../../test/verdict-words';
 import LotVerdict from './LotVerdict.svelte';
 import TenderPage from './TenderPage.svelte';
 
@@ -52,6 +57,14 @@ const textOf = (element: Element | null | undefined) =>
 function verdictOf(container: Element, anchor: string): Element | null {
 	return container.querySelector(`#${anchor} [data-verdict]`);
 }
+
+// A lot's clause by its published position: the clause that decides comes first on the page, so
+// page order is not published order on a lot with a verdict.
+function clauseAt(container: Element, anchor: string, position: number): Element | null {
+	return container.querySelector(`#${anchor} .clause[data-criterion="${position}"]`);
+}
+
+const nextOf = (region: Element | null) => textOf(region?.querySelector('.next'));
 
 // A reason line is a whole sentence; the check fails on a missing or empty one before the page is
 // searched for it.
@@ -191,6 +204,147 @@ describe('the lot verdict on the tender page', () => {
 			'Only the firm can judge whether its references, staff or line of business fit what the buyer names.'
 		);
 		expect(textOf(region)).toContain('Compared with the demo firm, Brink Data B.V.');
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES['profile-field-missing']}`);
+	});
+});
+
+describe('what to check next, what the verdict means and who decided it', () => {
+	const KEYS = Object.keys(NEXT_LINES) as (keyof typeof NEXT_LINES)[];
+
+	// Each line follows "Next:", so it is a sentence that starts in lower case.
+	it.each(KEYS.map((key) => [key]))(
+		'the %s line names something to check, gives no bid advice and holds no verdict word',
+		(key) => {
+			const next = `Next: ${NEXT_LINES[key]}`;
+			expect(next).toMatch(/^Next: [a-z].{10,}\.$/);
+			for (const phrase of BANNED) expect(next.toLowerCase()).not.toContain(phrase);
+			const shown = document.createElement('p');
+			shown.textContent = next;
+			expect(findVerdictWords(shown)).toEqual([]);
+		}
+	);
+
+	// A missing profile asks for one before any figure can be checked against it.
+	it('no stored profile reads the line that asks for a profile, and nothing else does', async () => {
+		const container = await renderTenders(examplePage('610242-2026'), null);
+		expect(nextOf(verdictOf(container, 'lot-1'))).toBe(
+			`Next: ${NEXT_LINES['profile-field-missing/no-profile']}`
+		);
+		const decision = { verdict: 'ASK FIRST', reason: 'profile-field-missing' } as const;
+		expect(nextLine({ decision, link: null })).toBe(NEXT_LINES['profile-field-missing']);
+		expect(nextLine({ decision, link: { kind: 'profile' } })).toBe(
+			NEXT_LINES['profile-field-missing/no-profile']
+		);
+	});
+
+	it.each([
+		['the documents', 'criteria-in-documents', '604724-2026'],
+		['cancel intent', 'cancel-intent', null]
+	] as const)('an ask-first lot over %s reads its own line', (_name, reason, notice) => {
+		const data =
+			notice === null
+				? syntheticPage(
+						[{ criteria: [turnoverCriterion('500.000')], items: [turnoverItem(1, '500.000')] }],
+						{
+							cancelIntent: true
+						}
+					)
+				: (() => {
+						const record = builtRecord(notice);
+						return pageOf(record, {
+							notice,
+							lots: record.lots.map((lot) => ({ lot: lot.id, status: 'no-criteria' as const })),
+							readings: []
+						});
+					})();
+		const region = verdictOf(renderExample(data), 'lot-1');
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES[reason]}`);
+	});
+
+	// One set of words explains a verdict on the home figure and on the tender page.
+	it('glosses the verdict in the words the home figure uses', () => {
+		expect(figureWords().rows.map((row) => row.gloss)).toEqual(
+			(['GO', 'PARTNER NEEDED', 'NO-GO', 'ASK FIRST'] as const).map(verdictGloss)
+		);
+		const region = verdictOf(renderExample(examplePage('610242-2026')), 'lot-1');
+		const gloss = verdictGloss('ASK FIRST');
+		expect(textOf(region?.querySelector('.gloss'))).toBe(
+			`${gloss.charAt(0).toUpperCase()}${gloss.slice(1)}.`
+		);
+	});
+
+	it('says inside the verdict that code decided it and the model only read the clauses', () => {
+		const region = verdictOf(renderExample(examplePage('610242-2026')), 'lot-1');
+		expect(textOf(region)).toContain(
+			'Decided by code from the figures compared; the model only read the clauses.'
+		);
+	});
+});
+
+describe('the clause that decides', () => {
+	// The German lot asks first because only the firm can judge two of its clauses, so the first of
+	// those leads, ahead of the register and turnover clauses printed before it.
+	it('shows the clause the verdict rests on first and folds the others under it', () => {
+		const container = renderExample(examplePage('610242-2026'));
+		const lot = container.querySelector('#lot-1');
+		const [first] = [...(lot?.querySelectorAll('.clause') ?? [])];
+		expect(first?.getAttribute('data-criterion')).toBe('5');
+		expect(textOf(first?.querySelector('[data-verdict]'))).toBe(STATE_LABELS.PROFILE_GAP);
+		expect(first?.closest('details')).toBeNull();
+		const folded = lot?.querySelector('details');
+		expect(textOf(folded?.querySelector('summary'))).toBe('Other requirements in this lot (5)');
+		expect(
+			[...(folded?.querySelectorAll('.clause') ?? [])].map((row) =>
+				row.getAttribute('data-criterion')
+			)
+		).toEqual(['1', '2', '3', '4', '6']);
+		expect(
+			lot && first && lot.querySelector('[data-verdict]')?.compareDocumentPosition(first)
+		).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+	});
+
+	it('leads with the short criterion on a lot the firm falls short on alone', () => {
+		const container = renderExample(
+			syntheticPage([
+				{
+					criteria: [
+						criterion('slc-stand-ins', 'Nachweis einer Betriebshaftpflichtversicherung.'),
+						turnoverCriterion('2.000.000')
+					],
+					items: [turnoverItem(2, '2.000.000')]
+				}
+			])
+		);
+		expect(wordOf(verdictOf(container, 'lot-1'))).toBe('Not met alone');
+		const [first] = [...container.querySelectorAll('#lot-1 .clause')];
+		expect(first?.getAttribute('data-criterion')).toBe('2');
+		expect(textOf(first?.querySelector('[data-verdict]'))).toBe(STATE_LABELS.SHORT_BORROWABLE);
+	});
+
+	// Nothing is left open on a GO lot, so nothing is folded away.
+	it('folds nothing on a lot whose criteria are all met', () => {
+		const container = renderExample(
+			syntheticPage([
+				{ criteria: [turnoverCriterion('500.000')], items: [turnoverItem(1, '500.000')] }
+			])
+		);
+		expect(wordOf(verdictOf(container, 'lot-1'))).toBe('Go');
+		expect(container.querySelector('#lot-1 details')).toBeNull();
+		expect(textOf(container.querySelector('#lot-1 .requirements .label'))).toBe(
+			'Requirements in this lot'
+		);
+	});
+
+	it('shows every criterion in published order on a lot with no verdict', () => {
+		const container = renderExample(examplePage('609955-2026'));
+		const lot = container.querySelector('#lot-1');
+		expect(lot?.querySelector('[data-verdict]')).toBeNull();
+		expect(lot?.querySelector('details')).toBeNull();
+		const positions = [...(lot?.querySelectorAll('.clause') ?? [])].map((row) =>
+			Number(row.getAttribute('data-criterion'))
+		);
+		expect(positions.length).toBeGreaterThan(1);
+		expect(positions).toEqual([...positions].sort((a, b) => a - b));
 	});
 });
 
@@ -205,7 +359,8 @@ describe('every verdict and reason, worded', () => {
 		expect(wordOf(region)).toBe('Go');
 		expect(line('GO')).toContain('covers only the selection criteria read');
 		expect(textOf(region)).toContain(line('GO'));
-		expect(region?.querySelector('.slip')).toBeNull();
+		expect(region?.querySelector('.shortfall')).toBeNull();
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES.GO}`);
 	});
 
 	it('a PARTNER NEEDED lot shows the Article 63 line and no partner brief', () => {
@@ -217,10 +372,14 @@ describe('every verdict and reason, worded', () => {
 		const region = verdictOf(container, 'lot-1');
 		expect(wordOf(region)).toBe('Not met alone');
 		expect(textOf(region)).toContain(line('PARTNER NEEDED'));
-		const slip = region?.querySelector('.slip');
-		expect(textOf(slip)).toContain(criterionLabel('slc-stand-to-gen'));
-		expect(textOf(slip)).toContain('EUR 2,000,000.00');
-		expect(textOf(slip)).toContain('Criterion 1 of 1');
+		const rows = [...(region?.querySelectorAll('.shortfall') ?? [])];
+		expect(rows).toHaveLength(1);
+		const [row] = rows;
+		expect(textOf(row)).toMatch(/^Short on its own: /);
+		expect(textOf(row)).toContain(criterionLabel('slc-stand-to-gen'));
+		expect(textOf(row)).toContain('EUR 2,000,000.00');
+		expect(textOf(row)).toContain('Criterion 1 of 1');
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES['PARTNER NEEDED']}`);
 		expect(ARTICLE_63_LINE).toContain('Article 63');
 		expect(textOf(region)).toContain(ARTICLE_63_LINE);
 		const page = textOf(container);
@@ -228,7 +387,7 @@ describe('every verdict and reason, worded', () => {
 		expect(page).not.toMatch(/partner brief|partner conditions|commitment to provide/i);
 	});
 
-	it('the slip names the floor the firm misses, not one it meets in the same clause', () => {
+	it('the shortfall row names the floor the firm misses, not one it meets in the same clause', () => {
 		const text = `${TURNOVER('500.000')} ${TURNOVER('2.000.000')}`;
 		const container = renderExample(
 			syntheticPage([
@@ -240,12 +399,12 @@ describe('every verdict and reason, worded', () => {
 		);
 		const region = verdictOf(container, 'lot-1');
 		expect(wordOf(region)).toBe('Not met alone');
-		const slip = textOf(region?.querySelector('.slip'));
-		expect(slip).toContain('EUR 2,000,000.00');
-		expect(slip).not.toContain('EUR 500,000.00');
+		const row = textOf(region?.querySelector('.shortfall'));
+		expect(row).toContain('EUR 2,000,000.00');
+		expect(row).not.toContain('EUR 500,000.00');
 	});
 
-	it('a NO-GO lot names its criterion on the slip and gives no advice', () => {
+	it('a NO-GO lot names its criterion in a shortfall row and gives no advice', () => {
 		const data = examplePage('610242-2026');
 		const [lot] = data.tender.lots;
 		const decided: ReadLotDecision = {
@@ -275,8 +434,13 @@ describe('every verdict and reason, worded', () => {
 		const region = container.querySelector('[data-verdict]');
 		expect(wordOf(region)).toBe('No-go');
 		expect(textOf(region)).toContain(line('NO-GO'));
-		expect(textOf(region?.querySelector('.slip'))).toContain(criterionLabel('slc-stand-to-spec'));
+		expect(textOf(region?.querySelector('.shortfall'))).toContain(
+			criterionLabel('slc-stand-to-spec')
+		);
+		expect(textOf(region?.querySelector('.shortfall'))).toContain('Criterion 3 of 6');
 		expect(textOf(region)).not.toContain(ARTICLE_63_LINE);
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES['NO-GO']}`);
+		expect(view.deciding).toBe(3);
 		for (const phrase of BANNED) expect(textOf(region).toLowerCase()).not.toContain(phrase);
 	});
 
@@ -293,7 +457,7 @@ describe('every verdict and reason, worded', () => {
 		const region = verdictOf(container, 'lot-1');
 		expect(wordOf(region)).toBe('Ask first');
 		expect(textOf(region)).toContain(line('route-unsettled/not-held'));
-		expect(region?.querySelector('.slip')).toBeNull();
+		expect(region?.querySelector('.shortfall')).toBeNull();
 	});
 
 	it('a certificate held as named reads ASK FIRST and leaves its scope to the firm', () => {
@@ -381,8 +545,10 @@ describe('every verdict and reason, worded', () => {
 		expect(wordOf(region)).toBe('Ask first');
 		expect(textOf(region)).toContain(line('not-compared/insurance'));
 		expect(textOf(region)).not.toMatch(/profile (field|figure)|empty in the profile/i);
-		const rows = container.querySelectorAll('#lot-1 .clause');
-		expect(textOf(rows[1]?.querySelector('[data-verdict]'))).toBe(STATE_LABELS['not-compared']);
+		expect(textOf(clauseAt(container, 'lot-1', 2)?.querySelector('[data-verdict]'))).toBe(
+			STATE_LABELS['not-compared']
+		);
+		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES['not-compared']}`);
 	});
 
 	// The same floor read as mandatory is the PARTNER NEEDED lot above.
@@ -394,7 +560,7 @@ describe('every verdict and reason, worded', () => {
 		const region = verdictOf(container, 'lot-1');
 		expect(wordOf(region)).toBe('Ask first');
 		expect(textOf(region)).toContain(line('not-compared/optional'));
-		expect(region?.querySelector('.slip')).toBeNull();
+		expect(region?.querySelector('.shortfall')).toBeNull();
 		expect(textOf(region)).not.toContain(ARTICLE_63_LINE);
 	});
 
@@ -446,7 +612,7 @@ describe('every verdict and reason, worded', () => {
 			const region = verdictOf(container, anchor);
 			expect(wordOf(region)).toBe('Ask first');
 			expect(textOf(region)).toContain(CANCEL_INTENT_LINE);
-			expect(region?.querySelector('.slip')).toBeNull();
+			expect(region?.querySelector('.shortfall')).toBeNull();
 		}
 	});
 
@@ -480,9 +646,9 @@ describe('where the verdict shows', () => {
 
 	it('the criterion states are words inside the verdict region', () => {
 		const container = renderExample(examplePage('610242-2026'));
-		const rows = [...container.querySelectorAll('#lot-1 .clause')];
-		expect(rows).toHaveLength(6);
-		expect(rows.map((row) => textOf(row.querySelector('[data-verdict]')))).toEqual([
+		expect(container.querySelectorAll('#lot-1 .clause')).toHaveLength(6);
+		const rows = [1, 2, 3, 4, 5, 6].map((position) => clauseAt(container, 'lot-1', position));
+		expect(rows.map((row) => textOf(row?.querySelector('[data-verdict]')))).toEqual([
 			STATE_LABELS['not-assessed'],
 			STATE_LABELS['not-assessed'],
 			STATE_LABELS['not-compared'],

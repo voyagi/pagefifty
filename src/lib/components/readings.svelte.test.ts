@@ -125,8 +125,19 @@ describe('the model readings on the example tender pages', () => {
 		const { container } = render(TenderPage, {
 			props: { data: examplePage('610242-2026'), variant: 'example' }
 		});
-		const clauses = [...container.querySelectorAll('li.clause')];
-		expect(clauses).toHaveLength(6);
+		// The clause that decides comes first on the page, so the clauses are put back in published
+		// order by the position each one carries.
+		const clauses = [...container.querySelectorAll('li.clause')].sort(
+			(a, b) => Number(a.getAttribute('data-criterion')) - Number(b.getAttribute('data-criterion'))
+		);
+		expect(clauses.map((clause) => clause.getAttribute('data-criterion'))).toEqual([
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6'
+		]);
 		const [stored] = storedReadings('610242-2026')?.readings ?? [];
 		clauses.forEach((clause, index) => {
 			const own = stored.items.filter((item) => item.criterion === index + 1);
@@ -183,8 +194,8 @@ describe('the model readings on the example tender pages', () => {
 		const page = container.textContent ?? '';
 		expect(page).not.toContain(REJECTED_QUOTE);
 		expect(page).not.toContain(REJECTED_READING);
-		const third = container.querySelectorAll('#lot-1 li.clause')[2];
-		const lines = [...third.querySelectorAll('.not-read')];
+		const third = container.querySelector('#lot-1 li.clause[data-criterion="3"]');
+		const lines = [...(third?.querySelectorAll('.not-read') ?? [])];
 		expect(lines.map((line) => textOf(line))).toEqual([
 			'Not read: the quote the model gave was not found in this clause, so it is not used.'
 		]);
@@ -267,7 +278,9 @@ describe('the model readings on the example tender pages', () => {
 		const [first] = criterion.requirements ?? [];
 		criterion.requirements = [{ ...first, reading: markup }];
 		const container = renderPage(data);
-		const reading = container.querySelector('#lot-1 li.clause [data-ai-generated]');
+		const reading = container.querySelector(
+			'#lot-1 li.clause[data-criterion="1"] [data-ai-generated]'
+		);
 		expect(reading?.textContent).toBe(markup);
 		expect(reading?.children).toHaveLength(0);
 	});
