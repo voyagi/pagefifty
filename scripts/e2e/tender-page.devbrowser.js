@@ -330,6 +330,83 @@ try {
 		);
 	}
 
+	// A lot in the lot index links to its own fragment on the same tender, which the browser scrolls
+	// to by itself. The router runs no navigation for a link that differs only by its hash (SvelteKit
+	// 2.70.3 runtime/client/client.js: the click handler returns before navigate()), so the reset that
+	// shows a newly opened tender from its start never undoes it. It is read beside the list, where
+	// the pane is its own scroller, and on a phone, where the page scrolls. Each reading is repeated
+	// after a planted reset, which must move the lot away, so a reading blind to a reset never passes.
+	const LOT_INDEX_CHECK =
+		'a lot index link leaves its lot at the top of the tender beside the list and on a phone, where a planted reset moves it away';
+	const mostLots = example.probes.mostLots;
+	const lotTarget = 'lot-2';
+	const lotPlace = (plant) =>
+		page.evaluate(
+			({ id, plant }) => {
+				const pane = document.querySelector('.pane');
+				const beside = pane !== null && getComputedStyle(pane).overflowY === 'auto';
+				if (plant) {
+					if (beside) pane.scrollTop = 0;
+					else scrollTo(0, 0);
+				}
+				const lot = document.getElementById(id);
+				const top = beside ? pane.getBoundingClientRect().top : 0;
+				return {
+					hash: location.hash,
+					beside,
+					offset: lot ? Math.round(lot.getBoundingClientRect().top - top) : null
+				};
+			},
+			{ id: lotTarget, plant }
+		);
+	if (mostLots.lots < 2) {
+		checks.push({
+			name: `${LOT_INDEX_CHECK} did not run: the example notice with the most lots has ${mostLots.lots}`,
+			ok: true,
+			didNotRun: true,
+			detail: `${mostLots.notice} holds no second lot to link to`
+		});
+	} else {
+		const viewport = page.viewportSize() ?? { width: 1280, height: 720 };
+		const lotRuns = [];
+		for (const size of [
+			{ width: 1440, height: 900 },
+			{ width: 390, height: 844 }
+		]) {
+			await page.setViewportSize(size);
+			await followExampleRow(mostLots.notice);
+			await page.click(`nav.lot-index a[href="#${lotTarget}"]`);
+			await page.waitForFunction((hash) => location.hash === hash, `#${lotTarget}`, {
+				timeout: 10000
+			});
+			// A navigation's reset runs a frame and a timer after the click, so the reading waits past it.
+			await page.waitForTimeout(300);
+			await page.waitForLoadState('networkidle');
+			const clicked = await lotPlace(false);
+			const planted = await lotPlace(true);
+			lotRuns.push({ width: size.width, clicked, planted });
+		}
+		await page.setViewportSize(viewport);
+		const atTop = (place) => place.offset !== null && Math.abs(place.offset) <= 2;
+		check(
+			LOT_INDEX_CHECK,
+			lotRuns.length === 2 &&
+				lotRuns[0].clicked.beside &&
+				!lotRuns[1].clicked.beside &&
+				lotRuns.every(
+					({ clicked, planted }) =>
+						clicked.hash === `#${lotTarget}` && atTop(clicked) && !atTop(planted)
+				),
+			`${mostLots.notice}: ` +
+				lotRuns
+					.map(
+						({ width, clicked, planted }) =>
+							`${width}: hash ${clicked.hash}, ${clicked.beside ? 'pane' : 'page'} scrolls, lot top ${clicked.offset}px, after a planted reset ${planted.offset}px`
+					)
+					.join(' | ')
+		);
+	}
+
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
 	// status the server gives that address. The first row sits in the closed group, folded shut, only
 	// once no tender is open, so the group is then opened by its summary first, as a visitor would.
