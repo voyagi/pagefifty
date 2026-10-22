@@ -409,6 +409,13 @@ describe('a clause every lot shares, with one floor per lot', () => {
 		expect(lotsNamed(text, lang)).toEqual(lots);
 	});
 
+	it.each([
+		['Mindestjahresumsatz je Los 2 Mio. EUR', 'de'],
+		['Minimale jaaromzet per perceel 500.000 EUR', 'nl']
+	])('reads a per-lot amount right after the label as no lot: %s', (text, lang) => {
+		expect(lotsNamed(text, lang)).toEqual([]);
+	});
+
 	it('reads no lot label in a lot title of a language this version does not read', () => {
 		expect(lotsTitled('Lote 1: los 3 servicios', 'es')).toEqual([]);
 		expect(lotsTitled('Los 2: Betrieb', 'de')).toEqual([2]);

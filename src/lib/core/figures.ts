@@ -640,7 +640,7 @@ function amountStarts(text: string, lang?: string): ReadonlySet<number> {
 }
 
 // An amount ends a lot list, since its comma reads like one more lot: "Lots 1 and 2, 3 million EUR"
-// names lots 1 and 2. The number right after the label is always a lot ("Lot 1 b)").
+// names lots 1 and 2, and "je Los 2 Mio. EUR" names none.
 function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): number[] {
 	const [whole, group] = match;
 	const start = match.index + whole.length - group.length;
@@ -652,7 +652,7 @@ function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): num
 			range = LOT_RANGE_WORD.test(token[0]);
 			continue;
 		}
-		if (numbers.length > 0 && amounts.has(start + token.index)) break;
+		if (amounts.has(start + token.index)) break;
 		const lot = Number.parseInt(digits, 10);
 		const from = numbers.at(-1);
 		if (range && from !== undefined && lot > from && lot - from <= MAX_LOT_RANGE) {
