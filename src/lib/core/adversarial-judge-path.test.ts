@@ -353,6 +353,7 @@ describe('a clause every lot shares, with one floor per lot', () => {
 		expect(lotsNamed('Los 3: 4 Mio. EUR', 'de')).toEqual([3]);
 		expect(lotsNamed('Lot n° 2 : 500 000 EUR', 'fr')).toEqual([2]);
 		expect(lotsNamed('Perceel 1: minimaal 1 mln EUR', 'nl')).toEqual([1]);
+		expect(lotsNamed('Lot No. 3: EUR 2 million')).toEqual([3]);
 	});
 });
 
