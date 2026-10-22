@@ -145,7 +145,7 @@ function powerWithCurrencyBefore(rest: string): number | 'refused' {
 }
 
 // ",-" or ",--" closes a whole amount ("3.000.000,- €"), so the currency after it still counts.
-const ZERO_CENTS = /^,[-–]{1,2}/u;
+const ZERO_CENTS = /^,[-\u2013]{1,2}/u;
 
 function candidate(text: string, match: RegExpExecArray, lang?: string): Candidate | undefined {
 	const rest = text.slice(match.index + match[0].length).replace(ZERO_CENTS, '');
