@@ -3,6 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import { resolveModes, resolveTransportMode } from '../server/transport-mode';
 import { parseCaptureArgs } from './args';
+import { loadProviderKeys } from './keys';
 import { createMeteredGate } from './metered';
 
 const LIVE = Object.freeze({ ted: 'live', tokenFactory: 'live', tavily: 'live' } as const);
@@ -103,5 +104,43 @@ describe('the metered gate cap', () => {
 		const { send, sent } = countingSend();
 		expect((await gate.attempt('tavily', 'search', send)).kind).toBe('refused');
 		expect(sent()).toBe(0);
+	});
+});
+
+describe('the key file reader', () => {
+	const read = (text: string) => () => text;
+
+	// node:util parseEnv reads an empty assignment padded with spaces as the whole next line, so a
+	// key file with "NEBIUS_API_KEY= " would hand Nebius whatever line follows, another secret too.
+	it('a padded empty key never takes the next line as its value', () => {
+		const text = 'NEBIUS_API_KEY= \nOTHER_TOKEN=secret-value\nTAVILY_API_KEY=tvly-key\n';
+		expect(() => loadProviderKeys('keys.env', read(text))).toThrow(/NEBIUS_API_KEY/);
+	});
+
+	it.each([
+		['NEBIUS_API_KEY="  "\nTAVILY_API_KEY=tvly-key\n'],
+		['NEBIUS_API_KEY="nb key"\nTAVILY_API_KEY=tvly-key\n']
+	])('a key holding white space is refused (%j)', (text) => {
+		expect(() => loadProviderKeys('keys.env', read(text))).toThrow(/NEBIUS_API_KEY/);
+	});
+
+	it('an error never quotes a value from the file', () => {
+		const text = 'NEBIUS_API_KEY= \nOTHER_TOKEN=secret-value\nTAVILY_API_KEY=tvly-key\n';
+		let message = '';
+		try {
+			loadProviderKeys('keys.env', read(text));
+		} catch (error) {
+			message = String(error);
+		}
+		expect(message).not.toContain('secret-value');
+		expect(message).not.toContain('tvly-key');
+	});
+
+	it('a well-formed file still loads, CRLF included', () => {
+		const keys = loadProviderKeys(
+			'keys.env',
+			read('NEBIUS_API_KEY=nb-key==\r\nTAVILY_API_KEY=tvly-key\r\n')
+		);
+		expect(keys).toEqual({ NEBIUS_API_KEY: 'nb-key==', TAVILY_API_KEY: 'tvly-key' });
 	});
 });

@@ -5,9 +5,18 @@ import { z } from 'zod';
 
 const KEY_NAMES = ['NEBIUS_API_KEY', 'TAVILY_API_KEY'] as const;
 
+// parseEnv reads an empty assignment padded with spaces ("NEBIUS_API_KEY= ") as the whole next line,
+// so a value that is itself an assignment, or holds white space, is refused: it would otherwise
+// hand one provider whatever line follows, another secret included.
+const KeyValue = z
+	.string()
+	.min(1)
+	.regex(/^\S+$/u)
+	.refine((value) => !/^[A-Za-z_][A-Za-z0-9_]*=/u.test(value));
+
 const ProviderKeysSchema = z.strictObject({
-	NEBIUS_API_KEY: z.string().min(1),
-	TAVILY_API_KEY: z.string().min(1)
+	NEBIUS_API_KEY: KeyValue,
+	TAVILY_API_KEY: KeyValue
 });
 
 export type ProviderKeys = Readonly<z.infer<typeof ProviderKeysSchema>>;
@@ -36,7 +45,9 @@ export function loadProviderKeys(path: string, readText: (path: string) => strin
 		const failing = new Set(result.error.issues.map((issue) => issue.path[0]));
 		const names = KEY_NAMES.filter((name) => failing.has(name));
 		const verb = names.length === 1 ? 'is' : 'are';
-		throw new Error(`${names.join(' and ')} ${verb} missing or empty in ${path}`);
+		throw new Error(
+			`${names.join(' and ')} ${verb} missing, empty or not one plain value in ${path}; write each key as NAME=value on its own line`
+		);
 	}
 	return Object.freeze(result.data);
 }
