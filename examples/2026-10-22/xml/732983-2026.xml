@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.nrwbank.de/de/index.html</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">NRW.BANK AöR</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kavalleriestraße 22</cbc:StreetName>
+									<cbc:CityName>Düsseldorf</cbc:CityName>
+									<cbc:PostalZone>40213</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA11</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE223501401</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen (Bezirksregierung Münster)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00732983-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">eeaec7b1-9a24-49da-8782-52b132c9dc7c</cbc:ID>
+	<cbc:ContractFolderID>c1946d78-699d-415f-b91a-3e065ae2545e</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-20+02:00</cbc:IssueDate>
+	<cbc:IssueTime>18:00:24+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-20+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">econ-aff</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Gemäß § 160 Absatz 3 Satz 1 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5.  ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 GWB vorliegt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYH5DWMJ</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">845-009570-00-101-30520</cbc:ID>
+		<cbc:Name languageID="DEU">Rahmenvereinbarung Microsoft Enterprise Agreement 2027</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand der Ausschreibung ist ein Vertrag über folgende Leistung:   Rahmenvereinbarung Microsoft Enterprise Agreement 2027  Öffentliche Auftraggeberin ist die NRW.BANK.  Als Förderbank für Nordrhein-Westfalen unterstützt die NRW.BANK das Land bei seinen struktur- und wirtschaftspolitischen Aufgaben. Sie agiert dabei im öffentlichen Auftrag, wettbewerbsneutral und setzt das gesamte Spektrum kreditwirtschaftlicher Förderprodukte ein - vom klassischen Kredit bis zur maßgeschneiderten Beratung. Ihre drei Förderfelder sind "Wirtschaft", "Wohnraum" sowie "Infrastruktur/Kommunen".   Im Gegensatz zu Geschäftsbanken sind die Kunden der NRW.BANK in erster Linie Hausbanken und andere Fördermittler. Die NRW.BANK beachtet dabei strikt das Diskriminierungsverbot im Verhältnis zu anderen Kreditinstituten. Ihre Zusammenarbeit mit den genossenschaftlichen und privaten Banken sowie den Sparkassen folgt - wettbewerbsneutral - dem Hausbankenverfahren.   Das Geschäft der NRW.BANK fokussiert sich auf den Kanon der Förderbereiche, den die Verständigung II definiert. Wettbewerbsgeschäft (wie die gewerbliche Immobilienfinanzierung sowie die Neuemission von Hypothekenpfandbriefen) wurde schon von der Landesbank NRW, dem Vorgängerinstitut der NRW.BANK, nicht mehr verfolgt.   Zur Erfüllung ihres Auftrags ist die NRW.BANK in folgenden Bereichen tätig:  - Sicherung und Verbesserung der mittelständischen Struktur der Wirtschaft, insbesondere Finanzierungen für Existenzgründungen und -festigungen,  - staatliche soziale Wohnraumförderung,  - Bereitstellung von Risikokapital,  - bauliche Entwicklung der Städte und Gemeinden,  - Infrastrukturmaßnahmen,  - Maßnahmen in der Land- und Forstwirtschaft und im ländlichen Raum,  - Umweltschutz-, Technologie- und Innovationsmaßnahmen,  - Maßnahmen sozialer, kultureller und wissenschaftlicher Art.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXPNYH5DWMJ#</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:FrameworkMaximumAmount currencyID="EUR">12605042.02</efbc:FrameworkMaximumAmount>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CountrySubentityCode listName="nuts">DEA11</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">(1) Bieter bzw. Mitglieder von Bietergemeinschaften müssen je nach den Rechtsvorschriften des Staats, in dem sie niedergelassen sind, entweder die Eintragung in einem Berufs- oder Handelsregister dieses Staats oder auf andere Weise die erlaubte Berufsausübung nachweisen (bei Bietergemeinschaften vorzulegen für jedes Mitglied). Die Nachweise können als Scan der Originalurkunden vorgelegt werden. Das Abrufdatum vorgelegter Handelsregisterauszüge darf nicht älter als 6 Monate ab Auftragsbekanntmachung sein.   (2) Für jeden Nachunternehmer ist zum Zeitpunkt seiner Benennung je nach den Rechtsvorschriften des Staats, in dem der Nachunternehmer niedergelassen ist, entweder die Eintragung in ein Berufs- oder Handelsregister dieses Staats oder auf andere Weise die erlaubte Berufsausübung nachzuweisen. Die Nachweise können als Scan der Originalurkunden vorgelegt werden. Das Abrufdatum vorgelegter Handelsregisterauszüge darf nicht älter als 6 Monate ab Auftragsbekanntmachung sein.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Bieter müssen eine Erklärung über den Gesamtumsatz sowie den Umsatz in dem Tätigkeitsbereich der Rahmenvereinbarung für die letzten drei Geschäftsjahre vor dem Zeitpunkt der Veröffentlichung der Auftragsbekanntmachung abgeben, sofern entsprechende Angaben gemäß § 45 Abs. 4 Nr. 4 VgV verfügbar sind.   Mindestanforderung:  Der Umsatz des Bieters im Tätigkeitsbereich des Auftrages muss in den letzten drei Geschäftsjahren vor dem Zeitpunkt der Veröffentlichung der Auftragsbekanntmachung jeweils pro Geschäftsjahr mindestens 3.000.000 EUR netto betragen haben. Tätigkeitsbereich des Auftrages im vorstehenden Sinne ist die Überlassung von Software aus einem geltenden Microsoft Enterprise Agreement.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">(1) Erforderlich ist die Angabe von geeigneten Referenzen der Bieter über früher ausgeführte Aufträge in Form einer Liste der im Zeitraum seit 01.11.2023 erbrachten wesentlichen Leistungen mit Angabe des Erbringungszeitraumes sowie des Empfängers (Referenzkunde mit namentlich bezeichnetem Ansprechpartner sowie dessen Telefonnummer oder E-Mail-Anschrift). Anonymisierte Angaben sind nicht zulässig. Nicht vollständige Angaben zu einer Referenz werden nicht berücksichtigt. Nachforderungen, die unvollständige oder unerfüllte Angaben zu einer Referenz betreffen würden, finden nicht statt.   Mindestanforderung:  Nachzuweisen sind mindestens zwei Referenzen, die jeweils die nachfolgenden Mindestbedingungen erfüllen und im Hinblick hierauf aussagekräftig zu erläutern sind: a) Überlassung von Software aus einem geltenden Microsoft Enterprise Agreement an einen Referenzkunden b) im Umfang von mindestens 1.000 Lizenzen c)  im Zeitraum seit 01.11.2023</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYH5DWMJ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">gemäß § 56 VgV</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYH5DWMJ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="WEEK">6</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Gemäß § 160 Absatz 3 Satz 1 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit: 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5.  ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 GWB vorliegt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYH5DWMJ</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-20+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-11+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">845-009570-00-101-30520</cbc:ID>
+			<cbc:Name languageID="DEU">Rahmenvereinbarung Microsoft Enterprise Agreement 2027</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand dieser Ausschreibung ist eine Rahmenvereinbarung über die befristete Überlassung von Software (Lizenzen Microsoft 365 E3 FSA, Microsoft 365 E3 FUSL, SA SQL Server Standard (SA), SA SQL Server Enterprise (SA)) aus einem geltenden Microsoft Enterprise Agreement.  Die NRW.BANK hat die Option, den Auftragsgegenstand gemäß Absatz 1 um Lizenzen Microsoft 365 E5 Upgrade (StepUp E3 auf E5), Project Online Plan 3 und / oder Visio Online Plan 2 zu erweitern. Sie kann diese Option während der Laufzeit der Rahmenvereinbarung jederzeit durch einseitige Erklärung gegenüber der Auftragnehmerin ausüben.  Die Rahmenvereinbarung besteht mit einem Unternehmen. Die NRW.BANK ruft die benötigte Software (Lizenzen) aus der Rahmenvereinbarung durch einseitige Erklärung in Textform oder in elektronischer Form ab. Der Abruf ist innerhalb der Laufzeit dieser Rahmenvereinbarung zulässig, soweit und solange dies mit dem Enterprise Agreement vereinbar ist.  Das in Aussicht genommene Auftragsvolumen (einschließlich optionaler Leistungen) beläuft sich auf folgende Lizenzen und Lizenzmengen (bezogen auf die Gesamtlaufzeit der Rahmenvereinbarung):  Es werden für den Zeitraum vom 1. Januar 2027 bis zum 31. Dezember 2029 folgende Mindestabnahmeverpflichtungen der NRW.BANK festgelegt:  2.100  Lizenzen  M365 E5 Unified Sub Per User (inkl. Teams &amp; Teams Premium) 100  Lizenzen Visio online Plan 2 75   Lizenzen Project online Plan 3 12   Lizenzen  SQL Server Enterprise Core ALng SA 2L 12   Lizenzen  SQL Server Standard Core ALng SA 2L  Für die auf dieser Rahmenvereinbarung beruhenden Einzelaufträge gilt die folgende, verbindliche Höchstabnahmegrenzen (bezogen auf die Gesamtlaufzeit der Rahmenvereinbarung): maximal 15 Mio. Euro brutto.  Die Rahmenvereinbarung beginnt am 1. Januar 2027 und läuft bis zum 31. Dezember 2029. Mit dem Ablauf des 31. Dezember 2029 endet die Rahmenvereinbarung automatisch, ohne dass es einer Kündigung bedarf.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CountrySubentityCode listName="nuts">DEA11</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="YEAR">3</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

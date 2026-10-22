@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.stockheim-online.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Gemeinde Stockheim</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Rathausstr. 1</cbc:StreetName>
+									<cbc:CityName>Stockheim</cbc:CityName>
+									<cbc:PostalZone>96342</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE24A</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>UStID: DE356797687</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.regierung.oberfranken.bayern.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Regierung von Oberfranken</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Promenade 27</cbc:StreetName>
+									<cbc:CityName>Ansbach</cbc:CityName>
+									<cbc:PostalZone>91522</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE251</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>Leitweg-ID: 09-0358002-61</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00720927-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">202/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-19+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">2e5c2834-aa16-4dcc-bd4b-5e1326c6ade2</cbc:ID>
+	<cbc:ContractFolderID>4b6d2c33-b74e-4831-9b05-3b3072ed60c5</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-16+02:00</cbc:IssueDate>
+	<cbc:IssueTime>10:38:40+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-16+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Bislang erklärten sich die Vergabekammern bei europaweit bekanntgemachten Auswahlverfahren, deren geschätzter Auftragswert oder Gesamtauftragswert den jeweiligen EU-Schwellenwert nicht erreicht oder übersteigt, für nicht zuständig (§ 1 Abs. 1 BayNpV). Der Konzessionsgeber geht davon aus, dass dies weiter der Fall ist und ein Nachprüfungsverfahren vor einer Vergabekammer daher nicht statthaft ist. Andernfalls wäre im Übrigen nach Auffassung des Konzessionsgebers für die ausgeschriebene Leistung des Wirtschaftlichkeitslückenmodells nach Nr. 3.1 der Gigabit-Richtlinie 2.0 die Bereichsausnahme des § 149 Nr. 8 GWB einschlägig. In der Folge sieht der Konzessionsgeber den 4. Teil des GWB als nicht anwendbar an. Die Bezeichnung der "zuständigen Vergabekammer" in dieser Konzessionsbekanntmachung begründet insofern keinen Zugang zu einem Nachprüfungsverfahren. Die Frage der Prüfung und Entscheidung über deren Zuständigkeit obliegt der Vergabekammer selbst.  Soweit die Vergabekammer fehlende Zuständigkeit (§ 1 Abs. 1 BayNpV) und die Bereichsausnahme (§ 149 Nr. 8 GWB) nicht als gegeben sieht und sich für zuständig erklärt, wird hinsichtlich der Einleitung eventueller Nachprüfungsverfahren auf § 160 GWB verwiesen.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:Description languageID="DEU">Im Teilnahmewettbewerb wird auf einer ersten Stufe die Eignung (Fachkunde, Leistungsfähigkeit und Zuverlässigkeit) der Bewerber geprüft. Bewerber können auf der ersten Stufe im vorweggenommenen Teilnahmewettbewerb ab Bekanntmachung des Auswahlverfahrens einen Antrag durch form- und fristgerechte Einreichung aller geforderter Unterlagen und Nachweise stellen (siehe hierzu "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)"). In der zweiten Stufe fordert der Auftraggeber über die Vergabeplattform alle geeigneten Bewerber als zugelassene Teilnehmer zur Abgabe von Erstangeboten unter Benennung einer entsprechenden Frist auf. Bieter können Angebote form- und fristgerecht einreichen; diese müssen alle geforderten Inhalte enthalten (siehe hierzu "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung (Stufe 2)"). Im übrigen wird auf die allgemeinen Verfahrensbedingungen verwiesen.</cbc:Description>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">STOCKHEIM1BP01</cbc:ID>
+		<cbc:Name languageID="DEU">Gemeinde Stockheim - Gigabit-RL 2.0 (2025) - Auswahlverfahren einer Dienstleistungskonzession im Wirtschaftlichkeitslückenmodell für die Planung, Errichtung und den Betrieb eines Gigabit-Netzes</cbc:Name>
+		<cbc:Description languageID="DEU">Verhandlungsverfahren mit Teilnahmewettbewerb entsprechend § 12 KonzVgV i.V.m. § 14 Abs. 2, Abs. 3 Nr. 2, Nr. 3 VgV, § 119 Abs. 5 GWB (zweistufiges Verhandlungsverfahren) zur Bestimmung eines Netzbetreibers für die Planung, die Errichtung und den Betrieb eines Gigabit-Netzes im Wirt-schaftlichkeitslückenmodell in den ausgeschriebenen Ausbaugebieten nach Maßgabe der Richtlinie "Förderung zur Unterstützung des Gigabitausbau der Telekommunikationsnetze in der Bundesrepublik Deutschland" vom 31.03.2023 in der Fassung der 2. Änderung vom 13.01.2025 (nachfolgend "Gigabit-RL 2.0").  Wesentliche Grundlage des Verfahrens sind die "Rahmenregelung der Bundesrepublik Deutsch-land zur Unterstützung des flächendeckenden Aufbaus von Gigabitnetzen" vom 01.08.2024 (nach-folgend "Gigabit-RR 2.0"), die Richtlinie "Förderung zur Unterstützung des Gigabitausbaus der Te-lekommunikationsnetze in der Bundesrepublik Deutschland" vom 31.03.2023 in der Fassung der 2. Änderung vom 13.01.2025 (nachfolgend Gigabit-RL 2.0) sowie die Mitteilung der Europäischen Union "Leitlinien für staatliche Beihilfen zur Förderung von Breitbandnetzen" vom 31.01.2023 (2023/C 36/01).  Die ausgeschriebenen Adressen des Erschließungsgebietes sind nach Ergebnis der Markterkundung förderfähige unterversorgte Adressen im Sinne der Gigabit-RL 2.0. Aus diesem Grund soll dort auf Basis dieses Auswahlverfahrens ein Gigabit-Netz als technologieneutrale Netzbezeichnung (Netz mit einer Breitbandversorgung von mindestens 1 Gbit/s symmetrisch zu Spitzenlastzeitbe-dingungen für alle Endnutzer der ausgeschriebenen Adressen) in den unterversorgten Gebieten er-richtet werden, wobei sich die Up- und Downloadraten mindestens verdoppeln müssen. Auf die Vorgaben der "B-Leistungsbeschreibung" inkl. deren Anlagen wird ergänzend verwiesen.  Der Konzessionsgeber ordnet den ausgeschriebenen "Vertrag über die Weiterleitung von Zuwen-dungen im Rahmen des Gigabitausbaus in der Gemeinde Buxheim zum Zwecke der Planung, der Errichtung und des Betriebs eines gigabitfähigen Breitbandnetzes im Wirtschaftlichkeitslückenmo-dell nach der Richtlinie "Förderung zur Unterstützung des Gigabitausbaus der Telekommunikati-onsnetze in der Bundesrepublik Deutschland - Gigabit-Richtlinie des Bundes 2.0 (Gigabit-RL 2.0)" als eine Dienstleistungskonzession i.S.d. § 105 Abs. 1 Nr. 2 GWB ein. Der Konzessionsgeber über-trägt damit die ihm als Aufgabe der Daseinsvorsorge obliegende Realisierung der Versorgung der Bevölkerung mit Gigabitanschlüssen auf den Konzessionsnehmer, welcher das Nutzungsrecht am Gigabit-Netz erhält und die Vergütung für seine Tätigkeit in erster Linie durch die Entgelte der End-kunden erhält, während der Konzessionsgeber lediglich einen Zuschuss zur Deckung der gegebe-nenfalls ausgewiesenen Wirtschaftlichkeitslücke leistet, welcher nach § 105 Abs. 1 Nr. 2 GWB ei-ner Dienstleistungskonzession nicht entgegensteht. Der Schwerpunkt der Tätigkeit des Konzessi-onsnehmers liegt auf der Dienstleistung des Betreibens des Breitbandnetzes über den Zeitraum von mindestens sieben Jahren. Der Konzessionsgeber ordnet weiter das zu planende, zu bauende und zu betreibende Gigabit-Netz auch als ein "öffentliches Kommunikationsnetz" i.S.d. Bereichsausnahme gemäß § 149 Nr. 8 GWB ein, so dass der 4. Teil des GWB nicht zur Anwendung kommt. Soweit in den Unterlagen des Aus-wahlverfahrens auf Normen des 4. Teils des GWB verwiesen wird, begründet dies keinen Anspruch auf deren Anwendbarkeit.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YV8MWS8#
+
+
+a) Barrierefreier Zugang weiterer Unterlagen zum Verhandlungsverfahren  Sämtliche weitere Unterlagen dieses Auswahlverfahrens können barrierefrei über die Vergabeplatt-form Deutsches Vergabeportal (DTVP) unter https://www.dtvp.de/Satellite/notice/CXP4YV8MX1H/documents abgerufen werden. Hierzu gehören wie folgt: ------------------------------------------------------------------------------------------------------------------------ A-Allgemeine Verfahrensbedingungen A1 - Datenschutzhinweise A2 - Förderrechtliche Rechtsgrundlagen ------------------------------------------------------------------------------------------------------------------------ 41 B - Leistungsbeschreibung B1-Übersichtskarte Ausbaugebiet B1.1-Detailkarte Ausbaugebiet Los 1 - EG Nord B1.2-Detailkarte Ausbaugebiet Los 2 - EG Süd  B2-Adressliste Ausbaugebiet GESAMT B2.1-Adressliste Ausbaugebiet Los 1 - EG Nord B2.2-Adressliste Ausbaugebiet Los 2- EG Süd  B3-Geförderte Infrastruktur  B4-Auflistung nutzbare Infrastruktur B4.1-Anlage nutzbare Infrastruktur  B5-Synergie Baumaßnahmen [entfällt]  B6-Bauliche Entwicklung im Gemeindegebiet [entfällt]  B7-Gebiete mit Schutzbedürftigkeit [entfällt] ------------------------------------------------------------------------------------------------------------------------ 42 C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1) C1-T-Teilnahmeantrag - VORLAGE C1.1-T-Erklärungen technische/berufliche Leistungsfähigkeit (Teil 1) C1.2-T- Erklärungen technische/berufliche Leistungsfähigkeit (Teil 2) C1.3-T- Erklärungen wirtschaftliche/finanzielle Leistungsfähigkeit  C2-T-Erklärung Bewerber-/Bietergemeinschaft C3-T-Verpflichtungserklärung Nachunternehmen ------------------------------------------------------------------------------------------------------------------------ D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung (Stufe 2) D1-A-Angebotsblatt - VORLAGE D1.1-A-Finanzplan Los 1 - EG Nord D1.2-A-Finanzplan Los 2 - EG Süd D1.3-A-Finanzplan Loskombination D1.4-A-Bieterangaben zur Leistungsbeschreibung D1.5-A-Bieterangaben nutzbare Infrastruktur  D2-A-Angepasster Zuwendungsvertrag D2.1-A-Zahlungsplan Zuwendungsvertrag (Anlage 3) Los 1 - EG Nord D2.2-A-Zahlungsplan Zuwendungsvertrag (Anlage 3) Los 2 - EG Süd D2.3-A-Zahlungsplan Zuwendungsvertrag (Anlage 3) Loskombination ------------------------------------------------------------------------------------------------------------------------ b) Inhaltliche Anforderungen an das Angebot Das Angebot des Bieters soll die nachfolgend aufgeführten Punkte beinhalten und diese konkret und nachvollziehbar erläutern: (1) vollständig befüllte und gezeichnete Vorlage "Angebotsblatt" (D1-A) je (Los-) Angebot ins-besondere hinsichtlich sämtlicher gemäß "D-Besondere Verfahrensbedingungen Ange-botslegung und Verhandlung" definierter Wertungskriterien und deren Anforderungen; (2) Ausweisung der Wirtschaftlichkeitslücke zusätzlich auch durch vollständig befüllte Vorla-gen der Finanzpläne (D1.1-A, D1.2-A und D1.3-A), wobei sämtliche darin enthaltene Hin-weise zu beachten sind; (3) vollständig befüllte Vorlage "Bieterangaben zur Leistungsbeschreibung" (D1.4-A); (4) Angaben zum Einbezug kommunaler Infrastruktur als Teil des Wertungskriteriums "Höhe des Zuschusses" sowohl in der Vorlage "Angebotsblatt" (D1-A) als auch durch vollständig befüllte Vorlage "Bieterangaben nutzbare Infrastruktur" (D1.5-A); (5) ggf. vom Bieter vorgeschlagene Änderungen an dem vom Konzessionsgeber vorgegebenen "Angepassten Zuwendungsvertrag" (D2-A); (6) Zahlungsplan durch vollständig befüllte Vorlagen der Zahlungspläne (D2.1-A, D2.2-A und D2.3-A), welcher Anlage 3 des vom Konzessionsgeber vorgegebenen "Angepassten Zu-wendungsvertrages" (D2-A) werden; (7) Angaben der förderrechtlichen Mindestanforderungen gemäß § 6 Abs. 2 Gigabit-RR 2.0 durch bietereigene Angebotsunterlagen: - Angaben zur Zuverlässigkeit und den unter § 1 Gigabit-RR 2.0 genannten Netzpa-rametern der zu errichtenden Infrastruktur; - die für Netzaufbau und/oder -betrieb kalkulierten Kosten, einschließlich der Kosten der Finanzierung; - alle zu erwartenden Einnahmen aus der Vermarktung der Vorleistungsprodukte; - alle zu erwartenden Einnahmen aus der Vermarktung der Endnutzerprodukte; - nach Zuschlag und Umsetzung angebotene Dienste sowie Erstproduktangebote; - die Verpflichtung zur Herstellung eines offenen und diskriminierungsfreien Zugangs gemäß § 8 Gigabit-RR 2.0 und Angaben zur geplanten Art und Weise der Erfüllung dieser Verpflichtung einschließlich indikativer Angaben möglicher Vorleistungs-preise (Anmerkung: Angabe indikative Vorleistungspreise ist nur relevant, soweit Bieter erklären, von den vorgegebenen Vorleistungspreisen abzuweichen); (8) Angaben zur Art und Umsetzung bzw. Erfüllung sämtlicher definierter Vorgaben der Leis-tung gemäß "B-Leistungsbeschreibung" sowie Vorlage sämtlicher darin geforderter Nach-weise und bietereigener Angebotsunterlagen. Angebote, welche die oben genannten Anforderungen nicht enthalten, können ausgeschlossen und im weiteren Auswahlverfahren nicht weiter berücksichtigt werden. Bieter haben die vom Kon-zessionsgeber gestellten Vorlagen vollständig und nur in den dafür vorgesehen Feldern zu befüllen. Nicht zugelassen sind sowohl Veränderungen der Vordrucke als auch inhaltliche Verweise auf eigene Unterlagen der Bieter.</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">10219114.08</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72411000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32571000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">32412000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Erfüllungsorte sind die förderfähigen Adressen gemäß "Adressliste Ausbaugebiet gesamt" (B2).</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Rathausstr. 1</cbc:StreetName>
+				<cbc:CityName>Stockheim</cbc:CityName>
+				<cbc:PostalZone>96342</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE24A</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben im Hinblick auf die technische und berufliche Leistungsfähigkeit zum Nachweis der erforderlichen personellen und technischen Mittel sowie ausreichender Erfahrungen, um die Leistung in angemessener Qualität ausführen zu können, die unter Ziff. 2.1.1 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  a) die dort aufgeführten Eigen-/Erklärungen, für welche die vom Konzessionsgeber gestellte Vorlage (C1.1-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. a) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  b) Angabe, welche Teile der Leistung der Bewerber unter Umständen als Unteraufträge zu vergeben beabsichtigt, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. b) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  c) Angabe mindestens der geforderten Anzahl an Referenzen des Bewerberunternehmens oder des eignungsleihenden Unternehmens aus dem vorgegebenen Abfragezeitraum über die Ausführung des Leistungsteils "Planung und Errichtung eines Gigabit-Netzes", die mit der zu vergebenden Konzession vergleichbar sind, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. c) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  d) Angabe mindestens der geforderten Anzahl an Referenzen des Bewerberunternehmens oder des eignungsleihenden Unternehmens aus dem vorgegebenen Abfragezeitraum über die Ausführung des Leistungsteils "Betrieb eines Gigabit-Netzes", die mit der zu vergebenden Konzession vergleichbar sind, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben im Hinblick auf die technische und berufliche Leistungsfähigkeit zum Nachweis der erforderlichen personellen und technischen Mittel sowie ausreichender Erfahrungen, um die Leistung in angemessener Qualität ausführen zu können, die unter Ziff. 2.1.3 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  e) Darstellung eines aktuellen Unternehmensprofils oder sonstiger eigener aussagekräftiger An-gaben über den Bewerber durch bewerbereigene Unterlagen.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit die unter Ziff. 2.2 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  f) die dort aufgeführten Eigen-/Erklärungen zur wirtschaftlichen und finanziellen Leistungsfähigkeit, für welche die vom Konzessionsgeber gestellte Vorlage (C1.3-T) zu verwenden ist und  g) Jahresabschlüsse oder Bilanzen der geforderten Anzahl abgeschlossener Geschäftsjahre, so-weit der Bewerber diese nicht im Bundesanzeiger veröffentlicht hat und auf diesen durch Verwendung der vorgegebenen Erklärung (C1.3-T) verweist oder  h) sofern der Bewerber noch nicht so lange auf dem Markt tätig ist, alternativ für die Dauer der Markttätigkeit (vorläufige) Umsatzzahlen je Kalenderjahr (C1.3-T) und (vorläufige) betriebswirtschaftliche Darstellung (wie z.B. eine betriebswirtschaftliche Auswertung "BWA") je Kalenderjahr sowie für die Anzahl der fehlenden Jahresabschlüsse oder Bilanzen bzw. der (vorläufigen) betriebswirtschaftlichen Darstellung zzgl. Umsatzzahlen die Vorlage einer zukünftigen Unternehmensplanung über den entsprechenden Zeitraum durch bewerbereigene Unterlagen inklusive einer Erläuterung der verwendeten Begrifflichkeiten.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Rechnungsstellungen haben zu erfolgen anhand der vom Konzessionsgeber vorgegebenen Zahlungspläne in Anlage 3 zum vorgegebenen Zuwendungsvertrag. Bieter haben hierzu die Vorlagen mit der jeweiligen Angebotslegung vollständig befüllt einzureichen.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Informationen, die nach Ablauf der Einreichungsfrist ergänzt werden können: Fehlende Teilnahme- und Angebotsunterlagen können nur auf ausdrückliche Anforderung des Konzessionsgebers, welche vorbehalten bleibt, nach Ablauf der Einreichungsfrist innerhalb einer gesetzten Nachfrist nachgereicht werden. Bewerber bzw. Bieter können proaktiv keine Unterlagen nachreichen. Zusätzliche Informationen: Zusätzliche Informationen ergeben sich aus den weiteren Unterlagen dieses Auswahlverfahrens (siehe hierzu Auflistung in "A-Allgemeine Verfahrensbedingungen" Ziff. 4).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Wirksamkeit des Zuwendungsvertrages sowie die Ausführung der Leistung stehen unter der aufschiebenden Bedingung eines antragsgemäßen Bescheides über eine Zuwendung in endgültiger Höhe durch die Bewilligungsbehörde des Bundes, sowie eines antragsgemäßen Kofinanzierungsbescheides durch die Bewilligungsbehörde des Freistaates Bayern.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>90.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Höhe des Zuschusses</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Einsatz alternativer Verlegemethoden</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Spätester Zeitpunkt der Inbetriebnahme</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Bislang erklärten sich die Vergabekammern bei europaweit bekanntgemachten Auswahlverfahren, deren geschätzter Auftragswert oder Gesamtauftragswert den jeweiligen EU-Schwellenwert nicht erreicht oder übersteigt, für nicht zuständig (§ 1 Abs. 1 BayNpV). Der Konzessionsgeber geht davon aus, dass dies weiter der Fall ist und ein Nachprüfungsverfahren vor einer Vergabekammer daher nicht statthaft ist. Andernfalls wäre im Übrigen nach Auffassung des Konzessionsgebers für die ausgeschriebene Leistung des Wirtschaftlichkeitslückenmodells nach Nr. 3.1 der Gigabit-Richtlinie 2.0 die Bereichsausnahme des § 149 Nr. 8 GWB einschlägig. In der Folge sieht der Konzessionsgeber den 4. Teil des GWB als nicht anwendbar an. Die Bezeichnung der "zuständigen Vergabekammer" in dieser Konzessionsbekanntmachung begründet insofern keinen Zugang zu einem Nachprüfungsverfahren. Die Frage der Prüfung und Entscheidung über deren Zuständigkeit obliegt der Vergabekammer selbst.  Soweit die Vergabekammer fehlende Zuständigkeit (§ 1 Abs. 1 BayNpV) und die Bereichsausnahme (§ 149 Nr. 8 GWB) nicht als gegeben sieht und sich für zuständig erklärt, wird hinsichtlich der Einleitung eventueller Nachprüfungsverfahren auf § 160 GWB verwiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>false</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-12-02+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-18+01:00</cbc:EndDate>
+				<cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-13+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Los 1</cbc:Name>
+			<cbc:Description languageID="DEU">Planung, Errichtung und Betrieb eines Gigabit-Netzes im Wirtschaftlichkeitslückenmodell aller aus-geschriebenen Adressen auf Basis der Gigabit-RL 2.0.  Gegenstand dieses Auswahlverfahrens ist die Vergabe einer Dienstleistungskonzession für die Planung, die Errichtung und den Betrieb eines Gigabit-Netzes im Wirtschaftlichkeitslückenmodell nach Ziffer 3.1 der Gigabit-RL 2.0. Ziel dieser Maßnahme ist die Gigabitversorgung der Ausbaugebiete mit gigabitfähigen Breitbandanschlüssen mit Datenübertragungsraten von mindestens 1 Gbit/s symmetrisch zu Spitzenlastzeitbedingungen für alle Endnutzer der ausgeschriebenen Adressen im Ausbaugebiet, wobei sich die Up- und Downloadrate mindestens verdoppeln müssen. Das Ausbaugebiet ergibt sich im Einzelnen aus "B-Leistungsbeschreibung" und deren Anlagen, insbesondere der Karten zum Ausbaugebiet (B1, B1.1 bis B1.2) und der Adresslisten (B2, B2.1 bis B2.2).  Es wird auf die Ausführungen der ergänzenden Unterlagen dieses Auswahlverfahrens verwiesen (siehe hierzu Auflistung in "A-Allgemeine Verfahrensbedingungen" Ziff. 4); danach gilt insbesondere: a) Technologieneutralität Der Konzessionsgeber stellt klar, dass dieses Auswahlverfahren des zu errichtenden und zu betreibenden Gigabit-Netzes mit Bandbreiten von mindestens 1 Gbit/s symmetrisch zu Spitzenlastzeitbedingungen technologieneutral i.S.d. Randnummer 117 der Beihilfeleitlinien EU2023/C 26/01 (Ziff. 5.2.4.1, 5.2.4.2) sowie § 5 Abs. 7 Gigabit-RR 2.0 erfolgt, folglich die hier gewählte Bezeichnung wie "Gigabit-Netz", die Bezeichnung der Netzebenen etc., die Darstellung des Netzaufbaus und Definition des Materialkonzeptes 5.0.2, Ziff. 2, Seite 5 f. übernimmt, dies aber bei Einsatz an-derer Technologien zum Ausbau und Betrieb des Gigabit-Netzes entsprechend analog zu sehen ist. b) Errichtung und Betrieb eines Netzes zur Gigabitversorgung Förderzweck der Gigabit-RL 2.0 ist die Unterstützung eines effektiven und technologieneutralen Gigabitausbaus zur Erreichung eines ökologisch nachhaltigen, sicheren und hochleistungsfähigen Gigabit-Netzes in unterversorgten Gebieten.  Der Zuschlagsempfänger hat im Ausbaugebiet ein Gigabit-Netz mit den definierten Mindestband-breiten zu Spitzenlastzeitbedingungen zu planen, zu errichten und zu betreiben. Dies umfasst so-wohl die erforderliche passive Netzinfrastruktur (z.B. Tiefbauleistungen, Leerrohre mit Kabel sowie zugehörige Komponenten einschließlich Schächte, Verteiler, Hausanschlüsse und Netzabschlusseinrichtungen) als auch die aktive Technik zum Netzbetrieb.  Das Einverständnis der Grundstückseigentümer vorausgesetzt, bezieht sich die diesem Auswahl-verfahren gegenständliche Errichtung von leitungsgebundenen Gigabit-Netzen auf alle Netzteile, einschließlich Netzabschluss im Gebäude einer jeden ausgeschriebenen Adresse. Auf die Vorgaben der "B-Leistungsbeschreibung" inkl. deren Anlagen wird ergänzend verwiesen. c) Förderrechtliche Vorgaben  Die Gigabit-Netzerrichtung und dessen Betrieb müssen sämtliche Inhalte und Vorgaben der Gigabit-RR 2.0, der Gigabit-RL 2.0, des Bescheides über eine Zuwendung in vorläufiger Höhe sowie dessen zugehörige Nebenbestimmungen (BNBest-Gigabit), Materialkonzept und Vorgaben für die Dimensionierung passiver Infrastruktur etc. in der diesem zugrunde liegenden Fassung verpflichtend berücksichtigen.  Auf die geltenden Rechtsgrundlagen im Anlagenkonvolut "Förderrechtliche Rechtsgrundlagen" (A2) wird ergänzend verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Einfügen des/der Textblock/Textblöcke unter 5.1.6 aus Bekanntmachung mit der Randnummer: Mit dem Download der beigestellten Adress- und GEO-Daten erklärt sich der Interessent mit den Regelungen der aktuell gültigen Lizenzvereinbarung und den Nutzungsbedingungen der Bewilligungsbehörde einverstanden.  Insbesondere gilt: - Übergebene Daten dürfen ausschließlich zur internen Nutzung und im Zusammenhang mit diesem Förderprojekt verwendet werden. - Dritten darf kein Zugriff auf die Daten gewährt werden. - Alle Daten sind nach Beendigung des gegenständlichen Förderprojekts bzw. aller relevanten Nachweispflichten zu löschen.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">4345516.35</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72411000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32571000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32412000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Erfüllungsorte sind die förderfähigen Adressen gemäß "Adressliste Ausbaugebiet gesamt" (B2).</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Rathausstr. 1</cbc:StreetName>
+					<cbc:CityName>Stockheim</cbc:CityName>
+					<cbc:PostalZone>96342</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE24A</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">84</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Mit dem Download der beigestellten Adress- und GEO-Daten erklärt sich der Interessent mit den Regelungen der aktuell gültigen Lizenzvereinbarung und den Nutzungsbedingungen des Projektträgers einverstanden. Insbesondere gilt: - Übergebene Daten dürfen ausschließlich zur internen Nutzung und im Zusammenhang mit diesem Förderprojekt verwendet werden. - Dritten darf kein Zugriff auf die Daten gewährt werden. - Alle Daten sind nach Beendigung des gegenständlichen Förderprojekts bzw. aller relevanten Nachweispflichten zu löschen.  Im Übrigen siehe Unterlagen zur Bekanntmachung.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben im Hinblick auf die technische und berufliche Leistungsfähigkeit zum Nachweis der erforderlichen personellen und technischen Mittel sowie ausreichender Erfahrungen, um die Leistung in angemessener Qualität ausführen zu können, die unter Ziff. 2.1.1 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  a) die dort aufgeführten Eigen-/Erklärungen, für welche die vom Konzessionsgeber gestellte Vorlage (C1.1-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. a) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  b) Angabe, welche Teile der Leistung der Bewerber unter Umständen als Unteraufträge zu vergeben beabsichtigt, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. b) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  c) Angabe mindestens der geforderten Anzahl an Referenzen des Bewerberunternehmens oder des eignungsleihenden Unternehmens aus dem vorgegebenen Abfragezeitraum über die Ausführung des Leistungsteils "Planung und Errichtung eines Gigabit-Netzes", die mit der zu vergebenden Konzession vergleichbar sind, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der beruflichen Leistungsfähigkeit die unter Ziff. 2.1.2 lit. c) "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Mindeststandards nachzuweisen, sowie genannte Angaben und Formalitäten, die erforderlich sind, um deren Einhaltung zu überprüfen:  d) Angabe mindestens der geforderten Anzahl an Referenzen des Bewerberunternehmens oder des eignungsleihenden Unternehmens aus dem vorgegebenen Abfragezeitraum über die Ausführung des Leistungsteils "Betrieb eines Gigabit-Netzes", die mit der zu vergebenden Konzession vergleichbar sind, wofür die vom Konzessionsgeber gestellte Vorlage (C1.2-T) zu verwenden ist.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben im Hinblick auf die technische und berufliche Leistungsfähigkeit zum Nachweis der erforderlichen personellen und technischen Mittel sowie ausreichender Erfahrungen, um die Leistung in angemessener Qualität ausführen zu können, die unter Ziff. 2.1.3 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  e) Darstellung eines aktuellen Unternehmensprofils oder sonstiger eigener aussagekräftiger An-gaben über den Bewerber durch bewerbereigene Unterlagen.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Teilnahmeantrag hat zwingend durch die Verwendung der Vorlage "Teilnahmeantrag" (C1-T) zu erfolgen. Bewerber haben zum Nachweis der wirtschaftlichen und finanziellen Leistungsfähigkeit die unter Ziff. 2.2 "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" spezifizierten Anforderungen zu erfüllen durch  f) die dort aufgeführten Eigen-/Erklärungen zur wirtschaftlichen und finanziellen Leistungsfähigkeit, für welche die vom Konzessionsgeber gestellte Vorlage (C1.3-T) zu verwenden ist und  g) Jahresabschlüsse oder Bilanzen der geforderten Anzahl abgeschlossener Geschäftsjahre, so-weit der Bewerber diese nicht im Bundesanzeiger veröffentlicht hat und auf diesen durch Verwendung der vorgegebenen Erklärung (C1.3-T) verweist oder  h) sofern der Bewerber noch nicht so lange auf dem Markt tätig ist, alternativ für die Dauer der Markttätigkeit (vorläufige) Umsatzzahlen je Kalenderjahr (C1.3-T) und (vorläufige) betriebswirtschaftliche Darstellung (wie z.B. eine betriebswirtschaftliche Auswertung "BWA") je Kalenderjahr sowie für die Anzahl der fehlenden Jahresabschlüsse oder Bilanzen bzw. der (vorläufigen) betriebswirtschaftlichen Darstellung zzgl. Umsatzzahlen die Vorlage einer zukünftigen Unternehmensplanung über den entsprechenden Zeitraum durch bewerbereigene Unterlagen inklusive einer Erläuterung der verwendeten Begrifflichkeiten.  Auf die Regelungen und Vorgaben in "C-Besondere Verfahrensbedingungen Teilnahmewettbewerb (Stufe 1)" wird ausdrücklich verwiesen, insbesondere zu weiteren inhaltlichen Anforderungen wie z.B. im Falle der Teilnahme zugelassener Bewerber-/Bietergemeinschaften und/oder der Eignungs-leihe i.S.d. § 47 VgV).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Rechnungsstellungen haben zu erfolgen anhand der vom Konzessionsgeber vorgegebenen Zahlungspläne in Anlage 3 zum vorgegebenen Zuwendungsvertrag. Bieter haben hierzu die Vorlagen mit der jeweiligen Angebotslegung vollständig befüllt einzureichen.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Informationen, die nach Ablauf der Einreichungsfrist ergänzt werden können: Fehlende Teilnahme- und Angebotsunterlagen können nur auf ausdrückliche Anforderung des Konzessionsgebers, welche vorbehalten bleibt, nach Ablauf der Einreichungsfrist innerhalb einer gesetzten Nachfrist nachgereicht werden. Bewerber bzw. Bieter können proaktiv keine Unterlagen nachreichen. Zusätzliche Informationen: Zusätzliche Informationen ergeben sich aus den weiteren Unterlagen dieses Auswahlverfahrens (siehe hierzu Auflistung in "A-Allgemeine Verfahrensbedingungen" Ziff. 4).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Wirksamkeit des Zuwendungsvertrages sowie die Ausführung der Leistung stehen unter der aufschiebenden Bedingung eines antragsgemäßen Bescheides über eine Zuwendung in endgültiger Höhe durch die Bewilligungsbehörde des Bundes, sowie eines antragsgemäßen Kofinanzierungsbescheides durch die Bewilligungsbehörde des Freistaates Bayern.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>90.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Höhe des Zuschusses</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Einsatz alternativer Verlegemethoden</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>5.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Spätester Zeitpunkt der Inbetriebnahme</cbc:Name>
+						<cbc:Description languageID="DEU">Genauere Angaben zu Anforderungen und Inhalt der Kriterien, der Gewichtung und dem Wertungs-vorgehen ergeben sich aus "D-Besondere Verfahrensbedingungen Angebotslegung und Verhandlung", auf welche verwiesen wird.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Bislang erklärten sich die Vergabekammern bei europaweit bekanntgemachten Auswahlverfahren, deren geschätzter Auftragswert oder Gesamtauftragswert den jeweiligen EU-Schwellenwert nicht erreicht oder übersteigt, für nicht zuständig (§ 1 Abs. 1 BayNpV). Der Konzessionsgeber geht davon aus, dass dies weiter der Fall ist und ein Nachprüfungsverfahren vor einer Vergabekammer daher nicht statthaft ist. Andernfalls wäre im Übrigen nach Auffassung des Konzessionsgebers für die ausgeschriebene Leistung des Wirtschaftlichkeitslückenmodells nach Nr. 3.1 der Gigabit-Richtlinie 2.0 die Bereichsausnahme des § 149 Nr. 8 GWB einschlägig. In der Folge sieht der Konzessionsgeber den 4. Teil des GWB als nicht anwendbar an. Die Bezeichnung der "zuständigen Vergabekammer" in dieser Konzessionsbekanntmachung begründet insofern keinen Zugang zu einem Nachprüfungsverfahren. Die Frage der Prüfung und Entscheidung über deren Zuständigkeit obliegt der Vergabekammer selbst.  Soweit die Vergabekammer fehlende Zuständigkeit (§ 1 Abs. 1 BayNpV) und die Bereichsausnahme (§ 149 Nr. 8 GWB) nicht als gegeben sieht und sich für zuständig erklärt, wird hinsichtlich der Einleitung eventueller Nachprüfungsverfahren auf § 160 GWB verwiesen.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>false</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YV8MWS8</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-12-02+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-18+01:00</cbc:EndDate>
+				<cbc:EndTime>11:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-13+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Los 2</cbc:Name>
+			<cbc:Description languageID="DEU">Planung, Errichtung und Betrieb eines Gigabit-Netzes im Wirtschaftlichkeitslückenmodell aller aus-geschriebenen Adressen auf Basis der Gigabit-RL 2.0.  Gegenstand dieses Auswahlverfahrens ist die Vergabe einer Dienstleistungskonzession für die Planung, die Errichtung und den Betrieb eines Gigabit-Netzes im Wirtschaftlichkeitslückenmodell nach Ziffer 3.1 der Gigabit-RL 2.0. Ziel dieser Maßnahme ist die Gigabitversorgung der Ausbaugebiete mit gigabitfähigen Breitbandanschlüssen mit Datenübertragungsraten von mindestens 1 Gbit/s symmetrisch zu Spitzenlastzeitbedingungen für alle Endnutzer der ausgeschriebenen Adressen im Ausbaugebiet, wobei sich die Up- und Downloadrate mindestens verdoppeln müssen. Das Ausbaugebiet ergibt sich im Einzelnen aus "B-Leistungsbeschreibung" und deren Anlagen, insbesondere der Karten zum Ausbaugebiet (B1, B1.1 bis B1.2) und der Adresslisten (B2, B2.1 bis B2.2).  Es wird auf die Ausführungen der ergänzenden Unterlagen dieses Auswahlverfahrens verwiesen (siehe hierzu Auflistung in "A-Allgemeine Verfahrensbedingungen" Ziff. 4); danach gilt insbesondere: a) Technologieneutralität Der Konzessionsgeber stellt klar, dass dieses Auswahlverfahren des zu errichtenden und zu betreibenden Gigabit-Netzes mit Bandbreiten von mindestens 1 Gbit/s symmetrisch zu Spitzenlastzeitbedingungen technologieneutral i.S.d. Randnummer 117 der Beihilfeleitlinien EU2023/C 26/01 (Ziff. 5.2.4.1, 5.2.4.2) sowie § 5 Abs. 7 Gigabit-RR 2.0 erfolgt, folglich die hier gewählte Bezeichnung wie "Gigabit-Netz", die Bezeichnung der Netzebenen etc., die Darstellung des Netzaufbaus und Definition des Materialkonzeptes 5.0.2, Ziff. 2, Seite 5 f. übernimmt, dies aber bei Einsatz an-derer Technologien zum Ausbau und Betrieb des Gigabit-Netzes entsprechend analog zu sehen ist. b) Errichtung und Betrieb eines Netzes zur Gigabitversorgung Förderzweck der Gigabit-RL 2.0 ist die Unterstützung eines effektiven und technologieneutralen Gigabitausbaus zur Erreichung eines ökologisch nachhaltigen, sicheren und hochleistungsfähigen Gigabit-Netzes in unterversorgten Gebieten.  Der Zuschlagsempfänger hat im Ausbaugebiet ein Gigabit-Netz mit den definierten Mindestband-breiten zu Spitzenlastzeitbedingungen zu planen, zu errichten und zu betreiben. Dies umfasst so-wohl die erforderliche passive Netzinfrastruktur (z.B. Tiefbauleistungen, Leerrohre mit Kabel sowie zugehörige Komponenten einschließlich Schächte, Verteiler, Hausanschlüsse und Netzabschlusseinrichtungen) als auch die aktive Technik zum Netzbetrieb.  Das Einverständnis der Grundstückseigentümer vorausgesetzt, bezieht sich die diesem Auswahl-verfahren gegenständliche Errichtung von leitungsgebundenen Gigabit-Netzen auf alle Netzteile, einschließlich Netzabschluss im Gebäude einer jeden ausgeschriebenen Adresse. Auf die Vorgaben der "B-Leistungsbeschreibung" inkl. deren Anlagen wird ergänzend verwiesen. c) Förderrechtliche Vorgaben  Die Gigabit-Netzerrichtung und dessen Betrieb müssen sämtliche Inhalte und Vorgaben der Gigabit-RR 2.0, der Gigabit-RL 2.0, des Bescheides über eine Zuwendung in vorläufiger Höhe sowie dessen zugehörige Nebenbestimmungen (BNBest-Gigabit), Materialkonzept und Vorgaben für die Dimensionierung passiver Infrastruktur etc. in der diesem zugrunde liegenden Fassung verpflichtend berücksichtigen.  Auf die geltenden Rechtsgrundlagen im Anlagenkonvolut "Förderrechtliche Rechtsgrundlagen" (A2) wird ergänzend verwiesen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Einfügen des/der Textblock/Textblöcke unter 5.1.6 aus Bekanntmachung mit der Randnummer: Mit dem Download der beigestellten Adress- und GEO-Daten erklärt sich der Interessent mit den Regelungen der aktuell gültigen Lizenzvereinbarung und den Nutzungsbedingungen der Bewilligungsbehörde einverstanden.  Insbesondere gilt: - Übergebene Daten dürfen ausschließlich zur internen Nutzung und im Zusammenhang mit diesem Förderprojekt verwendet werden. - Dritten darf kein Zugriff auf die Daten gewährt werden. - Alle Daten sind nach Beendigung des gegenständlichen Förderprojekts bzw. aller relevanten Nachweispflichten zu löschen.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">5894912.73</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72411000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32571000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">32412000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Erfüllungsorte sind die förderfähigen Adressen gemäß "Adressliste Ausbaugebiet gesamt" (B2).</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Rathausstr. 1</cbc:StreetName>
+					<cbc:CityName>Stockheim</cbc:CityName>
+					<cbc:PostalZone>96342</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE24A</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">84</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Mit dem Download der beigestellten Adress- und GEO-Daten erklärt sich der Interessent mit den Regelungen der aktuell gültigen Lizenzvereinbarung und den Nutzungsbedingungen des Projektträgers einverstanden. Insbesondere gilt: - Übergebene Daten dürfen ausschließlich zur internen Nutzung und im Zusammenhang mit diesem Förderprojekt verwendet werden. - Dritten darf kein Zugriff auf die Daten gewährt werden. - Alle Daten sind nach Beendigung des gegenständlichen Förderprojekts bzw. aller relevanten Nachweispflichten zu löschen.  Im Übrigen siehe Unterlagen zur Bekanntmachung.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

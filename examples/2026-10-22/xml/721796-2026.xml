@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Landeskreditbank Baden-Württemberg - Förderbank - (L-Bank)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Schlossplatz 12</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76131</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A2711-68</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.menoldbezler.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Menold Bezler Rechtsanwälte Steuerberater Wirtschaftsprüfer Partnerschaft mbB</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stresemannstr. 79</cbc:StreetName>
+									<cbc:CityName>Stuttgart</cbc:CityName>
+									<cbc:PostalZone>70191</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE111</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE232 078 089</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0003</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg beim Regierungspräsidium Karlsruhe</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kapellenstraße 17</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76131</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00721796-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">202/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-19+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">5d18cfcf-9e00-45f1-8f65-e028a73332fc</cbc:ID>
+	<cbc:ContractFolderID>30321dc4-4116-429e-8e10-76125c66962c</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-15+02:00</cbc:IssueDate>
+	<cbc:IssueTime>18:19:38+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-15+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">econ-aff</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:ServiceProviderParty>
+				<cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+				<cac:Party>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:Party>
+			</cac:ServiceProviderParty>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. Hinsichtlich der Information nicht berücksichtigter Bieter und Bewerber gelten die §§ 134, 135 GWB. Insbesondere gilt: Bieter deren Angebote für den Zuschlag nicht berücksichtigt werden sollen, werden vor dem Zuschlag gemäß § 134 GWB darüber informiert. Das gilt auch für Bewerber, denen keine Information über die Ablehnung ihrer Bewerbung zur Verfügung gestellt wurde, bevor die Mitteilung über die Zuschlagsentscheidung an die betroffenen Bieter ergangen ist. Ein Vertrag darf erst 15 Kalendertage nach Absendung dieser Information durch den Auftraggeber geschlossen werden; bei Übermittlung per Telefax oder auf elektronischem Wege beträgt diese Frist 10 Kalendertage. Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt. Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mi</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZMWS4</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026/3209</cbc:ID>
+		<cbc:Name languageID="DEU">L-Bank - Europaweite Vergabe einer KI-gestützten Lösung zur Verarbeitung von Elterngeldanträgen und Nachweisen im Verhandlungsverfahren mit Teilnahmewettbewerb nach VgV</cbc:Name>
+		<cbc:Description languageID="DEU">Gegenstand des Vergabeverfahrens ist die Bereitstellung, einer KI-gestützten SaaS-Lösung zur Verarbeitung von Elterngeldanträgen und zugehörigen Nachweisen einschließlich der hierfür erforderlichen Anpassungs-, Integrations-, Einführungs-, Betriebs-, Support-, Wartungs- und Weiterentwicklungsleistungen sowie deren Integration in die Systemlandschaft der L-Bank (nachfolgend auch "Lösung" genannt). Die Lösung wird als betriebsbereite Software-as-a-Service-Lösung (SaaS) bereitgestellt und umfasst die für die Leistungserbringung erforderlichen Anwendungs-, Infrastruktur-, Betriebs-, Support-, Wartungs- und Weiterentwicklungsleistungen.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4YMZMWS4#
+
+
+(1) Es wird darauf hingewiesen, dass das am 1.7.2013 in Kraft getretene Tariftreue- und Mindestlohngesetz für öffentliche Aufträge in Baden-Württemberg (LTMG) sowie das Gesetz zur Regelung eines allgemeinen Mindestlohns (Mindestlohngesetz) Anwendung finden. Die sich hieraus ergebenden Verpflichtungen, insbesondere auch bei dem Einsatz von Nach- und Verleihunternehmen, sind daher zu beachten; (2) Die Teilnahmeformulare sind unter der für den Abruf der Unterlagen angegebenen Internetadresse abrufbar. Ebenfalls dort abrufbar ist ein Bewerbermemorandum. In diesen Teilnahmeunterlagen sind wesentliche Teile der ausgeschriebenen Leistung sowie der Verfahrensvorgaben bereits dargestellt. Unter dieser Internetadresse werden auch Antworten auf Bewerberfragen sowie aktualisierte oder weitere Informationen und Unterlagen zu dem Verfahren zur Verfügung gestellt. Interessenten an dem Verfahren müssen sicherstellen, dass sie regelmäßig und insbesondere unmittelbar vor Abgabe ihres Teilnahmeantrags sowie vor Ablauf der Teilnahmefrist prüfen, ob seitens der Vergabestelle zusätzliche Informationen oder Unterlagen zur Verfügung gestellt wurden, welche für die Abgabe des Teilnahmeantrags zu beachten sind.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72210000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48921000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:CityName>Karlsruhe</cbc:CityName>
+				<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über den Jahresumsatz im Jahr 2025 einschließlich des Jahresumsatzes mit vergleichbaren Leistungen (KI gestützte Lösungen zur Dokumentenverarbeitung). Mindestanforderung: Der Umsatz mit vergleichbaren Leistungen (KI gestützte Lösungen zur Dokumentenverarbeitung) im Jahr 2025 muss mindestens 700.000 EUR netto betragen haben.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung über das Bestehen  - einer Berufshaftpflichtversicherung mit einer Deckungssumme in Höhe von mind. 10 Mio. EUR für Personen- und Sachschäden sowie in Höhe von mind. EUR 3 Mio. für Vermögensschäden oder Eigenerklärung, im Auftragsfalle einen entsprechenden Versicherungsvertrag zu schließen sowie - einer Cyberversicherung mit einer Deckungssumme in Höhe von mind. EUR 100.000 oder Eigenerklärung, im Auftragsfalle einen entsprechenden Versicherungsvertrag zu schließen.   Hinweise der Vergabestelle: Die geforderte Eigenerklärung zur Berufshaftpflichtversicherung ist von Bewerbergemeinschaften nur einmal vorzulegen.  Mit dem Teilnahmeantrag ist neben dieser Eigenerklärung noch keine Erklärung einer Versicherungsgesellschaft vorzulegen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Der Bewerber hat folgende Mindestreferenz vorzulegen:  - Vorlage von mindestens einer Referenz über die Bereitstellung und Implementierung einer KI-gestützten Lösung zur automatisierten Dokumentenklassifikation und Datenextraktion einschließlich der strukturierten Übergabe der Ergebnisse an ein Fach-, E-Akten- oder vergleichbares Bestandssystem. Die Referenzlösung muss frühestens am 1. August 2024 produktiv in Betrieb genommen worden sein. Die produktive Inbetriebnahme muss abgeschlossen sein; der Betrieb, die Weiterentwicklung oder sonstige Leistungen des Referenzprojekts dürfen bei Ablauf der Teilnahmefrist noch an-dauern. Eine produktive Inbetriebnahme liegt vor, wenn die Referenzlösung im regulären Geschäftsbetrieb des Referenzgebers für den vorgesehenen fachlichen Zweck tatsächliche Geschäftsfälle verarbeitet und die Verarbeitungsergebnisse für die fachliche Bearbeitung verwendet werden. Reine Konzepte, Modelltests, Proofs of Concept, Demonstrationen und Pilotbetriebe erfüllen die Mindestanforderung nicht.  Hinweise: Die geforderten Referenzen sind von Bewerbergemeinschaften insgesamt nur einmal vorzulegen.  Die Erklärungen über die Referenzprojekte müssen jeweils folgende Angaben enthalten: - Bezeichnung des Auftrags, - Auftraggeber (Anschrift, Ansprechpartner, Telefonnummer), - kurze Beschreibung des Referenzprojekts, - Zeitraum der Leistungserbringung, - Datum der produktiven Inbetriebnahme, - produktive Inbetriebnahme, - Leistungsumfang (Art und Inhalt der Leistung), - kurze Projektbeschreibung in Wort und Bild (fakultativ), -  Vergleichbarkeit des Referenzprozesses -  Verarbeitungsvolumen der Referenzlösung.  Die Vorlage von mehr als insgesamt drei Referenzen ist nicht erwünscht.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>210.0</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Fortsetzung: Auswahl der Bewerber:  Die Bewertung der Teilnahmeanträge und somit die Auswahl der Bewerber, die zur Abgabe eines ersten Angebots aufgefordert werden, erfolgt in einem dreistufigen Verfahren.  Stufe 1: Zunächst wird geprüft, ob die Teilnahmeanträge den formalen Anforderungen genügen. Unvollständige Teilnahmeanträge, die trotz ggf. erfolgter Nachforderung von Unterlagen weiterhin unvollständig bleiben, können nicht berücksichtigt werden.  Stufe 2: Anschließend wird beurteilt, ob der Bewerber nach den vorgelegten Angaben und Nach-weisen grundsätzlich geeignet erscheint, die verfahrensgegenständlichen Leistungen ordnungsgemäß zu erbringen.   Stufe 3: Schließlich wird für den Fall, dass mehr als drei grundsätzlich geeignete Unternehmen sich beworben haben, unter den Bewerbern anhand von bis zu drei Referenzen, die jeweils die Mindestanforderungen gem. Ziffer 4.2.2 des Bewerbermemorandums sowie gem. Ziffer X  der Bekanntmachung erfüllen, beurteilt, wer unter den als grundsätzlich geeignet eingestuften Bewerbern im Vergleich zu den Mitbewerbern mit Blick auf die zu erbringende Leistung besonders geeignet erscheint und daher am weiteren Verfahren beteiligt werden soll. Um eine objektive Vergleichbarkeit und Bewertung der Bewerber zu gewährleisten, müssen die Referenzen zwingend gemäß der im Anhang befindlichen Vorlage (s. Anlage 1 "Teilnahmeformular") eingereicht werden.  Für die Auswahl werden jeweils nur maximal drei Referenzen für eine "KI gestützte Lösungen zur Dokumentenverarbeitung" berücksichtigt.  Im Rahmen der Auswahlentscheidung werden die bis zu drei Referenzen wie folgt bewer-tet:  Es können je Referenz maximal 70 Punkte (insgesamt maximal 210 Punkte) erzielt werden: Die Referenzen werden wie folgt bewertet:  Kriterium "Vergleichbarkeit des Referenzprozesses" (max. 15 Punkte) Es wird ausschließlich die höchste zutreffende Stufe gewertet. - KI-gestützte Bearbeitung von Anträgen auf gesetzlich  geregelte Sozialleistungen                                                        15 Punkte - KI-gestützte Bearbeitung sonstiger gesetzlich  geregelter Leistungs-,Förder- oder Verwaltungsverfahren  mit individueller Antrags- oder Anspruchsprüfung                      8 Punkte - Keine der vorgenannten Ausprägungen ist erfüllt                    0 Punkte  Gesetzlich geregelte Sozialleistungen sind Leistungen, die aufgrund sozialrechtlich geregelter Anspruchsvoraussetzungen durch einen öffentlichen Leistungsträger bearbeitet werden. Hierzu zählen insbesondere die in den Sozialgesetzbüchern vorgesehenen Leistungen sowie Elterngeld, Wohngeld und vergleichbare Sozialleistungen nach dem Recht anderer Staaten.  Sonstige gesetzlich geregelte Leistungs-, Förder- oder Verwaltungsverfahren sind Verfahren außerhalb der gesetzlich geregelten Sozialleistungen, bei denen auf Grundlage gesetzlicher oder sonstiger verbindlicher Vorgaben individuell über Anträge, Ansprüche, Leistungen, Förderungen oder vergleichbare Verwaltungsentscheidungen entschieden wird. Eine ausschließlich technische Dokumentenverarbeitung ohne individuelle fachliche Antrags- oder Anspruchsprüfung genügt nicht.  Kriterium "Verarbeitungsvolumen der Referenzlösung" (max. 15 Punkte) Bewertet wird die höchste Anzahl fachlich eigenständiger Fälle aus den unter dem Kriterium "Vergleichbarkeit des Referenzprozesses" genannten Antrags-, Anspruchs-, Leistungs-, Förder- oder Verwaltungsverfahren, welche die Referenzlösung innerhalb eines zusammenhängenden Zeitraums von zwölf Monaten im Produktivbetrieb verarbeitet hat. Es wird ausschließlich die höchste zutreffende Stufe gewertet.  - mindestens 10.000 Anträge oder Ansprüche innerhalb von zwölf zusammenhängenden Monaten                                                  15 Punkte - mindestens 5.000, aber weniger als 10.000 Anträge oder An- sprüche innerhalb von zwölf zusammenhängenden Monaten               8 Punkte - mindestens 1.000, aber weniger als 5.000 Anträge oder  Ansprüche innerhalb von zwölf zusammenhängenden Monaten          3 Punkte - weniger als 1.000 Anträge oder Ansprüche oder keine nach- vollziehbare Mengenangabe                                                                 0 Punkte  Für die Ermittlung des Verarbeitungsvolumens wird jeder fachlich eigenständige Fall inner-halb des angegebenen Zwölfmonatszeitraums nur einmal gezählt. Einzelne Dokumente, Seiten, Nachreichungen, Bearbeitungsschritte oder wiederholte Verarbeitungsläufe des-selben Falls werden nicht zusätzlich berücksichtigt.  Kriterium "Art und Inhalt der Leistung" (max. 40 Punkte)  Deckungsgrad: alle 5 Themenfelder:       40 Punkte Deckungsgrad: 4 Themenfelder:             32 Punkte Deckungsgrad: 3 Themenfelder:             24 Punkte Deckungsgrad: 2 Themenfelder:             16 Punkte Deckungsgrad: 1 Themenfeld:                  8 Punkte   Bewertet wird, welche der nachfolgenden auftragsbezogenen Erfahrungsmerkmale im jeweiligen Referenzprojekt tatsächlich umgesetzt wurden. Für jedes nachweislich erfüllte Themenfeld werden acht Punkte vergeben. Ein Themenfeld gilt nur als erfüllt, wenn sämtliche in dem jeweiligen Themenfeld genannten Bestandteile umgesetzt und anhand der Referenzbeschreibung nachvollziehbar belegt wurden. Eine lediglich geplante, angebotene oder technisch grundsätzlich mögliche Funktion gilt als nicht erfüllt.   Für den Fall, dass nach der vorstehend beschriebenen Vorgehensweise durch Punktegleichstand die vorgesehene Anzahl der zur Angebotsabgabe aufzufordernden Bieter überschritten wird, entscheidet das Los.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">nyk</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4YMZMWS4/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Vergabestelle behält sich vor, von den Bewerbern die Nachreichung, Vervollständigung und/oder Korrektur von Unterlagen im Rahmen des vergaberechtlich Zulässigen zu verlangen. Werden Unterlagen nicht fristgemäß nachgereicht, vervollständigt oder korrigiert, wird der Teilnahmeantrag ausgeschlossen. Ein Anspruch auf Nachforderung besteht nicht.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Für Bewerbergemeinschaften gilt: Es gibt keine Vorgabe hinsichtlich der Rechtsform. Erforderlich ist die Einreichung einer von allen Mitgliedern der Bewerbergemeinschaft unterzeichneten Erklärung folgenden Inhalts: (1) plausible Darstellung der Aufgabenteilung innerhalb der Bewerbergemeinschaft, (2) Benennung des bevollmächtigten Vertreters der Bewerbergemeinschaft, (3) Erklärung, dass dieser Vertreter die Mitglieder der Bewerbergemeinschaft während des gesamten Verfahrens rechtsverbindlich vertritt, (4) Erklärung, dass der bevollmächtigte Vertreter berechtigt ist, mit uneingeschränkter Wirkung für jedes Mitglied Zahlungen anzunehmen, (5) Erklärung, dass alle Mitglieder der Bewerbergemeinschaft im Vergabeverfahren sowie im Auftragsfall gesamtschuldnerisch haften.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>300.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Nähere Angaben zu den Zuschlagskriterien werden den ausgewählten Bietern mit Aufforderung zur Abgabe eines Angebots zur Verfügung gestellt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>300.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Funktionalität, Verarbeitungsqualität, Nachvollziehbarkeit  und Benutzerfreundlichkeit</cbc:Name>
+						<cbc:Description languageID="DEU">Nähere Angaben zu den Zuschlagskriterien werden den ausgewählten Bietern mit Aufforderung zur Abgabe eines Angebots zur Verfügung gestellt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>220.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Implementierungs-, Integrations- und Nachnutzungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Nähere Angaben zu den Zuschlagskriterien werden den ausgewählten Bietern mit Aufforderung zur Abgabe eines Angebots zur Verfügung gestellt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>80.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Qualitäts-, Test- und Weiterentwicklungskonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Nähere Angaben zu den Zuschlagskriterien werden den ausgewählten Bietern mit Aufforderung zur Abgabe eines Angebots zur Verfügung gestellt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>100.0</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Betriebs-, Support-, Sicherheits- und Datenschutzkonzept</cbc:Name>
+						<cbc:Description languageID="DEU">Nähere Angaben zu den Zuschlagskriterien werden den ausgewählten Bietern mit Aufforderung zur Abgabe eines Angebots zur Verfügung gestellt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4YMZMWS4</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind. Hinsichtlich der Information nicht berücksichtigter Bieter und Bewerber gelten die §§ 134, 135 GWB. Insbesondere gilt: Bieter deren Angebote für den Zuschlag nicht berücksichtigt werden sollen, werden vor dem Zuschlag gemäß § 134 GWB darüber informiert. Das gilt auch für Bewerber, denen keine Information über die Ablehnung ihrer Bewerbung zur Verfügung gestellt wurde, bevor die Mitteilung über die Zuschlagsentscheidung an die betroffenen Bieter ergangen ist. Ein Vertrag darf erst 15 Kalendertage nach Absendung dieser Information durch den Auftraggeber geschlossen werden; bei Übermittlung per Telefax oder auf elektronischem Wege beträgt diese Frist 10 Kalendertage. Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt. Es gelten die Bestimmungen des Gesetzes gegen Wettbewerbsbeschränkungen (GWB). Hinsichtlich der Einleitung von Nachprüfungsverfahren wird auf § 160 GWB verwiesen. Dieser lautet: (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein. (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Ein Unternehmen ist nicht antragsbefugt, soweit es sich auf die Unwirksamkeit einer Rechtsverordnung nach § 5 des Bundestariftreuegesetzes beruft, wenn die Unwirksamkeit dieser Rechtsverordnung nicht durch rechtskräftigen Beschluss nach § 98 Absatz 4 Satz 1 des Arbeitsgerichtsgesetzes festgestellt ist. Das Unternehmen hat darzulegen, dass ihm durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder zu entstehen droht. (3) Der Antrag ist unzulässig, soweit 1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt, 2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden, 4. mehr als 15 Kalendertage nach Eingang der Mi</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4YMZMWS4</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-16+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-05+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>5</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2026/3209</cbc:ID>
+			<cbc:Name languageID="DEU">L-Bank - Europaweite Vergabe einer KI-gestützten Lösung zur Verarbeitung von Elterngeldanträgen und Nachweisen im Verhandlungsverfahren mit Teilnahmewettbewerb nach VgV</cbc:Name>
+			<cbc:Description languageID="DEU">Die Lösung muss folgende Bestandteile umfassen: - KI-gestützte Verarbeitung von Anträgen und Nachweisen - Prüfung und Korrektur der Verarbeitungsergebnisse - Integration in die Systemlandschaft der L-Bank - Bereitstellung und Betrieb - Implementierungs-, Einführungs- und Weiterentwicklungsleistungen  Die Lösung soll eine Nachnutzung durch weitere öffentliche Stellen, Förderinstitute oder zuständige Behörden ermöglichen. Die Lösung ist hierzu technisch und lizenzrechtlich so auszugestalten, dass weitere Landesförderinstitute, Elterngeldstellen oder andere Behörden als zusätzliche Nutzer eingebunden werden können. Hierzu müssen fachliche Regeln, Dokumenttypen, Datenfelder und Konfigurationen mandanten- oder verfahrensspezifisch ausgestaltet werden können.  Der Auftragnehmer hat der L-Bank die hierfür erforderlichen Nutzungs- Weitergabe- und Unterlizenzierungsrechte einzuräumen. Die L-Bank muss insbesondere berechtigt sein, weiteren öffentlichen Stellen Nutzungsrechte an der Lösung einzuräumen sowie diesen den Zugang zur Lösung zu ermöglichen  Der Vertragsschluss ist bis Ende März 2027 vorgesehen. Der Vertrag soll am 01. April 2027 beginnen und eine Laufzeit von 24 Monaten mit optionaler Verlängerung von jeweils einem Jahr haben, sofern er nicht sechs Monate vor Ablauf gekündigt wird. Die initiale Vertragslaufzeit von 24 Monaten umfasst die Projektumsetzung einschließlich Anpassung und Einführung sowie den anschließenden Produktivbetrieb.   Nähere Einzelheiten ergeben sich aus den Vergabeunterlagen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">inn-pur</cbc:ProcurementTypeCode>
+				<cbc:ProcurementType languageID="DEU">KI-Lösung</cbc:ProcurementType>
+			</cac:ProcurementAdditionalType>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="innovative-acquisition">proc-innov</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72210000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48921000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">24</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>99</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Der Vertrag kann nach der Grundlaufzeit mehrmals um jeweils 12 Monate verlängert werden.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

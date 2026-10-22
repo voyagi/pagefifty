@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://rptu.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Rheinland-Pfälzische Technische Universität Kaiserslautern-Landau</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Gottlieb-Daimler-Straße 47</cbc:StreetName>
+									<cbc:CityName>Kaiserslautern</cbc:CityName>
+									<cbc:PostalZone>67663</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB32</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>06312052221</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://mwtek.rlp.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Rheinland-Pfalz beim Ministerium für Wirtschaft, Tourismus, Energie und Klima</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Stiftsstraße 9</cbc:StreetName>
+									<cbc:CityName>Mainz</cbc:CityName>
+									<cbc:PostalZone>55116</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEB35</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>06131162234</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00723361-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">203/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-20+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">6e683448-2eb1-46ef-b9a0-76e3cd996725</cbc:ID>
+	<cbc:ContractFolderID>aaa71e43-2a84-4902-a7e9-4e75fec44c90</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-19+02:00</cbc:IssueDate>
+	<cbc:IssueTime>12:08:36+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-19+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Die Vergabestelle weist ausdrücklich auf die Rügeobliegenheiten der Unternehmen/Bewerber/Bieter sowie auf die Präklusionsregelungen gemäß § 160 Abs. 3 S. 1 Nr. 1 bis Nr. 4 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__160.html) hinsichtlich der Behauptung von Verstößen gegen die Bestimmungen über das Vergabeverfahren hin.
+
+§ 160 Abs. 3 GWB
+Der Antrag ist unzulässig, soweit 
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 bleibt unberührt.
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten First zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind,
+5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.
+
+
+Die Vergabestelle wird gemäß § 134 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__134.html) die Bieter, deren Angebote nicht berücksichtigt werden sollen, hiervon vor Zuschlagserteilung nach Maßgabe des § 134 Abs. 1 GWB informieren. Bei schriftlicher Information darf der Vertrag erst 15 Kalendertage, bei Information auf elektronischem Weg oder per Fax erst 10 Kalendertage nach Absendung der Information geschlossen werden (§ 134 Abs. 2 S. 1 und S. 2 GWB). Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber, auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an (§ 134 Abs. 2 S. 3 GWB).</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+			<cac:MediationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:MediationParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:Language>
+			<cbc:ID>ENG</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026-RPTU-2108</cbc:ID>
+		<cbc:Name languageID="DEU">GPU-Server für KI-Inferenz, Netzwerkspeichersystem und Web-Server</cbc:Name>
+		<cbc:Description languageID="DEU">Kauf von fabrikneuer IT-Hardware in drei Losen
+Los 1 GPU-Server für KI-Inferenz
+Los 2 Netzwerkspeichersystem
+Los 3 Web-Server</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXTGYYDDY61BUTJD#
+
+
+1. Die Unterlagen werden ausschließlich über das Deutsche Vergabeportal DTVP in elektronischer Form bereitgestellt.
+
+2. Bieterfragen sollen über das Deutsche Vergabeportal DTVP an die ausschreibende Stelle erfolgen. Nur so ist sichergestellt, dass auch bei Abwesenheit des federführenden Sachbearbeiters eine Bearbeitung zeitnah erfolgt.
+
+3. Hinweis zur Mustererklärung 3 LTTG (Landestariftreuegesetz Rheinland-Pfalz). Die Erklärung über die Zahlung des Mindesttariflohns ist nur durch diejenige Bieter einzureichen, die die Arbeitsleistungen in Deutschland ausführen oder durch Subunternehmer mit Sitz in Deutschland ausführen lassen. Bieter, die Ihren Sitz in einem anderen EU-Mitgliedstaat haben oder die die Leistung durch ein Unternehmen mit Sitz in einem anderen EU-Mitgliedstaat ausführen lassen, sind nicht verpflichtet die Erklärung abzugeben.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48821000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>RPTU Kaiserslautern-Landau Lehrstuhl Funkkommunikation und Navigation, Paul-Ehrlich-Straße 11</cbc:StreetName>
+				<cbc:CityName>Kaiserslautern</cbc:CityName>
+				<cbc:PostalZone>67663</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEB32</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zur Eignung (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses ganz bereits im Jahr 2026 zu zahlen, gegen Rechnungstellung und Übergabe einer unbefristeten Bankbürgschaft. Die Bürgschaft wird nach vollständiger, vertragsgerechter Lieferung und Abnahme zurückgegeben.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eine Nachforderung von Erklärungen, Unterlagen und Nachweisen ist nicht ausgeschlossen.
+
+Bei fehlenden oder unvollständigen Unterlagen (Erklärungen und Nachweisen) behält sich die Vergabestelle vor, nach pflichtgemäßem Ermessen von den Regelungen des § 56 VgV Gebrauch zu machen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Der Auftragnehmer muss mit den angebotenen Produkten vertraut sein oder über einen direkten Kontakt zum Hersteller verfügen, um technische Rückfragen beantworten und Konfigurations- sowie Anwendungsfragen während der Projektlaufzeit unterstützen zu können.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">25</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Vergabestelle weist ausdrücklich auf die Rügeobliegenheiten der Unternehmen/Bewerber/Bieter sowie auf die Präklusionsregelungen gemäß § 160 Abs. 3 S. 1 Nr. 1 bis Nr. 4 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__160.html) hinsichtlich der Behauptung von Verstößen gegen die Bestimmungen über das Vergabeverfahren hin.
+
+§ 160 Abs. 3 GWB
+Der Antrag ist unzulässig, soweit 
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 bleibt unberührt.
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten First zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind,
+5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.
+
+
+Die Vergabestelle wird gemäß § 134 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__134.html) die Bieter, deren Angebote nicht berücksichtigt werden sollen, hiervon vor Zuschlagserteilung nach Maßgabe des § 134 Abs. 1 GWB informieren. Bei schriftlicher Information darf der Vertrag erst 15 Kalendertage, bei Information auf elektronischem Weg oder per Fax erst 10 Kalendertage nach Absendung der Information geschlossen werden (§ 134 Abs. 2 S. 1 und S. 2 GWB). Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber, auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an (§ 134 Abs. 2 S. 3 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:Language>
+				<cbc:ID>ENG</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">GPU-Server für KI-Inferenz</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand von Los 1 ist ein dedizierter GPU-Server als Inferenz-Backend (des in Abschnitt 2 beschriebenen) RAG-Systems. Der Server wird teilbestückt beschafft und muss ohne Austausch von Kernkomponenten (Gehäuse, Netzteile, Kühlung, Riser, Verkabelung) auf den Vollausbau mit acht Grafikprozessoren aufgerüstet werden können. 
+Konfiguration siehe Leistungsbeschreibung.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses komplett bereits im Jahr 2026 zu zahlen, gegen Übergabe einer unbefristeten Bankbürgschaft.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48821000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>RPTU Kaiserslautern-Landau Lehrstuhl Funkkommunikation und Navigation, Paul-Ehrlich-Straße 11</cbc:StreetName>
+					<cbc:CityName>Kaiserslautern</cbc:CityName>
+					<cbc:PostalZone>67663</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB32</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="DAY">120</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Optionen werden nur zusammen mit dem Grundgerät vergeben und sind gesondert auszupreisen.
+- Option 1 - Netzwerk 100 GbE: Ausführung bzw. Nachrüstsatz mit 2x 100 GbE (QSFP); Aufpreis ist anzugeben.
+- Option 2 - Supportverlängerung: Verlängerung des Hardware-Supports gemäß Abschnitt 7.1 auf 60 Monate; Aufpreis ist anzugeben.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zur Eignung (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses ganz bereits im Jahr 2026 zu zahlen, gegen Rechnungstellung und Übergabe einer unbefristeten Bankbürgschaft. Die Bürgschaft wird nach vollständiger, vertragsgerechter Lieferung und Abnahme zurückgegeben.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eine Nachforderung von Erklärungen, Unterlagen und Nachweisen ist nicht ausgeschlossen.
+
+Bei fehlenden oder unvollständigen Unterlagen (Erklärungen und Nachweisen) behält sich die Vergabestelle vor, nach pflichtgemäßem Ermessen von den Regelungen des § 56 VgV Gebrauch zu machen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Der Auftragnehmer muss mit den angebotenen Produkten vertraut sein oder über einen direkten Kontakt zum Hersteller verfügen, um technische Rückfragen beantworten und Konfigurations- sowie Anwendungsfragen während der Projektlaufzeit unterstützen zu können.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">25</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Vergabestelle weist ausdrücklich auf die Rügeobliegenheiten der Unternehmen/Bewerber/Bieter sowie auf die Präklusionsregelungen gemäß § 160 Abs. 3 S. 1 Nr. 1 bis Nr. 4 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__160.html) hinsichtlich der Behauptung von Verstößen gegen die Bestimmungen über das Vergabeverfahren hin.
+
+§ 160 Abs. 3 GWB
+Der Antrag ist unzulässig, soweit 
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 bleibt unberührt.
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten First zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind,
+5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.
+
+
+Die Vergabestelle wird gemäß § 134 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__134.html) die Bieter, deren Angebote nicht berücksichtigt werden sollen, hiervon vor Zuschlagserteilung nach Maßgabe des § 134 Abs. 1 GWB informieren. Bei schriftlicher Information darf der Vertrag erst 15 Kalendertage, bei Information auf elektronischem Weg oder per Fax erst 10 Kalendertage nach Absendung der Information geschlossen werden (§ 134 Abs. 2 S. 1 und S. 2 GWB). Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber, auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an (§ 134 Abs. 2 S. 3 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:Language>
+				<cbc:ID>ENG</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Netzwerkspeichersystem (NAS)</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand von Los 2 ist ein Rack-Netzwerkspeichersystem für die interne Datenablage (Rohdaten der Wissensbasis, Modell-Artefakte) und als Ziel für Datensicherungen der Server, sowie für den internen Betrieb einer Nextcloud-Instanz zur Dateiablage und zum Dateiaustausch innerhalb des Hochschulnetzes einschließlich der zugehörigen Sicherungen. Das System wird ausschließlich im internen Netz betrieben.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses komplett bereits im Jahr 2026 zu zahlen, gegen Übergabe einer unbefristeten Bankbürgschaft.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48821000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>RPTU Kaiserslautern-Landau Lehrstuhl Funkkommunikation und Navigation, Paul-Ehrlich-Straße 11</cbc:StreetName>
+					<cbc:CityName>Kaiserslautern</cbc:CityName>
+					<cbc:PostalZone>67663</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB32</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="DAY">120</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">- Option 1 - Erweiterung: Richtpreis je zusätzlichem Datenträger der angebotenen Baureihe (unverbindlich, rein informativ).
+- Option 2 - Supportverlängerung: Verlängerung des Supports gemäß Abschnitt 7.1 auf 60 Monate; Aufpreis ist anzugeben.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung zur Eignung (Mit dem Angebot; Mittels Eigenerklärung):</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses ganz bereits im Jahr 2026 zu zahlen, gegen Rechnungstellung und Übergabe einer unbefristeten Bankbürgschaft. Die Bürgschaft wird nach vollständiger, vertragsgerechter Lieferung und Abnahme zurückgegeben.</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eine Nachforderung von Erklärungen, Unterlagen und Nachweisen ist nicht ausgeschlossen.
+
+Bei fehlenden oder unvollständigen Unterlagen (Erklärungen und Nachweisen) behält sich die Vergabestelle vor, nach pflichtgemäßem Ermessen von den Regelungen des § 56 VgV Gebrauch zu machen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Der Auftragnehmer muss mit den angebotenen Produkten vertraut sein oder über einen direkten Kontakt zum Hersteller verfügen, um technische Rückfragen beantworten und Konfigurations- sowie Anwendungsfragen während der Projektlaufzeit unterstützen zu können.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">25</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Vergabestelle weist ausdrücklich auf die Rügeobliegenheiten der Unternehmen/Bewerber/Bieter sowie auf die Präklusionsregelungen gemäß § 160 Abs. 3 S. 1 Nr. 1 bis Nr. 4 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__160.html) hinsichtlich der Behauptung von Verstößen gegen die Bestimmungen über das Vergabeverfahren hin.
+
+§ 160 Abs. 3 GWB
+Der Antrag ist unzulässig, soweit 
+1. Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 bleibt unberührt.
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten First zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind,
+5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 vorliegt.
+
+
+Die Vergabestelle wird gemäß § 134 GWB (siehe z.B.: https://www.gesetze-im-internet.de/gwb/__134.html) die Bieter, deren Angebote nicht berücksichtigt werden sollen, hiervon vor Zuschlagserteilung nach Maßgabe des § 134 Abs. 1 GWB informieren. Bei schriftlicher Information darf der Vertrag erst 15 Kalendertage, bei Information auf elektronischem Weg oder per Fax erst 10 Kalendertage nach Absendung der Information geschlossen werden (§ 134 Abs. 2 S. 1 und S. 2 GWB). Die Frist beginnt am Tag nach der Absendung der Information durch den Auftraggeber, auf den Tag des Zugangs beim betroffenen Bieter und Bewerber kommt es nicht an (§ 134 Abs. 2 S. 3 GWB).</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:Language>
+				<cbc:ID>ENG</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>3</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>3</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXTGYYDDY61BUTJD</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Web-Server (öffentliche Webdienste)</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand von Los 3 ist ein kompakter Rack-Server für die öffentlich erreichbaren Webdienste des Projekts (Projekt-Website, interaktive Webplattform, Demonstrator-Zugänge). Auf dem System wird ein Webserver mit Reverse-Proxy (Apache) betrieben, der Anfragen aus dem Internet entgegennimmt und an die internen Dienste weiterleitet. Der Server ist das einzige von außen erreichbare System und wird in einem eigenen Netzsegment (DMZ) betrieben; er hält selbst keine schützenswerten Nutzdaten.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:other-sme#
+
+
+Zahlung im Haushaltsjahr 2026 gegen Sicherheitsleistung: Kann die Lieferung eines Loses nicht bis zum 31.12.2026 erfolgen, ist der Auftraggeber berechtigt, den Auftragswert des betroffenen Loses komplett bereits im Jahr 2026 zu zahlen, gegen Übergabe einer unbefristeten Bankbürgschaft.</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48800000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48821000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>RPTU Kaiserslautern-Landau Lehrstuhl Funkkommunikation und Navigation, Paul-Ehrlich-Straße 11</cbc:StreetName>
+					<cbc:CityName>Kaiserslautern</cbc:CityName>
+					<cbc:PostalZone>67663</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEB32</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="DAY">120</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">- Option 1 - Supportverlängerung: Verlängerung des Supports gemäß Abschnitt 7.1 auf 60 Monate; Aufpreis ist anzugeben.</cbc:OptionsDescription>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

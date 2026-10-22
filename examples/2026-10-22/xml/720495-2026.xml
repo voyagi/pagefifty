@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.lubw.baden-wuerttemberg.de/startseite</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">LUBW Landesanstalt für Umwelt Baden-Württemberg</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76185</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>0204:08-A4062-89</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://rpk.baden-wuerttemberg.de/abt1/referat-15-vergabekammer/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Baden-Württemberg beim Regierungspräsidium Karlsruhe</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Kapellenstraße 17</cbc:StreetName>
+									<cbc:CityName>Karlsruhe</cbc:CityName>
+									<cbc:PostalZone>76131</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE122</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>08-A9866-40</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00720495-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">202/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-19+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">1ebb5b37-1e23-4d0e-9439-bc184f386ebe</cbc:ID>
+	<cbc:ContractFolderID>e586f0a2-f13e-45b1-addf-24de3ee0aefa</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-15+02:00</cbc:IssueDate>
+	<cbc:IssueTime>15:11:50+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-15+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://www.lubw.baden-wuerttemberg.de/angebote/e-vergabe</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-ra</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">env-pro</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">LUBW-2026-0024</cbc:ID>
+		<cbc:Name languageID="DEU">Rahmenvertrag Modernisierung Umweltfachanwendungen</cbc:Name>
+		<cbc:Description languageID="DEU">Rahmenvertrag zur Modernisierung von Umweltfachanwendungen</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXUEYY9DYHD1U9C6#
+
+
+- Darstellung des Bieters, insbesondere seinen Namen, Rechtsform, Ansprechpartner, Anschrift und Kontaktdaten, Größenklasse des Unternehmens, sowie Angabe der Umsatzsteuer-ID und der Nationalität des Eigentümers (Anlage 1).
+
+- Für den Fall, dass die Leistung als Bietergemeinschaft (Anlage 1) angeboten wird, ist mit dem Angebot zusätzlich eine Erklärung abzugeben, in der jeweils die Mitglieder sowie eines ihrer Mitglieder als bevollmächtigten Vertreter für den Abschluss und die Durchführung des Vertrags benannt sind. Die Erklärung ist von allen Mitgliedern zu unterzeichnen.
+
+- Eigenerklärung, dass kein zwingender Ausschlussgrund gem. § 123 Abs. 1 bis 3 sowie Abs. 4 Nr. 1 und § 124 Abs. 1 Nr. 2 GWB vorliegt (siehe Anlage 2)
+
+- Eigenerklärung, dass kein fakultativer Ausschlussgrund gem. § 124 GWB vorliegt (Anlage 3).
+
+- Eigenerklärung, dass kein Ausschlussgrund vorliegt (Anlage 4).
+
+Weitere Nachweise:
+Angaben des Bieters zur Person der Projektleitung sowie den mit der Leistungserbringung beauftragten Personen (Anlage 9). Alle Abstimmungen trifft der Auftraggeber in der Folge mit der Projektleitung. Die Informationsweiterleitung auf Seiten des Auftragnehmers liegt bei der Projektleitung (siehe C 2.5).
+
+Nachweise, die die Zuschlagskriterien betreffen:
+Die Projektleitung und die für die Leistungserbringung eingesetzten Personen sind in Anlage 9 zu benennen und für jede dieser genannten Personen ist die Anlage 10.3 (Los 1-3) bzw. 10.5 (Los 4-5) separat abzugeben. Des Weiteren ist für jede in Anlage 9 benannte Person zwingend ein "Kurz-CV" als Anlage beizufügen bzw. bei weiteren, einzusetzenden Personen vor dem Einzelabruf dem Auftraggeber vorzulegen, aus dem auf maximal 3 DIN A4-Seiten die geforderten Qualifikationen, Kenntnisse und Fähigkeiten ableitbar und erkennbar sind. Auf die Einreichung von zusätzlichen Informationen, die für die Angebotsabgabe nicht relevant sind, wird gebeten zu verzichten.
+
+Ist für eine Projektleitung oder eine mit der Leistungserbringung beauftrage Person eines Loses der Nachweis einer Zertifizierung als Bewertungskriterium in A 17.2.2 bzw. A 17.3.2 definiert, so ist das Zertifikat in der Anlage 10.3 bzw. 10.5 anzugeben und das angegebene Zertifikat ist mit dem Angebot einzureichen.
+Für Nachweise im Bereich Projektmanagement werden die folgenden Zertifikate akzeptiert:
+- Certified Associate in Project Management (CAPM)® bzw. 
+- IPMA® Level D bzw.
+- PRINCE2® Foundation bzw.
+- PRINCE2 Agile® Foundation
+Für Nachweise in den Bereichen IT-Sicherheit und / oder agile Methoden werden die folgenden Zertifikate akzeptiert:
+- IREB CPRE oder Agile RE Institute - CARS
+- Scrum Master oder Scrum Product Owner
+- ISO 27001 Foundation, Security Officer oder Auditor
+- IT Service Owner nach ITIL v4
+- BSI-Grundschutz Berater 
+- CSSLP (Certified Secure Software Lifecycle Professional)
+
+Als Referenzprojekte werden IT-Projekte im Bereich Softwareentwicklung, Softwareeinführung, Softwarepflege o. Ä. verstanden. Es werden nur Referenzprojekte der letzten fünf Jahre berücksichtigt.
+Für jedes Referenzprojekten sind die folgenden Angaben (soweit diesen Informationen keine Geheimhaltungsprinzipien entgegenstehen) zu hinterlegen:
+
+- Umfang der Erfahrung (Monate)
+- Referenzprojekt Nummer
+- Beschreibung der Tätigkeit der Person im Referenzprojekt (Anteil, Aufgabe) entsprechend des geforderten Kriteriums
+- Projektname und inhaltliche Gesamtdarstellung des Projektes
+- Name der Projektleitung
+- Bearbeitungszeitraum (2021 bis heute)
+- Name und Kontaktdaten des Auftraggebers
+Die Referenzprojekte sollen die in A 17.2.1 (Los 1-3) bzw. A 17.3.1 (Los 4-5) genannten Voraussetzungen / Kenntnisse nachweisen. Die erforderlichen Voraussetzungen / Kenntnisse können sich je nach Los unterscheiden.
+Der Nachweis erfolgt gemäß Anlage 10.2 (Los 1-3) bzw. Anlage 10.4 (Los 4-5). In der Anlage ist jeweils anzugeben, welches Projekt für welchen Referenzbereich berücksichtigt werden soll.
+
+Preis: Die für die Leistungserbringung angesetzten Stundensätze für die Projektleitung und die zur Leistungserbringung eingesetzten Personen sind in der Anlage 7 des Leistungsverzeichnisses einzutragen.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+				<cbc:CityName>Karlsruhe</cbc:CityName>
+				<cbc:PostalZone>76185</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+		<cac:RealizedLocation>
+			<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+			<cac:Address>
+				<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+				<cbc:CityName>Stuttgart</cbc:CityName>
+				<cbc:PostalZone>70182</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Unterauftragnehmer und Eignungsleihe (Anlage 1) (Mit dem Angebot; Mittels Eigenerklärung): Angaben des Bieters, welche Teile des Auftrags das Unternehmen / der Bieter unter Umständen als Unteraufträge zu vergeben beabsichtigt (Anlage 1)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung bei fehlender Eintragung im Berufs-/Handelsregister (Mit dem Angebot; Mittels Eigenerklärung): Besteht keine Eintragungspflicht ins Berufs- /Handelsregister, ist dem Angebot ein schriftlicher Hinweis / Eigenerklärung beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über abzuschließende Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Eigenerklärung): Im Falle, dass der Bieter über keinen aktuellen Nachweis einer Betriebs- oder Berufshaftpflichtversicherung verfügt, hat der Bieter eine Eigenerklärung abzugeben, dass im Auftragsfalle vor Zuschlagserteilung eine entsprechende Versicherung abgeschlossen wird. Der Nachweis über die abgeschlossene Versicherung ist zu dem von der Vergabestelle/dem Auftraggeber geforderten Zeitpunkt vorzulegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist (Mit dem Angebot; Mittels Eigenerklärung): Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Berufsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Berufsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Handelsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Handelsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung): Aktueller Nachweis einer Betriebs- oder Berufshaftpflichtversicherung mit Angabe der Versicherungshöhe.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen über früher ausgeführte Dienstleistungsaufträge (Anlage 10-1) (Mit dem Angebot; Mittels Eigenerklärung): Die berufliche Leistungsfähigkeit ist durch Referenzen über früher ausgeführte Dienstleistungsaufträge in Form einer Liste (Anlage 10-1) der in den letzten höchstens fünf Jahren vor Ablauf der Angebotsfrist (vgl. Abschnitt A 7 der Vergabeunterlagen) erbrachten wesentlichen Dienstleistungen, die mit der zu vergebenden Leistung vergleichbar sind, nachzuweisen. Es wird darauf hingewiesen, dass auch einschlägige Liefer- oder Dienstleistungen berücksichtigt werden, die mehr als drei, jedoch höchstens fünf Jahre zurückliegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Verpflichtungserklärung Unterauftragnehmer und Eignungsleihe (Mit dem Angebot; Mittels Eigenerklärung): Der Bieter kann für die wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen und Unterauftragnehmer in Anspruch nehmen, wenn er nachweist, dass ihm für die Erfüllung des Auftrags die erforderlichen Mittel tatsächlich zur Verfügung stehen werden.
+
+Nachweis durch eine Verpflichtungserklärung dieser Unternehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Unterlagen nachzufordern. Ein Anspruch auf Nachforderung besteht nicht. Unvollständige Angebote können vom Wettbewerb ausgeschlossen werden. Unterlagen, die vom Auftraggeber nach Angebotsabgabe verlangt / nachgefordert werden, sind zu dem vom Auftraggeber bestimmten Zeitpunkt einzureichen. Werden die nachgeforderten Unterlagen nicht vollständig fristgerecht vorgelegt, wird das Angebot ausgeschlossen. 
+
+Fehlende Angaben, die die Preise betreffen, können von der LUBW nicht nachgefordert werden. 
+
+Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Daher ist es besonders wichtig, auf die Vollständigkeit Ihres Angebotes inkl. aller geforderten Erklärungen, Nachweise etc. zu achten (siehe Abschnitt A 9 der Vergabeunterlagen).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Hinweis zur Tariftreue- oder Mindestentgelterklärung: Gemäß dem Landestariftreue- und Mindestlohngesetz (LTMG) dürfen öffentliche Auftraggeber in Baden-Württemberg Aufträge ab einem geschätzten Auftragswert von 20.000 EUR (netto) nur an Unternehmen vergeben, die bei der Angebotsabgabe eine schriftliche Tariftreue- oder Mindestentgelterklärung abgegeben haben. Die Verpflichtungserklärungen sind den Vergabeunterlagen als Anlage 5 beigefügt. Die Verpflichtungserklärungen sind auch für Nachunternehmen und Verleihunternehmen vorzulegen, sofern der Auftragswert, den das Nachunternehmen oder Verleihunternehmen erbringt, 10.000 EUR (netto) übersteigt. - Verpflichtungserklärung gemäß dem LTMG (Anlage 5).
+
+- Einhaltung der geltenden rechtlichen Verpflichtungen: Dem Angebot ist die Eigenerklärung über die Einhaltung rechtlicher Verpflichtungen (Anlage 6) bei der Ausführung des öffentlichen Auftrags hinzuzufügen. 
+
+Weitere Bedingungen stehen unter Verfahren / Sonstiges</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">92</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Modernisierung und Neuerstellung von Umweltfachanwendungen (WIBAS/NAIS) - Los 1</cbc:Name>
+			<cbc:Description languageID="DEU">Modernisierung und Neuerstellung von Umweltfachanwendungen (WIBAS/NAIS)
+(siehe Vergabeunterlagen - Teil C Leistungsbeschreibung)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">4700800.00</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:PostalZone>76185</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70182</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Unterauftragnehmer und Eignungsleihe (Anlage 1) (Mit dem Angebot; Mittels Eigenerklärung): Angaben des Bieters, welche Teile des Auftrags das Unternehmen / der Bieter unter Umständen als Unteraufträge zu vergeben beabsichtigt (Anlage 1)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung bei fehlender Eintragung im Berufs-/Handelsregister (Mit dem Angebot; Mittels Eigenerklärung): Besteht keine Eintragungspflicht ins Berufs- /Handelsregister, ist dem Angebot ein schriftlicher Hinweis / Eigenerklärung beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über abzuschließende Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Eigenerklärung): Im Falle, dass der Bieter über keinen aktuellen Nachweis einer Betriebs- oder Berufshaftpflichtversicherung verfügt, hat der Bieter eine Eigenerklärung abzugeben, dass im Auftragsfalle vor Zuschlagserteilung eine entsprechende Versicherung abgeschlossen wird. Der Nachweis über die abgeschlossene Versicherung ist zu dem von der Vergabestelle/dem Auftraggeber geforderten Zeitpunkt vorzulegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist (Mit dem Angebot; Mittels Eigenerklärung): Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Berufsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Berufsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Handelsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Handelsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung): Aktueller Nachweis einer Betriebs- oder Berufshaftpflichtversicherung mit Angabe der Versicherungshöhe.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen über früher ausgeführte Dienstleistungsaufträge (Anlage 10-1) (Mit dem Angebot; Mittels Eigenerklärung): Die berufliche Leistungsfähigkeit ist durch Referenzen über früher ausgeführte Dienstleistungsaufträge in Form einer Liste (Anlage 10-1) der in den letzten höchstens fünf Jahren vor Ablauf der Angebotsfrist (vgl. Abschnitt A 7 der Vergabeunterlagen) erbrachten wesentlichen Dienstleistungen, die mit der zu vergebenden Leistung vergleichbar sind, nachzuweisen. Es wird darauf hingewiesen, dass auch einschlägige Liefer- oder Dienstleistungen berücksichtigt werden, die mehr als drei, jedoch höchstens fünf Jahre zurückliegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Verpflichtungserklärung Unterauftragnehmer und Eignungsleihe (Mit dem Angebot; Mittels Eigenerklärung): Der Bieter kann für die wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen und Unterauftragnehmer in Anspruch nehmen, wenn er nachweist, dass ihm für die Erfüllung des Auftrags die erforderlichen Mittel tatsächlich zur Verfügung stehen werden.
+
+Nachweis durch eine Verpflichtungserklärung dieser Unternehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Unterlagen nachzufordern. Ein Anspruch auf Nachforderung besteht nicht. Unvollständige Angebote können vom Wettbewerb ausgeschlossen werden. Unterlagen, die vom Auftraggeber nach Angebotsabgabe verlangt / nachgefordert werden, sind zu dem vom Auftraggeber bestimmten Zeitpunkt einzureichen. Werden die nachgeforderten Unterlagen nicht vollständig fristgerecht vorgelegt, wird das Angebot ausgeschlossen. 
+
+Fehlende Angaben, die die Preise betreffen, können von der LUBW nicht nachgefordert werden. 
+
+Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Daher ist es besonders wichtig, auf die Vollständigkeit Ihres Angebotes inkl. aller geforderten Erklärungen, Nachweise etc. zu achten (siehe Abschnitt A 9 der Vergabeunterlagen).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Hinweis zur Tariftreue- oder Mindestentgelterklärung: Gemäß dem Landestariftreue- und Mindestlohngesetz (LTMG) dürfen öffentliche Auftraggeber in Baden-Württemberg Aufträge ab einem geschätzten Auftragswert von 20.000 EUR (netto) nur an Unternehmen vergeben, die bei der Angebotsabgabe eine schriftliche Tariftreue- oder Mindestentgelterklärung abgegeben haben. Die Verpflichtungserklärungen sind den Vergabeunterlagen als Anlage 5 beigefügt. Die Verpflichtungserklärungen sind auch für Nachunternehmen und Verleihunternehmen vorzulegen, sofern der Auftragswert, den das Nachunternehmen oder Verleihunternehmen erbringt, 10.000 EUR (netto) übersteigt. - Verpflichtungserklärung gemäß dem LTMG (Anlage 5).
+
+- Einhaltung der geltenden rechtlichen Verpflichtungen: Dem Angebot ist die Eigenerklärung über die Einhaltung rechtlicher Verpflichtungen (Anlage 6) bei der Ausführung des öffentlichen Auftrags hinzuzufügen. 
+
+Weitere Bedingungen stehen unter Verfahren / Sonstiges</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">92</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Modernisierung und Neuerstellung von Umweltfachanwendungen (WIBAS/NAIS) - Los 2</cbc:Name>
+			<cbc:Description languageID="DEU">Modernisierung und Neuerstellung von Umweltfachanwendungen (WIBAS/NAIS)
+(siehe Vergabeunterlagen - Teil C Leistungsbeschreibung)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">881400.00</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:PostalZone>76185</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70182</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Unterauftragnehmer und Eignungsleihe (Anlage 1) (Mit dem Angebot; Mittels Eigenerklärung): Angaben des Bieters, welche Teile des Auftrags das Unternehmen / der Bieter unter Umständen als Unteraufträge zu vergeben beabsichtigt (Anlage 1)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung bei fehlender Eintragung im Berufs-/Handelsregister (Mit dem Angebot; Mittels Eigenerklärung): Besteht keine Eintragungspflicht ins Berufs- /Handelsregister, ist dem Angebot ein schriftlicher Hinweis / Eigenerklärung beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über abzuschließende Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Eigenerklärung): Im Falle, dass der Bieter über keinen aktuellen Nachweis einer Betriebs- oder Berufshaftpflichtversicherung verfügt, hat der Bieter eine Eigenerklärung abzugeben, dass im Auftragsfalle vor Zuschlagserteilung eine entsprechende Versicherung abgeschlossen wird. Der Nachweis über die abgeschlossene Versicherung ist zu dem von der Vergabestelle/dem Auftraggeber geforderten Zeitpunkt vorzulegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist (Mit dem Angebot; Mittels Eigenerklärung): Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Berufsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Berufsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Handelsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Handelsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung): Aktueller Nachweis einer Betriebs- oder Berufshaftpflichtversicherung mit Angabe der Versicherungshöhe.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen über früher ausgeführte Dienstleistungsaufträge (Anlage 10-1) (Mit dem Angebot; Mittels Eigenerklärung): Die berufliche Leistungsfähigkeit ist durch Referenzen über früher ausgeführte Dienstleistungsaufträge in Form einer Liste (Anlage 10-1) der in den letzten höchstens fünf Jahren vor Ablauf der Angebotsfrist (vgl. Abschnitt A 7 der Vergabeunterlagen) erbrachten wesentlichen Dienstleistungen, die mit der zu vergebenden Leistung vergleichbar sind, nachzuweisen. Es wird darauf hingewiesen, dass auch einschlägige Liefer- oder Dienstleistungen berücksichtigt werden, die mehr als drei, jedoch höchstens fünf Jahre zurückliegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Verpflichtungserklärung Unterauftragnehmer und Eignungsleihe (Mit dem Angebot; Mittels Eigenerklärung): Der Bieter kann für die wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen und Unterauftragnehmer in Anspruch nehmen, wenn er nachweist, dass ihm für die Erfüllung des Auftrags die erforderlichen Mittel tatsächlich zur Verfügung stehen werden.
+
+Nachweis durch eine Verpflichtungserklärung dieser Unternehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Unterlagen nachzufordern. Ein Anspruch auf Nachforderung besteht nicht. Unvollständige Angebote können vom Wettbewerb ausgeschlossen werden. Unterlagen, die vom Auftraggeber nach Angebotsabgabe verlangt / nachgefordert werden, sind zu dem vom Auftraggeber bestimmten Zeitpunkt einzureichen. Werden die nachgeforderten Unterlagen nicht vollständig fristgerecht vorgelegt, wird das Angebot ausgeschlossen. 
+
+Fehlende Angaben, die die Preise betreffen, können von der LUBW nicht nachgefordert werden. 
+
+Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Daher ist es besonders wichtig, auf die Vollständigkeit Ihres Angebotes inkl. aller geforderten Erklärungen, Nachweise etc. zu achten (siehe Abschnitt A 9 der Vergabeunterlagen).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Hinweis zur Tariftreue- oder Mindestentgelterklärung: Gemäß dem Landestariftreue- und Mindestlohngesetz (LTMG) dürfen öffentliche Auftraggeber in Baden-Württemberg Aufträge ab einem geschätzten Auftragswert von 20.000 EUR (netto) nur an Unternehmen vergeben, die bei der Angebotsabgabe eine schriftliche Tariftreue- oder Mindestentgelterklärung abgegeben haben. Die Verpflichtungserklärungen sind den Vergabeunterlagen als Anlage 5 beigefügt. Die Verpflichtungserklärungen sind auch für Nachunternehmen und Verleihunternehmen vorzulegen, sofern der Auftragswert, den das Nachunternehmen oder Verleihunternehmen erbringt, 10.000 EUR (netto) übersteigt. - Verpflichtungserklärung gemäß dem LTMG (Anlage 5).
+
+- Einhaltung der geltenden rechtlichen Verpflichtungen: Dem Angebot ist die Eigenerklärung über die Einhaltung rechtlicher Verpflichtungen (Anlage 6) bei der Ausführung des öffentlichen Auftrags hinzuzufügen. 
+
+Weitere Bedingungen stehen unter Verfahren / Sonstiges</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">92</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Pflege und Weiterentwicklung von Umweltfachanwendungen (WIBAS/NAIS) - Los 3</cbc:Name>
+			<cbc:Description languageID="DEU">Pflege und Weiterentwicklung von Umweltfachanwendungen (WIBAS/NAIS)
+(siehe Vergabeunterlagen - Teil C Leistungsbeschreibung)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">1241760.00</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:PostalZone>76185</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70182</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Unterauftragnehmer und Eignungsleihe (Anlage 1) (Mit dem Angebot; Mittels Eigenerklärung): Angaben des Bieters, welche Teile des Auftrags das Unternehmen / der Bieter unter Umständen als Unteraufträge zu vergeben beabsichtigt (Anlage 1)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung bei fehlender Eintragung im Berufs-/Handelsregister (Mit dem Angebot; Mittels Eigenerklärung): Besteht keine Eintragungspflicht ins Berufs- /Handelsregister, ist dem Angebot ein schriftlicher Hinweis / Eigenerklärung beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über abzuschließende Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Eigenerklärung): Im Falle, dass der Bieter über keinen aktuellen Nachweis einer Betriebs- oder Berufshaftpflichtversicherung verfügt, hat der Bieter eine Eigenerklärung abzugeben, dass im Auftragsfalle vor Zuschlagserteilung eine entsprechende Versicherung abgeschlossen wird. Der Nachweis über die abgeschlossene Versicherung ist zu dem von der Vergabestelle/dem Auftraggeber geforderten Zeitpunkt vorzulegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist (Mit dem Angebot; Mittels Eigenerklärung): Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Berufsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Berufsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Handelsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Handelsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung): Aktueller Nachweis einer Betriebs- oder Berufshaftpflichtversicherung mit Angabe der Versicherungshöhe.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen über früher ausgeführte Dienstleistungsaufträge (Anlage 10-1) (Mit dem Angebot; Mittels Eigenerklärung): Die berufliche Leistungsfähigkeit ist durch Referenzen über früher ausgeführte Dienstleistungsaufträge in Form einer Liste (Anlage 10-1) der in den letzten höchstens fünf Jahren vor Ablauf der Angebotsfrist (vgl. Abschnitt A 7 der Vergabeunterlagen) erbrachten wesentlichen Dienstleistungen, die mit der zu vergebenden Leistung vergleichbar sind, nachzuweisen. Es wird darauf hingewiesen, dass auch einschlägige Liefer- oder Dienstleistungen berücksichtigt werden, die mehr als drei, jedoch höchstens fünf Jahre zurückliegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Verpflichtungserklärung Unterauftragnehmer und Eignungsleihe (Mit dem Angebot; Mittels Eigenerklärung): Der Bieter kann für die wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen und Unterauftragnehmer in Anspruch nehmen, wenn er nachweist, dass ihm für die Erfüllung des Auftrags die erforderlichen Mittel tatsächlich zur Verfügung stehen werden.
+
+Nachweis durch eine Verpflichtungserklärung dieser Unternehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Unterlagen nachzufordern. Ein Anspruch auf Nachforderung besteht nicht. Unvollständige Angebote können vom Wettbewerb ausgeschlossen werden. Unterlagen, die vom Auftraggeber nach Angebotsabgabe verlangt / nachgefordert werden, sind zu dem vom Auftraggeber bestimmten Zeitpunkt einzureichen. Werden die nachgeforderten Unterlagen nicht vollständig fristgerecht vorgelegt, wird das Angebot ausgeschlossen. 
+
+Fehlende Angaben, die die Preise betreffen, können von der LUBW nicht nachgefordert werden. 
+
+Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Daher ist es besonders wichtig, auf die Vollständigkeit Ihres Angebotes inkl. aller geforderten Erklärungen, Nachweise etc. zu achten (siehe Abschnitt A 9 der Vergabeunterlagen).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Hinweis zur Tariftreue- oder Mindestentgelterklärung: Gemäß dem Landestariftreue- und Mindestlohngesetz (LTMG) dürfen öffentliche Auftraggeber in Baden-Württemberg Aufträge ab einem geschätzten Auftragswert von 20.000 EUR (netto) nur an Unternehmen vergeben, die bei der Angebotsabgabe eine schriftliche Tariftreue- oder Mindestentgelterklärung abgegeben haben. Die Verpflichtungserklärungen sind den Vergabeunterlagen als Anlage 5 beigefügt. Die Verpflichtungserklärungen sind auch für Nachunternehmen und Verleihunternehmen vorzulegen, sofern der Auftragswert, den das Nachunternehmen oder Verleihunternehmen erbringt, 10.000 EUR (netto) übersteigt. - Verpflichtungserklärung gemäß dem LTMG (Anlage 5).
+
+- Einhaltung der geltenden rechtlichen Verpflichtungen: Dem Angebot ist die Eigenerklärung über die Einhaltung rechtlicher Verpflichtungen (Anlage 6) bei der Ausführung des öffentlichen Auftrags hinzuzufügen. 
+
+Weitere Bedingungen stehen unter Verfahren / Sonstiges</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">92</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">Weiterentwicklung von Python-Fachanwendungen - Los 4</cbc:Name>
+			<cbc:Description languageID="DEU">Weiterentwicklung von Python-Fachanwendungen
+(siehe Vergabeunterlagen - Teil C Leistungsbeschreibung)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">765700.00</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:PostalZone>76185</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70182</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0005</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Angabe Unterauftragnehmer und Eignungsleihe (Anlage 1) (Mit dem Angebot; Mittels Eigenerklärung): Angaben des Bieters, welche Teile des Auftrags das Unternehmen / der Bieter unter Umständen als Unteraufträge zu vergeben beabsichtigt (Anlage 1)</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung bei fehlender Eintragung im Berufs-/Handelsregister (Mit dem Angebot; Mittels Eigenerklärung): Besteht keine Eintragungspflicht ins Berufs- /Handelsregister, ist dem Angebot ein schriftlicher Hinweis / Eigenerklärung beizufügen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags (Anlage 8) (Mit dem Angebot; Mittels Eigenerklärung): Eigenerklärung des Bieters über den Gesamtumsatz in dem Tätigkeitsbereich des Auftrags in den letzten drei abgeschlossenen Geschäftsjahren (2023 bis 2025) (Anlage 8).</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über abzuschließende Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Eigenerklärung): Im Falle, dass der Bieter über keinen aktuellen Nachweis einer Betriebs- oder Berufshaftpflichtversicherung verfügt, hat der Bieter eine Eigenerklärung abzugeben, dass im Auftragsfalle vor Zuschlagserteilung eine entsprechende Versicherung abgeschlossen wird. Der Nachweis über die abgeschlossene Versicherung ist zu dem von der Vergabestelle/dem Auftraggeber geforderten Zeitpunkt vorzulegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist (Mit dem Angebot; Mittels Eigenerklärung): Erklärung, dass die Betriebs- oder Berufshaftpflichtversicherung bei Abgabe des Angebotes nicht gekündigt ist.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Berufsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Berufsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis der Eintragung in ein Handelsregister (Mit dem Angebot; Mittels Dritterklärung): Nachweis der Eintragung in ein Handelsregister, sofern eine Eintragungspflicht besteht.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer Betriebs- oder Berufshaftpflichtversicherung (Mit dem Angebot; Mittels Dritterklärung): Aktueller Nachweis einer Betriebs- oder Berufshaftpflichtversicherung mit Angabe der Versicherungshöhe.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen über früher ausgeführte Dienstleistungsaufträge (Anlage 10-1) (Mit dem Angebot; Mittels Eigenerklärung): Die berufliche Leistungsfähigkeit ist durch Referenzen über früher ausgeführte Dienstleistungsaufträge in Form einer Liste (Anlage 10-1) der in den letzten höchstens fünf Jahren vor Ablauf der Angebotsfrist (vgl. Abschnitt A 7 der Vergabeunterlagen) erbrachten wesentlichen Dienstleistungen, die mit der zu vergebenden Leistung vergleichbar sind, nachzuweisen. Es wird darauf hingewiesen, dass auch einschlägige Liefer- oder Dienstleistungen berücksichtigt werden, die mehr als drei, jedoch höchstens fünf Jahre zurückliegen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Verpflichtungserklärung Unterauftragnehmer und Eignungsleihe (Mit dem Angebot; Mittels Eigenerklärung): Der Bieter kann für die wirtschaftliche und finanzielle sowie die technische und berufliche Leistungsfähigkeit die Kapazitäten anderer Unternehmen und Unterauftragnehmer in Anspruch nehmen, wenn er nachweist, dass ihm für die Erfüllung des Auftrags die erforderlichen Mittel tatsächlich zur Verfügung stehen werden.
+
+Nachweis durch eine Verpflichtungserklärung dieser Unternehmen.</cbc:Description>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, fehlende Unterlagen nachzufordern. Ein Anspruch auf Nachforderung besteht nicht. Unvollständige Angebote können vom Wettbewerb ausgeschlossen werden. Unterlagen, die vom Auftraggeber nach Angebotsabgabe verlangt / nachgefordert werden, sind zu dem vom Auftraggeber bestimmten Zeitpunkt einzureichen. Werden die nachgeforderten Unterlagen nicht vollständig fristgerecht vorgelegt, wird das Angebot ausgeschlossen. 
+
+Fehlende Angaben, die die Preise betreffen, können von der LUBW nicht nachgefordert werden. 
+
+Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Daher ist es besonders wichtig, auf die Vollständigkeit Ihres Angebotes inkl. aller geforderten Erklärungen, Nachweise etc. zu achten (siehe Abschnitt A 9 der Vergabeunterlagen).</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">- Hinweis zur Tariftreue- oder Mindestentgelterklärung: Gemäß dem Landestariftreue- und Mindestlohngesetz (LTMG) dürfen öffentliche Auftraggeber in Baden-Württemberg Aufträge ab einem geschätzten Auftragswert von 20.000 EUR (netto) nur an Unternehmen vergeben, die bei der Angebotsabgabe eine schriftliche Tariftreue- oder Mindestentgelterklärung abgegeben haben. Die Verpflichtungserklärungen sind den Vergabeunterlagen als Anlage 5 beigefügt. Die Verpflichtungserklärungen sind auch für Nachunternehmen und Verleihunternehmen vorzulegen, sofern der Auftragswert, den das Nachunternehmen oder Verleihunternehmen erbringt, 10.000 EUR (netto) übersteigt. - Verpflichtungserklärung gemäß dem LTMG (Anlage 5).
+
+- Einhaltung der geltenden rechtlichen Verpflichtungen: Dem Angebot ist die Eigenerklärung über die Einhaltung rechtlicher Verpflichtungen (Anlage 6) bei der Ausführung des öffentlichen Auftrags hinzuzufügen. 
+
+Weitere Bedingungen stehen unter Verfahren / Sonstiges</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:TenderValidityPeriod>
+				<cbc:DurationMeasure unitCode="DAY">92</cbc:DurationMeasure>
+			</cac:TenderValidityPeriod>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Der Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 Nr. 4 GWB nur innerhalb einer Frist von 15 Kalendertagen nach Eingang der Mitteilung des Auftraggebers, einer Rüge im Sinne des § 160 Abs. 3 Nr. 1-3 GWB nicht abhelfen zu wollen, zulässig. Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrages nach § 135 Abs. 1 Nr. 2 GWB. § 134 Abs. 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://ausschreibungen.landbw.de/Satellite/notice/CXUEYY9DYHD1U9C6</cbc:AccessToolsURI>
+			<cac:TenderSubmissionDeadlinePeriod>
+				<cbc:EndDate>2026-11-17+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:TenderSubmissionDeadlinePeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-09+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">5</cbc:ID>
+			<cbc:Name languageID="DEU">Pflege und Wartung von Python-Fachanwendungen - Los 5</cbc:Name>
+			<cbc:Description languageID="DEU">Pflege und Wartung von Python-Fachanwendungen  
+(siehe Vergabeunterlagen - Teil C Leistungsbeschreibung)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">#Besonders auch geeignet für:selbst#, #Besonders auch geeignet für:other-sme#</cbc:Note>
+			<cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:RequestedTenderTotal>
+				<cbc:EstimatedOverallContractAmount currencyID="EUR">352560.00</cbc:EstimatedOverallContractAmount>
+			</cac:RequestedTenderTotal>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Griesbachstraße 1</cbc:StreetName>
+					<cbc:CityName>Karlsruhe</cbc:CityName>
+					<cbc:PostalZone>76185</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE122</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:RealizedLocation>
+				<cbc:Description languageID="DEU">Haupterfüllungsort für Los 1,3,4 und 5 = LUBW Karlsruhe 
+Haupterfüllungsort für Los 2 = UM Stuttgart</cbc:Description>
+				<cac:Address>
+					<cbc:StreetName>Kernerplatz 9</cbc:StreetName>
+					<cbc:CityName>Stuttgart</cbc:CityName>
+					<cbc:PostalZone>70182</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DE111</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

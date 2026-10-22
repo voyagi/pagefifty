@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.lotto-hh.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">LOTTO Hamburg GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Überseering 4</cbc:StreetName>
+                           <cbc:Department>Einkauf</cbc:Department>
+                           <cbc:CityName>Hamburg</cbc:CityName>
+                           <cbc:PostalZone>22297</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>USt-IdNr. DE263266798</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer bei der Finanzbehörde der Freien und Hansestadt Hamburg</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Gänsemarkt 36</cbc:StreetName>
+                           <cbc:CityName>Hamburg</cbc:CityName>
+                           <cbc:PostalZone>20354</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>02000000-KFB0000001-20</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00724271-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">203/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-20+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">5120784f-edaa-4bde-989d-77ae619caa56</cbc:ID>
+   <cbc:ContractFolderID>4469baf7-8e2d-4ba4-ba62-1cfbb393e406</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-16+02:00</cbc:IssueDate>
+   <cbc:IssueTime>16:33:16+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-16+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-la</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">pub-os</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zwingende und fakultative Ausschlussgründe gemäß §§ 123, 124, 128 GWB; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">gemäß §§ 123, 124, 128 GWB, des § 21 Arbeitnehmerentsendegesetzes; § 98 c des Aufenthaltsgesetzes, § 19 des Mindestlohngesetzes; § 21 des Gesetzes zur Bekämpfung der Schwarzarbeit und illegalen Beschäftigung (SchwarzArbG) und § 22 des Lieferkettensorgfaltspflichtgesetzes; Die Bieter haben eine Eigenerklärung zu den Ausschlussgründen im Dokument "Eignungsangaben" mit dem Angebot einzureichen. Im Falle der Eignungsleihe ist das Dokument "Eignungsangaben der Nachunternehmer" zu übermitteln.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:LotDistribution>
+         <cbc:MaximumLotsAwardedNumeric>2</cbc:MaximumLotsAwardedNumeric>
+         <cbc:MaximumLotsSubmittedNumeric>2</cbc:MaximumLotsSubmittedNumeric>
+      </cac:LotDistribution>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID schemeName="InternalID">VL-260017</cbc:ID>
+      <cbc:Name languageID="DEU">Erbringung einer WAN-Infrastruktur sowie weiterer Dienste</cbc:Name>
+      <cbc:Description languageID="DEU">Vertragsgegenstand ist die Vergabe von Leistungen zur Bereitstellung, zum Betrieb und zur Aufrechterhaltung einer leistungsfähigen, hochverfügbaren und sicheren Internetanbindung einschließlich DDoS-Schutz sowie der zugehörigen Domain-Services für die LOTTO Hamburg GmbH. 
+
+Weiterer Vertragsgegenstand ist die Bereitstellung von dedizierten, redundanten und hochverfügbaren LAN-to-LAN-Kopplungen zwischen dem Office-Standort der LOTTO Hamburg GmbH und den beiden zukünftigen Rechenzentrumsstandorten RZ 1 und RZ 2 einschließlich der hierfür erforderlichen knoten- und kantendisjunkten Wegeführung. Vertragsgegenstand ist zudem die Bereitstellung redundanter Data Center Interconnects (DCI) mittels DWDM-Technologie, zum einen als vorübergehende Verbindung zwischen dem Bestandsrechenzentrum und RZ 1 zur Sicherstellung des Übergangsbetriebs bis zur Außerbetriebnahme des Bestandsrechenzentrums, zum anderen als dauerhafte Verbindung zwischen RZ 1 und RZ 2 für den hochverfügbaren, standortübergreifenden Regelbetrieb der Rechenzentrumsinfrastruktur.
+
+Weitere Informationen zum Auftragsgegenstand sind in den nachfolgenden Darstellungen zu den Losen 1 und 2 erhältlich.
+
+Die Dokumente "Leistungsbeschreibung LOS 1 (ANLAGE 1 zum EVB-IT Systemvertrag LOS 1)" und "Leistungsbeschreibung LOS 2 (ANLAGE 1 zum EVB-IT Systemvertrag LOS 2)" werden zum Schutz der Vertraulichkeit nur gegen vorherige Abgabe einer Vertraulichkeitserklärung an die interessierten Unternehmen herausgegeben (§ 41 Abs. 3 VgV). Dafür sind die Dokumente "Vertraulichkeitserklärung LOS 1 (ANLAGE 8 zum EVB-IT Systemvertrag LOS 1)" bzw. "Vertraulichkeitserklärung LOS 2 (ANLAGE 8 zum EVB-IT Systemvertrag LOS 2)"  ausgefüllt und unterzeichnet über das Nachrichtenmodul des elektronischen Vergabeinformationssystems "subreport" oder per Mail an die in dieser Bekanntmachung genannte Kontaktstelle einzureichen.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Die in dieser Bekanntmachung angegebenen Höchstwerte wurden lediglich zur Erfüllung der technischen Vorgaben des Auftragsbekanntmachungsformulars eingetragen. Abweichend dazu gilt folgende Höchstmengenregelung:
+
+Der hypothetisch mögliche Maximalauftragswert beträgt für jedes Los maximal 200 % des Gesamtwertungspreises in den Dokumenten "Preisblatt LOS 1 (ANLAGE 3 zum EVB-IT Systemvertrag LOS 1)" und "Preisblatt LOS 2 (ANLAGE 3 zum EVB-IT Systemvertrag LOS 2)" des jeweils bezuschlagten Angebotes und enthält keine Preisanpassung. Details siehe Nummer 18.8.1 der Dokumente "EVB-IT Systemvertrag LOS 1" und "EVB-IT Systemvertrag LOS 2". Zur Ermittlung des "Wertes des ursprünglichen Auftrags" (§ 132 Abs. 2 GBW) bzw. "ursprünglichen Auftragswertes" (§ 132 Abs. 3 GWB) sind Preisanpassungseffekte zusätzlich zu berücksichtigen. Für den Fall, dass die je Los bezuschlagten Angebotspreise den jeweils losspezifisch geschätzten Auftragswert übersteigen, erhöht sich der "Höchstwert der Rahmenvereinbarung" (="hypothetischer Maximalauftragswert") in dem jeweiligen Los anteilig in dem Umfang, den der bezuschlagte Angebotspreis den geschätzten losspezifischen Auftragswert übersteigt.
+
+Im Fall der Auftragserteilung hat der Auftragnehmer zu erklären, dass er das Tarifvertragsgesetz, das Arbeitnehmerüberlassungsgesetz und andere gesetzliche Bestimmungen über Mindestentgelte gem. § 3 Abs. 1 u. 2 HmbVgG beachten wird. Dazu sind die Dokumente "Erklärung zur Tariftreue und zum Mindestlohn LOS 1 (ANLAGE 7 zum EVB-IT Systemvertrag LOS 1)" und/oder "Erklärung zur Tariftreue und zum Mindestlohn LOS 2 (ANLAGE 7 zum EVB-IT Systemvertrag LOS 2)" mit dem Angebot abzugeben. Weiterhin hat der Auftragnehmer die Erklärung zur sozialverträglichen Beschaffung gem. § 3a HmbVgG über die Dokumente "Angebot LOS 1 (ANLAGE 4 zum EVB-IT Systemvertrag LOS 1)" und/oder "Angebot LOS 2 (ANLAGE 4 zum EVB-IT Systemvertrag LOS 2)" mit seinem Angebot abzugeben.</cbc:Note>
+      <cac:RequestedTenderTotal>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efbc:FrameworkMaximumAmount currencyID="EUR">11950752.24</efbc:FrameworkMaximumAmount>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:EstimatedOverallContractAmount currencyID="EUR">5975376.12</cbc:EstimatedOverallContractAmount>
+      </cac:RequestedTenderTotal>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72720000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">64221000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72315000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72411000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">64221000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Prüfung der Befähigung und Erlaubnis zur Berufsausübung des Bieters/der Bietergemeinschaft dienen die Angaben in dem Dokument „Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 1)". 
+
+Dort sind vom Bieter bzw. von jedem einzelnen Mitglied der Bietergemeinschaft Angaben zur Eintragung im Handelsregister oder eines vergleichbaren Registers vorzunehmen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der wirtschaftlichen und finanziellen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT-Systemvertrag LOS 1)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 1 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 1)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 1 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 1)". 
+
+Dort sind vom Bieter bzw. jedem einzelnen Mitglied der Bietergemeinschaft sowie ggf. vom Eignungsverleiher Erklärungen zum Umsatz im Bereich Telekommunikationsleistungen in den letzten drei Geschäftsjahren (= Vorliegen eines Jahresabschlusses) (2023, 2024 und 2025) abzugeben. Ein jährlicher durchschnittlicher Mindestumsatz von 4 Mio. € (ohne Umsatzsteuer) darf jeweils über die Geschäftsjahre 2023 - 2025 nicht unterschritten werden. Sofern es sich bei dem Bieter, dem jeweiligen Mitglied der Bietergemeinschaft und ggf. dem Eignungsverleiher um eine selbstständige im Handelsregister bzw. in einem vergleichbaren Register eingetragene Niederlassung handelt und diese mit der Leistungserbringung betraut sein wird, ist der Umsatz der Niederlassung im Bereich Telekommunikationsleistungen anzugeben. Bei Bietergemeinschaften und im Falle der Eignungsleihe ist anzugeben, welcher Umsatz von jedem einzelnen Mitglied der Bietergemeinschaft bzw. vom Bieter und dem eignungsleihgebenden Nachunternehmer erzielt wurde.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der wirtschaftlichen und finanziellen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT-Systemvertrag LOS 1)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 1 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 1)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 1 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 1)".
+
+Dort ist vom Bieter bzw. jedem einzelnen Mitglied der Bietergemeinschaft sowie ggf. vom Eignungsverleiher ein aktueller Nachweis über das Bestehen einer Betriebshaftpflichtversicherung spätestens zum Zeitpunkt der Zuschlagserteilung mit den Mindestdeckungssummen pro Schadenfall und pro Versicherungsjahr vorzulegen: Personenschäden 5 Mio. €, Sachschäden 5 Mio. €, Vermögensschäden 5 Mio. €. Über alle Schadenarten soll die Betriebshaftpflichtversicherung eine Deckungssumme pro Kalenderjahr von mindestens 10 Mio. € aufweisen. Bietergemeinschaften haben nachzuweisen, dass sie im Wege der gesamtschuldnerischen Haftung mit einer oder mehreren Betriebshaftpflichtversicherungen die zuvor genannten Mindestdeckungssummen absichern. Gleiches gilt im Falle der Eignungsleihe.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der technischen und beruflichen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 1)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 1 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 1)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 1 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 1)".
+
+Der Bieter/die Bietergemeinschaft bzw. ggf. der Eignungsverleiher haben eine gültige Zertifizierung nach DIN EN ISO 9001:2015 und eine gültige Zertifizierung nach ISO 27001 auf Basis von IT-Grundschutz oder eine vergleichbare Zertifizierung eines akkreditierten Zertifizierungsunternehmens nachzuweisen. Die Zertifizierungen müssen spätestens zum Zeitpunkt der Zuschlagserteilung vorliegen.
+
+Sofern nur bestimmte Unternehmensteile zertifiziert sind, sind diese im Angebot konkret zu benennen. Die jeweilige Zertifizierung muss dabei mindestens die Unternehmensteile umfassen, die für die Leistungserbringung im Rahmen dieses Auftrags vorgesehen sind. Bei Bietergemeinschaften und im Falle der Eignungsleihe ist anzugeben, welche Zertifizierung bei jedem einzelnen Mitglied der Bietergemeinschaft bzw. beim Bieter und dem eignungsleihgebenden Nachunternehmer vorliegen. 
+
+Zum Nachweis sind dem Angebot jeweils eine Kopie der jeweils gültigen Zertifikate beizufügen. Sofern die Zertifizierung zum Zeitpunkt der Angebotsabgabe noch nicht vorliegt, jedoch nachweislich beantragt ist, ist ein entsprechender Nachweis über die Beantragung (z. B. Bestätigung der Zertifizierungsstelle) beizufügen. In diesem Fall muss die Zertifizierung spätestens zum Zeitpunkt der Zuschlagserteilung nachgewiesen werden.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter/die Bietergemeinschaft bzw. ggf. der Eignungsverleiher benennt zu den ausgeschriebenen Leistungen mindestens drei vergleichbare Referenzen, deren Projektabschluss nicht vor dem Jahr 2023 liegt und den ausgeschriebenen Leistungen möglichst nahekommen.
+
+Die durch die Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. den Eignungsverleiher ausgeführten Referenzen sollen die technische und berufliche Eignung des Bieters, des jeweiligen Mitglieds der Bietergemeinschaft bzw. des Eignungsverleihers zur Erfüllung der im Dokument „Leistungsbeschreibung LOS 1 (ANLAGE 2 zum EVB-IT Systemvertrag LOS 1)" geforderten Leistungen belegen. Hierzu sind die Dokumente „Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 1)" und „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 1 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 1)" sowie „Verpflichtungserklärung der Nachunternehmer LOS 1 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 1)" zu verwenden.
+
+Die Referenzprojekte müssen sich seit mindestens 6 Monaten im Produktivbetrieb befinden. Demnach muss es sich um Projekte handeln, bei denen die Betriebsbereitschaft durch den Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. des Eignungsverleihers erklärt wurde, die Abnahme durch den Referenzgeber erfolgreich erfolgt ist und sich das Referenzprojekt in Betrieb befindet.
+
+Die Referenzen werden als mit der hier ausgeschriebenen Leistung vergleichbar angesehen, wenn sie insbesondere Folgendes zum Gegenstand haben:
+
+1.	Bereitstellung und Betrieb von hochverfügbaren Internetanbindungen
+
+Die Bereitstellung und der Betrieb von hochverfügbaren Internetanbindungen ist dann gegeben, wenn der Bieter, das Mitglied der Bietergemeinschaft bzw. der Eignungsverleiher für den Auftraggeber eine leistungsfähige, redundant ausgelegte und hochverfügbare Internetanbindung an das öffentliche Internet bereitgestellt und betrieben hat.
+
+Dies umfasst insbesondere:
+a) die Anbindung über mindestens zwei unabhängige Übergabepunkte bzw. Leitungswege (siehe Ziffer 4.2 der Leistungsbeschreibung),
+b) die Sicherstellung hoher Verfügbarkeiten (mind. 99,90%) durch technische Redundanzmaßnahmen (siehe Ziffer 6.2.1 der Leistungsbeschreibung),
+c) die Sicherstellung hoher Grundbandbreiten (mind. 200 Mbit/s) je Standort (siehe Ziffer 4.2 der Leistungsbeschreibung),
+d) den produktiven Betrieb der Internetanbindung für IT Infrastrukturen, über die der Auftraggeber umsatz- und betriebsrelevante Anwendungen und Dienste betreibt, deren Ausfall zu einer unmittelbaren erheblichen Beeinträchtigung oder einem Ausfall des Geschäftsbetriebs führen würde (siehe Ziffern 1 und 4.2 der Leistungsbeschreibung).
+
+2.	Schutz vor internetseitig erreichbaren Diensten gegen DDoS-Attacken
+
+Die Durchführung von Leistungen zum Schutz vor DDoS-Attacken ist dann gegeben, wenn der Bieter, das Mitglied der Bietergemeinschaft bzw. der Eignungsverleiher technische und organisatorische Maßnahmen zur Erkennung (Detection), Abwehr und Mitigation von DDoS-Angriffen im Sinne der in Ziffer 4.3 der Leistungsbeschreibung definierten Anforderungen umgesetzt und betrieben hat.
+
+Dies umfasst insbesondere:
+a) den Schutz von über das Internet erreichbaren Diensten und Systemen an Rechenzentrums- und Office-Standorten des Auftraggebers (siehe Ziffer 4.3 der Leistungsbeschreibung),
+b) den Einsatz netzseitiger oder cloudbasierter DDoS-Erkennungs- und Mitigationssysteme im Netz des Bieters, des Mitglieds der Bietergemeinschaft bzw. des Eignungsverleihers, einschließlich der Fähigkeit zur automatisierten Erkennung von Angriffen (siehe Ziffer 4.3 der Leistungsbeschreibung) sowie
+c) den nachgewiesenen permanenten Betrieb (24/7) dieser Schutzmaßnahmen im Regelbetrieb (siehe Ziffer 4.3 der Leistungsbeschreibung).
+
+3.	Übernahme und Betrieb von Domain-Infrastrukturen
+
+Die Übernahme und der Betrieb von Domain-Infrastrukturen sind dann gegeben, wenn der Bieter, das Mitglied der Bietergemeinschaft bzw. der Eignungsverleiher für den Auftraggeber die Übernahme, Migration und den Betrieb bestehender Domain Strukturen durchgeführt hat.
+
+Hierzu zählen insbesondere:
+a) der Umzug bestehender Domains zu einem neuen Anbieter oder einer neuen Infrastruktur,
+b) der fortlaufende Betrieb und die Verwaltung der Domain Struktur sowie
+c) die Bereitstellung und Verwaltung der hierfür erforderlichen öffentlichen IP Adressbereiche.
+
+Der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher hat zu den jeweiligen Referenzen anzugeben, durch wen (Bieter, Mitglied der Bietergemeinschaft, Nachunternehmer im Falle der Eignungsleihe) das Referenzprojekt ausgeführt worden ist. Ferner ist der Projektname, der Auftraggeber mit vollständigem Namen und Anschrift, der entsprechende Ausführungszeitraum und die Branche, in der der Auftraggeber tätig ist, zu benennen. Außerdem ist das Auftragsvolumen anzugeben. Sofern das Auftragsvolumen einer Geheimhaltungsvereinbarung zwischen dem Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. dem Eignungsverleiher und dem Auftraggeber unterliegen sollte, kann der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher das Auftragsvolumen umschreiben und beispielsweise mit einem „fünfstelligen Gesamtbetrag" oder ca.-Angaben ausführen.
+
+Der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher hat ferner die ausgeführten Leistungen unter Beachtung der definierten Vergleichskriterien 1. bis 3. (siehe oben) zu beschreiben.
+
+Die Darstellung der Referenzen hat in den Tabellen in den hellgelb unterlegten Feldern zu erfolgen. 
+
+Hinsichtlich der Details wird auf das Dokument "Eignungsangaben LOS 1 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 1)" bzw. ggf. im Falle der Eignungsleihe auf das Dokument "Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 1 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 1)" verwiesen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:FiscalLegislationDocumentReference>
+            <cbc:ID>DE 263266798</cbc:ID>
+         </cac:FiscalLegislationDocumentReference>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E53592751</cbc:ID>
+            <cbc:DocumentTypeCode>sen-info</cbc:DocumentTypeCode>
+            <cbc:DocumentType>restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E53592751</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Fehlende Unterlagen können nachgefordert werden, gem. § 56 Abs. 2 VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="esignature-submission">false</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="nda">true</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Gesamtwertungspreis (P)
+
+Der Preis ist nicht das einzige Zuschlagskriterium und wird über das Dokument „Preisblatt LOS 1 (ANLAGE 3 zum EVB-IT Systemvertrag LOS 1)" ermittelt. Die Ermittlung des Angebots, auf welches der Zuschlag erteilt werden soll, erfolgt nach der sogenannten erweiterten Richtwertmethode gemäß der „Unterlage für die Ausschreibung und Bewertung von IT-Leistungen 2018", Stand: 25.04.2018, des Beauftragten der Bundesregierung für Informationstechnik (UfAB 2018). Bei der Ermittlung des wirtschaftlichsten Angebotes werden zwei Zuschlagskriterien bewertet: Preis und Qualität (Leistungspunkte). Der Schwankungsbereich beträgt 10%. Abschließendes Entscheidungskriterium ist die Leistungspunktzahl (L). Details siehe Ziffer 3.7 des Dokuments „Bewerbungsbedingungen LOS 1". 
+
+Gewichtung (Prozentanteil, genau): 50</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Leistungspunktzahl (L)
+
+Die Leistungspunktzahl ist nicht das einzige Zuschlagskriterium und wird über die Dokumente „Kriterienkatalog LOS 1 (ANLAGE 2 a zum EVB-IT Systemvertrag LOS 1)" und „Anlage zum Kriterienkatalog LOS 1 (ANLAGE 2 b zum EVB-IT Systemvertrag LOS 1)" ermittelt. Die Ermittlung des Angebots, auf welches der Zuschlag erteilt werden soll, erfolgt nach der sogenannten erweiterten Richtwertmethode gemäß der „Unterlage für die Ausschreibung und Bewertung von IT-Leistungen 2018", Stand: 25.04.2018, des Beauftragten der Bundesregierung für Informationstechnik (UfAB 2018). Bei der Ermittlung des wirtschaftlichsten Angebotes werden zwei Zuschlagskriterien bewertet: Preis und Qualität (Leistungspunkte). Der Schwankungsbereich beträgt 10%. Abschließendes Entscheidungskriterium ist die Leistungspunktzahl (L). Details siehe Ziff. 3.7 des Dokuments „Bewerbungsbedingungen LOS 1".
+
+Gewichtung (Prozentanteil, genau): 50</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E53592751</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderEvaluationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderEvaluationParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">61</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Auf die Unzulässigkeit eines Nachprüfungsantrages nach Ablauf der Frist des § 160 Abs. 3 Nr. 4 GWB (15 Tage nach Eingang des Nichtabhilfebescheids auf eine Rüge) wird hingewiesen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0001</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-19+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Bieterfragen sind spätestens 14 Kalendertage vor dem in der Auftragsbekanntmachung unter Ziffer 5.1.12 genannten Datum des Eröffnungstermins der Angebote über das Nachrichtenmodul des Vergabeinformationssystems „subreport“ bei der LOTTO Hamburg GmbH einzureichen.</cbc:Description>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 260017</cbc:ID>
+         <cbc:Name languageID="DEU">Internetanbindungen, DDoS-Schutz und Domainleistungen</cbc:Name>
+         <cbc:Description languageID="DEU">Vertragsgegenstand ist die Vergabe von Leistungen zur Bereitstellung, zum Betrieb und zur Aufrechterhaltung einer leistungsfähigen, hochverfügbaren und sicheren Internetanbindung einschließlich DDoS-Schutz sowie der zugehörigen Domain-Services für die LOTTO Hamburg GmbH.
+
+Der Vertragsgegenstand umfasst sämtliche Leistungen, Lieferungen und Tätigkeiten, die erforderlich sind, um eine knoten- und kantendisjunkte, stabile und sichere Anbindung der Standorte der LOTTO Hamburg GmbH an das öffentliche Internet, den zuverlässigen Schutz vor DDoS-Angriffen sowie den Betrieb der Domain-Services sicherzustellen.
+
+Support- und Serviceleistungen sind integraler Bestandteil des Vertragsgegenstands und entsprechend den festgelegten Betriebs- und Serviceanforderungen während der gesamten Vertragslaufzeit zu erbringen.
+
+Für weitere Informationen zum Auftragsgegenstand wird auf das Dokument „Leistungsbeschreibung LOS 1 (ANLAGE 2 zum EVB-IT Systemvertrag LOS 1)" verwiesen, welches aus Gründen der Geheimhaltung von Betriebs- und Geschäftsgeheimnissen den interessierten Unternehmen nur gegen vorheriger Abgabe einer Vertraulichkeitserklärung zur Verfügung gestellt wird (§ 41 Abs. 3 VgV).
+
+Dafür ist das Dokument "Vertraulichkeitserklärung LOS 1 (ANLAGE 8 zum EVB-IT Systemvertrag LOS 1)" ausgefüllt und unterzeichnet über das Nachrichtenmodul des elektronischen Vergabeinformationssystems "subreport" oder per Mail an die in dieser Bekanntmachung genannte Kontaktstelle einzureichen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efbc:FrameworkMaximumAmount currencyID="EUR">4961066.78</efbc:FrameworkMaximumAmount>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">2480533.39</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72720000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64221000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72315000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72400000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72411000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64221000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um jeweils 1 Jahr, maximal um 5 Jahre</cbc:OptionsDescription>
+            <cbc:MaximumNumberNumeric>5</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Prüfung der Befähigung und Erlaubnis zur Berufsausübung des Bieters/der Bietergemeinschaft dienen die Angaben in dem Dokument „Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 2)". 
+
+Dort sind vom Bieter bzw. von jedem einzelnen Mitglied der Bietergemeinschaft Angaben zur Eintragung im Handelsregister oder eines vergleichbaren Registers vorzunehmen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der wirtschaftlichen und finanziellen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT-Systemvertrag LOS 2)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 2 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 2)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 2 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 2)". 
+
+Dort sind vom Bieter bzw. jedem einzelnen Mitglied der Bietergemeinschaft sowie ggf. vom Eignungsverleiher Erklärungen zum Umsatz im Bereich Telekommunikationsleistungen in den letzten drei Geschäftsjahren (= Vorliegen eines Jahresabschlusses) (2023, 2024 und 2025) abzugeben. Ein jährlicher durchschnittlicher Mindestumsatz von 4 Mio. € (ohne Umsatzsteuer) darf jeweils über die Geschäftsjahre 2023 - 2025 nicht unterschritten werden. Sofern es sich bei dem Bieter, dem jeweiligen Mitglied der Bietergemeinschaft und ggf. dem Eignungsverleiher um eine selbstständige im Handelsregister bzw. in einem vergleichbaren Register eingetragene Niederlassung handelt und diese mit der Leistungserbringung betraut sein wird, ist der Umsatz der Niederlassung im Bereich Telekommunikationsleistungen anzugeben. Bei Bietergemeinschaften und im Falle der Eignungsleihe ist anzugeben, welcher Umsatz von jedem einzelnen Mitglied der Bietergemeinschaft bzw. vom Bieter und dem eignungsleihgebenden Nachunternehmer erzielt wurde.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der wirtschaftlichen und finanziellen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT-Systemvertrag LOS 2)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 2 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 2)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 2 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 2)".
+
+Dort ist vom Bieter bzw. jedem einzelnen Mitglied der Bietergemeinschaft sowie ggf. vom Eignungsverleiher ein aktueller Nachweis über das Bestehen einer Betriebshaftpflichtversicherung spätestens zum Zeitpunkt der Zuschlagserteilung mit den Mindestdeckungssummen pro Schadenfall und pro Versicherungsjahr vorzulegen: Personenschäden 5 Mio. €, Sachschäden 5 Mio. €, Vermögensschäden 5 Mio. €. Über alle Schadenarten soll die Betriebshaftpflichtversicherung eine Deckungssumme pro Kalenderjahr von mindestens 10 Mio. € aufweisen. Bietergemeinschaften haben nachzuweisen, dass sie im Wege der gesamtschuldnerischen Haftung mit einer oder mehreren Betriebshaftpflichtversicherungen die zuvor genannten Mindestdeckungssummen absichern. Gleiches gilt im Falle der Eignungsleihe.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-qual-inst</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Zur Beurteilung der technischen und beruflichen Leistungsfähigkeit des Bieters/der Bietergemeinschaft und ggf. des Eignungsverleihers dienen die Angaben in dem Dokument „Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 2)" sowie ggf. im Falle einer Eignungsleihe im Dokument „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 2 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 2)" sowie im Dokument „Verpflichtungserklärung der Nachunternehmer LOS 2 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 2)".
+
+Der Bieter/die Bietergemeinschaft bzw. ggf. der Eignungsverleiher haben eine gültige Zertifizierung nach DIN EN ISO 9001:2015 und eine gültige Zertifizierung nach ISO 27001 auf Basis von IT-Grundschutz oder eine vergleichbare Zertifizierung eines akkreditierten Zertifizierungsunternehmens nachzuweisen. Die Zertifizierungen müssen spätestens zum Zeitpunkt der Zuschlagserteilung vorliegen.
+
+Sofern nur bestimmte Unternehmensteile zertifiziert sind, sind diese im Angebot konkret zu benennen. Die jeweilige Zertifizierung muss dabei mindestens die Unternehmensteile umfassen, die für die Leistungserbringung im Rahmen dieses Auftrags vorgesehen sind. Bei Bietergemeinschaften und im Falle der Eignungsleihe ist anzugeben, welche Zertifizierung bei jedem einzelnen Mitglied der Bietergemeinschaft bzw. beim Bieter und dem eignungsleihgebenden Nachunternehmer vorliegen. 
+
+Zum Nachweis sind dem Angebot jeweils eine Kopie der jeweils gültigen Zertifikate beizufügen. Sofern die Zertifizierung zum Zeitpunkt der Angebotsabgabe noch nicht vorliegt, jedoch nachweislich beantragt ist, ist ein entsprechender Nachweis über die Beantragung (z. B. Bestätigung der Zertifizierungsstelle) beizufügen. In diesem Fall muss die Zertifizierung spätestens zum Zeitpunkt der Zuschlagserteilung nachgewiesen werden.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter/die Bietergemeinschaft bzw. ggf. der Eignungsverleiher benennt zu den ausgeschriebenen Leistungen mindestens drei vergleichbare Referenzen, deren Projektabschluss nicht vor dem Jahr 2023 liegt und den ausgeschriebenen Leistungen möglichst nahekommen.
+
+Die durch die Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. den Eignungsverleiher ausgeführten Referenzen sollen die technische und berufliche Eignung des Bieters, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. des Eignungsverleihers zur Erfüllung der im Dokument „Leistungsbeschreibung LOS 2 (ANLAGE 2 zum EVB-IT Systemvertrag LOS 2)" geforderten Leistungen belegen. Hierzu sind die Dokumente „Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 2)" und „Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 2 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 2)" sowie „Verpflichtungserklärung der Nachunternehmer LOS 2 (ANLAGE 14 zum EVB-IT Systemvertrag LOS 2)" zu verwenden.
+
+Die Referenzprojekte müssen sich seit mindestens 6 Monaten im Produktivbetrieb befinden. Demnach muss es sich um Projekte handeln, bei denen die Betriebsbereitschaft durch den Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. des Eignungsverleihers erklärt wurde, die Abnahme durch den Referenzgeber erfolgreich erfolgt ist und sich das Referenzprojekt in Betrieb befindet.
+
+Die Referenzen werden als mit der hier ausgeschriebenen Leistung vergleichbar angesehen, wenn sie insbesondere Folgendes zum Gegenstand haben:
+
+1.	Bereitstellung und Betrieb von hochverfügbaren Anbindungen zwischen Unternehmensstandorten und Rechenzentren
+
+Die Bereitstellung und der Betrieb von hochverfügbaren Anbindungen zwischen Unternehmensstandorten und Rechenzentren sind dann gegeben, wenn der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher physische, sichere und hochverfügbare Leitungsverbindungen zwischen einem zentralen Unternehmensstandort (z. B. Firmenzentrale oder Verwaltungsstandort) und einem oder mehreren Rechenzentrumsstandorten bereitgestellt und betrieben hat.
+
+Dies umfasst insbesondere:
+a) die Anbindung eines Unternehmensstandorts an Rechenzentren (mind. 10 Gbit/s) (siehe Ziffern 4.1.1 und 4.2.1 der Leistungsbeschreibung),
+b) die Auslegung der Verbindungen auf hohe Verfügbarkeit und Ausfallsicherheit (z. B. durch Redundanzkonzepte) (siehe Ziffern 4.1.2 und 4.2.2 der Leistungsbeschreibung),
+c) den produktiven Betrieb dieser Verbindungen für geschäftskritische IT-Infrastrukturen.
+
+2.	Aufbau und Betrieb von Rechenzentrums-Kopplungen zwischen mehreren Rechenzentrumsstandorten
+
+Der Aufbau und der Betrieb von Rechenzentrums-Kopplungen zwischen mehreren Rechenzentrumsstandorten ist dann gegeben, wenn der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher direkte, standortübergreifende Leitungsverbindungen zwischen mindestens zwei Rechenzentrumsstandorten bereitgestellt und betrieben hat.
+
+Dies umfasst insbesondere:
+a) die direkte Kopplung mehrerer Rechenzentrumsstandorte (Data-Center-Interconnects) (siehe Ziffer 4.1.2 und 4.2.2 der Leistungsbeschreibung),
+b) die Auslegung der Verbindungen als Grundlage für hochverfügbare, standortübergreifende Betriebsmodelle (z. B. aktiv-aktiv-Betrieb) sowie
+c) die Unterstützung der Synchronisation von Systemen und Daten zwischen den Rechenzentrumsstandorten.
+
+3.	Bereitstellung und Betrieb von Übergangs-, Migrations- und Parallelbetriebsanbindungen im Rahmen von Rechenzentrumsumzügen
+
+Die Bereitstellung und der Betrieb von Übergangs-, Migrations- und Parallelbetriebsanbindungen sind dann gegeben, wenn der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher im Rahmen von Rechenzentrumsumzügen temporäre oder zeitlich begrenzte Leitungsverbindungen zur Unterstützung von Migrationen und Parallelbetrieben bereitgestellt und betrieben hat. 
+
+Dies umfasst insbesondere:
+a) die Einrichtung temporärer Verbindungen zwischen bestehenden Rechenzentrumsstandorten und neuen Rechenzentrumsstandorten (siehe Ziffer 4.1.2 der Leistungsbeschreibung),
+b) die Absicherung des Parallelbetriebs von IT-Systemen während Migrations- und Übergangsphasen sowie
+c) den Betrieb dieser Anbindungen bis zur vollständigen Herstellung des vorgesehenen Zielzustands.
+
+Der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher hat zu den jeweiligen Referenzen anzugeben, durch wen (Bieter, Mitglied der Bietergemeinschaft, Nachunternehmer im Falle der Eignungsleihe) das Referenzprojekt ausgeführt worden ist. Ferner ist der Projektname, der Auftraggeber mit vollständigem Namen und Anschrift, der entsprechende Ausführungszeitraum und die Branche, in der der Auftraggeber tätig ist, zu benennen. Außerdem ist das Auftragsvolumen anzugeben. Sofern das Auftragsvolumen einer Geheimhaltungsvereinbarung zwischen dem Bieter, dem jeweiligen Mitglied der Bietergemeinschaft bzw. ggf. dem Eignungsverleiher und dem Auftraggeber unterliegen sollte, kann der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher das Auftragsvolumen umschreiben und beispielsweise mit einem „fünfstelligen Gesamtbetrag" oder ca.-Angaben ausführen.
+
+Der Bieter, das jeweilige Mitglied der Bietergemeinschaft bzw. ggf. der Eignungsverleiher hat ferner die ausgeführten Leistungen unter Beachtung der definierten Vergleichskriterien 1. bis 3. (siehe oben) zu beschreiben.
+
+Die Darstellung der Referenzen hat in den Tabellen in den hellgelb unterlegten Feldern zu erfolgen. 
+
+Hinsichtlich der Details wird auf das Dokument "Eignungsangaben LOS 2 (ANLAGE 5 zum EVB-IT Systemvertrag LOS 2)" bzw. ggf. im Falle der Eignungsleihe auf das Dokument "Eignungsangaben der Nachunternehmer (Eignungsleihe) LOS 2 (ANLAGE 11 zum EVB-IT Systemvertrag LOS 2)" verwiesen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">t-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:FiscalLegislationDocumentReference>
+            <cbc:ID>DE 263266798</cbc:ID>
+         </cac:FiscalLegislationDocumentReference>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E53592751</cbc:ID>
+            <cbc:DocumentTypeCode>sen-info</cbc:DocumentTypeCode>
+            <cbc:DocumentType>restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E53592751</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Fehlende Unterlagen können nachgefordert werden, gem. § 56 Abs. 2 VgV.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="nda">true</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Gesamtwertungspreis (P)
+
+Der Preis ist nicht das einzige Zuschlagskriterium und wird über das Dokument „Preisblatt LOS 2 (ANLAGE 3 zum EVB-IT Systemvertrag LOS 2)" ermittelt. Die Ermittlung des Angebots, auf welches der Zuschlag erteilt werden soll, erfolgt nach der sogenannten erweiterten Richtwertmethode gemäß der „Unterlage für die Ausschreibung und Bewertung von IT-Leistungen 2018", Stand: 25.04.2018, des Beauftragten der Bundesregierung für Informationstechnik (UfAB 2018). Bei der Ermittlung des wirtschaftlichsten Angebotes werden zwei Zuschlagskriterien bewertet: Preis und Qualität (Leistungspunkte). Der Schwankungsbereich beträgt 10%. Abschließendes Entscheidungskriterium ist die Leistungspunktzahl (L). Details siehe Ziffer 3.7 des Dokuments  „Bewerbungsbedingungen LOS 2". 
+
+Gewichtung (Prozentanteil, genau): 50</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Description languageID="DEU">Leistungspunktzahl (L)
+
+Die Leistungspunktzahl ist nicht das einzige Zuschlagskriterium und wird über die Dokumente „Kriterienkatalog LOS 2 (ANLAGE 2 a zum EVB-IT Systemvertrag LOS 2)" und „Anlage zum Kriterienkatalog LOS 2 (ANLAGE 2 b zum EVB-IT Systemvertrag LOS 2)" ermittelt. Die Ermittlung des Angebots, auf welches der Zuschlag erteilt werden soll, erfolgt nach der sogenannten erweiterten Richtwertmethode gemäß der „Unterlage für die Ausschreibung und Bewertung von IT-Leistungen 2018", Stand: 25.04.2018, des Beauftragten der Bundesregierung für Informationstechnik (UfAB 2018). Bei der Ermittlung des wirtschaftlichsten Angebotes werden zwei Zuschlagskriterien bewertet: Preis und Qualität (Leistungspunkte). Der Schwankungsbereich beträgt 10%. Abschließendes Entscheidungskriterium ist die Leistungspunktzahl (L). Details siehe Ziff. 3.7 des Dokuments „Bewerbungsbedingungen LOS 2".
+
+Gewichtung (Prozentanteil, genau): 50</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E53592751</cbc:EndpointID>
+         </cac:TenderRecipientParty>
+         <cac:TenderEvaluationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderEvaluationParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">61</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Auf die Unzulässigkeit eines Nachprüfungsantrages nach Ablauf der Frist des § 160 Abs. 3 Nr. 4 GWB (15 Tage nach Eingang des Nichtabhilfebescheids auf eine Rüge) wird hingewiesen.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0001</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-19+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Bieterfragen sind spätestens 14 Kalendertage vor dem in der Auftragsbekanntmachung unter Ziffer 5.1.12 genannten Datum des Eröffnungstermins der Angebote über das Nachrichtenmodul des Vergabeinformationssystems „subreport“ bei der LOTTO Hamburg GmbH einzureichen.</cbc:Description>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:FrameworkAgreement>
+            <cbc:MaximumOperatorQuantity>1</cbc:MaximumOperatorQuantity>
+            <cac:SubsequentProcessTenderRequirement>
+               <cbc:Name>buyer-categories</cbc:Name>
+            </cac:SubsequentProcessTenderRequirement>
+         </cac:FrameworkAgreement>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0002 260017</cbc:ID>
+         <cbc:Name languageID="DEU">Standortanbindungen</cbc:Name>
+         <cbc:Description languageID="DEU">Vertragsgegenstand ist die Bereitstellung von dedizierten, redundanten und hochverfügbaren LAN-to-LAN-Kopplungen zwischen dem Office-Standort der LOTTO Hamburg GmbH und den beiden zukünftigen Rechenzentrumsstandorten RZ 1 und RZ 2 einschließlich der hierfür erforderlichen knoten- und kantendisjunkten Wegeführung. Vertragsgegenstand ist zudem die Bereitstellung redundanter Data Center Interconnects (DCI) mittels DWDM-Technologie, zum einen als vorübergehende Verbindung zwischen dem Bestandsrechenzentrum und RZ 1 zur Sicherstellung des Übergangsbetriebs bis zur Außerbetriebnahme des Bestandsrechenzentrums, zum anderen als dauerhafte Verbindung zwischen RZ 1 und RZ 2 für den hochverfügbaren, standortübergreifenden Regelbetrieb der Rechenzentrumsinfrastruktur. 
+
+Weiterer Bestandteil ist die Erbringung sämtlicher Betriebs-, Support- und Entstörungsleistungen für die bereitgestellte Netzinfrastruktur über die gesamte Vertragslaufzeit einschließlich der Planung, Implementierung und Inbetriebnahme aller erforderlichen technischen Komponenten. 
+
+Für weitere Informationen zum Auftragsgegenstand wird auf das Dokument „Leistungsbeschreibung LOS 2 (ANLAGE 2 zum EVB-IT Systemvertrag LOS 2)" verwiesen, welches aus Gründen der Geheimhaltung von Betriebs- und Geschäftsgeheimnissen den interessierten Unternehmen nur gegen vorheriger Abgabe einer Vertraulichkeitserklärung zur Verfügung gestellt wird (§ 41 Abs. 3 VgV).
+
+Dafür ist das Dokumente "Vertraulichkeitserklärung LOS 2 (ANLAGE 8 zum EVB-IT Systemvertrag LOS 2)" ausgefüllt und unterzeichnet über das Nachrichtenmodul des elektronischen Vergabeinformationssystems "subreport" oder per Mail an die in dieser Bekanntmachung genannte Kontaktstelle einzureichen.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:RequestedTenderTotal>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efbc:FrameworkMaximumAmount currencyID="EUR">6989685.46</efbc:FrameworkMaximumAmount>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:EstimatedOverallContractAmount currencyID="EUR">3494842.73</cbc:EstimatedOverallContractAmount>
+         </cac:RequestedTenderTotal>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72720000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72315000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64210000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64200000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">64221000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DE600</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um jeweils 1 Jahr, maximal um 5 Jahre</cbc:OptionsDescription>
+            <cbc:MaximumNumberNumeric>5</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

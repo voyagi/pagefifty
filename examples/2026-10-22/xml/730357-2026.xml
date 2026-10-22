@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.kkh.de/</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Kaufmännische Krankenkasse - KKH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Karl-Wiechert-Allee 61</cbc:StreetName>
+									<cbc:CityName>Hannover</cbc:CityName>
+									<cbc:PostalZone>30625</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DE929</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>992-80009-26</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.bundeskartellamt.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammern des Bundes beim Bundeskartellamt</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Villemomblerstr. 76</cbc:StreetName>
+									<cbc:CityName>Bonn</cbc:CityName>
+									<cbc:PostalZone>53123</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA22</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>[removed]</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00730357-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">0f5386a2-9412-4d11-9c25-e2728a509c4f</cbc:ID>
+	<cbc:ContractFolderID>d365b8ed-8c7c-4ed6-bfb1-bfe979becdf6</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-21+02:00</cbc:IssueDate>
+	<cbc:IssueTime>10:50:13+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-21+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>https://www.kkh.de/unternehmen/ausschreibungen</cbc:BuyerProfileURI>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-cga</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Gesetz gegen Wettbewerbsbeschränkungen (GWB) § 160 Einleitung, Antrag  (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.  (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen,  dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder  zu entstehen droht;  (3) Der Antrag ist unzulässig, soweit: 1) Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis  zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegen über  dem Auftraggeber gerügt werden, 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen  erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem  Auftraggeber gerügt werden, 4) Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge  nicht abhelfen zu wollen, vergangen sind. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des  Vertrags nach§135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D59M7LA</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">1335-0126</cbc:ID>
+		<cbc:Name languageID="DEU">Ausschreibung über den Betrieb, Hosting und Weiterentwicklung der Website www.kkh.de inklusive Migration auf ein zukunftsfähiges CMS-System</cbc:Name>
+		<cbc:Description languageID="DEU">Ausschreibung über den Betrieb, das Hosting und die Weiterentwicklung von www.kkh.de inklusive Migration des aktuellen CMS auf eine zukunftsfähige Plattform. Ziel ist die Sicherstellung eines stabilen, wartbaren und flexibel weiterentwickelbaren digitalen Auftritts durch durch die Beauftragung eines leistungsfähigen Full-Service- bzw. Fullstack-Dienstleister.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXP4D59M7LA#</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<cbc:EstimatedOverallContractAmount currencyID="EUR">0.01</cbc:EstimatedOverallContractAmount>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:Region>anyw-eea</cbc:Region>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Es ist die Höhe des Jahresumsatzes brutto bezogen auf die letzten drei Jahre (2023, 2024 und 2025) anzugeben.  Dieser muss mindestens jährlich: 1 Mio. EUR brutto im Bereich Betrieb, Support und Entwicklung von Webseiten betragen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nachweis einer entsprechenden Berufshaftpflichtversicherung oder Betriebshaftpflicht je nach Unternehmensform des Bewerbers in Kopie mit einer  - Haftpflichtdeckungshöhe von mindestens 1.000.000 EUR je Versicherungsfall pauschal für Personen- und Sachschäden   - Vermögensschadensversicherung (inkl. Datenschutz/Cyber) von mind. 5.000.000 EUR je Versicherungsfall für direkte Vermögensschäden   jeweils 2-fach maximiert.  Zum Nachweis ist die Bestätigung des Versicherers in Kopie einzureichen. Die Versicherung ist während der gesamten Vertragslaufzeit aufrechtzuerhalten.  Alternativ ist im Auftragsfall eine entsprechende Versicherung auf erstes Anfordern des Auftraggebers abzuschließen. Hierfür ist bereits bei Teilnahmeantragsabgabe eine Erklärung des Versicherers beizulegen, dass dieser zum Abschluss einer entsprechenden Versicherung bereit ist. Die Vorlage der Erklärung des Versicherers in nicht beglaubigter Kopie ist zulässig.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Nennung von drei Referenzprojekten aus den letzten 3 Jahren, die der Bewerber als verantwortlicher Auftragnehmer durchgeführt hat und die nach Inhalt, Umfang und Branche mit der vorliegend ausgeschriebenen Leistung vergleichbar sind und ein Auftragsvolumen von mindestens 100.000 EUR brutto erfüllt. Vergleichbare Projekte sind Leistungen zur Migration, Weiterentwicklung, Service- und Supportleistungen und Hosting einer Website mit einem CMS im produktiven Einsatz.  Davon ist mindestens ein Referenzprojekt nachzuweisen, welches Erfahrung in der Realisierung komplexer Webplattformen für regulierte Branchen (z.B. Gesundheitswesen, Versicherungen, öffentliche Auftraggeber) erfolgt ist.  Das/Die Referenzprojekt/e müssen die folgende Anforderungen erfüllen:  Es ist zwingend erforderlich ausführliche Projektbeschreibungen der Referenzprojekte auf einer gesonderten Anlage beizufügen. Diese hat auch eine Übersicht zu den eingesetzten Technologien, Tools und Vorgehensweisen zu beinhalten. Die nachfolgend aufgeführten Punkte sind zwingend darzustellen:   -  Ausführliche und nachvollziehbare Referenzprojekt-Darstellung  - Beschreibung des Projekts und Einsatz des verwendeten CMS  - Beschreibung der erbrachten Dienstleistungen Frontend und Backend  - Hintergrund/Problem/Herausforderung   - Zielsetzung  - Strategische und prozessuale Herangehensweise  - Umsetzung- Erfahrung in der Schnittstellenintegration &amp; Systemanbindung: Nachweis der Ausfallsicherheit (Quality &amp; Operations): Für die in den Referenzen beschriebenen Schnittstellen muss nachvollziehbar dargelegt werden, dass Mechanismen zur robusten Fehlerbehandlung (z. B. automatisierte Retry-Prozesse, Logging, Timeouts) sowie Health-Checks und Alerting erfolgreich im Live-Betrieb umgesetzt wurden.  Mindestanforderung: Es muss die erfolgreiche Anbindung je Referenz von mindestens einer der folgenden Systemkategorien an das angebotene CMS umfassen: 1. HR- / Bewerbermanagementsysteme  2. Newsletter- oder Marketing-Automation-Systeme 3. Karten-, Standort- oder Geodienste 4. Web-Controlling / Analytics-Tools (datenschutzkonform / DSGVO) 5. CRM-, Backend- oder Drittsysteme</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Stellen Sie ein Referenzprojekt aus den Jahren 2023 bis 2025 vor, bei dem die Anforderungen an die Barrierefreiheit gemäß BITV 2.0 (aus Basis der WCAG 2.1 oder 2.2, Level AA) erfolgreich und nachweislich (z. B. durch einen BITV-Test, ein barrierfreies Prüfsiegel oder fundierte Konformitätserklärung) erfüllt wurden. Erläutern Sie dabei insbesondere die Problemstellung und Zielsetzung, Ihr methodisches Vorgehen sowie eventuell eingesetzte Programme.  Es ist zwingend erforderlich ausführliche Projektbeschreibungen der Referenzprojekte auf einer gesonderten Anlage beizufügen.  Die nachfolgend aufgeführten Punkte sind zwingend darzustellen:   - Hintergrund / Problemstellung / Herausforderung   - Aufgabe   - Zielsetzung   - strategische und operative Herangehensweise/ methodisches Vorgehen   - eingesetzte Programme</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anhand von Lebensläufen ist die berufliche Befähigung der für den Einsatz vorgesehenen Mitarbeiter darzustellen. Die Lebensläufe haben die Qualifikation und Erfahrung der Personen ausführlich darzustellen. Es müssen mindestens die Anforderungen gemäß Leistungsbeschreibung (siehe Punkt 4.1.2) an die nachfolgenden Positionen bzw. Bereiche nachgewiesen werden:   - Projektmanagement - Frontend-Entwicklung und Backend-Entwicklung bzw. Full-Stack-Entwicklung - UX/UI-Design - DevOps - Barrierefreiheit - SEO/GEO  Gemäß Allgemeine Rahmenbedingungen: - Projektleiter/Rolloutmanager - Service Delivery Manager - IT Operations Manager - IT-Service Continuity Manager   Die Lebensläufe müssen nachvollziehbar darstellen, dass die Mitarbeiter qualifiziert sind, z.B. durch Darstellung der - beruflichen Qualifikation: Ausbildung und/oder Studium, Volontariat und/oder,Trainee und/oder vergleichbare Aus- oder Weiterbildung  - Berufs- und Projekterfahrung (inkl. Nennung von Kunde/Auftraggeber, Aufgaben und Zeitraum der Tätigkeit); evtl. Mitarbeit an den vorgestellten Referenzen</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-sec-inf</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Informationssicherheit: Der Bewerber weist nach, dass die für das Hosting und den Betrieb der Website eingesetzte Infrastruktur/das Rechenzentrum über eine gültige Zertifizierung nach ISO/IEC 27001 (oder gleichwertig) verfügt (Nachweis durch Zertifikat des Hosters). Für den Bewerber selbst ist der Nachweis einer eigenen ISO 27001-Zertifizierung oder der Nachweis eines etablierten, internen Informationsicherheits-Managementsystems (ISMS) in Anlehnug an ISO 27001/27002 (z.B. durch Vorlage von IT-Sicherheitleitlinien) ausreichend. Die Einhaltung ist für die gesamte Vetragslaufzeit aufrechzuerhalten.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.dtvp.de/Satellite/notice/CXP4D59M7LA/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eine Nachforderung erfolgt gemäß der Regelungen des § 56 VgV.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>false</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cbc:CalculationExpression languageID="DEU">Die Bewertung erfolgt anhand der einfachen Richtwertmethode. Bei dieser werden die erreichten Leistungspunkte durch den Preis dividiert, um den Leistungsquotienten zu ermitteln, welcher die Basis für die Wertung darstellt. Ein höherer Quotient entspricht dabei einer besseren Platzierung. Bei gleichem Quotienten entscheidet der niedrigere Preis.</cbc:CalculationExpression>
+					<cac:SubordinateAwardingCriterion>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Wertungsrelevante Gesamtsumme</cbc:Name>
+						<cbc:Description languageID="DEU">Der Wertungspreis wird gemäß Preisblatt  der Wertung in der Angebotsphase zugeführt.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Leistungspunkte</cbc:Name>
+						<cbc:Description languageID="DEU">Die Leistungspunkte werden gemäß der Anlage Kriterienkatalog, die den Vergabeunterlagen zur Angebotsphase beigefügt werden, bewertet.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.dtvp.de/Satellite/notice/CXP4D59M7LA</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Gesetz gegen Wettbewerbsbeschränkungen (GWB) § 160 Einleitung, Antrag  (1) Die Vergabekammer leitet ein Nachprüfungsverfahren nur auf Antrag ein.  (2) Antragsbefugt ist jedes Unternehmen, das ein Interesse an dem öffentlichen Auftrag oder der Konzession hat und eine Verletzung in seinen Rechten nach § 97 Absatz 6 durch Nichtbeachtung von Vergabevorschriften geltend macht. Dabei ist darzulegen,  dass dem Unternehmen durch die behauptete Verletzung der Vergabevorschriften ein Schaden entstanden ist oder  zu entstehen droht;  (3) Der Antrag ist unzulässig, soweit: 1) Der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,  2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis  zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegen über  dem Auftraggeber gerügt werden, 3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen  erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem  Auftraggeber gerügt werden, 4) Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge  nicht abhelfen zu wollen, vergangen sind. Satz 1 gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des  Vertrags nach§135 Absatz 1 Nummer 2. § 134 Absatz 1 Satz 2 bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.dtvp.de/Satellite/notice/CXP4D59M7LA</cbc:AccessToolsURI>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1335-0126</cbc:ID>
+			<cbc:Name languageID="DEU">Ausschreibung über den Betrieb, Hosting und Weiterentwicklung der Website www.kkh.de inklusive Migration auf ein zukunftsfähiges CMS-System</cbc:Name>
+			<cbc:Description languageID="DEU">Ziel der geplanten Ausschreibung ist die Beauftragung eines leistungsfähigen Full-Service- bzw. Fullstack-Dienstleister für das Design sowie die technische Betreuung, den Betrieb, das Hosting und die Weiterentwicklung der Website www.kkh.de. Zentraler Bestandteil des Projekts ist die Migration des bestehenden Content-Management-Systems Adobe Experience Manager (AEM) auf eine moderne, zukunftssichere CMS-Plattform. Der Dienstleister soll sowohl Frontend- als auch Backend-Leistungen erbringen. Nach erfolgreicher Migration soll der Dienstleister kontinuierlich beim Ausbau, der Optimierung und der Weiterentwicklung der digitalen Plattform unterstützen.  Gegenstand dieser Ausschreibung ist folgender Leistungsumfang:  - Migration von www.kkh.de sowie arztlotse.kkh.de vom bestehenden CMS (Adobe Ex-perience Manager) auf eine neue, moderne CMS-Plattform  - Konzeption, Entwicklung und Implementierung des neuen Systems einschließlich CMS, Frontend, Schnittstellen und Betriebsinfrastruktur  - Vollständige Content-Migration inklusive Redirect-Mapping  - Sicherstellung von Barrierefreiheit (BITV 2.0/WCAG 2.2 AA), Datenschutz (DSG-VO/Sozialdatenschutz), KRITIS- Konformität (BSI-Standrads) und IT-Sicherheit (BSI-Standards)  - SEO- und GEO/LLMO-Optimierung im Rahmen der Migration  - Betrieb, Hosting und technischer Support der Plattform   - Kontinuierliche Weiterentwicklung, Wartung im laufenden Betrieb  - Schulungen für Mitarbeiter des Auftraggebers (insbesondere das Team Digitales Content Management der KKH)</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+			<cbc:Note languageID="DEU">Der Vertrag hat eine Mindestvertragslaufzeit von 2 Jahren ab Zuschlagserteilung. Der Vertrag verlängert sich automatisch um jeweils ein weiteres Vertragsjahr, sofern dieser nicht von einer der Vertragsparteien mit einer Frist von 12 Monaten zum Ende der jeweiligen Vertragslaufzeit gekündigt wird.</cbc:Note>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72415000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:Region>anyw-eea</cbc:Region>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DescriptionCode listName="duration">UNLIMITED</cbc:DescriptionCode>
+			</cac:PlannedPeriod>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>
