@@ -62,22 +62,35 @@ try {
 		desk.hrefs.includes('/tenders') && desk.hrefs.includes('/profile'),
 		`hrefs ${JSON.stringify(desk.hrefs)}`
 	);
+	const promises = await page.evaluate(
+		() => (document.querySelector('main .promises') || {}).textContent || ''
+	);
 	check(
 		'says it is not legal advice',
-		desk.body.includes('This is not legal advice.'),
-		desk.body.includes('This is not legal advice.') ? 'present' : 'missing'
+		promises.includes('Not legal advice.'),
+		promises.includes('Not legal advice.') ? 'present in the promises' : `promises "${promises}"`
 	);
+	// The first action opens the verdict of the tender the bare example list opens by itself, so the
+	// button and the list's own pick are read from two pages and must name the same notice.
 	const example = await page.evaluate(async () => {
 		const link = Array.from(document.querySelectorAll('main a[href]')).find(
-			(each) => each.textContent.trim() === 'Open the example run'
+			(each) => each.textContent.trim() === 'Open the example verdict'
 		);
 		if (!link) return { path: null, status: 0 };
 		return { path: new URL(link.href).pathname, status: (await fetch(link.href)).status };
 	});
+	await page.goto('http://127.0.0.1:8788/example');
+	const listOpens = await page.evaluate(() => {
+		const opened = document.querySelector('ul.rows a.t[aria-current]');
+		return opened ? new URL(opened.href).pathname : null;
+	});
 	check(
-		'"Open the example run" leads to /example, which answers 200',
-		example.path === '/example' && example.status === 200,
-		`path ${example.path}, status ${example.status}`
+		'"Open the example verdict" leads to the tender the example list opens, which answers 200',
+		example.path !== null &&
+			/^\/example\/\d+-\d{4}$/.test(example.path) &&
+			example.path === listOpens &&
+			example.status === 200,
+		`path ${example.path}, status ${example.status}, /example opens ${listOpens}`
 	);
 
 	await page.goto('http://127.0.0.1:8788/?theme=dark');
@@ -94,9 +107,11 @@ try {
 	await saveScreenshot(await page.screenshot({ fullPage: true }), 'pagefifty-entry-390-light.png');
 	const phone = await read();
 
+	// The tagline is clamp(step 3, 9vw, step 4), and at 390px the 9vw term is the one in force.
+	const phoneSize = Number.parseFloat(phone.h1Size);
 	check(
-		'at 390px the tagline is a fixed 40px and nothing scrolls sideways; at 768px nothing does either',
-		phone.h1Size === '40px' && phone.overflow <= 0 && tablet.overflow <= 0,
+		'at 390px the tagline is 9vw (35.1px) and nothing scrolls sideways; at 768px nothing does either',
+		Math.abs(phoneSize - 35.1) < 0.05 && phone.overflow <= 0 && tablet.overflow <= 0,
 		`h1 ${phone.h1Size}, overflow 390 ${phone.overflow}, overflow 768 ${tablet.overflow}`
 	);
 } finally {

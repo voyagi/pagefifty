@@ -33,12 +33,18 @@ function readList(html) {
 					)
 				: document;
 			const text = (node) => (node ? node.textContent.trim() : '');
+			// A row's countries are its first fact, written only when the notice names one, so a first
+			// fact that is the deadline means the row names no country.
+			const countryOf = (row) => {
+				const first = row.querySelector('.facts > .fact:first-child');
+				return first && !first.classList.contains('deadline') ? text(first) : '';
+			};
 			const rowsIn = (selector) =>
-				Array.from(root.querySelectorAll(`${selector} tbody tr[data-notice]`)).map((row) => {
+				Array.from(root.querySelectorAll(`${selector} ul.rows > li[data-notice]`)).map((row) => {
 					const time = row.querySelector('time');
 					return {
 						notice: row.getAttribute('data-notice'),
-						country: text(row.querySelector('td[data-label="Country"]')),
+						country: countryOf(row),
 						datetime: time ? time.getAttribute('datetime') : null
 					};
 				});
@@ -70,8 +76,8 @@ function readList(html) {
 				emptyHeading: text(root.querySelector('#open h2')),
 				clearHrefs: clear.map((link) => link.getAttribute('href')),
 				clearTargets: clear.map(target),
-				closedLeaf: Boolean(root.querySelector('#closed')),
-				openTable: Boolean(root.querySelector('#open table')),
+				closedSection: Boolean(root.querySelector('#closed')),
+				openList: Boolean(root.querySelector('#open ul.rows')),
 				text: root.body ? root.body.textContent.replace(/\s+/g, ' ') : ''
 			};
 		},
@@ -146,9 +152,9 @@ try {
 		empty.emptyHeading === 'No tenders match these filters' &&
 			empty.text.includes(emptyLine) &&
 			clearsToAllTenders(empty) &&
-			!empty.openTable &&
-			!empty.closedLeaf,
-		`heading "${empty.emptyHeading}", line ${empty.text.includes(emptyLine)}, clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open table ${empty.openTable}, closed leaf ${empty.closedLeaf}`
+			!empty.openList &&
+			!empty.closedSection,
+		`heading "${empty.emptyHeading}", line ${empty.text.includes(emptyLine)}, clear links raw ${JSON.stringify(empty.clearHrefs)} to ${JSON.stringify(empty.clearTargets)}, open list ${empty.openList}, closed section ${empty.closedSection}`
 	);
 
 	// The served page is what a reader has before hydration, and its './tenders' is exactly the state
@@ -208,11 +214,11 @@ try {
 		check(
 			pastCheck,
 			past.text.includes('No tender in this list is still open. The closed ones are below.') &&
-				!past.openTable &&
+				!past.openList &&
 				past.open.length === 0 &&
 				past.closed.length > 0 &&
 				lateRows.length === 0,
-			`${past.open.length} open and ${past.closed.length} closed rows read, open table ${past.openTable}, ${lateRows.length} closed rows after ${before.date}`
+			`${past.open.length} open and ${past.closed.length} closed rows read, open list ${past.openList}, ${lateRows.length} closed rows after ${before.date}`
 		);
 	}
 

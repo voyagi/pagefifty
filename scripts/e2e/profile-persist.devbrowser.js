@@ -131,10 +131,10 @@ try {
 		);
 		if (!button) return null;
 		const box = button.getBoundingClientRect();
-		const leaf = button.closest('.leaf').getBoundingClientRect();
+		const panel = button.closest('.panel').getBoundingClientRect();
 		return {
 			height: box.height,
-			inside: box.left >= leaf.left && box.right <= leaf.right,
+			inside: box.left >= panel.left && box.right <= panel.right,
 			scroll: document.documentElement.scrollWidth
 		};
 	}, LONG_NAME);

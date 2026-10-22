@@ -72,7 +72,7 @@ function readPage() {
 			footer: footer
 				? Array.from(footer.querySelectorAll('a[href]')).map((link) => new URL(link.href).pathname)
 				: null,
-			leaves: document.querySelectorAll('.leaf').length,
+			panels: document.querySelectorAll('main .panel').length,
 			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 		};
 	});
@@ -89,12 +89,12 @@ async function sweep(target, theme, url) {
 		await page.waitForTimeout(50);
 		const read = await readPage();
 		reads += 1;
-		if (read.theme !== theme || read.leaves === 0 || read.overflow > 0) {
-			bad.push(`${width}: theme ${read.theme}, ${read.leaves} leaves, overflow ${read.overflow}`);
+		if (read.theme !== theme || read.panels === 0 || read.overflow > 0) {
+			bad.push(`${width}: theme ${read.theme}, ${read.panels} panels, overflow ${read.overflow}`);
 		}
 	}
 	check(
-		`${target.path} in ${theme} paints its theme, holds its leaves and does not scroll sideways at every sweep width`,
+		`${target.path} in ${theme} paints its theme, holds its panels and does not scroll sideways at every sweep width`,
 		reads === WIDTHS.length && bad.length === 0,
 		bad.length ? bad.join(' | ') : `${reads} of ${WIDTHS.length} widths read, all clean`
 	);

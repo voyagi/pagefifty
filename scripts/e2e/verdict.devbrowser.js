@@ -52,12 +52,12 @@ async function followExampleRow(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -96,8 +96,10 @@ function readVerdictPage() {
 				const region = words.length === 1 ? words[0].closest('[data-verdict]') : null;
 				return { words: words.length, word: text(words[0]), region: text(region) };
 			}),
-			labels: Array.from(document.querySelectorAll('.ai-label')).filter(
-				(label) => text(label) === 'AI reading'
+			// A clause's readings stand together under one "AI reading" label, so a reading counts as
+			// labelled when the group it sits in carries that label.
+			labels: Array.from(document.querySelectorAll('[data-ai-generated]')).filter(
+				(reading) => text(reading.closest('.readings')?.querySelector('.ai-label')) === 'AI reading'
 			).length,
 			marked: document.querySelectorAll('[data-ai-generated]').length,
 			record: run
@@ -161,7 +163,7 @@ try {
 		check(
 			`the ${name} probe ${CHECKS[2]}`,
 			probe.readings > 0 && shown.labels === probe.readings && shown.marked === probe.readings,
-			`${probe.notice}: ${shown.labels} labels, ${shown.marked} elements marked data-ai-generated, ${probe.readings} readings in the build`
+			`${probe.notice}: ${shown.labels} readings under an AI reading label, ${shown.marked} elements marked data-ai-generated, ${probe.readings} readings in the build`
 		);
 		check(
 			`the ${name} probe ${CHECKS[3]}`,

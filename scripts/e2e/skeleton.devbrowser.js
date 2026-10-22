@@ -19,9 +19,9 @@ try {
 	});
 
 	const facts = await page.evaluate(() => {
-		const rows = Array.from(document.querySelectorAll('tr[data-notice]'));
+		const rows = Array.from(document.querySelectorAll('ul.rows > li[data-notice]'));
 		const row = rows[0] || null;
-		const title = row ? row.querySelector('[lang]') : null;
+		const title = row ? row.querySelector('a.t') : null;
 		return {
 			rows: rows.length,
 			distinct: new Set(rows.map((each) => each.getAttribute('data-notice'))).size,

@@ -22,106 +22,75 @@ const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 // shared-sweep:start. From here to shared-sweep:end, tenders.devbrowser.js and
 // example.devbrowser.js carry the same code word for word, because a driver cannot import;
 // scripts/e2e.mjs refuses to run when the two copies differ.
-const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
-const CARDS_UP_TO = 1340;
+//
+// The list is one column of rows at every width. Up to 45em (720px at 16px) a list page shows the
+// list alone; from 721px the tender the list opens sits in a pane beside it, and the list column
+// narrows to min(480px, 42%). Under 40em (640px) the filters fold behind one button.
+// Retired with the redesign (PR #79), because the page no longer has what they measured: the switch
+// from cards to a five-column table at 1340px with its reading cell floor (no table at any width)
+// and the tab-over-header measure (no tab rail). The split switch below takes the first one's place.
+const WIDTHS = [320, 390, 640, 641, 720, 721, 768, 1024, 1100, 1200, 1340, 1440];
+const SPLIT_FROM = 721;
 
-// Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
-// under the tab rail, so each table's right edge is measured against its leaf's content box too.
-// The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
-// Each line of text is measured as well as each box, at its own edge: text that cannot wrap runs past
-// its cell while the cell's own box stays inside (75px past a card read as fitting on 2026-10-01),
-// and a value clipped inside its cell is cut off, so clipping by any other ancestor does not hide it.
-// Only text inside those two hidden structures is left out.
+// Page overflow alone can read 0 while a row runs past the list column, so every row's right edge
+// is measured against the column's content box too. Each line of text is measured as well as each
+// box, at its own edge: text that cannot wrap runs past its block while the block's own box stays
+// inside (75px past a card read as fitting on 2026-10-01), so clipping does not hide it. Left out:
+// text that is visually hidden, and a line cut on purpose with an ellipsis (a row's buyer, whose
+// whole name is on its tender).
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
+		const drawn = (rect) => rect.width > 0 || rect.height > 0;
 		const range = document.createRange();
-		const hiddenOnPurpose = (element) => {
-			if (element.closest('.visually-hidden')) return true;
-			const head = element.closest('thead');
-			return Boolean(head) && getComputedStyle(head).position === 'absolute';
-		};
-		const textEdges = (table) => {
-			const edges = [];
-			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
-			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-				const host = node.parentElement;
-				if (!host || !node.data.trim() || hiddenOnPurpose(host)) continue;
-				range.selectNodeContents(node);
-				const rect = range.getBoundingClientRect();
-				if (rect.width <= 0 && rect.height <= 0) continue;
-				edges.push({ right: rect.right, host });
-			}
-			return edges;
+		const hiddenOnPurpose = (element) => Boolean(element.closest('.visually-hidden'));
+		const ellipsis = (element) => {
+			const style = getComputedStyle(element);
+			return style.textOverflow === 'ellipsis' && style.overflowX === 'hidden';
 		};
 		const name = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
-			const row = element.closest('tr[data-notice]');
+			const row = element.closest('li[data-notice]');
 			const tag = element.tagName.toLowerCase() + classes.map((each) => `.${each}`).join('');
 			return row ? `${tag} ${row.getAttribute('data-notice')}` : tag;
 		};
-		const rendered = (table) => {
-			const head = table.querySelector('thead');
-			const heads =
-				head && getComputedStyle(head).position !== 'absolute'
-					? Array.from(head.querySelectorAll('th, th *'))
-					: [];
-			return [table, ...table.querySelectorAll('tbody *'), ...heads].filter((element) => {
-				const rect = box(element);
-				return rect.width > 0 || rect.height > 0;
-			});
-		};
-		const cells = [];
-		const tables = [];
+		const column = document.querySelector('.list-col');
+		const columnStyle = column ? getComputedStyle(column) : null;
+		const contentRight = column
+			? box(column).right - px(columnStyle.borderRightWidth) - px(columnStyle.paddingRight)
+			: -Infinity;
+		const lists = [];
 		for (const id of ['open', 'closed']) {
-			const leaf = document.getElementById(id);
-			const table = leaf && leaf.querySelector('table');
-			if (!table) continue;
-			const leafStyle = getComputedStyle(leaf);
-			const contentRight =
-				box(leaf).right - px(leafStyle.borderRightWidth) - px(leafStyle.paddingRight);
+			const list = document.querySelector(`#${id} ul.rows`);
+			if (!list) continue;
 			let right = -Infinity;
 			let worst = '';
-			for (const element of rendered(table)) {
+			for (const element of [list, ...list.querySelectorAll('*')]) {
+				if (hiddenOnPurpose(element)) continue;
 				const rect = box(element);
-				if (rect.right > right) {
+				if (drawn(rect) && rect.right > right) {
 					right = rect.right;
 					worst = name(element);
 				}
-				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
 			}
-			for (const text of textEdges(table)) {
-				if (text.right > right) {
-					right = text.right;
-					worst = `text in ${name(text.host)}`;
+			const walker = document.createTreeWalker(list, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim() || hiddenOnPurpose(host) || ellipsis(host)) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (drawn(rect) && rect.right > right) {
+					right = rect.right;
+					worst = `text in ${name(host)}`;
 				}
 			}
-			const reading = table.querySelector('.vcell');
-			tables.push({
-				id,
-				display: getComputedStyle(table).display,
-				readingMin: reading ? getComputedStyle(reading).minWidth : 'none',
-				contentRight,
-				right,
-				worst
-			});
+			lists.push({ id, right, worst });
 		}
-		const hits = [];
-		for (const tab of document.querySelectorAll('a.tab')) {
-			const tabRect = box(tab);
-			for (const cell of cells) {
-				const across =
-					Math.min(tabRect.right, cell.rect.right) - Math.max(tabRect.left, cell.rect.left);
-				const down =
-					Math.min(tabRect.bottom, cell.rect.bottom) - Math.max(tabRect.top, cell.rect.top);
-				if (across > 1 && down > 1) {
-					hits.push(`${tab.textContent.replace(/\s+/g, ' ').trim()} over ${name(cell.element)}`);
-				}
-			}
-		}
+		const pane = document.querySelector('.split .pane');
+		const paneShown = Boolean(pane) && getComputedStyle(pane).display !== 'none';
 		let longest = { text: '', width: 0 };
-		for (const time of document.querySelectorAll('table time')) {
+		for (const time of document.querySelectorAll('ul.rows time')) {
 			const width = box(time).width;
 			if (width > longest.width) longest = { text: time.textContent.trim(), width };
 		}
@@ -129,38 +98,33 @@ function readGeometry() {
 			theme: document.documentElement.getAttribute('data-theme'),
 			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
 			rootPx: px(getComputedStyle(document.documentElement).fontSize),
-			tables,
-			hitCount: hits.length,
-			hits: hits.slice(0, 3),
+			contentRight,
+			lists,
+			paneShown,
+			beside: paneShown && Boolean(column) && box(pane).left >= box(column).right - 0.5,
 			longest
 		};
 	});
 }
 
-// A table with nothing rendered (hidden by display: none; a closed details still lays its table
-// out when measured) leaves its right edge at -Infinity, which is below any leaf edge, so a table
-// only fits when something was measured. Planted on the closed group, 14 checks went red.
+// A list with nothing drawn (hidden by display: none; a closed details still lays its rows out when
+// measured) leaves its right edge at -Infinity, which is below any column edge, so a list only fits
+// when something was measured.
 function fits(read, theme) {
 	return (
 		read.theme === theme &&
-		read.tables.length > 0 &&
+		read.lists.length > 0 &&
 		read.overflow <= 0 &&
-		read.tables.every(
-			(table) => Number.isFinite(table.right) && table.right <= table.contentRight + 0.5
-		) &&
-		read.hitCount === 0
+		read.lists.every((list) => Number.isFinite(list.right) && list.right <= read.contentRight + 0.5)
 	);
 }
 
 function describe(read) {
-	const tables = read.tables
-		.map(
-			(table) =>
-				`${table.id} right ${table.right.toFixed(1)} of ${table.contentRight.toFixed(1)} (${table.worst})`
-		)
+	const lists = read.lists
+		.map((list) => `${list.id} right ${list.right.toFixed(1)} (${list.worst})`)
 		.join(', ');
-	const hits = read.hitCount ? `${read.hitCount} tab hits: ${read.hits.join('; ')}` : 'no tab hits';
-	return `${read.theme}: overflow ${read.overflow}, ${tables || 'no table measured'}, ${hits}`;
+	const pane = read.paneShown ? (read.beside ? 'pane beside' : 'pane not beside') : 'no pane';
+	return `${read.theme}: overflow ${read.overflow}, column edge ${read.contentRight.toFixed(1)}, ${lists || 'no list measured'}, ${pane}`;
 }
 
 async function readAtWidths(widths) {
@@ -183,36 +147,29 @@ async function openClosedGroup() {
 	});
 }
 
-function checkSweep(path, light, dark, seconds) {
+// opensOne says the bare list opens a tender by itself, which it does while any row is open.
+function checkSweep(path, light, dark, seconds, opensOne) {
 	WIDTHS.forEach((width, i) => {
 		const timing = i === 0 ? `, sweep ${seconds.toFixed(1)} s` : '';
 		check(
-			`at ${width}px ${path} does not scroll sideways, keeps its tables inside their leaves and no tab over a header, in Light and Dark`,
+			`at ${width}px ${path} does not scroll sideways and keeps every row inside the list column, in Light and Dark`,
 			fits(light[i], 'light') && fits(dark[i], 'dark'),
 			`${describe(light[i])} | ${describe(dark[i])}${timing}`
 		);
 	});
 	// Asserted on both themes' reads, so a rule in one theme alone cannot move the switch unseen.
-	const switched = (read, width) => {
-		const floor = 15 * read.rootPx;
-		return (
-			read.tables.length > 0 &&
-			read.tables.every((table) =>
-				width <= CARDS_UP_TO
-					? table.display === 'block' && parseFloat(table.readingMin) === 0
-					: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01
-			)
-		);
-	};
-	const seen = (read) =>
-		read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ') || 'no table';
+	const placed = (read, width) =>
+		opensOne && width >= SPLIT_FROM ? read.paneShown && read.beside : !read.paneShown;
+	const seen = (read) => (read.paneShown ? (read.beside ? 'beside' : 'not beside') : 'alone');
 	const layouts = WIDTHS.map((width, i) => ({
-		right: switched(light[i], width) && switched(dark[i], width),
+		right: placed(light[i], width) && placed(dark[i], width),
 		text: `${width} light ${seen(light[i])}, dark ${seen(dark[i])}`
 	}));
 	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
 	check(
-		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it, in Light and Dark`,
+		opensOne
+			? `${path} shows the list alone up to ${SPLIT_FROM - 1}px and the tender it opens beside it from ${SPLIT_FROM}px, in Light and Dark`
+			: `${path}, with no row open, shows the list alone at every width, in Light and Dark`,
 		wrong.length === 0,
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);
@@ -241,17 +198,21 @@ function readPage() {
 				path(link),
 				link.getAttribute('aria-current')
 			]),
-			rowLinks: Array.from(document.querySelectorAll('#open tr[data-notice] a.t')).map(path),
-			openRows: document.querySelectorAll('#open tr[data-notice]').length,
+			rowLinks: Array.from(document.querySelectorAll('#open ul.rows > li[data-notice] a.t')).map(
+				path
+			),
+			openRows: document.querySelectorAll('#open ul.rows > li[data-notice]').length,
+			// A row's countries are its first fact, written only when the notice names one.
 			countries: Array.from(
-				document.querySelectorAll('tr[data-notice] td[data-label="Country"]')
-			).map(text),
+				document.querySelectorAll('ul.rows > li[data-notice] .facts > .fact:first-child')
+			)
+				.filter((fact) => !fact.classList.contains('deadline'))
+				.map(text),
 			closedSummary: text(document.querySelector('#closed summary')),
 			closedHeading: text(document.querySelector('#closed-title')),
 			closedNote: text(document.querySelector('#closed .note')),
 			formAction: form ? new URL(form.action).pathname : null,
 			footnote: text(document.querySelector('.demo-note')),
-			tab: text(document.querySelector('a.tab[aria-current="true"]')),
 			backLinks: Array.from(document.querySelectorAll('main a[href]'))
 				.filter((link) => text(link) === 'Back to the example run')
 				.map(path),
@@ -281,12 +242,12 @@ async function followRow(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -356,13 +317,14 @@ try {
 	const tenderStatus = await followRow(documents.notice);
 	const notice = await readPage();
 	await saveScreenshot(await page.screenshot(), 'pagefifty-example-documents-1440.png');
+	// The redesign has no tab rail: the nav's Example run link marks where a notice belongs, checked
+	// just below.
 	check(
-		'the documents probe, reached from its row, answers 200 on the Example tab with the footnote',
+		'the documents probe, reached from its row, answers 200 with the footnote and its example title',
 		tenderStatus === 200 &&
-			notice.tab.startsWith('Example') &&
 			notice.footnote === FOOTNOTE &&
 			notice.title.endsWith(`(${documents.notice}), example run - Pagefifty`),
-		`${documents.notice}: status ${tenderStatus}, tab "${notice.tab}", title "${notice.title}"`
+		`${documents.notice}: status ${tenderStatus}, title "${notice.title}"`
 	);
 	check(
 		'on an example notice the header still names the demo firm and the nav marks the example parent',
@@ -438,7 +400,7 @@ try {
 	await page.goto('http://127.0.0.1:8788/example?theme=dark');
 	await openClosedGroup();
 	const dark = await readAtWidths(WIDTHS);
-	checkSweep('/example', light, dark, (Date.now() - sweepStart) / 1000);
+	checkSweep('/example', light, dark, (Date.now() - sweepStart) / 1000, example.open > 0);
 } finally {
 	await writeFile(config.resultName, JSON.stringify({ driver: 'example', checks }));
 	await browser.closePage(PAGE);
