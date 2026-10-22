@@ -37,7 +37,8 @@ const RECORD = createRawSnippet(() => ({
 	render: () => '<article><h1 tabindex="-1">Tender</h1></article>'
 }));
 
-function renderSplit() {
+// onRecord false is the bare list, which opens a tender by itself beside it.
+function renderSplit(onRecord = true) {
 	const { container } = render(TenderSplit, {
 		props: {
 			data: {
@@ -48,7 +49,7 @@ function renderSplit() {
 			},
 			basePath: '/tenders',
 			opened: NOTICE,
-			onRecord: true,
+			onRecord,
 			children: RECORD
 		}
 	});
@@ -170,6 +171,25 @@ describe('TenderSplit after a navigation', () => {
 			expect([listColumn.scrollTop, item.getBoundingClientRect().top]).toEqual([3000, 224]);
 			expect(reveal).not.toHaveBeenCalled();
 			expect(row.getAttribute('aria-current')).toBe('page');
+			expect([pane.scrollTop, scrolled.mock.calls.length]).toEqual([240, 0]);
+			expect(document.activeElement).toBe(row);
+		} finally {
+			restore();
+		}
+	});
+
+	// The bare list opens a tender by itself, which can sit far down the list, as on /example.
+	it('scrolls only the list to show the row the bare list opened by itself', () => {
+		const scrolled = onScreen(false);
+		const { reveal, restore } = recordReveals();
+		try {
+			const { pane, listColumn, row } = renderSplit(false);
+			const item = row.closest('li') as HTMLElement;
+			layOut(listColumn, item, 3000);
+			arrive('enter');
+			expect([listColumn.scrollTop, item.getBoundingClientRect().top]).toEqual([3000, 224]);
+			expect(row.getAttribute('aria-current')).toBe('true');
+			expect(reveal).not.toHaveBeenCalled();
 			expect([pane.scrollTop, scrolled.mock.calls.length]).toEqual([240, 0]);
 			expect(document.activeElement).toBe(row);
 		} finally {

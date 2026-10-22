@@ -91,11 +91,12 @@
 	}
 
 	// A tender the split opens with, on a wide screen, brings its row into the part of the list on
-	// screen, so the list shows which tender is open. Only the list column scrolls: the page
-	// stays at its top, where the head and the tender show beside the row. A row already in view
-	// stays where it is. Focus stays where the browser put it.
+	// screen, so the list shows which tender is open: the one the address names, or the one the bare
+	// list opens by itself. Only the list column scrolls: the page stays at its top, where the head
+	// and the tender show beside the row. A row already in view stays where it is. Focus stays where
+	// the browser put it.
 	function revealOpened() {
-		if (!onRecord || listColumn === undefined || matchMedia('(max-width: 45em)').matches) return;
+		if (listColumn === undefined || matchMedia('(max-width: 45em)').matches) return;
 		const row = listColumn.querySelector('a[aria-current]')?.closest('li');
 		if (!row) return;
 		const column = listColumn.getBoundingClientRect();
