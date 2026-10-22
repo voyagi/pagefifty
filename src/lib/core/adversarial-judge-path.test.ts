@@ -230,6 +230,57 @@ describe('quotes that point at less than the clause demands', () => {
 	});
 });
 
+describe('a general turnover floor confined to a field of business', () => {
+	// General turnover clears each floor; turnover in the named field may not.
+	const BIG_FIRM = firmWithTurnover({ 2023: 9_000_000, 2024: 9_000_000, 2025: 9_000_000 });
+
+	it.each([
+		[
+			'de',
+			'Der Bieter muss in den letzten drei abgeschlossenen Geschäftsjahren (2025, 2024, 2023) einen durchschnittlichen Gesamtjahresumsatz von mindestens 800.000 Euro brutto zu mit dem zu vergebenden Auftrag vergleichbaren Leistungen erzielt haben.',
+			'800.000 Euro',
+			'slc-stand-to-avg'
+		],
+		[
+			'de',
+			'Mindestjahresumsatz im Tätigkeitsbereich des Auftrags: 1 Mio. EUR jährlich',
+			'1 Mio. EUR',
+			'slc-stand-to-gen'
+		],
+		[
+			'en',
+			'A minimum yearly turnover of EUR 1 million in each year from similar services',
+			'EUR 1 million',
+			'slc-stand-to-gen'
+		],
+		[
+			'nl',
+			'Een minimale jaaromzet van 1 mln EUR per jaar met soortgelijke opdrachten',
+			'1 mln EUR',
+			'slc-stand-to-gen'
+		],
+		[
+			'fr',
+			"Un chiffre d'affaires annuel minimum de 1 million EUR par an pour des services similaires",
+			'1 million EUR',
+			'slc-stand-to-gen'
+		]
+	])(
+		'%s: only the firm can judge a floor its quote confines to a field',
+		(lang, text, number, code) => {
+			const decided = verdictFor(text, number, BIG_FIRM, lang, code);
+			const [requirement] = decided.criteria[0].requirements;
+			expect(requirement.state).toBe('PROFILE_GAP');
+			expect(requirement.why).toBe('firm-judges');
+		}
+	);
+
+	it('a plain general turnover floor the firm clears is still MET', () => {
+		const text = 'Mindestjahresumsatz von 1 Mio. EUR jährlich in den letzten drei Geschäftsjahren';
+		expect(verdictFor(text, '1 Mio. EUR', BIG_FIRM).criteria[0].state).toBe('MET');
+	});
+});
+
 describe('mutation detectors on the floor comparison', () => {
 	const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR netto';
 	const exact = firmWithTurnover({ 2023: 1_000_000, 2024: 1_000_000, 2025: 1_000_000 });

@@ -5,7 +5,12 @@
 import type { LotCoverageInput } from './coverage-facts.ts';
 import { SERVER_TIME_ZONE, cetDayEnd, formatDay } from './deadline.ts';
 import { codePeriodOf, type CriterionFamily } from './families.ts';
-import type { CountReading, MoneyReading, PeriodReading } from './figures.ts';
+import {
+	namesBusinessField,
+	type CountReading,
+	type MoneyReading,
+	type PeriodReading
+} from './figures.ts';
 import type {
 	CriterionReading,
 	LotReading,
@@ -362,10 +367,10 @@ function decideFigure(
 	const check = turnoverCheck(requirement, money as OneMoney, firm, context, reading.code);
 	if (check === 'fewer-years') return decided('PROFILE_GAP', 'fewer-years', item);
 	// Specific turnover is at most general turnover, so a general figure can prove a shortfall but
-	// never a pass: only the firm can tell which business line fits the buyer's field.
-	if (check === 'pass' && reading.family === 'turnover-specific') {
-		return decided('PROFILE_GAP', 'firm-judges', item);
-	}
+	// never a pass: only the firm can tell which business line fits the buyer's field. A general
+	// code whose quote confines the turnover to a field asks for a specific one too.
+	const specific = reading.family === 'turnover-specific' || namesBusinessField(item.quote);
+	if (check === 'pass' && specific) return decided('PROFILE_GAP', 'firm-judges', item);
 	return fromCheck(check, item, context, restricted);
 }
 

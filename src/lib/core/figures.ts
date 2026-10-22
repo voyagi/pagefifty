@@ -537,6 +537,34 @@ export function parseStandards(text: string, lang?: string): StandardsReading {
 	return { standards: matches.map((match) => match[0]), join };
 }
 
+// A turnover the text confines to comparable work or to a field of business ("vergleichbaren
+// Leistungen", "im Tätigkeitsbereich des Auftrags", "similar services") is a specific turnover,
+// whatever code the buyer gave the criterion, so a general figure can never prove it met.
+const BUSINESS_FIELD = phrases(
+	[
+		'im Tätigkeitsbereich',
+		'im Geschäftsbereich',
+		'im Leistungsbereich',
+		'im Bereich',
+		'op het gebied van',
+		'dans le domaine',
+		'in the field of',
+		'in the area of'
+	],
+	[
+		'vergleichbar',
+		'gleichartig',
+		'bereichsspezifisch',
+		'vergelijkba',
+		'soortgelijk',
+		'similaire',
+		'comparable',
+		'similar'
+	]
+);
+
+export const namesBusinessField = (text: string): boolean => BUSINESS_FIELD.test(text);
+
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,
 // so a clause's amounts can be checked against the ones its verified quotes name.
 export function amountsIn(text: string, staff: boolean, lang?: string): number[] | null {
