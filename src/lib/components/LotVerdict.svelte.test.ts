@@ -331,6 +331,17 @@ describe('what to check next, what the verdict means and who decided it', () => 
 		expect(textOf(unread)).toContain(DECIDED_LINES.unread);
 		expect(textOf(unread)).not.toContain('only read the clauses');
 	});
+
+	// The buyer's intent to cancel decides before any clause is weighed, so the turnover compared on
+	// the same read lot, which the test above credits, never takes the credit for it.
+	it('credits a cancelled lot to the intent to cancel, never to the figures compared on it', () => {
+		const lots = [
+			{ criteria: [turnoverCriterion('500.000')], items: [turnoverItem(1, '500.000')] }
+		];
+		const region = verdictOf(renderExample(syntheticPage(lots, { cancelIntent: true })), 'lot-1');
+		expect(textOf(region)).toContain(DECIDED_LINES['cancel-intent']);
+		expect(textOf(region)).not.toContain(DECIDED_LINES.figures);
+	});
 });
 
 describe('the clause that decides', () => {

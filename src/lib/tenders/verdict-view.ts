@@ -228,6 +228,8 @@ export const DECIDED_LINES = {
 	both: 'Decided by code from the figures and certificates compared; the model only read the clauses.',
 	'nothing-compared':
 		'Decided by code. No figure or certificate of the firm was compared for this lot; the model only read the clauses.',
+	'cancel-intent':
+		"Decided by code from the buyer's intent to cancel, which the notice states; nothing compared with the firm decided it, and the model only read the clauses.",
 	unread:
 		'Decided by code from what the notice states. The model read no clause of this lot, and nothing was compared with the firm.'
 } as const satisfies Readonly<Record<string, string>>;
@@ -263,6 +265,11 @@ const comparedFigure = (requirement: RequirementLike) =>
 
 function decidedLine(decided: ReadLotDecision, lot: LotView): string {
 	if (lot.verdictInput?.status.status !== 'read') return DECIDED_LINES.unread;
+	// The buyer's intent to cancel is decided before any clause is weighed (decideLot), so whatever
+	// the read lot compared did not decide it.
+	const { decision } = decided;
+	if (decision.verdict === 'ASK FIRST' && decision.reason === 'cancel-intent')
+		return DECIDED_LINES['cancel-intent'];
 	const requirements = decided.criteria.flatMap((outcome) => outcome.requirements);
 	const figures = requirements.some(comparedFigure);
 	const certificates = requirements.some((each) => CERTIFICATE_WHYS.has(each.why));
