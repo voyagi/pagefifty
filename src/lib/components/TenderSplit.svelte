@@ -282,11 +282,19 @@
 		white-space: nowrap;
 	}
 
-	/* The filters in one row under the head, so the list starts high on the first screen. */
+	/* The filters in one row under the head, so the list starts high on the first screen. The filters,
+	   the list and the opened tender are three areas, each its own white box on the ground. */
+	.filter-row,
+	.list-col,
+	.pane {
+		border: 1px solid var(--edge);
+		border-radius: var(--r);
+		background: var(--bg);
+	}
+
 	.filter-row {
 		margin-top: 0.875rem;
-		padding-bottom: 0.875rem;
-		border-bottom: 1px solid var(--line);
+		padding: 0.75rem 1rem 0.875rem;
 	}
 
 	/* The order is stated, not offered: the list has one order and no control changes it. */
@@ -318,32 +326,33 @@
 	.split {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
+		margin-top: 1rem;
 	}
 
-	/* The list keeps 460px where it can and gives up width before the tender does. Rows reach 1rem
-	   past the text edge above them, so a row's tint has room around its words. */
+	/* The list keeps 480px where it can and gives up width before the tender does: with its edge and
+	   its scrollbar's place that leaves a row's facts room for one line. */
 	.split.with-pane {
-		grid-template-columns: min(460px, 42%) minmax(0, 1fr);
+		grid-template-columns: min(480px, 42%) minmax(0, 1fr);
+		gap: 1rem;
 	}
 
 	.list-col {
 		min-width: 0;
-		margin-left: -1rem;
 	}
 
-	/* Beside a tender the list scrolls on its own, as the tender does, and both end at the bottom of
-	   the window while the page sits at its top, so an open row deep in the list shows with the head
-	   above it, and reaching the end of either column never scrolls the page under the other. A window
-	   too short for the head and a usable column keeps 20rem of each. */
+	/* Beside a tender the list scrolls on its own, as the tender does, and both end just above the
+	   bottom of the window while the page sits at its top, so each box shows its lower edge, an open
+	   row deep in the list shows with the head above it, and reaching the end of either column never
+	   scrolls the page under the other. A window too short for the head and a usable column keeps
+	   20rem of each. */
 	.with-pane .list-col {
 		position: sticky;
 		top: 0;
 		align-self: start;
-		max-height: max(20rem, calc(100vh - var(--split-top, 0px)));
+		max-height: max(20rem, calc(100vh - var(--split-top, 0px) - 1rem));
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-gutter: stable;
-		border-right: 1px solid var(--line);
 	}
 
 	#closed {
@@ -372,8 +381,11 @@
 		padding-inline: 1rem;
 	}
 
+	/* Inside the list's box the empty state is a wash, not a second box. */
 	#open :global(.empty) {
-		margin: 1.25rem 1rem;
+		margin: 1rem;
+		border-color: transparent;
+		background: var(--bg-2);
 	}
 
 	/* The tender scrolls on its own beside the list. */
@@ -382,11 +394,11 @@
 		top: 0;
 		align-self: start;
 		min-width: 0;
-		max-height: max(20rem, calc(100vh - var(--split-top, 0px)));
+		max-height: max(20rem, calc(100vh - var(--split-top, 0px) - 1rem));
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-gutter: stable;
-		padding: 1.5rem 0 2.5rem 2rem;
+		padding: 1.5rem 1.25rem 2.5rem 1.75rem;
 	}
 
 	.back {
@@ -413,16 +425,19 @@
 			grid-template-columns: minmax(0, 1fr);
 		}
 
-		/* The rows run to both edges of a phone, so a row's tint reads as the row. */
-		.list-col {
-			margin-inline: -1rem;
+		/* The list and the tender run to both edges of a phone, white bands on the ground, so a row's
+		   tint reads as the row. */
+		.list-col,
+		.pane {
+			margin-inline: calc(-1 * var(--gutter));
+			border-inline: 0;
+			border-radius: 0;
 		}
 
 		.with-pane .list-col {
 			position: static;
 			max-height: none;
 			overflow: visible;
-			border-right: 0;
 		}
 
 		.split:not(.on-record) .pane,
@@ -435,7 +450,12 @@
 			position: static;
 			max-height: none;
 			overflow: visible;
-			padding: 0;
+			padding: 1rem var(--gutter) 2rem;
+		}
+
+		/* A tender alone on a phone starts close under the band. */
+		.split.on-record {
+			margin-top: -0.75rem;
 		}
 
 		.back {
@@ -446,6 +466,15 @@
 		.sort {
 			margin-left: 0;
 			min-height: 0;
+		}
+	}
+
+	/* Where the filters fold behind one button, the button stands on the ground by itself. */
+	@media (max-width: 40em) {
+		.filter-row {
+			padding: 0;
+			border: 0;
+			background: none;
 		}
 	}
 </style>

@@ -62,7 +62,7 @@
 	<span lang={text.lang} data-notice-text>{text.text}</span>
 {/snippet}
 
-<Panel id={lot.anchor} labelledby={headingId}>
+<Panel id={lot.anchor} labelledby={headingId} ruled>
 	<div class="lot-head">
 		<div class="lot-name">
 			<h2 id={headingId}>Lot {lot.number}</h2>
@@ -223,11 +223,15 @@
 		overflow-wrap: anywhere;
 	}
 
+	/* The lot's facts as one strip on a wash, so they read as a set and not as loose lines. */
 	.lot-facts {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.625rem 1.75rem;
-		margin: 0.75rem 0 0;
+		margin: 0.875rem 0 0;
+		padding: 0.75rem 1rem 0.8125rem;
+		border-radius: var(--r);
+		background: var(--bg-2);
 	}
 
 	.lot-facts > div {
@@ -274,7 +278,7 @@
 	}
 
 	.requirements {
-		margin-top: 1.5rem;
+		margin-top: 1.75rem;
 	}
 
 	.clauses {
@@ -284,18 +288,27 @@
 	}
 
 	.others {
-		margin-top: 0.25rem;
-		border-top: 1px solid var(--line);
+		margin-top: 0.5rem;
 	}
 
+	/* The fold is a bar with its own edge, so the rest of the lot reads as one closed set. */
 	summary {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
 		min-height: 44px;
+		padding: 0 1rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r);
+		background: var(--bg);
 		font-weight: 600;
 		cursor: pointer;
 		list-style: none;
+		transition: background-color var(--quick) ease-out;
+	}
+
+	summary:hover {
+		background: var(--bg-2);
 	}
 
 	summary::-webkit-details-marker {
@@ -311,7 +324,7 @@
 	}
 
 	.others .clauses {
-		border-top: 1px solid var(--line);
+		margin-top: 0.5rem;
 	}
 
 	.note {

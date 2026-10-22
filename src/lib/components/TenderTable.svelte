@@ -190,12 +190,15 @@
 		color: var(--ink-2);
 	}
 
-	/* A buyer's name keeps one line and gives way first; the count and the notice number stay whole. */
+	/* A buyer's name keeps one line and gives way first; the count and the notice number stay whole.
+	   The buyer is the row's second line in full ink, so the grey lines under it read as detail. */
 	.who {
 		min-width: 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		font-weight: 500;
+		color: var(--ink);
 	}
 
 	.b:not(.who) {
@@ -240,6 +243,15 @@
 
 	.status {
 		margin-top: 0.25rem;
+	}
+
+	/* The list is ordered by it, so the deadline is the one fact in full ink. */
+	.deadline {
+		color: var(--ink);
+	}
+
+	.deadline::before {
+		color: var(--ink-2);
 	}
 
 	.deadline small {

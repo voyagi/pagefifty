@@ -21,7 +21,7 @@
 	);
 </script>
 
-<Panel id="web-search" labelledby="web-search-title">
+<Panel id="web-search" labelledby="web-search-title" ruled>
 	<div class="search">
 		<h2 class="head" id="web-search-title">Earlier awards of this buyer</h2>
 		<div class="body" data-web-search>

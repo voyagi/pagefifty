@@ -108,7 +108,7 @@
 
 <style>
 	.clause {
-		padding: 1.25rem 0 1.5rem;
+		padding: 1.5rem 0;
 		border-top: 1px solid var(--line);
 	}
 
@@ -132,7 +132,8 @@
 	}
 
 	h3 {
-		font: 600 var(--step-0) / 1.35 var(--font);
+		font: 650 var(--step-1) / 1.3 var(--font);
+		letter-spacing: -0.01em;
 		color: var(--ink);
 		overflow-wrap: anywhere;
 	}

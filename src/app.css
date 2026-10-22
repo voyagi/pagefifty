@@ -27,21 +27,25 @@
 		U+A720-A7FF;
 }
 
-/* The colour lives at size in the top band only; reading happens on white, and the brand green
-   marks the primary action and the focus ring. Nothing casts a shadow. */
+/* The colour lives at size in the top band only; reading happens on white panels laid on a pale
+   neutral ground, so each area of a page reads as its own, and the brand green marks the primary
+   action and the focus ring. Nothing casts a shadow. */
 :root {
 	color-scheme: light;
 	--band: #14513b;
 	--band-ink: #ffffff;
 	--band-ink-2: #cde2d8;
 	--band-hover: rgb(255 255 255 / 0.12);
+	--ground: #eef1ef;
 	--bg: #ffffff;
-	--bg-2: #f5f7f6;
-	--bg-3: #ebeeec;
-	--line: #e3e7e5;
-	--line-2: #cdd3d0;
+	--bg-2: #f4f6f5;
+	--bg-3: #e8ecea;
+	--line: #d5dbd8;
+	--line-2: #b9c1bd;
+	/* The edge of a panel on the ground. */
+	--edge: #c9d0cc;
 	/* The edge of a box to type in or choose from is how a reader finds it, so it holds 3:1 against
-	   every ground a field sits on, where the hairlines above stay quiet. */
+	   every ground a field sits on, where the rules above stay quieter. */
 	--line-field: #7d8681;
 	--ink: #111513;
 	--ink-2: #535c57;
@@ -69,20 +73,22 @@
 	--quick: 140ms;
 }
 
-/* Dark is its own palette: a deeper band, a near-black page, and a lighter green so the primary
-   action and the ring still read against it. */
+/* Dark is its own palette: a deeper band, a near-black ground with its panels lifted a step above
+   it, and a lighter green so the primary action and the ring still read against it. */
 :root[data-theme='dark'] {
 	color-scheme: dark;
 	--band: #124834;
 	--band-ink: #ffffff;
 	--band-ink-2: #b7d3c6;
 	--band-hover: rgb(255 255 255 / 0.1);
-	--bg: #0e1110;
-	--bg-2: #151917;
-	--bg-3: #1d2220;
-	--line: #262c29;
-	--line-2: #36403b;
-	--line-field: #68726d;
+	--ground: #080a09;
+	--bg: #121614;
+	--bg-2: #191e1c;
+	--bg-3: #222826;
+	--line: #2c3330;
+	--line-2: #444e49;
+	--edge: #333c38;
+	--line-field: #6e7873;
 	--ink: #e9edeb;
 	--ink-2: #a3aea8;
 	--brand: #4fae85;
@@ -103,12 +109,14 @@
 		--band-ink: #ffffff;
 		--band-ink-2: #b7d3c6;
 		--band-hover: rgb(255 255 255 / 0.1);
-		--bg: #0e1110;
-		--bg-2: #151917;
-		--bg-3: #1d2220;
-		--line: #262c29;
-		--line-2: #36403b;
-		--line-field: #68726d;
+		--ground: #080a09;
+		--bg: #121614;
+		--bg-2: #191e1c;
+		--bg-3: #222826;
+		--line: #2c3330;
+		--line-2: #444e49;
+		--edge: #333c38;
+		--line-field: #6e7873;
 		--ink: #e9edeb;
 		--ink-2: #a3aea8;
 		--brand: #4fae85;
@@ -133,12 +141,12 @@
 
 html {
 	-webkit-text-size-adjust: 100%;
-	scrollbar-color: var(--line-2) var(--bg);
+	scrollbar-color: var(--line-2) var(--ground);
 }
 
 body {
 	margin: 0;
-	background: var(--bg);
+	background: var(--ground);
 	color: var(--ink);
 	font: 400 var(--step-0) / 1.5 var(--font);
 	font-variant-numeric: tabular-nums;

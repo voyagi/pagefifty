@@ -13,7 +13,7 @@
 	let { documents, criteriaShown }: { documents?: Documents; criteriaShown: boolean } = $props();
 </script>
 
-<Panel id="documents" labelledby="documents-title">
+<Panel id="documents" labelledby="documents-title" ruled>
 	<div class="state">
 		<Icon name="unread" />
 		<div class="body">

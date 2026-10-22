@@ -7,11 +7,13 @@ colors:
   band-ink-2: '#cde2d8'
   band-hover: 'rgb(255 255 255 / 0.12)'
   band-rule: 'rgb(255 255 255 / 0.22)'
+  ground: '#eef1ef'
   bg: '#ffffff'
-  bg-2: '#f5f7f6'
-  bg-3: '#ebeeec'
-  line: '#e3e7e5'
-  line-2: '#cdd3d0'
+  bg-2: '#f4f6f5'
+  bg-3: '#e8ecea'
+  line: '#d5dbd8'
+  line-2: '#b9c1bd'
+  edge: '#c9d0cc'
   line-field: '#7d8681'
   ink: '#111513'
   ink-2: '#535c57'
@@ -24,12 +26,14 @@ colors:
   dark-band-ink: '#ffffff'
   dark-band-ink-2: '#b7d3c6'
   dark-band-hover: 'rgb(255 255 255 / 0.1)'
-  dark-bg: '#0e1110'
-  dark-bg-2: '#151917'
-  dark-bg-3: '#1d2220'
-  dark-line: '#262c29'
-  dark-line-2: '#36403b'
-  dark-line-field: '#68726d'
+  dark-ground: '#080a09'
+  dark-bg: '#121614'
+  dark-bg-2: '#191e1c'
+  dark-bg-3: '#222826'
+  dark-line: '#2c3330'
+  dark-line-2: '#444e49'
+  dark-edge: '#333c38'
+  dark-line-field: '#6e7873'
   dark-ink: '#e9edeb'
   dark-ink-2: '#a3aea8'
   dark-brand: '#4fae85'
@@ -250,16 +254,16 @@ components:
 
 Pagefifty reads a public tender the way a bid lead already reads a job posting. Tenders sit in a ranked list of postings, each with the buyer's initials where a job board shows the employer's logo. Choosing one opens it beside the list, and the list keeps its place. The opened tender reads like a posting's requirements: the verdict and what to check next, the clause that decides it quoted from the tender's own text with its source named in words, the plain English reading, and every other requirement folded below with its state marked by an icon and a word.
 
-The world is a pure white reading ground, near-black ink, and one deep green that owns a 60px band across the top of every page and fills the primary buttons. Everything else is hairlines: 1px rules between panels, rows and requirements, and no shadow anywhere. One face, Albert Sans, carries every word and every figure, with figures set in tabular digits. Density is medium to high, as on the portals this audience already uses: a 1440 by 900 screen shows about five tenders in the list beside the opened one.
+The world is white reading panels laid on a pale neutral ground, near-black ink, and one deep green that owns a 60px band across the top of every page and fills the primary buttons. Each area of a page (the filters, the list, the opened tender, a profile section) is its own white box with a 1px edge, set apart by the ground between boxes. Inside a box, 1px rules separate rows and requirements, and there is no shadow anywhere. One face, Albert Sans, carries every word and every figure, with figures set in tabular digits. Density is medium to high, as on the portals this audience already uses: a 1440 by 900 screen shows about five tenders in the list beside the opened one.
 
 The system refuses two things: a marketing hero over a feature grid, and a bare search form with nothing read. Verdicts never take a colour. A verdict is a word in a reversed ink tag with its own mark, and a criterion's state is a mark and a word, so ruled out reads with the same calm as ruled in.
 
 **Key Characteristics:**
 
 - One green, at size only in the top band, elsewhere on primary buttons, the 2px underline under the deciding words, the focus ring and a few quiet state marks.
-- White ground, near-black ink, a single secondary ink, and two pale washes for hover, the verdict row, tiles and small badges.
+- White panels on a pale ground, near-black ink, a single secondary ink, and two pale washes for hover, the verdict row, the lot's facts strip, a quote's caption, tiles and small badges.
 - Albert Sans alone, weights 400 to 800, tabular figures everywhere.
-- Hairline rows and panels. No shadows, no raised cards, no corner above 8px.
+- Boxed panels on the ground, ruled rows inside them, never a box inside a box except the verdict and a quote. No shadows, no corner above 8px.
 - Verdicts and states told apart by mark and word, never by colour.
 - A dashed edge means "not read or not settled". A 2px dashed ink edge means an error.
 - Light, Dark and Device themes, Device the default.
@@ -275,18 +279,20 @@ One deep green on white and near-black, with Dark designed as its own palette ra
 
 ### Neutral
 
-- **Paper** (bg, dark-bg): the page ground and every reading surface, including secondary buttons, chips, inputs, quote boxes and the example card. Secondary buttons take this fill, never a transparent one.
-- **Wash** (bg-2, dark-bg-2): row hover, the verdict row behind the tag and its Next line, initials tiles.
+- **Ground** (ground, dark-ground): the page behind the panels. Only the band, the page heads, the start page's claim and the footer stand on it directly. In Dark it is darker than Paper, so the panels sit a step above it.
+- **Paper** (bg, dark-bg): every panel and reading surface, including secondary buttons, chips, inputs, quote boxes and the example card. Secondary buttons take this fill, never a transparent one.
+- **Wash** (bg-2, dark-bg-2): row hover, the verdict row behind the tag and its Next line, the lot's facts strip, a quote's caption, initials tiles.
 - **Deep Wash** (bg-3, dark-bg-3): the small numbered badge that ties a marked quote to its reading.
-- **Hairline** (line, dark-line): rules between panels, rows, requirements and lots, and the example card's edge.
-- **Strong Hairline** (line-2, dark-line-2): the edge of controls named by their own words (buttons, chips), the quote box and reading tags, and the dashed edge of anything not read.
+- **Panel Edge** (edge, dark-edge): the 1px edge of every panel on the ground and of the example card.
+- **Rule** (line, dark-line): rules between rows, requirements and lots inside a panel, about 1.4:1 on Paper so each row reads as its own.
+- **Strong Rule** (line-2, dark-line-2): the edge of controls named by their own words (buttons, chips, the fold bar), the verdict box, the quote box and reading tags, and the dashed edge of anything not read, about 1.8:1 on Paper.
 - **Field Edge** (line-field, dark-line-field): the edge of every input and select. An empty field has nothing else to show where it is, so its edge holds at least 3.2:1 against Paper, Wash and Deep Wash in both themes.
 - **Ink** (ink, dark-ink): all reading text, the verdict tag's fill, a checked chip's doubled edge, field errors.
 - **Secondary Ink** (ink-2, dark-ink-2): labels, meta lines, hints, glosses, the snapshot and capture lines, the footer.
 - **Band Ink** (band-ink, band-ink-2, band-hover, band-rule): text on the band, the quieter nav links, the fill of the current nav link and the pressed theme button, and the 1px rule around the theme switch and the firm slot. Band-rule is the same in both themes.
 - **Selection** (selection, dark-selection): a translucent green for selected text and the date part being edited.
 
-Text contrast clears WCAG AA with room in both themes. Ink on Paper is about 18:1 in Light and 16:1 in Dark, Secondary Ink on Paper about 6.9:1 and 8.3:1, Band Ink 2 on the band about 6.8:1 and 6.6:1, and Brand Ink on the brand about 9.3:1 and 7.0:1. The lowest text pairs, Secondary Ink on the opened row's tint and the Demo tag's text on the band, sit near 6:1.
+Text contrast clears WCAG AA with room in both themes. Ink on Paper is about 18:1 in Light and 15:1 in Dark, Secondary Ink on Paper about 6.9:1 and 8.0:1, Secondary Ink on the Ground about 6.1:1 and 8.7:1, Band Ink 2 on the band about 6.8:1 and 6.6:1, and Brand Ink on the brand about 9.3:1 and 7.0:1. The lowest text pairs, Secondary Ink on the opened row's tint and the Demo tag's text on the band, sit near 6:1.
 
 ### Named Rules
 
@@ -330,11 +336,11 @@ Weights in use: 400, 500, 600, 650, 700 and 750, with 800 only for the "50" in t
 
 ## Layout
 
-Every page opens with the band: wordmark at the left, the three text links (Tenders, Firm profile, Example run), a spacer, the theme switch, and the firm slot at the far right. Below it, the main column is centred at a 1280px maximum with the fluid gutter on each side and 1.75rem of space above, 3rem below. Panels are not cards. They sit on the page itself, each after the first opened by a 1px Hairline rule with 2.5rem above it and 1.75rem below it. Where a panel has a facts column, it stands 15rem wide beside the text from 68.75em and moves above the text below that.
+Every page opens with the band: wordmark at the left, the three text links (Tenders, Firm profile, Example run), a spacer, the theme switch, and the firm slot at the far right. Below it, the main column is centred at a 1280px maximum with the fluid gutter on each side and 1.75rem of space above, 3rem below. A page's panels are white boxes on the ground: a 1px Panel Edge, 8px corners, 1.5rem of padding above and up to 1.75rem at the sides, and 1rem of ground between one box and the next. Two kinds of panel stay unboxed and take a 1px Rule with 2.5rem above it and 1.75rem below instead: a panel that already sits inside a box (a lot inside the opened tender, the buyer search, the unread documents) and the start page's claim, which holds the example card. A box never sits inside another box, except the verdict and a quote inside a tender. Where a panel has a facts column, it stands 15rem wide beside the text from 68.75em and moves above the text below that.
 
 **Start page.** From 68.75em the claim column is 470px wide beside the example card, 3.5rem apart. The claim holds the headline, two lede lines, the primary and secondary buttons side by side, three promise lines with icons on a hairline, and the snapshot line. The card opens the example's verdict on the right. Below 68.75em the card follows the claim. The figure panel and the firm panel sit below the first screen.
 
-**Tenders and the example run.** A title line carries the heading, the counts and, at the far right, the one sort order stated as text with no control. A capture line follows, then the filter row (country chips, type of work chips, two deadline dates, Apply) closed by a Hairline. Then the split view: the list column takes min(460px, 42%) and the opened tender takes the rest. Each column scrolls on its own, with a Hairline between them, and both end at the bottom of the window, measured from where the split starts on every navigation and resize (20rem at least on a very short window). So an open row deep in the list shows beside the head, and reaching the end of either column never moves the page. List rows reach 1rem past the text edge above them so a row's tint has room around its words. The pane has 2rem on its left.
+**Tenders and the example run.** A title line carries the heading, the counts and, at the far right, the one sort order stated as text with no control. A capture line follows on the ground, then the filter row (country chips, type of work chips, two deadline dates, Apply) in its own box. Then the split view, 1rem below: the list column takes min(480px, 42%) and the opened tender takes the rest, each its own box with 1rem of ground between them. Each column scrolls on its own, and both end 1rem above the bottom of the window so each box shows its lower edge, measured from where the split starts on every navigation and resize (20rem at least on a very short window). So an open row deep in the list shows beside the head, and reaching the end of either column never moves the page. List rows fill the list's box edge to edge, so a row's tint reads as the row. The pane has 1.75rem of padding on its left and 1.25rem on its right. On a phone the list and the tender run to both edges of the screen as white bands, and the filter button stands on the ground without a box.
 
 **A tender record.** Buyer tile and buyer, the title, a facts row with icons (deadline, time left, estimated value, the notice number linked to TED), the source actions, then one panel per lot. A lot shows its facts row, the verdict, the clause that decides right under it, and the other requirements folded behind a summary. The record ends with its source line and an "About this tender" grid.
 
@@ -350,17 +356,17 @@ Every page opens with the band: wordmark at the left, the three text links (Tend
 
 ## Elevation & Depth
 
-The system is flat. No element casts a shadow, nothing is lifted, and depth comes only from hairlines, the two washes and the two columns that scroll on their own. The one box-shadow in use is not elevation: a 1px inset ink line (`inset 0 0 0 1px`) that doubles a checked or pressed chip's border.
+The system is flat. No element casts a shadow, nothing is lifted, and depth comes only from white boxes on the ground, their edges, the rules inside them, the two washes and the two columns that scroll on their own. The one box-shadow in use is not elevation: a 1px inset ink line (`inset 0 0 0 1px`) that doubles a checked or pressed chip's border.
 
 ### Named Rules
 
-**The Flat Page Rule.** Rank comes from order, weight and the hairline, never from a shadow, a raised card or a coloured panel.
+**The Flat Page Rule.** Rank comes from order, weight, the box and the rule, never from a shadow, a raised card or a coloured panel.
 
 ## Shapes
 
 Corners are small and squared. Anything with a box (buttons, chips, inputs, the quote box, the example card, initials tiles, notes, the empty state) takes 8px. Tags take 6px (reading tags, the mode tags, the numbered quote badge, the theme switch's buttons). The band's own pieces take 7px (the nav link's drawn shape, the wordmark's square, the theme switch's frame). Nothing is rounder than 8px, and no box is a pill or a circle.
 
-Edges are 1px. A dashed 1px Strong Hairline means "not read or not settled": the reading tag for criteria in the documents, the unread note on a record, a requirement the model did not read, the "Documents not read yet" panel, a chip for a certificate that is held but expired. A dashed 2px ink edge on a 5% ink tint means an error, in a field or as a block.
+Edges are 1px. A dashed 1px Strong Rule means "not read or not settled": the reading tag for criteria in the documents, the unread note on a record, a requirement the model did not read, the "Documents not read yet" panel, a chip for a certificate that is held but expired. A dashed 2px ink edge on a 5% ink tint means an error, in a field or as a block.
 
 Icons share one line set on a 16px grid, stroked at 1.6 with round caps and joins in the current text colour. They are always decorative and hidden from assistive technology, since a word beside each carries its meaning.
 
@@ -387,14 +393,14 @@ Plain, squared, colour on the primary only.
 
 - **Shape:** 8px corners, 1px edge, Button type, at least 38px tall (44px for the one large call to action that leads a page).
 - **Primary:** brand fill and edge with Brand Ink text, Green Pressed on hover.
-- **Secondary:** Paper fill, Strong Hairline edge, Ink text. Hover fills with Wash and darkens the edge to Secondary Ink. The quiet "Clear filters" action beside Apply drops the edge and reads as an underlined link with a button's target.
+- **Secondary:** Paper fill, Strong Rule edge, Ink text. Hover fills with Wash and darkens the edge to Secondary Ink. The quiet "Clear filters" action beside Apply drops the edge and reads as an underlined link with a button's target.
 - **Source actions:** on a record, "Open the procurement documents" takes the primary look and "Open notice on TED" the secondary, each ending with the out-of-site mark.
 - **Skip link:** hidden until reached by keyboard, then a primary button at the band's top left with a Band Ink edge.
 - **No movement:** buttons change fill and edge only. Nothing translates.
 
 ### Chips
 
-- **Style:** Paper fill, Strong Hairline edge, 8px corners, 500 at 0.875rem, 36px tall. A checkbox chip keeps its native box visible with a green accent.
+- **Style:** Paper fill, Strong Rule edge, 8px corners, 500 at 0.875rem, 36px tall. A checkbox chip keeps its native box visible with a green accent.
 - **Checked or pressed:** the edge turns Ink and an inset 1px Ink line doubles it. The fill and text never change.
 - **Held but not settled:** a dashed Secondary Ink edge.
 
@@ -407,7 +413,7 @@ Plain, squared, colour on the primary only.
 
 ### Tender List Rows
 
-- **Row:** a 40px initials tile (Wash, Secondary Ink, 700), then the title at Row title weight clamped to two lines, the buyer and notice number, a meta line of facts separated by drawn dots (country, deadline, estimated value), and the reading status. Rows are divided by Hairlines, and the whole row answers to the pointer.
+- **Row:** a 40px initials tile (Wash, Secondary Ink, 700), then the title at Row title weight clamped to two lines, the buyer in Ink at 500 with the notice number in Secondary Ink, a meta line of facts separated by drawn dots (country, deadline, estimated value) with the deadline in Ink, and the reading status. Rows are divided by Rules, and the whole row answers to the pointer.
 - **Hover:** the row fills with Wash.
 - **Opened:** an 8% green tint inside a 1px edge at 45% green, and the title underlined. No side bar.
 - **Reading status:** written as plain Secondary Ink text where it matches the reading most rows share, and boxed as a reading tag only where it differs.
@@ -415,13 +421,14 @@ Plain, squared, colour on the primary only.
 
 ### Reading Tags
 
-A quiet outlined tag, never a verdict: 24px tall, 1px Strong Hairline edge, 6px corners, Tag type in Secondary Ink, with a 14px mark. "Criteria in the documents" carries the document mark and a dashed edge. "N criteria, not read yet" and "No criteria in the notice" carry the lines mark and a solid edge. The list's heading glosses the term once: "Reading status: what Pagefifty read in each notice."
+A quiet outlined tag, never a verdict: 24px tall, 1px Strong Rule edge, 6px corners, Tag type in Secondary Ink, with a 14px mark. "Criteria in the documents" carries the document mark and a dashed edge. "N criteria, not read yet" and "No criteria in the notice" carry the lines mark and a solid edge. The list's heading glosses the term once: "Reading status: what Pagefifty read in each notice."
 
 ### Verdict Block
 
-- **Verdict row:** one Wash row between Hairlines. At the left the verdict tag (30px, 8px corners, Ink fill with Paper text, 700, the verdict's mark before the word). Beside it the Next line: "Next:" at 650, then what to check next.
+- **Verdict box:** on a record the verdict is the one box inside the tender: a 1px Strong Rule edge and 8px corners, the verdict row as its head and everything that explains the verdict inside it, so the clause after it starts on its own. On the example card the verdict row runs edge to edge between Rules instead.
+- **Verdict row:** one Wash row. At the left the verdict tag (30px, 8px corners, Ink fill with Paper text, 700, the verdict's mark before the word). Beside it the Next line: "Next:" at 650, then what to check next.
 - **Under it:** the verdict's gloss as one sentence at 600, the reason line at Lede size, any shortfall rows, the Article 63 line for a criterion another firm could cover, a profile or documents link where one applies, then two Small lines in Secondary Ink naming the firm compared and how the verdict was decided.
-- **Shortfall rows:** one Hairline row per criterion the firm misses on its own, with the short mark, "Short on its own:" at 650, the criterion and its floor, and its position ("Criterion n of m") in Secondary Ink.
+- **Shortfall rows:** one Rule row per criterion the firm misses on its own, with the short mark, "Short on its own:" at 650, the criterion and its floor, and its position ("Criterion n of m") in Secondary Ink.
 
 ### Verdicts and States (signature)
 
@@ -467,27 +474,28 @@ Each criterion carries a state, drawn as a mark and a word at 600, 0.8125rem, in
 
 ### Clause and Quote Block
 
-- **Criterion heading:** the criterion's English label at 600, its code and "Criterion n of m" in Small Secondary Ink, and the state at the right. The buyer's parameters follow as published.
-- **Quote box:** the clause's language as a Label, then the source named in words ("Quoted from TED notice n"), then the buyer's words in a Paper box with a 1px Strong Hairline edge and 8px corners, carrying the clause's own `lang`. An excerpt clamps to six whole lines with the whole clause one click away.
+- **Criterion heading:** the criterion's English label at 650 and Subhead size, its code and "Criterion n of m" in Small Secondary Ink, and the state at the right. The buyer's parameters follow as published. Each criterion is separated from the next by a Rule with 1.5rem above and below.
+- **Quote box:** one box with a 1px Strong Rule edge and 8px corners. Its caption, on a Wash strip, names the clause's language as a Label and the source in words ("Quoted from TED notice n"). Under a Rule, the buyer's words sit on Paper, carrying the clause's own `lang`. An excerpt clamps to six whole lines with the whole clause one click away.
+- **Lot facts:** a lot's deadline, value, criteria count, source and legal basis sit together on one Wash strip with 8px corners under the lot's heading.
 - **Marked quotes:** a quote the model read is underlined with a dotted 1px Secondary Ink rule, offset 4px, led by a small numbered badge (Deep Wash, 6px corners, 700) that matches the number of its reading.
 - **Deciding words:** the words the verdict rests on are set at 700 with a 2px green underline. Never a highlighter wash.
 - **AI reading:** a Label, then the numbered readings in Ink, held to 72ch. A provenance line in Small Secondary Ink says how the quotes were checked and links the notice on TED.
-- **Other requirements:** folded under a 44px summary, "Other requirements in this lot (n)", whose chevron turns when open.
+- **Other requirements:** folded under a 44px bar with a Strong Rule edge and 8px corners, "Other requirements in this lot (n)", whose chevron turns when open and which fills with Wash under the pointer.
 
 ### Example Card (start page)
 
-An outlined box on the page itself: Paper fill, 1px Hairline edge, 8px corners, no shadow, 1.5rem side padding. It holds a 36px initials tile with the buyer and country, a quiet "Example run" tag, the title at Title size, the facts (the notice number linked to TED, the demo firm compared), the verdict row running edge to edge with its gloss, the clause that decides with its excerpt and AI reading, the requirement rows on Hairlines (the deciding one at 650) with a count by state, and one Small line on how the verdict was decided.
+A white box on the ground beside the claim: Paper fill, 1px Panel Edge, 8px corners, no shadow, 1.5rem side padding. It holds a 36px initials tile with the buyer and country, a quiet "Example run" tag, the title at Title size, the facts (the notice number linked to TED, the demo firm compared), the verdict row running edge to edge with its gloss, the clause that decides with its excerpt and AI reading, the requirement rows on Rules (the deciding one at 650) with a count by state, and one Small line on how the verdict was decided.
 
 ### Notes, Empty and Error States
 
-- **Not-read notes:** a 1px dashed Strong Hairline box with 8px corners, Small Secondary Ink text, and the dashed-ring mark where it leads a record.
-- **Empty state:** a named box with a Hairline edge and 8px corners, a Subhead heading, a Secondary Ink sentence that says why nothing matched, and a Clear filters button. An empty list never reads as a failed page.
+- **Not-read notes:** a 1px dashed Strong Rule box with 8px corners, Small Secondary Ink text, and the dashed-ring mark where it leads a record.
+- **Empty state:** a named box with 8px corners (a Wash fill inside the list's box), a Subhead heading, a Secondary Ink sentence that says why nothing matched, and a Clear filters button. An empty list never reads as a failed page.
 - **Error block:** the field error at block size, a 2px dashed Ink edge on a 6% Ink tint, weight 600, with a warning mark.
 - **Loading:** three set lines (0.875rem bars at 80%, 60% and 40% width, a 12% Ink tint) laid in place before words arrive. No spinner.
 
 ### Footer
 
-A 1px Hairline rule, then "Not legal advice." and the links Privacy and How the AI is used, in Small Secondary Ink on the page's own 1280px measure, each link with a 44px target.
+A 1px Rule, then "Not legal advice." and the links Privacy and How the AI is used, in Small Secondary Ink on the page's own 1280px measure, each link with a 44px target.
 
 ### Motion
 
@@ -512,7 +520,7 @@ Light, Dark and Device, with Device the default. A script in the document head s
 - **Do** keep the green at size in the top band alone, and use it elsewhere only for primary actions, the deciding words' 2px underline, the focus ring and the quiet state marks (The One Green Rule).
 - **Do** tell every verdict, criterion state and reading status apart by its mark and its word, in ink (The Colourless Verdict Rule).
 - **Do** set everything in Albert Sans, with tabular figures and weight 500 for evidence figures.
-- **Do** separate panels, rows and requirements with 1px Hairlines on the white page.
+- **Do** give each area of a page its own white box on the ground, and separate rows and requirements inside a box with 1px Rules.
 - **Do** keep box corners at 8px, tags at 6px and the band's pieces at 7px.
 - **Do** quote the buyer's words in the quote box with the source named in words above it and the clause's `lang` on it.
 - **Do** show a reading status as plain muted text where most rows share it, and box it only where a row differs.
@@ -524,6 +532,7 @@ Light, Dark and Device, with Device the default. A script in the document head s
 ### Don't:
 
 - **Don't** cast a shadow or raise a card. The inset ink line on a checked chip is the only box-shadow and is an edge, not depth.
+- **Don't** put a box inside a box. Inside a panel, rules and washes group things; the verdict and a quote are the only boxes inside a tender.
 - **Don't** give a verdict, a state or a reading tag a colour, a green included.
 - **Don't** round anything past 8px or draw a box as a pill or a circle.
 - **Don't** add a second typeface, a monospace or a condensed cut.

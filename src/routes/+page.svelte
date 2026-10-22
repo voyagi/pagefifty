@@ -37,7 +37,7 @@
 </svelte:head>
 
 <PageMain>
-	<Panel id="start" labelledby="start-title">
+	<Panel id="start" labelledby="start-title" ruled>
 		<div class="hero">
 			<div class="claim">
 				<h1 class="tagline" id="start-title">

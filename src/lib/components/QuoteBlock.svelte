@@ -71,12 +71,19 @@
 		margin-top: 1.25rem;
 	}
 
-	/* The language and the source on one line above the box. */
+	/* One box: the language and the source as its caption on a wash, then the buyer's words on white
+	   under a rule, so a quote and where it comes from read as one thing. */
 	.quote-block {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: baseline;
 		column-gap: 0.5rem;
+		max-width: 72ch;
+		padding: 0.5rem 0.875rem 0;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r);
+		background: var(--bg-2);
+		overflow: hidden;
 	}
 
 	.source {
@@ -92,16 +99,14 @@
 		margin-right: 0.5rem;
 	}
 
-	/* The buyer's words in their own box, set for reading: the PDF's hard line ends read as spaces,
-	   a word it broke at a line end reads whole and wraps by the language's own hyphenation, and
-	   blank lines and list items keep their breaks. */
+	/* The buyer's words, set for reading: the PDF's hard line ends read as spaces, a word it broke at
+	   a line end reads whole and wraps by the language's own hyphenation, and blank lines and list
+	   items keep their breaks. They reach the box's edges past the caption's padding. */
 	.quote {
-		flex: 1 0 100%;
-		margin: 0;
-		max-width: 72ch;
+		flex: 1 0 calc(100% + 1.75rem);
+		margin: 0 -0.875rem;
 		padding: 0.6875rem 0.875rem 0.75rem;
-		border: 1px solid var(--line-2);
-		border-radius: var(--r);
+		border-top: 1px solid var(--line);
 		background: var(--bg);
 		font-size: 0.96875rem;
 		line-height: 1.55;

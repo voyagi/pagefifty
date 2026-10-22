@@ -44,13 +44,26 @@
 </section>
 
 <style>
+	/* The verdict is the one boxed region inside a tender: its tag row heads the box and everything
+	   that explains it sits inside, so the clause after it starts clearly on its own. */
 	.lot-verdict {
 		margin: 1.25rem 0 0;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r);
+		overflow: hidden;
+	}
+
+	.lot-verdict :global(.verdict-head) {
+		border-block: 0;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.body {
+		padding: 0.875rem 1rem 1rem;
+	}
+
+	.body > * {
 		max-width: 62ch;
-		padding-top: 0.875rem;
 	}
 
 	.gloss {

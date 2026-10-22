@@ -172,10 +172,10 @@
 </article>
 
 <style>
-	/* An outlined box on the page itself: no shadow, nothing lifted. */
+	/* A white box on the ground with a panel's edge: no shadow, nothing lifted. */
 	.example {
 		min-width: 0;
-		border: 1px solid var(--line);
+		border: 1px solid var(--edge);
 		border-radius: var(--r);
 		background: var(--bg);
 	}
