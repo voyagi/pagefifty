@@ -29,32 +29,44 @@
 </div>
 
 <style>
+	/* A segmented control drawn on the band. Each button is 28px tall inside the 32px group, past
+	   the 24px minimum target of WCAG 2.2 (2.5.8); on a phone the first band row is already 44px
+	   tall for the wordmark, so there the group grows to the full 44px. */
 	.theme {
 		display: inline-flex;
 		flex: none;
-		border: 1px solid var(--acetate-edge);
-		border-radius: 4px;
-		background: var(--acetate);
-		padding: 2px;
+		gap: 2px;
+		padding: 1px;
+		border: 1px solid rgb(255 255 255 / 0.22);
+		border-radius: 7px;
 	}
 
 	button {
-		font: 500 var(--step--1) / 1 var(--font-sans);
-		color: var(--ink-2);
-		background: var(--acetate);
+		min-height: 28px;
+		padding: 0 0.625rem;
 		border: 0;
-		border-radius: 3px;
-		padding: 0.5rem 0.625rem;
-		min-height: 44px;
+		border-radius: 6px;
+		background: transparent;
+		color: var(--band-ink-2);
+		font: 500 var(--step--1) / 1 var(--font);
 		cursor: pointer;
+		transition:
+			background-color var(--quick) ease-out,
+			color var(--quick) ease-out;
 	}
 
 	button:hover {
-		color: var(--ink);
+		color: var(--band-ink);
 	}
 
 	button[aria-pressed='true'] {
-		background: var(--ink);
-		color: var(--acetate);
+		background: var(--band-hover);
+		color: var(--band-ink);
+	}
+
+	@media (max-width: 45em) {
+		button {
+			min-height: 40px;
+		}
 	}
 </style>

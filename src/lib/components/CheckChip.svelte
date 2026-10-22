@@ -15,42 +15,41 @@
 </label>
 
 <style>
-	/* The native checkbox stays visible, so a browser without :has() still shows the state. */
+	/* The native checkbox stays visible, so a browser without :has() still shows the state. Checked
+	   is told by the box and a doubled ink edge, never by a fill colour alone. */
 	.chip {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		min-height: 44px;
-		padding: 0 0.875rem;
-		border: 1px solid var(--ink-3);
-		border-radius: 3px;
-		font: 500 var(--step-0) / 1 var(--font-sans);
+		min-height: 36px;
+		padding: 0 0.75rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r);
+		font: 500 0.875rem / 1.2 var(--font);
 		color: var(--ink);
-		background: var(--acetate);
+		background: var(--bg);
 		cursor: pointer;
 	}
 
+	.chip:hover {
+		border-color: var(--ink-2);
+	}
+
 	input {
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		margin: 0;
-		accent-color: var(--ink);
+		accent-color: var(--brand);
 		cursor: pointer;
 	}
 
 	.chip:has(input:checked) {
-		background: var(--ink);
-		color: var(--acetate);
 		border-color: var(--ink);
-	}
-
-	/* An ink box on an ink chip would vanish; the checked box takes the acetate instead. */
-	.chip:has(input:checked) input {
-		accent-color: var(--acetate);
+		box-shadow: inset 0 0 0 1px var(--ink);
 	}
 
 	.chip:focus-within {
-		outline: 3px solid var(--focus);
+		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 	}
 
