@@ -184,6 +184,7 @@
 
 	.by {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0 0.75rem;
 		margin-top: 0.125rem;
 		font-size: var(--step--1);
@@ -191,8 +192,11 @@
 	}
 
 	/* A buyer's name keeps one line and gives way first; the count and the notice number stay whole.
+	   The name starts from no width and takes the room the two leave, so the line wraps only where the
+	   count and the number cannot fit beside each other, as in a narrow column at a large font size.
 	   The buyer is the row's second line in full ink, so the grey lines under it read as detail. */
 	.who {
+		flex: 1 1 0;
 		min-width: 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
