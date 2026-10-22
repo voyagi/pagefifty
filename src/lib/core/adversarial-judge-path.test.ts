@@ -3,7 +3,7 @@
 // one way a floor a firm does not meet could read as met.
 import { describe, expect, it } from 'vitest';
 import { decideReadLot, type FirmFacts, type LotContext } from './compare';
-import { parseCount, parseMoney } from './figures';
+import { parseCount, parseMoney, parsePeriod } from './figures';
 import { readLot, type ModelItem } from './lot-reading';
 
 const CONTEXT: LotContext = {
@@ -136,5 +136,42 @@ describe('digit groups joined by a mark the reader does not know', () => {
 		['2024: 25 Mitarbeiter', 'de', 25]
 	])('"%s" still reads its headcount', (text, lang, count) => {
 		expect(parseCount(text, lang)).toEqual({ kind: 'one', count });
+	});
+});
+
+describe('a choice of one year read only from a period phrase', () => {
+	// The firm meets the floor in its newest year only.
+	const ONE_GOOD_YEAR = firmWithTurnover({ 2023: 100_000, 2024: 100_000, 2025: 5_000_000 });
+
+	it.each([
+		[
+			'de',
+			'Mindestumsatz von 1 Mio. EUR in den letzten drei Geschäftsjahren, nachzuweisen in einem der folgenden Dokumente'
+		],
+		[
+			'en',
+			'A minimum turnover of EUR 1 million in the last three financial years, shown in any one of the following documents'
+		],
+		[
+			'nl',
+			'Een minimale omzet van 1 mln EUR in de laatste drie boekjaren, aan te tonen in één van de volgende documenten'
+		]
+	])('%s: a "one of the following documents" clause is no any-one period', (lang, text) => {
+		expect(parsePeriod(text, lang).mode).not.toBe('any-one');
+		const decided = verdictFor(text, '1 Mio. EUR', ONE_GOOD_YEAR, lang);
+		expect(decided.criteria[0].state).not.toBe('MET');
+	});
+
+	it.each([
+		['de', 'Mindestumsatz von 1 Mio. EUR in einem der letzten drei Geschäftsjahre'],
+		['de', 'Mindestumsatz von 1 Mio. EUR in einem der vergangenen drei Geschäftsjahre'],
+		['en', 'A minimum turnover of EUR 1 million in any one of the last three financial years'],
+		['nl', 'Een minimale omzet van 1 mln EUR in één van de laatste drie boekjaren'],
+		[
+			'fr',
+			"Un chiffre d'affaires minimum de 1 million EUR au cours d'un des trois derniers exercices"
+		]
+	])('%s: a choice of one year still reads as any-one', (lang, text) => {
+		expect(parsePeriod(text, lang).mode).toBe('any-one');
 	});
 });

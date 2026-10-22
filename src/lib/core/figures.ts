@@ -355,7 +355,17 @@ const MODES = {
 		'pour chacune des'
 	]),
 	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
-	'any-one': phrases(['in einem der', 'in één van', "au cours d'un des", 'in any one of'])
+	// Anchored on the period word as "each" is: "in einem der folgenden Dokumente" chooses a
+	// document, not a year, and read as any-one it would pass a floor met in one year of three.
+	'any-one': phrases([
+		'in einem der letzten',
+		'in einem der vergangenen',
+		'in één van de laatste',
+		'in één van de afgelopen',
+		"au cours d'un des",
+		'in any one of the last',
+		'in any one of the past'
+	])
 } as const;
 // Plural nouns only ("jahren?" is Jahre or Jahren): a singular follows "pro" or "je", never a count.
 const YEAR_NOUN = String.raw`(?:geschäftsjahren?|kalenderjahren?|jahren?|boekjaren|jaar|exercices|années|years)`;

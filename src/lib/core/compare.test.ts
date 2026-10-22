@@ -1196,7 +1196,7 @@ const PERIOD_WORDS = [
 	'jährlich',
 	'durchschnittlich',
 	'insgesamt',
-	'in einem der',
+	'in einem der letzten',
 	'gemiddeld',
 	'jaarlijks',
 	'par an',
