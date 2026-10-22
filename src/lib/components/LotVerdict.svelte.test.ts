@@ -658,6 +658,33 @@ describe('where the verdict shows', () => {
 		]);
 	});
 
+	// The strip says nothing on the page was compared with the firm profile: true where no lot
+	// carries a verdict, and contradicted by the verdict wherever one does.
+	it('shows the unread strip only on a notice where no lot carries a verdict', () => {
+		const STRIP =
+			'Shown as published in the notice. Nothing on this page has been compared with your firm profile.';
+		const listed = renderExample(examplePage('610242-2026'));
+		expect(wordOf(verdictOf(listed, 'lot-1'))).toBe('Ask first');
+		expect(listed.querySelector('.unread-strip')).toBeNull();
+		expect(textOf(listed)).not.toContain(STRIP);
+		cleanup();
+		const unlisted = renderExample(examplePage('609955-2026'));
+		expect(unlisted.querySelector('[data-verdict]')).toBeNull();
+		expect(textOf(unlisted.querySelector('#tender .unread-strip'))).toBe(STRIP);
+		cleanup();
+		// The readings list this lot, yet it was not read, so no verdict stands on it either.
+		const record = builtRecord('610242-2026');
+		const notRead = renderExample(
+			pageOf(record, {
+				notice: record.noticeNumber,
+				lots: [{ lot: record.lots[0].id, status: 'not-read', reason: 'cap-reached' }],
+				readings: []
+			})
+		);
+		expect(notRead.querySelector('[data-verdict]')).toBeNull();
+		expect(textOf(notRead.querySelector('#tender .unread-strip'))).toBe(STRIP);
+	});
+
 	it('the coverage list drops its Not compared line on a lot with a verdict and keeps it elsewhere', () => {
 		const listed = renderExample(examplePage('610242-2026'));
 		expect(textOf(listed.querySelector('#lot-1 .coverage'))).not.toContain('Not compared:');

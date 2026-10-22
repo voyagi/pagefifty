@@ -69,8 +69,14 @@
 
 	// Whether a lot gets a verdict at all does not depend on the firm, so before the firm is read
 	// the lots that will carry one show their loading lines and no word of it.
+	const carriesVerdict = (lot: LotView) => lotVerdict(lot, null, tender.now) !== null;
+
+	// The unread strip says nothing on the page was compared with the firm, which a verdict beside
+	// it would contradict, so it shows only on a notice where no lot carries one.
+	const unread = $derived(!tender.lots.some(carriesVerdict));
+
 	function verdictOf(lot: LotView) {
-		if (firm === null) return lotVerdict(lot, null, tender.now) === null ? undefined : 'loading';
+		if (firm === null) return carriesVerdict(lot) ? 'loading' : undefined;
 		const view = lotVerdict(lot, firm.facts, tender.now, tender.documents);
 		return view === null ? undefined : { view, compared: comparedLine(firm.compared) };
 	}
@@ -142,7 +148,7 @@
 			</dl>
 		</aside>
 		<SourceLinks tedUrl={tender.tedUrl} documents={tender.documents} />
-		<UnreadStrip />
+		{#if unread}<UnreadStrip />{/if}
 	</header>
 
 	{#each tender.lots as lot (lot.anchor)}
