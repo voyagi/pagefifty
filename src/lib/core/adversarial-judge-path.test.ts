@@ -279,6 +279,20 @@ describe('a general turnover floor confined to a field of business', () => {
 		const text = 'Mindestjahresumsatz von 1 Mio. EUR jährlich in den letzten drei Geschäftsjahren';
 		expect(verdictFor(text, '1 Mio. EUR', BIG_FIRM).criteria[0].state).toBe('MET');
 	});
+
+	it('a field the clause names after the quote still leaves the floor to the firm', () => {
+		const text =
+			'Der Bieter muss einen Jahresumsatz von mindestens 1 Mio. EUR jährlich im Tätigkeitsbereich des Auftrags nachweisen.';
+		const reading = readLot({
+			criteria: [{ code: 'slc-stand-to-gen', descriptions: [{ text, lang: 'de' }] }],
+			items: [item('Jahresumsatz von mindestens 1 Mio. EUR jährlich', '1 Mio. EUR')]
+		});
+		const decided = decideReadLot(reading, BIG_FIRM, CONTEXT);
+		const [requirement] = decided.criteria[0].requirements;
+		expect(requirement.state).toBe('PROFILE_GAP');
+		expect(requirement.why).toBe('firm-judges');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
 });
 
 describe('a floor over the sum of the years', () => {

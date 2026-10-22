@@ -376,8 +376,12 @@ function decideFigure(
 	if (check === 'fewer-years') return decided('PROFILE_GAP', 'fewer-years', item);
 	// Specific turnover is at most general turnover, so a general figure can prove a shortfall but
 	// never a pass: only the firm can tell which business line fits the buyer's field. A general
-	// code whose quote confines the turnover to a field asks for a specific one too.
-	const specific = reading.family === 'turnover-specific' || namesBusinessField(item.quote);
+	// code whose quote or clause confines the turnover to a field asks for a specific one too: a
+	// quote can stop before the field its clause goes on to name.
+	const specific =
+		reading.family === 'turnover-specific' ||
+		namesBusinessField(item.quote) ||
+		namesBusinessField(reading.text);
 	if (check === 'pass' && specific) return decided('PROFILE_GAP', 'firm-judges', item);
 	return fromCheck(check, item, context, restricted);
 }

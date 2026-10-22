@@ -217,7 +217,9 @@ const STRAY_YEAR =
 const FLOOR_ONLY = 'Jährlich mindestens 1.000.000 EUR netto Umsatz';
 const YEARS_APART = `${FLOOR_ONLY}. Maßgeblich sind die letzten zwei Geschäftsjahre.`;
 const STAFF_NOUN_FIRST = 'Mindestmitarbeiterzahl: mindestens 25.';
-const SAME_FLOOR_TWICE = `${EACH} Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.`;
+// No field of business named: a clause naming one leaves a met general floor to the firm, which
+// would hide the unquoted second floor these cases are about.
+const SAME_FLOOR_TWICE = `${EACH} Insgesamt mindestens 1.000.000 EUR netto Umsatz.`;
 const NAMED_AVERAGE =
 	'Durchschnittlicher Jahresumsatz der Geschäftsjahre 2023, 2024 und 2025 von mindestens 1.000.000,67 EUR netto.';
 const LAST_THREE_AVERAGE =
@@ -1010,7 +1012,7 @@ describe('decideCriterion, one row per state the code decides', () => {
 		});
 		// The same quote with other spacing is found at the same place, so it is the same row.
 		expect(readTwice([EACH, EACH.replace(' EUR ', '  EUR ')]).everyAmountQuoted).toBe(false);
-		const total = 'Insgesamt mindestens 1.000.000 EUR netto Umsatz im Tätigkeitsbereich.';
+		const total = 'Insgesamt mindestens 1.000.000 EUR netto Umsatz.';
 		expect(readTwice([EACH, total]).everyAmountQuoted).toBe(true);
 	});
 
