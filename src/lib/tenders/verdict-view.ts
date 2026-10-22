@@ -140,7 +140,11 @@ export const REASON_LINES = {
 type ReasonKey = keyof typeof REASON_LINES;
 
 type NextKey =
-	Exclude<LotVerdict, 'ASK FIRST'> | AskFirstReason | 'profile-field-missing/no-profile';
+	| Exclude<LotVerdict, 'ASK FIRST'>
+	| AskFirstReason
+	| 'profile-field-missing/no-profile'
+	| 'not-read/unplaced'
+	| 'not-compared/reserved';
 
 // What to check next, after "Next:", one line per verdict and per ask-first reason. Each names
 // something to read or check, never a step toward bidding, and none is a verdict word. "Below"
@@ -155,17 +159,26 @@ export const NEXT_LINES: Readonly<Record<NextKey, string>> = {
 	'profile-field-missing': 'check the requirement named below against your own records.',
 	'profile-field-missing/no-profile': 'set up a firm profile.',
 	'not-read': 'read the criterion named below yourself.',
+	'not-read/unplaced':
+		'read the requirements in this lot yourself; one reading names a criterion the lot does not have.',
 	'not-compared': 'read the criterion named below yourself.',
+	'not-compared/reserved': 'check whether this lot is reserved for certain operators.',
 	'criteria-in-documents': 'read the procurement documents, which were not read.',
 	'no-criteria-in-notice': 'read the notice on TED for criteria set elsewhere.'
 };
 
 // The profile link is set exactly when no profile was there to compare, which a figure check
-// cannot follow.
-export function nextLine(view: Pick<LotVerdictView, 'decision' | 'link'>): string {
+// cannot follow. With no clause shown first, nothing below is named: a lot left not read then
+// rests on an item read under no clause of it, and one left not compared on its reservation
+// (decidingOf), so the line names those instead.
+export function nextLine(view: Pick<LotVerdictView, 'decision' | 'link' | 'deciding'>): string {
 	const { decision } = view;
 	if (decision.verdict !== 'ASK FIRST') return NEXT_LINES[decision.verdict];
 	if (view.link?.kind === 'profile') return NEXT_LINES['profile-field-missing/no-profile'];
+	if (view.deciding === null && decision.reason === 'not-read')
+		return NEXT_LINES['not-read/unplaced'];
+	if (view.deciding === null && decision.reason === 'not-compared')
+		return NEXT_LINES['not-compared/reserved'];
 	return NEXT_LINES[decision.reason];
 }
 
@@ -230,6 +243,7 @@ export const DECIDED_LINES = {
 		'Decided by code. No figure or certificate of the firm was compared for this lot; the model only read the clauses.',
 	'cancel-intent':
 		"Decided by code from the buyer's intent to cancel, which the notice states; nothing compared with the firm decided it, and the model only read the clauses.",
+	open: 'Decided by code from what is left open on this lot; nothing compared with the firm decided it, and the model only read the clauses.',
 	unread:
 		'Decided by code from what the notice states. The model read no clause of this lot, and nothing was compared with the firm.'
 } as const satisfies Readonly<Record<string, string>>;
@@ -263,6 +277,8 @@ const comparedFigure = (requirement: RequirementLike) =>
 	FIGURE_WHYS.has(requirement.why) ||
 	(requirement.why === 'firm-judges' && requirement.item !== undefined);
 
+const comparedCertificate = (requirement: RequirementLike) => CERTIFICATE_WHYS.has(requirement.why);
+
 function decidedLine(decided: ReadLotDecision, lot: LotView): string {
 	if (lot.verdictInput?.status.status !== 'read') return DECIDED_LINES.unread;
 	// The buyer's intent to cancel is decided before any clause is weighed (decideLot), so whatever
@@ -271,12 +287,18 @@ function decidedLine(decided: ReadLotDecision, lot: LotView): string {
 	if (decision.verdict === 'ASK FIRST' && decision.reason === 'cancel-intent')
 		return DECIDED_LINES['cancel-intent'];
 	const requirements = decided.criteria.flatMap((outcome) => outcome.requirements);
-	const figures = requirements.some(comparedFigure);
-	const certificates = requirements.some((each) => CERTIFICATE_WHYS.has(each.why));
+	// A GO rests on every requirement; any other verdict only on those in the state it rests on, so
+	// a figure met elsewhere in the lot never takes the credit for what is left open. The documents,
+	// an item read under no clause and a lot without criteria rest on no requirement at all.
+	const rests = decision.verdict === 'GO' ? () => true : (restsOn(decision) ?? (() => false));
+	const resting = requirements.filter(rests);
+	const figures = resting.some(comparedFigure);
+	const certificates = resting.some(comparedCertificate);
 	if (figures && certificates) return DECIDED_LINES.both;
 	if (figures) return DECIDED_LINES.figures;
 	if (certificates) return DECIDED_LINES.certificates;
-	return DECIDED_LINES['nothing-compared'];
+	const compared = requirements.some((each) => comparedFigure(each) || comparedCertificate(each));
+	return compared ? DECIDED_LINES.open : DECIDED_LINES['nothing-compared'];
 }
 
 const LINES: Readonly<Record<string, string>> = REASON_LINES;
@@ -427,6 +449,9 @@ const RESTS_ON: Partial<Record<LotVerdict | AskFirstReason, (outcome: Stated) =>
 	'not-compared': (outcome) => outcome.notCompared
 };
 
+const restsOn = (decision: LotDecision) =>
+	RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict];
+
 const SETTLED: ReadonlySet<CriterionStateView['state']> = new Set([
 	'MET',
 	'MET_WITH_TASK',
@@ -438,7 +463,7 @@ function decidingOf(decided: ReadLotDecision): number | null {
 	const { decision, criteria } = decided;
 	// The buyer's intent to cancel is decided before any clause is weighed, so it rests on none.
 	if (decision.verdict === 'ASK FIRST' && decision.reason === 'cancel-intent') return null;
-	const rests = RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict];
+	const rests = restsOn(decision);
 	const resting = rests === undefined ? -1 : criteria.findIndex(rests);
 	const index =
 		resting >= 0 ? resting : criteria.findIndex((outcome) => !SETTLED.has(stateOf(outcome)));
@@ -458,10 +483,7 @@ function decidingQuotesOf(decided: ReadLotDecision, lot: LotView, deciding: numb
 	if (outcome === undefined) return [];
 	const itemised = outcome.requirements.filter((each) => each.item !== undefined);
 	if (itemised.length === 0) return verified.map((_, index) => index);
-	const { decision } = decided;
-	const rests =
-		RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict] ??
-		((each: Stated) => each.state === outcome.state);
+	const rests = restsOn(decided.decision) ?? ((each: Stated) => each.state === outcome.state);
 	const indexes = itemised
 		.filter(rests)
 		.map((each) => verified.findIndex((requirement) => requirement.item === each.item))
@@ -485,7 +507,7 @@ export function verdictView(
 		label: VERDICT_LABELS[decision.verdict],
 		mark: VERDICT_MARKS[decision.verdict],
 		gloss: sentence(verdictGloss(decision.verdict)),
-		next: nextLine({ decision, link }),
+		next: nextLine({ decision, link, deciding }),
 		reason: reasonOf(decided, lot),
 		link,
 		criteria: decided.criteria.map((outcome) => {

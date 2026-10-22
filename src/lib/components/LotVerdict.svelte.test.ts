@@ -123,6 +123,8 @@ interface SyntheticLot {
 	items?: ReplyItem[];
 	sources?: string[];
 	deadlines?: NoticeRecord['lots'][number]['deadlines'];
+	// Left out keeps the German lot's "none"; set to undefined, the lot states no reservation code.
+	reserved?: NoticeRecord['lots'][number]['reserved'];
 }
 
 // 610242-2026 with its lots replaced: each lot with items is listed as read under its own text
@@ -143,7 +145,8 @@ function syntheticPage(lots: SyntheticLot[], patch: Partial<NoticeRecord> = {}):
 				id: `LOT-000${index}`,
 				criteria: each.criteria,
 				criteriaSources: each.sources ?? ['epo-notice'],
-				deadlines: each.deadlines ?? base.deadlines
+				deadlines: each.deadlines ?? base.deadlines,
+				...('reserved' in each ? { reserved: each.reserved } : {})
 			}))
 		},
 		{
@@ -232,8 +235,10 @@ describe('what to check next, what the verdict means and who decided it', () => 
 			`Next: ${NEXT_LINES['profile-field-missing/no-profile']}`
 		);
 		const decision = { verdict: 'ASK FIRST', reason: 'profile-field-missing' } as const;
-		expect(nextLine({ decision, link: null })).toBe(NEXT_LINES['profile-field-missing']);
-		expect(nextLine({ decision, link: { kind: 'profile' } })).toBe(
+		expect(nextLine({ decision, link: null, deciding: 1 })).toBe(
+			NEXT_LINES['profile-field-missing']
+		);
+		expect(nextLine({ decision, link: { kind: 'profile' }, deciding: 1 })).toBe(
 			NEXT_LINES['profile-field-missing/no-profile']
 		);
 	});
@@ -342,6 +347,107 @@ describe('what to check next, what the verdict means and who decided it', () => 
 		expect(textOf(region)).toContain(DECIDED_LINES['cancel-intent']);
 		expect(textOf(region)).not.toContain(DECIDED_LINES.figures);
 	});
+
+	// An ask-first reason no comparison raised takes its line from that reason, so the turnover the
+	// demo firm meets in the same lot never takes the credit for the question left open.
+	const leftOpen: [string, Partial<SyntheticLot>, keyof typeof REASON_LINES][] = [
+		[
+			'an item read under no clause of the lot',
+			{ items: [turnoverItem(1, '500.000'), turnoverItem(2, '500.000')] },
+			'not-read'
+		],
+		[
+			'the procurement documents named beside the notice',
+			{
+				items: [turnoverItem(1, '500.000')],
+				sources: ['epo-notice', 'epo-procurement-document']
+			},
+			'criteria-in-documents/documents'
+		],
+		[
+			'a clause read but not compared in this version',
+			{
+				criteria: [
+					turnoverCriterion('500.000'),
+					criterion('slc-stand-ins', 'Nachweis einer Betriebshaftpflichtversicherung.')
+				],
+				items: [turnoverItem(1, '500.000')]
+			},
+			'not-compared/insurance'
+		]
+	];
+	it.each(leftOpen)(
+		'credits an ask-first lot over %s to what is left open, never to the figure met',
+		(_name, lot, reason) => {
+			const region = verdictOf(
+				renderExample(syntheticPage([{ criteria: [turnoverCriterion('500.000')], ...lot }])),
+				'lot-1'
+			);
+			expect(wordOf(region)).toBe('Ask first');
+			expect(textOf(region)).toContain(line(reason));
+			expect(textOf(region)).not.toContain(DECIDED_LINES.figures);
+			expect(textOf(region)).toContain(DECIDED_LINES.open);
+		}
+	);
+
+	// The line names only what the verdict rests on: the certificate not held leaves the route open,
+	// and the turnover met beside it decided nothing.
+	it('credits an open route to the certificate it rests on, never to a figure met beside it', () => {
+		const text = 'Zertifizierung nach ISO/IEC 27001:2022 für den Rechenzentrumsbetrieb.';
+		const region = verdictOf(
+			renderExample(
+				syntheticPage([
+					{
+						criteria: [turnoverCriterion('500.000'), criterion('slc-sche-qu-cert-indep', text)],
+						items: [
+							turnoverItem(1, '500.000'),
+							item(2, 'certificate', 'Zertifizierung nach ISO/IEC 27001:2022')
+						]
+					}
+				])
+			),
+			'lot-1'
+		);
+		expect(textOf(region)).toContain(line('route-unsettled/not-held'));
+		expect(textOf(region)).toContain(DECIDED_LINES.certificates);
+		expect(textOf(region)).not.toContain(DECIDED_LINES.both);
+	});
+
+	// With no clause shown first, "Next:" names what is open instead of a criterion named below:
+	// the item read under no clause, or the lot's reservation.
+	const unnamed: [
+		string,
+		Partial<SyntheticLot>,
+		keyof typeof REASON_LINES,
+		keyof typeof NEXT_LINES
+	][] = [
+		[
+			'an item read under no clause of the lot',
+			{ items: [turnoverItem(1, '500.000'), turnoverItem(2, '500.000')] },
+			'not-read',
+			'not-read/unplaced'
+		],
+		[
+			'a lot that states no reservation code',
+			{ items: [turnoverItem(1, '500.000')], reserved: undefined },
+			'not-compared/reserved',
+			'not-compared/reserved'
+		]
+	];
+	it.each(unnamed)(
+		'promises no clause below on %s, where none is shown',
+		(_name, lot, reason, next) => {
+			const container = renderExample(
+				syntheticPage([{ criteria: [turnoverCriterion('500.000')], ...lot }])
+			);
+			const region = verdictOf(container, 'lot-1');
+			expect(wordOf(region)).toBe('Ask first');
+			expect(textOf(region)).toContain(line(reason));
+			expect(textOf(container.querySelector('#lot-1'))).not.toContain('The clause that decides');
+			expect(nextOf(region)).not.toContain('named below');
+			expect(nextOf(region)).toBe(`Next: ${NEXT_LINES[next]}`);
+		}
+	);
 });
 
 describe('the clause that decides', () => {
