@@ -130,9 +130,9 @@
 
 	.lede,
 	.reading {
-		max-width: 52ch;
+		max-width: 62ch;
 		font-size: var(--step-1);
-		line-height: 1.45;
+		line-height: 1.5;
 		text-wrap: pretty;
 	}
 

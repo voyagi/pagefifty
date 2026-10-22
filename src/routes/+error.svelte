@@ -129,6 +129,7 @@
 	}
 
 	h1 {
+		min-width: 0;
 		max-width: 24ch;
 		font-weight: 750;
 		font-size: var(--step-3);
@@ -137,22 +138,25 @@
 		text-wrap: balance;
 	}
 
+	/* The code is for whoever reports the fault, so it stays small and quiet beside the heading
+	   that says what went wrong. */
 	.status-tag {
 		display: inline-flex;
 		align-items: center;
-		height: 24px;
-		padding: 0 0.5625rem;
+		min-height: 24px;
+		padding: 0.125rem 0.5625rem;
 		border: 1px solid var(--line-2);
 		border-radius: var(--r-sm);
 		color: var(--ink-2);
 		font-size: 0.78125rem;
+		line-height: 1.2;
 	}
 
 	.lede {
-		max-width: 52ch;
+		max-width: 62ch;
 		margin-top: 1rem;
 		font-size: var(--step-1);
-		line-height: 1.45;
+		line-height: 1.5;
 		text-wrap: pretty;
 	}
 

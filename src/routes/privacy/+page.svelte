@@ -147,8 +147,8 @@
 
 	.statement,
 	.opening {
-		max-width: 52ch;
-		line-height: 1.45;
+		max-width: 62ch;
+		line-height: 1.5;
 		font-size: var(--step-1);
 		text-wrap: pretty;
 	}
