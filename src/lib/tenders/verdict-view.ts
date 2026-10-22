@@ -110,7 +110,7 @@ export const REASON_LINES = {
 	'not-compared/optional':
 		'A requirement its reading marks as optional or scored is shown as published and not compared in this version.',
 	'not-compared/other-lot':
-		'A requirement the clause states for another lot of this notice is shown as published and not compared for this lot.',
+		'A requirement the clause states for another lot of this notice, or for a lot number this version cannot tie to this lot, is shown as published and not compared for this lot.',
 	'not-compared/reserved':
 		'Whether the lot is reserved for certain operators is not compared with the profile in this version.',
 	'criteria-in-documents':

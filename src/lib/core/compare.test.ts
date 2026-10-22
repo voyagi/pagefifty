@@ -597,6 +597,25 @@ const ROWS: readonly Row[] = [
 		staffFirm({ 2023: 10.1, 2024: 10.2, 2025: 10.5 }),
 		decided('MET', 'met')
 	),
+	// No year below the floor leaves only whether equal is enough, never years on both sides.
+	row(
+		'a staff average with one year equal to the floor and none below is PROFILE_GAP on equality',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 12, 2024: 10, 2025: 12 }),
+		decided('PROFILE_GAP', 'no-comparator')
+	),
+	row(
+		'a staff average with every year equal to the floor is PROFILE_GAP on equality',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 10, 2024: 10, 2025: 10 }),
+		decided('PROFILE_GAP', 'no-comparator')
+	),
+	row(
+		'a staff average with a year below the floor and a year above it is PROFILE_GAP on the years',
+		{ code: MANPOWER, text: STAFF_AVERAGE },
+		staffFirm({ 2023: 8, 2024: 10, 2025: 12 }),
+		decided('PROFILE_GAP', 'period-unstated')
+	),
 	row(
 		'average annual manpower floored in each of the years, one year short, is never MET',
 		{ code: MANPOWER, text: STAFF_AVERAGE_IN_EACH },
@@ -724,6 +743,28 @@ const ROWS: readonly Row[] = [
 		yearly(2e6),
 		notCompared('other-lot'),
 		{ lot: 'LOT-0001' }
+	),
+	// 731406-2026 in the 2026-10-22 capture publishes its "Los 1b" as LOT-0002.
+	row(
+		'a lot whose own title names another number than its id compares no lot-named quote',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 1b: HbbTV und SmartTV', lang: 'de' } }
+	),
+	row(
+		'a lot whose own title names its number with a letter after it compares no lot-named quote',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 2b: ZDFheute Backend', lang: 'de' } }
+	),
+	row(
+		'a lot whose own title names the number of its id compares its own floor',
+		g(SEVERAL),
+		yearly(2e6),
+		decided('NOT_READ', 'several-amounts'),
+		{ lot: 'LOT-0002', lotTitle: { text: 'Los 2: Betrieb', lang: 'de' } }
 	),
 	row(
 		'a quote with no amount while its criterion holds one reads NOT_READ',
@@ -986,7 +1027,7 @@ describe('decideCriterion, one row per state the code decides', () => {
 		).toEqual({
 			state: 'NOT_READ',
 			notCompared: false,
-			why: ['model-number-differs', 'amount-not-quoted']
+			why: ['no-amount', 'amount-not-quoted']
 		});
 	});
 

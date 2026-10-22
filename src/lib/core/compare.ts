@@ -7,6 +7,7 @@ import { SERVER_TIME_ZONE, cetDayEnd, formatDay } from './deadline.ts';
 import { codePeriodOf, type CriterionFamily } from './families.ts';
 import {
 	lotsNamed,
+	lotsTitled,
 	namesBusinessField,
 	namesFloor,
 	type CountReading,
@@ -50,8 +51,10 @@ export interface LotContext {
 	readonly coverage: LotCoverageInput;
 	readonly cancelIntent: boolean;
 	readonly reserved: string | undefined;
-	// The lot's id (LOT-0001), so a floor a shared clause states for another lot is not this lot's.
+	// The lot's id (LOT-0001) and its own title, so a floor a shared clause states for another lot
+	// is not this lot's.
 	readonly lot?: string;
+	readonly lotTitle?: { readonly text: string; readonly lang?: string };
 }
 
 export type OutcomeWhy =
@@ -317,7 +320,13 @@ function staffCheck(
 	const everyYear = checkYears('unstated', figures, count, COUNT_SCALE);
 	if (everyYear === 'pass') return 'pass';
 	const mean = checkYears('average', figures, count, COUNT_SCALE);
-	return mean === 'fail' || mean === 'missing' ? mean : 'period-unstated';
+	if (mean === 'fail' || mean === 'missing') return mean;
+	// Years on both sides of the floor only when one falls below it; with none below, the open
+	// question is whether a year equal to the floor is enough.
+	const below = figures.some(
+		(figure) => figure !== undefined && checkCount(figure, count) === 'fail'
+	);
+	return below ? 'period-unstated' : everyYear;
 }
 
 // The amount, and the model's agreement with it, before any figure of the firm is read.
@@ -453,13 +462,23 @@ function familyOutcome(
 const LOT_ID = /^LOT-(\d+)$/u;
 
 // A clause every lot shares can state one floor per lot ("Los 1: 6 Mio. EUR netto", "Los 2: 2,5
-// Mio. EUR netto"), and a quote naming only other lots states none of this one's. When the lot's
-// own number cannot be told, a quote naming any lot is not compared either.
-function forOtherLot(requirement: VerifiedRequirement, lot: string | undefined): boolean {
+// Mio. EUR netto"), and a quote naming only other lots states none of this one's. The lot's id
+// gives its number only while its own title names no other: 731406-2026 in the 2026-10-22 capture
+// publishes its "Los 1b" as LOT-0002 and its "Los 2a" as LOT-0003. When the lot's own number
+// cannot be told, a quote naming any lot is not compared either.
+function ownLot(context: LotContext): number | undefined {
+	const id = LOT_ID.exec(context.lot ?? '')?.[1];
+	if (id === undefined) return undefined;
+	const own = Number.parseInt(id, 10);
+	const { lotTitle } = context;
+	const titled = lotTitle === undefined ? [] : lotsTitled(lotTitle.text, lotTitle.lang);
+	return titled?.every((number) => number === own) ? own : undefined;
+}
+
+function forOtherLot(requirement: VerifiedRequirement, own: number | undefined): boolean {
 	const named = lotsNamed(requirement.item.quote, requirement.lang);
 	if (named.length === 0) return false;
-	const own = LOT_ID.exec(lot ?? '')?.[1];
-	return own === undefined || !named.includes(Number.parseInt(own, 10));
+	return own === undefined || !named.includes(own);
 }
 
 function outcomeOf(requirements: readonly RequirementOutcome[]): CriterionOutcome {
@@ -479,12 +498,13 @@ export function decideCriterion(
 ): CriterionOutcome {
 	const byFamily = familyOutcome(reading, firm);
 	if (byFamily) return outcomeOf([byFamily]);
+	const own = ownLot(context);
 	const requirements = [
 		...reading.verified.map((requirement) => {
 			// The model marks an item optional, scored or a request for information (the prompt in
 			// token-factory.ts), so such an item is never compared and cannot set a shortfall.
 			if (requirement.item.mandatory !== true) return withheld('optional', requirement.item);
-			if (forOtherLot(requirement, context.lot)) return withheld('other-lot', requirement.item);
+			if (forOtherLot(requirement, own)) return withheld('other-lot', requirement.item);
 			return reading.family === 'certificate'
 				? decideCertificate(requirement, firm, context)
 				: decideFigure(reading, requirement, firm, context, restricted);

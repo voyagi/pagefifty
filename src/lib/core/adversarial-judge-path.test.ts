@@ -453,6 +453,22 @@ describe('a floor inside a criterion this version does not assess', () => {
 		expect(decided.decision.verdict).not.toBe('GO');
 	});
 
+	// An amount code refuses to read ("EUR 1 Mill.", "1'000'000 EUR") still states a floor, and a
+	// registration clause can state a headcount as well as money.
+	it.each([
+		'Eintragung im Handelsregister. Zudem ist ein Mindestjahresumsatz von EUR 1 Mill. nachzuweisen.',
+		"Eintragung im Handelsregister. Zudem ist ein Mindestjahresumsatz von 1'000'000 EUR nachzuweisen.",
+		'Eintragung im Handelsregister. Zudem mindestens 20 Mitarbeiter.'
+	])('a registration criterion with a floor code cannot read never lets the lot go: %s', (text) => {
+		const reading = readLot({
+			criteria: [{ code: 'slc-suit-reg-trade', descriptions: [{ text, lang: 'de' }] }],
+			items: []
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].state).not.toBe('INFO');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
+
 	it('a registration criterion with no amount stays not assessed', () => {
 		const text = 'Eintragung im Handelsregister oder einem vergleichbaren Berufsregister.';
 		const reading = readLot({

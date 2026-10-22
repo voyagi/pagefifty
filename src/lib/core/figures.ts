@@ -352,7 +352,12 @@ const MODES = {
 		'in jedem der letzten',
 		'in jedem der vergangenen',
 		'in elk van de laatste',
-		'pour chacune des'
+		// French puts the count between the two ("pour chacune des trois dernières années"), so "pour
+		// chacune des prestations" names no period.
+		...['', 'deux ', 'trois ', 'cinq ', '2 ', '3 ', '5 '].flatMap((count) => [
+			`chacune des ${count}dernières`,
+			`chacun des ${count}derniers`
+		])
 	]),
 	// "Summe" and "au total" as in "(Summe der letzten drei Geschäftsjahre)" and "au total sur les 3
 	// dernières années", both in the 2026-10-22 capture.
@@ -638,6 +643,17 @@ function lotNumbersOf(group: string): number[] {
 export function lotsNamed(text: string, lang?: string): number[] {
 	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
 	return [...text.matchAll(LOT_LABEL)].flatMap((match) => lotNumbersOf(match[1]));
+}
+
+// The lot numbers a lot's own title names, or undefined when one has a letter after it ("Los 2b"):
+// a part of lot 2, which a quote naming "Los 2" may not mean.
+export function lotsTitled(title: string, lang?: string): number[] | undefined {
+	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
+	const matches = [...title.matchAll(LOT_LABEL)];
+	const lettered = matches.some((match) =>
+		/^\p{L}/u.test(title.slice(match.index + match[0].length))
+	);
+	return lettered ? undefined : matches.flatMap((match) => lotNumbersOf(match[1]));
 }
 
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,

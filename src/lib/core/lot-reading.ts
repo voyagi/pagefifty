@@ -181,10 +181,13 @@ function readRequirement(
 	};
 }
 
-// A staff floor is a count of people, so its clause holds an amount when code reads a count in it.
+// A staff floor is a count of people, so its clause holds an amount when code finds a count in it.
+// An amount code refuses to read ("EUR 1 Mill.", "1'000'000 EUR") is still one the clause states,
+// and a registration clause can state either kind ("Zudem mindestens 20 Mitarbeiter").
 function hasAmount(text: string, family: CriterionFamily, lang: string | undefined): boolean {
-	const reading = family === 'staff-average' ? parseCount(text, lang) : parseMoney(text, lang);
-	return reading.kind !== 'none';
+	const holds = (staff: boolean) => amountsIn(text, staff, lang)?.length !== 0;
+	if (family === 'not-assessed') return holds(false) || holds(true);
+	return holds(family === 'staff-average');
 }
 
 function tally(amounts: readonly number[]): Map<number, number> {

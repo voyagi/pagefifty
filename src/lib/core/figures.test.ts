@@ -314,8 +314,11 @@ describe('parsePeriod', () => {
 		['in each of the last', 'en', 'each'],
 		['in jedem der letzten', 'de', 'each'],
 		['in elk van de laatste', 'nl', 'each'],
-		['pour chacune des', 'fr', 'each'],
+		['pour chacune des dernières années', 'fr', 'each'],
+		['pour chacun des derniers exercices', 'fr', 'each'],
+		['au cours de chacune des dernières années', 'fr', 'each'],
 		['in each of the lots', 'en', 'unstated'],
+		['pour chacune des prestations', 'fr', 'unstated'],
 		['insgesamt', 'de', 'sum'],
 		['kumuliert', 'de', 'sum'],
 		['samen', 'nl', 'sum'],
@@ -342,6 +345,15 @@ describe('parsePeriod', () => {
 		['jährlichen', 'de', 'unstated']
 	] as const)('parsePeriod reads the mode in "%s" (%s) as %s', (text, lang, mode) => {
 		expect(parsePeriod(text, lang)).toEqual(period(mode));
+	});
+
+	// French puts the count of years between "chacune des" and the period word.
+	it.each([
+		'pour chacune des trois dernières années',
+		'pour chacun des 3 derniers exercices',
+		'au cours de chacune des deux dernières années'
+	])('reads "%s" as each year across its count', (text) => {
+		expect(parsePeriod(text, 'fr').mode).toBe('each');
 	});
 
 	it.each([
