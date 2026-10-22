@@ -165,6 +165,17 @@ describe('the verdict copy', () => {
 		}
 	});
 
+	// The same why code is given for a floor stated gross, a floor with no basis word and a figure
+	// equal to a "more than" floor, and a count is never read for a comparator, so these lines may
+	// claim nothing about the notice that only one of those cases makes true.
+	it('the open-floor lines claim nothing the notice may not say', () => {
+		const basis = REASON_LINES['profile-field-missing/net-below-gross-floor'];
+		expect(basis).not.toContain('states a gross floor');
+		expect(basis).not.toContain('fall below');
+		const equal = REASON_LINES['profile-field-missing/no-comparator'];
+		expect(equal).not.toContain('the notice does not say');
+	});
+
 	it('ends the compared-firm line once, whether or not the firm name ends in a period', () => {
 		expect(comparedLine({ kind: 'demo', name: 'Brink Data B.V.' })).toBe(
 			'Compared with the demo firm, Brink Data B.V.'

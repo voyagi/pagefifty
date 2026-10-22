@@ -84,9 +84,9 @@ export const REASON_LINES = {
 	'profile-field-missing/no-profile':
 		'With no firm profile in this browser, no criterion could be compared.',
 	'profile-field-missing/net-below-gross-floor':
-		'The buyer states a gross floor, and the net figures in the profile fall below it, so the comparison stays open.',
+		'The notice does not state this floor as net, and the net figures in the profile do not clear it, so the comparison stays open.',
 	'profile-field-missing/no-comparator':
-		'A figure equals the floor, and the notice does not say whether equal is enough.',
+		'A figure equals the floor, and this version cannot tell from the notice whether equal is enough.',
 	'profile-field-missing/period-unstated':
 		"The notice does not say which years count, and the firm's years fall on both sides of the floor.",
 	'profile-field-missing/certificate-scope':
