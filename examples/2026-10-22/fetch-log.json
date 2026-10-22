@@ -1,0 +1,104 @@
+{
+  "log": [
+    {
+      "at": "2026-10-22T08:24:12.494Z",
+      "category": "search",
+      "page": 1,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 1961738,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:13.513Z",
+      "category": "search",
+      "page": 2,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 1146880,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:15.200Z",
+      "category": "search",
+      "page": 1,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 1961738,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:16.200Z",
+      "category": "search",
+      "page": 2,
+      "attempt": 0,
+      "status": 200,
+      "bytes": 1146880,
+      "headers": {},
+      "url": "api.ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:17.465Z",
+      "category": "xml",
+      "id": "695350-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 30562,
+      "headers": {},
+      "url": "ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:20.829Z",
+      "category": "xml",
+      "id": "721224-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 37989,
+      "headers": {},
+      "url": "ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:21.836Z",
+      "category": "xml",
+      "id": "727241-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 28239,
+      "headers": {},
+      "url": "ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:22.848Z",
+      "category": "xml",
+      "id": "730912-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 27990,
+      "headers": {},
+      "url": "ted.europa.eu"
+    },
+    {
+      "at": "2026-10-22T08:24:23.851Z",
+      "category": "xml",
+      "id": "731636-2026",
+      "attempt": 0,
+      "status": 200,
+      "bytes": 35060,
+      "headers": {},
+      "url": "ted.europa.eu"
+    }
+  ],
+  "failures": [
+    {
+      "notice": "694786-2026",
+      "reason": "scrub: contact data stands inside a selection criterion, which is served only as published"
+    },
+    {
+      "notice": "695350-2026",
+      "reason": "malformed: namespace urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2 is bound to prefix cn, and the reader reads it only as the default namespace"
+    }
+  ]
+}
