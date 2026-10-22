@@ -373,6 +373,44 @@ describe('the clause that decides', () => {
 		expect(textOf(first?.querySelector('[data-verdict]'))).toBe(STATE_LABELS.SHORT_BORROWABLE);
 	});
 
+	// Code compared each floor on its own, so the green underline marks only the quote the firm
+	// falls short on; the other is marked as read and numbered, with no green.
+	it('underlines only the quote the verdict rests on, numbered as its reading is', () => {
+		const text = `${TURNOVER('500.000')} ${TURNOVER('2.000.000')}`;
+		const container = renderExample(
+			syntheticPage([
+				{
+					criteria: [criterion('slc-stand-to-gen', text)],
+					items: [turnoverItem(1, '500.000'), turnoverItem(1, '2.000.000')]
+				}
+			])
+		);
+		expect(wordOf(verdictOf(container, 'lot-1'))).toBe('Not met alone');
+		const clause = clauseAt(container, 'lot-1', 1);
+		const marks = [...(clause?.querySelectorAll('blockquote mark') ?? [])];
+		expect(
+			marks.map((mark) => [mark.getAttribute('data-n'), mark.classList.contains('decides')])
+		).toEqual([
+			['1', false],
+			['2', true]
+		]);
+		expect(textOf(marks[1])).toBe(TURNOVER_QUOTE('2.000.000'));
+		const rows = [...(clause?.querySelectorAll('.requirement') ?? [])];
+		expect(rows.map((row) => row.classList.contains('decides'))).toEqual([false, true]);
+		expect(clause?.querySelectorAll('.requirement [data-notice-text]')).toHaveLength(0);
+	});
+
+	// The staff clause's kind leaves it to the firm as a whole, so the verdict rests on every quote
+	// read in it, and on no quote of the clauses folded under it.
+	it('marks every quote of a clause its kind decides as a whole, and none of the others', () => {
+		const container = renderExample(examplePage('610242-2026'));
+		const [first] = [...container.querySelectorAll('#lot-1 .clause')];
+		const marks = [...first.querySelectorAll('blockquote mark')];
+		expect(marks.map((mark) => mark.getAttribute('data-n'))).toEqual(['1', '2', '3', '4', '5']);
+		expect(marks.every((mark) => mark.classList.contains('decides'))).toBe(true);
+		expect(container.querySelectorAll('#lot-1 details mark.decides')).toHaveLength(0);
+	});
+
 	// Nothing is left open on a GO lot, so nothing is folded away.
 	it('folds nothing on a lot whose criteria are all met', () => {
 		const container = renderExample(

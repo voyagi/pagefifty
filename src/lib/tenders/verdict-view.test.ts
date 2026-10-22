@@ -83,6 +83,10 @@ describe('lotVerdict', () => {
 			'PROFILE_GAP',
 			'PROFILE_GAP'
 		]);
+		// The staff clause's kind leaves it to the firm as a whole, so every quote read in it is one
+		// the verdict rests on.
+		expect(view?.deciding).toBe(5);
+		expect(view?.decidingQuotes).toEqual([0, 1, 2, 3, 4]);
 	});
 
 	it('the Dutch example lot decides route-unsettled with one state per criterion', () => {

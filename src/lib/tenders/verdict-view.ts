@@ -59,6 +59,8 @@ export interface LotVerdictView {
 	// The published position of the clause the verdict rests on, shown first under it; null when
 	// no criterion is left open.
 	deciding: number | null;
+	// The deciding clause's requirements the verdict rests on, as indexes into its requirements.
+	decidingQuotes: number[];
 	// Who decided and from what, worded by what code compared for this lot and nothing more.
 	decidedBy: string;
 }
@@ -406,9 +408,10 @@ function shortfallsOf(decided: ReadLotDecision, lot: LotView): Shortfall[] {
 // The state each verdict and ask-first reason rests on. A reason with no criterion in that state
 // (a reservation, an item placed under no clause, the documents) falls back to the first criterion
 // left open; met and information-only criteria are never open.
-const RESTS_ON: Partial<
-	Record<LotVerdict | AskFirstReason, (outcome: CriterionOutcome) => boolean>
-> = {
+// A criterion and each requirement under it carry their state the same way, so one test reads both.
+type Stated = Pick<CriterionOutcome, 'state' | 'notCompared'>;
+
+const RESTS_ON: Partial<Record<LotVerdict | AskFirstReason, (outcome: Stated) => boolean>> = {
 	'NO-GO': (outcome) => outcome.state === 'SHORT_FIXED',
 	'PARTNER NEEDED': (outcome) => outcome.state === 'SHORT_BORROWABLE',
 	'route-unsettled': (outcome) => outcome.state === 'SHORT_ROUTE_UNSETTLED',
@@ -433,6 +436,30 @@ function decidingOf(decided: ReadLotDecision): number | null {
 	return index >= 0 ? index + 1 : null;
 }
 
+// The verified quotes of the deciding clause that the verdict rests on, as indexes into that
+// clause's requirements in the order they were read. Where code decided quote by quote, these are
+// the quotes in the state the verdict rests on. Where the clause's kind set its state for the whole
+// clause (references, staff qualifications, insurance), every quote read in it stands behind that
+// state. A state no quote carries, such as an amount no quote names, names none.
+function decidingQuotesOf(decided: ReadLotDecision, lot: LotView, deciding: number | null) {
+	const status = lot.verdictInput?.status;
+	if (deciding === null || status?.status !== 'read') return [];
+	const outcome = decided.criteria[deciding - 1];
+	const verified = status.reading.criteria[deciding - 1]?.verified ?? [];
+	if (outcome === undefined) return [];
+	const itemised = outcome.requirements.filter((each) => each.item !== undefined);
+	if (itemised.length === 0) return verified.map((_, index) => index);
+	const { decision } = decided;
+	const rests =
+		RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict] ??
+		((each: Stated) => each.state === outcome.state);
+	const indexes = itemised
+		.filter(rests)
+		.map((each) => verified.findIndex((requirement) => requirement.item === each.item))
+		.filter((index) => index >= 0);
+	return [...new Set(indexes)].sort((a, b) => a - b);
+}
+
 // The figure's gloss as a sentence of its own under the verdict.
 const sentence = (gloss: string) => `${gloss.charAt(0).toUpperCase()}${gloss.slice(1)}.`;
 
@@ -443,6 +470,7 @@ export function verdictView(
 ): LotVerdictView {
 	const { decision } = decided;
 	const link = linkOf(decided, lot, shared);
+	const deciding = decidingOf(decided);
 	return {
 		decision,
 		label: VERDICT_LABELS[decision.verdict],
@@ -457,7 +485,8 @@ export function verdictView(
 		}),
 		shortfalls: shortfallsOf(decided, lot),
 		article63: decision.verdict === 'PARTNER NEEDED' ? ARTICLE_63_LINE : null,
-		deciding: decidingOf(decided),
+		deciding,
+		decidingQuotes: decidingQuotesOf(decided, lot, deciding),
 		decidedBy: decidedLine(decided, lot)
 	};
 }

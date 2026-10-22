@@ -135,35 +135,46 @@ describe('entry route', () => {
 		expect(squash(card?.textContent)).not.toContain('Numbers compared by code.');
 	});
 
-	// The clause that decides is the one the verdict rests on, quoted from the notice, its verified
-	// quote set apart inside the buyer's words, with the model's reading of it labelled as such.
+	// The clause that decides is the one the verdict rests on, quoted from the notice. The card shows
+	// the sentence holding the first quote the verdict rests on, that quote set apart, and the
+	// model's one reading of it labelled as such; the whole clause folds out under it.
 	it("sets the deciding words apart inside the deciding clause and labels the model's reading", () => {
 		const data = exampleRecord('610242-2026');
 		const [lot] = data.tender.lots;
 		const view = lotVerdict(lot, DEMO_PROFILE, data.tender.now, data.tender.documents);
 		const deciding = lot.criteria.find((each) => each.position === view?.deciding);
 		expect(deciding?.requirements?.length).toBeGreaterThan(0);
+		const resting = (view?.decidingQuotes ?? []).map((index) => deciding?.requirements?.[index]);
+		expect(resting.length).toBeGreaterThan(0);
 		const card = renderWith(data).querySelector('[data-example]');
-		const quote = card?.querySelector('blockquote');
 		const source = deciding?.descriptions.find(
 			(each) => each.lang === deciding.requirements?.[0].lang
 		);
-		expect(quote?.textContent).toBe(source?.text.trim());
-		// Each mark is a verified quote as code verified it: whitespace collapsed and a line-end
-		// hyphen's break dropped (normalizeQuote), so a quote over a word the PDF broke is marked too.
-		const marks = [...(quote?.querySelectorAll('mark') ?? [])].map((mark) =>
-			normalizeQuote(mark.textContent ?? '')
+		const whole = card?.querySelector('details.whole blockquote');
+		expect(whole?.textContent).toBe(source?.text.trim());
+		const excerpt = card?.querySelector('.excerpt blockquote');
+		expect(excerpt?.textContent?.length).toBeGreaterThan(20);
+		expect(source?.text.trim()).toContain(excerpt?.textContent);
+		expect(excerpt?.textContent?.length).toBeLessThan(source?.text.trim().length ?? 0);
+		expect(squash(card?.querySelector('details.whole summary')?.textContent)).toBe(
+			'Show the whole clause'
 		);
-		expect(marks.length).toBeGreaterThan(0);
-		for (const mark of marks) {
-			expect(deciding?.requirements?.map((each) => normalizeQuote(each.quote))).toContain(mark);
+		// Each mark is a quote the verdict rests on, as code verified it: whitespace collapsed and a
+		// line-end hyphen's break dropped (normalizeQuote), so a quote over a word the PDF broke is
+		// marked too. The excerpt marks the first of them only.
+		const marked = (root: Element | null | undefined) =>
+			[...(root?.querySelectorAll('mark') ?? [])].map((mark) =>
+				normalizeQuote(mark.textContent ?? '')
+			);
+		expect(marked(excerpt)).toEqual([normalizeQuote(resting[0]?.quote ?? '')]);
+		expect(marked(whole).length).toBeGreaterThan(0);
+		for (const mark of marked(whole)) {
+			expect(resting.map((each) => normalizeQuote(each?.quote ?? ''))).toContain(mark);
 		}
 		const readings = [...(card?.querySelectorAll('[data-ai-generated]') ?? [])];
-		expect(readings.map((each) => each.textContent)).toEqual(
-			deciding?.requirements?.map((each) => each.reading)
-		);
+		expect(readings.map((each) => each.textContent)).toEqual([resting[0]?.reading]);
 		expect(squash(card?.textContent)).toContain('Quoted from TED notice 610242-2026');
-		expect(card?.querySelectorAll('.ai-label')).toHaveLength(readings.length);
+		expect(card?.querySelectorAll('.ai-label')).toHaveLength(1);
 	});
 
 	it('skips the lots with no verdict and shows the first lot that has one', () => {

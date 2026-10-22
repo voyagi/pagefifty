@@ -141,7 +141,12 @@
 		{#if deciding !== undefined}
 			<Label>The clause that decides</Label>
 			<ol class="clauses">
-				<CriterionRow criterion={deciding} {notice} state={stateOf(deciding.position)} />
+				<CriterionRow
+					criterion={deciding}
+					{notice}
+					state={stateOf(deciding.position)}
+					decides={shown?.decidingQuotes}
+				/>
 			</ol>
 			{#if others.length > 0}
 				<details class="others">

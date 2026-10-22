@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { criterionLabel } from '$lib/codelists/labels';
+	import type { QuoteMark } from '$lib/tenders/display-text';
 	import type { CriterionView } from '$lib/tenders/tender-page';
 	import type { LotVerdictView } from '$lib/tenders/verdict-view';
 	import ExternalIcon from './ExternalIcon.svelte';
@@ -9,18 +10,32 @@
 
 	// state is the criterion's state in words, given only on a lot that shows a verdict; the words
 	// come from the verdict, so they sit in their own data-verdict element. notice is the TED notice
-	// the clause is quoted from, named in words above the quote.
+	// the clause is quoted from, named in words above the quote. decides lists the requirements the
+	// verdict rests on, on the clause that decides only.
 	let {
 		criterion,
 		notice,
-		state
+		state,
+		decides = []
 	}: {
 		criterion: CriterionView;
 		notice: string;
 		state?: LotVerdictView['criteria'][number];
+		decides?: readonly number[];
 	} = $props();
 
 	const label = $derived(criterionLabel(criterion.code));
+	const requirements = $derived(criterion.requirements ?? []);
+
+	// Each requirement is marked where code found it in the clause, numbered as its reading is, so
+	// the quote shows once, in its place. A requirement carries the language of the description it
+	// was found in; the marks of one language are looked for in that description alone.
+	const marksIn = (lang: string | undefined): QuoteMark[] =>
+		requirements.flatMap((requirement, index) =>
+			requirement.lang === undefined || requirement.lang === lang
+				? [{ quote: requirement.quote, n: index + 1, decides: decides.includes(index) }]
+				: []
+		);
 	const provenance = $derived(
 		(criterion.requirements?.length ?? 0) + (criterion.rejected?.length ?? 0) === 0
 			? 'Read by the model, which named no requirement in this clause.'
@@ -60,24 +75,24 @@
 		</ul>
 	{/if}
 	<div class="quotes">
-		{#if criterion.descriptions.length > 0}
-			<p class="source">Quoted from TED notice {notice}</p>
-		{/if}
 		{#each criterion.descriptions as quote, index (index)}
-			<QuoteBlock {quote} />
+			<QuoteBlock
+				{quote}
+				marks={marksIn(quote.lang)}
+				source={index === 0 ? `Quoted from TED notice ${notice}` : undefined}
+			/>
 		{/each}
-		{#if criterion.requirements !== undefined && criterion.requirements.length > 0}
-			<ol class="requirements" aria-label="Requirements read in this clause">
-				{#each criterion.requirements as requirement, index (index)}
-					<li class="requirement">
-						<p class="req-quote" lang={requirement.lang} data-notice-text>{requirement.quote}</p>
-						<div class="req-reading">
-							<span class="ai-label">AI reading</span>
+		{#if requirements.length > 0}
+			<div class="readings">
+				<span class="ai-label">AI reading</span>
+				<ol class="requirements" aria-label="Requirements read in this clause">
+					{#each requirements as requirement, index (index)}
+						<li class="requirement" class:decides={decides.includes(index)}>
 							<p class="reading" data-ai-generated={requirement.model}>{requirement.reading}</p>
-						</div>
-					</li>
-				{/each}
-			</ol>
+						</li>
+					{/each}
+				</ol>
+			</div>
 		{/if}
 		{#each criterion.rejected ?? [] as rejected, index (index)}
 			<NotReadLine line={rejected.line} />
@@ -169,51 +184,40 @@
 		margin-top: 0.875rem;
 	}
 
-	.source {
-		margin-bottom: 0.5rem;
-		font-size: var(--step--1);
-		color: var(--ink-2);
-	}
-
-	/* Each requirement pairs the buyer's words with the model's reading of them: side by side where
-	   the column is wide enough, the quote first where it is not. */
-	.requirements {
-		margin: 1.25rem 0 0;
-		padding: 1rem 0 0;
-		list-style: none;
-		border-top: 1px solid var(--line);
-		display: grid;
-		gap: 1.25rem;
-	}
-
-	.requirement {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-		gap: 0.5rem 1.75rem;
-		align-items: start;
-	}
-
-	/* The words the requirement was read from, set as the deciding words are. */
-	.req-quote {
-		max-width: 60ch;
-		font-weight: 650;
-		color: var(--ink);
-		text-decoration: underline 2px var(--brand);
-		text-underline-offset: 4px;
-		white-space: pre-line;
-		overflow-wrap: anywhere;
-		hyphens: auto;
+	/* The model's readings of the clause under one label, each numbered as its quote is marked in the
+	   clause above, so the buyer's words show once, in their place. */
+	.readings {
+		max-width: 72ch;
+		margin-top: 1rem;
 	}
 
 	.ai-label {
 		display: block;
-		margin-bottom: 0.25rem;
+		margin-bottom: 0.375rem;
 		font: 600 var(--step--1) / 1.3 var(--font);
 		color: var(--ink-2);
 	}
 
+	.requirements {
+		display: grid;
+		gap: 0.5rem;
+		margin: 0;
+		padding-left: 1.75rem;
+		list-style: decimal;
+	}
+
+	.requirement::marker {
+		font-weight: 700;
+		font-size: var(--step--1);
+		color: var(--ink-2);
+	}
+
+	/* A reading the verdict rests on carries its quote's weight. */
+	.requirement.decides::marker {
+		color: var(--ink);
+	}
+
 	.reading {
-		max-width: 52ch;
 		line-height: 1.5;
 		color: var(--ink);
 		overflow-wrap: anywhere;

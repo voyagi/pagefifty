@@ -90,6 +90,14 @@ export function runsBetween(runs: readonly TextRun[], start: number, end: number
 	});
 }
 
+// A verified quote to set apart inside its clause: n numbers it against its reading shown beside the
+// clause, and decides marks the words the verdict rests on.
+export interface QuoteMark {
+	quote: string;
+	n?: number;
+	decides?: boolean;
+}
+
 const escaped = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // Code checked each quote against the clause with whitespace collapsed and a line-end hyphen's break

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { criterionLabel } from '$lib/codelists/labels';
 	import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
+	import { findQuotes, sentencesAround, type QuoteMark } from '$lib/tenders/display-text';
 	import { initialsOf } from '$lib/tenders/list';
 	import type { LotView, TenderPageModel } from '$lib/tenders/tender-page';
 	import type { LotVerdictView } from '$lib/tenders/verdict-view';
@@ -18,18 +19,37 @@
 	const lead = $derived(tender.buyers[0]);
 	const deciding = $derived(lot.criteria.find((criterion) => criterion.position === view.deciding));
 
-	// The deciding clause in the language its verified quotes were found in, with those quotes set
-	// apart inside it.
+	// The deciding clause in the language its verified quotes were found in. The card shows the
+	// sentence holding the first quote the verdict rests on, with that quote set apart and the
+	// model's one reading of it; the whole clause, every resting quote marked, folds out under it.
 	const clause = $derived.by(() => {
 		if (deciding === undefined) return undefined;
 		const requirements = deciding.requirements ?? [];
 		const lang = requirements[0]?.lang;
 		const quote =
 			deciding.descriptions.find((each) => each.lang === lang) ?? deciding.descriptions[0];
-		const marks = requirements
-			.filter((each) => each.lang === quote?.lang)
-			.map((each) => each.quote);
-		return { quote, marks, requirements };
+		if (quote === undefined) return undefined;
+		const resting = view.decidingQuotes.flatMap((index) => {
+			const requirement = requirements[index];
+			return requirement !== undefined &&
+				(requirement.lang === undefined || requirement.lang === quote.lang)
+				? [requirement]
+				: [];
+		});
+		const marks: QuoteMark[] = resting.map((each) => ({ quote: each.quote, decides: true }));
+		const text = quote.text.trim();
+		const [first] = findQuotes(
+			text,
+			resting.map((each) => each.quote)
+		);
+		const excerpt = sentencesAround(text, first?.start ?? 0, first?.end ?? 0);
+		return {
+			quote,
+			marks,
+			lead: first === undefined ? undefined : resting[first.index],
+			excerpt: { ...quote, text: excerpt },
+			cut: excerpt !== text
+		};
 	});
 
 	// How many criteria are in each state, in the order the states first appear.
@@ -91,7 +111,7 @@
 		<p class="gloss">{view.gloss}</p>
 	</div>
 
-	{#if deciding !== undefined && clause?.quote !== undefined}
+	{#if deciding !== undefined && clause !== undefined}
 		<div class="decides">
 			<div class="k">
 				<span>The clause that decides</span>
@@ -100,14 +120,26 @@
 			<p class="clause-name">
 				{criterionLabel(deciding.code) ?? deciding.code}, criterion {deciding.position} of {deciding.of}
 			</p>
-			<p class="source">Quoted from TED notice {tender.noticeNumber}</p>
-			<QuoteBlock quote={clause.quote} marks={clause.marks} />
-			{#each clause.requirements as requirement, index (index)}
-				<div class="reading">
+			<div class="excerpt">
+				<QuoteBlock
+					quote={clause.excerpt}
+					marks={clause.lead ? [{ quote: clause.lead.quote, decides: true }] : []}
+					source="Quoted from TED notice {tender.noticeNumber}"
+					clamp
+				/>
+			</div>
+			{#if clause.cut}
+				<details class="whole">
+					<summary><Icon name="chev" />Show the whole clause</summary>
+					<QuoteBlock quote={clause.quote} marks={clause.marks} />
+				</details>
+			{/if}
+			{#if clause.lead}
+				<p class="reading">
 					<span class="ai-label">AI reading</span>
-					<p data-ai-generated={requirement.model}>{requirement.reading}</p>
-				</div>
-			{/each}
+					<span data-ai-generated={clause.lead.model}>{clause.lead.reading}</span>
+				</p>
+			{/if}
 		</div>
 	{/if}
 
@@ -148,8 +180,10 @@
 		background: var(--bg);
 	}
 
+	/* Spaced so the verdict, the deciding clause, its reading, every requirement and the decided-by
+	   line all sit inside a 900px-tall first screen beside the claim. */
 	.top {
-		padding: 1.25rem 1.5rem 1.125rem;
+		padding: 1rem 1.5rem;
 	}
 
 	.who {
@@ -162,8 +196,8 @@
 		display: grid;
 		flex: none;
 		place-items: center;
-		width: 40px;
-		height: 40px;
+		width: 36px;
+		height: 36px;
 		border-radius: var(--r);
 		background: var(--bg-2);
 		color: var(--ink-2);
@@ -201,7 +235,7 @@
 	}
 
 	.title {
-		margin-top: 0.75rem;
+		margin-top: 0.5rem;
 		font-weight: 750;
 		font-size: var(--step-2);
 		line-height: 1.2;
@@ -238,9 +272,11 @@
 		vertical-align: -3px;
 	}
 
+	/* The gap keeps the space between "TED notice" and its number, which a flex row would drop. */
 	.facts a {
 		display: inline-flex;
 		align-items: center;
+		gap: 0.25em;
 		min-height: 24px;
 		font-weight: 600;
 		color: var(--ink);
@@ -263,7 +299,7 @@
 	}
 
 	.decides {
-		padding: 1rem 1.5rem 0.25rem;
+		padding: 0.75rem 1.5rem 0;
 	}
 
 	.k {
@@ -291,35 +327,59 @@
 		color: var(--ink);
 	}
 
-	.source {
-		margin: 0.5rem 0 0.375rem;
-		font-size: var(--step--1);
-		color: var(--ink-2);
+	.excerpt {
+		margin-top: 0.5rem;
 	}
 
-	.reading {
-		margin-top: 0.625rem;
-		font-size: 0.875rem;
-		line-height: 1.5;
-		color: var(--ink-2);
+	/* The whole clause folds out under the excerpt and takes its place while open. */
+	.decides:has(.whole[open]) .excerpt {
+		display: none;
 	}
 
-	.ai-label {
-		display: block;
+	.whole summary {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		min-height: 28px;
 		font-weight: 600;
 		font-size: var(--step--1);
+		cursor: pointer;
+		list-style: none;
 	}
 
-	.reading p {
+	.whole summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.whole summary :global(.icon) {
+		transition: transform var(--quick) ease-out;
+	}
+
+	.whole[open] > summary :global(.icon) {
+		transform: rotate(180deg);
+	}
+
+	/* The label leads the reading's own line, so the pair takes no extra row. */
+	.reading {
+		margin-top: 0.375rem;
+		font-size: 0.875rem;
+		line-height: 1.5;
 		color: var(--ink);
 	}
 
+	.ai-label {
+		margin-right: 0.25rem;
+		font-weight: 600;
+		font-size: var(--step--1);
+		color: var(--ink-2);
+	}
+
 	.reqs {
-		padding: 0.75rem 1.5rem 1rem;
+		padding: 0.5rem 1.5rem;
 	}
 
 	.reqs .k {
-		padding: 0.625rem 0 0.375rem;
+		padding: 0.5rem 0 0.25rem;
 		border-top: 1px solid var(--line);
 	}
 
@@ -346,8 +406,8 @@
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 0.125rem 0.75rem;
-		min-height: 34px;
-		padding-block: 0.25rem;
+		min-height: 28px;
+		padding-block: 0.125rem;
 		font-size: 0.875rem;
 	}
 
@@ -370,7 +430,7 @@
 	}
 
 	.foot {
-		padding: 0 1.5rem 1rem;
+		padding: 0.25rem 1.5rem 0.875rem;
 		font-size: 0.78125rem;
 		color: var(--ink-2);
 	}

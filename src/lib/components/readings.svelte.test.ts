@@ -146,19 +146,23 @@ describe('the model readings on the example tender pages', () => {
 				own.map((item) => item.reading)
 			);
 		});
-		const row = [...clauses[2].querySelectorAll('.requirement')].find((each) =>
-			textOf(each.querySelector('[data-notice-text]')).startsWith(
-				'Die Mindestanforderung für den durchschnittlichen Jahresumsatz'
-			)
+		// The quote is marked in its place in the German clause and numbered as its reading is, so
+		// the buyer's words show once.
+		const mark = [...clauses[2].querySelectorAll('blockquote mark')].find((each) =>
+			textOf(each).startsWith('Die Mindestanforderung für den durchschnittlichen Jahresumsatz')
 		);
-		expect(row).toBeDefined();
-		expect(row?.querySelector('[data-notice-text]')?.getAttribute('lang')).toBe('de');
+		expect(mark).toBeDefined();
+		expect(mark?.closest('[data-notice-text]')?.getAttribute('lang')).toBe('de');
+		const row = [...clauses[2].querySelectorAll('.requirement')][
+			Number(mark?.getAttribute('data-n')) - 1
+		];
 		const reading = row?.querySelector('[data-ai-generated]');
 		expect(reading?.getAttribute('data-ai-generated')).toBe(MODEL);
 		expect(textOf(reading)).toMatch(
 			/^The bidder must have an average annual turnover of at least 100,000\.00 EUR net/
 		);
-		expect(textOf(row?.querySelector('.ai-label'))).toBe('AI reading');
+		expect(textOf(row?.closest('.readings')?.querySelector('.ai-label'))).toBe('AI reading');
+		expect(clauses[2].querySelectorAll('.requirement [data-notice-text]')).toHaveLength(0);
 	});
 
 	it('every model reading carries the AI label and the marker, and no other text does', () => {
@@ -175,7 +179,7 @@ describe('the model readings on the example tender pages', () => {
 				expect(element.matches('.requirement .reading'), subject.name).toBe(true);
 				expect(element.closest('[data-notice-text]')).toBeNull();
 				expect(element.querySelector('[data-notice-text]')).toBeNull();
-				const labels = [...(element.closest('.requirement')?.querySelectorAll('.ai-label') ?? [])];
+				const labels = [...(element.closest('.readings')?.querySelectorAll('.ai-label') ?? [])];
 				expect(labels.map((label) => textOf(label))).toEqual(['AI reading']);
 			}
 			const page = container.textContent ?? '';
@@ -183,8 +187,15 @@ describe('the model readings on the example tender pages', () => {
 				const inside = marked.filter((element) => textOf(element) === text).length;
 				expect(occurrences(page, text), text).toBe(inside);
 			}
-			expect(occurrences(page, 'AI reading'), subject.name).toBe(marked.length);
-			expect(container.querySelectorAll('.ai-label')).toHaveLength(marked.length);
+			// One label heads each clause's group of readings.
+			const groups = [...container.querySelectorAll('.readings')];
+			expect(groups.length, subject.name).toBeGreaterThan(0);
+			for (const group of groups) {
+				expect(group.querySelectorAll('.ai-label')).toHaveLength(1);
+				expect(group.querySelectorAll('[data-ai-generated]').length).toBeGreaterThan(0);
+			}
+			expect(occurrences(page, 'AI reading'), subject.name).toBe(groups.length);
+			expect(container.querySelectorAll('.ai-label')).toHaveLength(groups.length);
 			expect(container.querySelectorAll('[data-notice-text][data-ai-generated]')).toHaveLength(0);
 		}
 	});
