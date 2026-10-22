@@ -66,21 +66,22 @@
 		flex: 1;
 	}
 
-	/* On a phone the band wraps: the wordmark, the demo label (the firm slot's own rule) and the
-	   theme switch on the first row, the nav across the whole second row, so the band grows past
-	   its 60px there. */
+	/* On a phone the band wraps to two rows: the wordmark, the demo label (the firm slot's own rule)
+	   and the theme switch pushed to the right on the first, the nav across the whole second, so the
+	   band grows past its 60px there. */
 	@media (max-width: 45em) {
 		.band {
 			flex-wrap: wrap;
-			gap: 0.25rem 0.75rem;
+			gap: 0.25rem 0.5rem;
 		}
 
 		.spacer {
-			order: 1;
+			display: none;
 		}
 
 		.band > :global(.theme) {
 			order: 2;
+			margin-left: auto;
 		}
 
 		.nav {

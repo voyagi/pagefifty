@@ -64,9 +64,12 @@
 		color: var(--band-ink);
 	}
 
+	/* Narrower on a phone, so the switch shares the band's first row with the wordmark and the demo
+	   label. */
 	@media (max-width: 45em) {
 		button {
 			min-height: 40px;
+			padding: 0 0.5rem;
 		}
 	}
 </style>

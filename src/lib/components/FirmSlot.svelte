@@ -153,7 +153,9 @@
 	}
 
 	/* On a phone the own firm hides, while the demo label stays on one line right after the
-	   wordmark, so nobody reads the invented figures as their own. */
+	   wordmark, so nobody reads the invented figures as their own. Only its Demo tag shows there, so
+	   the wordmark, the tag and the theme switch share the band's first row; the name stays in the
+	   link's text for a screen reader. */
 	@media (max-width: 45em) {
 		.firm {
 			display: none;
@@ -162,11 +164,21 @@
 		.firm.demo {
 			display: flex;
 			order: 0;
+			padding: 0 0.5rem;
 			white-space: nowrap;
 		}
 
+		.demo .tile,
 		.demo .second {
 			display: none;
+		}
+
+		.demo strong {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
 		}
 	}
 </style>

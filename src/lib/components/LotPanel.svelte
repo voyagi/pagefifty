@@ -150,10 +150,11 @@
 			</ol>
 			{#if others.length > 0}
 				<details class="others">
+					<!-- One text item in the flex row, so the row's gap never opens around the count. -->
 					<summary
-						><Icon name="chev" />Other requirements in this lot (<span class="mono"
-							>{others.length}</span
-						>)</summary
+						><Icon name="chev" /><span
+							>Other requirements in this lot (<span class="mono">{others.length}</span>)</span
+						></summary
 					>
 					<ol class="clauses">
 						{#each others as criterion (criterion.position)}

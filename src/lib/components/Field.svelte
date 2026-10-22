@@ -112,6 +112,42 @@
 		border-radius: var(--r);
 	}
 
+	/* A date's own parts take the palette: the picker follows the page's light or dark, the
+	   separators and the browser's day, month and year pattern sit in the secondary ink, a part in
+	   use takes the selection tint, and the calendar mark is the page's own icon in that ink. The
+	   pattern itself is the browser's, in the reader's own date order. */
+	.field :global(input[type='date']) {
+		color-scheme: inherit;
+		accent-color: var(--brand);
+	}
+
+	.field :global(input[type='date']::-webkit-datetime-edit-text) {
+		color: var(--ink-2);
+	}
+
+	.field :global(input[type='date']::-webkit-datetime-edit-day-field:focus),
+	.field :global(input[type='date']::-webkit-datetime-edit-month-field:focus),
+	.field :global(input[type='date']::-webkit-datetime-edit-year-field:focus) {
+		border-radius: 3px;
+		background: var(--selection);
+		color: var(--ink);
+	}
+
+	.field :global(input[type='date']::-webkit-calendar-picker-indicator) {
+		width: 16px;
+		height: 16px;
+		margin-left: 0.25rem;
+		padding: 0;
+		background: var(--ink-2);
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.2' y='3.2' width='11.6' height='10.6' rx='1.6'/%3E%3Cpath d='M2.2 6.6h11.6M5.4 1.8v2.6M10.6 1.8v2.6'/%3E%3C/svg%3E")
+			center / 16px no-repeat;
+		cursor: pointer;
+	}
+
+	.field :global(input[type='date']::-webkit-calendar-picker-indicator:hover) {
+		background: var(--ink);
+	}
+
 	.field :global(input:focus-visible),
 	.field :global(select:focus-visible) {
 		outline: 2px solid var(--focus);
