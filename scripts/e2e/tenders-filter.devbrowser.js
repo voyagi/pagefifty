@@ -185,19 +185,36 @@ try {
 	);
 
 	const before = config.latest.dayBefore;
-	await page.goto(`${BASE}?to=${before.date}`);
-	const past = await readList();
 	const lastDay = Date.parse(before.endsAt);
-	const lateRows = past.closed.filter((row) => Date.parse(row.datetime) > lastDay);
-	check(
-		`?to=${before.date}, the day before the capture, shows the open zero note above a non-empty closed group`,
-		past.text.includes('No tender in this list is still open. The closed ones are below.') &&
-			!past.openTable &&
-			past.open.length === 0 &&
-			past.closed.length > 0 &&
-			lateRows.length === 0,
-		`${past.open.length} open and ${past.closed.length} closed rows read, open table ${past.openTable}, ${lateRows.length} closed rows after ${before.date}`
-	);
+	const pastCheck = `?to=${before.date}, the day before the capture, shows the open zero note above a non-empty closed group`;
+	// A capture taken with --open-after leaves out every notice that closes before that time, so it
+	// can hold no deadline on or before the day before the capture, and this state is then out of
+	// reach. That is read from the whole unfiltered list; a short read runs the check, which fails.
+	await page.goto(BASE);
+	const unfiltered = await readList();
+	const unfilteredRows = unfiltered.open.concat(unfiltered.closed);
+	const reachable = unfilteredRows.filter((row) => Date.parse(row.datetime) <= lastDay);
+	if (unfilteredRows.length === config.latest.rows && reachable.length === 0) {
+		checks.push({
+			name: `${pastCheck} did not run: no row of the newest capture has a deadline on or before ${before.date}`,
+			ok: true,
+			didNotRun: true,
+			detail: `${unfilteredRows.length} rows read unfiltered, none due by ${before.date}`
+		});
+	} else {
+		await page.goto(`${BASE}?to=${before.date}`);
+		const past = await readList();
+		const lateRows = past.closed.filter((row) => Date.parse(row.datetime) > lastDay);
+		check(
+			pastCheck,
+			past.text.includes('No tender in this list is still open. The closed ones are below.') &&
+				!past.openTable &&
+				past.open.length === 0 &&
+				past.closed.length > 0 &&
+				lateRows.length === 0,
+			`${past.open.length} open and ${past.closed.length} closed rows read, open table ${past.openTable}, ${lateRows.length} closed rows after ${before.date}`
+		);
+	}
 
 	// The router keeps the page and its form across a filter navigation, so a chip ticked and a date
 	// typed but never applied must not survive Clear filters: the form would then show a filter the
