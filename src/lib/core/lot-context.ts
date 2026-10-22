@@ -9,10 +9,11 @@ import { displayedDeadline } from './deadline.ts';
 // The instant is left out: the caller judges every lot of a page or a run against one instant.
 export function lotContextOf(
 	record: Pick<NoticeRecord, 'legalBasis' | 'cancelIntent'>,
-	lot: Pick<LotRecord, 'deadlines' | 'criteria' | 'criteriaSources' | 'reserved'>
+	lot: Pick<LotRecord, 'id' | 'deadlines' | 'criteria' | 'criteriaSources' | 'reserved'>
 ): Omit<LotContext, 'now'> {
 	const deadline = displayedDeadline(lot);
 	return {
+		lot: lot.id,
 		legalBasis: record.legalBasis,
 		deadline: deadline.kind === 'in-notice' ? null : deadline.instant,
 		coverage: summarizeLot(lot),

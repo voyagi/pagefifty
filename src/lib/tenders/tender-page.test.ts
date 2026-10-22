@@ -576,6 +576,7 @@ describe('the verdict input the browser decides from', () => {
 			if (input === undefined) throw new Error(`${notice} ${lotId} has no verdict input`);
 			const shown = displayedDeadline(record.lots[index]);
 			expect(input.context).toEqual({
+				lot: lotId,
 				legalBasis: record.legalBasis,
 				deadline: shown.kind === 'in-notice' ? null : shown.instant,
 				coverage: summarizeLot(record.lots[index]),

@@ -577,6 +577,19 @@ const BUSINESS_FIELD = phrases(
 
 export const namesBusinessField = (text: string): boolean => BUSINESS_FIELD.test(text);
 
+// "Los 1:", "Lot n° 2", "Perceel 3": the lot numbers a text names. Read only in the languages this
+// version reads, since "Los 3 últimos ejercicios" is Spanish for "the last 3 years".
+const LOT_LABEL = new RegExp(
+	String.raw`(?<![\p{L}\p{N}])(?:Los|Lot|Teillos|Perceel)(?:${SPACE}*(?:Nr\.|nr\.|n°|no\.|No\.))?${SPACE}*(\d{1,3})(?!\p{N})`,
+	'giu'
+);
+const LOT_LANGS: ReadonlySet<string> = new Set(['de', 'nl', 'fr', 'en']);
+
+export function lotsNamed(text: string, lang?: string): number[] {
+	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
+	return [...text.matchAll(LOT_LABEL)].map((match) => Number.parseInt(match[1], 10));
+}
+
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,
 // so a clause's amounts can be checked against the ones its verified quotes name.
 export function amountsIn(text: string, staff: boolean, lang?: string): number[] | null {

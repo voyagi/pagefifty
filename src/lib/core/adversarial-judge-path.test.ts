@@ -3,7 +3,7 @@
 // one way a floor a firm does not meet could read as met.
 import { describe, expect, it } from 'vitest';
 import { decideReadLot, type FirmFacts, type LotContext } from './compare';
-import { parseCount, parseMoney, parsePeriod } from './figures';
+import { lotsNamed, parseCount, parseMoney, parsePeriod } from './figures';
 import { readLot, type ModelItem } from './lot-reading';
 import { findQuote } from './quote';
 
@@ -302,6 +302,57 @@ describe('a floor over the sum of the years', () => {
 		const [requirement] = verdictFor(text, number, STEADY_FIRM, lang).criteria[0].requirements;
 		expect(requirement.state).toBeUndefined();
 		expect(requirement.why).toBe('period-disagrees');
+	});
+});
+
+describe('a clause every lot shares, with one floor per lot', () => {
+	// 693066-2026 in the 2026-10-22 capture: the same text on each of its three lots.
+	const text =
+		'Die tätigkeitsbezogenen Umsätze müssen in jedem der letzten drei abgeschlossenen Geschäftsjahre mindestens pro Geschäftsjahr betragen:\n\nLos 1: 6 Mio. EUR netto\nLos 2: 2,5 Mio. EUR netto\nLos 3: 4 Mio. EUR netto';
+	const items = [
+		['Los 1: 6 Mio. EUR netto', '6 Mio. EUR netto'],
+		['Los 2: 2,5 Mio. EUR netto', '2,5 Mio. EUR netto'],
+		['Los 3: 4 Mio. EUR netto', '4 Mio. EUR netto']
+	].map(([quote, number]) => ({ ...item(quote, number), kind: 'turnover-specific' }));
+	const reading = readLot({
+		criteria: [{ code: 'slc-stand-to-spec', descriptions: [{ text, lang: 'de' }] }],
+		items
+	});
+	const forLot = (lot: string | undefined, firm: FirmFacts) =>
+		decideReadLot(reading, firm, { ...CONTEXT, lot });
+	// Clears the Los 2 floor every year, and neither of the others.
+	const MID_FIRM = firmWithTurnover({ 2023: 3_000_000, 2024: 3_000_000, 2025: 3_000_000 });
+
+	it('a firm meeting its own lot floor is never short on the floors of the others', () => {
+		const decided = forLot('LOT-0002', MID_FIRM);
+		expect(decided.decision.verdict).not.toBe('PARTNER NEEDED');
+		expect(decided.criteria[0].requirements.map((each) => each.why)).toEqual([
+			'other-lot',
+			'firm-judges',
+			'other-lot'
+		]);
+	});
+
+	it('a firm short on its own lot floor is short on that floor alone', () => {
+		const decided = forLot('LOT-0003', MID_FIRM);
+		expect(decided.decision.verdict).toBe('PARTNER NEEDED');
+		const short = decided.criteria[0].requirements.filter(
+			(each) => each.state === 'SHORT_BORROWABLE'
+		);
+		expect(short.map((each) => each.item?.quote)).toEqual(['Los 3: 4 Mio. EUR netto']);
+	});
+
+	it('a lot whose own number cannot be told compares none of them', () => {
+		const decided = forLot(undefined, MID_FIRM);
+		expect(decided.criteria[0].requirements.every((each) => each.why === 'other-lot')).toBe(true);
+		expect(decided.decision.verdict).toBe('ASK FIRST');
+	});
+
+	it('a Spanish "los 3" is no lot label', () => {
+		expect(lotsNamed('los 3 últimos ejercicios', 'es')).toEqual([]);
+		expect(lotsNamed('Los 3: 4 Mio. EUR', 'de')).toEqual([3]);
+		expect(lotsNamed('Lot n° 2 : 500 000 EUR', 'fr')).toEqual([2]);
+		expect(lotsNamed('Perceel 1: minimaal 1 mln EUR', 'nl')).toEqual([1]);
 	});
 });
 

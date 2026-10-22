@@ -6,6 +6,7 @@ import type { LotCoverageInput } from './coverage-facts.ts';
 import { SERVER_TIME_ZONE, cetDayEnd, formatDay } from './deadline.ts';
 import { codePeriodOf, type CriterionFamily } from './families.ts';
 import {
+	lotsNamed,
 	namesBusinessField,
 	type CountReading,
 	type MoneyReading,
@@ -48,6 +49,8 @@ export interface LotContext {
 	readonly coverage: LotCoverageInput;
 	readonly cancelIntent: boolean;
 	readonly reserved: string | undefined;
+	// The lot's id (LOT-0001), so a floor a shared clause states for another lot is not this lot's.
+	readonly lot?: string;
 }
 
 export type OutcomeWhy =
@@ -83,6 +86,7 @@ export type OutcomeWhy =
 	| 'period-disagrees'
 	| 'family'
 	| 'optional'
+	| 'other-lot'
 	| 'reserved';
 
 export interface RequirementOutcome {
@@ -436,6 +440,18 @@ function familyOutcome(
 	}
 }
 
+const LOT_ID = /^LOT-(\d+)$/u;
+
+// A clause every lot shares can state one floor per lot ("Los 1: 6 Mio. EUR netto", "Los 2: 2,5
+// Mio. EUR netto"), and a quote naming only other lots states none of this one's. When the lot's
+// own number cannot be told, a quote naming any lot is not compared either.
+function forOtherLot(requirement: VerifiedRequirement, lot: string | undefined): boolean {
+	const named = lotsNamed(requirement.item.quote, requirement.lang);
+	if (named.length === 0) return false;
+	const own = LOT_ID.exec(lot ?? '')?.[1];
+	return own === undefined || !named.includes(Number.parseInt(own, 10));
+}
+
 function outcomeOf(requirements: readonly RequirementOutcome[]): CriterionOutcome {
 	const states = requirements.flatMap((each) => (each.state ? [each.state] : []));
 	return {
@@ -458,6 +474,7 @@ export function decideCriterion(
 			// The model marks an item optional, scored or a request for information (the prompt in
 			// token-factory.ts), so such an item is never compared and cannot set a shortfall.
 			if (requirement.item.mandatory !== true) return withheld('optional', requirement.item);
+			if (forOtherLot(requirement, context.lot)) return withheld('other-lot', requirement.item);
 			return reading.family === 'certificate'
 				? decideCertificate(requirement, firm, context)
 				: decideFigure(reading, requirement, firm, context, restricted);

@@ -713,7 +713,15 @@ const ROWS: readonly Row[] = [
 		'a quote with two amounts reads NOT_READ',
 		g(SEVERAL),
 		yearly(2e6),
-		decided('NOT_READ', 'several-amounts')
+		decided('NOT_READ', 'several-amounts'),
+		{ lot: 'LOT-0002' }
+	),
+	row(
+		'a quote naming only another lot is not compared for this one',
+		g(SEVERAL),
+		yearly(2e6),
+		notCompared('other-lot'),
+		{ lot: 'LOT-0001' }
 	),
 	row(
 		'a quote with no amount while its criterion holds one reads NOT_READ',
