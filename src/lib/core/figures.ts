@@ -68,7 +68,9 @@ function lastMarkIsDecimal(
 	if (marks.some((each) => each !== mark && each !== ' ')) return true;
 	if (last.length !== 3) return true;
 	if (lang === 'en') return mark === '.';
-	return lang !== undefined && LONE_THOUSANDS.has(lang) ? false : undefined;
+	// The comma is the decimal mark in German, Dutch and French: "1,250 Mio. EUR" is 1.25 million,
+	// and "1,500 EUR" (three decimals of a euro) is then refused by toCents.
+	return lang !== undefined && LONE_THOUSANDS.has(lang) ? mark === ',' : undefined;
 }
 
 function groupedWhole(groups: readonly string[], marks: readonly string[]): string | undefined {
