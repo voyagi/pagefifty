@@ -40,6 +40,9 @@
 	--bg-3: #ebeeec;
 	--line: #e3e7e5;
 	--line-2: #cdd3d0;
+	/* The edge of a box to type in or choose from is how a reader finds it, so it holds 3:1 against
+	   every ground a field sits on, where the hairlines above stay quiet. */
+	--line-field: #7d8681;
 	--ink: #111513;
 	--ink-2: #535c57;
 	--brand: #14513b;
@@ -79,6 +82,7 @@
 	--bg-3: #1d2220;
 	--line: #262c29;
 	--line-2: #36403b;
+	--line-field: #68726d;
 	--ink: #e9edeb;
 	--ink-2: #a3aea8;
 	--brand: #4fae85;
@@ -104,6 +108,7 @@
 		--bg-3: #1d2220;
 		--line: #262c29;
 		--line-2: #36403b;
+		--line-field: #68726d;
 		--ink: #e9edeb;
 		--ink-2: #a3aea8;
 		--brand: #4fae85;

@@ -108,7 +108,7 @@
 		font-variant-numeric: tabular-nums;
 		color: var(--ink);
 		background: var(--bg);
-		border: 1px solid var(--line-2);
+		border: 1px solid var(--line-field);
 		border-radius: var(--r);
 	}
 
