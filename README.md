@@ -4,9 +4,10 @@ The rule your firm can't meet alone is on page fifty. Read it first. Pagefifty c
 firm meets a tender's published selection criteria, and quotes each clause from the tender's own
 text with its source.
 
-Status: early development. The [examples/2026-09-15/](examples/2026-09-15/) folder holds the
-captured TED snapshot the example run replays with no key and no install. TED is the source; the
-folder's README gives the reuse terms and what was scrubbed.
+Status: early development. The example run replays, with no key and no install, the newest capture
+made with `--open-after` at or after the submission cutoff (30 Oct 2026, 18:00 CET), now
+[examples/2026-10-22/](examples/2026-10-22/). TED is the source; each capture folder's README gives
+the reuse terms and what was scrubbed.
 
 ## Data sources
 
@@ -34,9 +35,11 @@ npm run capture
 
 The command searches TED for open IT notices (CPV 72000000 and 48000000) from buyers in the
 Netherlands, Belgium and Germany, published in the last 14 days. `--since YYYYMMDD` starts the
-window on another day. It downloads each notice's XML at one request a second, keeps active notices
-and their latest versions only, removes contact data, and writes `examples/<date>/`, named after the
-day the run started in Europe/Amsterdam. The site serves the newest capture on its next build.
+window on another day. `--open-after <instant>` (an instant with its zone, for example
+`2026-10-30T17:00:00Z`) leaves out every notice with a lot that closes at or before it. It downloads
+each notice's XML at one request a second, keeps active notices and their latest versions only,
+removes contact data, and writes `examples/<date>/`, named after the day the run started in
+Europe/Amsterdam. The site serves the newest capture on its next build.
 
 Downloads are kept in `.capture-cache/`, so a later run asks TED again only for the search and for
 notices it does not hold yet. Every run that gets past its flags leaves a record in
@@ -64,8 +67,9 @@ it is refused and logged.
 
 A live run reads `NEBIUS_API_KEY` and `TAVILY_API_KEY` from `.env` at the repository root and hands
 each key to its own provider's calls only. The keys never reach `process.env`, a log line, a run
-record or the capture. No metered call is wired into the command yet, so a live run makes no billed
-call today.
+record or the capture. A live run is billed: it sends each lot's criteria to Token Factory, then
+runs the buyer searches on Tavily, up to `--cap` attempts across both, and `run.json` records every
+attempt.
 
 ## License
 
