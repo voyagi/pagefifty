@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Binder from '$lib/components/Binder.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Facts from '$lib/components/Facts.svelte';
 	import HomeFigure from '$lib/components/HomeFigure.svelte';
-	import Leaf from '$lib/components/Leaf.svelte';
+	import PageMain from '$lib/components/PageMain.svelte';
+	import Panel from '$lib/components/Panel.svelte';
 
 	let { data } = $props();
 </script>
@@ -16,103 +16,97 @@
 	/>
 </svelte:head>
 
-<Binder board="teal">
-	<Leaf id="start" tab="Start" hue="teal" labelledby="start-title" open>
-		{#snippet children(tab)}
-			<div class="cover">
-				<Facts head="For small IT firms in the Netherlands, Belgium and Germany">
-					<p>Before you spend two days on a public tender.</p>
-				</Facts>
-				<div class="cover-body">
-					<h1 class="tagline" id="start-title">
-						The rule your firm can't meet alone is on page fifty. Read it first.
-					</h1>
-					{@render tab()}
-					<p class="lede">
-						Pagefifty checks whether your firm meets a tender's published selection criteria, and
-						quotes each clause from the tender's own text with its source.
-					</p>
-					<div class="status">
-						<p>
-							Right now it lists open IT tenders from a dated snapshot and shows each lot's criteria
-							as published.
-						</p>
-						<p class="capture mono">
-							{#if data.firstPublished}
-								Snapshot: {data.total} IT notices published from {data.firstPublished} that TED listed
-								as active on {data.capturedOn}.
-							{:else}
-								Snapshot: {data.total} IT notices TED listed as active on {data.capturedOn}.
-							{/if}
-						</p>
-					</div>
-					<div class="cover-foot">
-						<div class="actions">
-							<Button href="/tenders">Browse open tenders</Button>
-							<Button variant="secondary" href="/example">Open the example run</Button>
-						</div>
-						<p class="legal">This is not legal advice.</p>
-					</div>
-					<!-- After the buttons, so a figure of any height never pushes them below the fold. -->
-					{#if data.figure}
-						<HomeFigure figure={data.figure} />
-					{/if}
-				</div>
-			</div>
-		{/snippet}
-	</Leaf>
-
-	<Leaf id="firm" tab="Firm" hue="ultramarine" labelledby="firm-title" ply={2}>
-		{#snippet children(tab)}
-			<div class="grid">
-				<Facts head="Your firm's figures" headingId="firm-title" />
-				{@render tab()}
-				<div class="firm-body">
+<PageMain>
+	<Panel id="start" labelledby="start-title">
+		<div class="cover">
+			<Facts head="For small IT firms in the Netherlands, Belgium and Germany">
+				<p>Before you spend two days on a public tender.</p>
+			</Facts>
+			<div class="cover-body">
+				<h1 class="tagline" id="start-title">
+					The rule your firm can't meet alone is on page fifty. Read it first.
+				</h1>
+				<p class="lede">
+					Pagefifty checks whether your firm meets a tender's published selection criteria, and
+					quotes each clause from the tender's own text with its source.
+				</p>
+				<div class="status">
 					<p>
-						Turnover, staff, certificates, countries and languages, kept in this browser and never
-						sent to a server.
+						Right now it lists open IT tenders from a dated snapshot and shows each lot's criteria
+						as published.
 					</p>
+					<p class="capture mono">
+						{#if data.firstPublished}
+							Snapshot: {data.total} IT notices published from {data.firstPublished} that TED listed as
+							active on {data.capturedOn}.
+						{:else}
+							Snapshot: {data.total} IT notices TED listed as active on {data.capturedOn}.
+						{/if}
+					</p>
+				</div>
+				<div class="cover-foot">
 					<div class="actions">
-						<Button variant="secondary" href="/profile">Set up your firm</Button>
+						<Button href="/tenders">Browse open tenders</Button>
+						<Button variant="secondary" href="/example">Open the example run</Button>
 					</div>
+					<p class="legal">This is not legal advice.</p>
+				</div>
+				<!-- After the buttons, so a figure of any height never pushes them below the fold. -->
+				{#if data.figure}
+					<HomeFigure figure={data.figure} />
+				{/if}
+			</div>
+		</div>
+	</Panel>
+
+	<Panel id="firm" labelledby="firm-title">
+		<div class="grid">
+			<Facts head="Your firm's figures" headingId="firm-title" />
+			<div class="firm-body">
+				<p>
+					Turnover, staff, certificates, countries and languages, kept in this browser and never
+					sent to a server.
+				</p>
+				<div class="actions">
+					<Button variant="secondary" href="/profile">Set up your firm</Button>
 				</div>
 			</div>
-		{/snippet}
-	</Leaf>
-</Binder>
+		</div>
+	</Panel>
+</PageMain>
 
 <style>
-	/* Margin column, then four equal columns; the cover body keeps the same four columns inside. */
+	/* Facts column, then the body; the cover body keeps four columns of its own inside. */
 	.cover,
 	.grid,
 	.cover-body {
 		display: grid;
-		column-gap: 1.75rem;
+		column-gap: 2.5rem;
 	}
 
 	.cover,
 	.grid {
-		grid-template-columns: minmax(12rem, 15rem) repeat(4, minmax(0, 1fr));
+		grid-template-columns: 15rem minmax(0, 1fr);
 	}
 
 	.cover-body {
-		grid-column: 2 / span 4;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		row-gap: 2rem;
 		min-width: 0;
 	}
 
 	.firm-body {
-		grid-column: 2 / span 4;
 		min-width: 0;
 		max-width: 70ch;
 	}
 
 	.tagline {
 		grid-column: 1 / -1;
-		max-width: 17ch;
-		font: 700 clamp(2.75rem, 5.2vw, 5.5rem) / 0.95 var(--font-cond);
-		letter-spacing: -0.025em;
+		max-width: 20ch;
+		font-weight: 750;
+		font-size: var(--step-4);
+		line-height: 1.06;
+		letter-spacing: -0.04em;
 		text-wrap: balance;
 	}
 
@@ -160,24 +154,17 @@
 	@media (max-width: 68.75em) {
 		.cover,
 		.grid {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-		}
-
-		.cover-body,
-		.firm-body {
-			grid-column: 1 / -1;
+			grid-template-columns: minmax(0, 1fr);
 		}
 	}
 
 	@media (max-width: 45em) {
-		.cover,
-		.grid,
 		.cover-body {
 			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.tagline {
-			font-size: 2.5rem;
+			font-size: 2.25rem;
 		}
 
 		.lede,

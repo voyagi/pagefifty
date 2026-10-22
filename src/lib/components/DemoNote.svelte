@@ -15,17 +15,11 @@
 {/if}
 
 <style>
-	/* The footnote lies on the desk under the binder, clear of the tab rail on the right. */
+	/* The page's last line, after everything the demo figures were used for. */
 	.demo-note {
-		margin: 0 calc(var(--gutter) + var(--rail)) 2rem var(--gutter);
+		margin-top: 2rem;
 		max-width: 80ch;
 		font-size: var(--step--1);
-		color: var(--desk-ink);
-	}
-
-	@media (max-width: 45em) {
-		.demo-note {
-			margin: 0 0.75rem 2rem;
-		}
+		color: var(--ink-2);
 	}
 </style>

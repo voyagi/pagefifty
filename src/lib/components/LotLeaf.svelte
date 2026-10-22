@@ -7,10 +7,10 @@
 	import DeadlineTime from './DeadlineTime.svelte';
 	import Facts from './Facts.svelte';
 	import Label from './Label.svelte';
-	import Leaf from './Leaf.svelte';
-	import LeafGrid from './LeafGrid.svelte';
 	import LoadingLines from './LoadingLines.svelte';
 	import LotVerdict from './LotVerdict.svelte';
+	import Panel from './Panel.svelte';
+	import PanelGrid from './PanelGrid.svelte';
 
 	// verdict is absent for a lot that keeps the phase 1 view, and 'loading' while the browser has
 	// not read which firm to compare with yet.
@@ -33,9 +33,6 @@
 	);
 
 	const count = $derived(lot.criteria.length);
-	const tabLabel = $derived(
-		`Lot ${lot.number}, ${count} ${count === 1 ? 'criterion' : 'criteria'}`
-	);
 	const headingId = $derived(`${lot.anchor}-title`);
 	const published = $derived(
 		[
@@ -103,64 +100,53 @@
 	{/if}
 {/snippet}
 
-<Leaf
-	id={lot.anchor}
-	tab="Lot {lot.number}"
-	hue="grass"
-	labelledby={headingId}
-	ply={2}
-	{count}
-	{tabLabel}
->
-	{#snippet children(tab)}
-		<LeafGrid>
-			{#snippet margin()}
-				<Facts head="Lot {lot.number}" {headingId} rows={facts}>
-					{#if lot.title}
-						<p class="lot-title">{@render noticeText(lot.title)}</p>
-					{/if}
-					<p class="lot-id mono">{lot.id}</p>
-				</Facts>
-				{@render tab()}
-			{/snippet}
-			{#if verdict === 'loading'}
-				<div class="verdict-pending">
-					<LoadingLines label="Reading the firm profile kept in this browser" />
-				</div>
-			{:else if verdict !== undefined}
-				<LotVerdict view={verdict.view} compared={verdict.compared} />
-			{/if}
-			<Label>Selection criteria as published</Label>
-			{#if lot.reading?.status === 'not-read'}
-				<p class="not-read">{lot.reading.line}</p>
-			{/if}
-			{#if count > 0}
-				<ol class="clauses">
-					{#each lot.criteria as criterion (criterion.position)}
-						<CriterionRow {criterion} state={stateOf(criterion.position)} />
-					{/each}
-				</ol>
-			{:else}
-				<p class="note">This lot publishes no selection criteria in the notice.</p>
-			{/if}
-			{#each published as entry (entry.label)}
-				<section class="published" aria-label={entry.label}>
-					<Label>{entry.label}</Label>
-					{#each entry.texts as text, index (index)}
-						<p class="published-text">{@render noticeText(text)}</p>
-					{/each}
-				</section>
-			{/each}
-			<CoverageList lines={coverage} documents={lot.documents} />
-		</LeafGrid>
-	{/snippet}
-</Leaf>
+<Panel id={lot.anchor} labelledby={headingId}>
+	<PanelGrid>
+		{#snippet margin()}
+			<Facts head="Lot {lot.number}" {headingId} rows={facts}>
+				{#if lot.title}
+					<p class="lot-title">{@render noticeText(lot.title)}</p>
+				{/if}
+				<p class="lot-id mono">{lot.id}</p>
+			</Facts>
+		{/snippet}
+		{#if verdict === 'loading'}
+			<div class="verdict-pending">
+				<LoadingLines label="Reading the firm profile kept in this browser" />
+			</div>
+		{:else if verdict !== undefined}
+			<LotVerdict view={verdict.view} compared={verdict.compared} />
+		{/if}
+		<Label>Selection criteria as published</Label>
+		{#if lot.reading?.status === 'not-read'}
+			<p class="not-read">{lot.reading.line}</p>
+		{/if}
+		{#if count > 0}
+			<ol class="clauses">
+				{#each lot.criteria as criterion (criterion.position)}
+					<CriterionRow {criterion} state={stateOf(criterion.position)} />
+				{/each}
+			</ol>
+		{:else}
+			<p class="note">This lot publishes no selection criteria in the notice.</p>
+		{/if}
+		{#each published as entry (entry.label)}
+			<section class="published" aria-label={entry.label}>
+				<Label>{entry.label}</Label>
+				{#each entry.texts as text, index (index)}
+					<p class="published-text">{@render noticeText(text)}</p>
+				{/each}
+			</section>
+		{/each}
+		<CoverageList lines={coverage} documents={lot.documents} />
+	</PanelGrid>
+</Panel>
 
 <style>
 	.verdict-pending {
 		margin: 0 0 1.75rem;
 		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--acetate-rule);
+		border-bottom: 1px solid var(--line);
 	}
 
 	.lot-title {
@@ -193,17 +179,17 @@
 		list-style: none;
 		margin: 0.75rem 0 0;
 		padding: 0;
-		border-top: 1px solid var(--acetate-edge);
+		border-top: 1px solid var(--line-2);
 	}
 
-	/* Dashed is the binder's one mark for "not read". */
+	/* Dashed is the one mark for "not read". */
 	.not-read {
 		max-width: 70ch;
 		margin: 0.5rem 0 0.75rem;
 		padding: 0.5rem 0.75rem;
-		border: 1px dashed var(--ink-3);
-		border-radius: 2px;
-		background: var(--acetate);
+		border: 1px dashed var(--line-2);
+		border-radius: var(--r);
+		background: var(--bg);
 		font-size: var(--step--1);
 		color: var(--ink-2);
 	}
@@ -218,7 +204,7 @@
 	.published {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	.published-text {

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { formatDeadline, SERVER_TIME_ZONE } from '$lib/core/deadline';
 	import { countsLine, dayText, filterSummary, type TenderListData } from '$lib/tenders/list';
-	import Binder from './Binder.svelte';
 	import DemoNote from './DemoNote.svelte';
 	import EmptyState from './EmptyState.svelte';
 	import FilterForm from './FilterForm.svelte';
-	import Leaf from './Leaf.svelte';
+	import PageMain from './PageMain.svelte';
+	import Panel from './Panel.svelte';
 	import TenderTable from './TenderTable.svelte';
 
 	let {
@@ -19,7 +19,6 @@
 	} = $props();
 
 	const example = $derived(variant === 'example');
-	const board = $derived(example ? 'yellow' : 'slate');
 	const list = $derived(data.list);
 	const capture = $derived(data.capture);
 	// On the example "now" is the capture instant, so its closed notices had closed by then. The live
@@ -58,112 +57,87 @@
 	});
 </script>
 
-<Binder {board}>
-	<Leaf
-		id="open"
-		tab={example ? 'Example' : 'Open'}
-		hue={board}
-		labelledby="list-title"
-		count={list.counts.open}
-		open
-	>
-		{#snippet children(tab)}
-			<header class="index-head">
-				<div class="head-main">
-					<h1 id="list-title">{example ? 'Example run' : 'Open IT tenders'}</h1>
-					{@render tab()}
-					{#if example}
-						<p class="intro">
-							The {capture.capturedOn} snapshot of IT tenders in the Netherlands, Belgium and Germany,
-							shown as it stood when it was captured. It needs no key and no install, and uses the demo
-							firm Brink Data.
-						</p>
-					{:else}
-						<p class="intro">
-							IT services and software tenders (CPV 72 and 48) from buyers in the Netherlands,
-							Belgium and Germany, soonest deadline first. Each shows its selection criteria as
-							published, not yet compared with your firm.
-						</p>
-					{/if}
-					<p class="counts">
-						{#each counts as part, index (index)}{#if typeof part === 'number'}<span class="mono"
-									>{part}</span
-								>{:else}{part}{/if}{/each}
+<PageMain>
+	<Panel id="open" labelledby="list-title">
+		<header class="index-head">
+			<div class="head-main">
+				<h1 id="list-title">{example ? 'Example run' : 'Open IT tenders'}</h1>
+				{#if example}
+					<p class="intro">
+						The {capture.capturedOn} snapshot of IT tenders in the Netherlands, Belgium and Germany, shown
+						as it stood when it was captured. It needs no key and no install, and uses the demo firm Brink
+						Data.
 					</p>
-				</div>
-				<div class="capture">
-					{#if example}
-						<p class="mono">
-							Captured from TED on <span class="day">{capture.capturedOn}</span>
-							<span class="day">at {capturedAt}</span>
-						</p>
-					{:else}
-						<p class="mono">
-							Snapshot captured from TED on <span class="day">{capture.capturedOn}</span>
-						</p>
-					{/if}
-					<p class="caveat">{caveat}</p>
-				</div>
-			</header>
-
-			<FilterForm state={data.filters} {basePath} />
-			{#if data.dropped}
-				<p class="status" role="status">
-					Some filter values in the address were not recognised and were ignored.
+				{:else}
+					<p class="intro">
+						IT services and software tenders (CPV 72 and 48) from buyers in the Netherlands, Belgium
+						and Germany, soonest deadline first. Each shows its selection criteria as published, not
+						yet compared with your firm.
+					</p>
+				{/if}
+				<p class="counts">
+					{#each counts as part, index (index)}{#if typeof part === 'number'}<span class="mono"
+								>{part}</span
+							>{:else}{part}{/if}{/each}
 				</p>
-			{/if}
+			</div>
+			<div class="capture">
+				{#if example}
+					<p class="mono">
+						Captured from TED on <span class="day">{capture.capturedOn}</span>
+						<span class="day">at {capturedAt}</span>
+					</p>
+				{:else}
+					<p class="mono">
+						Snapshot captured from TED on <span class="day">{capture.capturedOn}</span>
+					</p>
+				{/if}
+				<p class="caveat">{caveat}</p>
+			</div>
+		</header>
 
-			{#if nothingMatches}
-				<EmptyState
-					heading="No tenders match these filters"
-					body={emptyBody}
-					clearHref={basePath}
-				/>
-			{:else if list.open.length === 0 && list.closed.length > 0}
-				<p class="note">No tender in this list is still open. The closed ones are below.</p>
-			{:else}
-				<TenderTable rows={list.open} caption={openCaption} {basePath} />
-			{/if}
-		{/snippet}
-	</Leaf>
+		<FilterForm state={data.filters} {basePath} />
+		{#if data.dropped}
+			<p class="status" role="status">
+				Some filter values in the address were not recognised and were ignored.
+			</p>
+		{/if}
+
+		{#if nothingMatches}
+			<EmptyState heading="No tenders match these filters" body={emptyBody} clearHref={basePath} />
+		{:else if list.open.length === 0 && list.closed.length > 0}
+			<p class="note">No tender in this list is still open. The closed ones are below.</p>
+		{:else}
+			<TenderTable rows={list.open} caption={openCaption} {basePath} />
+		{/if}
+	</Panel>
 
 	{#if !nothingMatches}
-		<Leaf
-			id="closed"
-			tab="Closed"
-			hue={board}
-			labelledby="closed-title"
-			count={list.counts.closed}
-			ply={2}
-		>
-			{#snippet children(tab)}
-				{#if list.closed.length > 0}
-					<details>
-						<summary
-							><h2 id="closed-title">
-								{closedSummary} (<span class="mono">{list.counts.closed}</span>)
-							</h2></summary
-						>
-						<TenderTable
-							rows={list.closed}
-							caption="Closed tenders, earliest deadline first"
-							{basePath}
-							closed
-						/>
-					</details>
-					{@render tab()}
-				{:else}
-					<h2 id="closed-title" class="visually-hidden">{closedSummary}</h2>
-					{@render tab()}
-					<p class="note">{noneClosed}</p>
-				{/if}
-			{/snippet}
-		</Leaf>
+		<Panel id="closed" labelledby="closed-title">
+			{#if list.closed.length > 0}
+				<details>
+					<summary
+						><h2 id="closed-title">
+							{closedSummary} (<span class="mono">{list.counts.closed}</span>)
+						</h2></summary
+					>
+					<TenderTable
+						rows={list.closed}
+						caption="Closed tenders, earliest deadline first"
+						{basePath}
+						closed
+					/>
+				</details>
+			{:else}
+				<h2 id="closed-title" class="visually-hidden">{closedSummary}</h2>
+				<p class="note">{noneClosed}</p>
+			{/if}
+		</Panel>
 	{/if}
-</Binder>
-{#if example}
-	<DemoNote capturedOn={capture.capturedOn} />
-{/if}
+	{#if example}
+		<DemoNote capturedOn={capture.capturedOn} />
+	{/if}
+</PageMain>
 
 <style>
 	.index-head {
@@ -181,8 +155,10 @@
 	}
 
 	h1 {
-		font: 600 var(--step-4) / 1.1 var(--font-cond);
-		letter-spacing: -0.015em;
+		font-weight: 750;
+		font-size: var(--step-3);
+		line-height: 1.15;
+		letter-spacing: -0.03em;
 		text-wrap: balance;
 	}
 
@@ -231,12 +207,12 @@
 		min-height: 44px;
 		padding-block: 0.75rem;
 		cursor: pointer;
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
-		letter-spacing: 0.01em;
+		font-weight: 650;
+		line-height: 1.25;
 	}
 
 	summary::marker {
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	h2 {
@@ -246,11 +222,5 @@
 
 	details[open] summary {
 		margin-bottom: 1rem;
-	}
-
-	@media (max-width: 45em) {
-		h1 {
-			font-size: var(--step-3);
-		}
 	}
 </style>

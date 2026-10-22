@@ -10,16 +10,16 @@
 		type ComparedFirm,
 		type FirmFacts
 	} from '$lib/tenders/verdict-view';
-	import Binder from './Binder.svelte';
 	import BuyerSearch from './BuyerSearch.svelte';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import DemoNote from './DemoNote.svelte';
 	import FacedownLeaf from './FacedownLeaf.svelte';
 	import Facts from './Facts.svelte';
 	import Label from './Label.svelte';
-	import Leaf from './Leaf.svelte';
-	import LeafGrid from './LeafGrid.svelte';
 	import LotLeaf from './LotLeaf.svelte';
+	import PageMain from './PageMain.svelte';
+	import Panel from './Panel.svelte';
+	import PanelGrid from './PanelGrid.svelte';
 	import RunRecord from './RunRecord.svelte';
 	import SourceLinks from './SourceLinks.svelte';
 	import UnreadStrip from './UnreadStrip.svelte';
@@ -128,61 +128,50 @@
 	</div>
 {/snippet}
 
-<Binder board="yellow">
-	<Leaf
-		id="tender"
-		tab={variant === 'example' ? 'Example' : 'Tender'}
-		hue="yellow"
-		labelledby="tender-title"
-		element="article"
-		open
-	>
-		{#snippet children(tab)}
-			<LeafGrid>
-				{#snippet margin()}
-					<Facts head={buyers} label="Tender facts" rows={facts} />
-				{/snippet}
-				<h1 class="title" id="tender-title" lang={tender.title.lang} data-notice-text>
-					{tender.title.text}
-				</h1>
-				{@render tab()}
-				<!-- After the tab, so the tab still follows its heading in DOM order. -->
-				{#if tender.cancelIntent}
-					<p class="sub" data-cancel-intent>{CANCEL_INTENT_LINE}</p>
-				{/if}
-				<UnreadStrip />
-				<SourceLinks tedUrl={tender.tedUrl} documents={tender.documents} />
-				{#if tender.lotIndex.length > 0}
-					<nav class="lot-index" aria-labelledby="lot-index-title">
-						<Label id="lot-index-title">
-							Lots in this notice (<span class="mono">{tender.lotIndex.length}</span>)
-						</Label>
-						<ol>
-							{#each tender.lotIndex as entry (entry.anchor)}
-								<li>
-									<a href="#{entry.anchor}"
-										>Lot {entry.number}{#if entry.title}: <span
-												lang={entry.title.lang}
-												data-notice-text>{entry.title.text}</span
-											>{/if}</a
+<PageMain>
+	<Panel id="tender" labelledby="tender-title" element="article">
+		<PanelGrid>
+			{#snippet margin()}
+				<Facts head={buyers} label="Tender facts" rows={facts} />
+			{/snippet}
+			<h1 class="title" id="tender-title" lang={tender.title.lang} data-notice-text>
+				{tender.title.text}
+			</h1>
+			{#if tender.cancelIntent}
+				<p class="sub" data-cancel-intent>{CANCEL_INTENT_LINE}</p>
+			{/if}
+			<UnreadStrip />
+			<SourceLinks tedUrl={tender.tedUrl} documents={tender.documents} />
+			{#if tender.lotIndex.length > 0}
+				<nav class="lot-index" aria-labelledby="lot-index-title">
+					<Label id="lot-index-title">
+						Lots in this notice (<span class="mono">{tender.lotIndex.length}</span>)
+					</Label>
+					<ol>
+						{#each tender.lotIndex as entry (entry.anchor)}
+							<li>
+								<a href="#{entry.anchor}"
+									>Lot {entry.number}{#if entry.title}: <span
+											lang={entry.title.lang}
+											data-notice-text>{entry.title.text}</span
+										>{/if}</a
+								>
+								{#if entry.deadline.kind === 'in-notice'}
+									<span class="sub">In notice</span>
+								{:else}
+									<span class="sub"
+										>{#if entry.closed}<span class="lot-closed">Closed</span>{/if}
+										<DeadlineTime instant={entry.deadline.instant} /></span
 									>
-									{#if entry.deadline.kind === 'in-notice'}
-										<span class="sub">In notice</span>
-									{:else}
-										<span class="sub"
-											>{#if entry.closed}<span class="lot-closed">Closed</span>{/if}
-											<DeadlineTime instant={entry.deadline.instant} /></span
-										>
-									{/if}
-								</li>
-							{/each}
-						</ol>
-					</nav>
-				{/if}
-				<RunRecord run={data.readingRun ?? null} />
-			</LeafGrid>
-		{/snippet}
-	</Leaf>
+								{/if}
+							</li>
+						{/each}
+					</ol>
+				</nav>
+			{/if}
+			<RunRecord run={data.readingRun ?? null} />
+		</PanelGrid>
+	</Panel>
 
 	{#each tender.lots as lot (lot.anchor)}
 		<LotLeaf {lot} verdict={verdictOf(lot)} />
@@ -197,15 +186,15 @@
 	{/if}
 
 	<!-- The capture day comes from the capture itself, so a new capture renames it. -->
-	<p class="leaf-foot">
+	<p class="record-foot">
 		Criteria as published in TED notice <span class="mono">{tender.noticeNumber}</span>. Source:
 		TED, the EU's Tenders Electronic Daily, snapshot captured {data.capture.capturedOn}. Not legal
 		advice.
 	</p>
-</Binder>
-{#if variant === 'example'}
-	<DemoNote capturedOn={data.capture.capturedOn} />
-{/if}
+	{#if variant === 'example'}
+		<DemoNote capturedOn={data.capture.capturedOn} />
+	{/if}
+</PageMain>
 
 <style>
 	.buyer {
@@ -230,9 +219,11 @@
 	}
 
 	.title {
-		max-width: 40ch;
-		font: 600 var(--step-4) / 1.1 var(--font-cond);
-		letter-spacing: -0.015em;
+		max-width: 30ch;
+		font-weight: 750;
+		font-size: var(--step-3);
+		line-height: 1.15;
+		letter-spacing: -0.03em;
 		text-wrap: balance;
 		overflow-wrap: anywhere;
 		hyphens: auto;
@@ -241,7 +232,7 @@
 	.lot-index {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	/* Each link already names its lot number, so the list carries no second one; seventeen lots
@@ -269,18 +260,12 @@
 		font-weight: 600;
 	}
 
-	/* The foot is set on the yellow board itself, so it takes the board's own ink. */
-	.leaf-foot {
+	.record-foot {
 		max-width: 80ch;
-		margin-top: 1rem;
+		margin-top: 2.5rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--line);
 		font-size: var(--step--1);
-		font-weight: 500;
-		color: var(--on-yellow);
-	}
-
-	@media (max-width: 45em) {
-		.title {
-			font-size: var(--step-3);
-		}
+		color: var(--ink-2);
 	}
 </style>

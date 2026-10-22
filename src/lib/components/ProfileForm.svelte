@@ -25,7 +25,7 @@
 	import SelectField from './SelectField.svelte';
 	import ToggleChip from './ToggleChip.svelte';
 
-	// store is null until the page has read storage in the browser; until then every leaf shows its
+	// store is null until the page has read storage in the browser; until then every panel shows its
 	// loading lines, which is also all a server render ever draws.
 	let {
 		store,
@@ -355,9 +355,8 @@
 			{/if}
 		</Facts>
 	{/snippet}
-	{#snippet body(tab)}
+	{#snippet body()}
 		<h1 class="title" id="profile-title">Your firm profile</h1>
-		{@render tab()}
 		{#if store && !store.stored && store.newerVersion !== null}
 			<p class="lede">
 				This browser holds a profile saved by a newer version of Pagefifty, which this page cannot

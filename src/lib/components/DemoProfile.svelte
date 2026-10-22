@@ -72,13 +72,12 @@
 <ProfileLeaf leaf="firm">
 	{#snippet margin()}
 		<Facts head="Invented figures">
-			<p>Nothing on these leaves is stored. Your own profile stays in this browser as it was.</p>
+			<p>Nothing on this page is stored. Your own profile stays in this browser as it was.</p>
 		</Facts>
 	{/snippet}
-	{#snippet body(tab)}
+	{#snippet body()}
 		<p class="label">Demo firm</p>
 		<h1 class="title" id="profile-title">{DEMO_FIRM_NAME}</h1>
-		{@render tab()}
 		<p class="gloss">
 			A demo firm with invented figures, for trying the pages. Your own profile is kept as it was.
 		</p>
@@ -108,10 +107,10 @@
 	.label {
 		display: block;
 		margin-bottom: 0.4rem;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--ink-3);
+		font-weight: 600;
+		font-size: var(--step--1);
+		line-height: 1.3;
+		color: var(--ink-2);
 	}
 
 	.actions {
@@ -128,7 +127,7 @@
 	dt {
 		font-size: var(--step--1);
 		font-weight: 500;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	dd {
