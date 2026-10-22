@@ -399,6 +399,16 @@ describe('a clause every lot shares, with one floor per lot', () => {
 		expect(lotsNamed(text, lang)).toEqual([1, 2]);
 	});
 
+	it.each([
+		['Los 1 EUR 6 Mio. netto', 'de', [1]],
+		['Perceel 2 € 500.000', 'nl', [2]],
+		['Lose 1 und 2 EUR 6 Mio. netto', 'de', [1, 2]],
+		['Lot 1 b) EUR 2 million', 'en', [1]],
+		['Lots 1 and 2 b) EUR 2 million', 'en', [1, 2]]
+	])('keeps a lot number written before a currency or a list mark: %s', (text, lang, lots) => {
+		expect(lotsNamed(text, lang)).toEqual(lots);
+	});
+
 	it('reads no lot label in a lot title of a language this version does not read', () => {
 		expect(lotsTitled('Lote 1: los 3 servicios', 'es')).toEqual([]);
 		expect(lotsTitled('Los 2: Betrieb', 'de')).toEqual([2]);
@@ -430,6 +440,14 @@ describe('a clause every lot shares, with one floor per lot', () => {
 			const decided = decideReadLot(shared, MID_FIRM, { ...CONTEXT, lot });
 			expect(decided.criteria[0].requirements[0].why).toBe('other-lot');
 		}
+	});
+
+	it('a floor written after its lot label with the currency first is still that lot floor', () => {
+		const quotes = ['Los 1 EUR 6 Mio. netto', 'Los 2 EUR 2,5 Mio. netto'];
+		const shared = underLabel(`${HEAD}${quotes.join(' / ')}`, quotes);
+		const decided = decideReadLot(shared, MID_FIRM, { ...CONTEXT, lot: 'LOT-0002' });
+		expect(decided.criteria[0].requirements[0].why).toBe('other-lot');
+		expect(decided.decision.verdict).not.toBe('PARTNER NEEDED');
 	});
 
 	it('a floor a grouped label states for other lots is not this lot floor', () => {

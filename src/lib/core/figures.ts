@@ -620,20 +620,27 @@ const LOT_RANGE_WORD = /^(?:bis|to|tot|à)$/iu;
 const MAX_LOT_RANGE = 50;
 const LOT_LANGS: ReadonlySet<string> = new Set(['de', 'nl', 'fr', 'en']);
 
+const CURRENCY_THEN_NUMBER = new RegExp(String.raw`^${SPACE}*${CURRENCY}${SPACE}*\p{N}`, 'iu');
+
 // The offsets where a number reads as an amount, by its currency or its multiplier, read or refused.
+// A currency with an amount after it belongs to that amount ("Lose 1 und 2 EUR 6 Mio."), and a
+// one-letter word is a list mark there ("Lots 1 and 2 b)"), never a multiplier.
 function amountStarts(text: string, lang?: string): ReadonlySet<number> {
 	const starts = new Set<number>();
 	for (const match of text.matchAll(NUMBER)) {
-		const word = WORD_NEXT.exec(text.slice(match.index + match[0].length))?.[1] ?? '';
+		const rest = text.slice(match.index + match[0].length);
+		if (CURRENCY_THEN_NUMBER.test(rest)) continue;
+		const word = WORD_NEXT.exec(rest)?.[1] ?? '';
 		const multiplied =
-			Object.hasOwn(MAGNITUDES, word.toLowerCase()) || UNKNOWN_MAGNITUDE.test(word);
+			word.length > 1 &&
+			(Object.hasOwn(MAGNITUDES, word.toLowerCase()) || UNKNOWN_MAGNITUDE.test(word));
 		if (multiplied || candidate(text, match, lang)) starts.add(match.index);
 	}
 	return starts;
 }
 
 // An amount ends a lot list, since its comma reads like one more lot: "Lots 1 and 2, 3 million EUR"
-// names lots 1 and 2.
+// names lots 1 and 2. The number right after the label is always a lot ("Lot 1 b)").
 function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): number[] {
 	const [whole, group] = match;
 	const start = match.index + whole.length - group.length;
@@ -645,7 +652,7 @@ function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): num
 			range = LOT_RANGE_WORD.test(token[0]);
 			continue;
 		}
-		if (amounts.has(start + token.index)) break;
+		if (numbers.length > 0 && amounts.has(start + token.index)) break;
 		const lot = Number.parseInt(digits, 10);
 		const from = numbers.at(-1);
 		if (range && from !== undefined && lot > from && lot - from <= MAX_LOT_RANGE) {
