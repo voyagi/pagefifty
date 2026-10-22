@@ -5,8 +5,9 @@ import {
 	displayRuns,
 	findQuotes,
 	placeMarks,
+	quotePlaces,
 	runsBetween,
-	sentencesAround,
+	sentenceSpan,
 	shownText,
 	type TextRun
 } from './display-text';
@@ -279,23 +280,54 @@ describe('criterionMarks', () => {
 	});
 });
 
-describe('sentencesAround', () => {
+describe('quotePlaces', () => {
+	const descriptions = [
+		{ text: 'Jährlich mindestens 1.000.000 EUR netto Umsatz', lang: 'de' },
+		{ text: 'in each of the last two financial years.', lang: 'en' }
+	];
+
+	it('places each piece of a quote found only across two descriptions', () => {
+		const across = 'mindestens 1.000.000 EUR netto Umsatz in each of the last two';
+		expect(quotePlaces(descriptions, { quote: across, lang: 'de' })).toEqual([
+			{ at: 0, start: 9, end: 46 },
+			{ at: 1, start: 0, end: 23 }
+		]);
+	});
+
+	// A quote repeated in a second description of its language is placed once, in the first.
+	it('places a quote found whole once, in the first description of its language holding it', () => {
+		const repeated = [
+			{ text: 'Keine Angabe.', lang: 'de' },
+			{ text: 'Mindestens 1.000.000 EUR Umsatz.', lang: 'de' },
+			{ text: 'Mindestens 1.000.000 EUR Umsatz.', lang: 'de' }
+		];
+		expect(quotePlaces(repeated, { quote: 'Mindestens 1.000.000 EUR', lang: 'de' })).toEqual([
+			{ at: 1, start: 0, end: 24 }
+		]);
+		expect(quotePlaces(descriptions, { quote: 'nowhere in the clause at all' })).toEqual([]);
+	});
+});
+
+describe('sentenceSpan', () => {
 	const clause =
 		'Der Auftragnehmer stellt Personen bereit. Hierzu sind mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen, die dem Auftraggeber zur Verfügung stehen. \n\nFestangestellter Junior Consultant mit 5 Mio. EUR.';
+	const around = (start: number, end: number) => {
+		const span = sentenceSpan(clause, start, end);
+		return clause.slice(span.start, span.end);
+	};
 
 	it('widens a quote to the sentence it sits in, past an abbreviation', () => {
 		const start = clause.indexOf('mindestens');
 		const end = clause.indexOf('einzusetzen') + 'einzusetzen'.length;
-		expect(sentencesAround(clause, start, end)).toBe(
+		expect(around(start, end)).toBe(
 			'Hierzu sind mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen, die dem Auftraggeber zur Verfügung stehen.'
 		);
 	});
 
-	it('stops at a paragraph break and is always a slice of the text', () => {
+	it('stops at a paragraph break, with no space at either end', () => {
 		const start = clause.indexOf('Festangestellter');
-		const excerpt = sentencesAround(clause, start, start + 5);
-		expect(excerpt).toBe('Festangestellter Junior Consultant mit 5 Mio. EUR.');
-		expect(clause).toContain(excerpt);
-		expect(sentencesAround(clause, 0, 3)).toBe('Der Auftragnehmer stellt Personen bereit.');
+		expect(sentenceSpan(clause, start, start + 5)).toEqual({ start, end: clause.length });
+		expect(around(start, start + 5)).toBe('Festangestellter Junior Consultant mit 5 Mio. EUR.');
+		expect(around(0, 3)).toBe('Der Auftragnehmer stellt Personen bereit.');
 	});
 });

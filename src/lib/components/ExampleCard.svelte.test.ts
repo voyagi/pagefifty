@@ -74,4 +74,48 @@ describe('ExampleCard', () => {
 			'The French reading.'
 		);
 	});
+
+	// Code verified this quote against the clause's two descriptions joined and finds it in neither
+	// alone (display-text.test.ts), so the card cuts it at their edge: the excerpt, the sentence its
+	// first piece sits in, marks that piece beside its reading, and the whole clause holds both
+	// descriptions, each piece marked.
+	it('shows a deciding quote that runs across two descriptions, cut at their edge', () => {
+		const tender = buildTenderPage(recordOf('multilingual-criterion'), NOW);
+		const [lot] = tender.lots;
+		const [criterion] = lot.criteria;
+		const across = 'mindestens 1.000.000 EUR netto Umsatz in each of the last two';
+		const decided = {
+			...lot,
+			criteria: [
+				{
+					...criterion,
+					descriptions: [
+						{
+							text: 'Referenzzeitraum drei Jahre. Jährlich mindestens 1.000.000 EUR netto Umsatz',
+							lang: 'de',
+							language: 'German'
+						},
+						{ text: 'in each of the last two financial years.', lang: 'en', language: 'English' }
+					],
+					requirements: [{ quote: across, lang: 'de', reading: 'The turnover floor.', model: 'm' }]
+				},
+				...lot.criteria.slice(1)
+			]
+		};
+		const { container } = render(ExampleCard, {
+			props: { tender, lot: decided, view: viewOf(criterion.position, [0]) }
+		});
+		const marked = (root: Element | null) => root?.querySelector('mark.decides')?.textContent;
+		const excerpt = container.querySelector('.excerpt blockquote');
+		expect(excerpt?.textContent).toBe('Jährlich mindestens 1.000.000 EUR netto Umsatz');
+		expect(marked(excerpt)).toBe('mindestens 1.000.000 EUR netto Umsatz');
+		expect(container.querySelector('.reading [data-ai-generated]')?.textContent).toBe(
+			'The turnover floor.'
+		);
+		const whole = [...container.querySelectorAll('details.whole blockquote')];
+		expect(whole.map(marked)).toEqual([
+			'mindestens 1.000.000 EUR netto Umsatz',
+			'in each of the last two'
+		]);
+	});
 });

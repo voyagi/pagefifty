@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { criterionLabel } from '$lib/codelists/labels';
 	import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
-	import { findQuotes, sentencesAround, type QuoteMark } from '$lib/tenders/display-text';
+	import {
+		criterionMarks,
+		quotePlaces,
+		sentenceSpan,
+		shownText,
+		type QuoteMark
+	} from '$lib/tenders/display-text';
 	import { initialsOf } from '$lib/tenders/list';
 	import type { LotView, TenderPageModel } from '$lib/tenders/tender-page';
 	import type { LotVerdictView } from '$lib/tenders/verdict-view';
@@ -19,36 +25,49 @@
 	const lead = $derived(tender.buyers[0]);
 	const deciding = $derived(lot.criteria.find((criterion) => criterion.position === view.deciding));
 
-	// The deciding clause in the language the first quote the verdict rests on was found in. The card
-	// shows the sentence holding that quote, set apart, and the model's one reading of it; the whole
-	// clause, every resting quote marked, folds out under it.
+	// The deciding clause where the first quote the verdict rests on was found. The card shows the
+	// sentence holding that quote, set apart, and the model's one reading of it; the whole clause,
+	// every resting quote marked, folds out under it. Code checks a quote against the clause's
+	// descriptions joined, so one may run on from one description into the next: the excerpt then
+	// holds its first piece, and the whole clause each description it runs through.
 	const clause = $derived.by(() => {
 		if (deciding === undefined) return undefined;
+		const { descriptions } = deciding;
 		const requirements = deciding.requirements ?? [];
-		const lang = (requirements[view.decidingQuotes[0]] ?? requirements[0])?.lang;
-		const quote =
-			deciding.descriptions.find((each) => each.lang === lang) ?? deciding.descriptions[0];
+		const leading = requirements[view.decidingQuotes[0]];
+		const places = leading === undefined ? [] : quotePlaces(descriptions, leading);
+		const [place] = places;
+		const at =
+			place?.at ??
+			Math.max(
+				descriptions.findIndex((each) => each.lang === leading?.lang),
+				0
+			);
+		const quote = descriptions[at];
 		if (quote === undefined) return undefined;
-		const resting = view.decidingQuotes.flatMap((index) => {
-			const requirement = requirements[index];
-			return requirement !== undefined &&
-				(requirement.lang === undefined || requirement.lang === quote.lang)
-				? [requirement]
-				: [];
-		});
-		const marks: QuoteMark[] = resting.map((each) => ({ quote: each.quote, decides: true }));
-		const text = quote.text.trim();
-		const [first] = findQuotes(
-			text,
-			resting.map((each) => each.quote)
-		);
-		const excerpt = sentencesAround(text, first?.start ?? 0, first?.end ?? 0);
+		const text = shownText(quote.text);
+		const span = sentenceSpan(text, place?.start ?? 0, place?.end ?? 0);
+		const leadMarks: QuoteMark[] =
+			leading === undefined || place === undefined
+				? []
+				: [
+						{
+							quote: leading.quote,
+							decides: true,
+							at: { start: place.start - span.start, end: place.end - span.start }
+						}
+					];
+		const marks = criterionMarks(descriptions, requirements, view.decidingQuotes);
+		const whole = descriptions.slice(at, (places.at(-1)?.at ?? at) + 1).map((each, offset) => ({
+			quote: each,
+			marks: marks[at + offset].filter((mark) => mark.decides)
+		}));
 		return {
-			quote,
-			marks,
-			lead: first === undefined ? undefined : resting[first.indexes[0]],
-			excerpt: { ...quote, text: excerpt },
-			cut: excerpt !== text
+			whole,
+			lead: leadMarks.length > 0 ? leading : undefined,
+			leadMarks,
+			excerpt: { ...quote, text: text.slice(span.start, span.end) },
+			cut: whole.length > 1 || span.end - span.start < text.length
 		};
 	});
 
@@ -123,7 +142,7 @@
 			<div class="excerpt">
 				<QuoteBlock
 					quote={clause.excerpt}
-					marks={clause.lead ? [{ quote: clause.lead.quote, decides: true }] : []}
+					marks={clause.leadMarks}
 					source="Quoted from TED notice {tender.noticeNumber}"
 					clamp
 				/>
@@ -131,7 +150,9 @@
 			{#if clause.cut}
 				<details class="whole">
 					<summary><Icon name="chev" />Show the whole clause</summary>
-					<QuoteBlock quote={clause.quote} marks={clause.marks} />
+					{#each clause.whole as part, index (index)}
+						<QuoteBlock quote={part.quote} marks={part.marks} />
+					{/each}
 				</details>
 			{/if}
 			{#if clause.lead}

@@ -224,6 +224,22 @@ export function criterionMarks(
 	return marks;
 }
 
+// Where one requirement's quote sits in a criterion's drawn descriptions, as criterionMarks marks
+// it: in the first description of its language that holds it whole, or each piece in turn where it
+// was found only across two descriptions. at is the description, start and end the place in its
+// drawn text.
+export function quotePlaces(
+	descriptions: readonly { text: string; lang?: string }[],
+	requirement: { quote: string; lang?: string }
+): { at: number; start: number; end: number }[] {
+	const marks = criterionMarks(descriptions, [requirement], []);
+	const places = marks.flatMap((list, at) =>
+		placeMarks(shownText(descriptions[at].text), list).map(({ start, end }) => ({ at, start, end }))
+	);
+	const cut = marks.some((list) => list.some((mark) => mark.at !== undefined));
+	return cut ? places : places.slice(0, 1);
+}
+
 // Words that end in a full stop without ending a sentence, as the German, Dutch and French
 // clauses write them.
 const ABBREVIATIONS = new Set([
@@ -271,11 +287,18 @@ function boundaries(text: string): number[] {
 	return ends.sort((a, b) => a - b);
 }
 
-// The whole sentence or sentences around [start, end): from the end of the sentence before it to
-// the end of the last sentence it touches. A slice of the text, never a rewrite of it.
-export function sentencesAround(text: string, start: number, end: number): string {
+// Where the whole sentence or sentences around [start, end) sit: from the end of the sentence before
+// it to the end of the last sentence it touches, less the spaces at either end. A place in the text,
+// so the excerpt is a slice of it, never a rewrite, and a mark placed in the text keeps its place.
+export function sentenceSpan(
+	text: string,
+	start: number,
+	end: number
+): { start: number; end: number } {
 	const ends = boundaries(text);
-	const from = ends.filter((at) => at <= start).at(-1) ?? 0;
-	const to = ends.find((at) => at >= end) ?? text.length;
-	return text.slice(from, to).trim();
+	let from = ends.filter((at) => at <= start).at(-1) ?? 0;
+	let to = ends.find((at) => at >= end) ?? text.length;
+	while (from < to && /\s/u.test(text.charAt(from))) from += 1;
+	while (to > from && /\s/u.test(text.charAt(to - 1))) to -= 1;
+	return { start: from, end: to };
 }
