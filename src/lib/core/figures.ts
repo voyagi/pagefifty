@@ -149,14 +149,23 @@ function powerWithCurrencyBefore(rest: string): number | 'refused' {
 // ",-" or ",--" closes a whole amount ("3.000.000,- €"), so the currency after it still counts.
 const ZERO_CENTS = /^,[-\u2013]{1,2}/u;
 
+// Digits held to a number by a mark this reader does not join (an apostrophe, a figure space, two
+// spaces) make it one piece of a longer number, as in "1'250'500 EUR", so the piece is refused
+// rather than read as a smaller amount. One SPACE or a line break still parts two numbers.
+const LOOSE_MARK = String.raw`(?:[^\p{L}\p{N}\s]|(?!${SPACE})[^\S\n]|\s{2,})`;
+const GLUED_BEFORE = new RegExp(String.raw`\p{N}${LOOSE_MARK}$`, 'u');
+const GLUED_AFTER = new RegExp(String.raw`^${LOOSE_MARK}\p{N}`, 'u');
+
 function candidate(text: string, match: RegExpExecArray, lang?: string): Candidate | undefined {
+	const before = text.slice(0, match.index);
 	const rest = text.slice(match.index + match[0].length).replace(ZERO_CENTS, '');
 	let power = powerAfter(rest);
 	if (power === 'no currency') {
-		if (!CURRENCY_BEFORE.test(text.slice(0, match.index))) return undefined;
+		if (!CURRENCY_BEFORE.test(before)) return undefined;
 		power = powerWithCurrencyBefore(rest);
 	}
-	const numeral = readNumeral(match[0], lang);
+	const glued = GLUED_BEFORE.test(before) || GLUED_AFTER.test(rest);
+	const numeral = glued ? undefined : readNumeral(match[0], lang);
 	return power === 'refused' || numeral === undefined
 		? { refused: true }
 		: { refused: false, numeral, power };
@@ -309,7 +318,9 @@ function countOf(raw: string, lang?: string): number | undefined {
 }
 
 const countsIn = (text: string, lang?: string) =>
-	[...text.matchAll(COUNT)].map((match) => countOf(match[1], lang));
+	[...text.matchAll(COUNT)].map((match) =>
+		GLUED_BEFORE.test(text.slice(0, match.index)) ? undefined : countOf(match[1], lang)
+	);
 
 export function parseCount(text: string, lang?: string): CountReading {
 	const counts = countsIn(text, lang);

@@ -3,7 +3,7 @@
 // one way a floor a firm does not meet could read as met.
 import { describe, expect, it } from 'vitest';
 import { decideReadLot, type FirmFacts, type LotContext } from './compare';
-import { parseMoney } from './figures';
+import { parseCount, parseMoney } from './figures';
 import { readLot, type ModelItem } from './lot-reading';
 
 const CONTEXT: LotContext = {
@@ -89,5 +89,52 @@ describe('a multiplier written after a currency that comes first', () => {
 	])('%s "%s" still reads its amount', (lang, text, cents) => {
 		const money = parseMoney(text, lang);
 		expect(money).toMatchObject({ kind: 'one', cents });
+	});
+});
+
+// Built from its code point so the source shows which space it is.
+const FIGURE_SPACE = String.fromCodePoint(0x2007);
+
+describe('digit groups joined by a mark the reader does not know', () => {
+	// A trailing group read alone ("000 EUR") would be a floor of nothing, met by every firm.
+	it.each([
+		["Mindestjahresumsatz jährlich: 1'000'000 EUR", "1'000'000 EUR"],
+		["Mindestjahresumsatz jährlich: 1'250'500 EUR", "1'250'500 EUR"],
+		[
+			`Mindestjahresumsatz jährlich: 1${FIGURE_SPACE}000${FIGURE_SPACE}000 EUR`,
+			`1${FIGURE_SPACE}000${FIGURE_SPACE}000 EUR`
+		],
+		['Mindestjahresumsatz jährlich: 1  000  000 EUR', '1  000  000 EUR'],
+		["Mindestjahresumsatz jährlich: EUR 1'000'000", "EUR 1'000'000"]
+	])('"%s" is never read below a million', (text, numberText) => {
+		const money = parseMoney(text, 'de');
+		expect(money.kind === 'one' && money.cents < 100_000_000).toBe(false);
+		const decided = verdictFor(text, numberText, SMALL_FIRM);
+		expect(decided.decision.verdict).not.toBe('GO');
+		expect(decided.criteria[0].state).not.toBe('MET');
+	});
+
+	it.each([
+		["mindestens 1'000 Mitarbeiter", 'de'],
+		[`mindestens 1${FIGURE_SPACE}000 Mitarbeiter`, 'de']
+	])('"%s" is never read as a smaller headcount', (text, lang) => {
+		const count = parseCount(text, lang);
+		expect(count.kind === 'one' && count.count < 1000).toBe(false);
+	});
+
+	it.each([
+		['Mindestjahresumsatz jährlich: 1 000 000 EUR', 'de', { kind: 'one', cents: 100_000_000 }],
+		['Umsatz 2024 3 Mio. EUR', 'de', { kind: 'one', cents: 300_000_000 }],
+		['Mindestumsatz: 3.000.000,- €', 'de', { kind: 'one', cents: 300_000_000 }],
+		['Mindestumsatz 1.000.000 EUR (2023)', 'de', { kind: 'one', cents: 100_000_000 }]
+	])('"%s" still reads its amount', (text, lang, reading) => {
+		expect(parseMoney(text, lang)).toMatchObject(reading);
+	});
+
+	it.each([
+		['mindestens 1 000 Mitarbeiter', 'de', 1000],
+		['2024: 25 Mitarbeiter', 'de', 25]
+	])('"%s" still reads its headcount', (text, lang, count) => {
+		expect(parseCount(text, lang)).toEqual({ kind: 'one', count });
 	});
 });
