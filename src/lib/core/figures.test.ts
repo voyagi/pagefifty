@@ -351,6 +351,20 @@ describe('parsePeriod', () => {
 		expect(parsePeriod(text, lang)).toMatchObject({ years, yearsUnread: false });
 	});
 
+	it('a named year that disagrees with the stated count of years leaves the years unread', () => {
+		const text = 'in den letzten drei Geschäftsjahren; bei Neugründung ab 2024 genügt der Umsatz';
+		expect(parsePeriod(text, 'de')).toMatchObject({ yearsUnread: true, named: [] });
+	});
+
+	it('named years that match the stated count of years settle the window', () => {
+		const text = 'in den letzten drei Geschäftsjahren (2022, 2023 und 2024)';
+		expect(parsePeriod(text, 'de')).toMatchObject({
+			years: 3,
+			yearsUnread: false,
+			named: [2022, 2023, 2024]
+		});
+	});
+
 	// The window's default of three would silently stand in for a count the text states, so a count
 	// code cannot settle is marked, never left as unstated.
 	it.each([

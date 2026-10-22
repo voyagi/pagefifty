@@ -212,6 +212,8 @@ const RANGE_EACH =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten drei Geschäftsjahren (2023-2025).';
 const RANGE_BACKWARDS =
 	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den Geschäftsjahren 2025-2023.';
+const STRAY_YEAR =
+	'Jährlich mindestens 1.000.000 EUR netto Umsatz in den letzten drei Geschäftsjahren; bei Neugründung ab 2024 genügt der Umsatz seit Gründung.';
 const FLOOR_ONLY = 'Jährlich mindestens 1.000.000 EUR netto Umsatz';
 const YEARS_APART = `${FLOOR_ONLY}. Maßgeblich sind die letzten zwei Geschäftsjahre.`;
 const STAFF_NOUN_FIRST = 'Mindestmitarbeiterzahl: mindestens 25.';
@@ -511,6 +513,12 @@ const ROWS: readonly Row[] = [
 		'a range of years code cannot settle is NOT_READ, never its two ends',
 		g(RANGE_BACKWARDS),
 		yearly(2e6),
+		decided('NOT_READ', 'years-unread')
+	),
+	row(
+		'a stray year beside a stated count of years is NOT_READ, never a one-year window',
+		g(STRAY_YEAR),
+		firmOf({ 2023: 1, 2024: 1e6, 2025: 1 }),
 		decided('NOT_READ', 'years-unread')
 	),
 	row(

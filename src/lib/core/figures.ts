@@ -455,12 +455,20 @@ export function parsePeriod(text: string, lang?: string): PeriodReading {
 	) as Record<keyof typeof MODES, boolean>;
 	const counted = yearsOf(text, lang);
 	const named = namedYears(text);
+	// A year the text names beside a count it states ("the last three years; for a new firm, from
+	// 2024") would otherwise settle the window on its own, so a count of years the named ones do not
+	// match leaves the years unread rather than compare a three-year floor on one year.
+	const conflict =
+		counted.years !== null &&
+		named !== null &&
+		named.length > 0 &&
+		new Set(named).size !== counted.years;
 	return {
 		mode: oneOf<PeriodReading['mode']>(found, 'unstated'),
 		years: counted.years,
 		// A range code cannot list leaves no named years to settle the window, so it is unread too.
-		yearsUnread: counted.yearsUnread || named === null,
-		named: named ?? []
+		yearsUnread: counted.yearsUnread || named === null || conflict,
+		named: conflict ? [] : (named ?? [])
 	};
 }
 
