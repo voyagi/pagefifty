@@ -7,7 +7,8 @@
 // text      drawn as written; a single line break inside it reads as a space
 // hidden    kept in the page's text but not drawn: the hyphen and break of a word split at a line
 //           end, or the break after a hyphen that belongs to the word ("27001-" then "Zertifizierung")
-// line      a line break kept as one, before a list item ("a)", "-", "1.")
+// line      a line break kept as one: before a list item ("a)", "-", "1."), or after a block's
+//           heading line ("Mindestanforderung" over the sentence it heads)
 // paragraph a blank line, kept as a paragraph break
 
 export type RunKind = 'text' | 'hidden' | 'line' | 'paragraph';
@@ -32,6 +33,28 @@ const BULLETS = [0x2013, 0x2022, 0x25aa, 0x25e6]
 const MARKER = String.raw`(?:[-${BULLETS}*]|\d{1,2}[.)]|\p{Ll}\))\s`;
 const LIST_ITEM = new RegExp(`^${MARKER}`, 'u');
 
+// A buyer often heads a block with a short line of its own ("Mindestanforderung", then the
+// sentence). A block is the text between blank lines, or the whole text. Its first line reads as a
+// heading when it is at most HEADING_MAX characters long, does not end in punctuation that closes or
+// carries on a sentence, and the next line does not go on in lower case, as a wrapped sentence does
+// ("Auszug" over "aus dem Handelsregister").
+//
+// 25, from the example capture of 2026-09-15: of the block first lines a single break ends there,
+// every one of 25 characters or fewer is a heading or a one-line entry ("Referenzzeitraum", "Keine
+// schwere Verfehlung", "Preis: 30 %"), and the shortest first line of a wrapped sentence is 26 ("Der
+// Umsatz muss mindestens" over "2.500.000,00 EUR pro Jahr"). Past 25 the two overlap, so a longer
+// heading ("Funktionstest der Neugeräte") still reads on into its sentence.
+const HEADING_MAX = 25;
+// The en dash, the em dash and the ellipsis, written as code points like BULLETS above.
+const CLOSERS = [0x2013, 0x2014, 0x2026].map((point) => String.fromCodePoint(point)).join('');
+const CARRIES_ON = new RegExp(`[-.,;:!?${CLOSERS}]$`, 'u');
+
+function isHeading(line: string, next: string): boolean {
+	return (
+		line !== '' && [...line].length <= HEADING_MAX && !CARRIES_ON.test(line) && !LOWER.test(next)
+	);
+}
+
 function push(runs: TextRun[], kind: RunKind, text: string, start: number) {
 	if (text === '') return;
 	const last = runs.at(-1);
@@ -43,14 +66,16 @@ function push(runs: TextRun[], kind: RunKind, text: string, start: number) {
 	runs.push({ kind, text, start, end: start + text.length });
 }
 
-function breakKind(text: string, end: number, breaks: number): RunKind {
+function breakKind(text: string, end: number, breaks: number, heading: boolean): RunKind {
 	if (breaks > 1) return 'paragraph';
-	return LIST_ITEM.test(text.slice(end)) ? 'line' : 'text';
+	return heading || LIST_ITEM.test(text.slice(end)) ? 'line' : 'text';
 }
 
 export function displayRuns(text: string): TextRun[] {
 	const runs: TextRun[] = [];
 	let at = 0;
+	// Where the current block began, while its first line has not yet ended; -1 after that.
+	let block = 0;
 	for (const match of text.matchAll(BREAK)) {
 		const start = match.index;
 		const end = start + match[0].length;
@@ -69,8 +94,10 @@ export function displayRuns(text: string): TextRun[] {
 		} else {
 			const rest = hyphen ? 1 : 0;
 			if (hyphen) push(runs, 'text', '-', start);
-			push(runs, breakKind(text, end, breaks), match[0].slice(rest), start + rest);
+			const heading = block >= 0 && isHeading(text.slice(block, start + rest).trim(), after);
+			push(runs, breakKind(text, end, breaks, heading), match[0].slice(rest), start + rest);
 		}
+		block = breaks > 1 ? end : -1;
 		at = end;
 	}
 	push(runs, 'text', text.slice(at), at);

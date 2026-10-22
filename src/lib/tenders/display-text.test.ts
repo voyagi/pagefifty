@@ -90,6 +90,55 @@ describe('displayRuns', () => {
 		expect(drawn(displayRuns('Senior -\nLead'))).toBe('Senior - Lead');
 		expect(drawn(displayRuns('Ende.-\nNeu'))).toBe('Ende.- Neu');
 	});
+
+	// The deciding clause of the 610242 example, as published: its heading line, then the sentence.
+	it('keeps the break after the short heading line a clause opens with', () => {
+		const clause =
+			'Mindestanforderung  \nDer Auftragnehmer stellt für die Dauer des Projekts feste Ansprechpartner und projektverantwort-\nliche Personen für den Auftraggeber bereit';
+		expect(drawn(displayRuns(clause))).toBe(
+			'Mindestanforderung|Der Auftragnehmer stellt für die Dauer des Projekts feste Ansprechpartner und projektverantwortliche Personen für den Auftraggeber bereit'
+		);
+		expect(kinds(displayRuns(clause)).slice(0, 2)).toEqual([
+			['text', 'Mindestanforderung  '],
+			['line', '\n']
+		]);
+	});
+
+	// Both sides of the 25-character limit, from published first lines.
+	it('keeps a first line of 25 characters and joins one of 26', () => {
+		const heading = 'Angaben zu Arbeitskräften';
+		const wrapped = 'Der Umsatz muss mindestens';
+		expect([[...heading].length, [...wrapped].length]).toEqual([25, 26]);
+		expect(drawn(displayRuns(`${heading}\nZahl der Beschäftigten`))).toBe(
+			`${heading}|Zahl der Beschäftigten`
+		);
+		expect(drawn(displayRuns(`${wrapped}\n2.500.000,00 EUR pro Jahr`))).toBe(
+			`${wrapped} 2.500.000,00 EUR pro Jahr`
+		);
+	});
+
+	it('joins a short first line that ends in punctuation or goes on in lower case', () => {
+		expect(drawn(displayRuns('Mindestanzahl: \nDrei Referenzen'))).toBe(
+			'Mindestanzahl: Drei Referenzen'
+		);
+		expect(drawn(displayRuns('Nachweis erbracht. \nDie Referenz'))).toBe(
+			'Nachweis erbracht. Die Referenz'
+		);
+		expect(drawn(displayRuns('Auszug\naus dem Handelsregister'))).toBe(
+			'Auszug aus dem Handelsregister'
+		);
+	});
+
+	it('keeps a heading line that opens a later block, and reads no other line as a heading', () => {
+		const text =
+			'Siehe Anlage 3. \r\n\r\nReferenzzeitraum \r\nEs werden nur Referenzen aus\r\nZeitraum B berücksichtigt';
+		expect(drawn(displayRuns(text))).toBe(
+			'Siehe Anlage 3.||Referenzzeitraum|Es werden nur Referenzen aus Zeitraum B berücksichtigt'
+		);
+		expect(drawn(displayRuns('Einleitung folgt\nReferenzen\nTeil B'))).toBe(
+			'Einleitung folgt|Referenzen Teil B'
+		);
+	});
 });
 
 describe('runsBetween', () => {
