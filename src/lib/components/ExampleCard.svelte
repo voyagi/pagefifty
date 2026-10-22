@@ -19,13 +19,13 @@
 	const lead = $derived(tender.buyers[0]);
 	const deciding = $derived(lot.criteria.find((criterion) => criterion.position === view.deciding));
 
-	// The deciding clause in the language its verified quotes were found in. The card shows the
-	// sentence holding the first quote the verdict rests on, with that quote set apart and the
-	// model's one reading of it; the whole clause, every resting quote marked, folds out under it.
+	// The deciding clause in the language the first quote the verdict rests on was found in. The card
+	// shows the sentence holding that quote, set apart, and the model's one reading of it; the whole
+	// clause, every resting quote marked, folds out under it.
 	const clause = $derived.by(() => {
 		if (deciding === undefined) return undefined;
 		const requirements = deciding.requirements ?? [];
-		const lang = requirements[0]?.lang;
+		const lang = (requirements[view.decidingQuotes[0]] ?? requirements[0])?.lang;
 		const quote =
 			deciding.descriptions.find((each) => each.lang === lang) ?? deciding.descriptions[0];
 		if (quote === undefined) return undefined;
