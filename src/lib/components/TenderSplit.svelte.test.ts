@@ -54,10 +54,11 @@ function renderSplit() {
 	});
 	const pane = container.querySelector('.pane') as HTMLElement;
 	const listColumn = container.querySelector('.list-col') as HTMLElement;
+	const split = container.querySelector('.split') as HTMLElement;
 	const row = container.querySelector('a.t') as HTMLAnchorElement;
 	pane.scrollTop = 240;
 	row.focus();
-	return { pane, listColumn, row, heading: pane.querySelector('h1') as HTMLElement };
+	return { pane, listColumn, split, row, heading: pane.querySelector('h1') as HTMLElement };
 }
 
 // jsdom lays nothing out, so the list column and the open row get the boxes a 1440x900 screen
@@ -93,13 +94,35 @@ afterEach(() => {
 });
 
 describe('TenderSplit after a navigation', () => {
+	// The router calls back once as the split mounts, with the navigation that brought the reader in,
+	// and again on every navigation after; a pick from the list is one of the later calls.
 	it('shows a newly opened tender from its start on a wide screen, leaving the list and the focus', () => {
 		const scrolled = onScreen(false);
 		const { pane, row } = renderSplit();
+		arrive('enter', NOTICE);
 		arrive('link', NOTICE);
 		expect(pane.scrollTop).toBe(0);
 		expect(scrolled).not.toHaveBeenCalled();
 		expect(document.activeElement).toBe(row);
+	});
+
+	it('takes a page scrolled down to the notes back to its top on a wide-screen pick', () => {
+		const scrolled = onScreen(false);
+		const { pane, row } = renderSplit();
+		arrive('enter', NOTICE);
+		vi.stubGlobal('scrollY', 420);
+		arrive('link', NOTICE);
+		expect([pane.scrollTop, scrolled.mock.calls]).toEqual([0, [[0, 0]]]);
+		expect(document.activeElement).toBe(row);
+	});
+
+	it('ends both columns at the bottom of the window, measured from where the split starts', () => {
+		onScreen(false);
+		const { split } = renderSplit();
+		split.getBoundingClientRect = () => ({ top: 104 }) as DOMRect;
+		vi.stubGlobal('scrollY', 120);
+		arrive('enter', NOTICE);
+		expect(split.style.getPropertyValue('--split-top')).toBe('224px');
 	});
 
 	it('takes a phone to the top and moves focus to the tender it now shows in place of the list', () => {
@@ -154,12 +177,31 @@ describe('TenderSplit after a navigation', () => {
 		}
 	});
 
+	it('scrolls only the list to show the open row when a link from another page opens the split', () => {
+		const scrolled = onScreen(false);
+		const { reveal, restore } = recordReveals();
+		try {
+			const { pane, listColumn, row } = renderSplit();
+			const item = row.closest('li') as HTMLElement;
+			layOut(listColumn, item, 3000);
+			arrive('link', NOTICE);
+			expect([listColumn.scrollTop, item.getBoundingClientRect().top]).toEqual([3000, 224]);
+			expect(reveal).not.toHaveBeenCalled();
+			expect([pane.scrollTop, scrolled.mock.calls.length]).toEqual([240, 0]);
+			expect(document.activeElement).toBe(row);
+		} finally {
+			restore();
+		}
+	});
+
 	it('keeps the list where it is on a click, a step back, a phone, or a row already in view', () => {
 		const { reveal, restore } = recordReveals();
 		try {
 			const listAfter = (type: AfterNavigate['type'], phone: boolean, offset: number) => {
 				onScreen(phone);
 				const { listColumn, row } = renderSplit();
+				// A click or a step back comes after the split has mounted.
+				if (type !== 'enter') arrive('enter', NOTICE);
 				listColumn.scrollTop = 120;
 				layOut(listColumn, row.closest('li') as HTMLElement, offset);
 				arrive(type, NOTICE);

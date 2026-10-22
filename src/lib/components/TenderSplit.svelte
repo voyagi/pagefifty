@@ -79,9 +79,19 @@
 
 	let pane = $state<HTMLElement>();
 	let listColumn = $state<HTMLElement>();
+	let split = $state<HTMLElement>();
+	let entered = false;
 
-	// A tender opened from its own address, on a wide screen, brings its row into the part of the
-	// list on screen, so the list shows which tender is open. Only the list column scrolls: the page
+	// Beside a tender both columns end at the bottom of the window while the page sits at its top, so
+	// a list's last rows and a tender's last lines show by scrolling that column alone. Where they
+	// start is measured, since the head above them is as tall as its lines wrap.
+	function fitColumns() {
+		if (split === undefined) return;
+		split.style.setProperty('--split-top', `${split.getBoundingClientRect().top + scrollY}px`);
+	}
+
+	// A tender the split opens with, on a wide screen, brings its row into the part of the list on
+	// screen, so the list shows which tender is open. Only the list column scrolls: the page
 	// stays at its top, where the head and the tender show beside the row. A row already in view
 	// stays where it is. Focus stays where the browser put it.
 	function revealOpened() {
@@ -98,17 +108,24 @@
 	}
 
 	// A tender opened from the list shows from its start. On a wide screen the list keeps its place
-	// and focus stays on the row that was picked. On a phone the tender takes the list's place, so the
-	// page goes back to the top and focus moves to the tender's heading. A step back keeps the place
-	// the browser gives it, and the first load only brings the open row into view.
+	// and focus stays on the row that was picked; a page scrolled down to the notes under the split
+	// goes back to its top, where both columns fit the window. On a phone the tender takes the list's
+	// place, so the page goes back to the top and focus moves to the tender's heading. A step back
+	// keeps the place the browser gives it. Coming into the split, by a first load or by a link from
+	// another page such as Start's example verdict, only brings the open row into view.
 	afterNavigate(({ type, to }) => {
-		if (type === 'enter') {
+		fitColumns();
+		const first = !entered;
+		entered = true;
+		const phone = matchMedia('(max-width: 45em)').matches;
+		if (type === 'enter' || (first && !phone)) {
 			revealOpened();
 			return;
 		}
 		if (type === 'popstate' || pane === undefined) return;
-		if (!matchMedia('(max-width: 45em)').matches) {
+		if (!phone) {
 			pane.scrollTop = 0;
+			if (scrollY > 0) scrollTo(0, 0);
 			return;
 		}
 		if (to?.params?.notice === undefined) return;
@@ -116,6 +133,8 @@
 		pane.querySelector<HTMLElement>('h1')?.focus();
 	});
 </script>
+
+<svelte:window onresize={fitColumns} />
 
 <PageMain>
 	<div class="index" class:on-record={onRecord}>
@@ -156,7 +175,7 @@
 		{/if}
 	</div>
 
-	<div class="split" class:on-record={onRecord} class:with-pane={showPane}>
+	<div class="split" class:on-record={onRecord} class:with-pane={showPane} bind:this={split}>
 		<div class="list-col" bind:this={listColumn}>
 			<section id="open" aria-labelledby="list-title">
 				{#if nothingMatches}
@@ -312,14 +331,17 @@
 		margin-left: -1rem;
 	}
 
-	/* Beside a tender the list scrolls on its own, as the tender does, each about a screen tall, so
-	   the two move apart and an open row deep in the list shows with the page at its top. */
+	/* Beside a tender the list scrolls on its own, as the tender does, and both end at the bottom of
+	   the window while the page sits at its top, so an open row deep in the list shows with the head
+	   above it, and reaching the end of either column never scrolls the page under the other. A window
+	   too short for the head and a usable column keeps 20rem of each. */
 	.with-pane .list-col {
 		position: sticky;
 		top: 0;
 		align-self: start;
-		max-height: 100vh;
+		max-height: max(20rem, calc(100vh - var(--split-top, 0px)));
 		overflow-y: auto;
+		overscroll-behavior: contain;
 		scrollbar-gutter: stable;
 		border-right: 1px solid var(--line);
 	}
@@ -360,8 +382,9 @@
 		top: 0;
 		align-self: start;
 		min-width: 0;
-		max-height: 100vh;
+		max-height: max(20rem, calc(100vh - var(--split-top, 0px)));
 		overflow-y: auto;
+		overscroll-behavior: contain;
 		scrollbar-gutter: stable;
 		padding: 1.5rem 0 2.5rem 2rem;
 	}
