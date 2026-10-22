@@ -80,12 +80,21 @@
 	let pane = $state<HTMLElement>();
 	let listColumn = $state<HTMLElement>();
 
-	// A tender opened from its own address, on a wide screen, brings its row into view beside it, so
-	// the list shows which tender is open. Focus stays where the browser put it.
+	// A tender opened from its own address, on a wide screen, brings its row into the part of the
+	// list on screen, so the list shows which tender is open. Only the list column scrolls: the page
+	// stays at its top, where the head and the tender show beside the row. A row already in view
+	// stays where it is. Focus stays where the browser put it.
 	function revealOpened() {
-		if (!onRecord || matchMedia('(max-width: 45em)').matches) return;
-		const row = listColumn?.querySelector('a[aria-current]')?.closest('li');
-		row?.scrollIntoView?.({ block: 'nearest' });
+		if (!onRecord || listColumn === undefined || matchMedia('(max-width: 45em)').matches) return;
+		const row = listColumn.querySelector('a[aria-current]')?.closest('li');
+		if (!row) return;
+		const column = listColumn.getBoundingClientRect();
+		const box = row.getBoundingClientRect();
+		// The row's place in the list's scrolled content, and how much of the column the window shows.
+		const at = box.top - column.top + listColumn.scrollTop;
+		const shown = Math.min(listColumn.clientHeight, innerHeight - column.top);
+		if (at >= listColumn.scrollTop && at + box.height <= listColumn.scrollTop + shown) return;
+		listColumn.scrollTop = at;
 	}
 
 	// A tender opened from the list shows from its start. On a wide screen the list keeps its place
@@ -303,7 +312,15 @@
 		margin-left: -1rem;
 	}
 
+	/* Beside a tender the list scrolls on its own, as the tender does, each about a screen tall, so
+	   the two move apart and an open row deep in the list shows with the page at its top. */
 	.with-pane .list-col {
+		position: sticky;
+		top: 0;
+		align-self: start;
+		max-height: 100vh;
+		overflow-y: auto;
+		scrollbar-gutter: stable;
 		border-right: 1px solid var(--line);
 	}
 
@@ -337,7 +354,7 @@
 		margin: 1.25rem 1rem;
 	}
 
-	/* The tender stays in view while the list scrolls past it, and scrolls on its own. */
+	/* The tender scrolls on its own beside the list. */
 	.pane {
 		position: sticky;
 		top: 0;
@@ -379,6 +396,9 @@
 		}
 
 		.with-pane .list-col {
+			position: static;
+			max-height: none;
+			overflow: visible;
 			border-right: 0;
 		}
 

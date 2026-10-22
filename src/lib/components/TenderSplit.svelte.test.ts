@@ -53,10 +53,22 @@ function renderSplit() {
 		}
 	});
 	const pane = container.querySelector('.pane') as HTMLElement;
+	const listColumn = container.querySelector('.list-col') as HTMLElement;
 	const row = container.querySelector('a.t') as HTMLAnchorElement;
 	pane.scrollTop = 240;
 	row.focus();
-	return { pane, row, heading: pane.querySelector('h1') as HTMLElement };
+	return { pane, listColumn, row, heading: pane.querySelector('h1') as HTMLElement };
+}
+
+// jsdom lays nothing out, so the list column and the open row get the boxes a 1440x900 screen
+// draws: the column starts under a 224px head and is a screen tall, and the row sits offset px down
+// the list's content, wherever the column is scrolled to.
+function layOut(listColumn: HTMLElement, row: HTMLElement, offset: number) {
+	vi.stubGlobal('innerHeight', 900);
+	Object.defineProperty(listColumn, 'clientHeight', { configurable: true, value: 900 });
+	listColumn.getBoundingClientRect = () => ({ top: 224, height: 900 }) as DOMRect;
+	row.getBoundingClientRect = () =>
+		({ top: 224 + offset - listColumn.scrollTop, height: 130 }) as DOMRect;
 }
 
 function onScreen(phone: boolean) {
@@ -106,7 +118,8 @@ describe('TenderSplit after a navigation', () => {
 		expect(document.activeElement).toBe(row);
 	});
 
-	// jsdom draws nothing, so scrollIntoView is recorded rather than run, and put back after.
+	// scrollIntoView would move the page as well as the list, so it is recorded to show it is never
+	// called, and put back after.
 	function recordReveals() {
 		const original = Object.getOwnPropertyDescriptor(Element.prototype, 'scrollIntoView');
 		const reveal = vi.fn();
@@ -122,14 +135,17 @@ describe('TenderSplit after a navigation', () => {
 		return { reveal, restore };
 	}
 
-	it('brings the open row into view on a first load that names it, leaving focus and the pane', () => {
+	it('scrolls only the list to show the open row on a first load that names it', () => {
 		const scrolled = onScreen(false);
 		const { reveal, restore } = recordReveals();
 		try {
-			const { pane, row } = renderSplit();
+			const { pane, listColumn, row } = renderSplit();
+			const item = row.closest('li') as HTMLElement;
+			layOut(listColumn, item, 3000);
 			arrive('enter', NOTICE);
-			expect(reveal.mock.calls).toEqual([[{ block: 'nearest' }]]);
-			expect(reveal.mock.contexts[0]).toBe(row.closest('li'));
+			// The row now leads the part of the column on screen; the page and the pane stay put.
+			expect([listColumn.scrollTop, item.getBoundingClientRect().top]).toEqual([3000, 224]);
+			expect(reveal).not.toHaveBeenCalled();
 			expect(row.getAttribute('aria-current')).toBe('page');
 			expect([pane.scrollTop, scrolled.mock.calls.length]).toEqual([240, 0]);
 			expect(document.activeElement).toBe(row);
@@ -138,18 +154,25 @@ describe('TenderSplit after a navigation', () => {
 		}
 	});
 
-	it('never moves the list on a click, a step back, or a phone', () => {
+	it('keeps the list where it is on a click, a step back, a phone, or a row already in view', () => {
 		const { reveal, restore } = recordReveals();
 		try {
-			for (const [type, phone] of [
-				['link', false],
-				['popstate', false],
-				['enter', true]
-			] as const) {
+			const listAfter = (type: AfterNavigate['type'], phone: boolean, offset: number) => {
 				onScreen(phone);
-				renderSplit();
+				const { listColumn, row } = renderSplit();
+				listColumn.scrollTop = 120;
+				layOut(listColumn, row.closest('li') as HTMLElement, offset);
 				arrive(type, NOTICE);
-			}
+				return listColumn.scrollTop;
+			};
+			expect([
+				listAfter('link', false, 3000),
+				listAfter('popstate', false, 3000),
+				listAfter('enter', true, 3000),
+				listAfter('enter', false, 300)
+			]).toEqual([120, 120, 120, 120]);
+			// The same row out of view on a wide first load does move the list.
+			expect(listAfter('enter', false, 3000)).toBe(3000);
 			expect(reveal).not.toHaveBeenCalled();
 		} finally {
 			restore();
