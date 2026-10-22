@@ -429,6 +429,8 @@ const SETTLED: ReadonlySet<CriterionStateView['state']> = new Set([
 
 function decidingOf(decided: ReadLotDecision): number | null {
 	const { decision, criteria } = decided;
+	// The buyer's intent to cancel is decided before any clause is weighed, so it rests on none.
+	if (decision.verdict === 'ASK FIRST' && decision.reason === 'cancel-intent') return null;
 	const rests = RESTS_ON[decision.verdict === 'ASK FIRST' ? decision.reason : decision.verdict];
 	const resting = rests === undefined ? -1 : criteria.findIndex(rests);
 	const index =

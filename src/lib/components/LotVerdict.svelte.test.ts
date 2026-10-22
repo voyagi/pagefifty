@@ -703,6 +703,12 @@ describe('every verdict and reason, worded', () => {
 			expect(wordOf(region)).toBe('Ask first');
 			expect(textOf(region)).toContain(CANCEL_INTENT_LINE);
 			expect(region?.querySelector('.shortfall')).toBeNull();
+			// The cancellation was decided before any clause, so none is shown as the one that decides,
+			// the turnover the firm falls short on included.
+			expect(textOf(container.querySelector(`#${anchor}`))).not.toContain(
+				'The clause that decides'
+			);
+			expect(container.querySelectorAll(`#${anchor} mark.decides`)).toHaveLength(0);
 		}
 	});
 
