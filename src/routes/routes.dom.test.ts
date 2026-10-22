@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { cleanup, render, screen } from '@testing-library/svelte';
 import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { normalizeQuote } from '$lib/core/quote';
 import { VERDICT_LABELS } from '$lib/core/verdict';
 import { DEMO_FIRM_SHORT, DEMO_PROFILE } from '$lib/profile/demo-firm';
 import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
@@ -148,12 +149,14 @@ describe('entry route', () => {
 			(each) => each.lang === deciding.requirements?.[0].lang
 		);
 		expect(quote?.textContent).toBe(source?.text.trim());
+		// Each mark is a verified quote as code verified it: whitespace collapsed and a line-end
+		// hyphen's break dropped (normalizeQuote), so a quote over a word the PDF broke is marked too.
 		const marks = [...(quote?.querySelectorAll('mark') ?? [])].map((mark) =>
-			squash(mark.textContent)
+			normalizeQuote(mark.textContent ?? '')
 		);
 		expect(marks.length).toBeGreaterThan(0);
 		for (const mark of marks) {
-			expect(deciding?.requirements?.map((each) => squash(each.quote))).toContain(mark);
+			expect(deciding?.requirements?.map((each) => normalizeQuote(each.quote))).toContain(mark);
 		}
 		const readings = [...(card?.querySelectorAll('[data-ai-generated]') ?? [])];
 		expect(readings.map((each) => each.textContent)).toEqual(

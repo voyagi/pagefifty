@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { displayRuns, findQuotes, runsBetween } from '$lib/tenders/display-text';
 	import type { QuoteText } from '$lib/tenders/tender-page';
 	import Label from './Label.svelte';
+	import ProseRuns from './ProseRuns.svelte';
 
 	// marks are verified requirement quotes to set apart inside the clause as the words that decide.
 	let { quote, marks = [] }: { quote: QuoteText; marks?: readonly string[] } = $props();
@@ -11,30 +13,19 @@
 	const BULLET = String.fromCodePoint(0x2022);
 
 	const shown = $derived(quote.text.trim().replace(SYMBOL_BULLETS, BULLET));
+	const runs = $derived(displayRuns(shown));
 
-	const escaped = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-	// Code checked each quote against the clause with its whitespace collapsed, so a quote is found
-	// across any run of spaces or line breaks. One it cannot find is simply not marked, and marks
-	// that overlap an earlier one are dropped, so the text itself is never cut or repeated.
+	// The clause cut into the stretches each mark covers and the stretches between them; each is
+	// drawn by its runs, so a word the PDF broke at a line end reads whole wherever it falls.
 	const parts = $derived.by(() => {
-		const found = marks
-			.map((mark) => mark.trim().split(/\s+/).filter(Boolean).map(escaped).join('\\s+'))
-			.filter((pattern) => pattern !== '')
-			.flatMap((pattern) => {
-				const match = new RegExp(pattern, 'u').exec(shown);
-				return match === null ? [] : [{ start: match.index, end: match.index + match[0].length }];
-			})
-			.sort((a, b) => a.start - b.start);
-		const pieces: { text: string; marked: boolean }[] = [];
+		const pieces: { start: number; end: number; marked: boolean }[] = [];
 		let at = 0;
-		for (const { start, end } of found) {
-			if (start < at) continue;
-			if (start > at) pieces.push({ text: shown.slice(at, start), marked: false });
-			pieces.push({ text: shown.slice(start, end), marked: true });
+		for (const { start, end } of findQuotes(shown, marks)) {
+			if (start > at) pieces.push({ start: at, end: start, marked: false });
+			pieces.push({ start, end, marked: true });
 			at = end;
 		}
-		if (at < shown.length) pieces.push({ text: shown.slice(at), marked: false });
+		if (at < shown.length) pieces.push({ start: at, end: shown.length, marked: false });
 		return pieces;
 	});
 </script>
@@ -42,8 +33,9 @@
 <div class="quote-block">
 	<Label>{quote.language}</Label>
 	<blockquote class="quote" lang={quote.lang} data-notice-text>
-		{#each parts as part, index (index)}{#if part.marked}<mark>{part.text}</mark
-				>{:else}{part.text}{/if}{/each}
+		{#each parts as part (part.start)}{#if part.marked}<mark
+					><ProseRuns runs={runsBetween(runs, part.start, part.end)} /></mark
+				>{:else}<ProseRuns runs={runsBetween(runs, part.start, part.end)} />{/if}{/each}
 	</blockquote>
 </div>
 
@@ -53,8 +45,9 @@
 		margin-top: 1.25rem;
 	}
 
-	/* The buyer's words in their own box. Their line breaks carry meaning (numbered demands, one
-	   proof per line), so they stay; nothing is clamped, however long the clause. */
+	/* The buyer's words in their own box, set for reading: the PDF's hard line ends read as spaces,
+	   a word it broke at a line end reads whole and wraps by the language's own hyphenation, and
+	   blank lines and list items keep their breaks. Nothing is clamped, however long the clause. */
 	.quote {
 		margin: 0;
 		max-width: 72ch;
@@ -65,7 +58,6 @@
 		font-size: 0.96875rem;
 		line-height: 1.55;
 		color: var(--ink);
-		white-space: pre-line;
 		overflow-wrap: anywhere;
 		hyphens: auto;
 	}

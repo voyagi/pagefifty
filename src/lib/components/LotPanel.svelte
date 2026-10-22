@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { LangText } from '$lib/ingest/record';
+	import { displayRuns } from '$lib/tenders/display-text';
 	import type { LotView } from '$lib/tenders/tender-page';
 	import type { LotVerdictView } from '$lib/tenders/verdict-view';
 	import CoverageList from './CoverageList.svelte';
@@ -11,6 +12,7 @@
 	import LotVerdict from './LotVerdict.svelte';
 	import NotReadLine from './NotReadLine.svelte';
 	import Panel from './Panel.svelte';
+	import ProseRuns from './ProseRuns.svelte';
 
 	// verdict is absent for a lot that keeps the phase 1 view, and 'loading' while the browser has
 	// not read which firm to compare with yet. notice is the TED notice every clause is quoted from.
@@ -176,7 +178,9 @@
 		<section class="published" aria-label={entry.label}>
 			<Label>{entry.label}</Label>
 			{#each entry.texts as text, index (index)}
-				<p class="published-text">{@render noticeText(text)}</p>
+				<p class="published-text">
+					<span lang={text.lang} data-notice-text><ProseRuns runs={displayRuns(text.text)} /></span>
+				</p>
 			{/each}
 		</section>
 	{/each}
@@ -316,9 +320,9 @@
 		border-top: 1px solid var(--line);
 	}
 
+	/* Drawn for reading as a quote is (display-text.ts): the PDF's hard line ends read as spaces. */
 	.published-text {
 		max-width: 72ch;
-		white-space: pre-line;
 		overflow-wrap: anywhere;
 		hyphens: auto;
 	}

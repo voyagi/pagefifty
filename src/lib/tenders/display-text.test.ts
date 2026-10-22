@@ -1,0 +1,146 @@
+import fc from 'fast-check';
+import { describe, expect, it } from 'vitest';
+import {
+	displayRuns,
+	findQuotes,
+	runsBetween,
+	sentencesAround,
+	type TextRun
+} from './display-text';
+
+// What a reader sees: hidden runs not drawn, a kept line or paragraph as a line break, and any other
+// run of whitespace as one space, as the browser draws white-space: normal.
+const drawn = (runs: readonly TextRun[]) =>
+	runs
+		.map((run) => {
+			if (run.kind === 'hidden') return '';
+			if (run.kind === 'line') return '|';
+			if (run.kind === 'paragraph') return '||';
+			return run.text.replace(/\s+/g, ' ');
+		})
+		.join('')
+		.replace(/ ?\| ?/g, '|')
+		.trim();
+
+const kinds = (runs: readonly TextRun[]) => runs.map((run) => [run.kind, run.text]);
+
+describe('displayRuns', () => {
+	it('keeps every character of the text in exactly one run, in order', () => {
+		fc.assert(
+			fc.property(
+				fc.array(fc.constantFrom('a', 'Z', '7', '-', ' ', '\n', '\r\n', 'b)', '.', 'ß'), {
+					maxLength: 60
+				}),
+				(parts) => {
+					const text = parts.join('');
+					const runs = displayRuns(text);
+					expect(runs.map((run) => run.text).join('')).toBe(text);
+					let at = 0;
+					for (const run of runs) {
+						expect([run.start, run.end]).toEqual([at, at + run.text.length]);
+						at = run.end;
+					}
+					expect(at).toBe(text.length);
+				}
+			)
+		);
+	});
+
+	it('joins a word split by a hyphen at a line end between two letters', () => {
+		const text = 'eine Zertifizie-\nrung, wie projektverantwort-\nliche Personen';
+		expect(drawn(displayRuns(text))).toBe(
+			'eine Zertifizierung, wie projektverantwortliche Personen'
+		);
+		expect(kinds(displayRuns('Zertifizie-\nrung'))).toEqual([
+			['text', 'Zertifizie'],
+			['hidden', '-\n'],
+			['text', 'rung']
+		]);
+	});
+
+	it('keeps a hyphen that belongs to the word and drops only its line break', () => {
+		const text = 'im Zusammenhang mit ISO/IEC-27001-\nZertifizierungen und 2023-\n2025';
+		expect(drawn(displayRuns(text))).toBe(
+			'im Zusammenhang mit ISO/IEC-27001-Zertifizierungen und 2023-2025'
+		);
+	});
+
+	it('reads a single line break as a space and keeps a blank line as a paragraph', () => {
+		const text = 'für den Auftraggeber bereit. \nHierzu sind \n\nFestangestellter Junior';
+		const runs = displayRuns(text);
+		expect(drawn(runs)).toBe('für den Auftraggeber bereit. Hierzu sind||Festangestellter Junior');
+		expect(runs.filter((run) => run.kind === 'paragraph').map((run) => run.text)).toEqual(['\n\n']);
+	});
+
+	it('keeps the line break before a list item', () => {
+		const text =
+			'mindestens betragen: \na) für Personenschäden 5 Mio. EUR \nb) für sonstige Schäden\n- erfolgreich \n2. Nachweis';
+		expect(drawn(displayRuns(text))).toBe(
+			'mindestens betragen:|a) für Personenschäden 5 Mio. EUR|b) für sonstige Schäden|- erfolgreich|2. Nachweis'
+		);
+	});
+
+	it('reads Windows line breaks the same way', () => {
+		expect(drawn(displayRuns('Zertifizie-\r\nrung \r\n\r\nNeu \r\nweiter'))).toBe(
+			'Zertifizierung||Neu weiter'
+		);
+	});
+
+	it('leaves a hyphen after a space, and one before a capital after punctuation, as text', () => {
+		expect(drawn(displayRuns('Senior -\nLead'))).toBe('Senior - Lead');
+		expect(drawn(displayRuns('Ende.-\nNeu'))).toBe('Ende.- Neu');
+	});
+});
+
+describe('runsBetween', () => {
+	it('cuts the runs at the edges of a range and keeps a break only where it ends inside it', () => {
+		const text = 'eins Zertifizie-\nrung \n\nzwei';
+		const runs = displayRuns(text);
+		const cut = runsBetween(runs, 5, 20);
+		expect(cut.map((run) => run.text).join('')).toBe(text.slice(5, 20));
+		expect(cut.map((run) => run.kind)).toEqual(['text', 'hidden', 'text']);
+		const whole = runsBetween(runs, 0, text.length);
+		expect(whole).toEqual(runs);
+	});
+});
+
+describe('findQuotes', () => {
+	it('finds a quote across spaces, line breaks and the break after a hyphen', () => {
+		const text =
+			'Hierzu sind mindestens ein Junior Consultant sowie \nein Senior- bzw. Lead Consultant einzusetzen, und eine Zertifizie-\nrung, wie';
+		const found = findQuotes(text, [
+			'mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen',
+			'eine Zertifizie-rung, wie'
+		]);
+		expect(found.map((each) => [each.index, text.slice(each.start, each.end)])).toEqual([
+			[0, 'mindestens ein Junior Consultant sowie \nein Senior- bzw. Lead Consultant einzusetzen'],
+			[1, 'eine Zertifizie-\nrung, wie']
+		]);
+	});
+
+	it('leaves out a quote not in the text and one that overlaps an earlier quote', () => {
+		const found = findQuotes('alpha beta gamma delta', ['beta gamma', 'nowhere', 'gamma delta']);
+		expect(found).toEqual([{ start: 6, end: 16, index: 0 }]);
+	});
+});
+
+describe('sentencesAround', () => {
+	const clause =
+		'Der Auftragnehmer stellt Personen bereit. Hierzu sind mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen, die dem Auftraggeber zur Verfügung stehen. \n\nFestangestellter Junior Consultant mit 5 Mio. EUR.';
+
+	it('widens a quote to the sentence it sits in, past an abbreviation', () => {
+		const start = clause.indexOf('mindestens');
+		const end = clause.indexOf('einzusetzen') + 'einzusetzen'.length;
+		expect(sentencesAround(clause, start, end)).toBe(
+			'Hierzu sind mindestens ein Junior Consultant sowie ein Senior- bzw. Lead Consultant einzusetzen, die dem Auftraggeber zur Verfügung stehen.'
+		);
+	});
+
+	it('stops at a paragraph break and is always a slice of the text', () => {
+		const start = clause.indexOf('Festangestellter');
+		const excerpt = sentencesAround(clause, start, start + 5);
+		expect(excerpt).toBe('Festangestellter Junior Consultant mit 5 Mio. EUR.');
+		expect(clause).toContain(excerpt);
+		expect(sentencesAround(clause, 0, 3)).toBe('Der Auftragnehmer stellt Personen bereit.');
+	});
+});
