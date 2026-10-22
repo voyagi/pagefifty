@@ -11,11 +11,11 @@
 // The result is <out>/<capture date>/index.json (one row per kept notice), capture.json (the
 // index's capture line alone, which the server bundles so a 404 names the snapshot's days without
 // reading an index) and records/<notice>.json, plus, for a capture that published the model's
-// readings.json, readings/<notice>.json and reading-run.json, for one that published its buyer
-// search, searches/<notice>.json and search-run.json, and for one that holds the home figure
-// scripts/figure.mjs wrote, figure.json, written compact into a temp folder and moved into
-// place only when every notice of every capture was read. This script is a thin caller: the
-// reading rules live in src, where the import rules and tests see them.
+// readings.json, readings/<notice>.json, reading-run.json and read-notices.json, for one that
+// published its buyer search, searches/<notice>.json and search-run.json, and for one that holds
+// the home figure scripts/figure.mjs wrote, figure.json, written compact into a temp folder and
+// moved into place only when every notice of every capture was read. This script is a thin
+// caller: the reading rules live in src, where the import rules and tests see them.
 //
 // Runs as predev, prebuild, premutate and vitest globalSetup, so the gitignored output never drifts
 // from the tracked capture. Two runs writing one folder at the same moment can collide on Windows
@@ -273,7 +273,9 @@ async function buildCapture(examples, id) {
 }
 
 // Each notice's slice of the readings, so a page loads only its own, and the run on its own, which
-// every page of the capture shows.
+// every page of the capture shows. A notice is listed whether or not the model read it (a lot left
+// at the cap still names its reason), so the notices it read at least one lot of are written apart,
+// for a list to open first without reading every notice's file.
 function writeReadings(temp, readings) {
 	if (readings === undefined) return;
 	mkdirSync(join(temp, 'readings'));
@@ -285,6 +287,11 @@ function writeReadings(temp, readings) {
 		);
 	}
 	writeFileSync(join(temp, 'reading-run.json'), JSON.stringify(readings.run));
+	const read = readings.notices.filter(({ lots }) => lots.some(({ status }) => status === 'read'));
+	writeFileSync(
+		join(temp, 'read-notices.json'),
+		JSON.stringify(read.map(({ notice }) => notice))
+	);
 }
 
 // Each notice's search, and the run, which the trust pages read to name the search provider.

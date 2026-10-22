@@ -107,6 +107,9 @@ export const NoticeReadingsSchema = z.strictObject({
 	readings: z.array(ReadingEntrySchema)
 }) satisfies z.ZodType<NoticeReadingsLike>;
 
+// The notices of a capture the model read at least one lot of, as the records build writes them.
+export const ReadNoticesSchema = z.array(z.string());
+
 export type ReplyItem = z.infer<typeof ReplyItemSchema>;
 export type ReadingRun = z.infer<typeof ReadingRunSchema>;
 export type ReadingEntry = z.infer<typeof ReadingEntrySchema>;

@@ -177,6 +177,9 @@ describe('the example capture readings', () => {
 		expect(readdirSync(join(built, 'readings')).sort()).toEqual(
 			READ_LOTS.map(({ notice }) => `${notice}.json`)
 		);
+		expect(readJson(join(built, 'read-notices.json'))).toEqual(
+			READ_LOTS.map(({ notice }) => notice)
+		);
 		for (const { notice, lots } of file.notices) {
 			const written = NoticeReadingsSchema.parse(
 				readJson(join(built, 'readings', `${notice}.json`))
@@ -192,6 +195,7 @@ describe('the example capture readings', () => {
 			expect(existsSync(join(EXAMPLES, id, 'readings.json'))).toBe(false);
 			expect(existsSync(join(GENERATED, id, 'readings'))).toBe(false);
 			expect(existsSync(join(GENERATED, id, 'reading-run.json'))).toBe(false);
+			expect(existsSync(join(GENERATED, id, 'read-notices.json'))).toBe(false);
 		}
 		expect(folders(GENERATED)).toContain('2026-10-16');
 	});
@@ -578,10 +582,24 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 		expect(build().status).toBe(0);
 		expect(existsSync(join(out, '2026-01-02', 'readings'))).toBe(false);
 		expect(existsSync(join(out, '2026-01-02', 'reading-run.json'))).toBe(false);
+		expect(existsSync(join(out, '2026-01-02', 'read-notices.json'))).toBe(false);
 		const readings = {
 			schemaVersion: 1,
 			run: exampleRun(),
-			notices: [{ notice: '609955-2026', lots: [{ lot: 'LOT-0000', status: 'no-criteria' }] }],
+			notices: [
+				{ notice: '609955-2026', lots: [{ lot: 'LOT-0000', status: 'no-criteria' }] },
+				{
+					notice: '600001-2026',
+					lots: [
+						{ lot: 'LOT-0000', status: 'not-read', reason: 'cap-reached' },
+						{ lot: 'LOT-0001', status: 'read', textSha256: 'a'.repeat(64) }
+					]
+				},
+				{
+					notice: '600002-2026',
+					lots: [{ lot: 'LOT-0000', status: 'not-read', reason: 'send-failed' }]
+				}
+			],
 			readings: []
 		};
 		writeFileSync(join(capture, 'readings.json'), JSON.stringify(readings));
@@ -593,6 +611,13 @@ describe('scripts/build-records.mjs on a capture it cannot read', () => {
 			readings: []
 		});
 		expect(readJson(join(out, '2026-01-02', 'reading-run.json'))).toEqual(readings.run);
+		// Every notice keeps its readings file, but only one with a lot the model read is listed.
+		expect(readdirSync(join(out, '2026-01-02', 'readings')).sort()).toEqual([
+			'600001-2026.json',
+			'600002-2026.json',
+			'609955-2026.json'
+		]);
+		expect(readJson(join(out, '2026-01-02', 'read-notices.json'))).toEqual(['600001-2026']);
 	});
 
 	const searchesOf = (url: string, notice = '609955-2026') => ({

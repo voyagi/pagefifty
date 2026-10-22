@@ -3,7 +3,7 @@
 import { parseFilters } from '../core/filters';
 import { buildTenderList, captureFacts, type ListRow, type TenderListData } from '../tenders/list';
 import type { TenderPageData } from '../tenders/tender-page';
-import { EXAMPLE_CAPTURE, hasNoticeReadings, instantOf, loadIndex, type Now } from './records';
+import { EXAMPLE_CAPTURE, instantOf, loadIndex, readNoticesOf, type Now } from './records';
 import { loadTenderPage } from './tender-page';
 
 export async function loadTenderList({
@@ -29,7 +29,8 @@ export async function loadTenderList({
 // read, so the record shows a verdict wherever the capture holds one, else the first open notice.
 // A list with no open notice opens none.
 export function defaultNotice(capture: string, open: readonly ListRow[]): string | null {
-	const read = open.find((row) => hasNoticeReadings(capture, row.noticeNumber));
+	const readNotices = readNoticesOf(capture);
+	const read = open.find((row) => readNotices.has(row.noticeNumber));
 	return (read ?? open[0])?.noticeNumber ?? null;
 }
 

@@ -11,7 +11,7 @@ const fromDisk = vi.hoisted(
 const read = vi.hoisted(() => vi.fn((url: string) => new Response(fromDisk(url))));
 vi.mock('$app/server', () => ({ read }));
 
-const { EXAMPLE_CAPTURE } = await import('./records');
+const { EXAMPLE_CAPTURE, readNoticesOf } = await import('./records');
 const { defaultNotice, loadExampleList, loadExamplePage, loadTenderList } =
 	await import('./tenders');
 const { loadTenderPage } = await import('./tender-page');
@@ -125,6 +125,11 @@ describe('defaultNotice', () => {
 
 	it('opens nothing when nothing is open', () => {
 		expect(defaultNotice(SEPT, [])).toBeNull();
+	});
+
+	it('learns which notices the model read from the list the records build wrote', () => {
+		expect([...readNoticesOf(SEPT)]).toEqual(READ_NOTICES);
+		expect(readNoticesOf('2026-10-16').size).toBe(0);
 	});
 });
 
