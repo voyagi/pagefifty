@@ -2,12 +2,13 @@
 	import type { Snippet } from 'svelte';
 	import Facts from './Facts.svelte';
 	import Panel from './Panel.svelte';
+	import PanelGrid from './PanelGrid.svelte';
 
-	type LeafKey = 'firm' | 'turnover' | 'people' | 'certificates' | 'countries';
+	type PanelKey = 'firm' | 'turnover' | 'people' | 'certificates' | 'countries';
 
 	// The five profile panels as both modes draw them: the own form edits them, the demo shows them
 	// read-only, in the same places.
-	const LEAVES: Record<LeafKey, { head: string; note: string }> = {
+	const PANELS: Record<PanelKey, { head: string; note: string }> = {
 		firm: { head: '', note: '' },
 		turnover: {
 			head: 'Turnover',
@@ -25,47 +26,39 @@
 	};
 
 	// The Firm panel brings its own facts column and is headed by its h1; every other panel is
-	// headed by its facts column's h2.
+	// headed by its facts column's h2. The profile reads no tender, so its panels carry no legal
+	// line of their own: the footer's line covers the page.
 	let {
-		leaf,
-		margin,
-		body
+		panel,
+		margin: firmMargin,
+		children
 	}: {
-		leaf: LeafKey;
+		panel: PanelKey;
 		margin?: Snippet;
-		body: Snippet;
+		children: Snippet;
 	} = $props();
 
-	const meta = $derived(LEAVES[leaf]);
-	const firm = $derived(leaf === 'firm');
+	const meta = $derived(PANELS[panel]);
+	const firm = $derived(panel === 'firm');
 </script>
 
-<Panel id={leaf} labelledby={firm ? 'profile-title' : `${leaf}-title`}>
-	<div class="grid">
-		{#if firm}
-			{@render margin?.()}
-		{:else}
-			<Facts head={meta.head} headingId="{leaf}-title"><p>{meta.note}</p></Facts>
-		{/if}
-		<div class="main">
-			{@render body()}
+<Panel id={panel} labelledby={firm ? 'profile-title' : `${panel}-title`}>
+	<PanelGrid legal={false}>
+		{#snippet margin()}
+			{#if firm}
+				{@render firmMargin?.()}
+			{:else}
+				<Facts head={meta.head} headingId="{panel}-title"><p>{meta.note}</p></Facts>
+			{/if}
+		{/snippet}
+		<div class="body">
+			{@render children()}
 		</div>
-	</div>
+	</PanelGrid>
 </Panel>
 
 <style>
-	/* The facts column, then the form; the form grid inside drops to two columns, then one. */
-	.grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		column-gap: 2.5rem;
-	}
-
-	.main {
-		min-width: 0;
-	}
-
-	.main :global(.title) {
+	.body :global(.title) {
 		font-weight: 750;
 		font-size: var(--step-3);
 		line-height: 1.15;
@@ -74,37 +67,36 @@
 		overflow-wrap: anywhere;
 	}
 
-	.main :global(.gloss) {
-		margin-top: 0.35rem;
-		max-width: 70ch;
+	.body :global(.gloss) {
+		margin-top: 0.5rem;
+		max-width: 62ch;
 		color: var(--ink-2);
+		text-wrap: pretty;
 	}
 
-	.main :global(.form-grid) {
+	/* Four fields to a row once the facts column stands beside the form, two below that, one on a
+	   phone. */
+	.body :global(.form-grid) {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem 1.25rem;
 		align-items: start;
 	}
 
-	.main :global(.chips) {
+	.body :global(.chips) {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 
 	@media (min-width: 68.75em) {
-		.grid {
-			grid-template-columns: 15rem minmax(0, 1fr);
-		}
-
-		.main :global(.form-grid) {
+		.body :global(.form-grid) {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 45em) {
-		.main :global(.form-grid) {
+		.body :global(.form-grid) {
 			grid-template-columns: minmax(0, 1fr);
 		}
 	}
