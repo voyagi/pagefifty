@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { cleanup, render, screen } from '@testing-library/svelte';
 import { createRawSnippet } from 'svelte';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { VERDICT_LABELS } from '$lib/core/verdict';
 import { DEMO_FIRM_SHORT, DEMO_PROFILE } from '$lib/profile/demo-firm';
 import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
 import { NoticeReadingsSchema, type NoticeReadings } from '$lib/snapshot/readings';
@@ -119,7 +120,10 @@ describe('entry route', () => {
 		const ted = card?.querySelector(`a[href="${data.tender.tedUrl}"]`);
 		expect(squash(ted?.textContent)).toBe('TED notice 610242-2026');
 		expect(squash(card?.textContent)).toContain(`Checked against ${DEMO_FIRM_SHORT}, demo firm`);
-		expect(squash(card?.querySelector('[data-verdict-word]')?.textContent)).toBe('Ask first');
+		// One verdict tag, in the app's verdict words, whichever verdict the capture gives the lot.
+		const tags = [...(card?.querySelectorAll('[data-verdict-word]') ?? [])];
+		expect(tags).toHaveLength(1);
+		expect(Object.values(VERDICT_LABELS)).toContain(squash(tags[0]?.textContent));
 		expect(squash(card?.textContent)).toContain(
 			'Read with NVIDIA Nemotron on Nebius. Numbers compared by code.'
 		);

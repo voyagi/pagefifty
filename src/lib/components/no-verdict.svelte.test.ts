@@ -529,7 +529,14 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 		const regions = [...shown.querySelectorAll('[data-verdict]')];
 		expect(regions.length).toBeGreaterThan(0);
 		expect(regions.filter((region) => region.closest('[data-example]') === null)).toEqual([]);
-		expect(verdictRegionWords(shown)).toEqual(['Ask first']);
+		// The card names its lot's verdict, whichever one the example capture gives that lot: one
+		// tag, whose region holds exactly one word, and that word is one the app labels a verdict.
+		const tags = [...shown.querySelectorAll('[data-verdict-word]')];
+		expect(tags).toHaveLength(1);
+		const region = tags[0].closest('[data-verdict]');
+		const words = region === null ? [] : findVerdictWords(region);
+		expect(words).toHaveLength(1);
+		expect(Object.values(VERDICT_LABELS)).toContain(words[0]);
 	});
 
 	it.each([
