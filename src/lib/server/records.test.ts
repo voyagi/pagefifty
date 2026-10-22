@@ -13,6 +13,8 @@ const GENERATED = 'src/lib/snapshot/generated';
 // The capture whose own records these tests check, named rather than reached through the example,
 // so the example moving to the final capture moves only the tests about the example rule.
 const SEPT = '2026-09-15';
+// The final capture: the newest the model read and the one capture that holds a figure.
+const FINAL = '2026-10-22';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -214,16 +216,15 @@ describe('loadIndex', () => {
 });
 
 describe('the reading runs the pages read', () => {
-	const septRun = () =>
-		JSON.parse(readFileSync('examples/2026-09-15/readings.json', 'utf8')).run as unknown;
+	const runOf = (id: string) =>
+		JSON.parse(readFileSync(`examples/${id}/readings.json`, 'utf8')).run as unknown;
 
-	// Holds while 2026-09-15 is the only capture the model read; the final capture replaces it here.
-	it('newestReadingRun returns the 2026-09-15 run, the newest capture the model read', () => {
-		expect(LATEST_CAPTURE).not.toBe(SEPT);
-		expect(newestReadingRun()?.id).toBe(SEPT);
-		expect(newestReadingRun()).toEqual({ id: SEPT, run: septRun() });
-		expect(readingRunOf(SEPT)).toEqual(septRun());
-		expect(readingRunOf(LATEST_CAPTURE)).toBeNull();
+	// 2026-10-16, between the two captures the model read, holds no reading run.
+	it('newestReadingRun returns the 2026-10-22 run, the newest capture the model read', () => {
+		expect(newestReadingRun()?.id).toBe(FINAL);
+		expect(newestReadingRun()).toEqual({ id: FINAL, run: runOf(FINAL) });
+		expect(readingRunOf(SEPT)).toEqual(runOf(SEPT));
+		expect(readingRunOf('2026-10-16')).toBeNull();
 		expect(read).not.toHaveBeenCalled();
 	});
 
@@ -313,12 +314,18 @@ describe('the search runs and the providers the trust pages name', () => {
 });
 
 describe('the home figure', () => {
-	// No tracked capture holds a figure.json yet: 2026-09-15 holds two read lots, which is no
-	// finding, and the latest capture holds no reading at all.
+	// Only the final capture holds a figure.json: 2026-09-15 holds two read lots, which is no
+	// finding, and 2026-10-16 holds no reading at all.
 	it('figureFile is null for a capture that holds no figure', () => {
 		expect(figureFile(SEPT)).toBeNull();
-		expect(figureFile(LATEST_CAPTURE)).toBeNull();
+		expect(figureFile('2026-10-16')).toBeNull();
 		expect(figureFile('2099-01-01')).toBeNull();
+	});
+
+	it('figureFile reads the figure the final capture commits', () => {
+		expect(figureFile(FINAL)).toEqual(
+			JSON.parse(readFileSync(`examples/${FINAL}/figure.json`, 'utf8'))
+		);
 	});
 
 	it('reads a figure the schema accepts as it was written', () => {
