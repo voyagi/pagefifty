@@ -114,7 +114,8 @@ export interface NoticeRecord {
 	lots: LotRecord[];
 }
 
-export type RecordResult = { ok: true; record: NoticeRecord } | { ok: false; detail: string };
+export type RecordResult =
+	{ ok: true; record: NoticeRecord } | { ok: false; detail: string; kind?: 'deadline-offsets' };
 
 type XmlNode = Record<string, unknown>;
 
@@ -127,6 +128,11 @@ const EFORMS_EXTENSION = [
 ];
 
 class RecordFault extends Error {}
+
+// A deadline written as a date at one offset and a time at another names two instants an hour or
+// more apart. That is what the notice says, not a fault in reading it, so the capture leaves the
+// notice out by name instead of counting it among the failures that mean a broken run.
+class DeadlineOffsetsFault extends RecordFault {}
 
 const missing = (path: string) => new RecordFault(`missing ${path}`);
 
@@ -238,27 +244,27 @@ function isCalendarDay(year: string, month: string, day: string): boolean {
 
 const asNumericOffset = (offset: string) => (offset === 'Z' ? '+00:00' : offset);
 
-// EndTime's offset, or EndDate's when EndTime has none. Two different offsets would put the day
-// and the time in different zones and could move the deadline by a day, so neither is guessed.
-function deadlineOffset(dateOffset?: string, timeOffset?: string): string | undefined {
-	if (dateOffset && timeOffset && asNumericOffset(dateOffset) !== asNumericOffset(timeOffset)) {
-		return undefined;
-	}
-	return timeOffset ?? dateOffset;
-}
+const notAnInstant = (where: string) =>
+	new RecordFault(`${where} is not a date and time with an offset`);
 
 // EndDate carries the day and EndTime the time, each with an offset; together they are one instant
-// in the buyer's own offset, which the deadline display later reads.
+// in the buyer's own offset, which the deadline display later reads. The offset is EndTime's, or
+// EndDate's when EndTime has none. Two different offsets put the day and the time in different
+// zones, so neither is guessed.
 function deadline(period: unknown, where: string): string | undefined {
 	if (period === undefined) return undefined;
 	const date = DATE.exec(requiredText(period, ['cbc:EndDate'], where));
 	const time = TIME.exec(requiredText(period, ['cbc:EndTime'], where));
-	const offset = deadlineOffset(date?.[4], time?.[2]);
-	const valid = date && time && offset && isCalendarDay(date[1], date[2], date[3]);
-	const instant = valid ? `${date[1]}-${date[2]}-${date[3]}T${time[1]}${offset}` : '';
-	if (Number.isNaN(Date.parse(instant))) {
-		throw new RecordFault(`${where} is not a date and time with an offset`);
+	if (!date || !time || !isCalendarDay(date[1], date[2], date[3])) throw notAnInstant(where);
+	const [dateOffset, timeOffset] = [date[4], time[2]];
+	if (dateOffset && timeOffset && asNumericOffset(dateOffset) !== asNumericOffset(timeOffset)) {
+		throw new DeadlineOffsetsFault(
+			`${where} gives its date at ${dateOffset} and its time at ${timeOffset}, so its deadline is not known to the hour`
+		);
 	}
+	const offset = timeOffset ?? dateOffset;
+	const instant = offset ? `${date[1]}-${date[2]}-${date[3]}T${time[1]}${offset}` : '';
+	if (Number.isNaN(Date.parse(instant))) throw notAnInstant(where);
 	return instant;
 }
 
@@ -533,6 +539,9 @@ export function toNoticeRecord(tree: unknown, noticeNumber: string): RecordResul
 	try {
 		return { ok: true, record: buildRecord(root, noticeNumber) };
 	} catch (error) {
+		if (error instanceof DeadlineOffsetsFault) {
+			return { ok: false, detail: error.message, kind: 'deadline-offsets' };
+		}
 		if (error instanceof RecordFault) return { ok: false, detail: error.message };
 		throw error;
 	}

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.landkreis-limburg-weilburg.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Eigenbetrieb Gebäudewirtschaft Landkreis Limburg-Weilburg -Zentrale Ausschreibungsstelle-</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Freiherr-vom-Stein-Platz 1</cbc:StreetName>
+                           <cbc:CityName>Limburg</cbc:CityName>
+                           <cbc:PostalZone>65549</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE723</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>Berichtseinheit-ID 00002442</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammer des Landes Hessen beim Regierungspräsidium
+Darmstadt</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Wilhelminenstraße 1-3 Fristenbriefkasten: Luisenplatz 2</cbc:StreetName>
+                           <cbc:CityName>Darmstadt</cbc:CityName>
+                           <cbc:PostalZone>64283</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE711</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>06-22630029-17</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Kreisausschuss des Landkreises Limburg-Weilburg
+Amt  für Finanzen und Organisation
+Fachdienst IT und Digitalisierung</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Schiede 20</cbc:StreetName>
+                           <cbc:CityName>Limburg</cbc:CityName>
+                           <cbc:PostalZone>65549</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE723</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>020 226 54254</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00695188-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">195/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-08+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">ceb7399b-15ba-453d-8c46-f937dac52c01</cbc:ID>
+   <cbc:ContractFolderID>50426675-6c4b-4a2b-bd9f-ca1864d70cbd</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-07+02:00</cbc:IssueDate>
+   <cbc:IssueTime>14:07:10+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-07+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0003</cbc:ID>
+         </cac:PartyIdentification>
+         <cac:ServiceProviderParty>
+            <cbc:ServiceTypeCode listName="organisation-role">serv-prov</cbc:ServiceTypeCode>
+            <cac:Party>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:Party>
+         </cac:ServiceProviderParty>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0004</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Zu § 123 GWB erkläre/n ich/wir:
+Weder ich/wir noch eine Person, deren Verhalten unserem Unternehmen zuzurechnen ist (§ 123 Abs. 3 GWB), bin/sind in den letzten fünf Jahren rechtskräftig verurteilt worden; zudem wurde gegen das Unternehmen keine Geldbuße nach § 30 des Gesetzes gegen Ordnungswidrigkeiten rechtskräftig festgesetzt, wegen einer Straftat nach:
+-	§ 129 StGB (Bildung krimineller Vereinigungen), § 129a StGB (Bildung terroristischer Vereinigungen), § 129b StGB (kriminelle und terroristische Vereinigungen im Ausland),
+-	§ 89c StGB (Terrorismusfinanzierung) oder wegen der Teilnahme an einer solchen Tat oder wegen der Bereitstellung oder Sammlung finanzieller Mittel in Kenntnis dessen, dass diese fi-nanziellen Mittel ganz oder teilweise dazu verwendet werden oder verwendet werden sollen, eine Tat nach § 89a Absatz 2 Nummer 2 des Strafgesetzbuchs zu begehen,
+-	§ 261 StGB (Geldwäsche, Verschleierung unrechtmäßig erlangter Vermögenswerte),
+-	§ 263 StGB (Betrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in deren Auftrag verwaltet werden,
+-	§ 264 StGB (Subventionsbetrug), soweit sich die Straftat gegen den Haushalt der Europäischen Union oder gegen Haushalte richtet, die von der Europäischen Union oder in deren Auftrag verwaltet werden,
+-	§ 299 StGB (Bestechlichkeit und Bestechung im geschäftlichen Verkehr),
+-	§ 108e StGB (Bestechlichkeit und Bestechung von Mandatsträgern),
+-	§§ 333 und 334 StGB (Vorteilsgewährung und Bestechung), jeweils auch in Verbindung mit § 335a des StGB (Ausländische und internationale Bedienstete),
+-	Artikel 2 § 2 des Gesetzes zur Bekämpfung internationaler Bestechung (Bestechung ausländischer Abgeordneter im Zusammenhang mit internationalem Geschäftsverkehr) oder
+-	den §§ 232 und 233 StGB (Menschenhandel) oder §233a des StGB (Förderung des Menschenhandels).
+Mir/uns ist bewusst, dass wissentlich falsche Angaben in den vorstehenden Erklärungen 
+-	meinen/unseren Ausschluss von der Auftragserteilung gemäß § 124 Abs. 1 Nr. 8 GWB 
+-	im Falle der Auftragserteilung eine fristlose Kündigung des Vertrages zur Folge haben können.
+Der Auftraggeber behält sich vor, Auskünfte und Bestätigungen/Nachweise, die zur Überprüfung dienen, zu verlangen und einzuholen.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID schemeName="InternalID">94-2026</cbc:ID>
+      <cbc:Name languageID="DEU">Druckerkonzept Landkreis Limburg-Weilburg</cbc:Name>
+      <cbc:Description languageID="DEU">Rahmenvertrag für Drucker &amp; Multifunktionssysteme
+für alle Einrichtungen des Landkreises Limburg-Weilburg
+Miete der Systeme, Dienstleistung: Lieferung, Montage und Inbetriebnahme,
+Einweisung, Fullservice</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Gem. § 1 Abs. 1 Satz 3 Hessisches Vergabe und Tariftreuegesetz sind bei Vergaben von von öffentlichen Aufträgen, deren geschätzter Auftragswert die Schwellenwerte nach Satz 1 erreicht oder überschreitet, die §§ 4 bis 10, 13 und 18 bis 20 HVTG anzuwenden.
+D.h. 
+1. Bei öffentlichen Aufträgen sind die Tariftreue- und Mindestlohnpflichten des Hessischen Vergabe- und Tariftreuegesetzes (HVTG) einzuhalten. Bei Liefer- und Dienstleistungen erfolgt der Nachweis durch eine Verpflichtungserklärung.
+Leistungen dürfen nur an Unternehmen vergeben werden, die sich verpflichten, ihren Beschäftigten für die Dauer, in der sie an der Ausführung der Leistung mitwirken, mindestens das Entgelt zu zahlen, das in einer nach Abs. 3 erlassenen Rechtsverordnung des Landes für die Erbringung der betreffenden Leistung verbindlich vorgegeben wird. (§ 4 Abs. 1 u. 2 HVTG)
+Abgabe einer Verpflichtungserklärung zu Tariftreue und Mindestentgelt, auch für Nach- und Verleihunternehmen.
+Die Verpflichtungserklärung zur Tariftreue und Mindestentgelt wird Vertragsbestandteil.
+2. Nachunternehmer
+Für den Fall des Einsatzes von Nachunternehmen oder Verleihunternehmen darf derselbe Leistungsgegenstand ab dem beauftragten Unternehmen maximal zweimal weitergegeben werden (Nachunternehmerkette).
+(2) Das beauftragte Unternehmen darf nur solche Nachunternehmen oder Verleihunternehmen einsetzen, die bei der Vergabe von Liefer- und Dienstleistungen eine Verpflichtungserklärung nach § 10 Abs. 1 Satz 1 Nr. 2 abgegeben haben.
+(3) Das beauftragte Unternehmen hat für alle zur Leistungserbringung vorgesehenen Nachunternehmen oder Verleihunternehmen spätestens vor Beginn der Ausführung der Leistung durch das Nachunternehmen oder Verleihunternehmen die Zustimmung des öffentlichen Auftraggebers einzuholen. Hierbei sind folgende Angaben zu machen:
+1. Name und Anschrift des Nachunternehmens oder Verleihunternehmens,
+2. bei Bauleistungen die Präqualifikationsnummer Tarif oder bei Liefer- und Dienstleistungen die
+Vorlage der Verpflichtungserklärung und
+3. für welche Teile der Leistung und in welchem Umfang der Einsatz von Nachunternehmen vorgesehen
+ist.( § 5 HVTG)
+4. Nachweise und Kontrollen
+Es gelten die Kontroll- und Sanktionsmöglichkeiten gem. §§ 18 und 20 HVTG 
+Vertragsstrafen nach dem Hessischen Vergabe und Tariftreuegesetz:
+1) Verstößt der AN schuldhaft gegen eine der folgenden Verpflichtungen, wird eine Vertragsstrafe fällig:
+a) die Verpflichtung zur Tariftreue und zur Zahlung des maßgeblichen Mindestentgelts nach Maßgabe des HVTG 2026 und der hierzu erlassenen Rechtsverordnungen,
+b) die Nachweis-, Kontroll- und Mitwirkungspflichten,
+c) die Zustimmungs- und Mitteilungspflichten sowie die Begrenzung der Nachunternehmerkette 
+Der Auftragnehmer haftet dem Auftraggeber für Verstöße seiner Nachunternehmen und Verleihunternehmen gegen die Verpflichtungen nach dem HVTG 2026 wie für eigenes Verschulden, soweit er sich dieses nach § 278 BGB zurechnen lassen muss.
+(2) Die Vertragsstrafe beträgt 5 % der Netto-Abrechnungssumme des Auftrags je Verstoß. Bei mehreren Verstößen ist die Vertragsstrafe auf insgesamt 10 % der Netto-Abrechnungssumme des Auftrags begrenzt (§ 20 Abs. 1 HVTG 2026).</cbc:Note>
+      <cac:ProcurementAdditionalType>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72590000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:StreetName>74 Standorte im Landkreis Limburg-Weilburg</cbc:StreetName>
+            <cbc:CityName>Limburg</cbc:CityName>
+            <cbc:PostalZone>65549</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE723</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E62222765</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E62222765</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">-</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">-</cbc:Name>
+                  <cbc:Description languageID="DEU">Sämtliche Gesamtpreise netto eingehender Angebote werden zueinander so gewichtet, dass der jeweils
+niedrigste Angebotspreis mit 10 Punkten gewertet wird und ein angenommener doppelt so hoher Angebotspreis
+mit 0 Punkten. Alle dazwischenliegenden Angebotspreise werden linear interpoliert zugeordnet.
+Die erreichten Punktwerte werden mit 40 % gewichtet.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>40</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Das Angebot mit der höchsten Summe der Leistungspunktzahlen erhält als Bewertungspunktewert den
+Wert 10, die Hälfte der Summe erhält als Bewertungspunktewert den Wert 0. Alle anderen Angebote
+werden interpoliert nach der Formel:
+Bewertungspunktewert = 20 / (höchste Summe der Leistungspunkte) * (Leistungspunkte des Angebots)
+– 10. Negative Faktoren werden als 0 angegeben.</cbc:Name>
+                  <cbc:Description languageID="DEU">Technische Werte
+Die Punktewerte werden für die genannten Einzelkriterien siehe Vergabeunterlagen Pos. 2.4. der Anlage 2 vergeben. Die Punktevergabe
+pro Kriterium des Leistungsverzeichnisses richtet sich nach dem Grad der Erfüllung der Anforderungen an dieses Kriterium.
+Anforderungen schlecht erfüllt 1 Punkte
+Anforderungen sind erfüllt 5 Punkte
+Anforderungen sind übertroffen oder die Funktionalität geht deutlich über die Mindestanforderungen hinaus, wenn kein Zielwert angegeben ist     7 Punkte</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>20</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">-</cbc:Name>
+                  <cbc:Description languageID="DEU">Stromverbrauchskosten
+Die Gesamtpreise der Stromverbrauchskosten netto eingehender Angebote werden zueinander so gewichtet,
+dass der jeweils niedrigste Gesamtpreis mit 10 Punkten gewertet wird und ein angenommener
+doppelt so hoher Gesamtpreis mit 0 Punkten. Alle dazwischenliegenden Gesamtpreise werden linear
+interpoliert zugeordnet. Die erreichten Punktwerte werden mit 20 % gewichtet.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:DocumentProviderParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:DocumentProviderParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E62222765</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderEvaluationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0003</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderEvaluationParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">60</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Zur Prüfung des Vergabeverfahrens im Hinblick auf das Vorliegen von Vergaberechtsverstößen können die Bieter einen Nachprüfungsantrag bei der vorgenannten Vergabekammer stellen. Es wird darauf hingewiesen, dass ein solcher Antrag gemäß § 160 Abs. 3 Satz 1 des Gesetzes gegen Wettbewerbsbeschränkungen (GWB) nur zulässig ist, soweit der Bieter: - den Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrages erkannt und gegenüber dem Auftraggeber innerhalb einer Frist von zehn Kalendertagen gerügt hat, - Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe gerügt hat, - Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, spätestens bis zur Angebotsabgabe gerügt hat. Darüber hinaus muss der Nachprüfungsantrag nach § 160 Abs. 3 Satz 1 Nr. 4 GWB innerhalb von 15 Kalendertagen nach Eingang der Mitteilung des AG, seiner Rüge nicht abhelfen zu wollen, eingereicht werden. Anderenfalls ist dieser verspätet und somit unzulässig.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-10+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-10+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">fa-w-rc</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 94-2026</cbc:ID>
+         <cbc:Name languageID="DEU">Rahmenvertrag für Drucker &amp; Multifunktionssysteme</cbc:Name>
+         <cbc:Description languageID="DEU">Rahmenvertrag für Drucker &amp; Multifunktionssysteme
+für alle Einrichtungen des Landkreises Limburg-Weilburg
+Die derzeitigen und zukünftigen Systeme sind auf ca. 74 Standorte im Landkreis Limburg-Weilburg verteilt.
+Der Landkreis Limburg-Weilburg betreibt derzeit ca. 507 Drucker und Multifunktionssysteme in einer konsolidierten Struktur
+Derzeit liegt das Seitenvolumen im Format DIN A4 bei den Druckern über alle Standorte hinweg bei den SW-Seiten bei ca. 82,5 Mio. Seiten und im Farbbereich bei ca. 12,7 Mio. Seiten in 60 Monaten.
+Es soll im Rahmen des nun angesetzten Konzeptionierungs- und Ausschreibungsprojektes eine Konsolidierung und Optimierung des Paper-Outputs erfolgen.
+Die ausgeschriebene Leistung beinhaltet die Beschaffung, Miete, Lieferung, Inbetriebnahme und den Fullservice von Druckern und Multifunktionssysteme für alle Einrichtungen des Landkreises Limburg-Weilburg.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:Note languageID="DEU">#Besonders auch geeignet für:freelance#, #Besonders auch geeignet für:startup#, #Besonders auch geeignet für:other-sme#, #Besonders auch geeignet für:selbst#</cbc:Note>
+         <cbc:SMESuitableIndicator>true</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72590000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:StreetName>74 Standorte im Landkreis Limburg-Weilburg</cbc:StreetName>
+               <cbc:CityName>Limbrug</cbc:CityName>
+               <cbc:PostalZone>65549</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE723</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="YEAR">4</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Der Vertrag wird zum 01.01.2027 geschlossen. Der Rahmenvertrag läuft bis zum 31.12.2030 mit
+einer einmaligen Vertragsverlängerungsoption um 12 Monate, sofern innerhalb der Vertragslaufzeit
+hierfür eine Begründung gegeben ist. Der Fullservice-Mietvertrag läuft bis zum 31.12.2031.</cbc:OptionsDescription>
+            <cbc:MaximumNumberNumeric>1</cbc:MaximumNumberNumeric>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

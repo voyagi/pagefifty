@@ -187,13 +187,20 @@ describe('the example capture readings', () => {
 				readings: file.readings.filter((each) => each.notice === notice)
 			});
 		}
-		// A capture with no readings.json gets neither, so its pages keep the phase 1 view.
-		for (const id of folders(GENERATED).filter((each) => each !== CAPTURE_ID)) {
-			expect(existsSync(join(EXAMPLES, id, 'readings.json'))).toBe(false);
+		// Every capture with a readings.json gets its run beside its records, and one with none gets
+		// neither, so its pages keep the phase 1 view; 2026-10-16 is one with none.
+		const hasReadings = (id: string) => existsSync(join(EXAMPLES, id, 'readings.json'));
+		for (const id of folders(GENERATED).filter(hasReadings)) {
+			expect(readJson(join(GENERATED, id, 'reading-run.json'))).toEqual(
+				ReadingsFileSchema.parse(readJson(join(EXAMPLES, id, 'readings.json'))).run
+			);
+		}
+		const unread = folders(GENERATED).filter((id) => !hasReadings(id));
+		expect(unread).toContain('2026-10-16');
+		for (const id of unread) {
 			expect(existsSync(join(GENERATED, id, 'readings'))).toBe(false);
 			expect(existsSync(join(GENERATED, id, 'reading-run.json'))).toBe(false);
 		}
-		expect(folders(GENERATED)).toContain('2026-10-16');
 	});
 });
 
@@ -230,8 +237,15 @@ describe('the example capture buyer search', () => {
 		expect(readJson(join(built, 'search-run.json'))).toEqual(file.run);
 		expect(readdirSync(join(built, 'searches'))).toEqual(['610242-2026.json']);
 		expect(readJson(join(built, 'searches', '610242-2026.json'))).toEqual(file.notices[0]);
-		for (const id of folders(GENERATED).filter((each) => each !== CAPTURE_ID)) {
-			expect(existsSync(join(EXAMPLES, id, 'searches.json'))).toBe(false);
+		const hasSearches = (id: string) => existsSync(join(EXAMPLES, id, 'searches.json'));
+		for (const id of folders(GENERATED).filter(hasSearches)) {
+			expect(readJson(join(GENERATED, id, 'search-run.json'))).toEqual(
+				SearchesFileSchema.parse(readJson(join(EXAMPLES, id, 'searches.json'))).run
+			);
+		}
+		const unsearched = folders(GENERATED).filter((id) => !hasSearches(id));
+		expect(unsearched).toContain('2026-10-16');
+		for (const id of unsearched) {
 			expect(existsSync(join(GENERATED, id, 'searches'))).toBe(false);
 			expect(existsSync(join(GENERATED, id, 'search-run.json'))).toBe(false);
 		}

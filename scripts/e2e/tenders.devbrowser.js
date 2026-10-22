@@ -12,6 +12,8 @@ const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tenders';
 const URL = 'http://127.0.0.1:8788/tenders';
 const ZONE = 'America/New_York';
+// The closed leaf's note while no row of the live list has closed (TenderListPage.svelte).
+const NONE_CLOSED = 'No tender in this list has closed.';
 const page = await browser.getPage(PAGE);
 const checks = [];
 const hydrationMessages = [];
@@ -316,9 +318,19 @@ try {
 
 	const passedInOpen = facts.open.filter((row) => Date.parse(row.datetime) <= facts.now);
 	const openInClosed = facts.closed.filter((row) => Date.parse(row.datetime) > facts.now);
+	// A capture taken with --open-after leaves out every notice that closes before that time, so
+	// until its first deadline passes no row is closed and the closed group has nothing to hold.
+	// Every row must then read as open, which the row count proves.
+	const anyPassed = facts.open
+		.concat(facts.closed)
+		.some((row) => Date.parse(row.datetime) <= facts.now);
 	check(
-		'no notice whose deadline has passed is listed as open, and no open one as closed',
-		passedInOpen.length === 0 && openInClosed.length === 0 && facts.closed.length > 0,
+		anyPassed
+			? 'no notice whose deadline has passed is listed as open, and no open one as closed'
+			: 'with no captured deadline passed yet, every row is listed as open and none as closed',
+		passedInOpen.length === 0 &&
+			openInClosed.length === 0 &&
+			(anyPassed ? facts.closed.length > 0 : facts.open.length === config.latest.rows),
 		`${facts.open.length} open and ${facts.closed.length} closed rows read against the browser clock; passed but open: ${passedInOpen.map((row) => row.notice).join(' ') || 'none'}; open but closed: ${openInClosed.map((row) => row.notice).join(' ') || 'none'}`
 	);
 
@@ -374,10 +386,16 @@ try {
 		...served.matchAll(/<time class="[^"]*" datetime="([^"]+)">([^<]+)<\/time>/g)
 	];
 	const notCentral = servedLabels.filter((match) => !/ (CEST|CET)$/.test(match[2]));
+	// The closed group's fold is served only once a captured deadline has passed; before that the
+	// closed leaf holds its none-closed note in its place.
+	const noneClosed = served.includes(NONE_CLOSED);
 	check(
-		'without scripts the served page holds every row and the closed group',
-		servedRows === config.latest.rows && served.includes('<details') && served.includes('<summary'),
-		`${servedRows} rows in the served HTML of ${config.latest.rows} in the built index, details ${served.includes('<details')}`
+		anyPassed
+			? 'without scripts the served page holds every row and the closed group'
+			: 'without scripts the served page holds every row and the closed leaf says none has closed',
+		servedRows === config.latest.rows &&
+			(anyPassed ? served.includes('<details') && served.includes('<summary') : noneClosed),
+		`${servedRows} rows in the served HTML of ${config.latest.rows} in the built index, details ${served.includes('<details')}, none-closed note ${noneClosed}`
 	);
 	check(
 		'the served HTML writes every deadline in Central European Time',

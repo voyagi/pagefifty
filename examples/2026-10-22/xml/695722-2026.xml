@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:Changes>
+						<efbc:ChangedNoticeIdentifier>7ed5887a-22b3-4533-b04f-dda2e958bf0a-01</efbc:ChangedNoticeIdentifier>
+						<efac:Change>
+							<efbc:ChangeDescription languageID="DEU">Ergänzung des Eignungsnachweises:
+
+Das Unternehmen verfügt über ein durch eine akkreditierte Zertifizierungsstelle zertifiziertes Informationssicherheits-Managementsystem (ISMS) nach DIN EN ISO/IEC 27001 in der jeweils gültigen Fassung oder einem gleichwertigen Standard.</efbc:ChangeDescription>
+							<efbc:ProcurementDocumentsChangeDate>2026-10-05+02:00</efbc:ProcurementDocumentsChangeDate>
+							<efbc:ProcurementDocumentsChangeIndicator>true</efbc:ProcurementDocumentsChangeIndicator>
+							<efac:ChangedSection>
+								<efbc:ChangedSectionIdentifier>PROCEDURE</efbc:ChangedSectionIdentifier>
+							</efac:ChangedSection>
+						</efac:Change>
+						<efac:ChangeReason>
+							<cbc:ReasonCode listName="change-corrig-justification">update-add</cbc:ReasonCode>
+						</efac:ChangeReason>
+					</efac:Changes>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">17</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>http://www.netze-duisburg.de</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Netze Duisburg GmbH</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Bungertstr. 27</cbc:StreetName>
+									<cbc:CityName>Duisburg</cbc:CityName>
+									<cbc:PostalZone>47053</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA12</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE252113622</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.bezreg-muenster.de/themen/wirtschaft-kultur-und-kommunales/vergabekammer-westfalen</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>05515-03004-07</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00695722-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">195/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-08+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">4c52cabf-573e-4ac4-bc08-546b32d5a40f</cbc:ID>
+	<cbc:ContractFolderID>d17dde65-370e-4bb2-8080-d38984f9c45c</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-07+02:00</cbc:IssueDate>
+	<cbc:IssueTime>09:46:08+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-07+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0025</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cbc:BuyerProfileURI>http://einkaufsportal.duisburg.de</cbc:BuyerProfileURI>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="entity-activity">electricity</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>sektvo</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Die Zulässigkeit von Nachprüfungsanträgen richtet sich nach § 160 GWB. Nach § 160 Abs. 3 GWB ist ein Nachprüfungsantrag unzulässig, soweit
+
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt,
+
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2 GWB. § 134 Absatz 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealInformationParty>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+			<cac:MediationParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:MediationParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.vergabe.metropoleruhr.de/VMPSatellite/notice/CXS0YRTDY6E4EN3L</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">2026-0599</cbc:ID>
+		<cbc:Name languageID="DEU">Workforcemanagementsystem - Netzbau (WFM BAU)</cbc:Name>
+		<cbc:Description languageID="DEU">Im Zuge der fortschreitenden Digitalisierung und zur strategischen Weiterentwicklung ihrer Bauabwicklungsprozesse plant die Netze Duisburg die Einführung eines integrierten Work-forcemanagementsystems für den Netzbau (WFM BAU). Ziel ist die nachhaltige Optimierung operativer Abläufe durch eine End-to-End-Prozessbetrachtung, die eine ganzheitliche, transparente und effiziente Planung, Steuerung sowie Nachverfolgung interner und externer Ressourcen über sämtliche Bauprozesse hinweg ermöglicht.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0YRTDY6E4EN3L#
+
+
+Die Vergabeunterlagen werden ausschließlich elektronisch auf dem Vergabemarktplatz Metropole Ruhr unter https://www.vergabe.metropoleruhr.de zur Verfügung gestellt. Die Beantwortung von Fragen zum Verfahren sowie sämtliche Kommunikation zwischen den Beteiligten und der Vergabestelle erfolgt ausschließlich über das oben genannte Vergabeportal. Beteiligte sind daher im eigenen Interesse gehalten, die dort für diese eingerichteten Postfächer regelmäßig auf neue Informationen der Vergabestelle zu kontrollieren.</cbc:Note>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Bungertstraße 27</cbc:StreetName>
+				<cbc:CityName>Duisburg</cbc:CityName>
+				<cbc:PostalZone>47053</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA12</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Wirtschaftliche und finanzielle Leistungsfähigkeit - - Angaben zum Bewerber bzw. der Bewerbergemeinschaft (Name, Rechtsform, Anschrift, Telefon, Telefax, E-Mail-Adresse, Ansprechpartner) und zu den geschäftsführenden Personen (Formblatt TA 1),
+
+- Erklärung darüber, dass keine Ausschlussgründe, insbesondere nach §§ 123, 124 GWB, vorliegen (Formblatt TA 2),
+
+- Der Bewerber/die Bewerbergemeinschaft erklärt, dass im Auftragsfall eine Berufs- oder Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme in Höhe von 5 Mio. EUR pauschal für Personen, Sach- und Vermögensschäden vorliegen wird.
+
+- Nachweis über die erlaubte Berufsausübung, je nach Maßgabe der Rechtsvorschriften des Landes, in dem das Unternehmen ansässig ist, entweder über die Eintragung in das Berufs- oder Handelsregister dieses Staates oder durch Nachweis auf andere Weise (Formblatt TA 3).
+
+- Ggf. Erklärung der Mitglieder von Bewerbergemeinschaften (Formblatt TA 5)
+
+- Spezifischer Jahresumsatz
+Eigenerklärung zum spezifischen Jahresumsatz des Wirtschaftsteilnehmers (netto) bezogen auf die Lieferung und Inbetriebnahme eines Workforcemanagementsystems für den Netzbau (WFM BAU) und damit verbundene Dienstleistungen.
+
+Der spezifische Jahresumsatz (netto) bezogen auf die Lieferung und Inbetriebnahme von Workforce-managementsystemen für den Netzbau (WFM BAU) und damit verbundene Dienstleistungen muss durchschnittlich mindestens 3 Mio. EUR pro Jahr in den letzten 3 abgeschlossenen Geschäftsjahren betragen.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Technische und berufliche Leistungsfähigkeit - Der Bewerber muss eine Pflichtreferenz eines Netzbetreibers der Sparten Strom, Gas, Wasser oder Fernwärme nachweisen. In dieser einen Kundenreferenz müssen die Leistungsbausteine MOBIL, DISPO, PROZESS-BAU, SAP-SCHNITT, GIS-SCHNITT und GIS-KARTE als integrierte On-Premise- oder Cloud-Lösung abgebildet sein. Der Nachweis darf nicht aus mehreren Kundenreferenzen zusammengesetzt werden. Dienstleisterportal (DL-PORTAL) und DMS-Anbindung (DMS-SCHNITT) sind für die Pflichtreferenz nicht erforderlich. Die SAP-Schnittstelle ist nicht auf SAP S/4HANA begrenzt.
+
+Die sechs Leistungsbausteine müssen zum Ablauf der endgültigen Frist zur Einreichung der Teilnahmeanträge seit mindestens zwölf Monaten durchgehend gemeinsam als integrierte Lösung produktiv genutzt werden. Etwaige Verlängerungen der Teilnahmefrist sind zu be-rücksichtigen. Dieser Zeitpunkt wird nachfolgend als Stichtag bezeichnet. Bewerber, die diese Mindestanforderung nicht erfüllen, werden im weiteren Verfahren nicht berücksichtigt.
+
+Der Bieter bestätigt, dass er bzw. seine Lösung die Mindestanforderungen, erwähnt im Kapitel 2 des Informationsmemorandum und in in den weiteren Mindestanforderungen des TA 10 erfüllen kann.
+
+Das Unternehmen verfügt über ein durch eine akkreditierte Zertifizierungsstelle zertifiziertes Informationssicherheits-Managementsystem (ISMS) nach DIN EN ISO/IEC 27001 in der jeweils gültigen Fassung oder einem gleichwertigen Standard.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-mgmt-qual</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Auflagen zur persönlichen Lage - Zur Beurteilung der Fachkunde und Leistungsfähigkeit sind mit der Angebotsabgabe durch den Bieter folgende Nachweise beizubringen: 
+- Antiterrorerklärung (Formblatt TA8)
+- Eigenerklärung Russland-Sanktionen (Formblatt TA9)</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Anzahl der Netzbetreiber mit produktiver Softwarenutzung - Bitte geben Sie für jeden der drei nachfolgend aufgeführten Bereiche die Anzahl der Netzbetreiber an, bei denen die jeweils nachzuweisende Lösung beziehungsweise die Leistungs-Bausteine zum Stichtag seit mindestens zwölf Monaten durchgehend produktiv genutzt werden. Berücksichtigt werden sowohl Cloud- als auch On-Premise-Lösungen. 
+
+1. Themenbereich: integrierte Lösung mit sechs Leis-tungsbausteinen - Anzahl der Netzbetreiber      
+
+2. Themenbereich: Dienstleisterportal (DL-PORTAL) - An-zahl der Netzbetreiber      
+
+3. Themenbereich: DMS-Anbindung (DMS-SCHNITT) - Anzahl der Netzbetreiber      
+
+Für den 1. Themenbereich wird ein Netzbetreiber nur berücksichtigt, wenn die sechs Leistungsbausteine MOBIL, DISPO, PROZESS-BAU, SAP-SCHNITT, GIS-SCHNITT und GIS-KARTE bei diesem Netzbetreiber zum Stichtag seit mindestens zwölf Monaten durchgehend gemeinsam als integrierte Lösung produktiv genutzt werden. Bei der SAP-Anbindung werden produktive Installationen unabhängig von der eingesetzten SAP-Version berücksichtigt; eine Anbindung an SAP S/4HANA ist nicht erforderlich.
+
+Für den 2. Themenbereich wird ein Netzbetreiber berücksichtigt, wenn das Dienstleisterportal (DL-PORTAL) zum Stichtag seit mindestens zwölf Monaten durchgehend produktiv genutzt wird. Für den 3. Themenbereich gilt dies entsprechend für die DMS-Anbindung (DMS-SCHNITT). Auch hierbei werden Cloud- und On-Premise-Lösungen berücksichtigt.
+
+Jeder Netzbetreiber wird je Themenbereich nur einmal berücksichtigt, unabhängig von der Anzahl der Standorte oder Installationen. Derselbe Netzbetreiber kann in mehreren Themenbereichen berücksichtigt werden, wenn die jeweiligen Anforderungen erfüllt sind. Bei null Netzbetreibern oder fehlender Angabe werden im jeweiligen Themenbereich null Punkte vergeben.
+
+
+Bewertung Punkte Maximale Punkte
+1. Themenbereich: integrierte Lösung mit MOBIL, DISPO, PROZESS-BAU, SAP-SCHNITT, GIS-SCHNITT und GIS-KARTE - Anzahl der Netzbetreiber
+&gt;= 10 Netzbetreiber = 195 Punkte
+5 bis 9 Netzbetreiber = 100 Punkte
+2 bis 4 Netzbetreiber = 60 Punkte
+1 Netzbetreiber = 20 Punkte
+
+2. Themenbereich: Dienstleisterportal (DL-PORTAL) - Anzahl der Netzbetreiber
+&gt;= 10 Netzbetreiber = 20 Punkte
+5 bis 9 Netzbetreiber = 10 Punkte
+2 bis 4 Netzbetreiber = 6 Punkte
+1 Netzbetreiber = 2 Punkte
+
+3. Themenbereich: DMS-Anbindung (DMS-SCHNITT) - Anzahl der Netzbbetreiber
+&gt;= 10 Netzbetreiber = 10 Punkte
+5 bis 9 Netzbetreiber = 5 Punkte
+2 bis 4 Netzbetreiber = 3 Punkte
+1 Netzbetreiber = 1 Punkt</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>225.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-work</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Weitere Referenzen - Zusätzlich zur Pflichtreferenz können bis zu fünf weitere Referenzen eingereicht werden. Jede weitere Referenz muss einen Netzbetreiber der Sparten Strom, Gas, Wasser oder Fernwärme betreffen. On-Premise- und Cloud-Lösungen sind zulässig. Jeder zur Bewertung angekreuzte Leistungsbaustein muss zum Stichtag gemäß seit mindestens zwölf Monaten durchgehend produktiv genutzt werden.
+
+Eine weitere Referenz kann einen oder mehrere Leistungsbausteine abdecken. Eine integrierte Lösung sämtlicher acht Leistungsbausteine ist nicht erforderlich. Für jeden nachgewiesenen Leistungsbaustein werden die in der nachstehenden Tabelle ausgewiesenen Basispunkte vergeben und innerhalb der jeweiligen Referenz addiert. Die SAP-Schnittstelle wird unabhängig von der SAP-Version bewertet. Der produktive Einsatz und die Nutzungszeiten jedes angekreuzten Leistungsbausteins müssen aus der Projektbeschreibung nachvollziehbar hervorgehen.
+
+Die Einreichung weiterer Referenzen ist keine Mindestanforderung. Nicht eingereichte Referenzen oder Referenzen ohne Netzbetreiber der genannten Sparten als Referenzkunden erhalten null Punkte. Erfüllt ein einzelner Leistungsbaustein die Bewertungsanforderungen, insbesondere die zum Stichtag seit mindestens zwölf Monaten durchgehend bestehende produktive Nutzung, nicht oder ist sein Einsatz nicht nachvollziehbar dargestellt, erhält nur die-ser Leistungsbaustein null Punkte. Die übrigen nachgewiesenen Leistungsbausteine derselben Referenz werden bewertet. Werden mehr als fünf weitere Referenzen eingereicht, werden ausschließlich die als Referenzen 2 bis 6 gekennzeichneten Referenzen bewertet. Das selbe Referenzprojekt wird nur einmal berücksichtigt. Die Pflichtreferenz darf nicht zusätzlich als weitere Referenz bewertet werden.
+
+Je wertbarer weiterer Referenz werden zusätzlich einmalig zehn Bonuspunkte vergeben, wenn die bewertete SAP-Schnittstelle an SAP S/4HANA angebunden ist, und einmalig zehn Bonuspunkte, wenn die Referenzlösung als Cloud-Lösung betrieben wird. Als Cloud-Lösung im Sinne des Bonus gilt der produktive Betrieb der Anwendung in der Cloud-Umgebung eines Cloud-Dienstleisters (z. B. SaaS, PaaS oder IaaS), unabhängig davon, ob der Betrieb durch den Bewerber, einen Unterauftragnehmer oder den Referenzkunden erfolgt. Der Betrieb auf Infrastruktur im eigenen Rechenzentrum des Referenzkunden gilt nicht als Cloud-Lösung, auch wenn diese virtualisiert ist. Beide Boni können gemeinsam erreicht werden. Die SAP-S/4HANA-Anbindung beziehungsweise der Cloud-Betrieb müssen jeweils zum Stichtag seit mindestens zwölf Monaten durchgehend produktiv genutzt werden. Der Cloud-Bonus setzt den produktiven Cloud-Einsatz von mindestens einem in dieser Referenz bewerteten Leistungsbaustein voraus. Für eine Referenz ohne bewertbaren Leistungsbaustein werden keine Bonuspunkte vergeben. Fehlende Bonusvoraussetzungen lassen die Basispunkte unberührt.
+
+Leistungsbaustein / Bonus Punkte je weiterer Referenz / Höchstpunktzahl bei fünf weiteren Referenzen
+
+Dienstleisterportal (DL-PORTAL) 5 25
+Mobile Bearbeitung (MOBIL) 25 125
+Disposition (DISPO) 25 125
+Prozesslösung Netzbau (PROZESS-BAU) 30 150
+Schnittstelle zu SAP (SAP-SCHNITT) 15 75
+Schnittstelle zum Geoinformationssystem (GIS-SCHNITT) 15 75
+GIS-Kartenintegration (GIS-KARTE) 15 75
+Schnittstelle zum Dokumentenmanagementsystem (DMS-SCHNITT) 5 25
+Bonus für SAP-S/4HANA-Anbindung 10 50
+Bonus für Cloud-Lösung 10 50
+Gesamt höchstens 155 höchstens 775
+
+Bewertungsbeispiel: Eine weitere Referenz mit MOBIL, DISPO, PROZESS-BAU und SAP-SCHNITT erhält 95 Basispunkte. Bei nachgewiesener SAP-S/4 HANA-Anbindung erhöht sich die Bewertung auf 105 Punkte; bei zusätzlich nachgewiesenem Cloud-Betrieb auf 115 Punkte. Eine Referenz mit sämtlichen acht Leistungsbausteinen und beiden Boni erhält höchstens 155 Punkte. Für fünf weitere Referenzen sind höchstens 775 Punkte erreichbar.</cbc:Description>
+								<efbc:SecondStageIndicator>true</efbc:SecondStageIndicator>
+								<efac:CriterionParameter>
+									<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+									<efbc:ParameterNumeric>775.00</efbc:ParameterNumeric>
+								</efac:CriterionParameter>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe.metropoleruhr.de/VMPSatellite/notice/CXS0YRTDY6E4EN3L/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:PaymentTerms>
+				<cbc:Note languageID="DEU">Siehe Vergabeunterlagen</cbc:Note>
+			</cac:PaymentTerms>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-some</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Eine Nachforderung erfolgt allerdings nur wenn es um rechtlich zulässige nachzufordernde Unterlagen handelt, § 51 SektVO.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Netze behält sich das Recht vor, die Angaben der Bewerber zu ihrer Eignung bis zur Zuschlagserteilung zu verifizieren, Erkundungen bei den Referenzgebern anzustellen oder weitere Unterlagen der Bewerber zur Validierung der im Teilnahmewettbewerb gemachten Erklärungen abzufordern. Insbesondere wird die Netze gemäß § 6 WRegG vor Zuschlagserteilung eine Auskunft aus dem Wettbewerbsregister einholen.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe.metropoleruhr.de/VMPSatellite/notice/CXS0YRTDY6E4EN3L</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Die Zulässigkeit von Nachprüfungsanträgen richtet sich nach § 160 GWB. Nach § 160 Abs. 3 GWB ist ein Nachprüfungsantrag unzulässig, soweit
+
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 GWB bleibt unberührt,
+
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+
+4. Mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.
+
+Dies gilt nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2 GWB. § 134 Absatz 1 Satz 2 GWB bleibt unberührt.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealInformationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealInformationParty>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+				<cac:MediationParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:MediationParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe.metropoleruhr.de/VMPSatellite/notice/CXS0YRTDY6E4EN3L</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-12-14+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-06+01:00</cbc:EndDate>
+				<cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-10-27+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>true</cbc:LimitationDescription>
+				<cbc:MaximumQuantity>4</cbc:MaximumQuantity>
+				<cbc:MinimumQuantity>4</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2026-0599</cbc:ID>
+			<cbc:Name languageID="DEU">Workforcemanagementsystem - Netzbau (WFM BAU)</cbc:Name>
+			<cbc:Description languageID="DEU">Im Rahmen der gegenständlichen EU-Ausschreibung soll ein Bewerber gefunden werden, der eine für Netzbetreiber branchenspezifische Workforcemanagement Standardsoftwarelösung, mit den u.g. Leistungsbausteinen, einführt und in einer Cloudumgebung betreibt.
+
+- Der Leistungsbaustein Dienstleisterportal ("DL-PORTAL") umfasst die vollständige digitale Auftragsabwicklung für externe Partner. Dies reicht von der dispositorischen Zuordnung und Bereitstellung aller Auftragsinformationen über die aktive Bearbeitung von Aufträgen, Checklisten und digitalen Formularen (inkl. Unterschriftsfunktion) bis hin zur Dokumentation durch Fotos und Plausibilitätsprüfungen. Eine zentrale Synchronisation sowie der Zugriff auf relevante Dokumente gewährleisten dabei stets den aktuellen Datenstand. Der Funktionsumfang deckt zudem den gesamten Netzbau-Lebenszyklus ab und beinhaltet spezifische Anforderungen für die Phasen Planung, Bauausführung, Vermessung, Aufmaß/Abrechnung sowie den finalen Projektabschluss.
+- Der Leistungsbaustein Mobile Bearbeitung ("MOBIL") ermöglicht Außendienstmitarbeitern eine vollständig digitale und ortsunabhängige Arbeitsausführung. Im Kern steht die Bearbeitung von Aufträgen samt zugehöriger Objekte und Meldungen, ergänzt durch die Erfassung von Checklisten, Messwerten, Zustandsbewertungen so-wie individuellen Tätigkeiten - jeweils unterstützt durch Plausibilitätsprüfungen und Pflichteingabekontrollen. Die Lösung umfasst zudem die direkte Dokumentation via Fotos, den Zugriff auf relevante Unterlagen sowie die Bearbeitung digitaler Formulare inklusive elektronischer Unterschrift. Umfassende Buchungsfunktionen decken die Erfassung von Arbeitsstunden Materialbedarfen und Reservierung von Materialien ab. Eine zuverlässige Synchronisation stellt dabei jederzeit die Datenkonsistenz sicher. Spezielle Funktionen unterstützen zudem die netzbauspezifischen Prozesse in den Phasen Bauausführung, Vermessung sowie Aufmaß und Abrechnung direkt vor Ort. 
+
+Der Leistungsbaustein Disposition ("DISPO") dient der zentralen Steuerung einer ressourcenoptimierte Einsatzplanung. Er ermöglicht die intelligente Kombination und Zuordnung von Aufträgen unter Berücksichtigung der aktuellen Verfügbarkeit von Personal. Durch umfangreiche Status-, Filter- und Anzeigefunktionen sowie Exportmöglichkeiten wird eine hohe Transparenz über alle laufenden Maßnahmen geschaffen. Der Leistungsbaustein unterstützt zudem die Verwaltung von Qualifikationen durch die Planung, notwendiger Schulungen und Unterweisungen. Spezifische Funktionen für den Netzbau gewährleisten dabei, dass alle besonderen Anforderungen der Bauprozesse bei der Einplanung automatisch berücksichtigt, werden.
+
+- Der Leistungsbaustein Prozesslösung Netzbau ("PROZESS-BAU") bildet als Kernstück der Lösung den gesamten Lebenszyklus einer Baumaßnahme in einem durchgängigen, workflowgesteuerten Prozess ab. Die Abbildung beginnt bei der strategischen Vorplanung, Koordination und dem Umlaufverfahren, führt über die Entwurfs- und Genehmigungsplanung sowie die Ausschreibung bis hin zur detaillierten Ausführungsplanung und Arbeitsvorbereitung. Während der Bauausführung werden alle Prozesse von der GIS-kartenbasierten Steuerung über die Vermessung und Dokumentation bis zum Management von Checklisten, Bestellungen und Materialreservierungen integriert. Die Lösung beinhaltet zudem eine nahtlose SAP-Anbindung für die Projektanlage (PSP-Elemente), die Anlagenbuchhaltung und die Prüfung rückgemeldeter Stundenerfassungen. Abschließend deckt der Leistungsbaustein den Projektabschluss mit Aufmaß, Abrechnung und finaler Dokumentation ab. Durchgängige Statusschemata, standardisierte Reports und flexible tabellarische Übersichten gewährleisten dabei zu jedem Zeitpunkt volle Transparenz und Steuerbarkeit aller Projektdaten.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48000000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Bungertstraße 27</cbc:StreetName>
+					<cbc:CityName>Duisburg</cbc:CityName>
+					<cbc:PostalZone>47053</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA12</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DescriptionCode listName="duration">UNLIMITED</cbc:DescriptionCode>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:MaximumNumberNumeric>0</cbc:MaximumNumberNumeric>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

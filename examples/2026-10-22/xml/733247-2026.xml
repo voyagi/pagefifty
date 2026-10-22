@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://vergabe.muenchen.de/</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Kommunalreferat, Recht und Verwaltung, Zentrale Dienste, Submissionsbüro</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Denisstr. 2</cbc:StreetName>
+                           <cbc:CityName>München</cbc:CityName>
+                           <cbc:PostalZone>80335</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>09162000-ZRE 1000000-09</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.regierung.oberbayern.bayern.de/ueber_uns/zentralezustaendigkeiten/vergabekammer-suedbayern/</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Regierung von Oberbayern, Vergabekammer Südbayern</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:CityName>München</cbc:CityName>
+                           <cbc:PostalZone>80538</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>09-0358002-61</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00733247-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">20e7dda8-9820-4708-a47b-04ad814b897b</cbc:ID>
+   <cbc:ContractFolderID>d7368c8b-0875-4419-bbe4-f86f2b8167cf</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-21+02:00</cbc:IssueDate>
+   <cbc:IssueTime>14:17:09+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-21+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cbc:BuyerProfileURI>https://vergabe.muenchen.de/</cbc:BuyerProfileURI>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">la</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Es gelten die gesetzlichen Ausschlussvoraussetzungen nach §§ 123 bis 126 GWB. Der Bieter (bei Bietergemeinschaften alle Mitglieder) hat anzugeben, ob Ausschlussgründe nach §§ 123, 124 GWB vorliegen. Empfohlen wird, für die Angaben das hierfür vorgesehene Formblatt zu verwenden, das den Vergabeunterlagen beigefügt ist. Beruft sich der Bieter hinsichtlich seiner Leistungsfähigkeit auf die Kapazitäten anderer Unternehmen (Eignungsleihe), sind die entsprechenden Angaben auch für diese Unternehmen vorzulegen. Beabsichtigt der Bieter, Leistungen durch Unterauftragnehmer erbringen zu lassen, sind die entsprechenden Angaben auf gesonderte Anforderung des Auftraggebers auch für diese einzureichen.
+Sofern es sich bei dem Bewerber oder dem Mitglied der Bewerber-/Bietergemeinschaft um eine natürliche Person handelt, sind auf gesonderte Anforderung der Konzessionsgeberin zum Zweck der Anforderung eines Auszugs aus dem Wettbewerbsregister durch die Konzessionsgeberin vor Zuschlagserteilung außerdem anzugeben: Vorname(n), Geburtsname, Familienname (falls abweichend vom Geburtsnamen), Geburtsdatum, Geburtsort, Staatsangehörigkeit.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren".</cbc:Description>
+         </cac:SpecificTendererRequirement>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Wie vorstehende Beschreibung zu Ausschlussgrund "Der Zahlungsunfähigkeit vergleichbare Lage gemäß nationaler Rechtsvorschriften" oder "Mit Insolvenz vergleichbares Verfahren". Die dort bezeichneten §§ 123 bis 126 GWB schließen die Ausschlussgründe nach den Bestimmungen ein, die in § 124 Absatz 2 GWB aufgeführt sind (§ 21 Arbeitnehmer-Entsendegesetz, § 98c Aufenthaltsgesetz, § 19 Mindestlohngesetz, § 21 Schwarzarbeitsbekämpfungsgesetz, § 22 Lieferkettensorgfaltspflichtengesetz, § 14 Bundestariftreuegesetz).</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>KR-Subm-2026-0015</cbc:ID>
+      <cbc:Name languageID="DEU">Vermessungstechnische Straßenbefahrung 2027</cbc:Name>
+      <cbc:Description languageID="DEU">Gegenstand dieses Vertrags ist der Erwerb hochaufgelöster, nahtlos aneinandergrenzender und georeferenzierter 360° Panoramabilder sowie einer 3D-Punktwolke durch LiDAR, die durch die Befahrung der Straßen und Wege von München für das gesamte Befahrungsgebiet zu erstellen sind. Darüber hinaus ist ein durch die Auftraggeberin optional abrufbarer Teil der zu erbringenden Leistung die Erfassung der Art und Lage von:  
+-	Verkehrsschilder
+-	Fahrbahnmarkierungen
+-	Parkplätze
+-	Baumstandorte
+-	Straßenmobiliar
+-	Taktile Leitsysteme
+-	Seilhängeleuchten
+-	Statische Schallschutzbauwerke
+-	Querungsstellen für den Fußverkehr 
+-	Ungesicherte Querungsstellen für den Fußverkehr sowie die
+-	Zustandserfassung- und Bewertung des Straßennetzes
+
+Das Hosting der Daten erfolgt durch den Auftragnehmer. Er stellt eine Webanwendung zur Nutzung der Daten im Browser und eine Schnittstelle oder ein Plug-In zur Nutzung in VertiGIS Studio Web, im GeoPortal München (basierend auf Masterportal), in ESRI ArcGIS Pro sowie in Smallworld GIS, Q-GIS und SAMO LIDS Explorer / SAMO LIDS Browser bereit.
+
+Ebenso Teil des Vertrages ist das Hosting und die Visualisierung eines Teils der bereits vorhandenen Straßenbefahrungsdaten. Diese liegen als Bilder mit Tiefeninformation sowie Vektordaten wie Verkehrszeichen, Fahrbahnmarkierungen, Parkplätze und Baumstandorte vor. Diese Daten liegen in der Schnittstelle 2 bzw. 3 des Befahrungsdienstleisters iNovitas AG bei der Auftraggeberin vor. Diese Befahrungen deckten jeweils ein Straßen- und Wegenetz von ca. 3.500 km (2019/20) bzw. ca. 3.900 km (2023/24) ab, was einem Speichervolumen von ca. 30 TB für beide Befahrungen entspricht.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">a) Die Anhänge zur Leistungsbeschreibung können wegen des Datenvolumens nicht über die eVergabe­Plattform des Beschaffers zur Verfügung gestellt werden. Sie stehen jedoch unter folgender Internetadresse des Auftraggebers zum unentgeltlichen, uneingeschränkten und direkten Abruf zur Verfügung:
+
+https://dap.muenchen.de/index.php/s/2ltm6GYSAa1iiFP 
+Passwort:  muenchen_2027 
+
+b) Auf Wunsch und entsprechenden Antrag an die ausschreibende Stelle stellt der Beschaffer für die Angebotsbearbeitung in Bezug auf die Migration der bereits aus den vorangegangenen Straßenbefahrungen vorhandenen Daten auch Testdaten zum Download via URL zur Verfügung.---
+c) Der Beschaffer führt die Kommunikation mit den Unternehmen ausschließlich elektronisch über die Vergabeplattform der Landeshauptstadt München, soweit nicht andere Kommunikationsformen zulässig sind. Die ausschreibende Stelle wird dementsprechend auch rechtserhebliche Erklärungen, die einem bestimmten Unternehmen gegenüber abzugeben sind, ebenso wie Dokumente oder sonstige Informationen dadurch dem betreffenden Unternehmen zugehen lassen, dass die Erklärung, das Dokument oder die sonstige Information ausschließlich in dem jeweiligen Bietercockpit bereitgestellt wird, das dem Unternehmen nach dessen Registrierung über die Vergabeplattform der Landeshauptstadt München zur Verfügung steht. Bitte beachten Sie, dass dies insbesondere auch für die Information der Bieter, deren Angebote nicht berücksichtigt werden oder nicht berücksichtigt worden sind, durch die ausschreibende Stelle gilt. Bitte informieren Sie sich daher selbstständig über neu im Bietercockpit eingestellte Erklärungen, Dokumente und sonstige Informationen und beachten Sie insbesondere die entsprechenden Nachrichten, die darauf hinweisen, dass neue Informationen zur Verfügung stehen. Ungeachtet dessen behält sich die ausschreibende Stelle vor, Erklärungen, Dokumente oder sonstige Informationen den Unternehmen gegebenenfalls jeweils nicht nur über die Vergabeplattform, sondern zusätzlich per E-Mail an deren jeweils angegebene oder im Vergabeverfahren verwendete E- Mail-Adresse zu übermitteln. 
+ ---d) Auskünfte zu den Vergabeunterlagen oder sonstige zusätzliche Informationen sind so rechtzeitig bei der ausschreibenden Stelle anzufordern, dass die ausschreibende Stelle diese spätestens sechs Kalendertage vor Ablauf der Frist für den Eingang der Angebote anonymisiert für alle Unternehmen über die eVergabe-Plattform bereitstellen kann. Werden Informationen nach dieser Maßgabe verspätet angefordert, insbesondere Fragen verspätet gestellt, werden diese unter Umständen nicht mehr erteilt und Fragen unter Umständen nicht mehr beantwortet. Hinweise und sonstige Informationen zum Verfahrensablauf teilt die ausschreibende Stelle gegebenenfalls auch später als sechs Kalendertage vor dem Ablauf der Frist für den Eingang der Angebote mit. Bitte informieren Sie sich selbstständig auf der Vergabeplattform über den aktuellen Stand des Vergabeverfahrens und aktuelle zusätzliche Informationen. --- 
+e) Für eine verifizierende Teststellung einzureichen sind auf gesonderte Anforderung innerhalb der vom Beschaffer gesetzten Frist (10 Tage nach näherer Maßgabe der Vergabeunterlagen) -- 
+aa) eine Testarbeit. Der Bieter hat dazu nach vorheriger Terminvereinbarung mit der ausschreibenden Stelle (auf Wunsch des Bieters auch vor einer Aufforderung des Beschaffers zur Einreichung der Testarbeit oder vor dem Schlusstermin für den Angebotseingang) mit dem von ihm für die Auftragsausführung vorgesehenen Mobile Mapping System das in den Vergabeunterlagen bezeichnete Testgebiet unter Einhaltung der Vorgaben an das Testszenario zu befahren. Bitte verwenden Sie für die Terminvereinbarung die Funktion Bieternachricht des Bietercockpits der eVergabe-Plattform. Die Testarbeit muss aus technischen Gründen (Datenkapazität der eVergabe-Plattform) innerhalb der vom Beschaffer gesetzten Frist entweder durch Übermittlung der Zugangsdaten über die eVergabe-Plattform für den uneingeschränkten Abruf der Testarbeit durch den Beschaffer oder per Datenträger eingereicht werden. -- 
+bb) die Zugangsdaten zur Einsichtnahme in den web-basierten und mit den Daten der Testarbeit versehenen Mobile Mapping Viewer. -- 
+cc) Weitere Einzelheiten zu aa) und bb) siehe Ergänzung zur Aufforderung zur Angebotsabgabe. --- 
+f) Das Angebot muss elektronisch in Textform mittels der für die Angebotsabgabe vorgesehenen Funktion des Bietercockpits der Vergabeplattform eingereicht werden. Verwenden Sie für die Angebotsabgabe NICHT die Funktion Nachrichten des Bietercockpits und reichen Sie das Angebot NICHT per E-Mail oder per Fax ein. Schriftliche Angebotsabgabe ist nicht zugelassen.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">71350000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">71355100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72319000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>München</cbc:CityName>
+            <cbc:PostalZone>80335</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen sind (bei Bietergemeinschaften von allen Mitgliedern): 
+ 
+a) Mit dem Angebot: Referenzen (Eigenerklärungen) in Form einer Liste über die in den letzten 3 Jahren erbrachten wesentlichen Leistungen mit Angabe des Werts, des Erbringungszeitpunkts sowie des öffentlichen oder privaten Empfängers (einschließlich Kontaktdaten der dortigen Ansprechperson), aus denen anhand der Angaben zum konkreten Leistungsgegenstand [insbesondere auch Angabe von Projektstart und -ende (jeweils Monat/Jahr), Projektumfang (ungefähre Länge des zu erfassenden Netzes, zu erfassende Infrastruktur), Beschreibung der zugrundeliegenden Regelwerke / Richtlinien] hervorgeht, dass sie Leistungen zum Gegenstand haben, die mit den Leistungen des vorliegend ausgeschriebenen Auftrags vergleichbar sind und die nachstehend unter b) benannten Mindestanforderungen erfüllen. Angegeben werden können auch entsprechende Referenzen über zeitlich davor erbrachte wesentliche Leistungen, sofern diese ab dem Kalenderjahr 2019 oder später erbracht worden sind. Im Falle einer Bietergemeinschaft genügt es, wenn die Mindestanforderungen durch die Bietergemeinschaft insgesamt erfüllt werden. Dies gilt entsprechend, wenn der Bieter beabsichtigt, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich im Hinblick auf die erforderliche Leistungsfähigkeit anderer Unternehmen zu bedienen. 
+
+b) Mindestanforderungen: Es müssen mindestens drei Referenzen (Eigenerklärungen) mit unter anderem folgenden auftragsgegenständlichen Leistungen vorgelegt werden: 
+
+aa) Ergebnis der verifizierenden Teststellung als technische Leistungsfähigkeit im Zuge der Angebotslegung, siehe Ergänzung zur Aufforderung zur Angebotsabgabe. Dabei müssen die folgenden Parameter eingehalten werden: 
+  
+- Bilder der Prüfschilder: 
+
+•        Im Abstand von 8 m muss die Pixelgröße am Objekt kleiner oder gleich 5 mm sein 
+•        Im Abstand von 8 m muss das eindeutig erkennbare Balkenpaar eine Breite von kleiner oder gleich 20 mm haben 
+•        Im Abstand von 8 m (räumlicher Vektor zwischen dem Aufnahmezentrum eines Bildes und dem Zentrum eines Schildes) muss die Lesbarkeit der Texte (retroreflektierende Oberfläche) mit Schrifthöhe 4 cm und Schriftbreite 5 mm gegeben sein 
+  
+-3D-Information (Punktwolke): 
+  
+Die im Folgenden beschriebenen Kennwerte müssen für die jeweiligen Prüfschilder innerhalb der gegebenen Grenzwerte liegen. Maximal zwei der Grenzwerte dürfen um höchstens 20% überschritten (Streuung, Punktabstand) bzw. unterschritten (Punktdichte) werden.
+•        Bei einmaligem Vorbeibewegen in 8 m Entfernung darf die Streuung der Messdaten an einer Ebene ±1 cm nicht überschreiten 
+•        Bei einmaligem Vorbeibewegen in 8 m Entfernung muss die Punktdichte mindestens 1000 Punkte/m² betragen 
+•        Bei einmaligem Vorbeibewegen in 8 m Entfernung darf der Punktabstand der Messpunkte am Objekt maximal 3,1 cm betragen 
+•        Bei einmaligem Vorbeibewegen in 4 m Entfernung (orthogonal aufgestellte Schilder) darf die Streuung der Messdaten ( ) an einer Ebene ±1 cm nicht überschreiten 
+•        Bei einmaligem Vorbeibewegen in 4 m Entfernung muss die Punktdichte an den orthogonal aufgestellten Schildern mindestens 500 Punkte/m² betragen 
+  
+bb) Visuelle Auswertung des Zustands der Straßenoberfläche anhand von Bildern gemäß den Empfehlungen für das Erhaltungsmanagement von Innerortsstraßen (E EMI Ausgabe 2012 oder 2025) und Anwendung der Empfehlungen für das Erhaltungsmanagement von Innerortsstraßen (E EMI Ausgabe 2012 oder 2025) vom Referenzauftraggeber vorgegeben.
+ 
+cc) Mindestens drei der angeforderten Schnittstellen/PlugIns [VertiGIS Studio Web, GeoPortal München (basierend auf Masterportal), ESRI ArcGIS Pro, Smallworld GIS, Q-GIS und SAMO LIDS Explorer / SAMO LIDS Browser] sind (nicht notwendigerweise im Rahmen desselben Referenzauftrags) bereits betriebsbereit an den jeweiligen Referenzauftraggeber übergeben worden. 
+
+dd) Die Mindestanforderungen gemäß vorstehend bb) einerseits und cc) andererseits müssen nicht notwendigerweise in derselben Referenz erfüllt sein. Nicht als Mindestanforderung, sondern als Orientierungsgröße wird bei der Betrachtung der Vergleichbarkeit zugrunde gelegt, dass im Rahmen des jeweiligen Referenzauftrages mindestens ca. 1.500 km Straßen- und Wegenetz bearbeitet worden sind. 
+
+c) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen (empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind), und die unter a) und b) genannten Unterlagen auch für diese Unternehmen einzureichen. 
+
+d) Für in ausländischer Sprache abgefasste Nachweise ist eine Übersetzung ins Deutsche beizufügen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen sind (bei Bietergemeinschaften von allen Mitgliedern): 
+
+a) Mit dem Angebot: Angabe der durchschnittlichen jährlichen Beschäftigtenanzahl und die Zahl der Führungskräfte, jeweils in den letzten 3 Jahren. 
+
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen, und die unter a) genannten Unterlagen auch für diese Unternehmen einzureichen.
+ 
+c) Empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-no-mgmt</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Wie vorstehende Beschreibung unter "Durchschnittliche jährliche Belegschaft".</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Kapazitäten anderer Unternehmen (Unteraufträge und Eignungsleihe): 
+
+a) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen, und dass diese Unternehmen geeignet sind. 
+
+b) Nimmt der Bieter in Hinblick auf die Kriterien für die wirtschaftliche und finanzielle Leistungsfähigkeit im Rahmen einer Eignungsleihe die Kapazitäten anderer Unternehmen in Anspruch, müssen diese gemeinsam mit dem Bieter für die Auftragsausführung haften; die Haftungserklärung ist gleichzeitig mit der Verpflichtungserklärung abzugeben. 
+
+c) Empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen sind (bei Bietergemeinschaften von allen Mitgliedern): 
+
+a) Mit dem Angebot: Bescheinigung über eine bestehende Betriebshaftpflichtversicherung mit Angaben zur Deckungssumme nach den nachstehend benannten Mindestanforderungen. Alternativ kann eine Bestätigung eines Versicherers über eine entsprechende Versicherbarkeit im Auftragsfall oder eine Eigenerklärung abgegeben werden, dass im Auftragsfall unverzüglich eine entsprechende Betriebshaftpflichtversicherung für den Auftrag abgeschlossen wird. Mindestanforderungen: Deckungssummen über mindestens aa) EUR 3.000.000 für Personenschäden und bb) entweder (aaa) EUR 1.000.000 für sonstige Schäden oder alternativ (bbb) EUR 1.000.000 für Sachschäden und EUR 1.000.000 für Vermögensschäden. Die Maximierung der Ersatzleistung pro Versicherungsjahr muss jeweils mindestens das Zweifache der Deckungssumme betragen. Bei Bietergemeinschaften ist der Nachweis der Haftpflichtversicherung für jedes Mitglied getrennt zu führen. Alternativ kann ein Nachweis oder eine Eigenerklärung der Bietergemeinschaftsmitglieder eingereicht werden, dass im Falle einer Auftragsvergabe eine Versicherung in der vorgegebenen Deckungshöhe besteht, die die gesamtschuldnerische Haftung aller Mitglieder der Bewerbergemeinschaft abdeckt. -- 
+
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen, und die unter a) genannten Unterlagen auch für diese Unternehmen einzureichen; alternativ kann der Bieter den Nachweis einreichen, dass die Haftung für das andere Unternehmen von der Betriebshaftpflichtversicherung mitumfasst ist, oder eine entsprechende Eigenerklärung über eine entsprechende Versicherbarkeit im Auftragsfall. 
+
+c) Nimmt der Bieter in Hinblick auf das vorliegende Kriterium oder andere Kriterien für die wirtschaftliche und finanzielle Leistungsfähigkeit im Rahmen einer Eignungsleihe die Kapazitäten anderer Unternehmen in Anspruch, müssen diese gemeinsam mit dem Bieter für die Auftragsausführung haften; die Haftungserklärung ist gleichzeitig mit der Verpflichtungserklärung abzugeben. 
+
+d) Empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind. 
+
+e) Für in ausländischer Sprache abgefasste Nachweise ist eine Übersetzung ins Deutsche beizufügen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen ist (bei Bietergemeinschaften von allen Mitgliedern): 
+
+a) Mit dem Angebot: Eigenerklärung über den Gesamtumsatz für jedes der letzten 3 Geschäftsjahre, für die durch Jahresabschluss oder eine vergleichbare Feststellung abgeschlossene Geschäftszahlen vorliegen und soweit in den jeweiligen Jahren ein Umsatz erzielt worden ist, unter Einschluss des Anteils von zusammen mit anderen Unternehmen erbrachten Leistungen. 
+
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen, und dass diese Unternehmen geeignet sind. 
+
+c) Nimmt der Bieter im Hinblick auf das vorliegende Kriterium oder andere Kriterien für die wirtschaftliche und finanzielle Leistungsfähigkeit im Rahmen einer Eignungsleihe die Kapazitäten anderer Unternehmen in Anspruch, müssen diese gemeinsam mit dem Bieter für die Auftragsausführung haften; die Haftungserklärung ist gleichzeitig mit der Verpflichtungserklärung abzugeben. 
+
+d) Empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec-avg</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen ist (bei Bietergemeinschaften von allen Mitgliedern):
+ 
+a) Mit dem Angebot: Eigenerklärung über den Umsatz hinsichtlich der Leistungen in dem Tätigkeitsbereich, dem der vorliegend ausgeschriebene Auftrag zuzuordnen ist, für jedes der letzten 3 Geschäftsjahre, für die durch Jahresabschluss oder eine vergleichbare Feststellung abgeschlossene Geschäftszahlen vorliegen und soweit in den jeweiligen Jahren ein Umsatz erzielt worden ist, unter Einschluss des Anteils bei gemeinsam mit anderen Unternehmen erbrachten Leistungen. 
+
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die hierfür vorgesehenen Leistungen/Kapazitäten in seinem Angebot benennen. Der Bieter hat auf gesondertes Verlangen des Beschaffers zu dem von ihm bestimmten Zeitpunkt nachzuweisen, dass ihm die erforderlichen Kapazitäten der anderen Unternehmen zur Verfügung stehen, beispielsweise durch eine entsprechende Verpflichtungserklärung dieser Unternehmen, und die unter a) genannten Unterlagen auch für diese Unternehmen einzureichen. 
+
+c) Nimmt der Bieter im Hinblick auf das vorliegende Kriterium oder andere Kriterien für die wirtschaftliche und finanzielle Leistungsfähigkeit im Rahmen einer Eignungsleihe die Kapazitäten anderer Unternehmen in Anspruch, müssen diese gemeinsam mit dem Bieter für die Auftragsausführung haften; die Haftungserklärung ist gleichzeitig mit der Verpflichtungserklärung abzugeben. 
+
+d) Empfohlen wird, für die entsprechenden Erklärungen die hierfür vorgesehenen Formblätter zu verwenden, die den Vergabeunterlagen beigefügt sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen ist (bei Bietergemeinschaften von allen Mitgliedern):
+ 
+a) Mit dem Angebot: Nachweis oder Erklärung (Eigenerklärung), dass der Bieter nach den Rechtsvorschriften des Staates, in dem er niedergelassen ist, in einem Berufsregister dieses Staates eingetragen ist, oder Nachweis der erlaubten Berufsausübung auf andere Weise (§ 44 VgV). 
+
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die unter a) genannten Unterlagen auf gesonderte Anforderung des Beschaffers innerhalb der von diesem bestimmten Frist auch für diese Unternehmen einzureichen. 
+
+c) Für in ausländischer Sprache abgefasste Nachweise ist eine Übersetzung ins Deutsche beizufügen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Einzureichen ist (bei Bietergemeinschaften von allen Mitgliedern): 
+
+a) Mit dem Angebot: (Eigenerklärung) oder Nachweis, dass der Bieter nach den Rechtsvorschriften des Staates, in dem er niedergelassen ist, in einem Handelsregister dieses Staates eingetragen ist, oder Nachweis der erlaubten Berufsausübung auf andere Weise (§ 44 VgV). 
+b) Beabsichtigt der Bieter, Teile der Leistung von anderen Unternehmen ausführen zu lassen oder sich bei der Erfüllung eines Auftrages im Hinblick auf die erforderliche wirtschaftliche, finanzielle, technische oder berufliche Leistungsfähigkeit anderer Unternehmen zu bedienen, so muss er die unter a) genannten Unterlagen auf gesonderte Anforderung des Beschaffers innerhalb der von diesem bestimmten Frist auch für diese Unternehmen einzureichen. 
+
+c) Für in ausländischer Sprache abgefasste Nachweise ist eine Übersetzung ins Deutsche beizufügen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://vergabe.muenchen.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-19f88cd76ab-33ebe3c7f6e355a6</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Eine Nachforderung von Unterlagen ist nach Maßgabe von § 56 
+VgV möglich.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">a) Einzureichen mit dem Angebot: 
+
+aa) Im Fall von Bietergemeinschaften: Verzeichnis der Mitglieder mit Bezeichnung des bevollmächtigten Vertreters (Unternehmen) und eine von allen Mitgliedern unterzeichnete Erklärung, dass der bevollmächtigte Vertreter die Mitglieder gegenüber dem Beschaffer/Auftraggeber (AG) vertritt, er berechtigt ist, mit uneingeschränkter Wirkung für jedes Mitglied Zahlungen anzunehmen, und dass alle Mitglieder für die Vertragserfüllung und etwaige Schadensersatzansprüche des AG gesamtschuldnerisch haften. 
+
+bb) ausgefülltes Formblatt "Eigenerklärung - Bezug zu Russland", das den Vergabeunterlagen beigefügt ist (bei Bietergemeinschaften von allen Mitgliedern), auf Anforderung nach Maßgabe der Bedingungen des Formblatts auch von Unterauftragnehmern und anderen Unternehmen -- 
+
+b) Sonstige einzureichende leistungsbezogene Angaben/Unterlagen siehe Vergabeunterlagen 
+
+c) Leistungsbedingungen siehe Vertragsunterlagen</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>100.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Niedrigster Preis (Angebotssumme)</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://vergabe.muenchen.de/</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">45</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Um eine Korrektur des Vergabeverfahrens zu erreichen, kann ein Nachprüfungsverfahren bei der Vergabekammer geführt werden, solange durch den Auftraggeber ein wirksamer Zuschlag nicht erteilt ist. Ein Vertrag (Zuschlag) kann erst abgeschlossen werden, nachdem der Auftraggeber die unterlegenen Bewerber/Bieter über den beabsichtigten Zuschlag gem. § 134 GWB informiert hat und 15 Kalendertage bzw. bei Versendung der Information per Fax oder auf elektronischem Weg 10 Kalendertage vergangen sind.
+Es wird darauf hingewiesen, dass bei Beanstandungen im Hinblick auf das hiesige Vergabeverfahren die Bewerber/Bieter Verstöße gegen Vergabevorschriften, die sie erkannt haben, gegenüber dem Auftraggeber innerhalb einer Frist von 10 Kalendertagen zu rügen haben und weiterhin Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung und/oder erst in den Vergabeunterlagen erkennbar sind, von den Bewerbern/Bietern spätestens bis zum Ablauf der Frist zur Abgabe der Teilnahmeanträge (Teilnahmefrist) oder Angebote (Angebotsfrist) gegenüber dem Auftraggeber zu rügen sind (vgl. § 160 Abs. 3 Satz 1 Nr. 1 bis Nr. 3 GWB), damit die Bewerber/Bieter für den Fall, dass der Rüge nicht abgeholfen wird, ein Nachprüfungsverfahren vor der Vergabekammer anstreben können.
+Sofern der Auftraggeber einer Rüge nicht abhilft, kann der betreffende Bewerber/Bieter nur innerhalb von längstens 15 Kalendertagen nach Eingang der entsprechenden Mitteilung des Auftraggebers diesbezüglich ein Nachprüfungsverfahren vor der Vergabekammer einleiten (vgl. § 160 Abs. 3 Satz 1 Nr. 4 GWB).</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-24+01:00</cbc:EndDate>
+            <cbc:EndTime>10:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-24+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>10:00:00+01:00</cbc:OccurrenceTime>
+            <cbc:Description languageID="DEU">Zum Öffnungstermin sind nur Bedienstete der ausschreibenden 
+Stelle zugelassen.</cbc:Description>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Vermessungstechnische Straßenbefahrung 2027</cbc:Name>
+         <cbc:Description languageID="DEU">Gegenstand dieses Vertrags ist der Erwerb hochaufgelöster, nahtlos aneinandergrenzender und georeferenzierter 360° Panoramabilder sowie einer 3D-Punktwolke durch LiDAR, die durch die Befahrung der Straßen und Wege von München für das gesamte Befahrungsgebiet zu erstellen sind. Darüber hinaus ist ein durch die Auftraggeberin optional abrufbarer Teil der zu erbringenden Leistung die Erfassung der Art und Lage von:  
+-    Verkehrsschilder
+-    Fahrbahnmarkierungen
+-    Parkplätze
+-    Baumstandorte
+-    Straßenmobiliar
+-    Taktile Leitsysteme
+-    Seilhängeleuchten
+-    Statische Schallschutzbauwerke
+-    Querungsstellen für den Fußverkehr 
+-    Ungesicherte Querungsstellen für den Fußverkehr sowie die
+-    Zustandserfassung- und Bewertung des Straßennetzes
+
+Das Hosting der Daten erfolgt durch den Auftragnehmer. Er stellt eine Webanwendung zur Nutzung der Daten im Browser und eine Schnittstelle oder ein Plug-In zur Nutzung in VertiGIS Studio Web, im GeoPortal München (basierend auf Masterportal), in ESRI ArcGIS Pro sowie in Smallworld GIS, Q-GIS und SAMO LIDS Explorer / SAMO LIDS Browser bereit.
+
+Ebenso Teil des Vertrages ist das Hosting und die Visualisierung eines Teils der bereits vorhandenen Straßenbefahrungsdaten. Diese liegen als Bilder mit Tiefeninformation sowie Vektordaten wie Verkehrszeichen, Fahrbahnmarkierungen, Parkplätze und Baumstandorte vor. Diese Daten liegen in der Schnittstelle 2 bzw. 3 des Befahrungsdienstleisters iNovitas AG bei der Auftraggeberin vor. Diese Befahrungen deckten jeweils ein Straßen- und Wegenetz von ca. 3.500 km (2019/20) bzw. ca. 3.900 km (2023/24) ab, was einem Speichervolumen von ca. 30 TB für beide Befahrungen entspricht.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">71350000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">71355100</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72319000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>München</cbc:CityName>
+               <cbc:PostalZone>80335</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE212</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-02-01+01:00</cbc:StartDate>
+            <cbc:EndDate>2031-12-31+01:00</cbc:EndDate>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

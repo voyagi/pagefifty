@@ -87,7 +87,7 @@ type XmlCache = ReturnType<typeof createXmlCache>;
 
 type Fetched =
 	| { ok: true; raw: Uint8Array; record: NoticeRecord; cached: boolean }
-	| { ok: false; reason: string };
+	| { ok: false; reason: string; unshown?: true };
 
 type RawNotice = Extract<Fetched, { ok: true }>;
 
@@ -119,6 +119,9 @@ interface Run {
 	cacheHits: number;
 	failed: Failure[];
 	failedHits: FailedHit[];
+	// Read, but with a deadline the pages cannot show: left out by name and never counted as failed,
+	// while its hit still takes any older version out, as a failed one's does.
+	unshown: (Failure & FailedHit)[];
 	outputs: StepOutput[];
 	selection?: Selection;
 	end?: RunEnd;
@@ -183,7 +186,12 @@ async function fetchRaw(
 	const answer = await client.send('xml', () => new Request(url), { id: number }, MAX_NOTICE_BYTES);
 	if (!answer.ok) return answer;
 	const accepted = readNotice(answer.body, { noticeNumber: number });
-	if (!accepted.ok) return { ok: false, reason: `${accepted.kind}: ${accepted.detail}` };
+	if (!accepted.ok) {
+		const reason = `${accepted.kind}: ${accepted.detail}`;
+		return accepted.kind === 'deadline-offsets'
+			? { ok: false, reason, unshown: true }
+			: { ok: false, reason };
+	}
 	cache.write(number, answer.body);
 	return { ok: true, raw: answer.body, record: accepted.record, cached: false };
 }
@@ -230,7 +238,9 @@ async function readHits(hits: readonly SearchHit[], run: Run, cache: XmlCache) {
 	for (const { hit, number, url } of valid) {
 		const fetched = await fetchRaw(run.client, cache, number, url);
 		if (!fetched.ok) {
-			failedOne(hit, number, fetched.reason);
+			if (fetched.unshown)
+				run.unshown.push({ notice: number, hit, reason: oneLine(fetched.reason) });
+			else failedOne(hit, number, fetched.reason);
 			continue;
 		}
 		if (fetched.cached) run.cacheHits += 1;
@@ -589,7 +599,10 @@ async function capture(deps: CaptureDeps, run: Run): Promise<RunEnd> {
 	// The deadline filter comes before the failure checks, so a filter that leaves nothing is refused
 	// like any empty run, and before the metered steps, so no paid call reads a notice it left out.
 	run.selection = leaveOutClosing(
-		leaveOutOutdated(keepLatest(notices), run.failedHits),
+		leaveOut(
+			leaveOutOutdated(keepLatest(notices), [...run.failedHits, ...run.unshown]),
+			run.unshown.map(({ notice, reason }) => ({ notice, reason }))
+		),
 		run.openAfter
 	);
 	const tooMany = failureRefusal(run.failed.length, run.listed, run.selection.kept.length);
@@ -679,6 +692,7 @@ export async function runCapture(deps: CaptureDeps): Promise<0 | 1 | 2> {
 		cacheHits: 0,
 		failed: [],
 		failedHits: [],
+		unshown: [],
 		outputs: []
 	};
 	// Every run that got this far leaves a record, a thrown one included: in phase 2 it is the

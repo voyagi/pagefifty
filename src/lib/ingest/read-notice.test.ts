@@ -333,15 +333,6 @@ describe('readNotice refusals of incomplete records', () => {
 			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
 		],
 		[
-			'one offset for the tender deadline date and time',
-			(text: string) =>
-				text.replace(
-					'<cbc:EndTime>10:30:00+02:00</cbc:EndTime>',
-					'<cbc:EndTime>10:30:00Z</cbc:EndTime>'
-				),
-			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
-		],
-		[
 			'a tender deadline on a day the calendar holds',
 			(text: string) =>
 				text.replace(
@@ -356,6 +347,43 @@ describe('readNotice refusals of incomplete records', () => {
 		const result = refused(text);
 		expect(result.kind).toBe('malformed');
 		expect(result.detail).toContain(named);
+	});
+
+	const withDeadline = (date: string, time: string) =>
+		ONE_LOT.replace(
+			'<cbc:EndDate>2026-10-06+02:00</cbc:EndDate>',
+			`<cbc:EndDate>${date}</cbc:EndDate>`
+		).replace('<cbc:EndTime>10:30:00+02:00</cbc:EndTime>', `<cbc:EndTime>${time}</cbc:EndTime>`);
+
+	// 721224-2026, published 2026-10-22 for a deadline after the clocks changed, wrote its date at the
+	// winter offset and its time at the summer one, so the two readings are an hour apart.
+	it.each([
+		['the shape TED published', '2026-11-02+01:00', '10:00:00+02:00', '+01:00', '+02:00'],
+		['Z beside another offset', '2026-10-06+02:00', '10:30:00Z', '+02:00', 'Z']
+	])(
+		'refuses a deadline whose date and time carry different offsets (%s) as its own kind',
+		(_what, date, time, dateOffset, timeOffset) => {
+			const text = withDeadline(date, time);
+			expect(text).not.toBe(ONE_LOT);
+			expect(refused(text)).toEqual({
+				ok: false,
+				kind: 'deadline-offsets',
+				detail: `ContractNotice/cac:ProcurementProjectLot[LOT-0000]/cac:TenderSubmissionDeadlinePeriod gives its date at ${dateOffset} and its time at ${timeOffset}, so its deadline is not known to the hour`
+			});
+		}
+	);
+
+	it('reads a date at +00:00 beside a time at Z as one offset', () => {
+		const record = readOk(withDeadline('2026-10-06+00:00', '10:30:00Z'));
+		expect(record.lots[0].deadlines.tender).toBe('2026-10-06T10:30:00Z');
+	});
+
+	it('still refuses a deadline with no offset at all as malformed', () => {
+		const result = refused(withDeadline('2026-10-06', '10:30:00'));
+		expect(result.kind).toBe('malformed');
+		expect(result.detail).toContain(
+			'cac:TenderSubmissionDeadlinePeriod is not a date and time with an offset'
+		);
 	});
 
 	it('refuses a root that does not declare a prefix it uses', () => {
@@ -500,7 +528,7 @@ describe('readNotice under hostile input', () => {
 			const start = at % ONE_LOT.length;
 			const result = read(ONE_LOT.slice(0, start) + ONE_LOT.slice(start + length));
 			if (result.ok) expect(NoticeRecordSchema.safeParse(result.record).success).toBe(true);
-			else expect(['too-large', 'doctype', 'malformed']).toContain(result.kind);
+			else expect(['too-large', 'doctype', 'malformed', 'deadline-offsets']).toContain(result.kind);
 		}
 	);
 

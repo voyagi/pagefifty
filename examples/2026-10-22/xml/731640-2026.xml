@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:defext="german-eforms-extension" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:Changes>
+                  <efbc:ChangedNoticeIdentifier>72e01c47-1df9-4a28-bc0e-3c1f5fcdaaef-01</efbc:ChangedNoticeIdentifier>
+                  <efac:ChangeReason>
+                     <cbc:ReasonCode listName="change-corrig-justification">cor-pub</cbc:ReasonCode>
+                     <efbc:ReasonDescription languageID="DEU">Alt: Angebotsfrist: 2.11.2026 - 12:00 Uhr
+Neu: Angebotsfrist: 24.11.2026 - 12:00 Uhr
+
+Alt: Angebotsöffnung: 2.11.2026 - 13:00 Uhr
+Neu: Angebotsöffnung: 24.11.2026 - 13:00 Uhr 
+
+Alt: Binde-/Zuschlagsfrist: 11.12.2026
+Neu: Binde-/Zuschlagsfrist: 5.2.2027</efbc:ReasonDescription>
+                  </efac:ChangeReason>
+               </efac:Changes>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>true</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">IKK eGK-Beschaffung 2026 GbR</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Kölner Straße 3</cbc:StreetName>
+                           <cbc:CityName>Bergisch Gladbach</cbc:CityName>
+                           <cbc:PostalZone>51429</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA2B</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>0085388807</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Name>[removed]</cbc:Name>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammern des Bundes</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Bundeskanzlerplatz 2-10</cbc:StreetName>
+                           <cbc:CityName>Bonn</cbc:CityName>
+                           <cbc:PostalZone>53113</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>004922894990</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00731640-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.14</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.14</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">43a898bd-74f2-45cc-add1-89593409e52d</cbc:ID>
+   <cbc:ContractFolderID>bd4dd05d-0d6d-4236-94f2-21bb6593a497</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-21+02:00</cbc:IssueDate>
+   <cbc:IssueTime>10:08:45+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-21+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode>DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">pub-undert-cga</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">health</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Der Katalog der zwingenden bzw. fakultativen Ausschlussgründe ergibt sich aus § 123 GWB bzw. § 124 GWB. Mit dem Angebot ist eine Eigenerklärung des Bieters zum Nichtvorliegen von zwingenden und fakultativen Ausschlussgründen gemäß §§ 123, 124 GWB einzureichen (Formblatt D - 2 der Vergabeunterlagen) oder an ihrer Stelle eine ordnungsgemäß ausgefüllte EEE, soweit diese die verlangten Angaben vollständig enthält.</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:Name languageID="DEU">Produktion, Personalisierung und versandfertige Bereitstellung von elektronischen Gesundheitskarten sowie von PIN-/PUK-Briefen</cbc:Name>
+      <cbc:Description languageID="DEU">Gegenstand der Vergabe sind die für die beteiligten Krankenkassen jeweils erforderlichen Leistungen zur Produktion, Personalisierung, sicheren Datenverarbeitung, Konfektionierung und versandfertigen Bereitstellung elektronischer Gesundheitskarten (eGK) sowie zur Produktion und versandfertigen Bereitstellung der zugehörigen PIN-/PUK-Briefe. Die zu erbringenden Leistungen für die eGK beziehen sich zunächst auf eGK der Spezifikation eGK G2.1, umfassen aber auch die optionale rPVC-Ausführungsvariante sowie sämtliche während der Vertragslaufzeit von der einzelnen Krankenkasse freigegebenen physischen Nachfolgegenerationen der eGK. Die Leistungen für die versandfertige Bereitstellung der eGK umfassen zudem das von der jeweiligen Krankenkasse optional aktivierbare maschinelle Beifügen eines Hauptflyers zu den im jeweiligen technischen Produktionsauftrag entsprechend gekennzeichneten Kartenbegleitschreiben. Bei gesonderter Aktivierung kann zusätzlich genau ein kassenindividueller Zusatzflyer ausschließlich gemeinsam mit dem Hauptflyer beigefügt werden. Bei Beginn der Leistungserbringung ist der Hauptflyer der Organspendeflyer. Die Leistungen für die PIN-/PUK-Briefe umfassen – je nach konkretem Leistungsabruf der einzelnen Krankenkasse – auch die daten- und drucktechnische Umsetzung für die sichere Zustellung mittels Zustellident.
+Gesellschafter der IKK eGK-Beschaffung 2026 GbR sind die folgenden Krankenkassen: 1. BundesInnungskrankenkasse Gesundheit, kurz: BIG direkt gesund, Markgrafenstraße 22, 10117 Berlin; 2. IKK Brandenburg und Berlin, Ziolkowskistraße 6, 14480 Potsdam; 3. IKK gesund plus, Umfassungsstraße 85, 39124 Magdeburg; 4. IKK – Die Innovationskasse (IK), Überseeboulevard 5, 20457 Hamburg; 5. IKK classic, Tannenstraße 4b, 01099 Dresden; 6. IKK Südwest, Europaallee 3-4, 66113 Saarbrücken; 7. KNAPPSCHAFT, Knappschaftstraße 1, 44799 Bochum; 8. Sozialversicherung für Landwirtschaft, Forsten und Gartenbau (SVLFG), Weißensteinstraße 70-72, 34131 Kassel. Die beteiligten Krankenkassen sind jeweils Körperschaften des öffentlichen Rechts.
+Mit der Zuschlagserteilung kommen unmittelbar unbefristete Leistungsverträge zwischen dem Auftragnehmer und den einzelnen Krankenkassen zustande. Diese Verträge begründen fortlaufende Leistungs- und Vergütungspflichten im Sinne eines Dauerschuldverhältnisses. Die spätere Übermittlung der Daten für die einzelnen zu erstellenden Gesundheitskarten und PIN-/PUK-Briefe bestimmt lediglich Menge, Inhalt und Ausführungszeitpunkt der bereits vertraglich geschuldeten Leistungen. Hierbei handelt es sich nur um „Produktionsaufträge“ in einem technischen Sinne, die weder einen gesonderten Auftrag noch einen Einzelvertrag begründen.
+Die regelmäßige Produktion und die sonstige laufende Leistungserbringung beginnen am 01.08.2027. Für die ersten 48 Monate werden unverbindliche Kalkulations- und Wertungsmengen von 4.490.606 Standard-eGK G2.1, 1.924.545 rPVC-eGK G2.1, 3.812.299 PIN-/PUKBriefen, 381.230 Sendungen mit Zustellident, 6.415,151 Abrechnungseinheiten für die technische DV- und/oder UPOC-Freimachung zu je 1.000 Sendungen, 5.132.121 beigefügten Hauptflyern (für die Angebotswertung: Organspendeflyer) und 2.420.000 zusammen mit einem Hauptflyer beigefügten kassenindividuellen Zusatzflyern zugrunde gelegt. Diese Mengenangaben begründen im Rahmen des ausgeschriebenen Dauerschuldverhältnisses weder eine Mindestabnahmemenge noch eine vertragsbeendende Höchstmenge. 
+Die bei Vertragsschluss vereinbarten Netto-Einheitspreise bleiben bis einschließlich 31.07.2031 unverändert. Ab dem 01.08.2031 werden die erfassten Einheitspreise im Abstand von jeweils 24 Monaten nach der vertraglich festgelegten Preisänderungsklausel angepasst. Für physische Nachfolgegenerationen der Gesundheitskarten gilt das hierfür gesondert geregelte Preisbildungs-, Prüf-, Nachweis- und Freigabeverfahren. Die Verträge haben kein festes Enddatum und bestehen bis zu einer wirksamen Kündigung fort. Eine ordentliche Kündigung ist erstmals zum 31.07.2031 und anschließend im Abstand von jeweils 24 Monaten möglich.</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cbc:Note languageID="DEU">Die IKK eGK-Beschaffung 2026 GbR hat die Arbeitsgemeinschaft Telematik der Innungskrankenkassen (ARGE TelematiKK) mit der organisatorischen Abwicklung des Vergabeverfahrens betraut. Die ARGE TelematiKK hat die Aufgabe der Begleitung und Umsetzung der Aktivitäten im Zusammenhang mit der elektronischen Gesundheitskarte und der Telematikinfrastruktur. Gesellschafter der ARGE TelematiKK sind alle Innungskrankenkassen und die SVLFG. Die wesentlichen Entscheidungen über die Beschaffung - insbesondere über die Auftragsvergabe - verbleiben jedoch bei der IKK eGK-Beschaffung 2026 GbR bzw. ihren Gesellschaftern.
+Die Angebote sind - abgesehen von den Arbeitsproben - ausschließlich elektronisch über die Angebotsfunktion im Bieterbereich der Vergabeplattform subreport ELViS einzureichen. Bitte beachten Sie, dass hierzu zunächst eine Registrierung auf der Vergabeplattform erforderlich ist. Auf anderem Weg eingereichte Angebote werden ausgeschlossen.
+Die mit den Angeboten einzureichenden Arbeitsproben der Bieter (Kartenkörper, vollständig erstellte eGK G2.1 und PIN-/PUK-Brief einschließlich der Sicherheits-Abziehlabel) müssen gesondert an die Kontaktadresse der ARGE TelematiKK versandt werden. Diese lautet: ARGE TelematiKK, c/o IKK classic, Kölner Straße 3, 51429 Bergisch Gladbach. Zur Vermeidung von Beschädigungen an den Arbeitsproben ist ausschließlich der Versand als Päckchen oder Paket zugelassen. In Briefumschlägen versandte Arbeitsproben werden nicht akzeptiert.</cbc:Note>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">30162000</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72310000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">79810000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">75122000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cbc:Description languageID="DEU">Im Auftragsfall gilt jeweils der Sitz der einzelnen Krankenkasse als Erfüllungsort. Die Angabe "Rheinisch-Bergischer Kreis" nimmt auf den Sitz der IKK eGK-Beschaffung 2026 GbR Bezug und wird nur zur Bekanntmachung des Vergabeverfahrens verwendet.</cbc:Description>
+         <cac:Address>
+            <cbc:CountrySubentityCode listName="nuts">DEA2B</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktueller Nachweis der Eintragung im Berufs- oder Handelsregister des jeweiligen Staates, in dem der Bieter niedergelassen ist (nicht älter als 3 Monate).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktuelle Bankerklärung mit einer allgemeinen Aussage über die Bonität und die bestehenden Geschäftsverbindungen des Bieters (nicht älter als 3 Monate).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Aktueller Nachweis einer bestehenden Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme von 1.000.000 € pro Schadensfall jeweils für Personen-, Sach- und Vermögensschäden bzw. aktuelle und rechtsverbindliche Bescheinigung eines Haftpflichtversicherers, dass eine bereits bestehende Haftpflichtversicherung im Auftragsfall auf die geforderten Mindestdeckungssummen erhöht oder eine entsprechende Versicherung mit den geforderten Mindestdeckungssummen abgeschlossen wird (nicht älter als 12 Monate).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung über den Gesamtumsatz des Unternehmens für die letzten drei abgeschlossenen Geschäftsjahre (jeweils gesonderte Angaben für jedes einzelne Geschäftsjahr).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung über den Umsatz des Unternehmens für mit dem hier vergebenen Auftrag vergleichbaren Leistungen für die letzten drei abgeschlossenen Geschäftsjahre (jeweils gesonderte Angaben für jedes einzelne Geschäftsjahr).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Beschreibung und Liste der in den letzten drei Jahren erbrachten wesentlichen Leistungen unter Angabe von Leistungsart und -umfang, Leistungszeit, Auftragswert und Auftraggeber. Der Bieter muss vergleichbare Referenzprojekte mit einem Gesamtauftragsvolumen von mindestens 2.500.000 Mikroprozessorkarten in einem Zeitraum von 12 Monaten erfolgreich abgeschlossen haben. Der Auftraggeber behält sich vor, sich die Angaben des Bieters zu den erbrachten Leistungen vom jeweiligen Auftraggeber bestätigen zu lassen.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-facil-tools</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Beschreibung und Benennung der technischen Komponenten mit den jeweiligen Leistungsmerkmalen und Darstellung der Kapazitäten und Betriebsabläufe, die für die Produktion, die Personalisierung, den Druck der Begleitschreiben / Kartentransportbogen und die versandfertige Bereitstellung der dargestellten Mengen der eGK G2.1 und der PIN-/PUK-Briefe vorgesehen sind.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:RequiredFinancialGuarantee>
+            <cbc:GuaranteeTypeCode listName="tender-guarantee-required">true</cbc:GuaranteeTypeCode>
+            <cbc:Description languageID="DEU">Der Auftragnehmer stellt jedem Auftraggeber eine eigene Bürgschaft in Höhe von 5 Prozent des auf dessen Vertrag entfallenden geschätzten Nettoauftragswerts für die ersten 48 Monate der laufenden Leistungserbringung. Der Schätzwert wird aus den dem jeweiligen Auftraggeber in der Mengentabelle der Leistungsbeschreibung zugeordneten Kalkulationsmengen, den bezuschlagten Einheitspreisen und den für diesen Auftraggeber bewerteten einmaligen Preispositionen berechnet. Optionen werden nur einbezogen, soweit die Vergabeunterlagen für den betreffenden Auftraggeber eine Wertungsmenge oder eine feste Annahme ihrer Ausübung vorgeben. Gesamtmengen anderer Auftraggeber sind nicht einzubeziehen. Der Auftraggeber teilt dem Auftragnehmer die prüffähige Berechnung mit dem Zuschlag mit. Der Schätzwert begründet weder eine Mindestabnahme noch eine garantierte Vergütung. Die Sicherheit ist innerhalb von 14 Kalendertagen nach Vertragsschluss zu leisten.
+Die Sicherheitsleistung sichert sämtliche Verpflichtungen aus diesem Vertrag, insbesondere die vertragsgemäße Ausführung, Schadensersatz- und Rückzahlungsansprüche sowie Mängelansprüche.
+Die Bürgschaft ist als unbefristete Bürgschaft eines in der Europäischen Union, einem Staat des Europäischen Wirtschaftsraums oder einem Mitgliedstaat des WTO-Dienstleistungsübereinkommens zugelassenen Kreditinstituts oder Kreditversicherers zu stellen. Sie muss deutschem Recht unterliegen und den Verzicht auf die Einreden der Anfechtbarkeit und Vorausklage sowie auf die Einrede der Aufrechenbarkeit enthalten, soweit die Gegenforderung des Auftragnehmers nicht unbestritten oder rechtskräftig festgestellt ist.</cbc:Description>
+         </cac:RequiredFinancialGuarantee>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>E14429491</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.subreport.de/E14429491</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cbc:CompanyLegalFormCode listName="required">true</cbc:CompanyLegalFormCode>
+            <cbc:CompanyLegalForm languageID="DEU">Bietergemeinschaften haben in ihrem Angebot ihre Mitglieder zu benennen sowie eines ihrer Mitglieder als bevollmächtigten Vertreter für den Abschluss und die Durchführung des Vertrages zu bezeichnen, der in Vertretung und auf Rechnung aller Mitglieder bzw. im Namen der Bieter- bzw. Arbeitsgemeinschaft handeln kann.
+Alle Mitglieder haften gesamtschuldnerisch, d.h. jedes Mitglied der Bietergemeinschaft haftet im Außenverhältnis gegenüber dem jeweiligen Auftraggeber für die Erbringung der in diesem Verfahren ausgeschriebenen Leistungen, unabhängig davon, welchen Teil der Gesamtleistung er im Innenverhältnis der Bietergemeinschaft zu erbringen hat.
+Unabhängig von der gesamtschuldnerischen Haftung ist anzugeben, welche Teilaufgaben von den einzelnen Mitgliedern der Bietergemeinschaft federführend erbracht werden.</cbc:CompanyLegalForm>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Der Auftraggeber behält sich vor, die Bieter unter Einhaltung der Grundsätze der Transparenz und der Gleichbehandlung sowie unter Setzung einer angemessenen, nach dem Kalender bestimmten Frist aufzufordern, fehlende Unterlagen zu übermitteln oder unvollständige oder fehlerhafte Unterlagen zu ergänzen, zu erläutern, zu vervollständigen oder zu korrigieren (§ 56 Absatz 2 VgV). Die Nachforderung von leistungsbezogenen Unterlagen, die die Wirtschaftlichkeitsbewertung der Angebote anhand der Zuschlagskriterien betreffen, ist ausgeschlossen. Preisangaben können nur nachgefordert werden, wenn es sich um unwesentliche Einzelpositionen handelt, deren Einzelpreise den Gesamtpreis nicht verändern oder die Wertungsreihenfolge und den Wettbewerb nicht beeinträchtigen (§ 56 Absatz 3 VgV).
+Werden die fehlenden Nachweise und Erklärungen nicht innerhalb der Nachforderungsfrist eingereicht, wird das Angebot ausgeschlossen (§ 57 Absatz 1 Nummer 2 VgV). Die Frist zur Nachreichung beginnt am Tage nach Absendung der Nachforderung.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>37.5</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Qualität der Prozessbeschreibung und des Prozessablaufs</cbc:Name>
+                  <cbc:Description languageID="DEU">Im Rahmen der Bewertung der Qualität der Darstellung der Prozesse und der Prozessabläufe für die Abwicklung des gesamten Projektes werden die folgenden Unterkriterien bewertet:
+Qualität des angebotenen Konzepts zur gesamten Projektabwicklung, der Projektsteuerung, der Datenkommunikation, der Qualitätssicherung und des Risikomanagements, insbesondere auch der Maßnahmen zur Sicherstellung der Auftragsdurchführung im täglichen Betrieb (Gewichtung: 18,75 %); 
+Qualität der angebotenen Maßnahmen zur Sicherstellung des Betriebes durch Einsatz eines leistungsfähigen Betriebskontinuitätsmanagements im Rahmen eines Notfallkonzepts insbesondere im Falle des Ausfalls eines Produktionsstandorts (Disaster Recovery) (Gewichtung: 18,75 %).
+Die Einzelheiten sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>5</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Optische und physikalische Qualität der eGK G2.1</cbc:Name>
+                  <cbc:Description languageID="DEU">Die optische und physikalische Qualitätsbewertung wird auf Basis von Arbeitsproben des Bieters durchgeführt. Die Einzelheiten sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>2.5</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Qualität des PIN-/PUK-Briefs und des Sicherheits-Abziehlabels</cbc:Name>
+                  <cbc:Description languageID="DEU">Die Bewertung erfolgt anhand des vollständigen Musterexemplars des PIN-/PUK-Briefs mit unversehrtem Sicherheits-Abziehlabel sowie der eingereichten Labelmuster im bestimmungsgemäß geöffneten Zustand und nach einem Manipulations- oder Wiederaufbringungsversuch. Die Einzelheiten sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>5</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">NFC-Praxistauglichkeit der angebotenen eGK G2.1</cbc:Name>
+                  <cbc:Description languageID="DEU">Bewertet wird die nachgewiesene Praxistauglichkeit der kontaktlosen Schnittstelle der konkret angebotenen eGK G2.1 in der vorgesehenen Serienkonfiguration bei der Nutzung mit marktüblichen NFC-fähigen Smartphones. Die Einzelheiten sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Wertungsrelevant ist die Summe der hochgerechneten Preise für die Standard-eGK G2.1, die rPVC-eGK G2.1, den einmaligen Umstellungs-/Implementierungsaufwand je Krankenkasse, den PIN-/PUK-Brief, den Aufschlag für die sichere Zustellung mittels Zustellident, die technische DV- und/oder UPOC-Freimachung, den tatsächlich beigefügten Hauptflyer und den tatsächlich zusammen mit einem Hauptflyer beigefügten kassenindividuellen Zusatzflyer sowie der jeweils hochgerechneten einmaligen Aktivierungs- und Einrichtungspreise für beide Flyerprozesse. Die Einzelheiten sind den Vergabeunterlagen zu entnehmen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:DocumentProviderParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:DocumentProviderParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>https://www.subreport.de/E14429491</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderEvaluationParty>
+            <cac:PartyIdentification>
+               <cbc:ID>ORG-0001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderEvaluationParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">73</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Nach § 160 Absatz 3 Satz 1 Nummern 1 bis 5 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit 
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat, 
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden, 
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Angebotsabgabe oder zur Bewerbung gegenüber dem Auftraggeber gerügt werden, 
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind, 
+5. ein offensichtlicher Missbrauch des Antrags- oder Beschwerderechts gemäß § 180 Absatz 2 GWB vorliegt. 
+Die Regelungen des § 160 Absatz 3 Satz 1 GWB gelten nicht bei einem Antrag auf Feststellung der Unwirksamkeit des Vertrags nach § 135 Absatz 1 Nummer 2 GWB. § 134 Absatz 1 Satz 2 GWB bleibt unberührt.
+Nach § 135 Absatz 2 GWB kann die Unwirksamkeit eines Vertrages nur innerhalb von 30 Kalendertagen nach der Information der betroffenen Bieter und Bewerber über den Vertragsschluss einschließlich einer Zusammenfassung der einschlägigen Gründe entsprechend § 134 Absatz 1 Satz 1 unter Berücksichtigung von § 135 Absatz 3 Satz 2 GWB, jedoch spätestens sechs Monate nach Vertragsschluss, geltend gemacht werden. Hat der Auftraggeber die Auftragsvergabe im Amtsblatt der Europäischen Union bekannt gemacht, endet die Frist 30 Kalendertage nach Veröffentlichung der Bekanntmachung, sofern diese die Angaben entsprechend § 135 Absatz 3 Satz 2 GWB enthält.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealInformationParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealInformationParty>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID>ORG-0002</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-24+01:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:AdditionalInformationRequestPeriod>
+            <cbc:EndDate>2026-10-27+01:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+02:00</cbc:EndTime>
+         </cac:AdditionalInformationRequestPeriod>
+         <cac:OpenTenderEvent>
+            <cbc:OccurrenceDate>2026-11-24+01:00</cbc:OccurrenceDate>
+            <cbc:OccurrenceTime>13:00:00+01:00</cbc:OccurrenceTime>
+         </cac:OpenTenderEvent>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID schemeName="InternalID">LOT-0001 E14429491</cbc:ID>
+         <cbc:Name languageID="DEU">Produktion, Personalisierung und versandfertige Bereitstellung von elektronischen Gesundheitskarten sowie von PIN-/PUK-Briefen</cbc:Name>
+         <cbc:Description languageID="DEU">Gegenstand der Vergabe sind die für die beteiligten Krankenkassen jeweils erforderlichen Leistungen zur Produktion, Personalisierung, sicheren Datenverarbeitung, Konfektionierung und versandfertigen Bereitstellung elektronischer Gesundheitskarten (eGK) sowie zur Produktion und versandfertigen Bereitstellung der zugehörigen PIN-/PUK-Briefe. Die zu erbringenden Leistungen für die eGK beziehen sich zunächst auf eGK der Spezifikation eGK G2.1, umfassen aber auch die optionale rPVC-Ausführungsvariante sowie sämtliche während der Vertragslaufzeit von der einzelnen Krankenkasse freigegebenen physischen Nachfolgegenerationen der eGK. Die Leistungen für die versandfertige Bereitstellung der eGK umfassen zudem das von der jeweiligen Krankenkasse optional aktivierbare maschinelle Beifügen eines Hauptflyers zu den im jeweiligen technischen Produktionsauftrag entsprechend gekennzeichneten Kartenbegleitschreiben. Bei gesonderter Aktivierung kann zusätzlich genau ein kassenindividueller Zusatzflyer ausschließlich gemeinsam mit dem Hauptflyer beigefügt werden. Bei Beginn der Leistungserbringung ist der Hauptflyer der Organspendeflyer. Die Leistungen für die PIN-/PUK-Briefe umfassen – je nach konkretem Leistungsabruf der einzelnen Krankenkasse – auch die daten- und drucktechnische Umsetzung für die sichere Zustellung mittels Zustellident.
+Gesellschafter der IKK eGK-Beschaffung 2026 GbR sind die folgenden Krankenkassen: 1. BundesInnungskrankenkasse Gesundheit, kurz: BIG direkt gesund, Markgrafenstraße 22, 10117 Berlin; 2. IKK Brandenburg und Berlin, Ziolkowskistraße 6, 14480 Potsdam; 3. IKK gesund plus, Umfassungsstraße 85, 39124 Magdeburg; 4. IKK – Die Innovationskasse (IK), Überseeboulevard 5, 20457 Hamburg; 5. IKK classic, Tannenstraße 4b, 01099 Dresden; 6. IKK Südwest, Europaallee 3-4, 66113 Saarbrücken; 7. KNAPPSCHAFT, Knappschaftstraße 1, 44799 Bochum; 8. Sozialversicherung für Landwirtschaft, Forsten und Gartenbau (SVLFG), Weißensteinstraße 70-72, 34131 Kassel. Die beteiligten Krankenkassen sind jeweils Körperschaften des öffentlichen Rechts.
+Mit der Zuschlagserteilung kommen unmittelbar unbefristete Leistungsverträge zwischen dem Auftragnehmer und den einzelnen Krankenkassen zustande. Diese Verträge begründen fortlaufende Leistungs- und Vergütungspflichten im Sinne eines Dauerschuldverhältnisses. Die spätere Übermittlung der Daten für die einzelnen zu erstellenden Gesundheitskarten und PIN-/PUK-Briefe bestimmt lediglich Menge, Inhalt und Ausführungszeitpunkt der bereits vertraglich geschuldeten Leistungen. Hierbei handelt es sich nur um „Produktionsaufträge“ in einem technischen Sinne, die weder einen gesonderten Auftrag noch einen Einzelvertrag begründen.
+Die regelmäßige Produktion und die sonstige laufende Leistungserbringung beginnen am 01.08.2027. Für die ersten 48 Monate werden unverbindliche Kalkulations- und Wertungsmengen von 4.490.606 Standard-eGK G2.1, 1.924.545 rPVC-eGK G2.1, 3.812.299 PIN-/PUKBriefen, 381.230 Sendungen mit Zustellident, 6.415,151 Abrechnungseinheiten für die technische DV- und/oder UPOC-Freimachung zu je 1.000 Sendungen, 5.132.121 beigefügten Hauptflyern (für die Angebotswertung: Organspendeflyer) und 2.420.000 zusammen mit einem Hauptflyer beigefügten kassenindividuellen Zusatzflyern zugrunde gelegt. Diese Mengenangaben begründen im Rahmen des ausgeschriebenen Dauerschuldverhältnisses weder eine Mindestabnahmemenge noch eine vertragsbeendende Höchstmenge. 
+Die bei Vertragsschluss vereinbarten Netto-Einheitspreise bleiben bis einschließlich 31.07.2031 unverändert. Ab dem 01.08.2031 werden die erfassten Einheitspreise im Abstand von jeweils 24 Monaten nach der vertraglich festgelegten Preisänderungsklausel angepasst. Für physische Nachfolgegenerationen der Gesundheitskarten gilt das hierfür gesondert geregelte Preisbildungs-, Prüf-, Nachweis- und Freigabeverfahren. Die Verträge haben kein festes Enddatum und bestehen bis zu einer wirksamen Kündigung fort. Eine ordentliche Kündigung ist erstmals zum 31.07.2031 und anschließend im Abstand von jeweils 24 Monaten möglich.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">30162000</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72310000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">79810000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">75122000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cbc:Description languageID="DEU">Im Auftragsfall gilt jeweils der Sitz der einzelnen Krankenkasse als Erfüllungsort. Die Angabe "Rheinisch-Bergischer Kreis" nimmt auf den Sitz der IKK eGK-Beschaffung 2026 GbR Bezug und wird nur zur Bekanntmachung des Vergabeverfahrens verwendet.</cbc:Description>
+            <cac:Address>
+               <cbc:CountrySubentityCode listName="nuts">DEA2B</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:StartDate>2027-08-01+02:00</cbc:StartDate>
+            <cbc:DescriptionCode listName="timeperiod">UNLIMITED</cbc:DescriptionCode>
+         </cac:PlannedPeriod>
+         <cac:ContractExtension>
+            <cbc:OptionsDescription languageID="DEU">Die zu erbringenden Leistungen für die eGK beziehen sich zunächst auf eGK der Spezifikation eGK G2.1, umfassen aber auch die optionale rPVC-Ausführungsvariante sowie sämtliche während der Vertragslaufzeit von der einzelnen Krankenkasse freigegebenen physischen Nachfolgegenerationen der eGK. Die Leistungen für die versandfertige Bereitstellung der eGK umfassen zudem das von der jeweiligen Krankenkasse optional aktivierbare maschinelle Beifügen eines Hauptflyers zu den im jeweiligen technischen Produktionsauftrag entsprechend gekennzeichneten Kartenbegleitschreiben. Bei gesonderter Aktivierung kann zusätzlich genau ein kassenindividueller Zusatzflyer ausschließlich gemeinsam mit dem Hauptflyer beigefügt werden. Bei Beginn der Leistungserbringung ist der Hauptflyer der Organspendeflyer. Die Leistungen für die PIN-/PUK-Briefe umfassen – je nach konkretem Leistungsabruf der einzelnen Krankenkasse – auch die daten- und drucktechnische Umsetzung für die sichere Zustellung mittels Zustellident.</cbc:OptionsDescription>
+         </cac:ContractExtension>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

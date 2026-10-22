@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <efext:EformsExtension>
+          <efac:NoticeSubType>
+            <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+          </efac:NoticeSubType>
+          <efac:Organizations>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NLD">Libréon, Stichting voor Katholiek- en Openbaar Onderwijs</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>BREDA</cbc:CityName>
+                  <cbc:PostalZone>4818 EB</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NL411</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>111610808</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Name>[removed]</cbc:Name>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+            <efac:Organization>
+              <efac:Company>
+                <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+                </cac:PartyIdentification>
+                <cac:PartyName>
+                  <cbc:Name languageID="NLD">Libréon, Stichting voor Katholiek en Openbaar Voortgezet Onderwijs</cbc:Name>
+                </cac:PartyName>
+                <cac:PostalAddress>
+                  <cbc:CityName>Breda</cbc:CityName>
+                  <cbc:PostalZone>4818EB</cbc:PostalZone>
+                  <cbc:CountrySubentityCode listName="nuts">NL411</cbc:CountrySubentityCode>
+                  <cac:Country>
+                    <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+                  </cac:Country>
+                </cac:PostalAddress>
+                <cac:PartyLegalEntity>
+                  <cbc:CompanyID>111610808</cbc:CompanyID>
+                </cac:PartyLegalEntity>
+                <cac:Contact>
+                  <cbc:Telephone>[removed]</cbc:Telephone>
+                  <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                </cac:Contact>
+              </efac:Company>
+            </efac:Organization>
+          </efac:Organizations>
+        <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00725879-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">203/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-20+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+  <cbc:ID schemeName="notice-id">19e93c1c-eaa1-4f17-9a18-2a6f792aadc9</cbc:ID>
+  <cbc:ContractFolderID>18271e2c-bfae-41ee-84e0-8a8cb2eb0f8f</cbc:ContractFolderID>
+  <cbc:IssueDate>2026-10-18Z</cbc:IssueDate>
+  <cbc:IssueTime>08:15:12Z</cbc:IssueTime>
+  <cbc:VersionID>01</cbc:VersionID>
+  <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+  <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+  <cbc:NoticeLanguageCode>NLD</cbc:NoticeLanguageCode>
+  <cac:ContractingParty>
+    <cac:ContractingPartyType>
+      <cbc:PartyTypeCode listName="buyer-legal-type">body-pl</cbc:PartyTypeCode>
+    </cac:ContractingPartyType>
+    <cac:ContractingActivity>
+      <cbc:ActivityTypeCode listName="authority-activity">education</cbc:ActivityTypeCode>
+    </cac:ContractingActivity>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeName="organization">ORG-0001</cbc:ID>
+      </cac:PartyIdentification>
+    </cac:Party>
+  </cac:ContractingParty>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens corruptie veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 3 van de Overeenkomst ter bestrijding van corruptie waarbij ambtenaren van de Europese Gemeenschappen of van de lidstaten van de Europese Unie betrokken zijn (PB C 195 van 25.6.1997, blz. 1) en artikel 2, lid 1, van Kaderbesluit 2003/568/JBZ van de Raad van 22 juli 2003 inzake de bestrijding van corruptie in de privésector (PB L 192 van 31.7.2003, blz. 54). Deze uitsluitingsgrond omvat ook corruptie in de zin van de nationale wetgeving van de aanbestedende dienst (aanbestedende entiteit) of de ondernemer.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens deelneming aan een criminele organisatie veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 2 van Kaderbesluit 2008/841/JBZ van de Raad van 24 oktober 2008 ter bestrijding van georganiseerde criminaliteit (PB L 300 van 11.11.2008, blz. 42).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens witwassen van geld of financiering van terrorisme veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 1 van Richtlijn 2005/60/EG van het Europees Parlement en de Raad van 26 oktober 2005 tot voorkoming van het gebruik van het financiële stelsel voor het witwassen van geld en de financiering van terrorisme (PB L 309 van 25.11.2005, blz. 15).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens fraude veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 1 van de Overeenkomst aangaande de bescherming van de financiële belangen van de Europese Gemeenschappen (PB C 316 van 27.11.1995, blz. 48).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens kinderarbeid en andere vormen van mensenhandel veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van artikel 2 van Richtlijn 2011/36/EU van het Europees Parlement en de Raad van 5 april 2011 inzake de voorkoming en bestrijding van mensenhandel en de bescherming van slachtoffers daarvan, en ter vervanging van Kaderbesluit 2002/629/JBZ van de Raad (PB L 101 van 15.4.2011, blz. 1).</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Heeft de ondernemer zijn verplichtingen geschonden met betrekking tot de betaling van sociale premies, zowel in het land waar hij is gevestigd als in de lidstaat van de aanbestedende dienst of aanbestedende entiteit indien dit een ander land is dan het land van vestiging?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Heeft de ondernemer zijn verplichtingen geschonden met betrekking tot de betaling van belastingen, zowel in het land waar hij is gevestigd als in de lidstaat van de aanbestedende dienst of aanbestedende entiteit indien dit een ander land is dan het land van vestiging?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer zelf of iemand die lid is van het bestuurs-, leidinggevend of toezichthoudend orgaan van de onderneming of daarin vertegenwoordigings-, beslissings- of controlebevoegdheid heeft, wegens terroristische misdrijven of strafbare feiten in verband met terroristische activiteiten veroordeeld bij een definitief geworden rechterlijke beslissing die niet ouder is dan vijf jaar of die expliciet een uitsluitingsperiode bevat die nog steeds van toepassing is? In de zin van de artikelen 1 en 3 van Kaderbesluit 2002/475/JBZ van de Raad van 13 juni 2002 inzake terrorismebestrijding (PB L 164 van 22.6.2002, blz. 3). Deze uitsluitingsgrond omvat ook aanzetten tot, deelneming en medeplichtigheid aan of poging tot het plegen van een strafbaar feit als bedoeld in artikel 4 van genoemd kaderbesluit.</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-cred-arran</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Heeft de ondernemer een regeling met schuldeisers getroffen?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-bankr</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer failliet?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+        <cbc:Description languageID="NLD">Is de ondernemer insolvent of in liquidatie?</cbc:Description>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+  <cac:TenderingProcess>
+    <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+    <cac:ProcessJustification>
+      <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+    </cac:ProcessJustification>
+  </cac:TenderingProcess>
+  <cac:ProcurementProject>
+    <cbc:Name languageID="NLD">Europese openbare aanbesteding print-, kopieer- en scanvoorzieningen – Libreon ism Contractables bv</cbc:Name>
+    <cbc:Description languageID="NLD">Met deze Europese openbare aanbesteding wil Librēon een overeenkomst sluiten voor het leveren, implementeren, beheren en onderhouden van print-, kopieer- en scanvoorzieningen. De opdracht omvat printers en multifunctionals, follow-me-/printmanagementsoftware, toners en overige apparaatgebonden verbruiksmaterialen, ondersteuning en de bijbehorende service- en dienstverlening gedurende de looptijd van de overeenkomst.
+
+
+
+De opdracht omvat daarnaast productieprinters voor de reprovoorzieningen van Opdrachtgever, inclusief de benodigde invoer-, uitvoer- en afwerkingsmogelijkheden.
+
+</cbc:Description>
+    <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+    <cac:MainCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+    </cac:MainCommodityClassification>
+    <cac:AdditionalCommodityClassification>
+      <cbc:ItemClassificationCode listName="cpv">48773000</cbc:ItemClassificationCode>
+    </cac:AdditionalCommodityClassification>
+    <cac:RealizedLocation>
+      <cac:Address>
+        <cbc:StreetName>van Riebeecklaan 2</cbc:StreetName>
+        <cbc:CityName>BREDA</cbc:CityName>
+        <cbc:PostalZone>4818 EB</cbc:PostalZone>
+        <cbc:CountrySubentityCode listName="nuts">NL411</cbc:CountrySubentityCode>
+        <cac:Country>
+          <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:RealizedLocation>
+  </cac:ProcurementProject>
+  <cac:ProcurementProjectLot>
+    <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+    <cac:TenderingTerms>
+      <ext:UBLExtensions>
+        <ext:UBLExtension>
+          <ext:ExtensionContent>
+            <efext:EformsExtension>
+              <efac:SelectionCriteria>
+                <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+                <cbc:Description languageID="NLD">Inschrijver toont aan dat hij beschikt over voldoende technische en beroepsbekwaamheid voor de uitvoering van de Opdracht.
+
+
+
+De Kerncompetentie voor deze Opdracht is:
+
+het leveren, implementeren, beheren en onderhouden van een geïntegreerde print-, kopieer- en scanomgeving, inclusief Apparatuur, Printmanagementsoftware, Beveiligde printvrijgave, Authenticatie, Autorisatie, Verbruiksmaterialen en bijbehorende service- en dienstverlening.
+
+Inschrijver toont deze Kerncompetentie aan met minimaal één Referentieopdracht. De Referentieopdracht moet naar aard en omvang vergelijkbaar zijn met deze 
+
+Opdracht.
+
+
+
+Uit de Referentieopdracht moet blijken dat Inschrijver ervaring heeft met:
+
+• levering, plaatsing en Gebruiksklare oplevering van Apparatuur;
+
+• implementatie, migratie, beheer of ondersteuning van Printmanagementsoftware;
+
+• Beveiligde printvrijgave of een vergelijkbare voorziening voor veilig en apparaatonafhankelijk printen;
+
+• gebruikersbeheer, Authenticatie, Autorisatie en koppelingen met een ICT-omgeving;
+
+• onderhoud, storingsafhandeling en ondersteuning;
+
+• levering en beheer van Verbruiksmaterialen;
+
+• rapportage, monitoring of contractmanagement;
+
+• uitvoering binnen een organisatie met meerdere Locaties of een vergelijkbare mate van spreiding en gebruikersdiversiteit.
+
+
+
+De Referentieopdracht hoeft niet identiek te zijn aan deze Opdracht. Wel moet uit de beschrijving blijken dat Inschrijver aantoonbaar ervaring heeft met een vergelijkbare geïntegreerde printomgeving.
+
+
+
+De Referentieopdracht hoeft niet binnen het onderwijs te zijn uitgevoerd. Een Referentieopdracht binnen een onderwijsorganisatie, publieke organisatie, zorgorganisatie, zakelijke dienstverlener of andere organisatie met meerdere Locaties, verschillende Gebruikersgroepen en een vergelijkbare beheercomplexiteit is passend.
+
+
+
+De Referentieopdracht is uitgevoerd of nog in uitvoering in de afgelopen drie (3) jaar, gerekend vanaf de sluiting van de Inschrijftermijn. Bij een lopende Referentieopdracht mag Inschrijver alleen prestaties vermelden die daadwerkelijk zijn uitgevoerd.
+
+
+
+Wanneer Productieprinters onderdeel zijn van de Opdracht, toont Inschrijver daarnaast aan dat hij ervaring heeft met het leveren, implementeren, onderhouden of ondersteunen van Productieprinters of reprovoorzieningen. Dit mag blijken uit dezelfde Referentieopdracht of uit een aanvullende Referentieopdracht.
+
+
+
+Inschrijver gebruikt hiervoor het door Opdrachtgever beschikbaar gestelde referentieformulier.
+
+
+
+De Referentieopdracht bevat ten minste:
+
+• naam van de opdrachtgever;
+
+• korte omschrijving van de opdracht;
+
+• looptijd van de opdracht;
+
+• aantal Locaties of vergelijkbare spreiding;
+
+• indicatie van het aantal Apparaten;
+
+• indicatie van het jaarlijkse Afdrukvolume;
+
+• omschrijving van de geleverde of ondersteunde Printmanagementsoftware;
+
+• omschrijving van Beveiligde printvrijgave of een vergelijkbare voorziening;
+
+• omschrijving van Authenticatie, Autorisatie en relevante koppelingen;
+
+• omschrijving van service, onderhoud en Verbruiksmaterialen;
+
+• omschrijving van eventuele Productieprinters of reprovoorzieningen;
+
+• naam, functie, telefoonnummer en e-mailadres van een contactpersoon bij de referentieorganisatie.
+
+
+
+Opdrachtgever kan de Referentieopdracht verifiëren bij de opgegeven contactpersoon.
+
+
+
+Een Referentieopdracht wordt uitsluitend gebruikt om de geschiktheid van Inschrijver te toetsen. De Referentieopdracht wordt niet inhoudelijk beoordeeld en leidt niet tot punten.</cbc:Description>
+              </efac:SelectionCriteria>
+            </efext:EformsExtension>
+          </ext:ExtensionContent>
+        </ext:UBLExtension>
+      </ext:UBLExtensions>
+      <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+      <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+      <cac:CallForTendersDocumentReference>
+        <ext:UBLExtensions>
+          <ext:UBLExtension>
+            <ext:ExtensionContent>
+              <efext:EformsExtension>
+                <efac:OfficialLanguages>
+                  <cac:Language>
+                    <cbc:ID>NLD</cbc:ID>
+                  </cac:Language>
+                </efac:OfficialLanguages>
+              </efext:EformsExtension>
+            </ext:ExtensionContent>
+          </ext:UBLExtension>
+        </ext:UBLExtensions>
+        <cbc:ID>1</cbc:ID>
+        <cbc:DocumentType>restricted-document</cbc:DocumentType>
+        <cac:Attachment>
+          <cac:ExternalReference>
+            <cbc:URI>https://app.tenpu.eu/public/tender/open_procedure/1106</cbc:URI>
+          </cac:ExternalReference>
+        </cac:Attachment>
+      </cac:CallForTendersDocumentReference>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+        <cac:SpecificTendererRequirement>
+          <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+        </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="einvoicing">required</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:ContractExecutionRequirement>
+        <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+      </cac:ContractExecutionRequirement>
+      <cac:TenderRecipientParty>
+        <cbc:EndpointID>https://app.tenpu.eu/public/tender/open_procedure/1106</cbc:EndpointID>
+      </cac:TenderRecipientParty>
+      <cac:TenderValidityPeriod>
+        <cbc:DurationMeasure unitCode="DAY">90</cbc:DurationMeasure>
+      </cac:TenderValidityPeriod>
+      <cac:AppealTerms>
+        <cac:AppealInformationParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealInformationParty>
+        <cac:AppealReceiverParty>
+          <cac:PartyIdentification>
+            <cbc:ID>ORG-0002</cbc:ID>
+          </cac:PartyIdentification>
+        </cac:AppealReceiverParty>
+      </cac:AppealTerms>
+      <cac:Language>
+        <cbc:ID>NLD</cbc:ID>
+      </cac:Language>
+      <cac:PostAwardProcess>
+        <cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+        <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+      </cac:PostAwardProcess>
+    </cac:TenderingTerms>
+    <cac:TenderingProcess>
+      <cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+      <cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+      <cac:TenderSubmissionDeadlinePeriod>
+        <cbc:EndDate>2026-11-27+01:00</cbc:EndDate>
+        <cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+      </cac:TenderSubmissionDeadlinePeriod>
+      <cac:AuctionTerms>
+        <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+      </cac:AuctionTerms>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+      <cac:ContractingSystem>
+        <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+      </cac:ContractingSystem>
+    </cac:TenderingProcess>
+    <cac:ProcurementProject>
+      <cbc:ID schemeName="InternalID">712</cbc:ID>
+      <cbc:Name languageID="NLD">Europese openbare aanbesteding print-, kopieer- en scanvoorzieningen – Libreon ism Contractables bv</cbc:Name>
+      <cbc:Description languageID="NLD">Met deze Europese openbare aanbesteding wil Librēon een overeenkomst sluiten voor het leveren, implementeren, beheren en onderhouden van print-, kopieer- en scanvoorzieningen. De opdracht omvat printers en multifunctionals, follow-me-/printmanagementsoftware, toners en overige apparaatgebonden verbruiksmaterialen, ondersteuning en de bijbehorende service- en dienstverlening gedurende de looptijd van de overeenkomst.
+
+
+
+De opdracht omvat daarnaast productieprinters voor de reprovoorzieningen van Opdrachtgever, inclusief de benodigde invoer-, uitvoer- en afwerkingsmogelijkheden.
+
+</cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+      <cac:ProcurementAdditionalType>
+        <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+      </cac:ProcurementAdditionalType>
+      <cac:MainCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">30232100</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+        <cbc:ItemClassificationCode listName="cpv">48773000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+        <cac:Address>
+          <cbc:StreetName>van Riebeecklaan 2</cbc:StreetName>
+          <cbc:CityName>BREDA</cbc:CityName>
+          <cbc:PostalZone>4818 EB</cbc:PostalZone>
+          <cbc:CountrySubentityCode listName="nuts">NL411</cbc:CountrySubentityCode>
+          <cac:Country>
+            <cbc:IdentificationCode listName="country">NLD</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:RealizedLocation>
+      <cac:PlannedPeriod>
+        <cbc:StartDate>2026-10-18Z</cbc:StartDate>
+        <cbc:EndDate>2027-10-18Z</cbc:EndDate>
+      </cac:PlannedPeriod>
+      <cac:ContractExtension>
+        <cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+      </cac:ContractExtension>
+    </cac:ProcurementProject>
+  </cac:ProcurementProjectLot>
+</ContractNotice>

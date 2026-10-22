@@ -1,0 +1,1888 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDataTypes-2" xmlns:udt="urn:oasis:names:specification:bdndr:schema:xsd:UnqualifiedDataTypes-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ext:UBLExtensions>
+		<ext:UBLExtension>
+			<ext:ExtensionContent>
+				<efext:EformsExtension>
+					<efac:NoticeSubType>
+						<cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+					</efac:NoticeSubType>
+					<efac:Organizations>
+						<efac:Organization>
+							<efbc:AcquiringCPBIndicator>true</efbc:AcquiringCPBIndicator>
+							<efac:Company>
+								<cbc:WebsiteURI>https://sit.nrw</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0001</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Südwestfalen-IT (Zweckverband)</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+									<cbc:CityName>Hemer</cbc:CityName>
+									<cbc:PostalZone>58675</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA58</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE310256502</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:Telefax>[removed]</cbc:Telefax>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+						<efac:Organization>
+							<efac:Company>
+								<cbc:WebsiteURI>https://www.bezreg-muenster.de/de/wirtschaft_finanzen_kommunalaufsicht/vergabekammer_westfalen</cbc:WebsiteURI>
+								<cac:PartyIdentification>
+									<cbc:ID>ORG-0002</cbc:ID>
+								</cac:PartyIdentification>
+								<cac:PartyName>
+									<cbc:Name languageID="DEU">Vergabekammer Westfalen</cbc:Name>
+								</cac:PartyName>
+								<cac:PostalAddress>
+									<cbc:StreetName>Albrecht-Thaer-Straße 9</cbc:StreetName>
+									<cbc:CityName>Münster</cbc:CityName>
+									<cbc:PostalZone>48147</cbc:PostalZone>
+									<cbc:CountrySubentityCode listName="nuts-lvl3">DEA33</cbc:CountrySubentityCode>
+									<cac:Country>
+										<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+									</cac:Country>
+								</cac:PostalAddress>
+								<cac:PartyLegalEntity>
+									<cbc:CompanyID>DE 164 242 157</cbc:CompanyID>
+								</cac:PartyLegalEntity>
+								<cac:Contact>
+									<cbc:Name>[removed]</cbc:Name>
+									<cbc:Telephone>[removed]</cbc:Telephone>
+									<cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+								</cac:Contact>
+							</efac:Company>
+						</efac:Organization>
+					<efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+				<efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00731722-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">205/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-22+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+			</ext:ExtensionContent>
+		</ext:UBLExtension>
+	</ext:UBLExtensions>
+	<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+	<cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+	<cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+	<cbc:ID schemeName="notice-id">a840bdc9-8534-4c03-acfb-19ed1e288fde</cbc:ID>
+	<cbc:ContractFolderID>ad91a12c-ae47-4499-a34a-feca131d1aba</cbc:ContractFolderID>
+	<cbc:IssueDate>2026-10-21+02:00</cbc:IssueDate>
+	<cbc:IssueTime>14:43:58+02:00</cbc:IssueTime>
+	<cbc:VersionID>01</cbc:VersionID>
+	<cbc:RequestedPublicationDate>2026-10-21+02:00</cbc:RequestedPublicationDate>
+	<cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+	<cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+	<cbc:NoticeLanguageCode listID="eu-official-language">DEU</cbc:NoticeLanguageCode>
+	<cac:ContractingParty>
+		<cac:ContractingPartyType>
+			<cbc:PartyTypeCode listName="buyer-legal-type">body-pl-la</cbc:PartyTypeCode>
+		</cac:ContractingPartyType>
+		<cac:ContractingActivity>
+			<cbc:ActivityTypeCode listName="authority-activity">gen-pub</cbc:ActivityTypeCode>
+		</cac:ContractingActivity>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		<cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-0003</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+	</cac:ContractingParty>
+	<cac:TenderingTerms>
+		<ext:UBLExtensions>
+			<ext:UBLExtension>
+				<ext:ExtensionContent>
+					<efext:EformsExtension>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+						<efac:StrategicProcurement>
+							<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+						</efac:StrategicProcurement>
+					</efext:EformsExtension>
+				</ext:ExtensionContent>
+			</ext:UBLExtension>
+		</ext:UBLExtensions>
+		<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+		<cac:RequiredFinancialGuarantee>
+			<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+		</cac:RequiredFinancialGuarantee>
+		<cac:ProcurementLegislationDocumentReference>
+			<cbc:ID>vgv</cbc:ID>
+		</cac:ProcurementLegislationDocumentReference>
+		<cac:CallForTendersDocumentReference>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:OfficialLanguages>
+								<cac:Language>
+									<cbc:ID>DEU</cbc:ID>
+								</cac:Language>
+							</efac:OfficialLanguages>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:ID>SomeTenderDocID1</cbc:ID>
+			<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+		</cac:CallForTendersDocumentReference>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-terror</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-laund</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-fraud</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-corrpt</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-traffick</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-tax</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-pmt-bre-ssc</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-env-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-soc-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-bre-lab-law</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-insolvency</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-liq-admin</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-as-susp</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-sitn-other</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misconduct</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-distortion</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-partic-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-prep-confl</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-sanction</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-mis-misrepresent</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TendererQualificationRequest>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+			<cac:SpecificTendererRequirement>
+				<cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+			</cac:SpecificTendererRequirement>
+		</cac:TendererQualificationRequest>
+		<cac:TenderRecipientParty>
+			<cac:PartyIdentification>
+				<cbc:ID>ORG-0001</cbc:ID>
+			</cac:PartyIdentification>
+		</cac:TenderRecipientParty>
+		<cac:AppealTerms>
+			<cac:PresentationPeriod>
+				<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+			</cac:PresentationPeriod>
+			<cac:AppealReceiverParty>
+				<cac:PartyIdentification>
+					<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AppealReceiverParty>
+		</cac:AppealTerms>
+		<cac:Language>
+			<cbc:ID>DEU</cbc:ID>
+		</cac:Language>
+		<cac:LotDistribution>
+			<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+			<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+		</cac:LotDistribution>
+	</cac:TenderingTerms>
+	<cac:TenderingProcess>
+		<cbc:ProcedureCode listName="procurement-procedure-type">neg-w-call</cbc:ProcedureCode>
+		<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+		<cac:ProcessJustification>
+			<cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+		</cac:ProcessJustification>
+		<cac:AuctionTerms>
+			<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+		</cac:AuctionTerms>
+	</cac:TenderingProcess>
+	<cac:ProcurementProject>
+		<cbc:ID schemeName="internalID">200-V-2026-EU-RV</cbc:ID>
+		<cbc:Name languageID="DEU">Rahmenvereinbarung VOIS-Fachanwendungen</cbc:Name>
+		<cbc:Description languageID="DEU">Die Südwestfalen-IT (SIT), ein kommunaler IT-Dienstleister für derzeit 72 Kommunen und kommunale Einrichtungen in Nordrhein-Westfalen, beabsichtigt den Abschluss einer Rahmenvereinbarung über die Lieferung, Einführung, Pflege und Weiterentwicklung von Fachanwendungen der VOIS-Plattform sowie die Erbringung damit zusammenhängender Dienstleistungen. Ziel ist die weitere Standardisierung und Konsolidierung der kommunalen Verfahrenslandschaft sowie die Erweiterung einer bereits produktiv betriebenen, einheitlichen und integrierten VOIS-Plattform für Fachverfahren der öffentlichen Verwaltung.
+
+Der Leistungsumfang umfasst die Überlassung von Standardsoftware einschließlich erforderlicher Nutzungsrechte, Softwarepflege mit Bereitstellung von Updates, Upgrades und neuen Versionen, Störungsbeseitigung, Hotline- und Supportleistungen, Hosting von Online-Komponenten sowie Schulungs-, Migrations-, Projektmanagement- und Implementierungsleistungen. Die Lösungen müssen in die bestehende VOIS-Betriebsumgebung der SIT integriert werden und eine medienbruchfreie Zusammenarbeit mit vorhandenen Fachverfahren, Dokumentenmanagement-, Archiv-, Finanz- und Bürgerportalsystemen ermöglichen.
+
+Die Vergabe erfolgt in fünf Fachlosen:
+1) Gewerbe- und Gewerbeaufsichtswesen,
+2) Einwohnermelde- und Passwesen einschließlich Wahlen,
+3) Bürgerbüro/Bürgerdienste,
+4) Terminplanung und Terminorganisation,
+5) Allgemeine Verwaltung, insbesondere Gebührenkasse, Statistik und digitale Archivierung.
+
+Die zu beschaffenden Lösungen müssen den einschlägigen fachlichen, technischen, datenschutzrechtlichen und informationssicherheitsbezogenen Anforderungen des öffentlichen Sektors entsprechen, insbesondere hinsichtlich OZG-Konformität, XÖV-Standards, DSGVO, Barrierefreiheit sowie aktueller Anforderungen an Informations- und Cybersicherheit. Die Rahmenvereinbarung soll den bedarfsgerechten Abruf von Leistungen für die SIT und die von ihr betreuten Kommunen ermöglichen und die langfristige Digitalisierung kommunaler Verwaltungsleistungen unterstützen.
+
+Die Details ergeben sich aus den Vergabeunterlagen, insbesondere der Leistungsbeschreibung.</cbc:Description>
+		<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+		<cbc:Note languageID="DEU">#Bekanntmachungs-ID: CXS0YBLDYHDVC9BQ#
+
+
+Der Zuschlag wird auf das unter Berücksichtigung der im Folgenden genannten Zuschlagskriterien wirtschaftlichste Angebot erteilt (§ 58 Abs. 1 VgV). Das Angebot mit der höchsten Ge-samtpunktzahl erhält den Zuschlag. 
+
+In die Bewertung fließen folgende zwei Kriterien mit unterschiedlicher Gewichtung ein:
+Kriterium 1: Preis (Gewichtung: 70%)
+Kriterium 2: Qualität (Gewichtung 30%)
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen. 
+
+Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität um-fasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Note>
+		<cac:RequestedTenderTotal>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efbc:FrameworkMaximumAmount currencyID="EUR">12000000.00</efbc:FrameworkMaximumAmount>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+		</cac:RequestedTenderTotal>
+		<cac:MainCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+		</cac:MainCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:AdditionalCommodityClassification>
+			<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+		</cac:AdditionalCommodityClassification>
+		<cac:RealizedLocation>
+			<cac:Address>
+				<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+				<cbc:CityName>Hemer</cbc:CityName>
+				<cbc:PostalZone>58675</cbc:PostalZone>
+				<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+				<cac:Country>
+					<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:Address>
+		</cac:RealizedLocation>
+	</cac:ProcurementProject>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung - Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Staates, in dem der Bewerber niedergelassen ist.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz - Für den Fall, dass sich der Bewerber auf alle Lose bewerben möchte:
+Nachweis des durchschnittlichen Umsatz Gesamtumsatzes (ohne Umsatzsteuer) des Unternehmens des Bieters jeweils bezogen auf der die letzten 3 abgeschlossenen Geschäftsjahre.
+
+Mindestanforderung: 10 Millionen Euro (bezogen auf den Auftragswert aller Lose)
+
+Für den Fall, dass sich der Bewerber nur auf einzelne Lose bewerben möchte:
+Nachweis des durchschnittlichen Gesamtumsatzes des Unternehmens des Bieters der letzten 3 abgeschlossenen Geschäftsjahre für den Tätigkeitsbereich des Auftrags, bezogen auf das jeweilige Los
+
+Mindestanforderung:
+- Los 1:  2.000.000,00 Euro
+- Los 2:  3.000.000,00 Euro
+- Los 3:     250.000,00 Euro
+- Los 4:     250.000,00 Euro
+- Los 5:     500.000,00 Euro</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme für Sach-, Personen- und Umweltschäden je Schadensfall von 5,0 Mio. Euro, die bis zur Beendigung des Vertrags aufrecht zu erhalten ist und die eine Nachhaftungsfrist von mindestens 5 Jahren umfasst.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen für vergleichbare ausgeführte Aufträge - Referenzen über vergleichbare ausgeführte Aufträge in Form einer Liste der in den letzten 3 Jahren erbrachten Leistungen mit Angabe der Art der ausgeführten Leistungen, des Ausführungszeitraums, des Auftragswertes sowie des öffentlichen oder privaten Empfängers
+
+Mindestanforderungen:
+Der Bewerber muss mindestens drei Referenzen vorlegen. Dabei hat der Bewerber, wenn er sich auf verschiedene Lose bewirbt, für jedes Los mindestens eine Referenz vorzulegen. Zudem müssen mindestens zwei Referenzen von öffentlichen Auftraggebern aus verschiedenen Bundesländern stammen. Ferner muss sich mindestens eine Referenz auf einen öffentlichen Auftraggeber beziehen, der kommunaler IT-Dienstleister ist und mindestens 35 Gebietskörperschaften betreut.
+
+Ein ausgeführter Auftrag gilt als vergleichbar, wenn
+- der Bewerber Standardsoftwarelösungen einem öffentlichen Auftraggeber überlassen hat, die in einem vom öffentlichen Auftraggeber betriebenen Rechenzentrum bereitgestellt wurden,
+- die vom Bewerber in dem Referenzauftrag dem öffentlichen Auftraggeber bereitgestellte(n) Standardsoftwarelösung(en) noch heute verfügbar sind und dem hiesigen Auftraggeber auch angeboten werden (sollen) und
+- der Bewerber neben der Softwareüberlassung auch Leistungen der Softwarepflege (mindestens 24 Monate) und Dienstleistungen (Implementierung und Schulung) erbracht hat</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl - Erklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich sind
+
+Mindestanforderung:
+- Projektmanagement:    15
+- Support:     25</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Bedingungen zur Aufklärung und/oder Nachforderung von Unterlagen ergeben sich aus den Bewerbungs- und Vergabebedingungen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Ausführungsbedingungen für den Auftrag ergeben sich aus der Leistungsbeschreibung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Die Bewertung der eingereichten Angebote erfolgt auf Grundlage eines vom Bieter einzureichenden Angebotsblattes. Anhand des konkreten Angebots des Bieters wird der sogenannte Wertungspreis ermittelt, der mit einer Gewichtung von 70 % in die Gesamtbewertung des Angebots einfließt. 
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot (Wertungspreis) erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzeptwertung</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität umfasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-24+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>5</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">1</cbc:ID>
+			<cbc:Name languageID="DEU">Gewerbe- und Gewerbeaufsichtswesen</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist der Abschluss einer Rahmenvereinbarung über die Lieferung, Implementierung, Integration und Pflege von Fachanwendungen der VOIS-Plattform einschließlich der hierfür erforderlichen Nutzungsrechte sowie aller zugehörigen Betriebs-, Support- und Beratungsleistungen.
+
+Die zu beschaffenden Leistungen dienen der Bereitstellung einer einheitlichen, integrierten und zukunftssicheren Fachverfahrenslandschaft für die von der Südwestfalen-IT betreuten Kommunen und kommunalen Einrichtungen. Die Fachanwendungen müssen die fachlichen Anforderungen kommunaler Verwaltungsprozesse abdecken und sich in die bestehende VOIS-Systemlandschaft sowie die vorhandenen technischen und organisatorischen Betriebsstrukturen integrieren lassen.
+
+Der Leistungsumfang umfasst insbesondere:
+- Überlassung und Bereitstellung der Fachanwendungen einschließlich aller erforderlichen Standardkomponenten und Nutzungsrechte (Überlassung von Standardsoftware auf Dauer),
+- Implementierungs-, Projektmanagement-, Beratungs- und Einführungsleistungen,
+Migration von Bestandsdaten sowie Unterstützung bei der Übernahme bestehender Verfahrensstände, Schulungen (Dienstleistungen),
+- Bereitstellung und Betrieb erforderlicher Online- und Self-Service-Komponenten (Cloud-Leistungen),
+- Softwarepflege einschließlich Fehlerbehebung, Updates, Upgrades, Releasewechseln und gesetzlich oder fachlich bedingten Anpassungen, Support-, Hotline- und Ticketleistungen (Systemservice).
+
+Die Beschaffung ist in mehrere Fachlose gegliedert.
+
+Die angebotenen Lösungen müssen die einschlägigen rechtlichen, fachlichen und technischen Anforderungen des öffentlichen Sektors erfüllen. Hierzu zählen insbesondere die Unterstützung standardisierter Datenaustauschverfahren, die Interoperabilität mit bestehenden IT-Systemen, die Einhaltung datenschutzrechtlicher und informationssicherheitsbezogener Anforderungen sowie die Berücksichtigung von Barrierefreiheits- und E-Government-Vorgaben. Ziel der Beschaffung ist die langfristige Sicherstellung eines wirtschaftlichen, medienbruchfreien und weitgehend standardisierten Betriebs kommunaler Fachverfahren für die angeschlossenen Kommunen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+					<cbc:CityName>Hemer</cbc:CityName>
+					<cbc:PostalZone>58675</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Option 1) Option zur Verlängerung:
+Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate. 
+
+Option 2) Option zur Erweiterung/Erhöhung des Höchstvolumens der Rahmenvereinbarung:
+Option zur Erweiterung bzw. Erhöhung des Höchstvolumens der Rahmenvereinbarung ("Änderung des Höchstvolumens"), wenn sich während der Vertragslaufzeit der Rahmenvereinbarung die Anzahl der Verbandsmitglieder erhöht. Durch die Option erhöht sich sodann auch der Höchstwert der Rahmenvereinbarung.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0002</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung - Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Staates, in dem der Bewerber niedergelassen ist.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz - Für den Fall, dass sich der Bewerber auf alle Lose bewerben möchte:
+Nachweis des durchschnittlichen Umsatz Gesamtumsatzes (ohne Umsatzsteuer) des Unternehmens des Bieters jeweils bezogen auf der die letzten 3 abgeschlossenen Geschäftsjahre.
+
+Mindestanforderung: 10 Millionen Euro (bezogen auf den Auftragswert aller Lose)
+
+Für den Fall, dass sich der Bewerber nur auf einzelne Lose bewerben möchte:
+Nachweis des durchschnittlichen Gesamtumsatzes des Unternehmens des Bieters der letzten 3 abgeschlossenen Geschäftsjahre für den Tätigkeitsbereich des Auftrags, bezogen auf das jeweilige Los
+
+Mindestanforderung:
+- Los 1:  2.000.000,00 Euro
+- Los 2:  3.000.000,00 Euro
+- Los 3:     250.000,00 Euro
+- Los 4:     250.000,00 Euro
+- Los 5:     500.000,00 Euro</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme für Sach-, Personen- und Umweltschäden je Schadensfall von 5,0 Mio. Euro, die bis zur Beendigung des Vertrags aufrecht zu erhalten ist und die eine Nachhaftungsfrist von mindestens 5 Jahren umfasst.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen für vergleichbare ausgeführte Aufträge - Referenzen über vergleichbare ausgeführte Aufträge in Form einer Liste der in den letzten 3 Jahren erbrachten Leistungen mit Angabe der Art der ausgeführten Leistungen, des Ausführungszeitraums, des Auftragswertes sowie des öffentlichen oder privaten Empfängers
+
+Mindestanforderungen:
+Der Bewerber muss mindestens drei Referenzen vorlegen. Dabei hat der Bewerber, wenn er sich auf verschiedene Lose bewirbt, für jedes Los mindestens eine Referenz vorzulegen. Zudem müssen mindestens zwei Referenzen von öffentlichen Auftraggebern aus verschiedenen Bundesländern stammen. Ferner muss sich mindestens eine Referenz auf einen öffentlichen Auftraggeber beziehen, der kommunaler IT-Dienstleister ist und mindestens 35 Gebietskörperschaften betreut.
+
+Ein ausgeführter Auftrag gilt als vergleichbar, wenn
+- der Bewerber Standardsoftwarelösungen einem öffentlichen Auftraggeber überlassen hat, die in einem vom öffentlichen Auftraggeber betriebenen Rechenzentrum bereitgestellt wurden,
+- die vom Bewerber in dem Referenzauftrag dem öffentlichen Auftraggeber bereitgestellte(n) Standardsoftwarelösung(en) noch heute verfügbar sind und dem hiesigen Auftraggeber auch angeboten werden (sollen) und
+- der Bewerber neben der Softwareüberlassung auch Leistungen der Softwarepflege (mindestens 24 Monate) und Dienstleistungen (Implementierung und Schulung) erbracht hat</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl - Erklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich sind
+
+Mindestanforderung:
+- Projektmanagement:    15
+- Support:     25</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Bedingungen zur Aufklärung und/oder Nachforderung von Unterlagen ergeben sich aus den Bewerbungs- und Vergabebedingungen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Ausführungsbedingungen für den Auftrag ergeben sich aus der Leistungsbeschreibung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Die Bewertung der eingereichten Angebote erfolgt auf Grundlage eines vom Bieter einzureichenden Angebotsblattes. Anhand des konkreten Angebots des Bieters wird der sogenannte Wertungspreis ermittelt, der mit einer Gewichtung von 70 % in die Gesamtbewertung des Angebots einfließt. 
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot (Wertungspreis) erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzeptwertung</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität umfasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-24+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>5</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">2</cbc:ID>
+			<cbc:Name languageID="DEU">Einwohnermelde- und Passwesen, einschließlich Wahlen</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist der Abschluss einer Rahmenvereinbarung über die Lieferung, Implementierung, Integration und Pflege von Fachanwendungen der VOIS-Plattform einschließlich der hierfür erforderlichen Nutzungsrechte sowie aller zugehörigen Betriebs-, Support- und Beratungsleistungen.
+
+Die zu beschaffenden Leistungen dienen der Bereitstellung einer einheitlichen, integrierten und zukunftssicheren Fachverfahrenslandschaft für die von der Südwestfalen-IT betreuten Kommunen und kommunalen Einrichtungen. Die Fachanwendungen müssen die fachlichen Anforderungen kommunaler Verwaltungsprozesse abdecken und sich in die bestehende VOIS-Systemlandschaft sowie die vorhandenen technischen und organisatorischen Betriebsstrukturen integrieren lassen.
+
+Der Leistungsumfang umfasst insbesondere:
+- Überlassung und Bereitstellung der Fachanwendungen einschließlich aller erforderlichen Standardkomponenten und Nutzungsrechte (Überlassung von Standardsoftware auf Dauer),
+- Implementierungs-, Projektmanagement-, Beratungs- und Einführungsleistungen,
+Migration von Bestandsdaten sowie Unterstützung bei der Übernahme bestehender Verfahrensstände, Schulungen (Dienstleistungen),
+- Bereitstellung und Betrieb erforderlicher Online- und Self-Service-Komponenten (Cloud-Leistungen),
+- Softwarepflege einschließlich Fehlerbehebung, Updates, Upgrades, Releasewechseln und gesetzlich oder fachlich bedingten Anpassungen, Support-, Hotline- und Ticketleistungen (Systemservice).
+
+Die Beschaffung ist in mehrere Fachlose gegliedert.
+
+Die angebotenen Lösungen müssen die einschlägigen rechtlichen, fachlichen und technischen Anforderungen des öffentlichen Sektors erfüllen. Hierzu zählen insbesondere die Unterstützung standardisierter Datenaustauschverfahren, die Interoperabilität mit bestehenden IT-Systemen, die Einhaltung datenschutzrechtlicher und informationssicherheitsbezogener Anforderungen sowie die Berücksichtigung von Barrierefreiheits- und E-Government-Vorgaben. Ziel der Beschaffung ist die langfristige Sicherstellung eines wirtschaftlichen, medienbruchfreien und weitgehend standardisierten Betriebs kommunaler Fachverfahren für die angeschlossenen Kommunen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+					<cbc:CityName>Hemer</cbc:CityName>
+					<cbc:PostalZone>58675</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Option 1) Option zur Verlängerung:
+Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate. 
+
+Option 2) Option zur Erweiterung/Erhöhung des Höchstvolumens der Rahmenvereinbarung:
+Option zur Erweiterung bzw. Erhöhung des Höchstvolumens der Rahmenvereinbarung ("Änderung des Höchstvolumens"), wenn sich während der Vertragslaufzeit der Rahmenvereinbarung die Anzahl der Verbandsmitglieder erhöht. Durch die Option erhöht sich sodann auch der Höchstwert der Rahmenvereinbarung.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0003</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung - Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Staates, in dem der Bewerber niedergelassen ist.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz - Für den Fall, dass sich der Bewerber auf alle Lose bewerben möchte:
+Nachweis des durchschnittlichen Umsatz Gesamtumsatzes (ohne Umsatzsteuer) des Unternehmens des Bieters jeweils bezogen auf der die letzten 3 abgeschlossenen Geschäftsjahre.
+
+Mindestanforderung: 10 Millionen Euro (bezogen auf den Auftragswert aller Lose)
+
+Für den Fall, dass sich der Bewerber nur auf einzelne Lose bewerben möchte:
+Nachweis des durchschnittlichen Gesamtumsatzes des Unternehmens des Bieters der letzten 3 abgeschlossenen Geschäftsjahre für den Tätigkeitsbereich des Auftrags, bezogen auf das jeweilige Los
+
+Mindestanforderung:
+- Los 1:  2.000.000,00 Euro
+- Los 2:  3.000.000,00 Euro
+- Los 3:     250.000,00 Euro
+- Los 4:     250.000,00 Euro
+- Los 5:     500.000,00 Euro</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme für Sach-, Personen- und Umweltschäden je Schadensfall von 5,0 Mio. Euro, die bis zur Beendigung des Vertrags aufrecht zu erhalten ist und die eine Nachhaftungsfrist von mindestens 5 Jahren umfasst.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen für vergleichbare ausgeführte Aufträge - Referenzen über vergleichbare ausgeführte Aufträge in Form einer Liste der in den letzten 3 Jahren erbrachten Leistungen mit Angabe der Art der ausgeführten Leistungen, des Ausführungszeitraums, des Auftragswertes sowie des öffentlichen oder privaten Empfängers
+
+Mindestanforderungen:
+Der Bewerber muss mindestens drei Referenzen vorlegen. Dabei hat der Bewerber, wenn er sich auf verschiedene Lose bewirbt, für jedes Los mindestens eine Referenz vorzulegen. Zudem müssen mindestens zwei Referenzen von öffentlichen Auftraggebern aus verschiedenen Bundesländern stammen. Ferner muss sich mindestens eine Referenz auf einen öffentlichen Auftraggeber beziehen, der kommunaler IT-Dienstleister ist und mindestens 35 Gebietskörperschaften betreut.
+
+Ein ausgeführter Auftrag gilt als vergleichbar, wenn
+- der Bewerber Standardsoftwarelösungen einem öffentlichen Auftraggeber überlassen hat, die in einem vom öffentlichen Auftraggeber betriebenen Rechenzentrum bereitgestellt wurden,
+- die vom Bewerber in dem Referenzauftrag dem öffentlichen Auftraggeber bereitgestellte(n) Standardsoftwarelösung(en) noch heute verfügbar sind und dem hiesigen Auftraggeber auch angeboten werden (sollen) und
+- der Bewerber neben der Softwareüberlassung auch Leistungen der Softwarepflege (mindestens 24 Monate) und Dienstleistungen (Implementierung und Schulung) erbracht hat</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl - Erklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich sind
+
+Mindestanforderung:
+- Projektmanagement:    15
+- Support:     25</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Bedingungen zur Aufklärung und/oder Nachforderung von Unterlagen ergeben sich aus den Bewerbungs- und Vergabebedingungen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Ausführungsbedingungen für den Auftrag ergeben sich aus der Leistungsbeschreibung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Die Bewertung der eingereichten Angebote erfolgt auf Grundlage eines vom Bieter einzureichenden Angebotsblattes. Anhand des konkreten Angebots des Bieters wird der sogenannte Wertungspreis ermittelt, der mit einer Gewichtung von 70 % in die Gesamtbewertung des Angebots einfließt. 
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot (Wertungspreis) erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzeptwertung</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität umfasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-24+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>5</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">3</cbc:ID>
+			<cbc:Name languageID="DEU">Bürgerbüro/Bürgerdienste</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist der Abschluss einer Rahmenvereinbarung über die Lieferung, Implementierung, Integration und Pflege von Fachanwendungen der VOIS-Plattform einschließlich der hierfür erforderlichen Nutzungsrechte sowie aller zugehörigen Betriebs-, Support- und Beratungsleistungen.
+
+Die zu beschaffenden Leistungen dienen der Bereitstellung einer einheitlichen, integrierten und zukunftssicheren Fachverfahrenslandschaft für die von der Südwestfalen-IT betreuten Kommunen und kommunalen Einrichtungen. Die Fachanwendungen müssen die fachlichen Anforderungen kommunaler Verwaltungsprozesse abdecken und sich in die bestehende VOIS-Systemlandschaft sowie die vorhandenen technischen und organisatorischen Betriebsstrukturen integrieren lassen.
+
+Der Leistungsumfang umfasst insbesondere:
+- Überlassung und Bereitstellung der Fachanwendungen einschließlich aller erforderlichen Standardkomponenten und Nutzungsrechte (Überlassung von Standardsoftware auf Dauer),
+- Implementierungs-, Projektmanagement-, Beratungs- und Einführungsleistungen,
+Migration von Bestandsdaten sowie Unterstützung bei der Übernahme bestehender Verfahrensstände, Schulungen (Dienstleistungen),
+- Bereitstellung und Betrieb erforderlicher Online- und Self-Service-Komponenten (Cloud-Leistungen),
+- Softwarepflege einschließlich Fehlerbehebung, Updates, Upgrades, Releasewechseln und gesetzlich oder fachlich bedingten Anpassungen, Support-, Hotline- und Ticketleistungen (Systemservice).
+
+Die Beschaffung ist in mehrere Fachlose gegliedert.
+
+Die angebotenen Lösungen müssen die einschlägigen rechtlichen, fachlichen und technischen Anforderungen des öffentlichen Sektors erfüllen. Hierzu zählen insbesondere die Unterstützung standardisierter Datenaustauschverfahren, die Interoperabilität mit bestehenden IT-Systemen, die Einhaltung datenschutzrechtlicher und informationssicherheitsbezogener Anforderungen sowie die Berücksichtigung von Barrierefreiheits- und E-Government-Vorgaben. Ziel der Beschaffung ist die langfristige Sicherstellung eines wirtschaftlichen, medienbruchfreien und weitgehend standardisierten Betriebs kommunaler Fachverfahren für die angeschlossenen Kommunen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+					<cbc:CityName>Hemer</cbc:CityName>
+					<cbc:PostalZone>58675</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Option 1) Option zur Verlängerung:
+Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate. 
+
+Option 2) Option zur Erweiterung/Erhöhung des Höchstvolumens der Rahmenvereinbarung:
+Option zur Erweiterung bzw. Erhöhung des Höchstvolumens der Rahmenvereinbarung ("Änderung des Höchstvolumens"), wenn sich während der Vertragslaufzeit der Rahmenvereinbarung die Anzahl der Verbandsmitglieder erhöht. Durch die Option erhöht sich sodann auch der Höchstwert der Rahmenvereinbarung.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0004</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung - Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Staates, in dem der Bewerber niedergelassen ist.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz - Für den Fall, dass sich der Bewerber auf alle Lose bewerben möchte:
+Nachweis des durchschnittlichen Umsatz Gesamtumsatzes (ohne Umsatzsteuer) des Unternehmens des Bieters jeweils bezogen auf der die letzten 3 abgeschlossenen Geschäftsjahre.
+
+Mindestanforderung: 10 Millionen Euro (bezogen auf den Auftragswert aller Lose)
+
+Für den Fall, dass sich der Bewerber nur auf einzelne Lose bewerben möchte:
+Nachweis des durchschnittlichen Gesamtumsatzes des Unternehmens des Bieters der letzten 3 abgeschlossenen Geschäftsjahre für den Tätigkeitsbereich des Auftrags, bezogen auf das jeweilige Los
+
+Mindestanforderung:
+- Los 1:  2.000.000,00 Euro
+- Los 2:  3.000.000,00 Euro
+- Los 3:     250.000,00 Euro
+- Los 4:     250.000,00 Euro
+- Los 5:     500.000,00 Euro</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme für Sach-, Personen- und Umweltschäden je Schadensfall von 5,0 Mio. Euro, die bis zur Beendigung des Vertrags aufrecht zu erhalten ist und die eine Nachhaftungsfrist von mindestens 5 Jahren umfasst.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen für vergleichbare ausgeführte Aufträge - Referenzen über vergleichbare ausgeführte Aufträge in Form einer Liste der in den letzten 3 Jahren erbrachten Leistungen mit Angabe der Art der ausgeführten Leistungen, des Ausführungszeitraums, des Auftragswertes sowie des öffentlichen oder privaten Empfängers
+
+Mindestanforderungen:
+Der Bewerber muss mindestens drei Referenzen vorlegen. Dabei hat der Bewerber, wenn er sich auf verschiedene Lose bewirbt, für jedes Los mindestens eine Referenz vorzulegen. Zudem müssen mindestens zwei Referenzen von öffentlichen Auftraggebern aus verschiedenen Bundesländern stammen. Ferner muss sich mindestens eine Referenz auf einen öffentlichen Auftraggeber beziehen, der kommunaler IT-Dienstleister ist und mindestens 35 Gebietskörperschaften betreut.
+
+Ein ausgeführter Auftrag gilt als vergleichbar, wenn
+- der Bewerber Standardsoftwarelösungen einem öffentlichen Auftraggeber überlassen hat, die in einem vom öffentlichen Auftraggeber betriebenen Rechenzentrum bereitgestellt wurden,
+- die vom Bewerber in dem Referenzauftrag dem öffentlichen Auftraggeber bereitgestellte(n) Standardsoftwarelösung(en) noch heute verfügbar sind und dem hiesigen Auftraggeber auch angeboten werden (sollen) und
+- der Bewerber neben der Softwareüberlassung auch Leistungen der Softwarepflege (mindestens 24 Monate) und Dienstleistungen (Implementierung und Schulung) erbracht hat</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl - Erklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich sind
+
+Mindestanforderung:
+- Projektmanagement:    15
+- Support:     25</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Bedingungen zur Aufklärung und/oder Nachforderung von Unterlagen ergeben sich aus den Bewerbungs- und Vergabebedingungen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Ausführungsbedingungen für den Auftrag ergeben sich aus der Leistungsbeschreibung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Die Bewertung der eingereichten Angebote erfolgt auf Grundlage eines vom Bieter einzureichenden Angebotsblattes. Anhand des konkreten Angebots des Bieters wird der sogenannte Wertungspreis ermittelt, der mit einer Gewichtung von 70 % in die Gesamtbewertung des Angebots einfließt. 
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot (Wertungspreis) erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzeptwertung</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität umfasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-24+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>5</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">4</cbc:ID>
+			<cbc:Name languageID="DEU">Terminplanung &amp; Terminorganisation</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist der Abschluss einer Rahmenvereinbarung über die Lieferung, Implementierung, Integration und Pflege von Fachanwendungen der VOIS-Plattform einschließlich der hierfür erforderlichen Nutzungsrechte sowie aller zugehörigen Betriebs-, Support- und Beratungsleistungen.
+
+Die zu beschaffenden Leistungen dienen der Bereitstellung einer einheitlichen, integrierten und zukunftssicheren Fachverfahrenslandschaft für die von der Südwestfalen-IT betreuten Kommunen und kommunalen Einrichtungen. Die Fachanwendungen müssen die fachlichen Anforderungen kommunaler Verwaltungsprozesse abdecken und sich in die bestehende VOIS-Systemlandschaft sowie die vorhandenen technischen und organisatorischen Betriebsstrukturen integrieren lassen.
+
+Der Leistungsumfang umfasst insbesondere:
+- Überlassung und Bereitstellung der Fachanwendungen einschließlich aller erforderlichen Standardkomponenten und Nutzungsrechte (Überlassung von Standardsoftware auf Dauer),
+- Implementierungs-, Projektmanagement-, Beratungs- und Einführungsleistungen,
+Migration von Bestandsdaten sowie Unterstützung bei der Übernahme bestehender Verfahrensstände, Schulungen (Dienstleistungen),
+- Bereitstellung und Betrieb erforderlicher Online- und Self-Service-Komponenten (Cloud-Leistungen),
+- Softwarepflege einschließlich Fehlerbehebung, Updates, Upgrades, Releasewechseln und gesetzlich oder fachlich bedingten Anpassungen, Support-, Hotline- und Ticketleistungen (Systemservice).
+
+Die Beschaffung ist in mehrere Fachlose gegliedert.
+
+Die angebotenen Lösungen müssen die einschlägigen rechtlichen, fachlichen und technischen Anforderungen des öffentlichen Sektors erfüllen. Hierzu zählen insbesondere die Unterstützung standardisierter Datenaustauschverfahren, die Interoperabilität mit bestehenden IT-Systemen, die Einhaltung datenschutzrechtlicher und informationssicherheitsbezogener Anforderungen sowie die Berücksichtigung von Barrierefreiheits- und E-Government-Vorgaben. Ziel der Beschaffung ist die langfristige Sicherstellung eines wirtschaftlichen, medienbruchfreien und weitgehend standardisierten Betriebs kommunaler Fachverfahren für die angeschlossenen Kommunen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+					<cbc:CityName>Hemer</cbc:CityName>
+					<cbc:PostalZone>58675</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Option 1) Option zur Verlängerung:
+Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate. 
+
+Option 2) Option zur Erweiterung/Erhöhung des Höchstvolumens der Rahmenvereinbarung:
+Option zur Erweiterung bzw. Erhöhung des Höchstvolumens der Rahmenvereinbarung ("Änderung des Höchstvolumens"), wenn sich während der Vertragslaufzeit der Rahmenvereinbarung die Anzahl der Verbandsmitglieder erhöht. Durch die Option erhöht sich sodann auch der Höchstwert der Rahmenvereinbarung.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+	<cac:ProcurementProjectLot>
+		<cbc:ID schemeName="Lot">LOT-0005</cbc:ID>
+		<cac:TenderingTerms>
+			<ext:UBLExtensions>
+				<ext:UBLExtension>
+					<ext:ExtensionContent>
+						<efext:EformsExtension>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Befähigung und Erlaubnis zur Berufsausübung - Eintragung in einem Berufs- oder Handelsregister nach Maßgabe der Rechtsvorschriften des Staates, in dem der Bewerber niedergelassen ist.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-avg</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Gesamtumsatz - Für den Fall, dass sich der Bewerber auf alle Lose bewerben möchte:
+Nachweis des durchschnittlichen Umsatz Gesamtumsatzes (ohne Umsatzsteuer) des Unternehmens des Bieters jeweils bezogen auf der die letzten 3 abgeschlossenen Geschäftsjahre.
+
+Mindestanforderung: 10 Millionen Euro (bezogen auf den Auftragswert aller Lose)
+
+Für den Fall, dass sich der Bewerber nur auf einzelne Lose bewerben möchte:
+Nachweis des durchschnittlichen Gesamtumsatzes des Unternehmens des Bieters der letzten 3 abgeschlossenen Geschäftsjahre für den Tätigkeitsbereich des Auftrags, bezogen auf das jeweilige Los
+
+Mindestanforderung:
+- Los 1:  2.000.000,00 Euro
+- Los 2:  3.000.000,00 Euro
+- Los 3:     250.000,00 Euro
+- Los 4:     250.000,00 Euro
+- Los 5:     500.000,00 Euro</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Betriebshaftpflichtversicherung - Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme für Sach-, Personen- und Umweltschäden je Schadensfall von 5,0 Mio. Euro, die bis zur Beendigung des Vertrags aufrecht zu erhalten ist und die eine Nachhaftungsfrist von mindestens 5 Jahren umfasst.</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Referenzen für vergleichbare ausgeführte Aufträge - Referenzen über vergleichbare ausgeführte Aufträge in Form einer Liste der in den letzten 3 Jahren erbrachten Leistungen mit Angabe der Art der ausgeführten Leistungen, des Ausführungszeitraums, des Auftragswertes sowie des öffentlichen oder privaten Empfängers
+
+Mindestanforderungen:
+Der Bewerber muss mindestens drei Referenzen vorlegen. Dabei hat der Bewerber, wenn er sich auf verschiedene Lose bewirbt, für jedes Los mindestens eine Referenz vorzulegen. Zudem müssen mindestens zwei Referenzen von öffentlichen Auftraggebern aus verschiedenen Bundesländern stammen. Ferner muss sich mindestens eine Referenz auf einen öffentlichen Auftraggeber beziehen, der kommunaler IT-Dienstleister ist und mindestens 35 Gebietskörperschaften betreut.
+
+Ein ausgeführter Auftrag gilt als vergleichbar, wenn
+- der Bewerber Standardsoftwarelösungen einem öffentlichen Auftraggeber überlassen hat, die in einem vom öffentlichen Auftraggeber betriebenen Rechenzentrum bereitgestellt wurden,
+- die vom Bewerber in dem Referenzauftrag dem öffentlichen Auftraggeber bereitgestellte(n) Standardsoftwarelösung(en) noch heute verfügbar sind und dem hiesigen Auftraggeber auch angeboten werden (sollen) und
+- der Bewerber neben der Softwareüberlassung auch Leistungen der Softwarepflege (mindestens 24 Monate) und Dienstleistungen (Implementierung und Schulung) erbracht hat</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:SelectionCriteria>
+								<cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-supply</cbc:TendererRequirementTypeCode>
+								<cbc:Description languageID="DEU">Erklärung über durchschnittliche jährliche Beschäftigtenzahl - Erklärung, aus der die durchschnittliche jährliche Beschäftigtenzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich sind
+
+Mindestanforderung:
+- Projektmanagement:    15
+- Support:     25</cbc:Description>
+								<efbc:SecondStageIndicator>false</efbc:SecondStageIndicator>
+							</efac:SelectionCriteria>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+							<efac:StrategicProcurement>
+								<efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+							</efac:StrategicProcurement>
+						</efext:EformsExtension>
+					</ext:ExtensionContent>
+				</ext:UBLExtension>
+			</ext:UBLExtensions>
+			<cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+			<cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+			<cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+			<cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+			<cac:RequiredFinancialGuarantee>
+				<cbc:GuaranteeTypeCode listName="tender-guarantee-required">false</cbc:GuaranteeTypeCode>
+			</cac:RequiredFinancialGuarantee>
+			<cac:CallForTendersDocumentReference>
+				<ext:UBLExtensions>
+					<ext:UBLExtension>
+						<ext:ExtensionContent>
+							<efext:EformsExtension>
+								<efac:OfficialLanguages>
+									<cac:Language>
+										<cbc:ID>DEU</cbc:ID>
+									</cac:Language>
+								</efac:OfficialLanguages>
+							</efext:EformsExtension>
+						</ext:ExtensionContent>
+					</ext:UBLExtension>
+				</ext:UBLExtensions>
+				<cbc:ID>SomeTenderDocID1</cbc:ID>
+				<cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ/documents</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:CallForTendersDocumentReference>
+			<cac:TendererQualificationRequest>
+				<cbc:CompanyLegalFormCode listName="required">false</cbc:CompanyLegalFormCode>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+					<cbc:Description languageID="DEU">Die Bedingungen zur Aufklärung und/oder Nachforderung von Unterlagen ergeben sich aus den Bewerbungs- und Vergabebedingungen.</cbc:Description>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:TendererQualificationRequest>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+				<cac:SpecificTendererRequirement>
+					<cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+				</cac:SpecificTendererRequirement>
+			</cac:TendererQualificationRequest>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+				<cbc:Description languageID="DEU">Die Ausführungsbedingungen für den Auftrag ergeben sich aus der Leistungsbeschreibung.</cbc:Description>
+			</cac:ContractExecutionRequirement>
+			<cac:ContractExecutionRequirement>
+				<cbc:ExecutionRequirementCode listName="fsr">false</cbc:ExecutionRequirementCode>
+			</cac:ContractExecutionRequirement>
+			<cac:AwardingTerms>
+				<cbc:NoFurtherNegotiationIndicator>true</cbc:NoFurtherNegotiationIndicator>
+				<cac:AwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>70.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">cost</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Preis</cbc:Name>
+						<cbc:Description languageID="DEU">Die Bewertung der eingereichten Angebote erfolgt auf Grundlage eines vom Bieter einzureichenden Angebotsblattes. Anhand des konkreten Angebots des Bieters wird der sogenannte Wertungspreis ermittelt, der mit einer Gewichtung von 70 % in die Gesamtbewertung des Angebots einfließt. 
+
+Die preisliche Punktevergabe erfolgt anhand einer Skala von 0 bis 10 Punkten: Das preislich günstigste Angebot (Wertungspreis) erhält die volle Punktzahl (10 Punkte), wobei jährlich anfallende Kosten (Systemservice - Pflege, Wartung, Hotline) über 48 Monate berücksichtigt werden. Angebote, deren Preis mindestens doppelt so hoch ist wie der des günstigsten Angebots werden mit 0 Punkten bewertet. Für alle dazwischenliegenden Preise erfolgt die Punktevergabe anhand einer linearen Interpolation, berechnet mit drei Dezimalstellen.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+					<cac:SubordinateAwardingCriterion>
+						<ext:UBLExtensions>
+							<ext:UBLExtension>
+								<ext:ExtensionContent>
+									<efext:EformsExtension>
+										<efac:AwardCriterionParameter>
+											<efbc:ParameterCode listName="number-weight">poi-exa</efbc:ParameterCode>
+											<efbc:ParameterNumeric>30.00</efbc:ParameterNumeric>
+										</efac:AwardCriterionParameter>
+									</efext:EformsExtension>
+								</ext:ExtensionContent>
+							</ext:UBLExtension>
+						</ext:UBLExtensions>
+						<cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+						<cbc:Name languageID="DEU">Konzeptwertung</cbc:Name>
+						<cbc:Description languageID="DEU">Das Zuschlagskriterien Qualität wird mit 30 % in der Gesamtbewertung berücksichtigt. Für das Konzept kann der Bieter maximal 10 Punkte erreichen. Das Zuschlagskriterium Qualität umfasst ausschließlich ein Umsetzungskonzept anhand des in der Leistungsbeschreibung konkret bezeichneten Einzelfalls. Das Umsetzungskonzept ist als Bestandteil mit dem Erstangebot einzureichen. Dieses wird als schriftliche Ausarbeitung gewertet. Fragen zu dem Konzept sollen im Rahmen der Verhandlungsgespräche geklärt werden. Das überarbeitete bzw. finale Konzept kann zusammen mit dem finalen Angebot vorgelegt werden.</cbc:Description>
+					</cac:SubordinateAwardingCriterion>
+				</cac:AwardingCriterion>
+			</cac:AwardingTerms>
+			<cac:AdditionalInformationParty>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:AdditionalInformationParty>
+			<cac:TenderRecipientParty>
+				<cbc:EndpointID>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:EndpointID>
+				<cac:PartyIdentification>
+					<cbc:ID>ORG-0001</cbc:ID>
+				</cac:PartyIdentification>
+			</cac:TenderRecipientParty>
+			<cac:AppealTerms>
+				<cac:PresentationPeriod>
+					<cbc:Description languageID="DEU">Nach § 160 Abs. 3 Satz 1 Nr. 1 bis 4 GWB ist der Antrag auf Einleitung eines Nachprüfungsverfahrens unzulässig, soweit:
+1. der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von zehn Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Absatz 2 bleibt unberührt,
+2. Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+3. Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4. mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einer Rüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+				</cac:PresentationPeriod>
+				<cac:AppealReceiverParty>
+					<cac:PartyIdentification>
+						<cbc:ID schemeName="organization">ORG-0002</cbc:ID>
+					</cac:PartyIdentification>
+				</cac:AppealReceiverParty>
+			</cac:AppealTerms>
+			<cac:Language>
+				<cbc:ID>DEU</cbc:ID>
+			</cac:Language>
+			<cac:LotDistribution>
+				<cbc:MaximumLotsAwardedNumeric>5</cbc:MaximumLotsAwardedNumeric>
+				<cbc:MaximumLotsSubmittedNumeric>5</cbc:MaximumLotsSubmittedNumeric>
+			</cac:LotDistribution>
+			<cac:PostAwardProcess>
+				<cbc:ElectronicOrderUsageIndicator>false</cbc:ElectronicOrderUsageIndicator>
+				<cbc:ElectronicPaymentUsageIndicator>false</cbc:ElectronicPaymentUsageIndicator>
+			</cac:PostAwardProcess>
+			<cac:SecurityClearanceTerm>
+				<cbc:Code listName="required">false</cbc:Code>
+			</cac:SecurityClearanceTerm>
+		</cac:TenderingTerms>
+		<cac:TenderingProcess>
+			<cbc:SubmissionMethodCode listName="esubmission">required</cbc:SubmissionMethodCode>
+			<cbc:CandidateReductionConstraintIndicator>true</cbc:CandidateReductionConstraintIndicator>
+			<cbc:GovernmentAgreementConstraintIndicator>false</cbc:GovernmentAgreementConstraintIndicator>
+			<cbc:AccessToolsURI>https://www.vergabe-westfalen.de/VMPSatellite/notice/CXS0YBLDYHDVC9BQ</cbc:AccessToolsURI>
+			<cac:InvitationSubmissionPeriod>
+				<cbc:StartDate>2026-11-24+01:00</cbc:StartDate>
+			</cac:InvitationSubmissionPeriod>
+			<cac:ParticipationRequestReceptionPeriod>
+				<cbc:EndDate>2026-11-23+01:00</cbc:EndDate>
+				<cbc:EndTime>09:00:00+01:00</cbc:EndTime>
+			</cac:ParticipationRequestReceptionPeriod>
+			<cac:AdditionalInformationRequestPeriod>
+				<cbc:EndDate>2026-11-12+01:00</cbc:EndDate>
+				<cbc:EndTime>23:59:59+01:00</cbc:EndTime>
+			</cac:AdditionalInformationRequestPeriod>
+			<cac:EconomicOperatorShortList>
+				<cbc:LimitationDescription>false</cbc:LimitationDescription>
+				<cbc:MinimumQuantity>3</cbc:MinimumQuantity>
+			</cac:EconomicOperatorShortList>
+			<cac:AuctionTerms>
+				<cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+			</cac:AuctionTerms>
+			<cac:FrameworkAgreement>
+				<cbc:MaximumOperatorQuantity>5</cbc:MaximumOperatorQuantity>
+			</cac:FrameworkAgreement>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="framework-agreement">fa-wo-rc</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+			<cac:ContractingSystem>
+				<cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+			</cac:ContractingSystem>
+		</cac:TenderingProcess>
+		<cac:ProcurementProject>
+			<cbc:ID schemeName="internalID">5</cbc:ID>
+			<cbc:Name languageID="DEU">Allgemeine Verwaltung</cbc:Name>
+			<cbc:Description languageID="DEU">Gegenstand der Beschaffung ist der Abschluss einer Rahmenvereinbarung über die Lieferung, Implementierung, Integration und Pflege von Fachanwendungen der VOIS-Plattform einschließlich der hierfür erforderlichen Nutzungsrechte sowie aller zugehörigen Betriebs-, Support- und Beratungsleistungen.
+
+Die zu beschaffenden Leistungen dienen der Bereitstellung einer einheitlichen, integrierten und zukunftssicheren Fachverfahrenslandschaft für die von der Südwestfalen-IT betreuten Kommunen und kommunalen Einrichtungen. Die Fachanwendungen müssen die fachlichen Anforderungen kommunaler Verwaltungsprozesse abdecken und sich in die bestehende VOIS-Systemlandschaft sowie die vorhandenen technischen und organisatorischen Betriebsstrukturen integrieren lassen.
+
+Der Leistungsumfang umfasst insbesondere:
+- Überlassung und Bereitstellung der Fachanwendungen einschließlich aller erforderlichen Standardkomponenten und Nutzungsrechte (Überlassung von Standardsoftware auf Dauer),
+- Implementierungs-, Projektmanagement-, Beratungs- und Einführungsleistungen,
+Migration von Bestandsdaten sowie Unterstützung bei der Übernahme bestehender Verfahrensstände, Schulungen (Dienstleistungen),
+- Bereitstellung und Betrieb erforderlicher Online- und Self-Service-Komponenten (Cloud-Leistungen),
+- Softwarepflege einschließlich Fehlerbehebung, Updates, Upgrades, Releasewechseln und gesetzlich oder fachlich bedingten Anpassungen, Support-, Hotline- und Ticketleistungen (Systemservice).
+
+Die Beschaffung ist in mehrere Fachlose gegliedert.
+
+Die angebotenen Lösungen müssen die einschlägigen rechtlichen, fachlichen und technischen Anforderungen des öffentlichen Sektors erfüllen. Hierzu zählen insbesondere die Unterstützung standardisierter Datenaustauschverfahren, die Interoperabilität mit bestehenden IT-Systemen, die Einhaltung datenschutzrechtlicher und informationssicherheitsbezogener Anforderungen sowie die Berücksichtigung von Barrierefreiheits- und E-Government-Vorgaben. Ziel der Beschaffung ist die langfristige Sicherstellung eines wirtschaftlichen, medienbruchfreien und weitgehend standardisierten Betriebs kommunaler Fachverfahren für die angeschlossenen Kommunen.</cbc:Description>
+			<cbc:ProcurementTypeCode listName="contract-nature">supplies</cbc:ProcurementTypeCode>
+			<cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+			<cac:ProcurementAdditionalType>
+				<cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+			</cac:ProcurementAdditionalType>
+			<cac:MainCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48100000</cbc:ItemClassificationCode>
+			</cac:MainCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">48510000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72267000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:AdditionalCommodityClassification>
+				<cbc:ItemClassificationCode listName="cpv">72268000</cbc:ItemClassificationCode>
+			</cac:AdditionalCommodityClassification>
+			<cac:RealizedLocation>
+				<cac:Address>
+					<cbc:StreetName>Sonnenblumenallee 3</cbc:StreetName>
+					<cbc:CityName>Hemer</cbc:CityName>
+					<cbc:PostalZone>58675</cbc:PostalZone>
+					<cbc:CountrySubentityCode listName="nuts">DEA58</cbc:CountrySubentityCode>
+					<cac:Country>
+						<cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+					</cac:Country>
+				</cac:Address>
+			</cac:RealizedLocation>
+			<cac:PlannedPeriod>
+				<cbc:DurationMeasure unitCode="MONTH">48</cbc:DurationMeasure>
+			</cac:PlannedPeriod>
+			<cac:ContractExtension>
+				<cbc:OptionsDescription languageID="DEU">Option 1) Option zur Verlängerung:
+Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate. 
+
+Option 2) Option zur Erweiterung/Erhöhung des Höchstvolumens der Rahmenvereinbarung:
+Option zur Erweiterung bzw. Erhöhung des Höchstvolumens der Rahmenvereinbarung ("Änderung des Höchstvolumens"), wenn sich während der Vertragslaufzeit der Rahmenvereinbarung die Anzahl der Verbandsmitglieder erhöht. Durch die Option erhöht sich sodann auch der Höchstwert der Rahmenvereinbarung.</cbc:OptionsDescription>
+				<cbc:MaximumNumberNumeric>2</cbc:MaximumNumberNumeric>
+				<cac:Renewal>
+					<cac:Period>
+						<cbc:Description languageID="DEU">Option zur Verlängerung der Vertragslaufzeit um  zweimal je 12 Monate (automatische Verlängerung). Die Höchstlaufzeit der Rahmenvereinbarung beträgt damit längstens 72 Monate.</cbc:Description>
+					</cac:Period>
+				</cac:Renewal>
+			</cac:ContractExtension>
+		</cac:ProcurementProject>
+	</cac:ProcurementProjectLot>
+</ContractNotice>

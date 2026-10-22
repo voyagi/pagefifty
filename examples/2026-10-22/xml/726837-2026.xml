@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><ContractNotice xmlns="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:efac="http://data.europa.eu/p27/eforms-ubl-extension-aggregate-components/1" xmlns:efbc="http://data.europa.eu/p27/eforms-ubl-extension-basic-components/1" xmlns:efext="http://data.europa.eu/p27/eforms-ubl-extensions/1" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ext:UBLExtensions>
+      <ext:UBLExtension>
+         <ext:ExtensionContent>
+            <efext:EformsExtension>
+               <efac:NoticeSubType>
+                  <cbc:SubTypeCode listName="notice-subtype">16</cbc:SubTypeCode>
+               </efac:NoticeSubType>
+               <efac:Organizations>
+                  <efac:Organization>
+                     <efbc:AcquiringCPBIndicator>false</efbc:AcquiringCPBIndicator>
+                     <efbc:AwardingCPBIndicator>false</efbc:AwardingCPBIndicator>
+                     <efac:Company>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Landesamt für Umwelt, Naturschutz und Geologie Mecklenburg-Vorpommern</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Goldberger Straße 12b</cbc:StreetName>
+                           <cbc:CityName>Güstrow</cbc:CityName>
+                           <cbc:PostalZone>18273</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE80K</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>0385 / 588 - 64000</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.vergabemarktplatz-mv.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7002</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">DVZ Datenverarbeitungszentrum Mecklenburg-Vorpommern GmbH</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Lübecker Straße 283</cbc:StreetName>
+                           <cbc:CityName>Schwerin</cbc:CityName>
+                           <cbc:PostalZone>19059</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>13-X19210004000-80</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+                  <efac:Organization>
+                     <efac:Company>
+                        <cbc:WebsiteURI>https://www.mv-regierung.de</cbc:WebsiteURI>
+                        <cac:PartyIdentification>
+                           <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+                        </cac:PartyIdentification>
+                        <cac:PartyName>
+                           <cbc:Name languageID="DEU">Vergabekammern beim Ministerium für Wirtschaft, Infrastruktur, Tourismus und Arbeit Mecklenburg-Vorpommern</cbc:Name>
+                        </cac:PartyName>
+                        <cac:PostalAddress>
+                           <cbc:StreetName>Johannes-Stelling Straße 14</cbc:StreetName>
+                           <cbc:CityName>Schwerin</cbc:CityName>
+                           <cbc:PostalZone>19053</cbc:PostalZone>
+                           <cbc:CountrySubentityCode listName="nuts">DE804</cbc:CountrySubentityCode>
+                           <cac:Country>
+                              <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+                           </cac:Country>
+                        </cac:PostalAddress>
+                        <cac:PartyLegalEntity>
+                           <cbc:CompanyID>VKMV-13-L50010000000-78</cbc:CompanyID>
+                        </cac:PartyLegalEntity>
+                        <cac:Contact>
+                           <cbc:Telephone>[removed]</cbc:Telephone>
+                           <cbc:Telefax>[removed]</cbc:Telefax>
+                           <cbc:ElectronicMail>[removed]</cbc:ElectronicMail>
+                        </cac:Contact>
+                     </efac:Company>
+                  </efac:Organization>
+               <efac:Organization><efac:Company><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification><cac:PartyName><cbc:Name languageID="DEU">Datenservice Öffentlicher Einkauf (in Verantwortung des Beschaffungsamts des BMI)</cbc:Name></cac:PartyName><cac:PostalAddress><cbc:CityName>Bonn</cbc:CityName><cbc:PostalZone>53119</cbc:PostalZone><cbc:CountrySubentityCode listName="nuts">DEA22</cbc:CountrySubentityCode><cac:Country><cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode></cac:Country></cac:PostalAddress><cac:PartyLegalEntity><cbc:CompanyID schemeID="002">0204:994-DOEVD-83</cbc:CompanyID></cac:PartyLegalEntity><cac:Contact><cbc:Telephone>[removed]</cbc:Telephone><cbc:ElectronicMail>[removed]</cbc:ElectronicMail></cac:Contact></efac:Company></efac:Organization></efac:Organizations>
+            <efac:Publication><efbc:NoticePublicationID schemeName="ojs-notice-id">00726837-2026</efbc:NoticePublicationID><efbc:GazetteID schemeName="ojs-id">204/2026</efbc:GazetteID><efbc:PublicationDate>2026-10-21+02:00</efbc:PublicationDate></efac:Publication></efext:EformsExtension>
+         </ext:ExtensionContent>
+      </ext:UBLExtension>
+   </ext:UBLExtensions>
+   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+   <cbc:CustomizationID>eforms-sdk-1.13</cbc:CustomizationID>
+   <cbc:ProfileID>eforms-sdk-1.13</cbc:ProfileID>
+   <cbc:ID schemeName="notice-id">92fad57c-6850-492c-aa60-952132e8ecba</cbc:ID>
+   <cbc:ContractFolderID>093f5802-f5ae-4659-918f-28188497a4ef</cbc:ContractFolderID>
+   <cbc:IssueDate>2026-10-19+02:00</cbc:IssueDate>
+   <cbc:IssueTime>14:56:44+02:00</cbc:IssueTime>
+   <cbc:VersionID>01</cbc:VersionID>
+   <cbc:RequestedPublicationDate>2026-10-19+02:00</cbc:RequestedPublicationDate>
+   <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
+   <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
+   <cbc:NoticeLanguageCode listName="language">DEU</cbc:NoticeLanguageCode>
+   <cac:ContractingParty>
+      <cac:ContractingPartyType>
+         <cbc:PartyTypeCode listName="buyer-legal-type">ra</cbc:PartyTypeCode>
+      </cac:ContractingPartyType>
+      <cac:ContractingActivity>
+         <cbc:ActivityTypeCode listName="authority-activity">env-pro</cbc:ActivityTypeCode>
+      </cac:ContractingActivity>
+      <cac:Party>
+         <cac:PartyIdentification>
+            <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+         </cac:PartyIdentification>
+      <cac:ServiceProviderParty><cbc:ServiceTypeCode listName="organisation-role">ted-esen</cbc:ServiceTypeCode><cac:Party><cac:PartyIdentification><cbc:ID schemeName="organization">ORG-7005</cbc:ID></cac:PartyIdentification></cac:Party></cac:ServiceProviderParty></cac:Party>
+   </cac:ContractingParty>
+   <cac:TenderingTerms>
+      <cac:ProcurementLegislationDocumentReference>
+         <cbc:ID>vgv</cbc:ID>
+      </cac:ProcurementLegislationDocumentReference>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-notice</cbc:TendererRequirementTypeCode>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+      <cac:TendererQualificationRequest>
+         <cac:SpecificTendererRequirement>
+            <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-natl-bre-nat-law</cbc:TendererRequirementTypeCode>
+            <cbc:Description languageID="DEU">Siehe Eigenerklärung zum Nichtvorliegen von Ausschlussgründen gem. §§ 123, 124, 125 GWB (Anhang 5);
+Soweit der Bieter zum Nachweis der Leistungsfähigkeit Ressourcen von Dritten/Nachunternehmen zurückgreifen will (Eignungsleihe), ist Punkt 2.11 der Bewerbungsbedingungen zu beachten. Bei Bietergemeinschaften sind die geforderten Nachweise von jedem Mitglied der Bietergemeinschaft gesondert abzugeben, vgl. im Übrigen Anhang 1 Punkt 2 und 4 (nach Formblatt) und Punkt 2.9 der Bewerbungsbedingungen</cbc:Description>
+         </cac:SpecificTendererRequirement>
+      </cac:TendererQualificationRequest>
+   </cac:TenderingTerms>
+   <cac:TenderingProcess>
+      <cbc:ProcedureCode listName="procurement-procedure-type">open</cbc:ProcedureCode>
+      <cac:ProcessJustification>
+         <cbc:ProcessReasonCode listName="accelerated-procedure">false</cbc:ProcessReasonCode>
+      </cac:ProcessJustification>
+   </cac:TenderingProcess>
+   <cac:ProcurementProject>
+      <cbc:ID>IT 007-2026</cbc:ID>
+      <cbc:Name languageID="DEU">Digitalisierung Schreibpegelbögen der Landeshydrologie</cbc:Name>
+      <cbc:Description languageID="DEU">Digitalisierung aller in den Archiven der 5 Standorte (Schwerin, Rostock, Stralsund, Ueckermünde und Neubrandenburg) der StÄLU lagernden Pegelschreibbögen. </cbc:Description>
+      <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+      <cac:MainCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">79999100</cbc:ItemClassificationCode>
+      </cac:MainCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72310000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72312100</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:AdditionalCommodityClassification>
+         <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+      </cac:AdditionalCommodityClassification>
+      <cac:RealizedLocation>
+         <cac:Address>
+            <cbc:CityName>Güstrow</cbc:CityName>
+            <cbc:PostalZone>18273</cbc:PostalZone>
+            <cbc:CountrySubentityCode listName="nuts">DE80K</cbc:CountrySubentityCode>
+            <cac:Country>
+               <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+            </cac:Country>
+         </cac:Address>
+      </cac:RealizedLocation>
+   </cac:ProcurementProject>
+   <cac:ProcurementProjectLot>
+      <cbc:ID schemeName="Lot">LOT-0000</cbc:ID>
+      <cac:TenderingTerms>
+         <ext:UBLExtensions>
+            <ext:UBLExtension>
+               <ext:ExtensionContent>
+                  <efext:EformsExtension>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-ref-services</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mindestens einen geeigneten Referenzauftrag des Unternehmens aus den letzten drei Jahren. 
+Erwartet werden Aufträge mit einer Laufzeit von 6 oder mehr Monaten.
+Ein Referenzauftrag ist geeignet, sofern dieser nach Art und Umfang mit dem Auftragsgegenstand vergleichbar ist. Vergleichbar ist ein Referenzauftrag, wenn dieser Folgendes beinhaltet:
+Vergleichbar ist ein Referenzauftrag insbesondere, wenn dieser Leistungen zur Digitalisierung analoger wasserwirtschaftlicher, hydrologischer oder vergleichbarer technischer Messaufzeichnungen umfasst, einschließlich der strukturierten Erfassung, Aufbereitung und Bereitstellung der daraus gewonnenen Daten.
+Als vergleichbar gelten insbesondere Referenzaufträge über
+• die Digitalisierung von Schreibpegelbögen oder vergleichbaren analogen Pegel-, Mess- oder Ganglinienaufzeichnungen für wasserwirtschaftliche Bundes- oder Landesbehörden,
+• die Digitalisierung entsprechender Unterlagen für Fach- oder Zweckverbände der Wasserwirtschaft oder
+• vergleichbare Leistungen für sonstige öffentliche oder private Auftraggeber, sofern Art, Umfang und fachlich-technische Anforderungen der Leistung mit dem ausgeschriebenen Auftrag vergleichbar sind.
+Laufende Aufträge werden berücksichtigt, soweit die vergleichbaren Liefer- oder Dienstleistungen innerhalb der letzten drei Jahre erbracht wurden.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-avg-mp</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung, aus der die durchschnittliche jährliche Mitarbeiterzahl des Unternehmens und die Zahl seiner Führungskräfte in den letzten drei Jahren ersichtlich ist.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-staff-yrly-no-mgmt</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Erklärung, aus der die durchschnittliche jährliche Mitarbeiterzahl des Unternehmens und die Zahl seiner Führungskräfte in dem Tätigkeitsbereich des Auftrags in den letzten drei Jahren ersichtlich ist
+(Unter dem Tätigkeitsbereich des Auftrags ist die Digitalisierung von Schreibpegelbögen zu verstehen).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-abil-subc</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Mit dem Angebot ist anzugeben, in welchem Umfang und für welche Teile des Auftrags der Einsatz von Dritten vorgesehen ist bzw. Kapazitäten Dritter in Anspruch genommen werden sollen.
+Dabei ist sicherzustellen, dass dies mit der vertragsgemäßen Ausführung der Leistung vereinbart werden kann. Weitere Einzelheiten ergeben sich aus den Bewerbungsbedingungen (Pkt. 2.9 und 2.10).
+Soweit der Bieter zum Nachweis der Leistungsfähigkeit Ressourcen von Dritten/Nachunternehmen zurückgreifen will (Eignungsleihe), ist Punkt 2.11 der Bewerbungsbedingungen zu beachten.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ins</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter bestätigt, dass für sein Unternehmen eine Betriebshaftpflichtversicherung und eine Transportversicherung oder vergleichbare Versicherungen aus einem Mitgliedsstaat der EU mit folgenden Mindestdeckungssummen:
+• eine Betriebshaftpflichtversicherung mit einer Mindestdeckungssumme in Höhe von 3,0 Mio Euro je Schadensfall für Sach-, Personen- und Vermögensschäden,
+• eine Transportversicherung mit einer Mindestdeckungssumme in Höhe von 3,0 Mio Euro je Schadensfall
+im Fall der Zuschlagserteilung abgeschlossen werden und der Nachweis darüber unaufgefordert und unverzüglich nach Zuschlagserteilung erbracht wird.
+Siehe im Übrigen Nr. 15.4 des EVB-IT Dienstvertrages</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-other</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">- Der Bieter übergibt eine aktuelle (d. h. nicht älter als drei Monate seit dem Tag der Absendung der Auftragsbekanntmachung) Kopie einer Bankerklärung der Hausbank des Bieters, aus der dessen gegenwärtige Finanz- und Liquiditätslage hervorgeht.
+- Der Bieter übergibt eine Unternehmensdarstellung (insbesondere Geschäftsfelder, die Firmen- und Organisationsstruktur, die Standorte und Niederlassungen des Unternehmens, das Leistungsportfolio bezogen auf den Auftragsgegenstand sowie die prozentuale Verteilung der Auftraggeber nach Privatwirtschaft und öffentliche Auftraggeber. Umfang: maximal 3 DIN A4 Seiten). - Anhang 3 Punkt 2 (Formblatt).</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-ratio</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter übergibt eine Kopie des letzten veröffentlichten Jahresabschlusses (soweit dessen Veröffentlichung in dem Land, in dem der Bieter niedergelassen ist, gesetzlich vorgeschrieben ist) bzw. bei nicht veröffentlichungspflichtigen Unternehmen eine Kopie der letzten Bilanz oder betriebswirtschaftlichen Auswertung.
+Der Auftraggeber behält sich vor, eine aktuelle (d. h. nicht älter als 3 Monate seit dem Tag der Absendung der Auftragsbekanntmachung) betriebswirtschaftliche Auswertung (BWA) nachzufordern.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-gen</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter übergibt eine Erklärung über den Gesamtumsatz des Unternehmens. - Anhang 3 Punkt 3 (Formblatt)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-stand-to-spec</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter übergibt eine Erklärung über den Umsatz im Tätigkeitsbereich des Auftrags. - Anhang 3 Punkt 3 (Formblatt)</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:SelectionCriteria>
+                        <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-trade</cbc:TendererRequirementTypeCode>
+                        <cbc:Description languageID="DEU">Der Bieter übergibt die Kopie eines aktuellen Handelsregisterauszuges, nicht älter als sechs Monate seit dem Tag der Absendung Auftragsbekanntmachung. Dieser dient insbesondere zum Nachweis der Eintragung des gesetzlichen Vertreters bzw. im Falle einer rechtsgeschäftlichen Bevollmächtigung zum Nachweis der rechtsverbindlichen Unterzeichnung der Vollmachtsurkunde.</cbc:Description>
+                     </efac:SelectionCriteria>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="cvd-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                     <efac:StrategicProcurement>
+                        <efbc:ApplicableLegalBasis listName="eed-scope">false</efbc:ApplicableLegalBasis>
+                     </efac:StrategicProcurement>
+                  </efext:EformsExtension>
+               </ext:ExtensionContent>
+            </ext:UBLExtension>
+         </ext:UBLExtensions>
+         <cbc:VariantConstraintCode listName="permission">not-allowed</cbc:VariantConstraintCode>
+         <cbc:FundingProgramCode listName="eu-funded">no-eu-funds</cbc:FundingProgramCode>
+         <cbc:RequiredCurriculaCode listName="requirement-stage">not-requ</cbc:RequiredCurriculaCode>
+         <cbc:RecurringProcurementIndicator>false</cbc:RecurringProcurementIndicator>
+         <cbc:MultipleTendersCode listName="permission">not-allowed</cbc:MultipleTendersCode>
+         <cac:CallForTendersDocumentReference>
+            <ext:UBLExtensions>
+               <ext:UBLExtension>
+                  <ext:ExtensionContent>
+                     <efext:EformsExtension>
+                        <efac:OfficialLanguages>
+                           <cac:Language>
+                              <cbc:ID>DEU</cbc:ID>
+                           </cac:Language>
+                        </efac:OfficialLanguages>
+                     </efext:EformsExtension>
+                  </ext:ExtensionContent>
+               </ext:UBLExtension>
+            </ext:UBLExtensions>
+            <cbc:ID>TenderDoc</cbc:ID>
+            <cbc:DocumentType>non-restricted-document</cbc:DocumentType>
+            <cac:Attachment>
+               <cac:ExternalReference>
+                  <cbc:URI>https://www.vergabemarktplatz-mv.de/NetServer/TenderingProcedureDetails?function=_Details&amp;TenderOID=54321-Tender-19e875b3a8e-468c3a062c6b5f55</cbc:URI>
+               </cac:ExternalReference>
+            </cac:Attachment>
+         </cac:CallForTendersDocumentReference>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-notice</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="missing-info-submission">late-all</cbc:TendererRequirementTypeCode>
+               <cbc:Description languageID="DEU">Die Vergabestelle behält sich gem. § 56 Abs. 2 VgV vor, fehlende, fehlerhafte oder unvollständige Erklärungen und Nachweise bis zum Ablauf einer von der Vergabestelle zu bestimmenden Nachfrist nachzufordern. Die Bieter haben keinen Anspruch auf Nachforderung/Nachreichung von Unterlagen.</cbc:Description>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:TendererQualificationRequest>
+            <cac:SpecificTendererRequirement>
+               <cbc:TendererRequirementTypeCode listName="reserved-procurement">none</cbc:TendererRequirementTypeCode>
+            </cac:SpecificTendererRequirement>
+         </cac:TendererQualificationRequest>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="reserved-execution">no</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="conditions">performance</cbc:ExecutionRequirementCode>
+            <cbc:Description languageID="DEU">- Erklärung zum Tariftreue- und Vergabegesetz Mecklenburg-Vorpommern (§§ 6, 8 u. 9 TVgG MV) (Anlage 5 Punkt 2.1),
+- Eigenerklärung ILO-Kernarbeitsnormen nach § 13 TVgG MV (Anlage 5 Punkt 2.2),
+- Eigenerklärung zum Nichtvorliegen Russlandbezug (Anlage 5 Punkt 2.3),
+- Eigenerklärung zum Einsatz von KI-Systemen (Anlage 5 Punkt 2.4)
+- Eigenerklärung zur Geltung der VOPR 30/53 (Anlage 5 Punkt 2.5)
+- Scientology Schutzerklärung (Anlage 5 Punkt 2.6)
+Soweit der Bieter zum Nachweis der Leistungsfähigkeit auf Ressourcen von Dritten/Nachunternehmen (Eignungsleihe) zurückgreifen will oder einfache Nachunternehmer einbezieht, gelten vorgen. Bedingungen ebenfalls in Bezug auf die Dritten/Nachunternehmen. Bei Bietergemeinschaften (BG) ist der Nachweis von jedem Mitglied gesondert abzugeben.</cbc:Description>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="einvoicing">allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:ContractExecutionRequirement>
+            <cbc:ExecutionRequirementCode listName="ecatalog-submission">not-allowed</cbc:ExecutionRequirementCode>
+         </cac:ContractExecutionRequirement>
+         <cac:AwardingTerms>
+            <cac:AwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">quality</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Gesamtleistungspunktzahl (L)</cbc:Name>
+                  <cbc:Description languageID="DEU">Maßgeblich ist die Gesamtleistungspunktzahl (L) aus Anlage 3 (Kriterienkatalog). Die Wertung erfolgt nach der einfachen Richtwertmethode gemäß Pkt. 3.6 der Bewerbungsbedingungen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+               <cac:SubordinateAwardingCriterion>
+                  <ext:UBLExtensions>
+                     <ext:UBLExtension>
+                        <ext:ExtensionContent>
+                           <efext:EformsExtension>
+                              <efac:AwardCriterionParameter>
+                                 <efbc:ParameterCode listName="number-weight">per-exa</efbc:ParameterCode>
+                                 <efbc:ParameterNumeric>50.00</efbc:ParameterNumeric>
+                              </efac:AwardCriterionParameter>
+                           </efext:EformsExtension>
+                        </ext:ExtensionContent>
+                     </ext:UBLExtension>
+                  </ext:UBLExtensions>
+                  <cbc:AwardingCriterionTypeCode listName="award-criterion-type">price</cbc:AwardingCriterionTypeCode>
+                  <cbc:Name languageID="DEU">Preis</cbc:Name>
+                  <cbc:Description languageID="DEU">Maßgeblich ist der Gesamtwertungspreis (P) gemäß Anlage 1 (Preisblatt). Die Wertung erfolgt nach der einfachen Richtwertmethode gemäß Pkt. 3.6 der Bewerbungsbedingungen.</cbc:Description>
+               </cac:SubordinateAwardingCriterion>
+            </cac:AwardingCriterion>
+         </cac:AwardingTerms>
+         <cac:AdditionalInformationParty>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7001</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:AdditionalInformationParty>
+         <cac:TenderRecipientParty>
+            <cbc:EndpointID>http://www.vergabemarktplatz-mv.de</cbc:EndpointID>
+            <cac:PartyIdentification>
+               <cbc:ID schemeName="organization">ORG-7002</cbc:ID>
+            </cac:PartyIdentification>
+         </cac:TenderRecipientParty>
+         <cac:TenderValidityPeriod>
+            <cbc:DurationMeasure unitCode="DAY">101</cbc:DurationMeasure>
+         </cac:TenderValidityPeriod>
+         <cac:AppealTerms>
+            <cac:PresentationPeriod>
+               <cbc:Description languageID="DEU">Ein Antrag auf Einleitung eines Nachprüfungsverfahrens ist gemäß § 160 Abs. 3 GWB unzulässig, soweit:
+1) der Antragsteller den geltend gemachten Verstoß gegen Vergabevorschriften vor Einreichen des Nachprüfungsantrags erkannt und gegenüber dem Auftraggeber nicht innerhalb einer Frist von 10 Kalendertagen gerügt hat; der Ablauf der Frist nach § 134 Abs. 2 GWB bleibtunberührt,
+2) Verstöße gegen Vergabevorschriften, die aufgrund der Bekanntmachung erkennbar sind, nicht spätestens bis zum Ablauf der in der Bekanntmachung benannten Frist zur Bewerbung oder zur Angebotsabgabe gegenüber dem
+Auftraggeber gerügt werden,
+3) Verstöße gegen Vergabevorschriften, die erst in den Vergabeunterlagen erkennbar sind, nicht spätestens bis zum Ablauf der Frist zur Bewerbung oder zu Angebotsabgabe gegenüber dem Auftraggeber gerügt werden,
+4) mehr als 15 Kalendertage nach Eingang der Mitteilung des Auftraggebers, einerRüge nicht abhelfen zu wollen, vergangen sind.</cbc:Description>
+            </cac:PresentationPeriod>
+            <cac:AppealReceiverParty>
+               <cac:PartyIdentification>
+                  <cbc:ID schemeName="organization">ORG-7004</cbc:ID>
+               </cac:PartyIdentification>
+            </cac:AppealReceiverParty>
+         </cac:AppealTerms>
+         <cac:Language>
+            <cbc:ID>DEU</cbc:ID>
+         </cac:Language>
+         <cac:PostAwardProcess>
+            <cbc:ElectronicOrderUsageIndicator>true</cbc:ElectronicOrderUsageIndicator>
+            <cbc:ElectronicPaymentUsageIndicator>true</cbc:ElectronicPaymentUsageIndicator>
+         </cac:PostAwardProcess>
+      </cac:TenderingTerms>
+      <cac:TenderingProcess>
+         <cbc:SubmissionMethodCode listName="esubmission">allowed</cbc:SubmissionMethodCode>
+         <cbc:GovernmentAgreementConstraintIndicator>true</cbc:GovernmentAgreementConstraintIndicator>
+         <cac:TenderSubmissionDeadlinePeriod>
+            <cbc:EndDate>2026-11-19+01:00</cbc:EndDate>
+            <cbc:EndTime>12:00:00+01:00</cbc:EndTime>
+         </cac:TenderSubmissionDeadlinePeriod>
+         <cac:AuctionTerms>
+            <cbc:AuctionConstraintIndicator>false</cbc:AuctionConstraintIndicator>
+         </cac:AuctionTerms>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="framework-agreement">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+         <cac:ContractingSystem>
+            <cbc:ContractingSystemTypeCode listName="dps-usage">none</cbc:ContractingSystemTypeCode>
+         </cac:ContractingSystem>
+      </cac:TenderingProcess>
+      <cac:ProcurementProject>
+         <cbc:ID>LOT-0000</cbc:ID>
+         <cbc:Name languageID="DEU">Digitalisierung Schreibpegelbögen der Landeshydrologie</cbc:Name>
+         <cbc:Description languageID="DEU">Das Landesamt für Umwelt, Naturschutz und Geologie Mecklenburg-Vorpommern (LUNG) plant die Digitalisierung aller in den Archiven der 5 Standorte (Schwerin, Rostock, Stralsund, Ueckermünde und Neubrandenburg) der StÄLU lagernden Pegelschreibbögen. Dabei stehen folgende Hauptziele im Vordergrund:
+• den physischen Verlust von wichtigen Aufzeichnungen verhindern
+• Digitalisierung von in Papierform vorliegenden Dokumenten (Pegelbogen, Pegelnotizblätter usw.)
+• Extraktion von höher aufgelösten Messdaten aus den Pegelschreibbögen 
+• Qualität des digitalisierten Endergebnisses prüfen
+• historische Daten als digital nutzbare Zeitreihen im FIS Pegel bereitstellen
+Die so gewonnenen Daten verbreitern die Datenbasis der Landeshydrologie, indem für Zeiträume der ferneren Vergangenheit, in der Pegelschreibbögen überwiegend eingesetzt wurden, statt Daten täglicher Auflösung oder Terminwerten, zeitlich hochaufgelöster Daten für diese Zeiträume generiert werden. Im Ergebnis sollen die digitalisierten und quantisierten Ganglinien der täglichen Nutzung der Landeshydrologie im Fachinformationssystem FIS Pegel bereitgestellt werden.
+Der Auftragnehmer hat die Unterlagen zu übernehmen, zu transportieren, sachgerecht zu lagern, zu digitalisieren, die enthaltenen Messkurven automatisiert zu extrahieren und zu quantisieren, die Ergebnisse zu validieren und dem Auftraggeber in vereinbarten Dateiformaten bereitzustellen. Nach Abschluss der vorstehenden Leistungen ist der Auftragnehmer zum Rücktransport der bereitgestellten Unterlagen verpflichtet.
+Die Leistung ist so zu erbringen, dass die Originalunterlagen geschützt, die digitalen Ergebnisse nachvollziehbar, prüfbar und langfristig weiterverwendbar sind und die erzeugten Zeitreihen in bestehende oder künftige Fachverfahren des Auftraggebers übernommen werden können.
+In den Archiven der Staatlichen Ämter für Landwirtschaft und Umwelt liegt ein Gesamtbestand im Umfang von 148 Schreibpegelstationen. Dies entspricht einem Gesamtumfang in laufenden Metern an Schreibpegelbögen von 54.893 m.</cbc:Description>
+         <cbc:ProcurementTypeCode listName="contract-nature">services</cbc:ProcurementTypeCode>
+         <cbc:SMESuitableIndicator>false</cbc:SMESuitableIndicator>
+         <cac:ProcurementAdditionalType>
+            <cbc:ProcurementTypeCode listName="strategic-procurement">none</cbc:ProcurementTypeCode>
+         </cac:ProcurementAdditionalType>
+         <cac:MainCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">79999100</cbc:ItemClassificationCode>
+         </cac:MainCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72310000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72312100</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:AdditionalCommodityClassification>
+            <cbc:ItemClassificationCode listName="cpv">72316000</cbc:ItemClassificationCode>
+         </cac:AdditionalCommodityClassification>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Güstrow</cbc:CityName>
+               <cbc:PostalZone>18273</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE80K</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:RealizedLocation>
+            <cac:Address>
+               <cbc:CityName>Güstrow</cbc:CityName>
+               <cbc:PostalZone>18273</cbc:PostalZone>
+               <cbc:CountrySubentityCode listName="nuts">DE80K</cbc:CountrySubentityCode>
+               <cac:Country>
+                  <cbc:IdentificationCode listName="country">DEU</cbc:IdentificationCode>
+               </cac:Country>
+            </cac:Address>
+         </cac:RealizedLocation>
+         <cac:PlannedPeriod>
+            <cbc:DurationMeasure unitCode="MONTH">6</cbc:DurationMeasure>
+         </cac:PlannedPeriod>
+      </cac:ProcurementProject>
+   </cac:ProcurementProjectLot>
+</ContractNotice>

@@ -946,6 +946,75 @@ describe('a run with too many failed notices', () => {
 	});
 });
 
+const DEADLINE_PERIOD =
+	/<cac:(TenderSubmissionDeadlinePeriod|ParticipationRequestReceptionPeriod)>[\s\S]*?<\/cac:\1>/g;
+
+// The shape of the four notices that failed the 2026-10-22 live run (721224-2026 among them): each
+// deadline's date at +01:00 and its time at +02:00.
+function withOffsetsApart(notice: string): string {
+	const tracked = readFileSync(capturePath(notice), 'utf8');
+	const apart = tracked.replace(DEADLINE_PERIOD, (period) =>
+		period
+			.replace(/(<cbc:EndDate>\d{4}-\d{2}-\d{2})[^<]*/, '$1+01:00')
+			.replace(/(<cbc:EndTime>\d{2}:\d{2}:\d{2})[^<]*/, '$1+02:00')
+	);
+	if (apart === tracked) throw new Error(`${notice}: no deadline period was rewritten`);
+	return apart;
+}
+
+const servedApart = (notices: readonly string[]) =>
+	Object.fromEntries(
+		notices.map((n) => [tedNoticeXmlUrl(n), [{ status: 200, body: withOffsetsApart(n) }]])
+	);
+
+describe('a run with notices whose deadline date and time carry different offsets', () => {
+	const apart = EIGHT.slice(0, MAX_FAILED_NOTICES + 1);
+
+	it('leaves each one out with its reason and counts none as failed', async () => {
+		const run = await captureRun(EIGHT, { script: servedApart(apart) });
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		const { notices } = readJson(join(run.folder, 'run.json'));
+		expect(notices.failed).toEqual([]);
+		expect(notices.leftOut.map(({ notice }: { notice: string }) => notice)).toEqual(apart);
+		for (const { reason } of notices.leftOut) {
+			expect(reason).toMatch(
+				/^deadline-offsets: ContractNotice\/cac:ProcurementProjectLot\[[^\]]+\]\/cac:\w+ gives its date at \+01:00 and its time at \+02:00, so its deadline is not known to the hour$/
+			);
+		}
+		expect(readdirSync(join(run.folder, 'xml')).sort()).toEqual(
+			EIGHT.slice(apart.length).map((n) => `${n}.xml`)
+		);
+		const readme = readFileSync(join(run.folder, 'README.md'), 'utf8');
+		expect(readme).toContain(`- ${apart[0]}: deadline-offsets: `);
+		expect(readme).not.toContain('## Not captured');
+	});
+
+	it('leaves out the older version of one, as a failed newer version does', async () => {
+		const run = await captureRun(['600367-2026', '600457-2026', '600779-2026', '601147-2026'], {
+			script: {
+				...versionedSearch([
+					['600457-2026'],
+					['601147-2026', PAIR_ID, 1],
+					['600367-2026', PAIR_ID, '02'],
+					['600779-2026']
+				]),
+				...servedApart(['600367-2026'])
+			}
+		});
+		expect(run.code, run.lines.join('\n')).toBe(0);
+		expect(readdirSync(join(run.folder, 'xml')).sort()).toEqual([
+			'600457-2026.xml',
+			'600779-2026.xml'
+		]);
+		const { notices } = readJson(join(run.folder, 'run.json'));
+		expect(notices.failed).toEqual([]);
+		expect(notices.leftOut.map(({ notice }: { notice: string }) => notice)).toEqual([
+			'600367-2026',
+			'601147-2026'
+		]);
+	});
+});
+
 // TRAP 85's real pair: both carry notice identifier ad28f539, 600367-2026 as version 02 and
 // 601147-2026 as version 01. The tracked listing never asked for the two version fields, so the
 // search answer here is the listing with them added.
