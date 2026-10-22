@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { decideReadLot, type FirmFacts, type LotContext } from './compare';
 import { parseCount, parseMoney, parsePeriod } from './figures';
 import { readLot, type ModelItem } from './lot-reading';
+import { findQuote } from './quote';
 
 const CONTEXT: LotContext = {
 	legalBasis: '32014L0024',
@@ -173,5 +174,82 @@ describe('a choice of one year read only from a period phrase', () => {
 		]
 	])('%s: a choice of one year still reads as any-one', (lang, text) => {
 		expect(parsePeriod(text, lang).mode).toBe('any-one');
+	});
+});
+
+// Folds to a full stop under NFKC, built from its code point so the source shows which mark it is.
+const DOT_LEADER = String.fromCodePoint(0x2024);
+
+describe('quotes that point at less than the clause demands', () => {
+	it('a quote whose digit groups use a look-alike dot never sets a lower floor', () => {
+		const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR';
+		const quote = `Mindestjahresumsatz jährlich von mindestens 1${DOT_LEADER}000${DOT_LEADER}000 EUR`;
+		expect(findQuote(quote, text).found).toBe(true);
+		const reading = readLot({
+			criteria: [{ code: 'slc-stand-to-gen', descriptions: [{ text, lang: 'de' }] }],
+			items: [item(quote, `1${DOT_LEADER}000${DOT_LEADER}000 EUR`)]
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].state).toBe('NOT_READ');
+		expect(decided.decision.verdict).not.toBe('GO');
+	});
+
+	it('a quote of the smaller amount in a clause never stands for its floor', () => {
+		const text = 'Mindestumsatz 5 Mio. EUR jährlich. Referenzprojekte ab 100.000 EUR.';
+		const quote = 'Referenzprojekte ab 100.000 EUR';
+		const reading = readLot({
+			criteria: [{ code: 'slc-stand-to-gen', descriptions: [{ text, lang: 'de' }] }],
+			items: [item(quote, '100.000 EUR')]
+		});
+		// Above the quoted amount, far below the clause's floor.
+		const firm = firmWithTurnover({ 2023: 200_000, 2024: 200_000, 2025: 200_000 });
+		const decided = decideReadLot(reading, firm, CONTEXT);
+		expect(decided.criteria[0].requirements[0].state).toBe('MET');
+		expect(decided.criteria[0].state).toBe('NOT_READ');
+		expect(decided.decision.verdict).toBe('ASK FIRST');
+		expect(decided.criteria[0].requirements.map((each) => each.why)).toContain('amount-not-quoted');
+	});
+
+	it('a lower amount quoted from a second language never stands for the first', () => {
+		const de = 'Mindestjahresumsatz jährlich von mindestens 5.000.000 EUR';
+		const en = 'A minimum yearly turnover of at least EUR 50,000 per year';
+		const reading = readLot({
+			criteria: [
+				{
+					code: 'slc-stand-to-gen',
+					descriptions: [
+						{ text: de, lang: 'de' },
+						{ text: en, lang: 'en' }
+					]
+				}
+			],
+			items: [item(en, 'EUR 50,000')]
+		});
+		const decided = decideReadLot(reading, SMALL_FIRM, CONTEXT);
+		expect(decided.criteria[0].state).toBe('NOT_READ');
+	});
+});
+
+describe('mutation detectors on the floor comparison', () => {
+	const text = 'Mindestjahresumsatz jährlich von mindestens 1.000.000 EUR netto';
+	const exact = firmWithTurnover({ 2023: 1_000_000, 2024: 1_000_000, 2025: 1_000_000 });
+
+	it('a firm exactly at an "at least" floor every year is MET', () => {
+		expect(verdictFor(text, '1.000.000 EUR', exact).criteria[0].state).toBe('MET');
+	});
+
+	it('a firm one euro short in one year is never MET', () => {
+		const short = firmWithTurnover({ 2023: 1_000_000, 2024: 999_999, 2025: 1_000_000 });
+		expect(verdictFor(text, '1.000.000 EUR', short).criteria[0].state).toBe('SHORT_BORROWABLE');
+	});
+
+	it('a firm exactly at a "more than" net floor is short', () => {
+		const more = 'Jahresumsatz jährlich von mehr als 1.000.000 EUR netto';
+		expect(verdictFor(more, '1.000.000 EUR', exact).criteria[0].state).toBe('SHORT_BORROWABLE');
+	});
+
+	it('a floor stating both "at least" and "more than" settles no equality', () => {
+		const both = 'Mindestjahresumsatz jährlich von mehr als 1.000.000 EUR netto';
+		expect(verdictFor(both, '1.000.000 EUR', exact).criteria[0].state).toBe('PROFILE_GAP');
 	});
 });
