@@ -214,6 +214,19 @@ describe('CriterionRow', () => {
 		expect(provenanceOf(renderRow(mixed, '713597-2026').container)).toBe(shown);
 	});
 
+	// A quote under the minimum length is refused without a search, so it may be in the clause word for
+	// word: the line then says only that no quote was verified.
+	it('makes no word-for-word claim where a refused quote was too short to search for', () => {
+		const criterion = builtCriterion('699142-2026', 0, 6);
+		const rejected = (criterion.rejected ?? []).map((each, index) =>
+			index === 0 ? { ...each, reason: 'too-short' as const } : each
+		);
+		expect(rejected).toHaveLength(3);
+		expect(provenanceOf(renderRow({ ...criterion, rejected }, '699142-2026').container)).toBe(
+			'Read by the model. Code could verify none of its quotes in this clause.'
+		);
+	});
+
 	it('says the model named no requirement where it gave no quote at all', () => {
 		const criterion = { ...builtCriterion('699142-2026', 0, 6), rejected: [] };
 		expect(provenanceOf(renderRow(criterion, '699142-2026').container)).toBe(
