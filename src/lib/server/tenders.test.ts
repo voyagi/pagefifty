@@ -12,8 +12,14 @@ const read = vi.hoisted(() => vi.fn((url: string) => new Response(fromDisk(url))
 vi.mock('$app/server', () => ({ read }));
 
 const { EXAMPLE_CAPTURE, readNoticesOf } = await import('./records');
-const { defaultNotice, loadExampleList, loadExamplePage, loadTenderList } =
-	await import('./tenders');
+const {
+	defaultNotice,
+	exampleNotice,
+	FEATURED_NOTICE,
+	loadExampleList,
+	loadExamplePage,
+	loadTenderList
+} = await import('./tenders');
 const { loadTenderPage } = await import('./tender-page');
 
 // The 2026-09-15 capture is named, not reached through the example, since these figures are its own.
@@ -133,6 +139,19 @@ describe('defaultNotice', () => {
 	});
 });
 
+describe('exampleNotice', () => {
+	// Listed open first, but the model never read it in this capture, so the list rule picks.
+	it('leaves the featured notice to the list rule in a capture the model never read it in', async () => {
+		const { open } = (await load('')).list;
+		const listed = [{ ...open[0], noticeNumber: FEATURED_NOTICE }, ...open];
+		expect(exampleNotice(SEPT, listed)).toBe('610242-2026');
+	});
+
+	it('opens nothing when nothing is open', () => {
+		expect(exampleNotice(SEPT, [])).toBeNull();
+	});
+});
+
 // The example is whichever capture the rule chose, so its own index gives the instant it is judged
 // at and a notice open then; these tests hold on the day the final capture becomes the example.
 const EXAMPLE_INDEX = SnapshotIndexSchema.parse(
@@ -215,6 +234,22 @@ describe('the example run', () => {
 		const before = await exampleList();
 		vi.stubEnv('PAGEFIFTY_LIVE', '1');
 		expect(await exampleList()).toEqual(before);
+	});
+
+	// The list rule alone would open an earlier notice the model read; the featured one is opened
+	// instead. That it is the demo firm's near miss needs the profile, which no server module may
+	// reach, so src/lib/tenders/featured-notice.test.ts checks it.
+	it('opens the featured near miss ahead of the list rule', async () => {
+		const { open } = (await exampleList()).list;
+		expect(defaultNotice(EXAMPLE_CAPTURE, open)).not.toBe(FEATURED_NOTICE);
+		expect(exampleNotice(EXAMPLE_CAPTURE, open)).toBe(FEATURED_NOTICE);
+	});
+
+	it('opens by the list rule when a filter leaves the featured notice out', async () => {
+		const { open } = (await exampleList('?country=NL')).list;
+		expect(open.length).toBeGreaterThan(0);
+		expect(open.some((row) => row.noticeNumber === FEATURED_NOTICE)).toBe(false);
+		expect(exampleNotice(EXAMPLE_CAPTURE, open)).toBe(defaultNotice(EXAMPLE_CAPTURE, open));
 	});
 
 	describe('a lot whose deadline is the capture instant itself', () => {

@@ -32,6 +32,24 @@ function renderRow(criterion: CriterionView, notice: string) {
 	return render(CriterionRow, { props: { criterion, notice } });
 }
 
+// One criterion of a 2026-10-22 notice as its page builds it, with the run's readings and the
+// notice's source link, judged at the capture instant.
+function builtCriterion(notice: string, lot: number, position: number): CriterionView {
+	const record = NoticeRecordSchema.parse(readJson(join(BUILT_1022, 'records', `${notice}.json`)));
+	const readings = NoticeReadingsSchema.parse(
+		readJson(join(BUILT_1022, 'readings', `${notice}.json`))
+	);
+	const { fetchedAt } = CaptureLineSchema.parse(readJson(join(BUILT_1022, 'capture.json')));
+	const criterion = buildTenderPage(record, new Date(fetchedAt), readings).lots[lot].criteria.find(
+		(each) => each.position === position
+	);
+	if (criterion === undefined) throw new Error(`${notice} lot ${lot} has no criterion ${position}`);
+	return criterion;
+}
+
+const provenanceOf = (container: Element) =>
+	container.querySelector('.provenance span')?.textContent?.trim();
+
 const countOf = (text: string, part: string) => text.split(part).length - 1;
 
 describe('CriterionRow', () => {
@@ -133,14 +151,7 @@ describe('CriterionRow', () => {
 	// clause drawn with a bullet in its place still marks it under its reading's number.
 	it('numbers a verified quote holding a Symbol-font bullet in its clause (713597-2026, 2026-10-22)', () => {
 		const notice = '713597-2026';
-		const record = NoticeRecordSchema.parse(
-			readJson(join(BUILT_1022, 'records', `${notice}.json`))
-		);
-		const readings = NoticeReadingsSchema.parse(
-			readJson(join(BUILT_1022, 'readings', `${notice}.json`))
-		);
-		const { fetchedAt } = CaptureLineSchema.parse(readJson(join(BUILT_1022, 'capture.json')));
-		const criterion = buildTenderPage(record, new Date(fetchedAt), readings).lots[0].criteria[1];
+		const criterion = builtCriterion(notice, 0, 2);
 		const requirements = criterion.requirements ?? [];
 		const bulleted = requirements.findIndex((each) =>
 			SYMBOL_BULLETS.some((mark) => each.quote.includes(mark))
@@ -178,6 +189,49 @@ describe('CriterionRow', () => {
 		expect(second.textContent).toBe('Een lijst van de belangrijkste');
 		expect(first.textContent?.length).toBeGreaterThan(12);
 		expect(french.endsWith(first.textContent ?? '')).toBe(true);
+	});
+
+	// The line under the quotes says how they were checked, so it never claims a quote was found
+	// where none is shown: 699142-2026's criterion 6 had all three of its quotes refused.
+	it('says code found none of the quotes under a criterion whose every quote was refused (699142-2026)', () => {
+		const criterion = builtCriterion('699142-2026', 0, 6);
+		expect(criterion.requirements ?? []).toHaveLength(0);
+		expect(criterion.rejected ?? []).toHaveLength(3);
+		const { container } = renderRow(criterion, '699142-2026');
+		expect(provenanceOf(container)).toBe(
+			'Read by the model. Code found none of its quotes word for word in this clause.'
+		);
+	});
+
+	it('says code found each quote shown where some quotes were verified, refused ones or not', () => {
+		const criterion = builtCriterion('713597-2026', 0, 3);
+		expect((criterion.requirements ?? []).length).toBeGreaterThan(0);
+		const shown =
+			'Read by the model. Code found each quote shown here word for word in this clause.';
+		expect(provenanceOf(renderRow(criterion, '713597-2026').container)).toBe(shown);
+		const refused = builtCriterion('699142-2026', 0, 6).rejected ?? [];
+		const mixed = { ...criterion, rejected: refused };
+		expect(provenanceOf(renderRow(mixed, '713597-2026').container)).toBe(shown);
+	});
+
+	// A quote under the minimum length is refused without a search, so it may be in the clause word for
+	// word: the line then says only that no quote was verified.
+	it('makes no word-for-word claim where a refused quote was too short to search for', () => {
+		const criterion = builtCriterion('699142-2026', 0, 6);
+		const rejected = (criterion.rejected ?? []).map((each, index) =>
+			index === 0 ? { ...each, reason: 'too-short' as const } : each
+		);
+		expect(rejected).toHaveLength(3);
+		expect(provenanceOf(renderRow({ ...criterion, rejected }, '699142-2026').container)).toBe(
+			'Read by the model. Code could verify none of its quotes in this clause.'
+		);
+	});
+
+	it('says the model named no requirement where it gave no quote at all', () => {
+		const criterion = { ...builtCriterion('699142-2026', 0, 6), rejected: [] };
+		expect(provenanceOf(renderRow(criterion, '699142-2026').container)).toBe(
+			'Read by the model, which named no requirement in this clause.'
+		);
 	});
 
 	it('keeps the line breaks of the published text', () => {

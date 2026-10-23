@@ -1,12 +1,11 @@
 <script lang="ts">
+	import PageHead from '$lib/components/PageHead.svelte';
 	import TenderPage from '$lib/components/TenderPage.svelte';
 
 	let { data } = $props();
 </script>
 
-<svelte:head>
-	<title>Open IT tenders in NL, BE and DE - Pagefifty</title>
-</svelte:head>
+<PageHead title="Open IT tenders in NL, BE and DE - Pagefifty" />
 
 {#if data.record !== null}
 	<TenderPage data={data.record} variant="tenders" />

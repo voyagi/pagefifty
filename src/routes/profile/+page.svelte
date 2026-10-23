@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import DemoNote from '$lib/components/DemoNote.svelte';
 	import DemoProfile from '$lib/components/DemoProfile.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 	import PageMain from '$lib/components/PageMain.svelte';
 	import ProfileForm from '$lib/components/ProfileForm.svelte';
 	import { getProfileStore } from '$lib/profile/store.svelte';
@@ -18,9 +19,7 @@
 	const demo = $derived(shared?.store.activeFirm === 'demo');
 </script>
 
-<svelte:head>
-	<title>Firm profile - Pagefifty</title>
-</svelte:head>
+<PageHead title="Firm profile - Pagefifty" />
 
 <PageMain>
 	{#if shared && demo}

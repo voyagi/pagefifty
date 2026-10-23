@@ -3,6 +3,7 @@
 	import ExampleCard from '$lib/components/ExampleCard.svelte';
 	import HomeFigure from '$lib/components/HomeFigure.svelte';
 	import Icon from '$lib/components/Icon.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 	import PageMain from '$lib/components/PageMain.svelte';
 	import Panel from '$lib/components/Panel.svelte';
 	import { DEMO_PROFILE } from '$lib/profile/demo-firm';
@@ -28,13 +29,7 @@
 	);
 </script>
 
-<svelte:head>
-	<title>Pagefifty: the rule your firm can't meet alone is on page fifty</title>
-	<meta
-		name="description"
-		content="Pagefifty checks whether your firm meets a tender's published selection criteria, and quotes each clause from the tender's own text with its source."
-	/>
-</svelte:head>
+<PageHead title="Pagefifty: the rule your firm can't meet alone is on page fifty" />
 
 <PageMain>
 	<Panel id="start" labelledby="start-title" ruled>

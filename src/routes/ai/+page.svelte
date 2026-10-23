@@ -9,6 +9,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import Facts from '$lib/components/Facts.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 	import PageMain from '$lib/components/PageMain.svelte';
 	import Panel from '$lib/components/Panel.svelte';
 	import PanelGrid from '$lib/components/PanelGrid.svelte';
@@ -20,13 +21,10 @@
 	const searched = $derived(data.providers.includes('Tavily'));
 </script>
 
-<svelte:head>
-	<title>How the AI is used - Pagefifty</title>
-	<meta
-		name="description"
-		content="Which model reads the tender criteria for Pagefifty, where it runs, what it keeps, what code decides, and what a verdict does not cover."
-	/>
-</svelte:head>
+<PageHead
+	title="How the AI is used - Pagefifty"
+	description="Which model reads the tender criteria for Pagefifty, where it runs, what it keeps, what code decides, and what a verdict does not cover."
+/>
 
 <PageMain>
 	<Panel id="model" labelledby="ai-title">

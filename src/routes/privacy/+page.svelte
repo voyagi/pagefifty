@@ -12,6 +12,7 @@
 	import ExternalIcon from '$lib/components/ExternalIcon.svelte';
 	import FactSource from '$lib/components/FactSource.svelte';
 	import Facts from '$lib/components/Facts.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 	import PageMain from '$lib/components/PageMain.svelte';
 	import Panel from '$lib/components/Panel.svelte';
 	import PanelGrid from '$lib/components/PanelGrid.svelte';
@@ -22,13 +23,10 @@
 	const searched = $derived(data.providers.includes('Tavily'));
 </script>
 
-<svelte:head>
-	<title>Privacy - Pagefifty</title>
-	<meta
-		name="description"
-		content="What Pagefifty processes, where and by which provider, what stays in your browser, and how to remove the stored firm profile."
-	/>
-</svelte:head>
+<PageHead
+	title="Privacy - Pagefifty"
+	description="What Pagefifty processes, where and by which provider, what stays in your browser, and how to remove the stored firm profile."
+/>
 
 <PageMain>
 	<Panel id="processing" labelledby="privacy-title">

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Button from '$lib/components/Button.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 	import PageMain from '$lib/components/PageMain.svelte';
 	import Panel from '$lib/components/Panel.svelte';
 
@@ -61,15 +62,13 @@
 	}
 </script>
 
-<svelte:head>
-	<title
-		>{notFound
-			? 'Page not found - Pagefifty'
-			: refused
-				? 'Request not answered - Pagefifty'
-				: 'This page could not be built - Pagefifty'}</title
-	>
-</svelte:head>
+<PageHead
+	title={notFound
+		? 'Page not found - Pagefifty'
+		: refused
+			? 'Request not answered - Pagefifty'
+			: 'This page could not be built - Pagefifty'}
+/>
 
 <PageMain>
 	<Panel id="error" labelledby="error-title">
