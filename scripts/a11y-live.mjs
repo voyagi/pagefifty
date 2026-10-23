@@ -108,14 +108,14 @@ function verdict(result) {
 		);
 		return 2;
 	}
-	// A list is audited as its table only at the width its entry names, so a page read at any other
-	// width left one layout unaudited.
+	// A list shows each of its layouts only at the widths that bring it, so a page read at any width
+	// other than the one its entry names left one layout unaudited.
 	if (audited.some((page) => page.auditedWidth !== page.width)) {
 		console.error('a11y: a page was not audited at the width its entry names');
 		return 2;
 	}
-	// The width is the means and the layout the claim: a switch that moved past 1440px would leave
-	// both entries of a list on its cards.
+	// The width is the means and the layout the claim: a split switch that moved past 1440px would
+	// leave both entries of a list on the list alone.
 	const misread = audited.filter((page) => page.layout && page.auditedLayout !== page.layout);
 	if (misread.length > 0) {
 		const named = misread.map(
@@ -159,7 +159,7 @@ async function main() {
 			const resultName = `pagefifty-a11y-${runId}-${theme}-result.json`;
 			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme, example });
 			const started = Date.now();
-			// Eleven routes, each audited and shot at three widths, and each list audited a second time
+			// Fourteen routes, each audited and shot at three widths, and each list audited a second time
 			// in its other layout without shots.
 			const run = runDriver({
 				browserName: `pagefifty-a11y-${runId}`,

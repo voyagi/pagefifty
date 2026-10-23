@@ -11,47 +11,49 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	// A list is a table only above 1340px and cards at 1280px, so each list is audited in both
-	// layouts in both themes: the cards hide the header row, so only a table entry checks its
-	// contrast in that theme. Each list entry names the width for its layout, and the layout is read
-	// from the page, so a moved switch cannot audit one layout twice. The second entry of a list in
-	// a theme takes no screenshots (shots: false), since its route and theme already have them; the
-	// full-page shots are most of the run's time.
+	// A list page has two layouts: from 721px (45em) the tender the list opens sits in a pane beside
+	// the list ('split'), and up to 720px a phone shows the list alone, its filters folded behind one
+	// button under 640px ('list'). So each list is audited in both layouts in both themes, the split
+	// view at 1440px and the phone view at 390px. Each list entry names the width for its layout, and
+	// the layout is read from the page, so a moved switch cannot audit one layout twice. The phone
+	// entry takes no screenshots (shots: false), since its route and theme already have them, a 390px
+	// width shot among them; the full-page shots are most of the run's time. Retired with the
+	// redesign (PR #79): the table at 1440px and the cards at 1280px, as no width has a table now.
 	{
 		slug: 'tenders',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/tenders?theme=light',
 		width: 1440,
-		layout: 'table'
+		layout: 'split'
 	},
 	{
 		slug: 'tenders',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/tenders?theme=light',
-		width: 1280,
-		layout: 'cards',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{
 		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
-		width: 1280,
-		layout: 'cards'
+		width: 1440,
+		layout: 'split'
 	},
 	{
 		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
-		width: 1440,
-		layout: 'table',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
 	// The tender page twice. The live one serves the newest capture, so it is reached by clicking the
 	// list's first row (follow: 'first-row'), never by a typed notice number. The example capture's
-	// notice with the most lots, which brings the lot index and a leaf tab per lot, is reached by its
+	// notice with the most lots, which brings the lot index and one panel per lot, is reached by its
 	// row on the example list (follow: 'example-probe'; 600457-2026 with 17 lots on 2026-09-15).
 	{
 		slug: 'tender-from-list',
@@ -143,15 +145,15 @@ const AUDITS = [
 		url: 'http://127.0.0.1:8788/example?theme=light',
 		expectText: 'Closed at the capture time',
 		width: 1440,
-		layout: 'table'
+		layout: 'split'
 	},
 	{
 		slug: 'example',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
 		expectText: 'Closed at the capture time',
-		width: 1280,
-		layout: 'cards',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{
@@ -159,16 +161,16 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
-		width: 1280,
-		layout: 'cards'
+		width: 1440,
+		layout: 'split'
 	},
 	{
 		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
-		width: 1440,
-		layout: 'table',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	// A one-lot notice with criteria in the notice (600017-2026 on 2026-09-15), reached by its row.
@@ -276,10 +278,10 @@ const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 async function followFirstRow() {
 	await page.waitForSelector(HYDRATED, { timeout: 10000 });
 	const folded = await page.evaluate(() =>
-		Boolean(document.querySelector('tbody tr[data-notice]')?.closest('details'))
+		Boolean(document.querySelector('ul.rows > li[data-notice]')?.closest('details:not([open])'))
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click('tbody tr[data-notice] a');
+	await page.click('ul.rows > li[data-notice] a.t');
 	await page.waitForFunction(() => /^\/tenders\/\d+-\d{4}$/.test(location.pathname), null, {
 		timeout: 10000
 	});
@@ -299,12 +301,12 @@ async function followExampleProbe(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -424,24 +426,33 @@ function isAccepted(item) {
 	);
 }
 
-// The list layout the audited page shows, read from the open table, or from the closed one once no
-// tender is open (after 9 Oct 2027 a note takes the open table's place): 'table' for display table,
-// 'cards' for display block, any other display by its own name, so a hidden or broken table matches
-// neither layout and the runner stops on it. 'none' on a page without a list table. When only the
-// closed group holds rows, it is opened here, so axe audits the named layout and not a folded table.
+// The list layout the audited page shows, read from its list column and tender pane: 'split' when
+// the pane is drawn beside the column, 'list' when the column is drawn and the pane is absent or
+// hidden (a phone's bare list), and any other arrangement in its own words, so a pane under the
+// list or a hidden column matches neither layout and the runner stops on it. 'none' on a page
+// without a list column. The group is the one whose rows were audited, the open list, or the closed
+// one once no tender is open (after 9 Oct 2027 a note takes the open list's place); when only the
+// closed group holds rows, it is opened here, so axe audits its rows and not a folded group.
 function readLayout() {
 	return page.evaluate(() => {
-		const open = document.querySelector('#open table.index');
-		const table = open ?? document.querySelector('#closed table.index');
-		if (!table) return { layout: 'none', group: null };
-		if (!open) {
-			const details = table.closest('details');
+		const split = document.querySelector('.split');
+		const column = split?.querySelector('.list-col');
+		if (!column) return { layout: 'none', group: null };
+		const open = column.querySelector('#open ul.rows');
+		const closed = column.querySelector('#closed ul.rows');
+		if (!open && closed) {
+			const details = closed.closest('details');
 			if (details) details.open = true;
 		}
-		const display = getComputedStyle(table).display;
-		const layout =
-			display === 'table' ? 'table' : display === 'block' ? 'cards' : `display ${display}`;
-		return { layout, group: open ? 'open' : 'closed' };
+		const drawn = (element) => Boolean(element) && getComputedStyle(element).display !== 'none';
+		const pane = split.querySelector('.pane');
+		let layout = 'pane under the list';
+		if (!drawn(column)) layout = 'list column hidden';
+		else if (!drawn(pane)) layout = 'list';
+		else if (pane.getBoundingClientRect().left >= column.getBoundingClientRect().right - 0.5) {
+			layout = 'split';
+		}
+		return { layout, group: open ? 'open' : closed ? 'closed' : null };
 	});
 }
 
