@@ -8,7 +8,7 @@ account and no upload. Start with
 
 **The recorded run:** [examples/2026-10-22/](examples/2026-10-22/) holds every notice, model
 reading and search the site replays. Replay it on your machine with no key and Node 24.15 or newer:
-`npm install`, then `npm run dev`.
+`npm install`, then `npm run dev`, and open the local address it prints.
 
 Pagefifty tells a small IT firm in the Netherlands, Belgium or Germany whether it meets an open EU
 tender's published selection criteria, before anyone spends two days on a bid. It quotes the clause
@@ -107,11 +107,11 @@ Node 24.15 or newer, as `.nvmrc` and the `engines` field of `package.json` say.
 
 ```sh
 npm install
-npm run dev -- --no-open
+npm run dev
 ```
 
-With no key file the app serves the recorded captures in `examples/`. Only a live capture reads
-keys, from `.env` (copy `.env.example`).
+Then open the local address `npm run dev` prints. With no key file the app serves the recorded
+captures in `examples/`. Only a live capture reads keys, from `.env` (copy `.env.example`).
 
 ## Capturing open tenders
 
