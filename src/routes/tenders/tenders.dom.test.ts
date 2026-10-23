@@ -364,9 +364,16 @@ describe('the tender beside the list', () => {
 		expect(folded.container.querySelector('details')?.open).toBe(false);
 	});
 
+	// The route's own page renders here with no record, so what this can catch is the layout: the
+	// list drawn whole, with no pane beside it and no row marked as opened.
 	it('shows the list alone when no tender is open', () => {
 		const { container } = renderPage(dataFor(rows));
-		expect(container.querySelector('[data-record]')).toBeNull();
+		expect(
+			[...container.querySelectorAll('#open ul.rows li[data-notice]')].map((row) =>
+				row.getAttribute('data-notice')
+			)
+		).toEqual(['700001-2026', '700002-2026']);
+		expect(container.querySelector('.split')?.classList.contains('with-pane')).toBe(false);
 		expect(container.querySelector('.pane')).toBeNull();
 		expect(container.querySelector('li.opened')).toBeNull();
 	});
