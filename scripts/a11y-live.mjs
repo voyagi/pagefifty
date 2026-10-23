@@ -31,6 +31,7 @@ import {
 	checkAllowlist,
 	checkDevBrowser,
 	exampleFacts,
+	expectedListLayout,
 	marginWarnings,
 	readResult,
 	releaseRunLock,
@@ -123,10 +124,13 @@ function verdict(result) {
 	}
 	// The width is the means and the layout the claim: a split switch that moved past 1440px would
 	// leave both entries of a list on the list alone.
-	const misread = audited.filter((page) => page.layout && page.auditedLayout !== page.layout);
+	const misread = audited.filter(
+		(page) => page.layout && page.auditedLayout !== expectedListLayout(page)
+	);
 	if (misread.length > 0) {
 		const named = misread.map(
-			(page) => `${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}`
+			(page) =>
+				`${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}, expected ${expectedListLayout(page)}`
 		);
 		console.error(`a11y: a list page did not show the layout its entry names: ${named.join(', ')}`);
 		return 2;

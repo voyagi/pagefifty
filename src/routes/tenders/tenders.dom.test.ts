@@ -97,6 +97,15 @@ describe('tenders list page', () => {
 		expect(squash(captureLine?.textContent)).toBe('Snapshot captured from TED on 15 Sep 2026');
 	});
 
+	// The live accessibility audit reads a list's layout and group from these, and expects the list
+	// alone on a wide screen once every tender has closed (expectedListLayout in scripts/harness.mjs).
+	it('draws no pane and only closed rows on a list whose every tender has closed', () => {
+		const { container } = renderPage(ALL_CLOSED);
+		expect(container.querySelector('.pane')).toBeNull();
+		expect(container.querySelector('#open ul.rows')).toBeNull();
+		expect(container.querySelectorAll('#closed ul.rows li[data-notice]')).toHaveLength(1);
+	});
+
 	// The route's page holds the <title>, so a list that opens no tender beside it, with no pane to
 	// put the page in, still renders the page: here the layout draws it, as SvelteKit does.
 	it.each([

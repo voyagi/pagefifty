@@ -15,7 +15,9 @@ const AUDITS = [
 	// the list ('split'), and up to 720px a phone shows the list alone, its filters folded behind one
 	// button under 640px ('list'). So each list is audited in both layouts in both themes, the split
 	// view at 1440px and the phone view at 390px. Each list entry names the width for its layout, and
-	// the layout is read from the page, so a moved switch cannot audit one layout twice. The phone
+	// the layout is read from the page, so a moved switch cannot audit one layout twice. A list with
+	// no tender open opens none beside it, so the runner then expects its wide entry to show the list
+	// alone (expectedListLayout in scripts/harness.mjs). The phone
 	// entry takes no screenshots (shots: false), since its route and theme already have them, a 390px
 	// width shot among them; the full-page shots are most of the run's time. Retired with the
 	// redesign (PR #79): the table at 1440px and the cards at 1280px, as no width has a table now.
