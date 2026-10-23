@@ -18,6 +18,7 @@ import {
 	readdirSync,
 	readFileSync,
 	rmdirSync,
+	rmSync,
 	unlinkSync,
 	statSync,
 	utimesSync,
@@ -458,6 +459,74 @@ export function wranglerDevArgs({ port, configPath, envFile }) {
 	return args;
 }
 
+// Miniflare, inside wrangler dev, makes a miniflare-<hex> folder in the OS temp folder and removes it
+// only from an exit hook, which a forced end skips: stopWorker's taskkill /T /F, or a tool ending npm
+// run preview by its process tree. Each such end left its folders there for good. So a dev server
+// gets a temp folder of its own under .wrangler/dev-temp (ignored), named by the PID of the process
+// that starts it, and every start removes the folders whose processes have all ended. A folder stays
+// while its starter or any Node process of its server runs. Each of those records its PID in it
+// (dev-server-pid.mjs): wrangler's bin is a launcher that runs its CLI as a second Node process, and
+// off Windows a starter or that launcher can be ended alone while the CLI keeps serving. On Windows
+// Node ends the children it spawned along with it. A folder already named by the starting process's
+// own PID was left by an ended process given that PID before, or by an earlier start in this one, so
+// only the processes recorded in it keep it. A PID given to another program since keeps a folder
+// until that program ends too: Node tells whether a PID runs, not what runs under it, and keeping a
+// folder a little longer is the safe way to be wrong.
+const DEV_TEMP = join('.wrangler', 'dev-temp');
+// dev-server-pid.mjs writes this file under the same name.
+const SERVER_PIDS_FILE = 'server.pids';
+const PID_NAME = /^[1-9]\d*$/;
+const PID_RECORDER = new URL('./dev-server-pid.mjs', import.meta.url).href;
+
+function devTempInUse(folder, name) {
+	if (Number(name) !== process.pid && pidRuns(Number(name))) return true;
+	let recorded;
+	try {
+		recorded = readFileSync(join(folder, SERVER_PIDS_FILE), 'utf8');
+	} catch (error) {
+		// No server process recorded: its starter ended before one started.
+		if (error.code === 'ENOENT') return false;
+		throw error;
+	}
+	return recorded.split('\n').some((line) => {
+		const pid = line.trim();
+		return PID_NAME.test(pid) && pidRuns(Number(pid));
+	});
+}
+
+/** @param {string} repository @returns {string} this process's dev-server temp folder */
+export function devServerTemp(repository) {
+	const root = join(repository, DEV_TEMP);
+	mkdirSync(root, { recursive: true });
+	for (const name of readdirSync(root)) {
+		if (!PID_NAME.test(name)) continue;
+		const folder = join(root, name);
+		try {
+			if (!devTempInUse(folder, name)) rmSync(folder, { recursive: true, force: true });
+		} catch (error) {
+			// Windows refuses to remove a file a stray workerd still holds open; the next start tries again.
+			console.error(`[harness] left ${folder} in place: ${error.message}`);
+		}
+	}
+	const own = join(root, String(process.pid));
+	mkdirSync(own, { recursive: true });
+	return own;
+}
+
+// os.tmpdir() reads TEMP, then TMP, on Windows and TMPDIR elsewhere. Every Node process below the
+// starter inherits NODE_OPTIONS, the CLI wrangler's launcher spawns included, so each one loads the
+// PID recorder. A file URL holds no space or backslash for NODE_OPTIONS to split or unescape.
+/** @param {string} folder */
+export function devServerEnv(folder) {
+	const inherited = process.env.NODE_OPTIONS ?? '';
+	return {
+		TEMP: folder,
+		TMP: folder,
+		TMPDIR: folder,
+		NODE_OPTIONS: `${inherited} --import=${PID_RECORDER}`.trim()
+	};
+}
+
 export async function startWorker({ port, configPath, logFile }) {
 	assertRunLock();
 	if (await portAnswers(port)) {
@@ -473,9 +542,11 @@ export async function startWorker({ port, configPath, logFile }) {
 	const envFile = join(dirname(logFile), 'pagefifty-empty.env');
 	writeFileSync(envFile, '');
 	const args = wranglerDevArgs({ port, configPath, envFile });
+	const temp = devServerTemp(process.cwd());
 	const child = spawn(process.execPath, args, {
 		env: {
 			...process.env,
+			...devServerEnv(temp),
 			WRANGLER_SEND_METRICS: 'false',
 			// Local dev otherwise hands the Worker every key in a dotenv file beside the config (the
 			// main checkout keeps the real provider keys there), or the whole shell environment when
