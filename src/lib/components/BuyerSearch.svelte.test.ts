@@ -79,7 +79,7 @@ const TENDER_PAGES = [
 	}
 ];
 
-const NONE_FOUND = 'No tender pages of this buyer found by web search.';
+const NONE_FOUND = 'No tender pages found by a web search for this buyer.';
 
 function noneShown(search: NoticeSearch) {
 	const { container } = render(TenderPage, {
@@ -109,19 +109,23 @@ describe('the buyer search on the tender page', () => {
 		const words = textOf(region);
 		expect(words).toContain('Web search results');
 		expect(words).toContain('only pages that look like tender or award pages');
+		// A tender word does not make a page this buyer's: the panel says so.
+		expect(words).toContain("a page may be another buyer's");
 		expect(words).toContain('not checked');
 		expect(words).toContain('do not change the verdict');
 		expect(words).not.toContain('Über die Berlin TXL Management GmbH');
 	});
 
-	it("the panel is headed as this buyer's tenders on the web, never as earlier awards", () => {
+	it("the panel is headed as a web search's tender pages, never as the buyer's own tenders or earlier awards", () => {
 		const { container } = render(TenderPage, {
 			props: { data: pageWith(recordedSearch()), variant: 'example' }
 		});
 		expect(textOf(container.querySelector('#web-search-title'))).toBe(
-			"This buyer's tenders on the web"
+			'Tender pages from a web search for this buyer'
 		);
-		expect(textOf(container.querySelector('#web-search'))).not.toMatch(/earlier awards/i);
+		const panel = textOf(container.querySelector('#web-search'));
+		expect(panel).not.toMatch(/earlier awards/i);
+		expect(panel).not.toMatch(/buyer's tenders|tender pages of this buyer/i);
 	});
 
 	it('the example page lists the built buyer search of the German buyer', () => {

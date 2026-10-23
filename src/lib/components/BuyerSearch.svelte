@@ -24,16 +24,16 @@
 
 <Panel id="web-search" labelledby="web-search-title" ruled>
 	<div class="search">
-		<h2 class="head" id="web-search-title">This buyer's tenders on the web</h2>
+		<h2 class="head" id="web-search-title">Tender pages from a web search for this buyer</h2>
 		<div class="body" data-web-search>
 			<Label>Web search results, not checked</Label>
 			<p class="note">
 				Found by a web search for the buyer's name when this snapshot was captured. The list keeps
-				only pages that look like tender or award pages. These results were not checked and do not
-				change the verdict.
+				only pages that look like tender or award pages, and a page may be another buyer's. These
+				results were not checked and do not change the verdict.
 			</p>
 			{#if results.length === 0}
-				<p class="none">No tender pages of this buyer found by web search.</p>
+				<p class="none">No tender pages found by a web search for this buyer.</p>
 			{:else}
 				<ol class="results">
 					{#each results as result, index (index)}
