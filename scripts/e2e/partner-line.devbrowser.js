@@ -84,14 +84,14 @@ if (partner === null) {
 		await page.waitForSelector(HYDRATED, { timeout: 10000 });
 		const group = await page.evaluate(
 			(notice) =>
-				document.querySelector(`tr[data-notice="${notice}"]`)?.closest('details')
+				document.querySelector(`li[data-notice="${notice}"]`)?.closest('details')
 					? 'closed'
 					: 'open',
 			partner.notice
 		);
 		if (group === 'closed') await page.click('#closed summary');
 		const from = captured.length;
-		await page.click(`tr[data-notice="${partner.notice}"] a`);
+		await page.click(`li[data-notice="${partner.notice}"] a.t`);
 		await page.waitForFunction((path) => location.pathname === path, `/tenders/${partner.notice}`, {
 			timeout: 10000
 		});

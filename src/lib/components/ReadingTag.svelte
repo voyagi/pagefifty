@@ -1,62 +1,49 @@
 <script lang="ts">
 	import type { ReadingStatus } from '$lib/core/reading';
+	import Icon from './Icon.svelte';
 
-	let { reading }: { reading: Pick<ReadingStatus, 'tag' | 'text' | 'reason'> } = $props();
+	// plain is set where the reading is the one most rows of the list share: it is written as muted
+	// text, and only a reading that differs gets the tag's box.
+	let {
+		reading,
+		plain = false
+	}: { reading: Pick<ReadingStatus, 'tag' | 'text'>; plain?: boolean } = $props();
+
+	const inDocuments = $derived(reading.tag === 'criteria-in-documents');
 </script>
 
-<div class="vcell">
-	<span class="vtag" class:facedown={reading.tag === 'criteria-in-documents'}>{reading.text}</span>
-	<small>{reading.reason}</small>
-</div>
+{#if plain}
+	<span class="reading" class:facedown={inDocuments}>{reading.text}</span>
+{:else}
+	<span class="tag" class:facedown={inDocuments}
+		><Icon name={inDocuments ? 'doc' : 'lines'} />{reading.text}</span
+	>
+{/if}
 
 <style>
-	.vcell {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 0.5rem;
-		min-width: 15rem;
-	}
-
-	/* The dashed stroke means "not read or not settled" (DESIGN.md Shapes); the solid ink tag
-	   belongs to a verdict, which phase 1 never shows. */
-	.vtag {
-		font: 700 var(--step--1) / 1 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		padding: 0.35rem 0.5rem;
-		border-radius: 2px;
-		border: 1px dashed var(--ink);
-		background: var(--acetate);
-		color: var(--ink);
-		white-space: nowrap;
-	}
-
-	/* Face down, like a document leaf nobody has turned over yet. */
-	.facedown {
-		background: var(--leaf-back);
-		color: var(--leaf-back-ink);
-		border-color: var(--leaf-back-ink);
-	}
-
-	small {
-		font-size: var(--step--1);
-		line-height: 1.35;
+	/* A reading is never a verdict, so it takes no ink fill: a quiet outlined tag. The dashed edge
+	   means "not read or not settled", here the documents nobody has read yet. */
+	.tag {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		min-height: 24px;
+		padding: 0.125rem 0.5625rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r-sm);
+		background: var(--bg);
+		font-weight: 500;
+		font-size: 0.78125rem;
+		line-height: 1.2;
 		color: var(--ink-2);
-		max-width: 44ch;
 	}
 
-	/* Follows TenderTable's switch to cards, in the same em. A card has no 15rem floor, so at 320px
-	   with a 20px default font 'Criteria in the documents' (261px) is wider than the card: there the
-	   tag wraps between its words instead of running out of the card. */
-	@media (max-width: 83.75em) {
-		.vcell {
-			min-width: 0;
-			margin-top: 0.5rem;
-		}
+	.tag.facedown {
+		border-style: dashed;
+	}
 
-		.vtag {
-			white-space: normal;
-		}
+	.tag :global(.icon) {
+		width: 14px;
+		height: 14px;
 	}
 </style>

@@ -19,8 +19,8 @@ async function measure() {
 			return { top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height };
 		};
 		return {
-			bar: box('header.deskbar'),
-			wordmark: box('header.deskbar .wordmark'),
+			bar: box('header.band'),
+			wordmark: box('header.band .wordmark'),
 			nav: box('nav[aria-label="Main"]'),
 			theme: box('[role="group"][aria-label="Theme"]'),
 			firm: box('[data-firm-slot]'),

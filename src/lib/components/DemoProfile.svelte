@@ -5,7 +5,7 @@
 	import { averageTurnover } from '$lib/profile/derive';
 	import Button from './Button.svelte';
 	import Facts from './Facts.svelte';
-	import ProfileLeaf from './ProfileLeaf.svelte';
+	import ProfilePanel from './ProfilePanel.svelte';
 
 	// The demo firm read-only: facts where the own form has fields, never disabled inputs. It shows
 	// the years the demo holds, not the years the form would ask for, so it stays whole after 2026.
@@ -69,49 +69,58 @@
 	</dl>
 {/snippet}
 
-<ProfileLeaf leaf="firm">
+<ProfilePanel panel="firm">
 	{#snippet margin()}
 		<Facts head="Invented figures">
-			<p>Nothing on these leaves is stored. Your own profile stays in this browser as it was.</p>
+			<p>Nothing on this page is stored. Your own profile stays in this browser as it was.</p>
 		</Facts>
 	{/snippet}
-	{#snippet body(tab)}
-		<p class="label">Demo firm</p>
+	<!-- The firm's name is the heading; the tag after it says whose figures these are. -->
+	<div class="head">
 		<h1 class="title" id="profile-title">{DEMO_FIRM_NAME}</h1>
-		{@render tab()}
-		<p class="gloss">
-			A demo firm with invented figures, for trying the pages. Your own profile is kept as it was.
-		</p>
-		<div class="actions">
-			<Button onclick={onback}>Back to your own profile</Button>
-		</div>
-	{/snippet}
-</ProfileLeaf>
+		<p class="tag">Demo firm</p>
+	</div>
+	<p class="gloss">
+		A demo firm with invented figures, for trying the pages. Your own profile is kept as it was.
+	</p>
+	<div class="actions">
+		<Button onclick={onback}>Back to your own profile</Button>
+	</div>
+</ProfilePanel>
 
-<ProfileLeaf leaf="turnover">
-	{#snippet body()}{@render facts(turnover)}{/snippet}
-</ProfileLeaf>
+<ProfilePanel panel="turnover">{@render facts(turnover)}</ProfilePanel>
 
-<ProfileLeaf leaf="people">
-	{#snippet body()}{@render facts(people)}{/snippet}
-</ProfileLeaf>
+<ProfilePanel panel="people">{@render facts(people)}</ProfilePanel>
 
-<ProfileLeaf leaf="certificates">
-	{#snippet body()}{@render facts(certificates)}{/snippet}
-</ProfileLeaf>
+<ProfilePanel panel="certificates">{@render facts(certificates)}</ProfilePanel>
 
-<ProfileLeaf leaf="countries">
-	{#snippet body()}{@render facts(countries)}{/snippet}
-</ProfileLeaf>
+<ProfilePanel panel="countries">{@render facts(countries)}</ProfilePanel>
 
 <style>
-	.label {
-		display: block;
-		margin-bottom: 0.4rem;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--ink-3);
+	.head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.75rem;
+	}
+
+	.head .title {
+		min-width: 0;
+	}
+
+	/* The quiet outlined tag the record's reading status wears: it names the mode, it is no
+	   verdict and no control. */
+	.tag {
+		display: inline-flex;
+		align-items: center;
+		min-height: 24px;
+		padding: 0.125rem 0.5625rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r-sm);
+		font-weight: 500;
+		font-size: 0.78125rem;
+		line-height: 1.2;
+		color: var(--ink-2);
 	}
 
 	.actions {
@@ -128,7 +137,7 @@
 	dt {
 		font-size: var(--step--1);
 		font-weight: 500;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	dd {

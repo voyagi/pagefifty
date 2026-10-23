@@ -32,7 +32,7 @@
 	.coverage {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	ul {
@@ -40,12 +40,17 @@
 		padding: 0;
 		list-style: none;
 		display: grid;
-		gap: 0.5rem;
+		gap: 0.375rem;
 		max-width: 72ch;
+		font-size: var(--step--1);
+		line-height: 1.5;
+		color: var(--ink-2);
 	}
 
+	/* The status word leads each line in the text colour; what it qualifies follows, quieter. */
 	strong {
 		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.documents {

@@ -2,7 +2,7 @@
 	import type { RefusalText } from '$lib/profile/copy';
 
 	// File names and found values come from the chosen file, so they render as text only and may
-	// break anywhere: a 200-character name must not push the leaf sideways on a phone.
+	// break anywhere: a 200-character name must not push the panel sideways on a phone.
 	let { text }: { text: RefusalText } = $props();
 </script>
 
@@ -28,7 +28,7 @@
 
 <style>
 	/* The field error pattern at block size: shape and weight, never colour. The tint is a solid
-	   mix of ink into acetate, not a see-through fill. */
+	   mix of ink into the page colour, not a see-through fill. */
 	.error-block {
 		display: flex;
 		gap: 0.625rem;
@@ -38,7 +38,7 @@
 		padding: 0.75rem 1rem;
 		border: 2px dashed var(--ink);
 		border-radius: 3px;
-		background: color-mix(in srgb, var(--ink) 6%, var(--acetate));
+		background: color-mix(in srgb, var(--ink) 6%, var(--bg));
 		color: var(--ink);
 		font-size: var(--step--1);
 		font-weight: 600;

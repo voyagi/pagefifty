@@ -238,6 +238,32 @@ export function countsLine(
 // The page components read it from here, beside the other list words.
 export { dayText };
 
+// The reading most rows of a list share. The list writes that one as plain text and tags only the
+// rows that differ, so the tag marks the exception. A tie has no most common reading.
+export function commonReading(rows: readonly ListRow[]): ReadingStatus['tag'] | undefined {
+	const counts = new Map<ReadingStatus['tag'], number>();
+	for (const row of rows) counts.set(row.reading.tag, (counts.get(row.reading.tag) ?? 0) + 1);
+	const ranked = [...counts].sort((a, b) => b[1] - a[1]);
+	const [first, second] = ranked;
+	if (first === undefined || first[1] === second?.[1]) return undefined;
+	return first[0];
+}
+
+// Up to two letters from the first two words of a buyer's name, standing where a job board shows
+// the employer's logo. Digits and marks are not letters, so "Gemeente 's-Hertogenbosch" gives GS.
+// A pair that spells GO would put the verdict's word in a box on a page that shows no verdict
+// (SPEC R3), so that buyer keeps its first letter alone.
+export function initialsOf(name: string): string {
+	const letters = name
+		.replace(/[^\p{L}\s]/gu, ' ')
+		.split(/\s+/)
+		.filter((word) => word !== '')
+		.slice(0, 2)
+		.map((word) => word.charAt(0).toLocaleUpperCase('en'))
+		.join('');
+	return letters === 'GO' ? 'G' : letters;
+}
+
 export function captureFacts(capture: SnapshotIndex['capture']): CaptureFacts {
 	const firstPublished = firstPublishedDay(capture.query);
 	return {

@@ -1,364 +1,543 @@
 ---
 name: Pagefifty
-description: A tabbed reference binder that files the clause ruling a firm out of a tender as a vermilion errata slip.
+description: A tender read the way a bid lead reads a job posting, with each requirement listed, its state for the firm beside it, and the deciding clause quoted with its source.
 colors:
-  desk: '#d9dcdf'
-  desk-ink: '#3b3f44'
-  ink: '#141414'
-  ink-2: '#464a50'
-  ink-3: '#5f646b'
-  acetate: '#f6f8fa'
-  acetate-edge: 'rgb(20 20 20 / 0.16)'
-  acetate-rule: 'rgb(20 20 20 / 0.1)'
-  leaf-back: '#c9cdd1'
-  leaf-back-ink: '#33373c'
-  errata: '#d42a24'
-  errata-ink: '#ffffff'
-  focus: '#1d3fd8'
-  selection: 'rgb(242 183 5 / 0.45)'
-  dark-desk: '#0e0f11'
-  dark-desk-ink: '#b9bdc2'
-  dark-ink: '#ecedea'
-  dark-ink-2: '#bfc3c7'
-  dark-ink-3: '#9ca1a7'
-  dark-acetate: '#16181b'
-  dark-acetate-edge: 'rgb(236 237 234 / 0.16)'
-  dark-acetate-rule: 'rgb(236 237 234 / 0.1)'
-  dark-leaf-back: '#2a2d31'
-  dark-leaf-back-ink: '#c9ccd0'
-  dark-errata: '#ff5a4a'
-  dark-errata-ink: '#141414'
-  dark-focus: '#8fa6ff'
-  dark-selection: 'rgb(242 183 5 / 0.35)'
-  board-yellow: '#f2b705'
-  board-grass: '#3d9a3a'
-  board-teal: '#11808a'
-  board-ultramarine: '#2d3fb5'
-  board-violet: '#6e3fa3'
-  board-slate: '#3f5566'
-  on-yellow: '#141414'
-  on-grass: '#141414'
-  on-teal: '#ffffff'
-  on-ultramarine: '#ffffff'
-  on-violet: '#ffffff'
-  on-slate: '#ffffff'
+  band: '#14513b'
+  band-ink: '#ffffff'
+  band-ink-2: '#cde2d8'
+  band-hover: 'rgb(255 255 255 / 0.12)'
+  band-rule: 'rgb(255 255 255 / 0.22)'
+  ground: '#eef1ef'
+  bg: '#ffffff'
+  bg-2: '#f4f6f5'
+  bg-3: '#e8ecea'
+  line: '#d5dbd8'
+  line-2: '#b9c1bd'
+  edge: '#c9d0cc'
+  line-field: '#7d8681'
+  ink: '#111513'
+  ink-2: '#535c57'
+  brand: '#14513b'
+  brand-hover: '#0f4130'
+  brand-ink: '#ffffff'
+  focus: '#14513b'
+  selection: 'color-mix(in srgb, #14513b 22%, transparent)'
+  dark-band: '#124834'
+  dark-band-ink: '#ffffff'
+  dark-band-ink-2: '#b7d3c6'
+  dark-band-hover: 'rgb(255 255 255 / 0.1)'
+  dark-ground: '#080a09'
+  dark-bg: '#121614'
+  dark-bg-2: '#191e1c'
+  dark-bg-3: '#222826'
+  dark-line: '#2c3330'
+  dark-line-2: '#444e49'
+  dark-edge: '#333c38'
+  dark-line-field: '#6e7873'
+  dark-ink: '#e9edeb'
+  dark-ink-2: '#a3aea8'
+  dark-brand: '#4fae85'
+  dark-brand-hover: '#63bf96'
+  dark-brand-ink: '#06130d'
+  dark-focus: '#7fd1ac'
+  dark-selection: 'color-mix(in srgb, #4fae85 30%, transparent)'
 typography:
   display:
-    fontFamily: 'IBM Plex Sans Condensed, IBM Plex Sans, Arial Narrow, sans-serif'
-    fontSize: 'clamp(2.75rem, 5.2vw, 5.5rem)'
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: '-0.025em'
-  verdict:
-    fontFamily: 'IBM Plex Sans Condensed, IBM Plex Sans, Arial Narrow, sans-serif'
-    fontSize: '6rem'
-    fontWeight: 700
-    lineHeight: 0.85
-    letterSpacing: '-0.02em'
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '2.75rem'
+    fontWeight: 750
+    lineHeight: 1.06
+    letterSpacing: '-0.04em'
   headline:
-    fontFamily: 'IBM Plex Sans Condensed, IBM Plex Sans, Arial Narrow, sans-serif'
-    fontSize: '2.125rem'
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: '-0.015em'
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '1.75rem'
+    fontWeight: 750
+    lineHeight: 1.15
+    letterSpacing: '-0.03em'
   title:
-    fontFamily: 'IBM Plex Sans Condensed, IBM Plex Sans, Arial Narrow, sans-serif'
-    fontSize: '1rem'
-    fontWeight: 600
-    lineHeight: 1.25
-    letterSpacing: '0.01em'
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '1.375rem'
+    fontWeight: 750
+    lineHeight: 1.2
+    letterSpacing: '-0.025em'
+  subhead:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '1.0625rem'
+    fontWeight: 700
+    lineHeight: 1.3
+  lede:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '1.0625rem'
+    fontWeight: 400
+    lineHeight: 1.5
   body:
-    fontFamily: 'IBM Plex Sans, Helvetica Neue, Arial, sans-serif'
-    fontSize: '1rem'
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.9375rem'
     fontWeight: 400
     lineHeight: 1.5
     fontFeature: 'tnum'
-  reading:
-    fontFamily: 'IBM Plex Sans, Helvetica Neue, Arial, sans-serif'
-    fontSize: '1.1875rem'
+  quote:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.96875rem'
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.55
+  row-title:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.9375rem'
+    fontWeight: 650
+    lineHeight: 1.32
+    letterSpacing: '-0.01em'
+  button:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.9375rem'
+    fontWeight: 600
+    lineHeight: 1.2
   label:
-    fontFamily: 'IBM Plex Sans Condensed, IBM Plex Sans, Arial Narrow, sans-serif'
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
     fontSize: '0.8125rem'
     fontWeight: 600
     lineHeight: 1.3
-    letterSpacing: '0.06em'
-  figure:
-    fontFamily: 'IBM Plex Mono, ui-monospace, Cascadia Mono, monospace'
-    fontSize: '3rem'
+  small:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.8125rem'
+    fontWeight: 400
+    lineHeight: 1.35
+  tag:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.78125rem'
     fontWeight: 500
+    lineHeight: 1.2
+  verdict-tag:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '0.84375rem'
+    fontWeight: 700
+  figure:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '2.75rem'
+    fontWeight: 700
     lineHeight: 1
     letterSpacing: '-0.03em'
-  mono:
-    fontFamily: 'IBM Plex Mono, ui-monospace, Cascadia Mono, monospace'
-    fontSize: '0.9375em'
-    fontWeight: 400
+    fontFeature: 'tnum'
+  wordmark:
+    fontFamily: 'Albert Sans, ui-sans-serif, system-ui, sans-serif'
+    fontSize: '1.1875rem'
+    fontWeight: 750
+    letterSpacing: '-0.025em'
 rounded:
-  slip: '2px'
-  leaf: '3px'
-  switch: '4px'
-  binder: '6px'
-  tab: '8px'
+  r-sm: '6px'
+  band: '7px'
+  r: '8px'
 spacing:
-  step-xs: '0.5rem'
-  leaf-stack: '0.875rem'
-  column-gap: '1.75rem'
-  board-pad: '1.75rem'
-  rail: '3.25rem'
-  gutter: 'clamp(1rem, 3vw, 2.5rem)'
+  gutter: 'clamp(1rem, 3vw, 2rem)'
+  band-h: '60px'
+  page-max: '1280px'
+  page-top: '1.75rem'
+  page-bottom: '3rem'
+  panel-gap: '2.5rem'
+  panel-rule-pad: '1.75rem'
+  facts-col: '15rem'
+  claim-col: '470px'
+  claim-gap: '3.5rem'
+  list-col: '460px'
+  row-pad: '0.875rem 1rem'
+  pane-pad: '1.5rem 0 2.5rem 2rem'
+  card-pad-x: '1.5rem'
 components:
+  band:
+    backgroundColor: '{colors.band}'
+    textColor: '{colors.band-ink}'
+    padding: '0.5rem clamp(1rem, 3vw, 2rem)'
+    height: '60px'
+  nav-link:
+    textColor: '{colors.band-ink-2}'
+    rounded: '{rounded.band}'
+    padding: '0.4375rem 0.6875rem'
+    height: '44px'
+  nav-link-current:
+    backgroundColor: '{colors.band-hover}'
+    textColor: '{colors.band-ink}'
+  theme-segment:
+    textColor: '{colors.band-ink-2}'
+    rounded: '{rounded.r-sm}'
+    padding: '0 0.625rem'
+    height: '28px'
+  theme-segment-pressed:
+    backgroundColor: '{colors.band-hover}'
+    textColor: '{colors.band-ink}'
   button-primary:
-    backgroundColor: '{colors.ink}'
-    textColor: '{colors.acetate}'
-    rounded: '{rounded.leaf}'
-    padding: '0 1.125rem'
-    height: '44px'
+    backgroundColor: '{colors.brand}'
+    textColor: '{colors.brand-ink}'
+    typography: '{typography.button}'
+    rounded: '{rounded.r}'
+    padding: '0.375rem 1rem'
+    height: '38px'
+  button-primary-hover:
+    backgroundColor: '{colors.brand-hover}'
   button-secondary:
-    backgroundColor: 'transparent'
+    backgroundColor: '{colors.bg}'
     textColor: '{colors.ink}'
-    rounded: '{rounded.leaf}'
-    padding: '0 1.125rem'
+    typography: '{typography.button}'
+    rounded: '{rounded.r}'
+    padding: '0.375rem 1rem'
+    height: '38px'
+  button-secondary-hover:
+    backgroundColor: '{colors.bg-2}'
+  button-lg:
+    padding: '0.5rem 1.25rem'
     height: '44px'
-  leaf:
-    backgroundColor: '{colors.acetate}'
-    textColor: '{colors.ink}'
-    rounded: '{rounded.leaf}'
-    padding: '1.75rem 2rem'
-  leaf-facedown:
-    backgroundColor: '{colors.leaf-back}'
-    textColor: '{colors.leaf-back-ink}'
-    rounded: '{rounded.leaf}'
-    padding: '1.25rem 2rem'
-  errata-slip:
-    backgroundColor: '{colors.errata}'
-    textColor: '{colors.errata-ink}'
-    rounded: '{rounded.slip}'
-    padding: '0.75rem 1.25rem 0.875rem 2.5rem'
-  tab-yellow:
-    backgroundColor: '{colors.board-yellow}'
-    textColor: '{colors.on-yellow}'
-    rounded: '{rounded.tab}'
-    width: '3.25rem'
-  tab-facedown:
-    backgroundColor: '{colors.leaf-back}'
-    textColor: '{colors.leaf-back-ink}'
-    rounded: '{rounded.tab}'
-  verdict-tag-out:
-    backgroundColor: '{colors.ink}'
-    textColor: '{colors.acetate}'
-    typography: '{typography.label}'
-    rounded: '{rounded.slip}'
-    padding: '0.35rem 0.5rem'
-  verdict-tag-ask:
-    backgroundColor: 'transparent'
-    textColor: '{colors.ink}'
-    typography: '{typography.label}'
-    rounded: '{rounded.slip}'
-    padding: '0.35rem 0.5rem'
   chip:
-    backgroundColor: '{colors.acetate}'
+    backgroundColor: '{colors.bg}'
     textColor: '{colors.ink}'
-    rounded: '{rounded.leaf}'
-    padding: '0 0.875rem'
-    height: '44px'
-  chip-pressed:
-    backgroundColor: '{colors.ink}'
-    textColor: '{colors.acetate}'
-  input:
-    backgroundColor: '{colors.acetate}'
-    textColor: '{colors.ink}'
-    rounded: '{rounded.leaf}'
+    rounded: '{rounded.r}'
     padding: '0 0.75rem'
-    height: '44px'
-  addendum-tag:
-    backgroundColor: '{colors.board-violet}'
-    textColor: '{colors.on-violet}'
-    rounded: '{rounded.slip}'
-    padding: '0.45rem 1rem 0.5rem'
+    height: '36px'
+  input:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.r}'
+    padding: '0 0.75rem'
+    height: '40px'
+  list-row:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink}'
+    padding: '0.875rem 1rem 0.9375rem'
+  list-row-hover:
+    backgroundColor: '{colors.bg-2}'
+  list-row-opened:
+    backgroundColor: 'color-mix(in srgb, #14513b 8%, #ffffff)'
+  initials-tile:
+    backgroundColor: '{colors.bg-2}'
+    textColor: '{colors.ink-2}'
+    rounded: '{rounded.r}'
+    size: '40px'
+  reading-tag:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink-2}'
+    typography: '{typography.tag}'
+    rounded: '{rounded.r-sm}'
+    padding: '0.125rem 0.5625rem'
+    height: '24px'
+  verdict-row:
+    backgroundColor: '{colors.bg-2}'
+    textColor: '{colors.ink}'
+    padding: '0.875rem 1rem'
+  verdict-tag:
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.bg}'
+    typography: '{typography.verdict-tag}'
+    rounded: '{rounded.r}'
+    padding: '0 0.75rem 0 0.5625rem'
+    height: '30px'
+  quote-box:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink}'
+    typography: '{typography.quote}'
+    rounded: '{rounded.r}'
+    padding: '0.6875rem 0.875rem 0.75rem'
+  example-card:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.r}'
+  not-read-note:
+    backgroundColor: '{colors.bg}'
+    textColor: '{colors.ink-2}'
+    typography: '{typography.small}'
+    rounded: '{rounded.r}'
+    padding: '0.5rem 0.75rem'
 ---
 
 # Design System: Pagefifty
 
 ## Overview
 
-**Creative North Star: "The Tabbed Reference Binder"**
+**Creative North Star: "The Job Board"**
 
-Every page is a binder lying on a desk. A full-strength coloured board shows only at the binder's edges and in the tab rail on its fore edge; everything the reader actually reads sits on cool milk acetate leaves laid over that board. Each leaf carries its own tab, so a tab spans exactly the leaf it indexes, and the open division's tab stands proud of the rail. A document not yet read is a leaf lying face down. The clause that rules a firm out is not a red status chip but a separate strip of vermilion paper, punched and filed at its reference.
+Pagefifty reads a public tender the way a bid lead already reads a job posting. Tenders sit in a ranked list of postings, each with the buyer's initials where a job board shows the employer's logo. Choosing one opens it beside the list, and the list keeps its place. The opened tender reads like a posting's requirements: the verdict and what to check next, the clause that decides it quoted from the tender's own text with its source named in words, the plain English reading, and every other requirement folded below with its state marked by an icon and a word.
 
-The system is flat, printed and exact. Depth comes from ply (a leaf on a board, a slip on a leaf), not from a shadow scale. Type is IBM Plex in three cuts with strict jobs: Sans reads, Condensed heads and rules, Mono carries evidence. Motion has no easing: a 90ms two-frame step, like a leaf flipping on a ring.
+The world is white reading panels laid on a pale neutral ground, near-black ink, and one deep green that owns a 60px band across the top of every page and fills the primary buttons. Each area of a page (the filters, the list, the opened tender, a profile section) is its own white box with a 1px edge, set apart by the ground between boxes. Inside a box, 1px rules separate rows and requirements, and there is no shadow anywhere. One face, Albert Sans, carries every word and every figure, with figures set in tabular digits. Density is medium to high, as on the portals this audience already uses: a 1440 by 900 screen shows about five tenders in the list beside the opened one.
 
-Light and Dark are two separately designed palettes, not an inversion: a pale grey desk with milk acetate by day, a near-black desk with smoked acetate by night. The boards and tab hues keep full strength in both. A three-way switch offers Light, Dark and Device; Device follows the operating system live and is the default.
+The system refuses two things: a marketing hero over a feature grid, and a bare search form with nothing read. Verdicts never take a colour. A verdict is a word in a reversed ink tag with its own mark, and a criterion's state is a mark and a word, so ruled out reads with the same calm as ruled in.
 
 **Key Characteristics:**
 
-- One board hue per page, set on the binder, visible only at edges, tabs and tags.
-- All reading happens on acetate leaves with a hairline edge and a faint board-tinted inner rim.
-- Vermilion is reserved for what rules the firm out.
-- Plex Mono for clause references, notice numbers, figures, entered values and drafted text.
-- A five-column grid: a margin column behind a hairline, then four content columns.
-- Stepped 90ms motion, removed entirely under reduced motion.
+- One green, at size only in the top band, elsewhere on primary buttons, the 2px underline under the deciding words, the focus ring and a few quiet state marks.
+- White panels on a pale ground, near-black ink, a single secondary ink, and two pale washes for hover, the verdict row, the lot's facts strip, a quote's caption, tiles and small badges.
+- Albert Sans alone, weights 400 to 800, tabular figures everywhere.
+- Boxed panels on the ground, ruled rows inside them, never a box inside a box except the verdict and a quote. No shadows, no corner above 8px.
+- Verdicts and states told apart by mark and word, never by colour.
+- A dashed edge means "not read or not settled". A 2px dashed ink edge means an error.
+- Light, Dark and Device themes, Device the default.
 
 ## Colors
 
-A neutral desk-and-acetate base carrying six saturated section boards and one reserved vermilion.
+One deep green on white and near-black, with Dark designed as its own palette rather than an inversion.
 
 ### Primary
 
-- **Errata Vermilion** (errata; dark-errata in Dark): the errata slip, the shortfall figure the firm falls short on, and the underline beneath the decisive words inside a quoted clause. Text on it is errata-ink (white in Light, ink in Dark).
-
-### Secondary
-
-- **Section Boards** (board-yellow, board-grass, board-teal, board-ultramarine, board-violet, board-slate): one per division. A page sets its binder board (verdict yellow, tenders slate, profile ultramarine, home teal, states violet); tabs take the hue of the division they index. Text on each board uses its paired on-colour (ink on yellow and grass, white on teal, ultramarine, violet, slate). The same values hold in both themes.
-- **Question Violet** (board-violet): also the addendum tag on a drafted question to the buyer, and a 7% tint behind that draft. It asks; it never rules out.
-
-### Tertiary
-
-- **Focus Blue** (focus; dark-focus): the 3px focus outline only.
+- **Ledger Green** (band, brand, focus): the 60px top band on every page, the fill of every primary action (the lead button, the procurement documents link, the skip link), the 2px underline beneath the words a verdict rests on, and the focus ring. In Light the band, the brand and the focus ring share one value. In Dark the band deepens (dark-band) while the brand lifts to a lighter green (dark-brand) carrying near-black ink (dark-brand-ink), and the focus ring lifts again (dark-focus) so it reads on the near-black ground.
+- **Green Pressed** (brand-hover, dark-brand-hover): the primary fill under the pointer, darker in Light and lighter in Dark.
 
 ### Neutral
 
-- **Desk** (desk; dark-desk): the page background outside the binder and the punched binding holes.
-- **Desk Ink** (desk-ink; dark-desk-ink): desk bar navigation and notes that sit on the desk.
-- **Ink** (ink; dark-ink): primary text, primary button fill, pressed chips, the No-go tag.
-- **Ink 2 / Ink 3** (ink-2, ink-3 and dark variants): secondary text, margin notes, hints, labels, table headers, the hanging quote mark.
-- **Acetate** (acetate; dark-acetate): every reading surface: leaves, inputs, chips, the theme switch.
-- **Acetate Edge / Rule** (acetate-edge, acetate-rule): the leaf hairline and the internal dividers, both translucent ink so they sit correctly on any board.
-- **Leaf Back** (leaf-back, leaf-back-ink): face-down leaves and tabs for documents not yet read.
-- **Selection** (selection): translucent chrome yellow.
+- **Ground** (ground, dark-ground): the page behind the panels. Only the band, the page heads, the start page's claim and the footer stand on it directly. In Dark it is darker than Paper, so the panels sit a step above it.
+- **Paper** (bg, dark-bg): every panel and reading surface, including secondary buttons, chips, inputs, quote boxes and the example card. Secondary buttons take this fill, never a transparent one.
+- **Wash** (bg-2, dark-bg-2): row hover, the verdict row behind the tag and its Next line, the lot's facts strip, a quote's caption, initials tiles.
+- **Deep Wash** (bg-3, dark-bg-3): the small numbered badge that ties a marked quote to its reading.
+- **Panel Edge** (edge, dark-edge): the 1px edge of every panel on the ground and of the example card.
+- **Rule** (line, dark-line): rules between rows, requirements and lots inside a panel, about 1.4:1 on Paper so each row reads as its own.
+- **Strong Rule** (line-2, dark-line-2): the edge of controls named by their own words (buttons, chips, the fold bar), the verdict box, the quote box and reading tags, and the dashed edge of anything not read, about 1.8:1 on Paper.
+- **Field Edge** (line-field, dark-line-field): the edge of every input and select. An empty field has nothing else to show where it is, so its edge holds at least 3.2:1 against Paper, Wash and Deep Wash in both themes.
+- **Ink** (ink, dark-ink): all reading text, the verdict tag's fill, a checked chip's doubled edge, field errors.
+- **Secondary Ink** (ink-2, dark-ink-2): labels, meta lines, hints, glosses, the snapshot and capture lines, the footer.
+- **Band Ink** (band-ink, band-ink-2, band-hover, band-rule): text on the band, the quieter nav links, the fill of the current nav link and the pressed theme button, and the 1px rule around the theme switch and the firm slot. Band-rule is the same in both themes.
+- **Selection** (selection, dark-selection): a translucent green for selected text and the date part being edited.
+
+Text contrast clears WCAG AA with room in both themes. Ink on Paper is about 18:1 in Light and 15:1 in Dark, Secondary Ink on Paper about 6.9:1 and 8.0:1, Secondary Ink on the Ground about 6.1:1 and 8.7:1, Band Ink 2 on the band about 6.8:1 and 6.6:1, and Brand Ink on the brand about 9.3:1 and 7.0:1. The lowest text pairs, Secondary Ink on the opened row's tint and the Demo tag's text on the band, sit near 6:1.
 
 ### Named Rules
 
-**The Errata Rule.** Vermilion marks only what rules the firm out: the slip, the short figure, the underline under the decisive words. Nothing decorative, no alerts, no links.
+**The One Green Rule.** Green appears at size only in the top band. Elsewhere it fills primary actions, underlines the deciding words, draws the focus ring, and marks a few quiet states: the opened list row (an 8% tint inside a 45% edge), the checkbox and date accent, the text caret and the selection. Green never colours text, a verdict or a criterion state.
 
-**The Board Edge Rule.** A board hue never carries reading text. It shows at the binder edge, on tabs, and on tags that are themselves separate pieces of paper; inside a leaf it appears only as the 14% inner rim or a 7% tint.
+**The Colourless Verdict Rule.** No verdict, criterion state or reading status has a colour of its own. Each is drawn in ink and told apart by its mark and its word.
 
-**The Two Palettes Rule.** Dark is designed, not inverted: desk, ink, acetate, errata and focus each have their own dark value, while boards and on-colours stay identical.
+**The Two Palettes Rule.** Dark is designed, not inverted: a deeper band, a near-black ground (dark-bg), a lighter green with near-black ink on it, and its own focus green. The dark values apply when Dark is picked, and when Device is picked on a device set to dark.
 
 ## Typography
 
-**Display Font:** IBM Plex Sans Condensed (with IBM Plex Sans, Arial Narrow)
-**Body Font:** IBM Plex Sans (with Helvetica Neue, Arial)
-**Label/Mono Font:** IBM Plex Mono (with ui-monospace, Cascadia Mono)
+**Display Font:** Albert Sans (with ui-sans-serif, system-ui, sans-serif)
+**Body Font:** Albert Sans (same stack)
 
-**Character:** A technical manual's type family used with discipline: condensed cuts rule and head, the regular cut reads, and the monospace is the voice of the source document. All type is self-hosted, and body numerals are tabular.
+**Character:** One neutral geometric sans for everything, self-hosted as a single variable font (weights 400 to 800) cut into latin and latin-ext subsets. The latin file is preloaded, and latin-ext loads only when a buyer's name needs one of its letters. Headings get their voice from weight (750) and tight tracking, not from a second face.
 
 ### Hierarchy
 
-- **Display**: the cover headline on the home leaf, balanced, max 17ch; fixed 2.5rem on phones.
-- **Verdict**: the verdict word, uppercase, the loudest thing in the system; 3.5rem on phones.
-- **Headline**: tender title, balanced; drops to 1.75rem on phones.
-- **Title**: margin heads, clause heads and verdict states in Condensed 600; step headings at 1.1875rem.
-- **Reading**: the plain English reading and the verdict sentence at 1.1875rem, line length held near 52ch.
-- **Body**: 1rem at 1.5 line height; notes capped at 70 to 80ch; secondary text at 0.8125rem.
-- **Label**: uppercase Condensed with 0.06em tracking, naming the column it sits over (the buyer's words, the plain English reading) and table headers; the slip and addendum headings use the same cut at 700 with 0.08em.
-- **Figure**: demanded and held figures in Plex Mono 500 at 3rem, 1.75rem on phones.
+- **Display** (750, 2.75rem, 1.06): the start page claim only, held to 20ch and balanced. On phones it scales with the screen between Headline and Display size (about 2.2rem at 390 wide).
+- **Headline** (750, 1.75rem, 1.15, -0.03em): the opened tender's title (held to 30ch), and the h1 of the profile, privacy, AI and error pages.
+- **Title** (750, 1.375rem, 1.2, -0.025em): the tender list's heading and the example card's title. The home figure's heading uses the same size at 700.
+- **Subhead** (700, 1.0625rem, 1.3): a lot's heading, a panel heading, the empty state's heading.
+- **Lede** (400, 1.0625rem, 1.5): a page's opening statement and a verdict's reason line, held to 62ch. The start page lede is a touch smaller (1.03125rem, 1.55) in Secondary Ink.
+- **Body** (400, 0.9375rem, 1.5): running text, with tabular figures on by default.
+- **Quote** (400, 0.96875rem, 1.55): the buyer's own words in the quote box, held to 72ch, hyphenated by the clause's own language.
+- **Row title** (650, 0.9375rem, 1.32): a tender's title in the list, two lines at most.
+- **Button** (600, 0.9375rem, 1.2): every button and button-shaped link.
+- **Label** (600, 0.8125rem, 1.3): sentence-case labels in Secondary Ink over the column or block they name (the clause that decides, AI reading, the quote's language).
+- **Small** (400 or 500, 0.8125rem): meta lines, hints, facts terms, notes and the footer.
+- **Tag** (500, 0.78125rem, 1.2): reading tags and the quiet mode tags (Example run, Demo firm, an error's status code).
+- **Verdict tag** (700, 0.84375rem): the verdict word in its reversed tag.
+- **Figure** (700, 2.75rem, 1, -0.03em): the four counts on the start page's figure, 1.75rem on phones.
 
-Scale steps as built: 0.8125, 1, 1.1875, 1.4375, 1.75, 2.125, 3 and 6rem.
+Weights in use: 400, 500, 600, 650, 700 and 750, with 800 only for the "50" in the wordmark's square.
 
 ### Named Rules
 
-**The Evidence Mono Rule.** Plex Mono carries what comes from the source or the firm's own numbers: clause references, notice numbers, figures, form input values, the drafted question. Never headings or prose.
+**The One Face Rule.** Albert Sans sets every word, heading, label, input value and figure. A figure read from the evidence (a notice number, an amount, a count) is the same face with tabular digits at weight 500, never a monospace.
 
-**The Condensed Head Rule.** Headings, labels, tabs and the verdict are Condensed; body copy never is.
+**The Sentence Case Rule.** Labels, tags and headings are sentence case at the face's own spacing. Nothing is set in capitals or tracked out to look like a label.
 
 ## Layout
 
-The page is a desk bar over a binder. The binder sits inside a fluid gutter (clamp(1rem, 3vw, 2.5rem)) and leaves room on its right for the tab rail (3.25rem). Its padding is 1.75rem, with 3.5rem on the left for the punched binding strip (three holes at 12%, 50% and 88%).
+Every page opens with the band: wordmark at the left, the three text links (Tenders, Firm profile, Example run), a spacer, the theme switch, and the firm slot at the far right. Below it, the main column is centred at a 1280px maximum with the fluid gutter on each side and 1.75rem of space above, 3rem below. A page's panels are white boxes on the ground: a 1px Panel Edge, 8px corners, 1.5rem of padding above and up to 1.75rem at the sides, and 1rem of ground between one box and the next. Two kinds of panel stay unboxed and take a 1px Rule with 2.5rem above it and 1.75rem below instead: a panel that already sits inside a box (a lot inside the opened tender, the buyer search, the unread documents) and the start page's claim, which holds the example card. A box never sits inside another box, except the verdict and a quote inside a tender. Where a panel has a facts column, it stands 15rem wide beside the text from 68.75em and moves above the text below that.
 
-Inside a leaf, content follows a five-column grid: a margin column of minmax(12rem, 15rem) behind a hairline rule, then four equal columns, with a 1.75rem column gap. The margin column holds facts (buyer, deadline, notice number) and condensed margin heads. Clause cards run their own four-column body: quote across two columns, reading across the other two, figures and provenance full width. Leaves stack 0.875rem apart; a second-ply leaf indents 0.75rem.
+**Start page.** From 68.75em the claim column is 470px wide beside the example card, 3.5rem apart. The claim holds the headline, two lede lines, the primary and secondary buttons side by side, three promise lines with icons on a hairline, and the snapshot line. The card opens the example's verdict on the right. Below 68.75em the card follows the claim. The figure panel and the firm panel sit below the first screen.
 
-At 1100px the margin column folds above the content and the grid becomes four columns; the profile form drops to two. At 720px everything becomes one column, the rail collapses to zero, the binding holes disappear, board padding shrinks to 0.625rem, leaves stack 2.5rem apart, and each tab turns horizontal and stands up above its leaf's top edge. The tenders table unstacks into blocks.
+**Tenders and the example run.** A title line carries the heading, the counts and, at the far right, the one sort order stated as text with no control. A capture line follows on the ground, then the filter row (country chips, type of work chips, two deadline dates, Apply) in its own box. Then the split view, 1rem below: the list column takes min(480px, 42%) and the opened tender takes the rest, each its own box with 1rem of ground between them. Each column scrolls on its own, and both end 1rem above the bottom of the window so each box shows its lower edge, measured from where the split starts on every navigation and resize (20rem at least on a very short window). So an open row deep in the list shows beside the head, and reaching the end of either column never moves the page. List rows fill the list's box edge to edge, so a row's tint reads as the row. The pane has 1.75rem of padding on its left and 1.25rem on its right. On a phone the list and the tender run to both edges of the screen as white bands, and the filter button stands on the ground without a box.
 
-## Elevation & Depth
+**A tender record.** Buyer tile and buyer, the title, a facts row with icons (deadline, time left, estimated value, the notice number linked to TED), the source actions, then one panel per lot. A lot shows its name, the verdict right under it, the clause that decides right under that, the other requirements folded behind a summary, and then its facts strip, so no fact pushes the verdict down the pane. The record ends with its source line and an "About this tender" grid.
 
-Depth is ply. Surfaces are flat printed paper and acetate; a single soft lift shadow appears only under pieces that are physically separate from the leaf they rest on: the binder on the desk, the errata slip, and the addendum tag. Leaves themselves take no drop shadow, only a hairline edge and an inset 4px rim tinted 14% with the board hue. The half-hinged leaf gets its depth from a 9 degree perspective turn about its punched edge, flattening on hover or focus.
+**Profile.** Five panels with a 15rem facts column. Form fields run four to a row from 68.75em, two below that, and one on phones.
 
-### Shadow Vocabulary
+**Responsive.** Switches are set in em so a larger default font moves them too: 40em (640px), 45em (720px) and 68.75em (1100px). At 45em and below the band wraps to two rows (wordmark, demo tag and theme switch on the first, the nav across the second) and grows past 60px. The split view shows one thing at a time: the bare list shows the list, and an address naming a tender shows that tender with a "Back to the list" link that keeps the filters. Opening a tender on a phone returns to the top and moves focus to the tender's heading. At 40em and below the filters fold behind a "Filters (n)" button that keeps the applied filters in view beside it.
 
-- **Lift, Light** (`box-shadow: 0 1px 0 rgb(20 20 20 / 0.08), 0 6px 14px -6px rgb(20 20 20 / 0.28)`): binder, slip, addendum tag.
-- **Lift, Dark** (`box-shadow: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7)`): the same pieces at night.
-- **Board Rim** (`box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--board) 14%, transparent)`): every acetate leaf.
+**Measures.** Prose holds to 62ch, quotes and readings to 72ch, notes and the record's source line to 70 to 80ch.
 
 ### Named Rules
 
-**The Ply Rule.** Ply is the only rank. Importance is shown by what lies on top of what, never by bigger shadows or raised cards.
+**The List Keeps Its Place Rule.** Choosing a tender opens it in the pane and changes nothing else on a wide screen: the list keeps its scroll, focus stays on the chosen row, and the pane returns to its own top. A page scrolled down to the notes under the split goes back to its top, where both columns fit. Coming into the split, by a first load or a link from another page, brings the open row into the list.
+
+## Elevation & Depth
+
+The system is flat. No element casts a shadow, nothing is lifted, and depth comes only from white boxes on the ground, their edges, the rules inside them, the two washes and the two columns that scroll on their own. The one box-shadow in use is not elevation: a 1px inset ink line (`inset 0 0 0 1px`) that doubles a checked or pressed chip's border.
+
+### Named Rules
+
+**The Flat Page Rule.** Rank comes from order, weight, the box and the rule, never from a shadow, a raised card or a coloured panel.
 
 ## Shapes
 
-Corners are small and physical. Slips, tags, the draft block and the hinged leaf use 2px; leaves, buttons, inputs, chips and clause cards 3px; the theme switch 4px; the binder 6px on its bound side only (square on the fore edge, fully rounded on phones). Tabs round only their outer corners at 8px (right side on desktop, top side on phones). Punched holes are true circles cut in the desk colour. Dashed strokes carry one meaning: not read or not settled (face-down leaves and tabs, the Ask first tag, a field in error).
+Corners are small and squared. Anything with a box (buttons, chips, inputs, the quote box, the example card, initials tiles, notes, the empty state) takes 8px. Tags take 6px (reading tags, the mode tags, the numbered quote badge, the theme switch's buttons). The band's own pieces take 7px (the nav link's drawn shape, the wordmark's square, the theme switch's frame). Nothing is rounder than 8px, and no box is a pill or a circle.
+
+Edges are 1px. A dashed 1px Strong Rule means "not read or not settled": the reading tag for criteria in the documents, the unread note on a record, a requirement the model did not read, the "Documents not read yet" panel, a chip for a certificate that is held but expired. A dashed 2px ink edge on a 5% ink tint means an error, in a field or as a block.
+
+Icons share one line set on a 16px grid, stroked at 1.6 with round caps and joins in the current text colour. They are always decorative and hidden from assistive technology, since a word beside each carries its meaning.
+
+### Named Rules
+
+**The Dashed Edge Rule.** Dashed carries two meanings only: thin and grey for "not read or not settled", thick and ink for an error. Nothing decorative is dashed.
 
 ## Components
 
+### Top Band and Navigation
+
+The colour lives here at size, on every page.
+
+- **Band:** Ledger Green, at least 60px tall, Band Ink text.
+- **Wordmark:** a 28px Band Ink square with "50" in the band's green at 800, then "Pagefifty" at 750, 1.1875rem. The square's number is drawn by the stylesheet, so the link's name is the word alone.
+- **Links:** Band Ink 2 at 500. Each has a 44px hit area around a smaller 7px-cornered drawn shape. Hover and the current page (aria-current) fill that shape with Band Hover and lift the text to Band Ink.
+- **Theme switch:** a segmented group of Light, Dark and Device inside a 1px Band Rule frame. Buttons are 28px tall (40px on phones), Band Ink 2 at 500. The pressed one fills with Band Hover.
+- **Firm slot:** a 38px link with a 1px Band Rule edge and 8px corners: a 28px square tile (initials for the demo firm, a people mark for the own firm), the name at 600 and a second line in Band Ink 2. The demo firm adds a small "Demo" tag on a 16% white fill. On phones the own firm hides and only the demo tag stays.
+- **Focus on the band:** the ring takes Band Ink, so it never disappears green on green.
+
 ### Buttons
 
-Plain, inked and tactile.
+Plain, squared, colour on the primary only.
 
-- **Shape:** gently squared (3px), 44px minimum height, 1px ink border, Plex Sans 600.
-- **Primary:** ink fill with acetate text; one per leaf foot (Copy clause with source, Copy question, Set up your firm).
-- **Secondary:** transparent with ink text and the same ink border.
-- **Hover / Active:** moves up 1px on hover and down 1px when pressed, in the 90ms two-step; focus is the 3px focus outline at 2px offset.
+- **Shape:** 8px corners, 1px edge, Button type, at least 38px tall (44px for the one large call to action that leads a page).
+- **Primary:** brand fill and edge with Brand Ink text, Green Pressed on hover.
+- **Secondary:** Paper fill, Strong Rule edge, Ink text. Hover fills with Wash and darkens the edge to Secondary Ink. The quiet "Clear filters" action beside Apply drops the edge and reads as an underlined link with a button's target.
+- **Source actions:** on a record, "Open the procurement documents" takes the primary look and "Open notice on TED" the secondary, each ending with the out-of-site mark.
+- **Skip link:** hidden until reached by keyboard, then a primary button at the band's top left with a Band Ink edge.
+- **No movement:** buttons change fill and edge only. Nothing translates.
 
 ### Chips
 
-- **Style:** acetate fill, 1px ink-3 border, 3px corners, 44px tall, Plex Sans 500.
-- **State:** pressed chips fill with ink and take acetate text; state is carried by aria-pressed.
+- **Style:** Paper fill, Strong Rule edge, 8px corners, 500 at 0.875rem, 36px tall. A checkbox chip keeps its native box visible with a green accent.
+- **Checked or pressed:** the edge turns Ink and an inset 1px Ink line doubles it. The fill and text never change.
+- **Held but not settled:** a dashed Secondary Ink edge.
 
-### Cards / Containers
+### Inputs and Fields
 
-- **Leaf:** acetate, 1px acetate-edge, 3px corners, 1.75rem by 2rem padding, board rim inset.
-- **Clause card:** a bordered block inside a leaf with a head row (condensed clause name, small secondary meta) and a four-column body; when it carries a slip, the slip overlaps its top edge.
-- **Face-down leaf:** leaf-back fill, dashed leaf-back-ink border, for a document not yet read.
+- **Style:** Paper fill, Field Edge, 8px corners, 40px tall, the value at 500 with tabular figures. The label sits above in 500 at 0.8125rem, the hint below in Secondary Ink.
+- **Date fields:** follow the theme, separators in Secondary Ink, the part being edited on the selection tint, and the calendar mark drawn from the page's own icon set.
+- **Focus:** a 2px focus ring at no offset, and the edge takes the focus colour.
+- **Error:** a 2px dashed Ink edge on a 5% Ink tint, and the hint turns to Ink at 600 with the information mark. Errors are carried by shape and weight, never by colour.
 
-### Inputs / Fields
+### Tender List Rows
 
-- **Style:** acetate fill, 1px ink-3 border, 3px corners, 44px tall, value in Plex Mono 500; label above in Sans 500 at 0.8125rem, hint below in ink-3.
-- **Focus:** 3px focus outline at zero offset, border darkens to ink.
-- **Error:** 2px dashed ink border, a 6% ink tint, and the hint turns ink 600 with an inline icon. Errors are carried by shape and weight, not vermilion.
+- **Row:** a 40px initials tile (Wash, Secondary Ink, 700), then the title at Row title weight clamped to two lines, the buyer in Ink at 500 with the notice number in Secondary Ink, a meta line of facts separated by drawn dots (country, deadline, estimated value) with the deadline in Ink, and the reading status. Rows are divided by Rules, and the whole row answers to the pointer.
+- **Hover:** the row fills with Wash.
+- **Opened:** an 8% green tint inside a 1px edge at 45% green, and the title underlined. No side bar.
+- **Reading status:** written as plain Secondary Ink text where it matches the reading most rows share, and boxed as a reading tag only where it differs.
+- **Closed tenders:** gathered in a folded group under the open list, each row's deadline led by the word "Closed" at 600 in Ink.
 
-### Navigation
+### Reading Tags
 
-- **Desk bar:** condensed 700 wordmark, Sans 500 links in desk-ink; the current page is ink with a 2px underline. The firm name sits right; hidden on phones, where the links wrap to their own row.
-- **Theme switch:** a 4px acetate capsule of three buttons (Light, Dark, Device); the pressed one fills with ink.
-- **Tabs:** vertical condensed 600 labels on the fore edge, each in its division's board hue, with an optional Plex Mono count. The open tab is wider and stands 0.625rem proud. A face-down tab is leaf-back with an inset dashed outline.
+A quiet outlined tag, never a verdict: 24px tall, 1px Strong Rule edge, 6px corners, Tag type in Secondary Ink, with a 14px mark. "Criteria in the documents" carries the document mark and a dashed edge. "N criteria, not read yet" and "No criteria in the notice" carry the lines mark and a solid edge. The list's heading glosses the term once: "Reading status: what Pagefifty read in each notice."
 
-### Errata Slip (signature)
+### Verdict Block
 
-A strip of vermilion paper, max 30rem, 2px corners, lift shadow, with a punched hole cut in acetate on its left. It carries an uppercase condensed heading, a Plex Mono reference (which document, which criterion) and one 600-weight sentence at 1.1875rem. On a clause card it overlaps the card's top edge; on phones it sits in flow.
+- **Verdict box:** on a record the verdict is the one box inside the tender: a 1px Strong Rule edge and 8px corners, the verdict row as its head and everything that explains the verdict inside it, so the clause after it starts on its own. On the example card the verdict row runs edge to edge between Rules instead.
+- **Verdict row:** one Wash row. At the left the verdict tag (30px, 8px corners, Ink fill with Paper text, 700, the verdict's mark before the word). Beside it the Next line: "Next:" at 650, then what to check next.
+- **Under it:** the verdict's gloss as one sentence at 600, the reason line at Lede size, any shortfall rows, the Article 63 line for a criterion another firm could cover, a profile or documents link where one applies, then two Small lines in Secondary Ink naming the firm compared and how the verdict was decided.
+- **Shortfall rows:** one Rule row per criterion the firm misses on its own, with the short mark, "Short on its own:" at 650, the criterion and its floor, and its position ("Criterion n of m") in Secondary Ink.
 
-### Verdict Tags
+### Verdicts and States (signature)
 
-Uppercase condensed 700 tags with 2px corners and a 1px ink border in the tenders index: No-go is solid ink, Ask first is a dashed outline.
+The internal verdict names in `src/lib/core/verdict.ts` never change. The display words, marks and glosses below are what the pages show. They come from `VERDICT_LABELS` in that file and from `src/lib/tenders/verdict-view.ts`.
 
-### Half-Hinged Leaf
+| Internal verdict | Display word  | Mark              | Gloss under the tag                                                |
+| ---------------- | ------------- | ----------------- | ------------------------------------------------------------------ |
+| GO               | Go            | ring with a tick  | Meets every selection criterion read, on its own.                  |
+| PARTNER NEEDED   | Not met alone | two people        | Falls short on its own on a criterion read.                        |
+| ASK FIRST        | Ask first     | ring with an i    | Not read in full, or a question left open.                         |
+| NO-GO            | No-go         | ring with a cross | Ruled out by a criterion read, with no route through another firm. |
 
-A small acetate leaf holding a reading a partner or capacity reliance could satisfy, turned 9 degrees about its punched left edge (two holes in the board colour). It lies flat when its row is hovered or focused, and is flat on phones.
+Every verdict tag has the same fill, edge and weight. The four verdicts are told apart by their word and their mark only, never by colour or fill. A verdict word stands only inside a verdict region: the verdict block on a record, the example card's verdict and its state marks, and the start page's figure, which labels its four counts with the same words. A list row never shows a verdict.
 
-### Addendum
+An Ask first verdict always has a reason. The short reason labels in `ASK_FIRST_REASON_LABELS` are not drawn on any page. The reason shows as a full sentence under the tag, and the Next line names what to check:
 
-A bordered acetate block with a violet tag overlapping its top edge and the drafted question in Plex Mono on a 7% violet tint.
+| Reason (in precedence order) | Label in code (not drawn)             | Next line shown                                             |
+| ---------------------------- | ------------------------------------- | ----------------------------------------------------------- |
+| cancel-intent                | The buyer intends to cancel           | check the notice on TED for the cancellation.               |
+| route-unsettled              | Route not settled                     | check whether the clause below lets another firm help.      |
+| profile-field-missing        | A profile field is missing            | check the requirement named below against your own records. |
+| not-read                     | Not read                              | read the criterion named below yourself.                    |
+| not-compared                 | Not compared in this version          | read the criterion named below yourself.                    |
+| criteria-in-documents        | Criteria in the ESPD or the documents | read the procurement documents, which were not read.        |
+| no-criteria-in-notice        | No criteria in the notice             | read the notice on TED for criteria set elsewhere.          |
 
-### Loading
+With no firm profile in the browser, profile-field-missing shows "set up a firm profile." instead. The Next lines for Go and Not met alone are "check the exclusion grounds and declarations, which this reading does not cover." and "check whether another firm can lend the capacity named below." The No-go line points at the clause below as the one that rules the firm out. Exact wording lives in `NEXT_LINES`.
 
-Set lines: 0.875rem bars in a 12% ink tint at 60, 80 and 40% width, laid in place before words arrive.
+Each criterion carries a state, drawn as a mark and a word at 600, 0.8125rem, in Ink at the right of its heading. None of these words is a verdict word:
+
+| Criterion state       | Word shown                   | Mark              |
+| --------------------- | ---------------------------- | ----------------- |
+| MET                   | Met                          | ring with a tick  |
+| MET_WITH_TASK         | Met, with a task             | ring with a tick  |
+| INFO                  | For information              | ring with an i    |
+| SHORT_BORROWABLE      | Short on its own             | ring with a plus  |
+| SHORT_FIXED           | Short, no partner route      | ring with a cross |
+| SHORT_ROUTE_UNSETTLED | Short, route not settled     | ring with a cross |
+| PROFILE_GAP           | Not settled by the profile   | ring with an i    |
+| NOT_READ              | Not read                     | dashed ring       |
+| (not compared)        | Not compared in this version | ring with an i    |
+| (not assessed)        | Not assessed                 | ring with an i    |
+
+### Clause and Quote Block
+
+- **Criterion heading:** the criterion's English label at 650 and Subhead size, its code and "Criterion n of m" in Small Secondary Ink, and the state at the right. The buyer's parameters follow as published. Each criterion is separated from the next by a Rule with 1.5rem above and below.
+- **Quote box:** one box with a 1px Strong Rule edge and 8px corners. Its caption, on a Wash strip, names the clause's language as a Label and the source in words ("Quoted from TED notice n"). Under a Rule, the buyer's words sit on Paper, carrying the clause's own `lang`. An excerpt clamps to six whole lines with the whole clause one click away.
+- **Lot facts:** a lot's deadline, value, criteria count, source and legal basis sit together on one Wash strip with 8px corners after the lot's requirements.
+- **Marked quotes:** a quote the model read is underlined with a dotted 1px Secondary Ink rule, offset 4px, led by a small numbered badge (Deep Wash, 6px corners, 700) that matches the number of its reading.
+- **Deciding words:** the words the verdict rests on carry a 2px green underline at the text's own weight, since a deciding quote can run most of a clause. Never a highlighter wash, never bold.
+- **AI reading:** a Label, then the numbered readings in Ink, held to 72ch. A provenance line in Small Secondary Ink says how the quotes were checked and links the notice on TED.
+- **Other requirements:** folded under a 44px bar with a Strong Rule edge and 8px corners, "Other requirements in this lot (n)", whose chevron turns when open and which fills with Wash under the pointer.
+
+### Example Card (start page)
+
+A white box on the ground beside the claim: Paper fill, 1px Panel Edge, 8px corners, no shadow, 1.5rem side padding. It holds a 36px initials tile with the buyer and country, a quiet "Example run" tag, the title at Title size, the facts (the notice number linked to TED, the demo firm compared), the verdict row running edge to edge with its gloss, the clause that decides with its excerpt and AI reading, the requirement rows on Rules (the deciding one at 650) with a count by state, and one Small line on how the verdict was decided.
+
+### Notes, Empty and Error States
+
+- **Not-read notes:** a 1px dashed Strong Rule box with 8px corners, Small Secondary Ink text, and the dashed-ring mark where it leads a record.
+- **Empty state:** a named box with 8px corners (a Wash fill inside the list's box), a Subhead heading, a Secondary Ink sentence that says why nothing matched, and a Clear filters button. An empty list never reads as a failed page.
+- **Error block:** the field error at block size, a 2px dashed Ink edge on a 6% Ink tint, weight 600, with a warning mark.
+- **Loading:** three set lines (0.875rem bars at 80%, 60% and 40% width, a 12% Ink tint) laid in place before words arrive. No spinner.
+
+### Footer
+
+A 1px Rule, then "Not legal advice." and the links Privacy and How the AI is used, in Small Secondary Ink on the page's own 1280px measure, each link with a 44px target.
+
+### Motion
+
+Only state changes move: fills, edges and colours on hover or press, and a chevron turning when a section folds open, all at 140ms ease-out. Opening a tender swaps the pane's content in place with no transition. With reduced motion requested, every transition is removed.
+
+### Themes
+
+Light, Dark and Device, with Device the default. A script in the document head sets the theme before first paint from a `?theme=` value, then the stored pick, then the device. Without that script the dark palette still follows the device through a media query. A Device pick follows the operating system live, and a pick made in another tab or before a page was restored from the back-forward cache is taken up too.
+
+### Accessibility
+
+- WCAG 2.2 AA is the target. Every text colour on the surface it is drawn on clears 4.5:1 in both themes, and a field's edge clears 3:1 against every ground it sits on.
+- Focus is a 2px ring in the focus colour at a 2px offset, at no offset on inputs, in Band Ink on the band, drawn round the visible shape of a nav link rather than its larger hit area.
+- Targets are at least 24px. Band links, links standing alone on a line, fold summaries and the footer links get 44px.
+- Every quoted clause, buyer name and title carries the `lang` of the notice text it comes from.
+- Marks are decorative. The word beside a mark is always its label.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** set exactly one board hue on the binder per page and give every leaf its own tab in its division's hue.
-- **Do** put all reading text on acetate, with the margin column behind a hairline.
-- **Do** reserve vermilion for the errata slip, the short figure and the decisive-words underline (The Errata Rule).
-- **Do** show unread documents face down with dashed edges, never as an empty or read leaf.
-- **Do** use Plex Mono for references, notice numbers, figures, input values and drafted text.
-- **Do** animate only with the 90ms two-step (`steps(2, end)`) and drop all transitions under reduced motion.
-- **Do** keep boards and on-colours identical across Light and Dark, and ship Light, Dark and Device with Device as the default.
-- **Do** keep interactive targets at 44px minimum and the 3px focus outline.
+- **Do** keep the green at size in the top band alone, and use it elsewhere only for primary actions, the deciding words' 2px underline, the focus ring and the quiet state marks (The One Green Rule).
+- **Do** tell every verdict, criterion state and reading status apart by its mark and its word, in ink (The Colourless Verdict Rule).
+- **Do** set everything in Albert Sans, with tabular figures and weight 500 for evidence figures.
+- **Do** give each area of a page its own white box on the ground, and separate rows and requirements inside a box with 1px Rules.
+- **Do** keep box corners at 8px, tags at 6px and the band's pieces at 7px.
+- **Do** quote the buyer's words in the quote box with the source named in words above it and the clause's `lang` on it.
+- **Do** show a reading status as plain muted text where most rows share it, and box it only where a row differs.
+- **Do** mark anything not read or not settled with a 1px dashed edge, and an error with a 2px dashed ink edge on a light ink tint.
+- **Do** give secondary buttons, chips and inputs the Paper fill.
+- **Do** ship Light, Dark and Device with Device as the default, and keep the dark palette its own.
+- **Do** move only on state changes, at 140ms ease-out, and remove all transitions under reduced motion.
 
 ### Don't:
 
-- **Don't** use vermilion for errors, warnings, links or emphasis that does not rule the firm out.
-- **Don't** set reading text directly on a board hue.
-- **Don't** rank content with larger shadows or raised cards; a shadow belongs only to a separate physical piece (binder, slip, tag).
-- **Don't** use eased or springy motion.
-- **Don't** set headings in Plex Mono or body copy in Condensed.
+- **Don't** cast a shadow or raise a card. The inset ink line on a checked chip is the only box-shadow and is an edge, not depth.
+- **Don't** put a box inside a box. Inside a panel, rules and washes group things; the verdict and a quote are the only boxes inside a tender.
+- **Don't** give a verdict, a state or a reading tag a colour, a green included.
+- **Don't** round anything past 8px or draw a box as a pill or a circle.
+- **Don't** add a second typeface, a monospace or a condensed cut.
+- **Don't** set labels or tags in capitals or tracked caps.
+- **Don't** highlight the deciding words with a wash or set them in bold. The green underline carries them.
+- **Don't** show a verdict word on a list row or anywhere outside a verdict region.
+- **Don't** put a sort control on the tender list. Its one order is stated as text.
+- **Don't** use a dashed edge as decoration.

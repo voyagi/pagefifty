@@ -3,10 +3,10 @@
 	import type { BuyerSearchView } from '$lib/tenders/tender-page';
 	import ExternalIcon from './ExternalIcon.svelte';
 	import Label from './Label.svelte';
-	import Leaf from './Leaf.svelte';
+	import Panel from './Panel.svelte';
 
 	// What a web search found for the buyer when the snapshot was captured. Pages nobody checked: the
-	// leaf says so, sits apart from the tender's own leaves, and nothing on it feeds a verdict.
+	// panel says so, sits apart from the tender's own panels, and nothing on it feeds a verdict.
 	let { search }: { search: BuyerSearchView } = $props();
 
 	// safeLink already kept only http and https; the rule runs again where the address becomes an
@@ -21,65 +21,52 @@
 	);
 </script>
 
-<Leaf id="web-search" tab="Web search" hue="slate" labelledby="web-search-title" ply={2}>
-	{#snippet children(tab)}
-		<div class="grid">
-			<h2 class="head" id="web-search-title">Earlier awards of this buyer</h2>
-			{@render tab()}
-			<div class="body" data-web-search>
-				<Label>Web search results, not checked</Label>
-				<p class="note">
-					Found by a web search for the buyer's name when this snapshot was captured. These results
-					were not checked and do not change the verdict.
-				</p>
-				{#if results.length === 0}
-					<p class="none">No earlier awards found by web search.</p>
-				{:else}
-					<ol class="results">
-						{#each results as result, index (index)}
-							<li>
-								{#if result.href !== undefined}
-									<a href={result.href} rel="external noreferrer"
-										><span data-web-text>{result.title}</span><ExternalIcon /></a
-									>
-									<span class="host">{result.host}</span>
-								{:else}
-									<span class="title" data-web-text>{result.title}</span>
-								{/if}
-							</li>
-						{/each}
-					</ol>
-				{/if}
-			</div>
+<Panel id="web-search" labelledby="web-search-title" ruled>
+	<div class="search">
+		<h2 class="head" id="web-search-title">Earlier awards of this buyer</h2>
+		<div class="body" data-web-search>
+			<Label>Web search results, not checked</Label>
+			<p class="note">
+				Found by a web search for the buyer's name when this snapshot was captured. These results
+				were not checked and do not change the verdict.
+			</p>
+			{#if results.length === 0}
+				<p class="none">No earlier awards found by web search.</p>
+			{:else}
+				<ol class="results">
+					{#each results as result, index (index)}
+						<li>
+							{#if result.href !== undefined}
+								<a href={result.href} rel="external noreferrer"
+									><span data-web-text>{result.title}</span><ExternalIcon /></a
+								>
+								<span class="host">{result.host}</span>
+							{:else}
+								<span class="title" data-web-text>{result.title}</span>
+							{/if}
+						</li>
+					{/each}
+				</ol>
+			{/if}
 		</div>
-	{/snippet}
-</Leaf>
+	</div>
+</Panel>
 
 <style>
-	/* Laid out as the Documents leaf: the heading takes up to 15rem and the body the rest, moving
-	   under the heading when a long title leaves no room beside it. */
-	.grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem 1.75rem;
-		align-items: start;
-	}
-
-	.head {
-		flex: 0 1 15rem;
-		min-width: 12rem;
-		padding-right: 1.25rem;
-		font: 600 var(--step-0) / 1.2 var(--font-cond);
-		letter-spacing: 0.02em;
-	}
-
-	.body {
-		flex: 1 1 0%;
+	/* Set apart from the tender's own panels: what a web search found, said to be unchecked before
+	   any result is listed. */
+	.search {
 		max-width: 72ch;
 	}
 
-	.note,
-	.none {
+	.head {
+		margin-bottom: 0.5rem;
+		font-weight: 700;
+		font-size: var(--step-1);
+		line-height: 1.3;
+	}
+
+	.note {
 		color: var(--ink-2);
 	}
 
@@ -90,13 +77,14 @@
 	}
 
 	.results {
-		margin: 0.5rem 0 0;
+		margin: 0.75rem 0 0;
 		padding: 0;
 		list-style: none;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.results li {
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 		overflow-wrap: anywhere;
 	}
 
@@ -106,25 +94,21 @@
 		display: inline-block;
 		padding-block: 0.8125rem 0.25rem;
 		min-height: 2.75rem;
+		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.title {
 		display: block;
 		padding-block: 0.8125rem 0.25rem;
+		font-weight: 600;
 	}
 
 	.host {
 		display: block;
 		padding-bottom: 0.625rem;
-		font: 400 var(--step--1) / 1.3 var(--font-mono);
-		color: var(--ink-3);
-	}
-
-	@media (max-width: 45em) {
-		.head,
-		.body {
-			flex-basis: 100%;
-			min-width: 0;
-		}
+		font-size: var(--step--1);
+		line-height: 1.3;
+		color: var(--ink-2);
 	}
 </style>

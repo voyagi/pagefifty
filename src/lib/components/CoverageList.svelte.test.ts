@@ -10,9 +10,9 @@ import { readNotice } from '$lib/ingest/read-notice';
 import type { DocumentsLink, NoticeRecord } from '$lib/ingest/record';
 import { buildTenderPage } from '$lib/tenders/tender-page';
 import CoverageList from './CoverageList.svelte';
-import FacedownLeaf from './FacedownLeaf.svelte';
 import SourceLinks from './SourceLinks.svelte';
 import TenderPage from './TenderPage.svelte';
+import UnreadDocuments from './UnreadDocuments.svelte';
 
 const NOW = new Date('2026-09-20T10:00:00Z');
 const CAPTURE = {
@@ -220,10 +220,10 @@ describe('SourceLinks', () => {
 	});
 });
 
-describe('FacedownLeaf and the tender page around it', () => {
-	it('lies face down with the documents unread and their link', () => {
+describe('UnreadDocuments and the tender page around it', () => {
+	it('says the documents were not read, with their link', () => {
 		const documents = recordOf('documents-only', 0).lots[0].documents;
-		render(FacedownLeaf, { props: { documents, criteriaShown: true } });
+		render(UnreadDocuments, { props: { documents, criteriaShown: true } });
 		const leaf = screen.getByRole('region', { name: 'Documents not read yet' });
 		expect(leaf.id).toBe('documents');
 		expect(squash(leaf.textContent)).toContain(

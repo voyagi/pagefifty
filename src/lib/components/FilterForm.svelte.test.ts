@@ -1,11 +1,12 @@
 import { render, screen, within } from '@testing-library/svelte';
-import { describe, expect, it } from 'vitest';
+import { createRawSnippet } from 'svelte';
+import { describe, expect, it, vi } from 'vitest';
 import { parseFilters, type FilterState } from '$lib/core/filters';
 import { DEMO_FIRM_SHORT } from '$lib/profile/demo-firm';
 import type { IndexRow } from '$lib/snapshot/index-row';
 import { buildTenderList, type TenderListData } from '$lib/tenders/list';
 import FilterForm from './FilterForm.svelte';
-import TenderListPage from './TenderListPage.svelte';
+import TenderSplit from './TenderSplit.svelte';
 
 const NO_FILTER: FilterState = { countries: [], cpv: [] };
 const NOW = new Date('2026-09-28T12:00:00Z');
@@ -111,6 +112,33 @@ describe('FilterForm', () => {
 		);
 	});
 
+	// A phone folds the filters behind this button; the stylesheet does the hiding, so the test reads
+	// the control a reader meets: its count, its state and the applied filters kept beside it.
+	it('folds the filters behind a button that counts the applied ones and keeps them in view', async () => {
+		const state: FilterState = { countries: ['NL'], cpv: ['72'], from: '2026-10-01' };
+		const { container } = render(FilterForm, { props: { state, basePath: '/tenders' } });
+		const toggle = screen.getByRole('button', { name: 'Filters (3)' });
+		const form = container.querySelector('form') as HTMLFormElement;
+		expect(toggle.getAttribute('aria-controls')).toBe(form.id);
+		expect(form.id).not.toBe('');
+		expect(toggle.getAttribute('aria-expanded')).toBe('false');
+		expect(squash(container.querySelector('.applied')?.textContent)).toBe(
+			'Netherlands, IT services, deadline on or after 1 Oct 2026'
+		);
+		toggle.click();
+		await vi.waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('true'));
+		toggle.click();
+		await vi.waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('false'));
+	});
+
+	it('counts no filter as none and shows no applied line', () => {
+		const { container } = render(FilterForm, {
+			props: { state: NO_FILTER, basePath: '/tenders' }
+		});
+		expect(screen.getByRole('button', { name: 'Filters (0)' })).toBeTruthy();
+		expect(container.querySelector('.applied')).toBeNull();
+	});
+
 	// A plain GET form sends a blank date field as "from=" and "to=", which is no bound, not junk.
 	it('submits blank dates as no bound, so the address it makes drops nothing', () => {
 		const { container } = render(FilterForm, { props: { state: NO_FILTER, basePath: '/tenders' } });
@@ -160,9 +188,9 @@ describe('FilterForm', () => {
 	});
 });
 
-describe('TenderListPage states', () => {
+describe('TenderSplit states', () => {
 	it('puts the filter form under the index head, posting to the page it sits on', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), basePath: '/tenders' }
 		});
 		const form = screen.getByRole('search', { name: 'Filter tenders' });
@@ -172,22 +200,22 @@ describe('TenderListPage states', () => {
 	});
 
 	it('says when values in the address were dropped and still lists the rows', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW], NO_FILTER, true), basePath: '/tenders' }
 		});
 		expect(screen.getByRole('status').textContent?.trim()).toBe(
 			'Some filter values in the address were not recognised and were ignored.'
 		);
-		expect(container.querySelectorAll('tr[data-notice]')).toHaveLength(1);
+		expect(container.querySelectorAll('li[data-notice]')).toHaveLength(1);
 	});
 
 	it('shows no dropped-values line when nothing was dropped', () => {
-		render(TenderListPage, { props: { data: pageData([OPEN_ROW]), basePath: '/tenders' } });
+		render(TenderSplit, { props: { data: pageData([OPEN_ROW]), basePath: '/tenders' } });
 		expect(screen.queryByText(/not recognised/)).toBeNull();
 	});
 
 	it('replaces the closed group with a note when nothing has closed', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), basePath: '/tenders' }
 		});
 		expect(container.querySelector('details')).toBeNull();
@@ -197,7 +225,7 @@ describe('TenderListPage states', () => {
 
 	// The time is cut from the formatted deadline text, so a change to that format must fail here.
 	it('writes the capture day and time on the example run, in the server zone', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
 		});
 		expect(squash(container.querySelector('.capture .mono')?.textContent)).toBe(
@@ -207,7 +235,7 @@ describe('TenderListPage states', () => {
 
 	// On the example "now" is the capture instant, so nothing can have closed since it.
 	it('words the no-closed note by the variant on the example run', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
 		});
 		const closed = container.querySelector('#closed') as HTMLElement;
@@ -219,7 +247,7 @@ describe('TenderListPage states', () => {
 
 	// CI runs no browser driver, so this is the footnote's only check there.
 	it('names the capture day and the demo firm under the example list, and nothing on /tenders', () => {
-		const example = render(TenderListPage, {
+		const example = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
 		});
 		expect(
@@ -228,25 +256,47 @@ describe('TenderListPage states', () => {
 			`Example run from a snapshot captured on 15 Sep 2026. ${DEMO_FIRM_SHORT} is a demo firm with invented figures. Not legal advice.`
 		]);
 		example.unmount();
-		const live = render(TenderListPage, {
+		const live = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), basePath: '/tenders' }
 		});
 		expect(live.container.querySelector('.demo-note')).toBeNull();
 	});
 
-	// A screen reader announces the caption; months after the capture a bare "Open tenders" would
-	// read as open today.
-	it('captions the example open table by the capture time', () => {
-		const { container } = render(TenderListPage, {
+	// The tender beside the example list carries no footnote of its own, so an example tender page
+	// names the capture day and the demo firm once, under the list it opened from.
+	it('names the capture day and the demo firm once on an example tender page', () => {
+		const record = createRawSnippet(() => ({ render: () => '<article data-record></article>' }));
+		const { container } = render(TenderSplit, {
+			props: {
+				data: pageData([OPEN_ROW]),
+				variant: 'example',
+				basePath: '/example',
+				opened: OPEN_ROW.noticeNumber,
+				onRecord: true,
+				children: record
+			}
+		});
+		expect(container.querySelector('[data-record]')).not.toBeNull();
+		expect(
+			[...container.querySelectorAll('.demo-note')].map((note) => squash(note.textContent))
+		).toEqual([
+			`Example run from a snapshot captured on 15 Sep 2026. ${DEMO_FIRM_SHORT} is a demo firm with invented figures. Not legal advice.`
+		]);
+	});
+
+	// A screen reader announces the list's label; months after the capture a bare "Open tenders"
+	// would read as open today.
+	it('labels the example open list by the capture time', () => {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW]), variant: 'example', basePath: '/example' }
 		});
-		expect(container.querySelector('#open caption')?.textContent).toBe(
+		expect(container.querySelector('#open ul.rows')?.getAttribute('aria-label')).toBe(
 			'Open at the capture time, soonest deadline first'
 		);
 	});
 
 	it('names the closed group by the variant, with its count in Mono', () => {
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW, CLOSED_ROW]), variant: 'example', basePath: '/example' }
 		});
 		const summary = container.querySelector('details summary');
@@ -254,21 +304,21 @@ describe('TenderListPage states', () => {
 		expect(summary?.querySelector('.mono')?.textContent).toBe('1');
 	});
 
-	it('says no tender is still open instead of an empty open table', () => {
-		const { container } = render(TenderListPage, {
+	it('says no tender is still open instead of an empty open list', () => {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([CLOSED_ROW]), basePath: '/tenders' }
 		});
 		const open = container.querySelector('#open') as HTMLElement;
 		expect(
 			within(open).getByText('No tender in this list is still open. The closed ones are below.')
 		).toBeTruthy();
-		expect(open.querySelector('table')).toBeNull();
-		expect(container.querySelectorAll('#closed tr[data-notice]')).toHaveLength(1);
+		expect(open.querySelector('ul.rows')).toBeNull();
+		expect(container.querySelectorAll('#closed li[data-notice]')).toHaveLength(1);
 	});
 
 	it('shows the named empty state with the filters in words when nothing matches', () => {
 		const filters: FilterState = { countries: ['BE'], cpv: ['48'], from: '2027-01-01' };
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW, CLOSED_ROW], filters), basePath: '/tenders' }
 		});
 		expect(
@@ -281,13 +331,13 @@ describe('TenderListPage states', () => {
 		).toBeTruthy();
 		const clear = screen.getAllByRole('link', { name: 'Clear filters' });
 		expect(clear.map((link) => link.getAttribute('href'))).toEqual(['/tenders', '/tenders']);
-		expect(container.querySelector('table')).toBeNull();
+		expect(container.querySelector('ul.rows')).toBeNull();
 		expect(container.querySelector('#closed')).toBeNull();
 	});
 
 	it('says which date is after which when the range is inverted', () => {
 		const filters: FilterState = { countries: [], cpv: [], from: '2026-11-01', to: '2026-10-01' };
-		render(TenderListPage, {
+		render(TenderSplit, {
 			props: { data: pageData([OPEN_ROW], filters), basePath: '/tenders' }
 		});
 		expect(
@@ -309,10 +359,10 @@ describe('TenderListPage states', () => {
 				{ ...lot, id: 'LOT-0003', deadlines: { tender: '2026-09-21T10:00:00+02:00' } }
 			]
 		};
-		const { container } = render(TenderListPage, {
+		const { container } = render(TenderSplit, {
 			props: { data: pageData([row]), basePath: '/tenders' }
 		});
-		expect(squash(container.querySelector('#open td.deadline small')?.textContent)).toBe(
+		expect(squash(container.querySelector('#open .deadline small')?.textContent)).toBe(
 			'2 open lots, deadlines differ'
 		);
 	});

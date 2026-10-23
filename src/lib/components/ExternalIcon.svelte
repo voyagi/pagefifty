@@ -1,9 +1,13 @@
-<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-	<path d="M6 3h7v7M13 3 5 11M11 13H3V5" />
-</svg>
+<script lang="ts">
+	import Icon from './Icon.svelte';
+</script>
+
+<!-- The out-of-site mark sized to the running text of the link it ends, rather than the icon's
+	 fixed 16px, so it follows a link set at any size. -->
+<span class="external"><Icon name="out" /></span>
 
 <style>
-	svg {
+	.external :global(.icon) {
 		width: 0.9em;
 		height: 0.9em;
 		margin-left: 0.25rem;

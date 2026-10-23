@@ -1,4 +1,4 @@
-// tenders.devbrowser.js - the tenders list on the built Worker: order, groups, tags, the capture
+// tenders.devbrowser.js - the tenders list on the built Worker: order, groups, reading statuses, the capture
 // line, the page without scripts, the layout at every width from 320 to 1440 px (and with a 20px
 // default font), and each deadline served in Central European Time, then shown in the browser's own
 // zone after hydration without a hydration warning.
@@ -12,7 +12,7 @@ const config = JSON.parse(await readFile('pagefifty-e2e-run.json'));
 const PAGE = 'pagefifty-e2e-tenders';
 const URL = 'http://127.0.0.1:8788/tenders';
 const ZONE = 'America/New_York';
-// The closed leaf's note while no row of the live list has closed (TenderListPage.svelte).
+// The closed section's note while no row of the live list has closed (TenderSplit.svelte).
 const NONE_CLOSED = 'No tender in this list has closed.';
 const page = await browser.getPage(PAGE);
 const checks = [];
@@ -34,106 +34,75 @@ const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 // shared-sweep:start. From here to shared-sweep:end, tenders.devbrowser.js and
 // example.devbrowser.js carry the same code word for word, because a driver cannot import;
 // scripts/e2e.mjs refuses to run when the two copies differ.
-const WIDTHS = [320, 390, 721, 768, 1024, 1100, 1101, 1200, 1243, 1340, 1341, 1440];
-const CARDS_UP_TO = 1340;
+//
+// The list is one column of rows at every width. Up to 45em (720px at 16px) a list page shows the
+// list alone; from 721px the tender the list opens sits in a pane beside it, and the list column
+// narrows to min(480px, 42%). Under 40em (640px) the filters fold behind one button.
+// Retired with the redesign (PR #79), because the page no longer has what they measured: the switch
+// from cards to a five-column table at 1340px with its reading cell floor (no table at any width)
+// and the tab-over-header measure (no tab rail). The split switch below takes the first one's place.
+const WIDTHS = [320, 390, 640, 641, 720, 721, 768, 1024, 1100, 1200, 1340, 1440];
+const SPLIT_FROM = 721;
 
-// Page overflow alone reads 0 from 1089 to 1243 px while the table still runs past its leaf and
-// under the tab rail, so each table's right edge is measured against its leaf's content box too.
-// The card layout clips the header row to 1 px and hides the caption on purpose, so neither counts.
-// Each line of text is measured as well as each box, at its own edge: text that cannot wrap runs past
-// its cell while the cell's own box stays inside (75px past a card read as fitting on 2026-10-01),
-// and a value clipped inside its cell is cut off, so clipping by any other ancestor does not hide it.
-// Only text inside those two hidden structures is left out.
+// Page overflow alone can read 0 while a row runs past the list column, so every row's right edge
+// is measured against the column's content box too. Each line of text is measured as well as each
+// box, at its own edge: text that cannot wrap runs past its block while the block's own box stays
+// inside (75px past a card read as fitting on 2026-10-01), so clipping does not hide it. Left out:
+// text that is visually hidden, and a line cut on purpose with an ellipsis (a row's buyer, whose
+// whole name is on its tender).
 function readGeometry() {
 	return page.evaluate(() => {
 		const px = (value) => parseFloat(value) || 0;
 		const box = (element) => element.getBoundingClientRect();
+		const drawn = (rect) => rect.width > 0 || rect.height > 0;
 		const range = document.createRange();
-		const hiddenOnPurpose = (element) => {
-			if (element.closest('.visually-hidden')) return true;
-			const head = element.closest('thead');
-			return Boolean(head) && getComputedStyle(head).position === 'absolute';
-		};
-		const textEdges = (table) => {
-			const edges = [];
-			const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
-			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-				const host = node.parentElement;
-				if (!host || !node.data.trim() || hiddenOnPurpose(host)) continue;
-				range.selectNodeContents(node);
-				const rect = range.getBoundingClientRect();
-				if (rect.width <= 0 && rect.height <= 0) continue;
-				edges.push({ right: rect.right, host });
-			}
-			return edges;
+		const hiddenOnPurpose = (element) => Boolean(element.closest('.visually-hidden'));
+		const ellipsis = (element) => {
+			const style = getComputedStyle(element);
+			return style.textOverflow === 'ellipsis' && style.overflowX === 'hidden';
 		};
 		const name = (element) => {
 			const classes = Array.from(element.classList).filter((each) => !each.startsWith('svelte-'));
-			const row = element.closest('tr[data-notice]');
+			const row = element.closest('li[data-notice]');
 			const tag = element.tagName.toLowerCase() + classes.map((each) => `.${each}`).join('');
 			return row ? `${tag} ${row.getAttribute('data-notice')}` : tag;
 		};
-		const rendered = (table) => {
-			const head = table.querySelector('thead');
-			const heads =
-				head && getComputedStyle(head).position !== 'absolute'
-					? Array.from(head.querySelectorAll('th, th *'))
-					: [];
-			return [table, ...table.querySelectorAll('tbody *'), ...heads].filter((element) => {
-				const rect = box(element);
-				return rect.width > 0 || rect.height > 0;
-			});
-		};
-		const cells = [];
-		const tables = [];
+		const column = document.querySelector('.list-col');
+		const columnStyle = column ? getComputedStyle(column) : null;
+		const contentRight = column
+			? box(column).right - px(columnStyle.borderRightWidth) - px(columnStyle.paddingRight)
+			: -Infinity;
+		const lists = [];
 		for (const id of ['open', 'closed']) {
-			const leaf = document.getElementById(id);
-			const table = leaf && leaf.querySelector('table');
-			if (!table) continue;
-			const leafStyle = getComputedStyle(leaf);
-			const contentRight =
-				box(leaf).right - px(leafStyle.borderRightWidth) - px(leafStyle.paddingRight);
+			const list = document.querySelector(`#${id} ul.rows`);
+			if (!list) continue;
 			let right = -Infinity;
 			let worst = '';
-			for (const element of rendered(table)) {
+			for (const element of [list, ...list.querySelectorAll('*')]) {
+				if (hiddenOnPurpose(element)) continue;
 				const rect = box(element);
-				if (rect.right > right) {
+				if (drawn(rect) && rect.right > right) {
 					right = rect.right;
 					worst = name(element);
 				}
-				if (element.tagName === 'TH' || element.tagName === 'TD') cells.push({ element, rect });
 			}
-			for (const text of textEdges(table)) {
-				if (text.right > right) {
-					right = text.right;
-					worst = `text in ${name(text.host)}`;
+			const walker = document.createTreeWalker(list, NodeFilter.SHOW_TEXT);
+			for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+				const host = node.parentElement;
+				if (!host || !node.data.trim() || hiddenOnPurpose(host) || ellipsis(host)) continue;
+				range.selectNodeContents(node);
+				const rect = range.getBoundingClientRect();
+				if (drawn(rect) && rect.right > right) {
+					right = rect.right;
+					worst = `text in ${name(host)}`;
 				}
 			}
-			const reading = table.querySelector('.vcell');
-			tables.push({
-				id,
-				display: getComputedStyle(table).display,
-				readingMin: reading ? getComputedStyle(reading).minWidth : 'none',
-				contentRight,
-				right,
-				worst
-			});
+			lists.push({ id, right, worst });
 		}
-		const hits = [];
-		for (const tab of document.querySelectorAll('a.tab')) {
-			const tabRect = box(tab);
-			for (const cell of cells) {
-				const across =
-					Math.min(tabRect.right, cell.rect.right) - Math.max(tabRect.left, cell.rect.left);
-				const down =
-					Math.min(tabRect.bottom, cell.rect.bottom) - Math.max(tabRect.top, cell.rect.top);
-				if (across > 1 && down > 1) {
-					hits.push(`${tab.textContent.replace(/\s+/g, ' ').trim()} over ${name(cell.element)}`);
-				}
-			}
-		}
+		const pane = document.querySelector('.split .pane');
+		const paneShown = Boolean(pane) && getComputedStyle(pane).display !== 'none';
 		let longest = { text: '', width: 0 };
-		for (const time of document.querySelectorAll('table time')) {
+		for (const time of document.querySelectorAll('ul.rows time')) {
 			const width = box(time).width;
 			if (width > longest.width) longest = { text: time.textContent.trim(), width };
 		}
@@ -141,38 +110,33 @@ function readGeometry() {
 			theme: document.documentElement.getAttribute('data-theme'),
 			overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
 			rootPx: px(getComputedStyle(document.documentElement).fontSize),
-			tables,
-			hitCount: hits.length,
-			hits: hits.slice(0, 3),
+			contentRight,
+			lists,
+			paneShown,
+			beside: paneShown && Boolean(column) && box(pane).left >= box(column).right - 0.5,
 			longest
 		};
 	});
 }
 
-// A table with nothing rendered (hidden by display: none; a closed details still lays its table
-// out when measured) leaves its right edge at -Infinity, which is below any leaf edge, so a table
-// only fits when something was measured. Planted on the closed group, 14 checks went red.
+// A list with nothing drawn (hidden by display: none; a closed details still lays its rows out when
+// measured) leaves its right edge at -Infinity, which is below any column edge, so a list only fits
+// when something was measured.
 function fits(read, theme) {
 	return (
 		read.theme === theme &&
-		read.tables.length > 0 &&
+		read.lists.length > 0 &&
 		read.overflow <= 0 &&
-		read.tables.every(
-			(table) => Number.isFinite(table.right) && table.right <= table.contentRight + 0.5
-		) &&
-		read.hitCount === 0
+		read.lists.every((list) => Number.isFinite(list.right) && list.right <= read.contentRight + 0.5)
 	);
 }
 
 function describe(read) {
-	const tables = read.tables
-		.map(
-			(table) =>
-				`${table.id} right ${table.right.toFixed(1)} of ${table.contentRight.toFixed(1)} (${table.worst})`
-		)
+	const lists = read.lists
+		.map((list) => `${list.id} right ${list.right.toFixed(1)} (${list.worst})`)
 		.join(', ');
-	const hits = read.hitCount ? `${read.hitCount} tab hits: ${read.hits.join('; ')}` : 'no tab hits';
-	return `${read.theme}: overflow ${read.overflow}, ${tables || 'no table measured'}, ${hits}`;
+	const pane = read.paneShown ? (read.beside ? 'pane beside' : 'pane not beside') : 'no pane';
+	return `${read.theme}: overflow ${read.overflow}, column edge ${read.contentRight.toFixed(1)}, ${lists || 'no list measured'}, ${pane}`;
 }
 
 async function readAtWidths(widths) {
@@ -195,68 +159,60 @@ async function openClosedGroup() {
 	});
 }
 
-function checkSweep(path, light, dark, seconds) {
+// opensOne says the bare list opens a tender by itself, which it does while any row is open.
+function checkSweep(path, light, dark, seconds, opensOne) {
 	WIDTHS.forEach((width, i) => {
 		const timing = i === 0 ? `, sweep ${seconds.toFixed(1)} s` : '';
 		check(
-			`at ${width}px ${path} does not scroll sideways, keeps its tables inside their leaves and no tab over a header, in Light and Dark`,
+			`at ${width}px ${path} does not scroll sideways and keeps every row inside the list column, in Light and Dark`,
 			fits(light[i], 'light') && fits(dark[i], 'dark'),
 			`${describe(light[i])} | ${describe(dark[i])}${timing}`
 		);
 	});
 	// Asserted on both themes' reads, so a rule in one theme alone cannot move the switch unseen.
-	const switched = (read, width) => {
-		const floor = 15 * read.rootPx;
-		return (
-			read.tables.length > 0 &&
-			read.tables.every((table) =>
-				width <= CARDS_UP_TO
-					? table.display === 'block' && parseFloat(table.readingMin) === 0
-					: table.display === 'table' && Math.abs(parseFloat(table.readingMin) - floor) < 0.01
-			)
-		);
-	};
-	const seen = (read) =>
-		read.tables.map((table) => `${table.display} ${table.readingMin}`).join(' and ') || 'no table';
+	const placed = (read, width) =>
+		opensOne && width >= SPLIT_FROM ? read.paneShown && read.beside : !read.paneShown;
+	const seen = (read) => (read.paneShown ? (read.beside ? 'beside' : 'not beside') : 'alone');
 	const layouts = WIDTHS.map((width, i) => ({
-		right: switched(light[i], width) && switched(dark[i], width),
+		right: placed(light[i], width) && placed(dark[i], width),
 		text: `${width} light ${seen(light[i])}, dark ${seen(dark[i])}`
 	}));
 	const wrong = layouts.filter((layout) => !layout.right).map((layout) => layout.text);
 	check(
-		`${path} shows cards up to ${CARDS_UP_TO}px and the five-column table from ${CARDS_UP_TO + 1}px, the reading cell floor switching with it, in Light and Dark`,
+		opensOne
+			? `${path} shows the list alone up to ${SPLIT_FROM - 1}px and the tender it opens beside it from ${SPLIT_FROM}px, in Light and Dark`
+			: `${path}, with no row open, shows the list alone at every width, in Light and Dark`,
 		wrong.length === 0,
 		`wrong at ${wrong.join(', ') || 'none'}; read ${layouts.map((layout) => layout.text).join(', ')}`
 	);
 }
 // shared-sweep:end
 
-// Reads both tables in document order: the open one first, the closed one inside the details.
+// Reads both lists in document order: the open one first, the closed one inside the details. A row
+// shows its reading status as one line; the reason behind it is on the tender's own page.
 function readTables() {
 	return page.evaluate(() => {
-		const rowsOf = (table) =>
-			table
-				? Array.from(table.querySelectorAll('tbody tr[data-notice]')).map((row) => {
+		const rowsOf = (list) =>
+			list
+				? Array.from(list.querySelectorAll(':scope > li[data-notice]')).map((row) => {
 						const time = row.querySelector('time');
-						const tag = row.querySelector('.vtag');
-						const reason = row.querySelector('.vcell small');
+						const status = row.querySelector('.status');
 						return {
 							notice: row.getAttribute('data-notice'),
 							datetime: time ? time.getAttribute('datetime') : null,
 							label: time ? time.textContent.trim() : '',
-							tag: tag ? tag.textContent.trim() : '',
-							reason: reason ? reason.textContent.trim() : ''
+							status: status ? status.textContent.replace(/\s+/g, ' ').trim() : ''
 						};
 					})
 				: [];
-		const open = document.querySelector('#open table');
-		const closed = document.querySelector('#closed details table');
+		const open = document.querySelector('#open ul.rows');
+		const closed = document.querySelector('#closed details ul.rows');
 		return {
 			now: Date.now(),
 			zone: new Intl.DateTimeFormat().resolvedOptions().timeZone,
 			open: rowsOf(open),
 			closed: rowsOf(closed),
-			openCaption: open ? open.querySelector('caption').textContent.trim() : '',
+			openLabel: open ? open.getAttribute('aria-label') : '',
 			body: document.body.textContent.replace(/\s+/g, ' ')
 		};
 	});
@@ -305,13 +261,13 @@ try {
 	const facts = await readTables();
 
 	// Once every captured deadline has passed (after 9 Oct 2027), the page shows a note in place of
-	// the open table, so the order and caption checks read the closed table and that note instead.
+	// the open list, so the order and label checks read the closed list and that note instead.
 	const noneOpen = facts.open.length === 0;
 	const ordered = noneOpen ? facts.closed : facts.open;
 	const times = ordered.map((row) => Date.parse(row.datetime));
 	const ascending = times.every((at, i) => i === 0 || at >= times[i - 1]);
 	check(
-		`the ${noneOpen ? 'closed' : 'open'} table runs by deadline, soonest first, in document order`,
+		`the ${noneOpen ? 'closed' : 'open'} list runs by deadline, soonest first, in document order`,
 		ordered.length > 0 && ascending,
 		`${ordered.length} ${noneOpen ? 'closed' : 'open'} rows read, non-decreasing ${ascending}, first ${ordered[0] && ordered[0].datetime}, last ${ordered.length && ordered[ordered.length - 1].datetime}`
 	);
@@ -336,21 +292,23 @@ try {
 
 	check(
 		noneOpen
-			? 'with no tender open, the page says so in place of the open table'
-			: 'the open table is captioned as the soonest-first list of open tenders',
+			? 'with no tender open, the page says so in place of the open list'
+			: 'the open list is labelled as the soonest-first list of open tenders',
 		noneOpen
-			? facts.openCaption === '' &&
+			? facts.openLabel === '' &&
 					facts.body.includes('No tender in this list is still open. The closed ones are below.')
-			: facts.openCaption === 'Open tenders, soonest deadline first',
-		`caption "${facts.openCaption}", ${facts.open.length} open rows`
+			: facts.openLabel === 'Open tenders, soonest deadline first',
+		`label "${facts.openLabel}", ${facts.open.length} open rows`
 	);
 
+	// The redesign shows each row's reading status as one line and keeps the reason behind it for the
+	// tender's own page, so a row is held to its status line alone.
 	const all = facts.open.concat(facts.closed);
-	const untagged = all.filter((row) => !row.tag || !row.reason);
+	const untagged = all.filter((row) => !row.status);
 	check(
-		'every row of the newest capture carries a reading-status tag and its reason',
+		'every row of the newest capture carries its reading status',
 		all.length === config.latest.rows && untagged.length === 0,
-		`${all.length} rows of ${config.latest.rows} in the built index, ${untagged.length} without a tag or reason`
+		`${all.length} rows of ${config.latest.rows} in the built index, ${untagged.length} without a status`
 	);
 
 	// A notice whose criteria sit partly in the documents is a fact of the example capture's own
@@ -360,9 +318,10 @@ try {
 	const exampleList = await page.evaluate(async () =>
 		(await fetch('http://127.0.0.1:8788/example')).text()
 	);
-	const rowStart = exampleList.indexOf(`<tr data-notice="${documents.notice}"`);
+	const rowMatch = new RegExp(`<li[^>]*\\sdata-notice="${documents.notice}"`).exec(exampleList);
+	const rowStart = rowMatch ? rowMatch.index : -1;
 	const exampleRow =
-		rowStart < 0 ? '' : exampleList.slice(rowStart, exampleList.indexOf('</tr>', rowStart));
+		rowStart < 0 ? '' : exampleList.slice(rowStart, exampleList.indexOf('</li>', rowStart));
 	check(
 		'the documents probe reads "Criteria in the documents" on the served example list',
 		exampleRow.includes('Criteria in the documents'),
@@ -381,18 +340,18 @@ try {
 
 	// The page as a browser with scripts off receives it: fetched inside the page, never run.
 	const served = await page.evaluate(async (url) => (await fetch(url)).text(), URL);
-	const servedRows = (served.match(/<tr data-notice="/g) || []).length;
+	const servedRows = (served.match(/<li[^>]*\sdata-notice="/g) || []).length;
 	const servedLabels = [
 		...served.matchAll(/<time class="[^"]*" datetime="([^"]+)">([^<]+)<\/time>/g)
 	];
 	const notCentral = servedLabels.filter((match) => !/ (CEST|CET)$/.test(match[2]));
 	// The closed group's fold is served only once a captured deadline has passed; before that the
-	// closed leaf holds its none-closed note in its place.
+	// closed section holds its none-closed note in its place.
 	const noneClosed = served.includes(NONE_CLOSED);
 	check(
 		anyPassed
 			? 'without scripts the served page holds every row and the closed group'
-			: 'without scripts the served page holds every row and the closed leaf says none has closed',
+			: 'without scripts the served page holds every row and the closed section says none has closed',
 		servedRows === config.latest.rows &&
 			(anyPassed ? served.includes('<details') && served.includes('<summary') : noneClosed),
 		`${servedRows} rows in the served HTML of ${config.latest.rows} in the built index, details ${served.includes('<details')}, none-closed note ${noneClosed}`
@@ -410,26 +369,28 @@ try {
 	await page.goto('http://127.0.0.1:8788/tenders?theme=dark');
 	await openClosedGroup();
 	const dark = await readAtWidths(WIDTHS);
-	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000);
+	checkSweep('/tenders', light, dark, (Date.now() - sweepStart) / 1000, facts.open.length > 0);
 
-	// Positive control for the text measure: text that cannot wrap runs past its card while the
-	// cell's own box stays inside the leaf and clips it, so only a text measure that ignores the
-	// clipping can see it. The cell comes from the open table while it lists a row, else from the
-	// closed one, so the control still runs once every captured deadline has passed.
+	// Positive control for the text measure: text that cannot wrap runs past its row while its own
+	// block stays inside the list column and clips it, so only a text measure that ignores the
+	// clipping can see it. The row comes from the open list while it holds one, else from the closed
+	// one, so the control still runs once every captured deadline has passed.
 	const beforePlant = page.viewportSize() ?? { width: 1280, height: 720 };
 	await page.goto('http://127.0.0.1:8788/tenders?theme=light');
 	await openClosedGroup();
 	await page.setViewportSize({ width: 1000, height: 900 });
 	const planted = await page.evaluate(() => {
 		for (const id of ['open', 'closed']) {
-			const cell = document.querySelector(`#${id} tbody tr[data-notice] td[data-label="Country"]`);
-			if (!cell) continue;
-			cell.style.whiteSpace = 'nowrap';
-			cell.style.overflow = 'hidden';
-			cell.textContent = 'text-plant '.repeat(40);
+			const body = document.querySelector(`#${id} ul.rows > li[data-notice] .body`);
+			if (!body) continue;
+			const plant = document.createElement('p');
+			plant.style.whiteSpace = 'nowrap';
+			plant.style.overflow = 'hidden';
+			plant.textContent = 'text-plant '.repeat(40);
+			body.append(plant);
 			const inside =
-				cell.getBoundingClientRect().right <=
-				document.getElementById(id).getBoundingClientRect().right;
+				plant.getBoundingClientRect().right <=
+				document.querySelector('.list-col').getBoundingClientRect().right;
 			return { id, inside };
 		}
 		return { id: null, inside: false };
@@ -437,14 +398,14 @@ try {
 	await page.waitForTimeout(150);
 	const textPlant = await readGeometry();
 	await page.setViewportSize(beforePlant);
-	const plantedTable = textPlant.tables.find((table) => table.id === planted.id);
+	const plantedList = textPlant.lists.find((list) => list.id === planted.id);
 	check(
-		'the table measure counts text planted past its card while the cell itself stays inside and clips it',
+		'the list measure counts text planted past its row while its own block stays inside and clips it',
 		planted.inside &&
-			Boolean(plantedTable) &&
-			plantedTable.right > plantedTable.contentRight + 0.5 &&
-			plantedTable.worst.startsWith('text in td'),
-		`planted in the ${planted.id ?? 'no'} table, cell inside its leaf ${planted.inside}; ${describe(textPlant)}`
+			Boolean(plantedList) &&
+			plantedList.right > textPlant.contentRight + 0.5 &&
+			plantedList.worst.startsWith('text in p'),
+		`planted in the ${planted.id ?? 'no'} list, block inside the column ${planted.inside}; ${describe(textPlant)}`
 	);
 
 	// Probe once whether this sandbox can move the page to another zone. When it can, the hydrated
@@ -484,7 +445,7 @@ try {
 	check(
 		`after hydration each deadline shows in the browser's zone with the zone named (${form})`,
 		hydrated.zone === zone && sample.length > 0 && wrong.length === 0,
-		`browser zone ${hydrated.zone}, ${Math.min(sample.length, 25)} labels read from the ${hydrated.open.length ? 'open' : 'closed'} table, first "${sample[0] && sample[0].label}", ${wrong.length} wrong${wrong.length ? `: ${wrong[0].label}` : ''}`
+		`browser zone ${hydrated.zone}, ${Math.min(sample.length, 25)} labels read from the ${hydrated.open.length ? 'open' : 'closed'} list, first "${sample[0] && sample[0].label}", ${wrong.length} wrong${wrong.length ? `: ${wrong[0].label}` : ''}`
 	);
 
 	check(
@@ -503,12 +464,12 @@ try {
 		`${hydrationMessages.length} messages after the planted one`
 	);
 
-	// The widest deadline label sets the switch width: a zone with no short name is written as an
-	// offset ('GMT+13:45', five characters past 'CEST'), and the table must still fit its leaf at the
-	// first width that shows it, with a classic scrollbar too. Measured at e7ca483: at 1341px the
-	// closed leaf offers 1035px and its table needs 1007.5px, so a 17px scrollbar leaves 10.5px.
+	// The widest deadline label: a zone with no short name is written as an offset ('GMT+13:45', five
+	// characters past 'CEST'), and every row must still fit the list column where it is narrowest: at
+	// the 320px reflow width, and at the first split width, where the column is 42% of the page, with a
+	// classic scrollbar too.
 	const widest =
-		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps its tables inside their leaves at 320, 390 and 1341px, with and without a 17px classic scrollbar';
+		'with every deadline in Pacific/Chatham (GMT+13:45, the widest zone label) /tenders keeps every row inside the list column at 320, 390 and 721px, with and without a 17px classic scrollbar';
 	if (!cdp || zoneRefused) {
 		check(widest, false, `no zone override in this sandbox, so nothing was measured: ${form}`);
 	} else {
@@ -519,15 +480,14 @@ try {
 			await openClosedGroup();
 			await page.waitForFunction(
 				() =>
-					Array.from(document.querySelectorAll('table time')).some((time) =>
+					Array.from(document.querySelectorAll('ul.rows time')).some((time) =>
 						/GMT\+1[23]:45$/.test(time.textContent.trim())
 					),
 				null,
 				{ timeout: 10000 }
 			);
-			// 320px is the reflow width, where the whole label (252px) is wider than a card (242px).
-			const [narrow, phone, first] = await readAtWidths([320, 390, 1341]);
-			const classic = await readWithScrollbar(1341);
+			const [narrow, phone, first] = await readAtWidths([320, 390, SPLIT_FROM]);
+			const classic = await readWithScrollbar(SPLIT_FROM);
 			check(
 				widest,
 				fits(narrow, 'light') &&
@@ -535,19 +495,20 @@ try {
 					fits(first, 'light') &&
 					fits(classic, 'light') &&
 					/GMT\+1[23]:45$/.test(first.longest.text),
-				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 320 ${describe(narrow)} | 390 ${describe(phone)} | 1341 ${describe(first)} | 1341 with a 17px scrollbar ${describe(classic)}`
+				`longest label "${first.longest.text}" ${first.longest.width.toFixed(1)}px | 320 ${describe(narrow)} | 390 ${describe(phone)} | ${SPLIT_FROM} ${describe(first)} | ${SPLIT_FROM} with a 17px scrollbar ${describe(classic)}`
 			);
 		} catch (error) {
 			check(widest, false, `the Chatham run stopped: ${String(error).slice(0, 160)}`);
 		}
 	}
 
-	// A reader who raises the browser's default font (20px is Chrome's Large) widens every column,
-	// so the switch is written in em and moves with the text: 83.75em is 1340px at 16px and 1675px
-	// at 20px, so 1676px is the first table width. Before it moved, at 20px and 1341px in the Chatham
-	// zone the closed table ran 279.8px past its leaf and the page scrolled 84px sideways. The check
-	// runs in whatever zone the run above left, Chatham when the sandbox allows it, and names it.
-	const larger = `with a 20px default font, deadlines in ${zone}, /tenders shows cards at 1341px and the five-column table at 1676px, each inside its leaf`;
+	// A reader who raises the browser's default font (20px is Chrome's Large) widens every row, so
+	// the split switch is written in em and moves with the text: 45em is 720px at 16px and 900px at
+	// 20px. The list stands alone at 900px and the tender sits beside it from 901px, where the list
+	// column is at its narrowest for that font; a row's notice number ran 1.7px past the column there
+	// until the buyer line could wrap (found on 2026-10-22). The check runs in whatever zone the run
+	// above left, Chatham when the sandbox allows it, and names it.
+	const larger = `with a 20px default font, deadlines in ${zone}, /tenders shows the list alone at 900px and the tender beside it at 901px, every row inside the list column`;
 	if (!cdp) {
 		check(larger, false, `no browser session in this sandbox, so nothing was measured: ${form}`);
 	} else {
@@ -555,16 +516,18 @@ try {
 			await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20, fixed: 13 } });
 			await page.goto('http://127.0.0.1:8788/tenders?theme=light');
 			await openClosedGroup();
-			const [cards, table] = await readAtWidths([1341, 1676]);
-			const shows = (read, display) =>
-				read.rootPx === 20 && read.tables.every((each) => each.display === display);
+			const [alone, beside] = await readAtWidths([900, 901]);
+			// A list with no row open opens no tender, so it stands alone at both widths.
+			const opens = facts.open.length > 0;
 			check(
 				larger,
-				shows(cards, 'block') &&
-					fits(cards, 'light') &&
-					shows(table, 'table') &&
-					fits(table, 'light'),
-				`root ${cards.rootPx}px | 1341 ${cards.tables.map((each) => each.display).join(' and ')}, ${describe(cards)} | 1676 ${table.tables.map((each) => each.display).join(' and ')}, ${describe(table)}`
+				alone.rootPx === 20 &&
+					!alone.paneShown &&
+					fits(alone, 'light') &&
+					beside.paneShown === opens &&
+					(!opens || beside.beside) &&
+					fits(beside, 'light'),
+				`root ${alone.rootPx}px | 900 ${describe(alone)} | 901 ${describe(beside)}`
 			);
 		} catch (error) {
 			check(larger, false, `the larger-font run stopped: ${String(error).slice(0, 160)}`);

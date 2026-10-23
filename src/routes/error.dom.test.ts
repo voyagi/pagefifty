@@ -40,12 +40,12 @@ describe('error page', () => {
 		expect(document.getElementById('main')?.tagName).toBe('MAIN');
 	});
 
-	it('labels its slate tab with the status code', () => {
+	it('shows the status code as a tag after its heading, inside the main frame', () => {
 		const { container } = render(ErrorPage);
-		expect(container.querySelector('main')?.classList.contains('board-slate')).toBe(true);
-		const tab = container.querySelector('a.tab');
-		expect(squash(tab?.textContent)).toBe('404');
-		expect(tab?.getAttribute('aria-current')).toBe('true');
+		expect(container.querySelector('main')?.classList.contains('page')).toBe(true);
+		const tag = container.querySelector('.status-tag');
+		expect(squash(tag?.textContent)).toBe('404');
+		expect(screen.getByRole('heading', { level: 1 }).nextElementSibling).toBe(tag);
 	});
 
 	it('echoes a path as text, never as markup', () => {
@@ -96,7 +96,7 @@ describe('error page', () => {
 			'The address, or the way it was sent, is not one this site can answer, so reloading will not help. Check the address for a typo, or go back to the open tenders.'
 		);
 		expect(container.querySelector('.path')?.textContent).toBe(path);
-		expect(squash(document.querySelector('a.tab')?.textContent)).toBe(String(status));
+		expect(squash(document.querySelector('.status-tag')?.textContent)).toBe(String(status));
 		expect(document.body.textContent).not.toContain('Reload in a minute');
 		expect(screen.getByRole('link', { name: 'Browse open tenders' }).getAttribute('href')).toBe(
 			'/tenders'
@@ -267,7 +267,7 @@ describe('error page', () => {
 		);
 		expect(document.title).toBe('This page could not be built - Pagefifty');
 		expect(document.body.textContent).not.toContain('schema');
-		expect(squash(document.querySelector('a.tab')?.textContent)).toBe('500');
+		expect(squash(document.querySelector('.status-tag')?.textContent)).toBe('500');
 		expect(screen.getByRole('link', { name: 'Browse open tenders' }).getAttribute('href')).toBe(
 			'/tenders'
 		);

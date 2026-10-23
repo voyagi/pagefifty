@@ -7,11 +7,12 @@
 <p class="label" {id}>{@render children()}</p>
 
 <style>
+	/* Sentence case at the body face's own spacing: a label is read, not shouted. */
 	.label {
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--ink-3);
+		font-weight: 600;
+		font-size: var(--step--1);
+		line-height: 1.3;
+		color: var(--ink-2);
 		margin-bottom: 0.4rem;
 	}
 </style>

@@ -1,154 +1,101 @@
 /* The one global stylesheet: fonts, tokens, both palettes and the base element rules. Every other
    rule lives in the scoped style of the component that owns it and reads these properties. */
 
-/* IBM Plex, SIL Open Font License 1.1, latin subset, self-hosted. Plex Sans is one variable font
-   (weight axis 100 to 700), so one file and one face serve 400 to 600 and the browser fetches it
-   once; the range stops at 600 so bold text keeps the design's 600. The other six faces are static
-   and differ only in file and weight, and CSS has no way to share the rest, so the copy gate skips
-   them. */
-/* jscpd:ignore-start */
+/* Albert Sans, SIL Open Font License 1.1 (static/fonts/albert-sans-OFL.txt), self-hosted. One
+   variable font (weight axis 400 to 800) cut into Google's latin and latin-ext subsets: a page in
+   English fetches the latin file only, and a buyer's name with a Polish or Czech letter pulls in
+   the second when it is drawn. */
 @font-face {
-	font-family: 'IBM Plex Sans';
+	font-family: 'Albert Sans';
 	font-style: normal;
-	font-weight: 400 600;
+	font-weight: 400 800;
 	font-display: swap;
-	src: url('/fonts/plex-sans.woff2') format('woff2');
+	src: url('/fonts/albert-sans-latin.woff2') format('woff2');
 	unicode-range:
 		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
 		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-	font-family: 'IBM Plex Sans Condensed';
+	font-family: 'Albert Sans';
 	font-style: normal;
-	font-weight: 500;
+	font-weight: 400 800;
 	font-display: swap;
-	src: url('/fonts/plex-sans-condensed-500.woff2') format('woff2');
+	src: url('/fonts/albert-sans-latin-ext.woff2') format('woff2');
 	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+		U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+		U+A720-A7FF;
 }
-@font-face {
-	font-family: 'IBM Plex Sans Condensed';
-	font-style: normal;
-	font-weight: 600;
-	font-display: swap;
-	src: url('/fonts/plex-sans-condensed-600.woff2') format('woff2');
-	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-	font-family: 'IBM Plex Sans Condensed';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url('/fonts/plex-sans-condensed-700.woff2') format('woff2');
-	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-	font-family: 'IBM Plex Mono';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/plex-mono-400.woff2') format('woff2');
-	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-	font-family: 'IBM Plex Mono';
-	font-style: normal;
-	font-weight: 500;
-	font-display: swap;
-	src: url('/fonts/plex-mono-500.woff2') format('woff2');
-	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-	font-family: 'IBM Plex Mono';
-	font-style: normal;
-	font-weight: 600;
-	font-display: swap;
-	src: url('/fonts/plex-mono-600.woff2') format('woff2');
-	unicode-range:
-		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* jscpd:ignore-end */
 
+/* The colour lives at size in the top band only; reading happens on white panels laid on a pale
+   neutral ground, so each area of a page reads as its own, and the brand green marks the primary
+   action and the focus ring. Nothing casts a shadow. */
 :root {
 	color-scheme: light;
-	--desk: #d9dcdf;
-	--desk-ink: #3b3f44;
-	--ink: #141414;
-	--ink-2: #464a50;
-	--ink-3: #5f646b;
-	--acetate: #f6f8fa;
-	--acetate-edge: rgb(20 20 20 / 0.16);
-	--acetate-rule: rgb(20 20 20 / 0.1);
-	--leaf-back: #c9cdd1;
-	--leaf-back-ink: #33373c;
-	--errata: #d42a24;
-	--errata-ink: #ffffff;
-	--focus: #1d3fd8;
-	--selection: rgb(242 183 5 / 0.45);
+	--band: #14513b;
+	--band-ink: #ffffff;
+	--band-ink-2: #cde2d8;
+	--band-hover: rgb(255 255 255 / 0.12);
+	--ground: #eef1ef;
+	--bg: #ffffff;
+	--bg-2: #f4f6f5;
+	--bg-3: #e8ecea;
+	--line: #d5dbd8;
+	--line-2: #b9c1bd;
+	/* The edge of a panel on the ground. */
+	--edge: #c9d0cc;
+	/* The edge of a box to type in or choose from is how a reader finds it, so it holds 3:1 against
+	   every ground a field sits on, where the rules above stay quieter. */
+	--line-field: #7d8681;
+	--ink: #111513;
+	--ink-2: #535c57;
+	--brand: #14513b;
+	--brand-hover: #0f4130;
+	--brand-ink: #ffffff;
+	--focus: #14513b;
+	--selection: color-mix(in srgb, #14513b 22%, transparent);
 
-	--yellow: #f2b705;
-	--grass: #3d9a3a;
-	--teal: #11808a;
-	--ultramarine: #2d3fb5;
-	--violet: #6e3fa3;
-	--slate: #3f5566;
-	--on-yellow: #141414;
-	--on-grass: #141414;
-	--on-teal: #ffffff;
-	--on-ultramarine: #ffffff;
-	--on-violet: #ffffff;
-	--on-slate: #ffffff;
-
-	--board: var(--yellow);
-	--lift: 0 1px 0 rgb(20 20 20 / 0.08), 0 6px 14px -6px rgb(20 20 20 / 0.28);
-
-	--font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-	--font-cond: 'IBM Plex Sans Condensed', 'IBM Plex Sans', 'Arial Narrow', sans-serif;
-	--font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+	--font: 'Albert Sans', ui-sans-serif, system-ui, sans-serif;
 
 	--step--1: 0.8125rem;
-	--step-0: 1rem;
-	--step-1: 1.1875rem;
-	--step-2: 1.4375rem;
+	--step-0: 0.9375rem;
+	--step-1: 1.0625rem;
+	--step-2: 1.375rem;
 	--step-3: 1.75rem;
-	--step-4: 2.125rem;
-	--step-5: 3rem;
-	--step-6: 6rem;
+	--step-4: 2.75rem;
 
-	--hinge: 90ms;
-	--gutter: clamp(1rem, 3vw, 2.5rem);
-	--rail: 3.25rem;
-	--board-pad: 1.75rem;
+	/* Tags take the small radius, everything else that has a box the larger one. */
+	--r-sm: 6px;
+	--r: 8px;
+
+	--gutter: clamp(1rem, 3vw, 2rem);
+	--band-h: 60px;
+	--quick: 140ms;
 }
 
-/* Dark is its own palette: a night desk, smoked acetate, boards and tabs kept at full strength. */
+/* Dark is its own palette: a deeper band, a near-black ground with its panels lifted a step above
+   it, and a lighter green so the primary action and the ring still read against it. */
 :root[data-theme='dark'] {
 	color-scheme: dark;
-	--desk: #0e0f11;
-	--desk-ink: #b9bdc2;
-	--ink: #ecedea;
-	--ink-2: #bfc3c7;
-	--ink-3: #9ca1a7;
-	--acetate: #16181b;
-	--acetate-edge: rgb(236 237 234 / 0.16);
-	--acetate-rule: rgb(236 237 234 / 0.1);
-	--leaf-back: #2a2d31;
-	--leaf-back-ink: #c9ccd0;
-	--errata: #ff5a4a;
-	--errata-ink: #141414;
-	--focus: #8fa6ff;
-	--selection: rgb(242 183 5 / 0.35);
-	--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+	--band: #124834;
+	--band-ink: #ffffff;
+	--band-ink-2: #b7d3c6;
+	--band-hover: rgb(255 255 255 / 0.1);
+	--ground: #080a09;
+	--bg: #121614;
+	--bg-2: #191e1c;
+	--bg-3: #222826;
+	--line: #2c3330;
+	--line-2: #444e49;
+	--edge: #333c38;
+	--line-field: #6e7873;
+	--ink: #e9edeb;
+	--ink-2: #a3aea8;
+	--brand: #4fae85;
+	--brand-hover: #63bf96;
+	--brand-ink: #06130d;
+	--focus: #7fd1ac;
+	--selection: color-mix(in srgb, #4fae85 30%, transparent);
 }
 
 /* With the head script blocked no theme is set, and Device, the default, still has to follow the
@@ -158,37 +105,33 @@
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme]) {
 		color-scheme: dark;
-		--desk: #0e0f11;
-		--desk-ink: #b9bdc2;
-		--ink: #ecedea;
-		--ink-2: #bfc3c7;
-		--ink-3: #9ca1a7;
-		--acetate: #16181b;
-		--acetate-edge: rgb(236 237 234 / 0.16);
-		--acetate-rule: rgb(236 237 234 / 0.1);
-		--leaf-back: #2a2d31;
-		--leaf-back-ink: #c9ccd0;
-		--errata: #ff5a4a;
-		--errata-ink: #141414;
-		--focus: #8fa6ff;
-		--selection: rgb(242 183 5 / 0.35);
-		--lift: 0 1px 0 rgb(0 0 0 / 0.4), 0 8px 18px -6px rgb(0 0 0 / 0.7);
+		--band: #124834;
+		--band-ink: #ffffff;
+		--band-ink-2: #b7d3c6;
+		--band-hover: rgb(255 255 255 / 0.1);
+		--ground: #080a09;
+		--bg: #121614;
+		--bg-2: #191e1c;
+		--bg-3: #222826;
+		--line: #2c3330;
+		--line-2: #444e49;
+		--edge: #333c38;
+		--line-field: #6e7873;
+		--ink: #e9edeb;
+		--ink-2: #a3aea8;
+		--brand: #4fae85;
+		--brand-hover: #63bf96;
+		--brand-ink: #06130d;
+		--focus: #7fd1ac;
+		--selection: color-mix(in srgb, #4fae85 30%, transparent);
 	}
 }
 /* jscpd:ignore-end */
 
-/* Custom properties cannot drive a media query, so each component repeats the phone breakpoint
-   literally; only the tokens that change on phones are set here. Every layout switch is in em
-   (45em is 720px and 68.75em is 1100px at the default 16px; the list's is 83.75em), because a
-   reader's larger default font widens everything inside it: with pixel switches, a 24px default
-   font pushed every page 16 to 85px sideways at 721 to 768px. */
-@media (max-width: 45em) {
-	:root {
-		--rail: 0rem;
-		--board-pad: 0.625rem;
-		--step-6: 3.5rem;
-	}
-}
+/* Custom properties cannot drive a media query, so each component repeats its breakpoint
+   literally. Every layout switch is in em (45em is 720px and 68.75em is 1100px at the default
+   16px), because a reader's larger default font widens everything inside it: with pixel switches,
+   a 24px default font pushed every page 16 to 85px sideways at 721 to 768px. */
 
 *,
 *::before,
@@ -198,17 +141,16 @@
 
 html {
 	-webkit-text-size-adjust: 100%;
-	scrollbar-color: var(--ink-3) var(--desk);
+	scrollbar-color: var(--line-2) var(--ground);
 }
 
 body {
 	margin: 0;
-	background: var(--desk);
+	background: var(--ground);
 	color: var(--ink);
-	font-family: var(--font-sans);
-	font-size: var(--step-0);
-	line-height: 1.5;
+	font: 400 var(--step-0) / 1.5 var(--font);
 	font-variant-numeric: tabular-nums;
+	caret-color: var(--brand);
 }
 
 .app {
@@ -223,7 +165,7 @@ body {
 a {
 	color: inherit;
 	text-decoration-thickness: 1px;
-	text-underline-offset: 0.22em;
+	text-underline-offset: 0.2em;
 }
 
 a:hover {
@@ -231,8 +173,13 @@ a:hover {
 }
 
 :focus-visible {
-	outline: 3px solid var(--focus);
+	outline: 2px solid var(--focus);
 	outline-offset: 2px;
+}
+
+/* Inside the band the ring takes the band's ink, or it would vanish green on green. */
+.band :focus-visible {
+	outline-color: var(--band-ink);
 }
 
 h1,
@@ -242,9 +189,12 @@ p {
 	margin: 0;
 }
 
+/* Kept by its old name on purpose: the tests select .mono as the mark of a figure read from the
+   evidence (a notice number, a count, an amount). There is no second face any more; a figure is
+   set in the same Albert Sans with aligned digits and a touch more weight. */
 .mono {
-	font-family: var(--font-mono);
-	font-size: 0.9375em;
+	font-variant-numeric: tabular-nums;
+	font-weight: 500;
 }
 
 /* The one definition: a component's own copy would merge with this one property by property. */

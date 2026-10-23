@@ -28,49 +28,43 @@
 >
 
 <style>
-	/* A long added name wraps inside the chip rather than stretching the row. */
+	/* A long added name wraps inside the chip rather than stretching the row. Pressed is told by a
+	   doubled ink edge, as a checked chip is; text stays ink on the page colour. */
 	.chip {
 		display: inline-flex;
 		align-items: center;
 		max-width: 100%;
-		min-height: 44px;
-		padding: 0.625rem 0.875rem;
-		border: 1px solid var(--ink-3);
-		border-radius: 3px;
-		font: 500 var(--step-0) / 1.25 var(--font-sans);
+		min-height: 36px;
+		padding: 0.4375rem 0.75rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r);
+		font: 500 0.875rem / 1.25 var(--font);
 		text-align: left;
 		overflow-wrap: anywhere;
 		color: var(--ink);
-		background: var(--acetate);
+		background: var(--bg);
 		cursor: pointer;
-		transition: transform var(--hinge) steps(2, end);
-	}
-
-	.chip[aria-pressed='true'] {
-		background: var(--ink);
-		color: var(--acetate);
-		border-color: var(--ink);
-	}
-
-	.chip.dashed {
-		border: 2px dashed var(--ink);
-	}
-
-	.chip[aria-pressed='true'].dashed {
-		border-color: var(--acetate);
-		outline: 1px solid var(--ink);
+		transition:
+			border-color var(--quick) ease-out,
+			box-shadow var(--quick) ease-out;
 	}
 
 	.chip:hover {
-		transform: translateY(-1px);
+		border-color: var(--ink-2);
 	}
 
-	.chip:active {
-		transform: translateY(1px);
+	.chip[aria-pressed='true'] {
+		border-color: var(--ink);
+		box-shadow: inset 0 0 0 1px var(--ink);
 	}
 
-	.chip:focus-visible {
-		outline: 3px solid var(--focus);
-		outline-offset: 2px;
+	/* Dashed means held but not settled (an expired certificate), pressed or not. */
+	.chip.dashed {
+		border-style: dashed;
+		border-color: var(--ink-2);
+	}
+
+	.chip[aria-pressed='true'].dashed {
+		border-color: var(--ink);
 	}
 </style>

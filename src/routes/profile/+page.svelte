@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Binder from '$lib/components/Binder.svelte';
 	import DemoNote from '$lib/components/DemoNote.svelte';
 	import DemoProfile from '$lib/components/DemoProfile.svelte';
+	import PageMain from '$lib/components/PageMain.svelte';
 	import ProfileForm from '$lib/components/ProfileForm.svelte';
 	import { getProfileStore } from '$lib/profile/store.svelte';
 
 	// Storage is read only here, after mount, so the server never renders or receives a profile.
-	// Until then the form's leaves show their loading lines, in either mode. The shared store reads
+	// Until then the form's panels show their loading lines, in either mode. The shared store reads
 	// storage when it is created and follows other tabs after that, so the page reads it as it is.
 	let shared = $state<ReturnType<typeof getProfileStore> | null>(null);
 
@@ -22,13 +22,13 @@
 	<title>Firm profile - Pagefifty</title>
 </svelte:head>
 
-<Binder board="ultramarine">
+<PageMain>
 	{#if shared && demo}
 		<DemoProfile onback={() => shared?.store.backToOwn()} />
 	{:else}
 		<ProfileForm store={shared?.store ?? null} keptInMemory={shared?.keptInMemory ?? false} />
 	{/if}
-</Binder>
-{#if demo}
-	<DemoNote />
-{/if}
+	{#if demo}
+		<DemoNote />
+	{/if}
+</PageMain>

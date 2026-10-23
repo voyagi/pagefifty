@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	// With headingId the margin head is the leaf's own heading (an h2 its section is labelled by);
+	// With headingId the margin head is the panel's own heading (an h2 its section is labelled by);
 	// without it the head is a label for the column, not part of the outline. A head that needs
 	// markup (a lang per buyer) comes as a snippet, and rows that need markup (Mono figures, a time)
 	// render inside the same list as the plain facts.
@@ -45,44 +45,51 @@
 </svelte:element>
 
 <style>
+	/* Above the text in one column, beside it once the panel grid has two. */
 	.margin-col {
-		grid-column: 1;
+		min-width: 0;
+		margin-bottom: 1.5rem;
 		font-size: var(--step--1);
 		color: var(--ink-2);
 		line-height: 1.45;
-		padding-right: 1.25rem;
-		border-right: 1px solid var(--acetate-rule);
 	}
 
 	.margin-head {
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
+		font-weight: 700;
+		font-size: 1rem;
+		line-height: 1.3;
 		color: var(--ink);
-		letter-spacing: 0.01em;
 	}
 
 	.facts {
 		margin: 0.75rem 0 0;
 		display: grid;
-		gap: 0.625rem;
+		gap: 0.75rem;
 	}
 
 	/* Rows passed as a snippet belong to the caller's scope, so these reach them as globals. */
 	.facts :global(dt) {
 		font-weight: 500;
-		color: var(--ink-3);
+		font-size: var(--step--1);
+		color: var(--ink-2);
 	}
 
 	.facts :global(dd) {
 		margin: 0;
+		font-weight: 600;
+		font-size: var(--step-0);
 		color: var(--ink);
 	}
 
-	@media (max-width: 68.75em) {
+	/* A figure keeps the weight of the fact it sits in, rather than dropping to the lighter weight
+	   a figure takes in running text. */
+	.facts :global(dd .mono) {
+		font-weight: inherit;
+	}
+
+	@media (min-width: 68.75em) {
 		.margin-col {
-			grid-column: 1 / -1;
-			margin-bottom: 1.25rem;
-			padding-right: 0;
-			border-right: 0;
+			margin-bottom: 0;
 		}
 	}
 </style>

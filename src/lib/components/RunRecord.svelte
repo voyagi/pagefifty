@@ -25,12 +25,14 @@
 </script>
 
 <script lang="ts">
+	// A heading level under the h2 of the panel or section it sits in, on the tender page and on the
+	// page about the AI alike.
 	let { run }: { run: ReadingRun | null } = $props();
 </script>
 
 {#if run !== null}
 	<section class="run-record" data-run-record aria-labelledby="run-record-title">
-		<h2 class="run-head" id="run-record-title">Model read of this capture</h2>
+		<h3 class="run-head" id="run-record-title">Model read of this capture</h3>
 		<dl>
 			{#each RUN_RECORD_FIELDS as field (field.term)}
 				<div>
@@ -52,15 +54,13 @@
 	.run-record {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
+		border-top: 1px solid var(--line);
 	}
 
 	.run-head {
 		margin-bottom: 0.75rem;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--ink-3);
+		font: 650 var(--step-0) / 1.3 var(--font);
+		color: var(--ink);
 	}
 
 	dl {
@@ -73,13 +73,18 @@
 	dt {
 		font-size: var(--step--1);
 		font-weight: 500;
-		color: var(--ink-3);
+		color: var(--ink-2);
 	}
 
 	dd {
 		margin: 0.125rem 0 0;
+		font-weight: 600;
 		color: var(--ink);
 		overflow-wrap: anywhere;
+	}
+
+	dd .mono {
+		font-weight: inherit;
 	}
 
 	.none {

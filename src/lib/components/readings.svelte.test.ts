@@ -143,8 +143,19 @@ describe('the model readings on the example tender pages', () => {
 		const { container } = render(TenderPage, {
 			props: { data: examplePage('610242-2026'), variant: 'example' }
 		});
-		const clauses = [...container.querySelectorAll('li.clause')];
-		expect(clauses).toHaveLength(6);
+		// The clause that decides comes first on the page, so the clauses are put back in published
+		// order by the position each one carries.
+		const clauses = [...container.querySelectorAll('li.clause')].sort(
+			(a, b) => Number(a.getAttribute('data-criterion')) - Number(b.getAttribute('data-criterion'))
+		);
+		expect(clauses.map((clause) => clause.getAttribute('data-criterion'))).toEqual([
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6'
+		]);
 		const [stored] = storedReadings('610242-2026')?.readings ?? [];
 		clauses.forEach((clause, index) => {
 			const own = stored.items.filter((item) => item.criterion === index + 1);
@@ -153,19 +164,42 @@ describe('the model readings on the example tender pages', () => {
 				own.map((item) => item.reading)
 			);
 		});
-		const row = [...clauses[2].querySelectorAll('.requirement')].find((each) =>
-			textOf(each.querySelector('[data-notice-text]')).startsWith(
-				'Die Mindestanforderung für den durchschnittlichen Jahresumsatz'
-			)
+		// The quote is marked in its place in the German clause and numbered as its reading is, so
+		// the buyer's words show once.
+		const mark = [...clauses[2].querySelectorAll('blockquote mark')].find((each) =>
+			textOf(each).startsWith('Die Mindestanforderung für den durchschnittlichen Jahresumsatz')
 		);
-		expect(row).toBeDefined();
-		expect(row?.querySelector('[data-notice-text]')?.getAttribute('lang')).toBe('de');
+		expect(mark).toBeDefined();
+		expect(mark?.closest('[data-notice-text]')?.getAttribute('lang')).toBe('de');
+		const row = [...clauses[2].querySelectorAll('.requirement')][
+			Number(mark?.getAttribute('data-n')) - 1
+		];
 		const reading = row?.querySelector('[data-ai-generated]');
 		expect(reading?.getAttribute('data-ai-generated')).toBe(MODEL);
 		expect(textOf(reading)).toMatch(
 			/^The bidder must have an average annual turnover of at least 100,000\.00 EUR net/
 		);
-		expect(textOf(row?.querySelector('.ai-label'))).toBe('AI reading');
+		expect(textOf(row?.closest('.readings')?.querySelector('.ai-label'))).toBe('AI reading');
+		expect(clauses[2].querySelectorAll('.requirement [data-notice-text]')).toHaveLength(0);
+	});
+
+	// Code found every quote shown here in its clause, so each reading's number sits on a mark in that
+	// clause: a word the PDF split at a line end, a list dash inside the quote and two readings of the
+	// same words included.
+	it('numbers every reading of the example lots on a mark in its own clause', () => {
+		for (const notice of ['610242-2026', '634398-2026']) {
+			const container = renderPage(examplePage(notice));
+			for (const clause of container.querySelectorAll('li.clause')) {
+				const rows = clause.querySelectorAll('.requirement').length;
+				const numbers = [...clause.querySelectorAll('blockquote mark[data-n]')].flatMap((mark) =>
+					(mark.getAttribute('data-n') ?? '').split(', ').map(Number)
+				);
+				expect(
+					[...new Set(numbers)].sort((a, b) => a - b),
+					`${notice} criterion ${clause.getAttribute('data-criterion')}`
+				).toEqual(Array.from({ length: rows }, (_, index) => index + 1));
+			}
+		}
 	});
 
 	it('every model reading carries the AI label and the marker, and no other text does', () => {
@@ -182,7 +216,7 @@ describe('the model readings on the example tender pages', () => {
 				expect(element.matches('.requirement .reading'), subject.name).toBe(true);
 				expect(element.closest('[data-notice-text]')).toBeNull();
 				expect(element.querySelector('[data-notice-text]')).toBeNull();
-				const labels = [...(element.closest('.requirement')?.querySelectorAll('.ai-label') ?? [])];
+				const labels = [...(element.closest('.readings')?.querySelectorAll('.ai-label') ?? [])];
 				expect(labels.map((label) => textOf(label))).toEqual(['AI reading']);
 			}
 			const page = container.textContent ?? '';
@@ -190,8 +224,15 @@ describe('the model readings on the example tender pages', () => {
 				const inside = marked.filter((element) => textOf(element) === text).length;
 				expect(occurrences(page, text), text).toBe(inside);
 			}
-			expect(occurrences(page, 'AI reading'), subject.name).toBe(marked.length);
-			expect(container.querySelectorAll('.ai-label')).toHaveLength(marked.length);
+			// One label heads each clause's group of readings.
+			const groups = [...container.querySelectorAll('.readings')];
+			expect(groups.length, subject.name).toBeGreaterThan(0);
+			for (const group of groups) {
+				expect(group.querySelectorAll('.ai-label')).toHaveLength(1);
+				expect(group.querySelectorAll('[data-ai-generated]').length).toBeGreaterThan(0);
+			}
+			expect(occurrences(page, 'AI reading'), subject.name).toBe(groups.length);
+			expect(container.querySelectorAll('.ai-label')).toHaveLength(groups.length);
 			expect(container.querySelectorAll('[data-notice-text][data-ai-generated]')).toHaveLength(0);
 		}
 	});
@@ -201,8 +242,8 @@ describe('the model readings on the example tender pages', () => {
 		const page = container.textContent ?? '';
 		expect(page).not.toContain(REJECTED_QUOTE);
 		expect(page).not.toContain(REJECTED_READING);
-		const third = container.querySelectorAll('#lot-1 li.clause')[2];
-		const lines = [...third.querySelectorAll('.not-read')];
+		const third = container.querySelector('#lot-1 li.clause[data-criterion="3"]');
+		const lines = [...(third?.querySelectorAll('.not-read') ?? [])];
 		expect(lines.map((line) => textOf(line))).toEqual([
 			'Not read: the quote the model gave was not found in this clause, so it is not used.'
 		]);
@@ -285,7 +326,9 @@ describe('the model readings on the example tender pages', () => {
 		const [first] = criterion.requirements ?? [];
 		criterion.requirements = [{ ...first, reading: markup }];
 		const container = renderPage(data);
-		const reading = container.querySelector('#lot-1 li.clause [data-ai-generated]');
+		const reading = container.querySelector(
+			'#lot-1 li.clause[data-criterion="1"] [data-ai-generated]'
+		);
 		expect(reading?.textContent).toBe(markup);
 		expect(reading?.children).toHaveLength(0);
 	});

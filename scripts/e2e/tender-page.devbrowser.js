@@ -41,12 +41,12 @@ async function followExampleRow(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -106,10 +106,14 @@ function readPage() {
 			.querySelectorAll('[data-notice-text], [data-web-text], [data-verdict], script')
 			.forEach((node) => node.remove());
 		const h1 = document.querySelector('h1');
+		// Beside the list the page holds two headings of the first rank, the list's and the tender's,
+		// so the tender's title is read by its own id.
+		const title = document.getElementById('tender-title');
 		return {
 			path: location.pathname,
 			h1: h1 ? h1.textContent.trim() : '',
-			h1Lang: h1 ? h1.getAttribute('lang') : null,
+			tenderTitle: title ? title.textContent.trim() : '',
+			tenderLang: title ? title.getAttribute('lang') : null,
 			quoteLangs: Array.from(document.querySelectorAll('blockquote')).map((quote) =>
 				quote.getAttribute('lang')
 			),
@@ -128,7 +132,9 @@ function readPage() {
 	});
 }
 
-// The parts of the tender page Task 2 adds, read from the rendered page.
+// The parts of the tender page Task 2 adds, read from the rendered page. The redesign dropped the
+// section tabs: the main navigation marks the section a tender belongs to, and the record ends with
+// its own foot line instead of a leaf foot.
 function readTender() {
 	return page.evaluate(() => {
 		const text = (node) => (node ? node.textContent.replace(/\s+/g, ' ').trim() : '');
@@ -136,14 +142,24 @@ function readTender() {
 		document.querySelectorAll('main a[href^="http"]').forEach((link) => {
 			links[text(link)] = link.getAttribute('href');
 		});
+		// Each lot labels its requirements: the clause that decides a lot with a verdict, the
+		// requirements in this lot on any other.
+		const labelled = Array.from(document.querySelectorAll('article.record > .panel[id^="lot-"]'))
+			.map((lot) => text(lot.querySelector('.requirements')))
+			.filter(
+				(shown) =>
+					shown.startsWith('The clause that decides') ||
+					shown.startsWith('Requirements in this lot')
+			).length;
 		return {
 			coverage: Array.from(document.querySelectorAll('.coverage')).map(text),
 			strip: text(document.querySelector('.unread-strip')),
 			links,
-			tab: text(document.querySelector('a.tab[aria-current="true"]')),
-			documentsLeaf: Boolean(document.querySelector('section#documents')),
+			section: text(document.querySelector('nav[aria-label="Main"] a[aria-current="true"]')),
+			labelled,
+			documentsPanel: Boolean(document.querySelector('section#documents')),
 			documentsText: text(document.querySelector('section#documents')),
-			foot: text(document.querySelector('.leaf-foot')),
+			foot: text(document.querySelector('.record-foot')),
 			lotNote: text(document.querySelector('#lot-1'))
 		};
 	});
@@ -175,20 +191,14 @@ try {
 	const facts = await readPage();
 	check(
 		'the documents probe answers 200 with its title in its own language',
-		status === 200 && facts.h1Lang === documents.language && facts.h1.length > 0,
-		`${documents.notice}: status ${status}, h1 lang ${facts.h1Lang} of ${documents.language}, title "${facts.title}"`
+		status === 200 && facts.tenderLang === documents.language && facts.tenderTitle.length > 0,
+		`${documents.notice}: status ${status}, tender title lang ${facts.tenderLang} of ${documents.language}, title "${facts.title}"`
 	);
 	check(
 		'every quote on the documents probe carries the language of its clause',
 		facts.quoteLangs.length > 0 &&
 			JSON.stringify(facts.quoteLangs) === JSON.stringify(documents.quoteLangs),
 		`${facts.quoteLangs.length} quotes of ${documents.quoteLangs.length}, langs ${[...new Set(facts.quoteLangs)].join(' ')}`
-	);
-	check(
-		'the page names the criteria as published and says it is not legal advice',
-		facts.body.includes('Selection criteria as published') &&
-			facts.body.includes('This is not legal advice.'),
-		`criteria label ${facts.body.includes('Selection criteria as published')}, legal line ${facts.body.includes('This is not legal advice.')}`
 	);
 	const verdict = VERDICT_WORDS.exec(facts.ownCopy);
 	check(
@@ -206,36 +216,48 @@ try {
 
 	const tender = await readTender();
 	check(
+		'every lot labels its requirements and the record foot says it is not legal advice',
+		tender.labelled === documents.lots && tender.foot.endsWith('Not legal advice.'),
+		`${tender.labelled} lots of ${documents.lots} labelled, foot "${tender.foot.slice(-40)}"`
+	);
+	check(
 		'the documents probe lists what was read and what was not on each lot, every unread source named',
 		tender.coverage.length === documents.lots &&
 			documents.lotFacts.every((lot, index) => coverageShows(tender.coverage[index] ?? '', lot)),
 		`${tender.coverage.length} coverage lists of ${documents.lots}, expected ${JSON.stringify(coverageExpected(documents.lotFacts[0]))}: ${tender.coverage.join(' | ').slice(0, 300)}`
 	);
+	// The unread strip says nothing on the page was compared with the firm, so it shows only on a
+	// notice where no lot carries a verdict (TenderPage.svelte), and the documents probe may be one the
+	// example read. When every probe carries a verdict, as on 2026-10-22, the strip's shown case rests
+	// on LotVerdict.svelte.test.ts.
+	const stripExpected = verdictsOf(documents).length === 0;
 	check(
-		'the documents probe shows the unread strip, the TED link and the documents link as published',
-		tender.strip.startsWith('Shown as published in the notice.') &&
+		'the documents probe shows the unread strip only when no lot carries a verdict, and the TED link and the documents link as published',
+		(stripExpected
+			? tender.strip.startsWith('Shown as published in the notice.')
+			: tender.strip === '') &&
 			tender.links['Open notice on TED'] ===
 				`https://ted.europa.eu/en/notice/-/detail/${documents.notice}` &&
 			tender.links['Open the procurement documents'] === documents.documents.href,
-		`strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}, documents ${documents.documents.href}`
+		`strip expected ${stripExpected}, strip "${tender.strip.slice(0, 40)}", links ${JSON.stringify(tender.links)}, documents ${documents.documents.href}`
 	);
 	check(
-		'the documents probe sits on the Example tab and ends with the face-down Documents leaf and the leaf foot naming the example snapshot day',
-		tender.tab.startsWith('Example') &&
-			tender.documentsLeaf &&
+		'the documents probe sits under Example run in the nav and holds the Documents not read yet panel and the record foot naming the example snapshot day',
+		tender.section === 'Example run' &&
+			tender.documentsPanel &&
 			tender.foot ===
 				`Criteria as published in TED notice ${documents.notice}. Source: TED, the EU's Tenders Electronic Daily, snapshot captured ${example.capturedOn}. Not legal advice.`,
-		`tab "${tender.tab}", documents leaf ${tender.documentsLeaf}, foot "${tender.foot}"`
+		`section "${tender.section}", documents panel ${tender.documentsPanel}, foot "${tender.foot}"`
 	);
 	// The page reached by its row is fetched again at its own address, as a browser with scripts off
 	// receives it.
 	const served = await page.evaluate(async () => (await fetch(location.href)).text());
 	check(
-		'without scripts the served page holds the criteria, the coverage list and the Documents leaf',
+		'without scripts the served page holds the criteria, the coverage list and the Documents not read yet panel',
 		(served.match(/<blockquote/g) || []).length === documents.quoteLangs.length &&
 			served.includes('What was read and what was not') &&
 			served.includes('id="documents"'),
-		`${(served.match(/<blockquote/g) || []).length} quotes of ${documents.quoteLangs.length}, coverage ${served.includes('What was read and what was not')}, documents leaf ${served.includes('id="documents"')}`
+		`${(served.match(/<blockquote/g) || []).length} quotes of ${documents.quoteLangs.length}, coverage ${served.includes('What was read and what was not')}, documents panel ${served.includes('id="documents"')}`
 	);
 	check(
 		'copy read for PLAW-09: the documents probe, no verdict word in it',
@@ -261,8 +283,9 @@ try {
 
 	const NO_CRITERIA_CHECKS = [
 		'the no-criteria probe says the procurement documents were not read and links them by name',
-		'the no-criteria probe shows no criteria, so its Documents leaf points at none "shown above"',
-		'copy read for PLAW-09: the no-criteria probe, no verdict word in it'
+		'the no-criteria probe shows no criteria, so its Documents not read yet panel points at none "shown above"',
+		'copy read for PLAW-09: the no-criteria probe, no verdict word in it',
+		'the no-criteria probe shows the unread strip exactly when none of its lots carries a verdict'
 	];
 	const noCriteria = example.probes.noCriteria;
 	if (noCriteria === null) {
@@ -280,8 +303,8 @@ try {
 					'Read: the notice, which publishes no selection criteria for this lot.'
 				) &&
 				documentsOnly.lotNote.includes('This lot publishes no selection criteria in the notice.') &&
-				documentsOnly.documentsLeaf,
-			`${noCriteria.notice}: ${documentsOnly.coverage[0].slice(0, 200)}, documents leaf ${documentsOnly.documentsLeaf}`
+				documentsOnly.documentsPanel,
+			`${noCriteria.notice}: ${documentsOnly.coverage[0].slice(0, 200)}, documents panel ${documentsOnly.documentsPanel}`
 		);
 		check(
 			NO_CRITERIA_CHECKS[1],
@@ -297,6 +320,91 @@ try {
 				JSON.stringify(documentsCopy.verdictWords) === JSON.stringify(verdictsOf(noCriteria)),
 			`${noCriteria.notice}: verdicts ${JSON.stringify(documentsCopy.verdictWords)}, ${documentsCopy.ownCopy}`
 		);
+		const unverdicted = verdictsOf(noCriteria).length === 0;
+		check(
+			NO_CRITERIA_CHECKS[3],
+			unverdicted
+				? documentsOnly.strip.startsWith('Shown as published in the notice.')
+				: documentsOnly.strip === '',
+			`${noCriteria.notice}: ${verdictsOf(noCriteria).length} verdicts, strip "${documentsOnly.strip.slice(0, 60)}"`
+		);
+	}
+
+	// A lot in the lot index links to its own fragment on the same tender, which the browser scrolls
+	// to by itself. The router runs no navigation for a link that differs only by its hash (SvelteKit
+	// 2.70.3 runtime/client/client.js: the click handler returns before navigate()), so the reset that
+	// shows a newly opened tender from its start never undoes it. It is read beside the list, where
+	// the pane is its own scroller, and on a phone, where the page scrolls. Each reading is repeated
+	// after a planted reset, which must move the lot away, so a reading blind to a reset never passes.
+	const LOT_INDEX_CHECK =
+		'a lot index link leaves its lot at the top of the tender beside the list and on a phone, where a planted reset moves it away';
+	const mostLots = example.probes.mostLots;
+	const lotTarget = 'lot-2';
+	const lotPlace = (plant) =>
+		page.evaluate(
+			({ id, plant }) => {
+				const pane = document.querySelector('.pane');
+				const beside = pane !== null && getComputedStyle(pane).overflowY === 'auto';
+				if (plant) {
+					if (beside) pane.scrollTop = 0;
+					else scrollTo(0, 0);
+				}
+				const lot = document.getElementById(id);
+				const top = beside ? pane.getBoundingClientRect().top : 0;
+				return {
+					hash: location.hash,
+					beside,
+					offset: lot ? Math.round(lot.getBoundingClientRect().top - top) : null
+				};
+			},
+			{ id: lotTarget, plant }
+		);
+	if (mostLots.lots < 2) {
+		checks.push({
+			name: `${LOT_INDEX_CHECK} did not run: the example notice with the most lots has ${mostLots.lots}`,
+			ok: true,
+			didNotRun: true,
+			detail: `${mostLots.notice} holds no second lot to link to`
+		});
+	} else {
+		const viewport = page.viewportSize() ?? { width: 1280, height: 720 };
+		const lotRuns = [];
+		for (const size of [
+			{ width: 1440, height: 900 },
+			{ width: 390, height: 844 }
+		]) {
+			await page.setViewportSize(size);
+			await followExampleRow(mostLots.notice);
+			await page.click(`nav.lot-index a[href="#${lotTarget}"]`);
+			await page.waitForFunction((hash) => location.hash === hash, `#${lotTarget}`, {
+				timeout: 10000
+			});
+			// A navigation's reset runs a frame and a timer after the click, so the reading waits past it.
+			await page.waitForTimeout(300);
+			await page.waitForLoadState('networkidle');
+			const clicked = await lotPlace(false);
+			const planted = await lotPlace(true);
+			lotRuns.push({ width: size.width, clicked, planted });
+		}
+		await page.setViewportSize(viewport);
+		const atTop = (place) => place.offset !== null && Math.abs(place.offset) <= 2;
+		check(
+			LOT_INDEX_CHECK,
+			lotRuns.length === 2 &&
+				lotRuns[0].clicked.beside &&
+				!lotRuns[1].clicked.beside &&
+				lotRuns.every(
+					({ clicked, planted }) =>
+						clicked.hash === `#${lotTarget}` && atTop(clicked) && !atTop(planted)
+				),
+			`${mostLots.notice}: ` +
+				lotRuns
+					.map(
+						({ width, clicked, planted }) =>
+							`${width}: hash ${clicked.hash}, ${clicked.beside ? 'pane' : 'page'} scrolls, lot top ${clicked.offset}px, after a planted reset ${planted.offset}px`
+					)
+					.join(' | ')
+		);
 	}
 
 	// The row a visitor would click, clicked; the landing page is then fetched again to read the
@@ -307,7 +415,7 @@ try {
 		timeout: 10000
 	});
 	const firstRow = await page.evaluate(() => {
-		const row = document.querySelector('tbody tr[data-notice]');
+		const row = document.querySelector('ul.rows > li[data-notice]');
 		return row
 			? {
 					notice: row.getAttribute('data-notice'),
@@ -316,7 +424,7 @@ try {
 			: { notice: null, group: null };
 	});
 	if (firstRow.group === 'closed') await page.click('#closed summary');
-	await page.click('tbody tr[data-notice] a');
+	await page.click('ul.rows > li[data-notice] a.t');
 	await page.waitForFunction((path) => location.pathname === path, `/tenders/${firstRow.notice}`, {
 		timeout: 10000
 	});

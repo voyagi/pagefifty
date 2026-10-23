@@ -10,10 +10,12 @@ import { EU_EEA_COUNTRIES } from '../profile/codes';
 import {
 	buildTenderList,
 	captureFacts,
+	commonReading,
 	countryName,
 	countsLine,
 	filterSummary,
 	formatValue,
+	initialsOf,
 	type ListRow
 } from './list';
 
@@ -335,6 +337,56 @@ describe('captureFacts and filterSummary', () => {
 		expect(filterSummary({ countries: ['NL', 'DE'], cpv: ['72'] })).toBe(
 			'Netherlands, Germany, IT services'
 		);
+	});
+});
+
+describe('commonReading', () => {
+	const [base] = buildTenderList(
+		{ rows: [rowDue('700001-2026', '2026-11-02T10:00:00+01:00')] },
+		NO_FILTER,
+		CAPTURE_NOW
+	).open;
+	const rowsWith = (...tags: ListRow['reading']['tag'][]): ListRow[] =>
+		tags.map((tag) => ({ ...base, reading: { ...base.reading, tag } }));
+
+	it('names the reading most rows share', () => {
+		expect(
+			commonReading(rowsWith('criteria-not-read', 'criteria-in-documents', 'criteria-in-documents'))
+		).toBe('criteria-in-documents');
+		expect(commonReading(rowsWith('no-criteria-in-notice'))).toBe('no-criteria-in-notice');
+	});
+
+	// With no reading ahead of the others, every row keeps its tag.
+	it('names none on a tie or an empty list', () => {
+		expect(commonReading(rowsWith('criteria-not-read', 'criteria-in-documents'))).toBeUndefined();
+		expect(
+			commonReading(
+				rowsWith(
+					'no-criteria-in-notice',
+					'criteria-not-read',
+					'criteria-not-read',
+					'no-criteria-in-notice'
+				)
+			)
+		).toBeUndefined();
+		expect(commonReading([])).toBeUndefined();
+	});
+});
+
+describe('initialsOf', () => {
+	it.each([
+		['Burgenlandkreis', 'B'],
+		['Stadt Halle (Saale)', 'SH'],
+		['European Commission, DG BUDG - Budget', 'EC'],
+		["Gemeente 's-Hertogenbosch", 'GS'],
+		['Ärztekammer Nordrhein', 'ÄN'],
+		['  stad  antwerpen  ', 'SA'],
+		['1-2-3', ''],
+		['Gemeente Oss', 'G'],
+		['gemeente oost', 'G'],
+		['Gemeente Noord', 'GN']
+	])('gives %j the letters %j', (name, letters) => {
+		expect(initialsOf(name)).toBe(letters);
 	});
 });
 

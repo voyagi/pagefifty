@@ -15,6 +15,7 @@ import {
 import {
 	NoticeReadingsSchema,
 	ReadingRunSchema,
+	ReadNoticesSchema,
 	type NoticeReadings,
 	type ReadingRun
 } from '../snapshot/readings';
@@ -38,6 +39,7 @@ const CAPTURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/capture\.json$/;
 const RECORD_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/records\/([^/]+)\.json$/;
 const READING_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/readings\/([^/]+)\.json$/;
 const READING_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/reading-run\.json$/;
+const READ_NOTICES_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/read-notices\.json$/;
 const SEARCH_RUN_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/search-run\.json$/;
 const SEARCH_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/searches\/([^/]+)\.json$/;
 const FIGURE_PATH = /\/generated\/(\d{4}-\d{2}-\d{2})\/figure\.json$/;
@@ -94,6 +96,14 @@ const READING_RUNS = byMatch(
 		eager: true
 	}),
 	READING_RUN_PATH
+);
+// So is the list of notices the model read, which a list asks of every row.
+const READ_NOTICES = byMatch(
+	import.meta.glob<unknown>('../snapshot/generated/*/read-notices.json', {
+		import: 'default',
+		eager: true
+	}),
+	READ_NOTICES_PATH
 );
 // A search run is as small, and a capture that ran no buyer search has none.
 const SEARCH_RUNS = byMatch(
@@ -185,6 +195,20 @@ export async function loadIndex(capture: string): Promise<SnapshotIndex> {
 // and fails the page like a damaged index does.
 export function snapshotDays(capture: string): CaptureFacts {
 	return captureFacts(captureLine(capture));
+}
+
+// The notices the model read at least one lot of, none for a capture it never read. A notice whose
+// lots it left unread (at the cap, after a failed send) has a readings file but is not among them.
+export function readNoticesOf(capture: string): ReadonlySet<string> {
+	const list = READ_NOTICES.get(capture);
+	if (list === undefined) return new Set();
+	const parsed = ReadNoticesSchema.safeParse(list);
+	if (!parsed.success) {
+		throw new Error(
+			`the ${capture} read notices do not match their schema: ${parsed.error.message}`
+		);
+	}
+	return new Set(parsed.data);
 }
 
 // A notice the capture's readings do not list answers nothing, and keeps the phase 1 view.

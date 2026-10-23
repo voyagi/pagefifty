@@ -100,7 +100,7 @@ describe('the privacy page', () => {
 
 describe('the site footer', () => {
 	beforeEach(() => {
-		// jsdom has no matchMedia, and the theme switch in the desk bar asks it for the OS scheme.
+		// jsdom has no matchMedia, and the theme switch in the top band asks it for the OS scheme.
 		vi.stubGlobal(
 			'matchMedia',
 			vi.fn(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }))

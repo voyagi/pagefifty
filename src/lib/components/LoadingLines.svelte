@@ -1,5 +1,5 @@
 <script lang="ts">
-	// The leaf is set in place before its words arrive: three lines, no spinner.
+	// The panel is set in place before its words arrive: three lines, no spinner.
 	let { label }: { label?: string } = $props();
 </script>
 
@@ -19,7 +19,7 @@
 		display: block;
 		height: 0.875rem;
 		border-radius: 2px;
-		background: color-mix(in srgb, var(--ink) 12%, var(--acetate));
+		background: color-mix(in srgb, var(--ink) 12%, var(--bg));
 		margin-top: 0.75rem;
 	}
 

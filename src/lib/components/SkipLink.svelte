@@ -1,7 +1,9 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <style>
-	/* Out of sight until a keyboard reaches it, then a primary button at the desk bar's top left. */
+	/* Out of sight until a keyboard reaches it, then a primary button at the band's top left. In
+	   the light theme the brand green is the band's own green, so a border in the band's ink keeps
+	   the button's edge in sight, inside the ring every control on the band gets. */
 	.skip {
 		position: absolute;
 		top: 0.5rem;
@@ -20,14 +22,14 @@
 		width: auto;
 		height: auto;
 		min-height: 44px;
-		padding: 0 1.125rem;
+		padding: 0 1.25rem;
 		clip: auto;
 		overflow: visible;
-		background: var(--ink);
-		color: var(--acetate);
-		border: 1px solid var(--ink);
-		border-radius: 3px;
-		font: 600 var(--step-0) / 1 var(--font-sans);
+		background: var(--brand);
+		color: var(--brand-ink);
+		border: 1px solid var(--band-ink);
+		border-radius: var(--r);
+		font: 600 var(--step-0) / 1 var(--font);
 		text-decoration: none;
 	}
 </style>

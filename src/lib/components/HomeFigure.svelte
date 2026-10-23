@@ -7,8 +7,9 @@
 	const { rows, lotRule } = figureWords();
 </script>
 
-<!-- Every number here is read from the committed figure file; none is computed on the page. -->
-<section class="figure" data-figure aria-labelledby="figure-title">
+<!-- Every number here is read from the committed figure file; none is computed on the page. The
+	 panel it sits in on the start page is labelled by its heading. -->
+<div class="figure" data-figure>
 	<h2 class="head" id="figure-title">What one run found</h2>
 	<p class="lead">
 		Of <span class="mono" data-population>{figure.population}</span> IT notices in the {figure.capturedOn}
@@ -37,58 +38,64 @@
 		It counts what that run read in each notice's own text, for the demo firm only. It is not advice
 		to bid and does not say any firm qualifies.
 	</p>
-</section>
+</div>
 
 <style>
 	.figure {
-		grid-column: 1 / -1;
-		border-top: 2px solid var(--ink);
-		padding-top: 0.75rem;
 		min-width: 0;
 	}
 
 	.head {
-		font: 600 var(--step-2) / 1.1 var(--font-cond);
-		letter-spacing: -0.015em;
+		font: 700 var(--step-2) / 1.2 var(--font);
+		letter-spacing: -0.02em;
 	}
 
 	.lead {
 		margin-top: 0.5rem;
-		max-width: 52ch;
+		max-width: 62ch;
 		font-size: var(--step-1);
 		line-height: 1.45;
+		color: var(--ink-2);
 		text-wrap: pretty;
 	}
 
+	/* Four counts side by side on hairlines, each with its label and what it means. */
 	.tally {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		column-gap: 1.75rem;
-		margin-top: 1.25rem;
-		border-top: 1px solid var(--acetate-rule);
-		border-bottom: 1px solid var(--acetate-rule);
+		margin: 1.25rem 0 0;
+		border-block: 1px solid var(--line);
 	}
 
 	.count {
 		display: grid;
 		grid-template-rows: auto auto 1fr;
 		row-gap: 0.25rem;
-		padding: 0.875rem 0;
 		min-width: 0;
+		padding: 1rem 1.25rem;
+	}
+
+	.count + .count {
+		border-left: 1px solid var(--line);
+	}
+
+	.count:first-child {
+		padding-left: 0;
 	}
 
 	.label {
-		font: 600 var(--step-0) / 1.25 var(--font-cond);
-		letter-spacing: 0.01em;
+		font: 600 var(--step-0) / 1.3 var(--font);
 	}
 
 	.number {
-		font: 500 var(--step-5) / 1 var(--font-mono);
+		margin: 0;
+		font: 700 var(--step-4) / 1 var(--font);
 		letter-spacing: -0.03em;
 		font-variant-numeric: tabular-nums;
 	}
 
 	.gloss {
+		margin: 0;
 		font-size: var(--step--1);
 		line-height: 1.4;
 		color: var(--ink-2);
@@ -114,13 +121,10 @@
 		text-wrap: pretty;
 	}
 
-	.mono,
+	/* The command is set in the page's one face, as every figure is, not in a code face. */
 	.command {
-		font-family: var(--font-mono);
-		font-size: 0.9375em;
-	}
-
-	.command {
+		font: inherit;
+		font-weight: 500;
 		overflow-wrap: anywhere;
 		color: var(--ink);
 	}
@@ -128,7 +132,15 @@
 	@media (max-width: 45em) {
 		.tally {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			column-gap: 1rem;
+		}
+
+		.count + .count:nth-child(odd) {
+			padding-left: 0;
+			border-left: 0;
+		}
+
+		.count:nth-child(n + 3) {
+			border-top: 1px solid var(--line);
 		}
 
 		.number {

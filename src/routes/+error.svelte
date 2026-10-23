@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Binder from '$lib/components/Binder.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import Leaf from '$lib/components/Leaf.svelte';
+	import PageMain from '$lib/components/PageMain.svelte';
+	import Panel from '$lib/components/Panel.svelte';
 
 	const notFound = $derived(page.status === 404);
 	// Every 4xx but the 404 answered above is the request's fault, never the server's: the built
@@ -32,6 +32,12 @@
 			? `published before ${page.error.firstPublished} or after the capture`
 			: 'published after the capture'
 	);
+	const heading = $derived.by(() => {
+		if (notice !== undefined) return 'No tender with this notice number';
+		if (notFound) return 'No page at this address';
+		if (refused) return 'This request could not be answered';
+		return 'This page could not be built';
+	});
 
 	const REPLACEMENT_MARK = String.fromCodePoint(0xfffd);
 
@@ -65,73 +71,92 @@
 	>
 </svelte:head>
 
-<Binder board="slate">
-	<Leaf id="error" tab={String(page.status)} tabMono hue="slate" labelledby="error-title" open>
-		{#snippet children(tab)}
-			{#if notice !== undefined}
-				<h1 id="error-title">No tender with this notice number</h1>
-				{@render tab()}
-				<p class="lede">
-					Notice <span class="mono echo">{notice}</span> is not in {snapshot}. It may be outside the
-					IT, Netherlands, Belgium and Germany scope, {publication}, not a call for tenders TED
-					listed as active that day, an earlier version or a copy of a notice TED published again,
-					or cancelled by its buyer.
-				</p>
-				<div class="actions">
-					{#if onExample}
-						<Button href="/example">Back to the example run</Button>
-						<Button variant="secondary" href="/tenders">Browse open tenders</Button>
-					{:else}
-						<Button href="/tenders">Browse open tenders</Button>
-					{/if}
-				</div>
-			{:else if notFound}
-				<h1 id="error-title">No page at this address</h1>
-				{@render tab()}
-				<p class="lede">Check the address for a typo, or go back to the open tenders.</p>
-				<p class="mono echo path">{readable(path)}</p>
-				<div class="actions">
+<PageMain>
+	<Panel id="error" labelledby="error-title">
+		<!-- The status code follows the heading as a small tag, so the heading still opens the page. -->
+		<div class="head">
+			<h1 id="error-title">{heading}</h1>
+			<p class="status-tag mono">{page.status}</p>
+		</div>
+		{#if notice !== undefined}
+			<p class="lede">
+				Notice <span class="mono echo">{notice}</span> is not in {snapshot}. It may be outside the
+				IT, Netherlands, Belgium and Germany scope, {publication}, not a call for tenders TED listed
+				as active that day, an earlier version or a copy of a notice TED published again, or
+				cancelled by its buyer.
+			</p>
+			<div class="actions">
+				{#if onExample}
+					<Button href="/example">Back to the example run</Button>
+					<Button variant="secondary" href="/tenders">Browse open tenders</Button>
+				{:else}
 					<Button href="/tenders">Browse open tenders</Button>
-				</div>
-			{:else if refused}
-				<h1 id="error-title">This request could not be answered</h1>
-				{@render tab()}
-				<p class="lede">
-					The address, or the way it was sent, is not one this site can answer, so reloading will
-					not help. Check the address for a typo, or go back to the open tenders.
-				</p>
-				<p class="mono echo path">{readable(path)}</p>
-				<div class="actions">
-					<Button href="/tenders">Browse open tenders</Button>
-				</div>
-			{:else}
-				<h1 id="error-title">This page could not be built</h1>
-				{@render tab()}
-				<p class="lede">
-					The server hit an error while building this page. Reload in a minute.
-					{#if !readsIndex}If it keeps happening, the list of open tenders may still work.{/if}
-				</p>
-				<div class="actions">
-					<Button href="/tenders">Browse open tenders</Button>
-				</div>
-			{/if}
-		{/snippet}
-	</Leaf>
-</Binder>
+				{/if}
+			</div>
+		{:else if notFound}
+			<p class="lede">Check the address for a typo, or go back to the open tenders.</p>
+			<p class="mono echo path">{readable(path)}</p>
+			<div class="actions">
+				<Button href="/tenders">Browse open tenders</Button>
+			</div>
+		{:else if refused}
+			<p class="lede">
+				The address, or the way it was sent, is not one this site can answer, so reloading will not
+				help. Check the address for a typo, or go back to the open tenders.
+			</p>
+			<p class="mono echo path">{readable(path)}</p>
+			<div class="actions">
+				<Button href="/tenders">Browse open tenders</Button>
+			</div>
+		{:else}
+			<p class="lede">
+				The server hit an error while building this page. Reload in a minute.
+				{#if !readsIndex}If it keeps happening, the list of open tenders may still work.{/if}
+			</p>
+			<div class="actions">
+				<Button href="/tenders">Browse open tenders</Button>
+			</div>
+		{/if}
+	</Panel>
+</PageMain>
 
 <style>
+	.head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.875rem;
+	}
+
 	h1 {
+		min-width: 0;
 		max-width: 24ch;
-		font: 600 var(--step-4) / 1.1 var(--font-cond);
-		letter-spacing: -0.015em;
+		font-weight: 750;
+		font-size: var(--step-3);
+		line-height: 1.15;
+		letter-spacing: -0.03em;
 		text-wrap: balance;
 	}
 
+	/* The code is for whoever reports the fault, so it stays small and quiet beside the heading
+	   that says what went wrong. */
+	.status-tag {
+		display: inline-flex;
+		align-items: center;
+		min-height: 24px;
+		padding: 0.125rem 0.5625rem;
+		border: 1px solid var(--line-2);
+		border-radius: var(--r-sm);
+		color: var(--ink-2);
+		font-size: 0.78125rem;
+		line-height: 1.2;
+	}
+
 	.lede {
-		max-width: 52ch;
+		max-width: 62ch;
 		margin-top: 1rem;
 		font-size: var(--step-1);
-		line-height: 1.45;
+		line-height: 1.5;
 		text-wrap: pretty;
 	}
 
@@ -151,11 +176,5 @@
 		flex-wrap: wrap;
 		gap: 0.75rem;
 		margin-top: 1.5rem;
-	}
-
-	@media (max-width: 45em) {
-		h1 {
-			font-size: var(--step-3);
-		}
 	}
 </style>

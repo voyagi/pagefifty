@@ -842,7 +842,7 @@ function lotFactsOf(record, lot, readings, now, lines) {
 		read,
 		verdict: decided ? VERDICT_LABELS[decided.decision.verdict] : null,
 		reason: decided ? reasonOf(decided, facts, lines) : null,
-		// One AI reading label per verified requirement (CriterionRow).
+		// One AI reading per verified requirement; CriterionRow sets a clause's readings under one label.
 		readings: read
 			? status.reading.criteria.reduce((sum, criterion) => sum + criterion.verified.length, 0)
 			: 0

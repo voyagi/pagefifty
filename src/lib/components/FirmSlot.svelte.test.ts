@@ -7,7 +7,7 @@ import {
 	getProfileStore,
 	resetProfileStore
 } from '$lib/profile/store.svelte';
-import DeskBar from './DeskBar.svelte';
+import TopBand from './TopBand.svelte';
 
 // The export date in the slot is the visitor's local date; the zone is pinned so the expectation
 // holds on CI in UTC as it does here (00:30 on 21 Sep in Amsterdam is 20 Sep in UTC).
@@ -73,13 +73,13 @@ async function filledSlot(container: HTMLElement) {
 
 describe('the header firm slot', () => {
 	it('names the own firm with no profile yet', async () => {
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		expect(await filledSlot(container)).toEqual({ first: 'Your firm', second: 'No profile yet' });
 	});
 
 	it('says a saved profile was never exported', async () => {
 		localStorage.setItem(PROFILE_KEY, saved(null));
-		const { container } = render(DeskBar, { props: { path: '/' } });
+		const { container } = render(TopBand, { props: { path: '/' } });
 		expect(await filledSlot(container)).toEqual({
 			first: 'Your firm',
 			second: 'Last exported: never'
@@ -88,7 +88,7 @@ describe('the header firm slot', () => {
 
 	it('gives the local day of the last export', async () => {
 		localStorage.setItem(PROFILE_KEY, saved('2026-09-20T22:30:00.000Z'));
-		const { container } = render(DeskBar, { props: { path: '/' } });
+		const { container } = render(TopBand, { props: { path: '/' } });
 		expect(await filledSlot(container)).toEqual({
 			first: 'Your firm',
 			second: 'Last exported: 21 Sep 2026'
@@ -99,7 +99,7 @@ describe('the header firm slot', () => {
 	// is none.
 	it('never says no profile yet when a newer version saved one', async () => {
 		localStorage.setItem(PROFILE_KEY, JSON.stringify({ schemaVersion: 2, savedAt: '2027-01-01' }));
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		expect(await filledSlot(container)).toEqual({
 			first: 'Your firm',
 			second: 'Saved by a newer version'
@@ -109,7 +109,7 @@ describe('the header firm slot', () => {
 	it('labels the demo firm while it is active', async () => {
 		localStorage.setItem(PROFILE_KEY, saved(null));
 		localStorage.setItem(ACTIVE_FIRM_KEY, 'demo');
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		expect(await filledSlot(container)).toEqual({
 			first: 'Brink Data (demo firm)',
 			second: 'Invented figures'
@@ -118,7 +118,7 @@ describe('the header firm slot', () => {
 
 	it('always labels the demo firm on an example page, leaving the active firm alone', async () => {
 		localStorage.setItem(PROFILE_KEY, saved(null));
-		const { container } = render(DeskBar, { props: { path: '/example/600457-2026' } });
+		const { container } = render(TopBand, { props: { path: '/example/600457-2026' } });
 		expect(await filledSlot(container)).toEqual({
 			first: 'Brink Data (demo firm)',
 			second: 'Invented figures'
@@ -127,12 +127,12 @@ describe('the header firm slot', () => {
 	});
 
 	it('does not take a path that only starts with the letters of example as the example', async () => {
-		const { container } = render(DeskBar, { props: { path: '/examples' } });
+		const { container } = render(TopBand, { props: { path: '/examples' } });
 		expect(await filledSlot(container)).toEqual({ first: 'Your firm', second: 'No profile yet' });
 	});
 
 	it('follows another tab switching to the demo firm', async () => {
-		const { container } = render(DeskBar, { props: { path: '/' } });
+		const { container } = render(TopBand, { props: { path: '/' } });
 		await filledSlot(container);
 		localStorage.setItem(ACTIVE_FIRM_KEY, 'demo');
 		window.dispatchEvent(new StorageEvent('storage', { key: ACTIVE_FIRM_KEY }));
@@ -146,7 +146,7 @@ describe('the header firm slot', () => {
 	// One store per page: the store the profile page switches is the one the header reads, so the
 	// header follows at once, with no storage event (those reach other tabs only).
 	it('relabels at once when the page switches to the demo firm through the shared store', async () => {
-		const { container } = render(DeskBar, { props: { path: '/profile' } });
+		const { container } = render(TopBand, { props: { path: '/profile' } });
 		await filledSlot(container);
 		getProfileStore().store.useDemo();
 		await vi.waitFor(() =>
@@ -157,7 +157,7 @@ describe('the header firm slot', () => {
 	});
 
 	it('fills within one settle of its lazy import when storage works', async () => {
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		await settled();
 		expect(slotOf(container).tagName).toBe('A');
 	});
@@ -166,7 +166,7 @@ describe('the header firm slot', () => {
 		vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
 			throw new DOMException('blocked', 'SecurityError');
 		});
-		const { container } = render(DeskBar, { props: { path: '/tenders' } });
+		const { container } = render(TopBand, { props: { path: '/tenders' } });
 		// The same wait the test above shows is long enough for the slot to fill.
 		await settled();
 		const slot = slotOf(container);

@@ -12,6 +12,7 @@ import { ReadingsFileSchema, type NoticeReadings } from '../snapshot/readings';
 import { buildTenderPage, type LotView } from './tender-page';
 import {
 	ARTICLE_63_LINE,
+	DECIDED_LINES,
 	REASON_LINES,
 	STATE_LABELS,
 	comparedLine,
@@ -83,6 +84,10 @@ describe('lotVerdict', () => {
 			'PROFILE_GAP',
 			'PROFILE_GAP'
 		]);
+		// The staff clause's kind leaves it to the firm as a whole, so every quote read in it is one
+		// the verdict rests on.
+		expect(view?.deciding).toBe(5);
+		expect(view?.decidingQuotes).toEqual([0, 1, 2, 3, 4]);
 	});
 
 	it('the Dutch example lot decides route-unsettled with one state per criterion', () => {
@@ -173,6 +178,7 @@ describe('the verdict copy', () => {
 		const copy = [
 			...Object.values(REASON_LINES),
 			...Object.values(STATE_LABELS),
+			...Object.values(DECIDED_LINES),
 			ARTICLE_63_LINE,
 			...(['own', 'none', 'newer'] as const).map((kind) => comparedLine({ kind })),
 			comparedLine({ kind: 'demo', name: 'Brink Data B.V.' })

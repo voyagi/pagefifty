@@ -1,60 +1,58 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { CANCEL_INTENT_LINE, type ListRow } from '$lib/tenders/list';
+	import { CANCEL_INTENT_LINE, commonReading, initialsOf, type ListRow } from '$lib/tenders/list';
 	import DeadlineTime from './DeadlineTime.svelte';
 	import ReadingTag from './ReadingTag.svelte';
 
+	// query is the applied filters as an address search, without its "?", so a row opened from a
+	// filtered list keeps the list filtered. opened marks the row whose tender the page shows; current
+	// says whether the address names it ('page') or the list opened it by itself ('true').
 	let {
 		rows,
 		caption,
 		basePath,
+		query = '',
+		opened,
+		current = 'page',
 		closed = false
 	}: {
 		rows: ListRow[];
 		caption: string;
 		basePath: '/tenders' | '/example';
+		query?: string;
+		opened?: string;
+		current?: 'page' | 'true';
 		closed?: boolean;
 	} = $props();
 
 	// The notice number in the path is one the index schema accepted.
-	const tenderPath = (notice: string): `${typeof basePath}/${string}` => `${basePath}/${notice}`;
+	const tenderPath = (notice: string) =>
+		query === '' ? (`${basePath}/${notice}` as const) : (`${basePath}/${notice}?${query}` as const);
+
+	const common = $derived(commonReading(rows));
 </script>
 
-<table class="index">
-	<caption class="visually-hidden">{caption}</caption>
-	<thead>
-		<tr>
-			<th scope="col">Deadline</th>
-			<th scope="col">Tender and buyer</th>
-			<th scope="col">Country</th>
-			<th scope="col" class="num">Estimated value</th>
-			<th scope="col">Reading status</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each rows as row (row.noticeNumber)}
-			{@const shown = row.deadline.shown}
-			<tr data-notice={row.noticeNumber}>
-				<td class="deadline" data-label="Deadline">
-					{#if closed}<span class="closed-word">Closed</span>{/if}
-					{#if shown.kind === 'in-notice'}
-						<span class="in-notice">In notice</span>
-					{:else}
-						<DeadlineTime instant={shown.instant} />
-					{/if}
-					{#if row.deadline.lotsDiffer}
-						<small>{row.deadline.openLotCount} open lots, deadlines differ</small>
-					{/if}
-				</td>
-				<td class="tender">
-					<a
-						class="t"
-						href={resolve(tenderPath(row.noticeNumber))}
-						lang={row.title.lang}
-						data-notice-text>{row.title.text}</a
-					>
+<!-- A link opens the tender beside the list, so the list keeps its scroll and the focus stays on
+     the row that was picked. -->
+<ul class="rows" aria-label={caption}>
+	{#each rows as row (row.noticeNumber)}
+		{@const shown = row.deadline.shown}
+		{@const isOpened = row.noticeNumber === opened}
+		<li data-notice={row.noticeNumber} class:opened={isOpened}>
+			<span class="tile" aria-hidden="true">{row.buyer ? initialsOf(row.buyer.text) : ''}</span>
+			<div class="body">
+				<a
+					class="t"
+					href={resolve(tenderPath(row.noticeNumber))}
+					lang={row.title.lang}
+					aria-current={isOpened ? current : undefined}
+					data-sveltekit-noscroll
+					data-sveltekit-keepfocus
+					data-notice-text>{row.title.text}</a
+				>
+				<p class="by">
 					{#if row.buyer}
-						<span class="b" lang={row.buyer.lang} data-notice-text>{row.buyer.text}</span>
+						<span class="b who" lang={row.buyer.lang} data-notice-text>{row.buyer.text}</span>
 					{/if}
 					<!-- A joint procurement's other buyers are counted in the page's own words, outside the
 					     notice text. -->
@@ -64,187 +62,215 @@
 							{row.otherBuyers === 1 ? 'other buyer' : 'other buyers'}</span
 						>
 					{/if}
-					<span class="b mono">{row.noticeNumber}</span>
-					<!-- Phase 2's ASK FIRST overlay will read this mark; until then the sentence is what keeps
-					     a notice whose buyer means to cancel from reading as an ordinary open tender. -->
-					{#if row.cancelIntent}
-						<span class="b" data-cancel-intent>{CANCEL_INTENT_LINE}</span>
-					{/if}
-				</td>
-				<td data-label="Country">{row.countries.join(', ')}</td>
-				<td class="num" data-label="Estimated value">
-					{#if row.value}
-						<span class="mono">{row.value}</span>
-					{:else}
-						<span class="unpublished">Value not published</span>
-					{/if}
-				</td>
-				<td class="status">
-					<ReadingTag reading={row.reading} />
-				</td>
-			</tr>
-		{/each}
-	</tbody>
-</table>
+					<span class="b id mono">{row.noticeNumber}</span>
+				</p>
+				<p class="meta">
+					<span class="facts">
+						{#if row.countries.length > 0}
+							<span class="fact">{row.countries.join(', ')}</span>
+						{/if}
+						<span class="fact deadline">
+							{#if closed}<span class="closed-word">Closed</span>{/if}
+							{#if shown.kind === 'in-notice'}
+								<span class="in-notice">In notice</span>
+							{:else}
+								<DeadlineTime instant={shown.instant} />
+							{/if}
+							{#if row.deadline.lotsDiffer}
+								<small>{row.deadline.openLotCount} open lots, deadlines differ</small>
+							{/if}
+						</span>
+						{#if row.value}
+							<span class="fact mono">{row.value}</span>
+						{:else}
+							<span class="fact">Value not published</span>
+						{/if}
+					</span>
+				</p>
+				<!-- What was read in the notice is its own line, so it never trails a separator. -->
+				<p class="status">
+					<ReadingTag reading={row.reading} plain={row.reading.tag === common} />
+				</p>
+				<!-- The tender's own verdict reads this mark; a row shows no verdict, so this sentence is
+				     what keeps a notice whose buyer means to cancel from reading as an ordinary open
+				     tender. -->
+				{#if row.cancelIntent}
+					<p class="cancel" data-cancel-intent>{CANCEL_INTENT_LINE}</p>
+				{/if}
+			</div>
+		</li>
+	{/each}
+</ul>
 
 <style>
-	.index {
-		width: 100%;
-		border-collapse: collapse;
+	.rows {
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
-	th {
-		text-align: left;
-		font: 600 var(--step--1) / 1.3 var(--font-cond);
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		color: var(--ink-3);
-		padding: 0 1rem 0.625rem 0;
-		border-bottom: 1px solid var(--acetate-edge);
-		white-space: nowrap;
+	/* The whole row answers to the pointer: the title link's box is stretched over it. */
+	li {
+		position: relative;
+		display: grid;
+		grid-template-columns: 40px minmax(0, 1fr);
+		gap: 0.875rem;
+		padding: 0.875rem 1rem 0.9375rem;
+		transition: background-color var(--quick) ease-out;
 	}
 
-	td {
-		padding: 1rem 1rem 1rem 0;
-		border-bottom: 1px solid var(--acetate-rule);
-		vertical-align: top;
+	li + li {
+		border-top: 1px solid var(--line);
 	}
 
-	td + td,
-	th + th {
-		padding-left: 1rem;
-		border-left: 1px solid var(--acetate-rule);
+	li:hover {
+		background: var(--bg-2);
 	}
 
-	.num {
-		text-align: right;
-		white-space: nowrap;
+	/* The opened tender: a tint of the brand colour inside a 1px brand edge and an underlined title,
+	   no side bar. */
+	li.opened {
+		background: color-mix(in srgb, var(--brand) 8%, var(--bg));
+		outline: 1px solid color-mix(in srgb, var(--brand) 45%, var(--bg));
+		outline-offset: -1px;
 	}
 
-	.deadline {
-		white-space: nowrap;
-	}
-
-	.closed-word {
-		display: block;
-		font-weight: 600;
-	}
-
-	.deadline small {
-		display: block;
-		font-size: var(--step--1);
+	.tile {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border: 1px solid var(--line);
+		border-radius: var(--r);
+		background: var(--bg-2);
 		color: var(--ink-2);
-		white-space: normal;
+		font-weight: 700;
+		font-size: var(--step--1);
+		letter-spacing: -0.02em;
 	}
 
-	.tender {
-		width: 100%;
+	.body {
+		min-width: 0;
 	}
 
-	/* Titles and buyer names are the notice's own words, often long German compounds, so they break
-	   by their language rather than overflow a phone. */
-	.t,
-	.b {
-		display: block;
+	/* Titles are the notice's own words, often long German compounds, so they break by their
+	   language; two lines are shown and the rest is in the tender. */
+	.t {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		font-weight: 650;
+		font-size: var(--step-0);
+		line-height: 1.32;
+		letter-spacing: -0.01em;
+		text-decoration: none;
 		overflow-wrap: anywhere;
 		hyphens: auto;
 	}
 
-	.t {
-		font-weight: 600;
-		line-height: 1.3;
-		max-width: 70ch;
-		text-decoration-color: var(--acetate-edge);
+	.t::after {
+		content: '';
+		position: absolute;
+		inset: 0;
 	}
 
-	.t:hover {
-		text-decoration-color: currentColor;
+	.t:hover,
+	.opened .t {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
 	}
 
-	.b {
-		margin-top: 0.25rem;
+	.by {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 0.75rem;
+		margin-top: 0.125rem;
 		font-size: var(--step--1);
 		color: var(--ink-2);
 	}
 
-	.unpublished {
+	/* A buyer's name keeps one line and gives way first; the count and the notice number stay whole.
+	   The name starts from no width and takes the room the two leave, so the line wraps only where the
+	   count and the number cannot fit beside each other, as in a narrow column at a large font size.
+	   The buyer is the row's second line in full ink, so the grey lines under it read as detail. */
+	.who {
+		flex: 1 1 0;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-weight: 500;
+		color: var(--ink);
+	}
+
+	.b:not(.who) {
+		flex: none;
+		white-space: nowrap;
+	}
+
+	.id {
+		margin-left: auto;
+	}
+
+	.meta,
+	.status {
+		font-size: var(--step--1);
 		color: var(--ink-2);
 	}
 
-	/* The closed leaf is the narrower (its second ply indents it): it offers the window width less
-	   306px of gutters, rail, binder and leaf padding, so 1035px at 1341px. The five columns need
-	   962.5px there, and 1007.5px when the visitor's zone has no short name ('GMT+13:45'), so a 17px
-	   classic scrollbar still leaves 10.5px (measured at e7ca483; tenders.devbrowser.js holds it).
-	   Below 1341px each row stacks as a labelled card. The switch is written in em, 1340px at the
-	   default 16px, because a reader's larger default font widens every column with it.
-	   Headers stay in the accessibility tree while hidden; each stacked cell that does not name itself
-	   carries a visible label, and the empty alternative text keeps a screen reader from reading it
-	   twice after the column header. */
-	@media (max-width: 83.75em) {
-		thead {
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			overflow: hidden;
-			clip-path: inset(50%);
-			white-space: nowrap;
-		}
+	/* A fact that wraps never starts its line with a dot: every fact draws its dot before it, and
+	   the row sits one dot's width to the left inside a clipped box, so the dot of whichever fact
+	   starts a line falls outside the box. */
+	.meta {
+		margin-top: 0.5rem;
+		overflow: hidden;
+	}
 
-		.index,
-		tbody,
-		tr,
-		td {
-			display: block;
-		}
+	.facts {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		row-gap: 0.25rem;
+		margin-left: -1rem;
+	}
 
-		tr {
-			padding: 0.875rem 0;
-			border-bottom: 1px solid var(--acetate-edge);
-		}
+	/* The dot is drawn, not text, so a screen reader reads the facts without it. */
+	.fact::before {
+		content: '·';
+		content: '·' / '';
+		display: inline-block;
+		width: 1rem;
+		text-align: center;
+	}
 
-		td,
-		td + td {
-			border: 0;
-			padding: 0.25rem 0;
-		}
+	.status {
+		margin-top: 0.25rem;
+	}
 
-		/* At 320px a billion-euro amount beside its label is wider than a card, so the label may sit
-		   above the amount; the amount itself stays on one line. */
-		.num {
-			text-align: left;
-			white-space: normal;
-		}
+	/* The list is ordered by it, so the deadline is the one fact in full ink. */
+	.deadline {
+		color: var(--ink);
+	}
 
-		.num .mono {
-			white-space: nowrap;
-		}
+	.deadline::before {
+		color: var(--ink-2);
+	}
 
-		.tender {
-			width: auto;
-		}
+	.deadline small {
+		display: block;
+		font-size: inherit;
+	}
 
-		td[data-label]::before {
-			content: attr(data-label) ': ';
-			content: attr(data-label) ': ' / '';
-			color: var(--ink-2);
-		}
+	.closed-word {
+		font-weight: 600;
+		color: var(--ink);
+	}
 
-		/* A closed row's label, 'Closed' and date are wider than a phone card. As an inline block the
-		   date moves whole to its own line, and only a label wider than the card on its own wraps at
-		   its spaces (this rule lifts DeadlineTime's nowrap inside a card), as an offset zone does at
-		   320px ('GMT+13:45', 252px against a 242px card). */
-		.deadline {
-			white-space: normal;
-		}
-
-		.deadline :global(time) {
-			display: inline-block;
-			white-space: normal;
-		}
-
-		.deadline .closed-word {
-			display: inline;
-			margin-right: 0.5rem;
-		}
+	.cancel {
+		margin-top: 0.375rem;
+		font-size: var(--step--1);
+		color: var(--ink);
 	}
 </style>

@@ -85,12 +85,12 @@ async function followExampleRow(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -162,11 +162,11 @@ try {
 	const builtPath = `/tenders/${built.notice}`;
 	const builtGroup = await page.evaluate(
 		(notice) =>
-			document.querySelector(`tr[data-notice="${notice}"]`)?.closest('details') ? 'closed' : 'open',
+			document.querySelector(`li[data-notice="${notice}"]`)?.closest('details') ? 'closed' : 'open',
 		built.notice
 	);
 	if (builtGroup === 'closed') await page.click('#closed summary');
-	await page.click(`tr[data-notice="${built.notice}"] a`);
+	await page.click(`li[data-notice="${built.notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, builtPath, { timeout: 10000 });
 	await page.waitForSelector('#tender-title', { timeout: 10000 });
 	const shown = await page.evaluate(async () => {
@@ -179,7 +179,8 @@ try {
 		return {
 			status: (await fetch(location.href)).status,
 			notice: value('TED notice'),
-			country: value('Country'),
+			// The buyer's country sits under the buyer in the record's head, not in the facts list.
+			country: (document.querySelector('#tender .where')?.textContent ?? '').trim(),
 			lots: Array.from(document.querySelectorAll('[id^="lot-"]')).filter((leaf) =>
 				/^lot-\d+$/.test(leaf.id)
 			).length
@@ -209,14 +210,14 @@ try {
 		await page.waitForSelector(HYDRATED, { timeout: 10000 });
 		const fedGroup = await page.evaluate(
 			(notice) =>
-				document.querySelector(`tr[data-notice="${notice}"]`)?.closest('details')
+				document.querySelector(`li[data-notice="${notice}"]`)?.closest('details')
 					? 'closed'
 					: 'open',
 			fed.notice
 		);
 		if (fedGroup === 'closed') await page.click('#closed summary');
 		const fromClick = captured.length;
-		await page.click(`tr[data-notice="${fed.notice}"] a`);
+		await page.click(`li[data-notice="${fed.notice}"] a.t`);
 		await page.waitForFunction((path) => location.pathname === path, `/tenders/${fed.notice}`, {
 			timeout: 10000
 		});

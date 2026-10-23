@@ -5,6 +5,7 @@ import {
 	MIN_QUOTE_LENGTH,
 	findQuote,
 	normalizeQuote,
+	quoteLocator,
 	verifyRequirements,
 	withoutHyphens,
 	type QuoteResult,
@@ -266,6 +267,58 @@ describe('verifyRequirements', () => {
 		expect(one).toEqual({ status: 'verified', criterion: 1, start: 0, pass: 'as-normalised' });
 		expect(two).toEqual(one);
 		expect(two).not.toBe(one);
+	});
+});
+
+// The page marks a quote where the verifier found it, so the two must agree on every quote.
+describe('quoteLocator', () => {
+	test.prop([sourceArb, fc.nat(), fc.nat(), fc.boolean()], { numRuns: 400 })(
+		'finds a quote exactly when findQuote does, its hyphens kept or dropped',
+		(source, from, size, bare) => {
+			const normal = normalizeQuote(source);
+			const start = from % normal.length;
+			const cut = normal.slice(start, start + MIN_QUOTE_LENGTH + (size % 60));
+			const piece = bare ? withoutHyphens(cut) : cut;
+			const span = quoteLocator(source)(piece);
+			const result = findQuote(piece, source);
+			expect(span !== undefined).toBe(result.found);
+			if (span === undefined || !result.found) return;
+			expect(0 <= span.start && span.start < span.end && span.end <= source.length).toBe(true);
+			// The first pass compares whole normalised text, so the published span reads as the quote.
+			if (result.pass === 'as-normalised') {
+				expect(normalizeQuote(source.slice(span.start, span.end))).toBe(normalizeQuote(piece));
+			}
+		}
+	);
+
+	it('finds each quote of the recorded replies exactly where the verifier did', () => {
+		for (const name of ['de-610242-thinking-off', 'fr-629755-probe', 'nl-634398-super']) {
+			const sources = lotClauseTexts(name);
+			const items = replyRequirements(name);
+			verifyRequirements(sources, items).forEach((result, index) => {
+				const source = sources[items[index].criterion - 1];
+				const span = source === undefined ? undefined : quoteLocator(source)(items[index].quote);
+				expect(span !== undefined, `${name} item ${index + 1}`).toBe(result.status === 'verified');
+			});
+		}
+	});
+
+	it('spans the published characters across a ligature and a combining accent', () => {
+		const source = `Ein Zerti${char(0xfb01)}kat der Cafe${char(0x0301)}-Betriebe ist beizufügen.`;
+		const span = quoteLocator(source)('Ein Zertifikat der Café-Betriebe');
+		expect(span && source.slice(span.start, span.end)).toBe(
+			`Ein Zerti${char(0xfb01)}kat der Cafe${char(0x0301)}-Betriebe`
+		);
+	});
+
+	it('finds nothing for a quote too short to have verified', () => {
+		expect(quoteLocator('Ein Zertifikat ist beizufügen.')('Zertifikat')).toBeUndefined();
+	});
+
+	it('finds nothing for a quote too short without its hyphens, as findQuote does', () => {
+		const source = 'the text holds xy only';
+		expect(findQuote('----------xy', source)).toEqual({ found: false, reason: 'not-found' });
+		expect(quoteLocator(source)('----------xy')).toBeUndefined();
 	});
 });
 

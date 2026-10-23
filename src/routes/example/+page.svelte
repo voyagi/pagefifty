@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TenderListPage from '$lib/components/TenderListPage.svelte';
+	import TenderPage from '$lib/components/TenderPage.svelte';
 
 	let { data } = $props();
 </script>
@@ -8,4 +8,6 @@
 	<title>Example run, {data.capture.capturedOn} snapshot - Pagefifty</title>
 </svelte:head>
 
-<TenderListPage {data} variant="example" basePath="/example" />
+{#if data.record !== null}
+	<TenderPage data={data.record} variant="example" />
+{/if}

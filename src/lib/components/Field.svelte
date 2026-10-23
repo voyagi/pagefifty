@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Icon from './Icon.svelte';
 
 	interface ControlAttrs {
 		describedby: string | undefined;
@@ -71,16 +72,7 @@
 	{/if}
 	{#if error !== undefined}
 		<p class="hint" id={hintId}>
-			<svg
-				viewBox="0 0 16 16"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="1.8"
-				aria-hidden="true"
-			>
-				<path d="M8 1.5 15 14H1L8 1.5Z" />
-				<path d="M8 6v3.5M8 11.5v.5" />
-			</svg>
+			<Icon name="info" />
 			<span>{error}</span>
 		</p>
 	{:else if hint !== undefined}
@@ -104,40 +96,77 @@
 		overflow-wrap: anywhere;
 	}
 
-	/* Inputs and selects share one box; a control passed in from another component is reached here. */
+	/* Inputs and selects share one box; a control passed in from another component is reached here.
+	   A value is a figure the firm will be judged on, so its digits line up. */
 	.field :global(input),
 	.field :global(select) {
 		width: 100%;
 		min-width: 0;
-		min-height: 44px;
+		min-height: 40px;
 		padding: 0 0.75rem;
-		font: 500 var(--step-0) / 1.2 var(--font-mono);
+		font: 500 var(--step-0) / 1.2 var(--font);
+		font-variant-numeric: tabular-nums;
 		color: var(--ink);
-		background: var(--acetate);
-		border: 1px solid var(--ink-3);
+		background: var(--bg);
+		border: 1px solid var(--line-field);
+		border-radius: var(--r);
+	}
+
+	/* A date's own parts take the palette: the picker follows the page's light or dark, the
+	   separators and the browser's day, month and year pattern sit in the secondary ink, a part in
+	   use takes the selection tint, and the calendar mark is the page's own icon in that ink. The
+	   pattern itself is the browser's, in the reader's own date order. */
+	.field :global(input[type='date']) {
+		color-scheme: inherit;
+		accent-color: var(--brand);
+	}
+
+	.field :global(input[type='date']::-webkit-datetime-edit-text) {
+		color: var(--ink-2);
+	}
+
+	.field :global(input[type='date']::-webkit-datetime-edit-day-field:focus),
+	.field :global(input[type='date']::-webkit-datetime-edit-month-field:focus),
+	.field :global(input[type='date']::-webkit-datetime-edit-year-field:focus) {
 		border-radius: 3px;
-		caret-color: var(--ink);
+		background: var(--selection);
+		color: var(--ink);
+	}
+
+	.field :global(input[type='date']::-webkit-calendar-picker-indicator) {
+		width: 16px;
+		height: 16px;
+		margin-left: 0.25rem;
+		padding: 0;
+		background: var(--ink-2);
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.2' y='3.2' width='11.6' height='10.6' rx='1.6'/%3E%3Cpath d='M2.2 6.6h11.6M5.4 1.8v2.6M10.6 1.8v2.6'/%3E%3C/svg%3E")
+			center / 16px no-repeat;
+		cursor: pointer;
+	}
+
+	.field :global(input[type='date']::-webkit-calendar-picker-indicator:hover) {
+		background: var(--ink);
 	}
 
 	.field :global(input:focus-visible),
 	.field :global(select:focus-visible) {
-		outline: 3px solid var(--focus);
+		outline: 2px solid var(--focus);
 		outline-offset: 0;
-		border-color: var(--ink);
+		border-color: var(--focus);
 	}
 
-	/* An error is carried by shape and weight: a dashed ink edge on a solid 6% ink tint. */
+	/* An error is carried by shape and weight: a dashed ink edge on a solid 5% ink tint. */
 	.error :global(input),
 	.error :global(select) {
 		border: 2px dashed var(--ink);
-		background: color-mix(in srgb, var(--ink) 6%, var(--acetate));
+		background: color-mix(in srgb, var(--ink) 5%, var(--bg));
 	}
 
 	.hint {
 		margin: 0;
 		font-size: var(--step--1);
 		line-height: 1.35;
-		color: var(--ink-3);
+		color: var(--ink-2);
 		overflow-wrap: anywhere;
 	}
 
@@ -154,10 +183,7 @@
 		font-weight: 600;
 	}
 
-	.hint svg {
-		flex: none;
-		width: 1rem;
-		height: 1rem;
-		margin-top: 0.1rem;
+	.hint :global(.icon) {
+		margin-top: 0.05rem;
 	}
 </style>
