@@ -1,5 +1,5 @@
 import { EXAMPLE_CAPTURE, figureFile, LATEST_CAPTURE, loadIndex } from '$lib/server/records';
-import { defaultNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
+import { exampleNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
 import { captureFacts } from '$lib/tenders/list';
 import type { PageServerLoad } from './$types';
 
@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 // so a new example capture changes the start page's card with it. A list with nothing open has none.
 async function exampleRecord(origin: string) {
 	const { list } = await loadExampleList({ url: new URL('/example', origin) });
-	const notice = defaultNotice(EXAMPLE_CAPTURE, list.open);
+	const notice = exampleNotice(EXAMPLE_CAPTURE, list.open);
 	return notice === null ? null : loadExamplePage({ notice });
 }
 

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { defaultNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
+import { exampleNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
 import { load as layoutLoad } from './+layout.server';
 import { load as pageLoad } from './+page.server';
 
@@ -12,7 +12,7 @@ const OPEN = vi.hoisted(() => [{ noticeNumber: '610242-2026' }, { noticeNumber: 
 vi.mock('$lib/server/tenders', () => ({
 	loadExampleList: vi.fn(async () => ({ list: { open: OPEN } })),
 	loadExamplePage: vi.fn(async () => ({ tender: { noticeNumber: '610242-2026' } })),
-	defaultNotice: vi.fn(() => '610242-2026')
+	exampleNotice: vi.fn(() => '610242-2026')
 }));
 
 type LayoutEvent = Parameters<typeof layoutLoad>[0];
@@ -21,7 +21,7 @@ type PageEvent = Parameters<typeof pageLoad>[0];
 beforeEach(() => {
 	vi.mocked(loadExampleList).mockClear();
 	vi.mocked(loadExamplePage).mockClear();
-	vi.mocked(defaultNotice).mockClear();
+	vi.mocked(exampleNotice).mockClear();
 });
 
 describe('/example layout load', () => {
@@ -29,7 +29,7 @@ describe('/example layout load', () => {
 		const url = new URL('http://127.0.0.1/example?country=NL');
 		const data = await layoutLoad({ url } as LayoutEvent);
 		expect(vi.mocked(loadExampleList).mock.calls).toEqual([[{ url }]]);
-		expect(vi.mocked(defaultNotice).mock.calls).toEqual([['2026-09-15', OPEN]]);
+		expect(vi.mocked(exampleNotice).mock.calls).toEqual([['2026-09-15', OPEN]]);
 		expect(data).toEqual({ list: { open: OPEN }, defaultNotice: '610242-2026' });
 	});
 });

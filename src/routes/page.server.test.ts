@@ -1,7 +1,7 @@
 import { render } from 'svelte/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { figureFile, loadIndex } from '$lib/server/records';
-import { defaultNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
+import { exampleNotice, loadExampleList, loadExamplePage } from '$lib/server/tenders';
 import { SPREAD_FIGURE } from '../test/home-figure';
 import type { PageData } from './$types';
 import { load } from './+page.server';
@@ -21,7 +21,7 @@ vi.mock('$lib/server/tenders', () => ({
 	loadExamplePage: vi.fn(async ({ notice }: { notice: string }) => ({
 		tender: { noticeNumber: notice }
 	})),
-	defaultNotice: vi.fn(() => '634398-2026')
+	exampleNotice: vi.fn(() => '634398-2026')
 }));
 
 type IndexRows = Awaited<ReturnType<typeof loadIndex>>['rows'];
@@ -42,7 +42,7 @@ const OPENED = { tender: { noticeNumber: '634398-2026' } };
 beforeEach(() => {
 	vi.mocked(loadExampleList).mockClear();
 	vi.mocked(loadExamplePage).mockClear();
-	vi.mocked(defaultNotice).mockClear();
+	vi.mocked(exampleNotice).mockClear();
 });
 
 describe('/ load', () => {
@@ -99,14 +99,14 @@ describe('/ load', () => {
 		const data = await load(EVENT);
 		const [[{ url }]] = vi.mocked(loadExampleList).mock.calls;
 		expect([url.pathname, url.search]).toEqual(['/example', '']);
-		expect(vi.mocked(defaultNotice).mock.calls).toEqual([['2026-09-15', OPEN]]);
+		expect(vi.mocked(exampleNotice).mock.calls).toEqual([['2026-09-15', OPEN]]);
 		expect(vi.mocked(loadExamplePage).mock.calls).toEqual([[{ notice: '634398-2026' }]]);
 		expect(data?.example).toEqual(OPENED);
 	});
 
 	it('gives no example, and reads no record, when the example list opens none', async () => {
 		vi.mocked(loadIndex).mockResolvedValueOnce(indexWith('buyer-country IN (NLD)'));
-		vi.mocked(defaultNotice).mockReturnValueOnce(null);
+		vi.mocked(exampleNotice).mockReturnValueOnce(null);
 		expect((await load(EVENT))?.example).toBeNull();
 		expect(loadExamplePage).not.toHaveBeenCalled();
 	});
@@ -114,7 +114,7 @@ describe('/ load', () => {
 	// The page as the server renders it from what the load returned.
 	it('a latest capture with no figure gives a home page with no figure', async () => {
 		vi.mocked(loadIndex).mockResolvedValueOnce(indexWith('publication-date>=20260927'));
-		vi.mocked(defaultNotice).mockReturnValueOnce(null);
+		vi.mocked(exampleNotice).mockReturnValueOnce(null);
 		const data = (await load(EVENT)) as PageData;
 		expect(data.figure).toBeNull();
 		const { body } = render(Page, { props: { data } });
