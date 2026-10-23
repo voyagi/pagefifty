@@ -254,8 +254,8 @@ const ACCEPTED_INCOMPLETE = [
 		why:
 			'rows the list column has scrolled wholly or partly out of its visible box, where the head ' +
 			'and the band sit over them on the screen, so axe composites the colours of whatever covers ' +
-			'the row; the list alone at 390px draws every row in full, and a row inside the box stays ' +
-			'undecided and fails'
+			'the row; the list alone at 390px draws every row in full, its closed group unfolded (the ' +
+			'runner stops on one left folded), and a row inside the box stays undecided and fails'
 	}
 ];
 
@@ -478,18 +478,22 @@ function countPlaces(nodes) {
 // list or a hidden column matches neither layout and the runner stops on it. 'none' on a page
 // without a list column. The group is the one whose rows were audited, the open list, or the closed
 // one once no tender is open (after 9 Oct 2027 a note takes the open list's place); when only the
-// closed group holds rows, it is opened here, so axe audits its rows and not a folded group.
-function readLayout() {
-	return page.evaluate(() => {
+// closed group holds rows, it is opened here, so axe audits its rows and not a folded group. A phone
+// entry (unfoldClosed) opens the closed group whatever the open one holds, as a visitor does with its
+// summary, so the run decides every closed row's contrast at least once: the rows the column scrolls
+// out of view beside a tender are accepted undecided on that ground. The closed group is reported as
+// 'unfolded', 'folded' or 'none' for the runner's check.
+function readLayout(unfoldClosed) {
+	return page.evaluate((unfold) => {
 		const split = document.querySelector('.split');
 		const column = split?.querySelector('.list-col');
-		if (!column) return { layout: 'none', group: null };
+		if (!column) return { layout: 'none', group: null, closedGroup: 'none' };
 		const open = column.querySelector('#open ul.rows');
 		const closed = column.querySelector('#closed ul.rows');
-		if (!open && closed) {
-			const details = closed.closest('details');
-			if (details) details.open = true;
-		}
+		const details = closed?.closest('details');
+		if (details && (!open || unfold)) details.open = true;
+		let closedGroup = 'none';
+		if (closed) closedGroup = details && !details.open ? 'folded' : 'unfolded';
 		const drawn = (element) => Boolean(element) && getComputedStyle(element).display !== 'none';
 		const pane = split.querySelector('.pane');
 		let layout = 'pane under the list';
@@ -498,8 +502,8 @@ function readLayout() {
 		else if (pane.getBoundingClientRect().left >= column.getBoundingClientRect().right - 0.5) {
 			layout = 'split';
 		}
-		return { layout, group: open ? 'open' : closed ? 'closed' : null };
-	});
+		return { layout, group: open ? 'open' : closed ? 'closed' : null, closedGroup };
+	}, unfoldClosed);
 }
 
 async function audit({
@@ -537,9 +541,10 @@ async function audit({
 	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
 	entry.auditedWidth = await page.evaluate(() => innerWidth);
-	const read = await readLayout();
+	const read = await readLayout(layout === 'list');
 	entry.auditedLayout = read.layout;
 	entry.auditedGroup = read.group;
+	entry.auditedClosed = read.closedGroup;
 	if (entry.loadProblem) {
 		await page.setViewportSize(AUDIT_VIEWPORT);
 		return entry;

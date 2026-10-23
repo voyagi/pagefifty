@@ -649,6 +649,15 @@ export function expectedListLayout(page) {
 	return page.layout;
 }
 
+// Whether a phone list entry left its closed rows unaudited. Beside a tender the list column
+// scrolls rows out of its visible box, and their undecided contrast is accepted only because each
+// phone entry draws every row in full, so the driver unfolds the closed group there before axe runs
+// (readLayout). A group it reports folded, or does not report at all, is never a pass.
+export function closedRowsUnaudited(page) {
+	if (page.layout !== 'list') return false;
+	return page.auditedClosed !== 'unfolded' && page.auditedClosed !== 'none';
+}
+
 // A check whose probe the example capture lacks did not run, which is never a pass: it is printed
 // as such and kept out of the passed count. Only a required probe's check could fail this way, and
 // exampleFacts stops the run before any driver when one is missing.

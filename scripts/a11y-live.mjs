@@ -30,6 +30,7 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	closedRowsUnaudited,
 	exampleFacts,
 	expectedListLayout,
 	marginWarnings,
@@ -60,7 +61,11 @@ function reportPage(page) {
 	const accepted = page.acceptedIncomplete.length;
 	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
 	const group = page.auditedGroup ? ` from the ${page.auditedGroup} group` : '';
-	const layout = page.layout ? ` as ${page.auditedLayout}${group}` : '';
+	const closed =
+		page.auditedClosed && page.auditedClosed !== 'none'
+			? `, closed group ${page.auditedClosed}`
+			: '';
+	const layout = page.layout ? ` as ${page.auditedLayout}${group}${closed}` : '';
 	const shot = page.shots ? page.screenshot : 'no shots, its route and theme have them';
 	const followed = page.followed ? ` | reached ${page.followed} by its row` : '';
 	console.log(
@@ -133,6 +138,16 @@ function verdict(result) {
 				`${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}, expected ${expectedListLayout(page)}`
 		);
 		console.error(`a11y: a list page did not show the layout its entry names: ${named.join(', ')}`);
+		return 2;
+	}
+	// The driver accepts undecided contrast on rows the list column scrolled out of view only because
+	// each phone entry decides every row, the closed ones with them.
+	const folded = audited.filter(closedRowsUnaudited);
+	if (folded.length > 0) {
+		const named = folded.map(
+			(page) => `${page.slug} ${page.theme} (closed group ${page.auditedClosed ?? 'not reported'})`
+		);
+		console.error(`a11y: a phone list left its closed rows unaudited: ${named.join(', ')}`);
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {

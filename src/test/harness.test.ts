@@ -7,6 +7,7 @@ import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 import { REASON_LINES } from '../lib/tenders/verdict-view';
 import {
+	closedRowsUnaudited,
 	devBrowserStatus,
 	exampleFacts,
 	expectedListLayout,
@@ -274,6 +275,32 @@ describe('the list layout the a11y run expects', () => {
 				{ auditedGroup: 'closed' }
 			].map(expectedListLayout)
 		).toEqual(['list', 'list', 'split', undefined]);
+	});
+});
+
+// The a11y run accepts undecided contrast on rows scrolled out of the list column beside a tender
+// because each phone entry decides every row, so it stops on a phone entry whose closed group the
+// driver's readLayout left folded or did not report.
+describe('the closed rows the a11y run must audit', () => {
+	it('passes a phone list whose closed group was unfolded, or that had none', () => {
+		expect(closedRowsUnaudited({ layout: 'list', auditedClosed: 'unfolded' })).toBe(false);
+		expect(closedRowsUnaudited({ layout: 'list', auditedClosed: 'none' })).toBe(false);
+	});
+
+	it('stops on a phone list whose closed group stayed folded or went unreported', () => {
+		expect(closedRowsUnaudited({ layout: 'list', auditedClosed: 'folded' })).toBe(true);
+		expect(closedRowsUnaudited({ layout: 'list' })).toBe(true);
+	});
+
+	// A wide entry and a page with no list make no claim about the closed rows.
+	it('asks nothing of a wide list or a page with no list', () => {
+		expect(
+			[
+				{ layout: 'split', auditedClosed: 'folded' },
+				{ layout: 'split' },
+				{ auditedClosed: 'folded' }
+			].map(closedRowsUnaudited)
+		).toEqual([false, false, false]);
 	});
 });
 
