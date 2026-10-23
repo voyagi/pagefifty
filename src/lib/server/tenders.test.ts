@@ -1,9 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { noticeDeadline } from '../core/deadline';
-import { DEMO_PROFILE } from '../profile/demo-firm';
 import { captureDay, SnapshotIndexSchema } from '../snapshot/index-row';
-import { lotVerdict } from '../tenders/verdict-view';
 
 // read() needs the adapter's implementation, which only a built app provides. The stand-in reads
 // the asset URL that Vite gave the generated file, from disk, the way vite dev does.
@@ -239,16 +237,12 @@ describe('the example run', () => {
 	});
 
 	// The list rule alone would open an earlier notice the model read; the featured one is opened
-	// instead because its first lot with a verdict is the demo firm's Not met alone.
-	it('opens the featured near miss, a decided verdict for the demo firm, ahead of the list rule', async () => {
+	// instead. That it is the demo firm's near miss needs the profile, which no server module may
+	// reach, so src/lib/tenders/featured-notice.test.ts checks it.
+	it('opens the featured near miss ahead of the list rule', async () => {
 		const { open } = (await exampleList()).list;
 		expect(defaultNotice(EXAMPLE_CAPTURE, open)).not.toBe(FEATURED_NOTICE);
 		expect(exampleNotice(EXAMPLE_CAPTURE, open)).toBe(FEATURED_NOTICE);
-		const { tender } = await loadExamplePage({ notice: FEATURED_NOTICE });
-		const verdicts = tender.lots.map(
-			(lot) => lotVerdict(lot, DEMO_PROFILE, tender.now, tender.documents)?.decision.verdict
-		);
-		expect(verdicts.find((verdict) => verdict !== undefined)).toBe('PARTNER NEEDED');
 	});
 
 	it('opens by the list rule when a filter leaves the featured notice out', async () => {
