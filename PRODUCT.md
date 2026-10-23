@@ -12,7 +12,7 @@ The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Be
 
 ## Product Purpose
 
-Pagefifty reads an open tender's own published selection criteria, checks each one against the firm's profile, and returns GO, NO-GO or ASK FIRST. Every clause behind the verdict is quoted from the tender's text, linked to its source, and read back in plain English.
+Pagefifty reads an open tender's own published selection criteria, checks each one against the firm's profile, and returns GO, NO-GO, NOT MET ALONE or ASK FIRST. Every clause behind the verdict is quoted from the tender's text, linked to its source, and read back in plain English.
 
 Success is a firm that drops a tender it could never win within minutes, or goes ahead knowing it meets every published criterion that was read, and knowing which criteria were not read. For the hackathon, success is a judge with three minutes seeing a real open tender, the knock-out clause quoted and read in plain English, the verdict, and one measured number with its inference cost.
 
@@ -24,20 +24,19 @@ It never gives a verdict the source does not support. Eligibility checkers answe
 
 ## Operating Context
 
-- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE, then extended through per-portal document pack readers (DTVP, TenderNed) where packs are openly readable, and Tavily extract and search for the rest.
+- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE. The notice itself is read; the document packs are not read in this version. One Tavily search per notice looks for the buyer's earlier awards, shown as unchecked web results that change no verdict.
 - The national portals the user must eventually bid through (TenderNed, DTVP, e-Vergabe, publicprocurement.be) are plain government interfaces. Pagefifty is used before them.
 - Selection criteria arrive as typed eForms codes with numeric parameters, plus free text in German, Dutch or French.
 - The firm profile (headcount by role, three years of turnover, certificates, reference projects, countries, languages) lives in the browser and is exported as a JSON file the user keeps.
-- Where a buyer demands a yearly turnover above two times the published estimated value (Directive 2014/24/EU Article 58(3)), the user gets a drafted clarification question and a calendar reminder for the question deadline.
 
 ## Capabilities and Constraints
 
-- Verdicts: GO, NO-GO, ASK FIRST. No readable criteria means ASK FIRST, never GO. A miss the firm could meet through a partner or by relying on another firm's capacity is its own state, not a flat NO-GO.
+- Verdicts: GO, NO-GO, NOT MET ALONE, ASK FIRST. No readable criteria means ASK FIRST, never GO. NOT MET ALONE is a miss the firm could meet through a partner or by relying on another firm's capacity (Directive 2014/24/EU, Article 63), kept apart from a flat NO-GO.
 - A Nemotron model on Nebius Token Factory reads free-text criteria into structured requirements with a verbatim quote. Code verifies the quote against the source, parses every number and decides every comparison. The model never overrules a numeric comparison.
-- Document packs are read only through adapters proven on a real notice; any other portal shows "documents not read yet" with its link.
+- Document packs are not read in this version. A lot whose criteria sit in the procurement documents or the ESPD says "Documents not read yet" and never reads GO.
 - A captured real run replays with no key and no install, so the product works in demo without live metered calls. Live calls sit behind one switch the owner flips.
 - Non-goals: no bid writing, no legal advice, no accounts, no payments, no portals behind a login, no messages sent, no automatic submission.
-- Pages planned: Home, Tenders, Tender verdict, Profile, Examples, How it works and limits, Privacy, AI disclosure, 404.
+- Pages: Home, Tenders, Tender verdict, Firm profile, Example run, How the AI is used (which also states the limits), Privacy, and an error page.
 - Stack is set by the codebase: SvelteKit 2, Svelte 5, Cloudflare Workers with static assets.
 
 ## Brand Commitments
