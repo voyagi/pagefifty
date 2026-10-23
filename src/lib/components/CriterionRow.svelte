@@ -30,11 +30,15 @@
 	// Each requirement is marked where code found it in the clause, numbered as its reading is, so
 	// the quote shows once, in its place, even where it runs from one description into the next.
 	const marks = $derived(criterionMarks(criterion.descriptions, requirements, decides));
-	const provenance = $derived(
-		(criterion.requirements?.length ?? 0) + (criterion.rejected?.length ?? 0) === 0
-			? 'Read by the model, which named no requirement in this clause.'
-			: 'Read by the model. Code found each quote shown here word for word in this clause.'
-	);
+	// A clause whose every quote was refused shows no quote, so it never claims one was found.
+	const provenance = $derived.by(() => {
+		if (requirements.length > 0) {
+			return 'Read by the model. Code found each quote shown here word for word in this clause.';
+		}
+		return (criterion.rejected?.length ?? 0) > 0
+			? 'Read by the model. Code found none of its quotes word for word in this clause.'
+			: 'Read by the model, which named no requirement in this clause.';
+	});
 </script>
 
 <li class="clause" data-criterion={criterion.position}>

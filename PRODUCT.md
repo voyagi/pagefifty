@@ -18,13 +18,13 @@ Success is a firm that drops a tender it could never win within minutes, or goes
 
 ## Positioning
 
-Pagefifty leads with the clause that rules the firm out. The rule that knocks a small firm out (a minimum headcount per role, a turnover floor, a certificate, three reference projects of a given size) is never on page one; it waits deep in the notice and the document pack. Pagefifty shows that exact clause, quoted and sourced, and shows the ruled-out tenders as loudly as the ones the firm can bid on.
+Pagefifty leads with the clause that rules the firm out. The rule that knocks a small firm out (a minimum headcount per role, a turnover floor, a certificate, three reference projects of a given size) is never on page one; it waits deep in the notice and the document pack. Where the notice publishes that clause, Pagefifty shows it exactly, quoted and sourced, and shows the ruled-out tenders as loudly as the ones the firm can bid on.
 
 It never gives a verdict the source does not support. Eligibility checkers answer yes or no; Pagefifty shows which published selection criterion the firm does not meet on its own, quotes the clause with its source, and proves it with the buyer's own words. A verdict covers the criteria it read, never every condition for taking part.
 
 ## Operating Context
 
-- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE. The notice itself is read; the document packs are not read in this version. One Tavily search per notice looks for the buyer's earlier awards, shown as unchecked web results that change no verdict.
+- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE. The notice itself is read; the document packs are not read in this version. One Tavily search per notice that publishes its criteria and names a buyer looks for that buyer's earlier awards, shown as unchecked web results that change no verdict.
 - The national portals the user must eventually bid through (TenderNed, DTVP, e-Vergabe, publicprocurement.be) are plain government interfaces. Pagefifty is used before them.
 - Selection criteria arrive as typed eForms codes with numeric parameters, plus free text in German, Dutch or French.
 - The firm profile (headcount by role, three years of turnover, certificates, reference projects, countries, languages) lives in the browser and is exported as a JSON file the user keeps.
@@ -34,7 +34,7 @@ It never gives a verdict the source does not support. Eligibility checkers answe
 - Verdicts: GO, NO-GO, NOT MET ALONE, ASK FIRST. No readable criteria means ASK FIRST, never GO. NOT MET ALONE is a miss the firm could meet through a partner or by relying on another firm's capacity (Directive 2014/24/EU, Article 63), kept apart from a flat NO-GO.
 - A Nemotron model on Nebius Token Factory reads free-text criteria into structured requirements with a verbatim quote. Code verifies the quote against the source, parses every number and decides every comparison. The model never overrules a numeric comparison.
 - Document packs are not read in this version. A lot whose criteria sit in the procurement documents or the ESPD says "Documents not read yet" and never reads GO.
-- A captured real run replays with no key and no install, so the product works in demo without live metered calls. Live calls sit behind one switch the owner flips.
+- A captured real run replays with no key and no install, so the product works in demo without live metered calls. Live calls happen only in the capture command, and only when the owner sets the go-live switch and passes the command's `--live` flag together.
 - Non-goals: no bid writing, no legal advice, no accounts, no payments, no portals behind a login, no messages sent, no automatic submission.
 - Pages: Home, Tenders, Tender verdict, Firm profile, Example run, How the AI is used (which also states the limits), Privacy, and an error page.
 - Stack is set by the codebase: SvelteKit 2, Svelte 5, Cloudflare Workers with static assets.

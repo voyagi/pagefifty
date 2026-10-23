@@ -2,12 +2,13 @@
 
 The rule your firm can't meet alone is on page fifty. Read it first.
 
-**See it run:** https://pagefifty.atfyigtaran.workers.dev, no account and no upload. Start with
+**See it run:** [pagefifty.atfyigtaran.workers.dev](https://pagefifty.atfyigtaran.workers.dev), no
+account and no upload. Start with
 [notice 713597-2026](https://pagefifty.atfyigtaran.workers.dev/example/713597-2026), a near miss.
 
 **The recorded run:** [examples/2026-10-22/](examples/2026-10-22/) holds every notice, model
-reading and search the site replays. Replay it on your machine with no key: `npm install`, then
-`npm run dev`.
+reading and search the site replays. Replay it on your machine with no key and Node 24.15 or newer:
+`npm install`, then `npm run dev`.
 
 Pagefifty tells a small IT firm in the Netherlands, Belgium or Germany whether it meets an open EU
 tender's published selection criteria, before anyone spends two days on a bid. It quotes the clause
@@ -45,8 +46,8 @@ code found none of its three quotes and the criterion reads "Not read".
 
 ![The recorded run: nvidia/nemotron-3-super-120b-a12b on Nebius Token Factory in us-central1, 293,177 input tokens, 208,761 output tokens, 0 reasoning tokens, USD 0.275838, 1,789 quotes verified and 76 rejected](docs/images/record.png)
 
-The page "How the AI is used" shows the model, its region, the tokens and the cost of the run the
-site serves.
+The page [How the AI is used](https://pagefifty.atfyigtaran.workers.dev/ai) shows the model, its
+region, the tokens and the cost of the run the site serves.
 
 ## How it works
 
@@ -101,6 +102,8 @@ the newest capture made with `--open-after` at or after the submission cutoff (3
 CET).
 
 ## Setup
+
+Node 24.15 or newer, as `.nvmrc` and the `engines` field of `package.json` say.
 
 ```sh
 npm install
