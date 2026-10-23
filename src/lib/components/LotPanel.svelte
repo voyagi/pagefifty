@@ -62,6 +62,16 @@
 	<span lang={text.lang} data-notice-text>{text.text}</span>
 {/snippet}
 
+<!-- A model answer for a clause this lot does not have holds the lot at ASK FIRST, and no clause
+     below would show why, so the lot says it once. -->
+{#snippet unplaced()}
+	{#if lot.reading?.status === 'read'}
+		{#each lot.reading.unplaced ?? [] as line (line)}
+			<NotReadLine {line} />
+		{/each}
+	{/if}
+{/snippet}
+
 <!-- A record reads as the portals' do: the lot's name, its verdict, the clause that decides it, the
      other requirements, then the lot's facts with the rest of what the notice publishes. -->
 <Panel id={lot.anchor} labelledby={headingId} ruled>
@@ -107,11 +117,13 @@
 					</ol>
 				</details>
 			{/if}
+			{@render unplaced()}
 		{:else}
 			<Label>Requirements in this lot</Label>
 			{#if lot.reading?.status === 'not-read'}
 				<NotReadLine line={lot.reading.line} />
 			{/if}
+			{@render unplaced()}
 			{#if count > 0}
 				<ol class="clauses">
 					{#each lot.criteria as criterion (criterion.position)}

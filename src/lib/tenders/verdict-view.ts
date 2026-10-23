@@ -75,6 +75,9 @@ export const ARTICLE_63_LINE =
 // or will get.
 export const REASON_LINES = {
 	GO: "Every selection criterion read in the notice is met by the figures compared. This covers only the selection criteria read, not exclusion grounds, declarations or the buyer's shortlisting.",
+	// A lot whose criteria are all for information or not assessed compared no figure at all.
+	'GO/nothing-compared':
+		"No selection criterion read in the notice sets a figure the firm must reach: each one read is for information, or is not assessed in this version. This covers only the selection criteria read, not exclusion grounds, declarations or the buyer's shortlisting.",
 	'PARTNER NEEDED': 'The firm falls short on its own on the criteria named here.',
 	'NO-GO':
 		'A criterion named here rules the firm out on its own, and the notice leaves no route through another firm.',
@@ -99,9 +102,9 @@ export const REASON_LINES = {
 	'profile-field-missing/no-profile':
 		'With no firm profile in this browser, no criterion could be compared.',
 	'profile-field-missing/net-below-gross-floor':
-		'The buyer states a gross floor, and the net figures in the profile fall below it, so the comparison stays open.',
+		'The notice does not state this floor as net, and the net figures in the profile do not clear it, so the comparison stays open.',
 	'profile-field-missing/no-comparator':
-		'A figure equals the floor, and the notice does not say whether equal is enough.',
+		'A figure equals the floor, and this version cannot tell from the notice whether equal is enough.',
 	'profile-field-missing/period-unstated':
 		"The notice does not say which years count, and the firm's years fall on both sides of the floor.",
 	'profile-field-missing/certificate-scope':
@@ -121,6 +124,8 @@ export const REASON_LINES = {
 		'A criterion of a kind this version does not compare is shown as published.',
 	'not-compared/optional':
 		'A requirement its reading marks as optional or scored is shown as published and not compared in this version.',
+	'not-compared/other-lot':
+		'A requirement the clause states for another lot of this notice, or one this version cannot tie to this lot, is shown as published and not compared for this lot.',
 	'not-compared/reserved':
 		'Whether the lot is reserved for certain operators is not compared with the profile in this version.',
 	'criteria-in-documents':
@@ -338,8 +343,14 @@ function documentsKey(input: LotView['verdictInput']): ReasonKey {
 	return 'criteria-in-documents';
 }
 
+const COMPARED_STATES: ReadonlySet<CriterionState | undefined> = new Set(['MET', 'MET_WITH_TASK']);
+
 function reasonOf(decided: ReadLotDecision, lot: LotView): string {
 	const { decision } = decided;
+	if (decision.verdict === 'GO') {
+		const compared = decided.criteria.some((outcome) => COMPARED_STATES.has(outcome.state));
+		return REASON_LINES[compared ? 'GO' : 'GO/nothing-compared'];
+	}
 	if (decision.verdict !== 'ASK FIRST') return REASON_LINES[decision.verdict];
 	switch (decision.reason) {
 		case 'route-unsettled':

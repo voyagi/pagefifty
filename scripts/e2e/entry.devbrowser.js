@@ -49,11 +49,13 @@ try {
 		desk.body.includes(PURPOSE) ? 'present' : 'missing'
 	);
 	const latest = config.latest;
+	const counted =
+		latest.rows === latest.total ? `${latest.rows}` : `${latest.rows} of the ${latest.total}`;
 	const expectedCapture = latest.firstPublished
-		? `Snapshot: ${latest.total} IT notices published from ${latest.firstPublished} that TED listed as active on ${latest.capturedOn}.`
-		: `Snapshot: ${latest.total} IT notices TED listed as active on ${latest.capturedOn}.`;
+		? `Snapshot: ${counted} IT notices published from ${latest.firstPublished} that TED listed as active on ${latest.capturedOn}.`
+		: `Snapshot: ${counted} IT notices TED listed as active on ${latest.capturedOn}.`;
 	check(
-		"the capture line gives the newest capture's TED count, window and day",
+		"the capture line gives the newest capture's served and TED counts, window and day",
 		desk.capture === expectedCapture,
 		`capture "${desk.capture}", expected "${expectedCapture}"`
 	);

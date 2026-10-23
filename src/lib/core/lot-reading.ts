@@ -9,6 +9,7 @@ import { normalizeCriterionText } from './document-pointer.ts';
 import { familyOf, type CriterionFamily } from './families.ts';
 import {
 	amountsIn,
+	lotsNamed,
 	parseCount,
 	parseMoney,
 	parsePeriod,
@@ -67,6 +68,9 @@ export interface CriterionReading {
 	// Every amount code reads in each description is one some verified quote names: a model can
 	// return one floor of a clause and leave out another, and quote checks prove only what it returned.
 	readonly everyAmountQuoted: boolean;
+	// The lot numbers any description names, each read in its own language: a quote can leave out the
+	// lot label its clause puts it under.
+	readonly lots: readonly number[];
 }
 
 export interface LotReading {
@@ -181,10 +185,13 @@ function readRequirement(
 	};
 }
 
-// A staff floor is a count of people, so its clause holds an amount when code reads a count in it.
+// A staff floor is a count of people, so its clause holds an amount when code finds a count in it.
+// An amount code refuses to read ("EUR 1 Mill.", "1'000'000 EUR") is still one the clause states,
+// and a registration clause can state either kind ("Zudem mindestens 20 Mitarbeiter").
 function hasAmount(text: string, family: CriterionFamily, lang: string | undefined): boolean {
-	const reading = family === 'staff-average' ? parseCount(text, lang) : parseMoney(text, lang);
-	return reading.kind !== 'none';
+	const holds = (staff: boolean) => amountsIn(text, staff, lang)?.length !== 0;
+	if (family === 'not-assessed') return holds(false) || holds(true);
+	return holds(family === 'staff-average');
 }
 
 function tally(amounts: readonly number[]): Map<number, number> {
@@ -272,7 +279,10 @@ export function readLot({
 					criterion.descriptions.some((description) =>
 						hasAmount(description.text, family, description.lang)
 					),
-				everyAmountQuoted: everyAmountQuoted(family, criterion.descriptions, found[index].verified)
+				everyAmountQuoted: everyAmountQuoted(family, criterion.descriptions, found[index].verified),
+				lots: criterion.descriptions.flatMap((description) =>
+					lotsNamed(description.text, description.lang)
+				)
 			};
 		}),
 		unplaced,

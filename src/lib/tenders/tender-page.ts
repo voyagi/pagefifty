@@ -99,8 +99,10 @@ export const REJECTED_LINES: Readonly<Record<RejectedReason, string>> = {
 		'Not read: the model named a clause this lot does not have, so its answer is not used.'
 };
 
+// unplaced: one line per kind of model answer for a clause the lot does not have. Such an answer
+// holds the lot at ASK FIRST, and no clause of the lot would show why.
 type LotReadingView =
-	| { status: 'read'; model: string }
+	| { status: 'read'; model: string; unplaced?: string[] }
 	| { status: 'no-criteria' }
 	| { status: 'not-read'; reason: NotReadReason; line: string };
 
@@ -292,9 +294,16 @@ function lotReadingOf(
 	const stored = readings?.readings.find(
 		(each) => listed?.status === 'read' && each.textSha256 === listed.textSha256
 	);
+	const unplaced = [
+		...new Set(status.reading.unplaced.map(({ reason }) => REJECTED_LINES[reason]))
+	];
 	return {
 		status,
-		view: { status: 'read', model: stored?.model ?? '' },
+		view: {
+			status: 'read',
+			model: stored?.model ?? '',
+			...(unplaced.length > 0 && { unplaced })
+		},
 		reading: status.reading
 	};
 }

@@ -5,7 +5,15 @@
 import type { LotCoverageInput } from './coverage-facts.ts';
 import { SERVER_TIME_ZONE, cetDayEnd, formatDay } from './deadline.ts';
 import { codePeriodOf, type CriterionFamily } from './families.ts';
-import type { CountReading, MoneyReading, PeriodReading } from './figures.ts';
+import {
+	lotsNamed,
+	lotsTitled,
+	namesBusinessField,
+	namesFloor,
+	type CountReading,
+	type MoneyReading,
+	type PeriodReading
+} from './figures.ts';
 import type {
 	CriterionReading,
 	LotReading,
@@ -43,6 +51,10 @@ export interface LotContext {
 	readonly coverage: LotCoverageInput;
 	readonly cancelIntent: boolean;
 	readonly reserved: string | undefined;
+	// The lot's id (LOT-0001) and its own title, so a floor a shared clause states for another lot
+	// is not this lot's.
+	readonly lot?: string;
+	readonly lotTitle?: { readonly text: string; readonly lang?: string };
 }
 
 export type OutcomeWhy =
@@ -78,6 +90,7 @@ export type OutcomeWhy =
 	| 'period-disagrees'
 	| 'family'
 	| 'optional'
+	| 'other-lot'
 	| 'reserved';
 
 export interface RequirementOutcome {
@@ -298,7 +311,22 @@ function staffCheck(
 	const window = windowOf(requirement.period, recorded, context);
 	if (window === undefined) return 'missing';
 	const figures = window.map((year) => held.get(year));
-	return checkYears(requirement.period.mode, figures, count, COUNT_SCALE);
+	const { mode } = requirement.period;
+	if (mode !== 'average') return checkYears(mode, figures, count, COUNT_SCALE);
+	// The staff measure is itself an average ("average annual manpower", "durchschnittliche
+	// jährliche Beschäftigtenzahl"), so an average word alone may name the measure rather than a
+	// mean over the years: MET only when every year meets the floor, a shortfall when even the
+	// mean falls short (then some year does too), and anything between stays open.
+	const everyYear = checkYears('unstated', figures, count, COUNT_SCALE);
+	if (everyYear === 'pass') return 'pass';
+	const mean = checkYears('average', figures, count, COUNT_SCALE);
+	if (mean === 'fail' || mean === 'missing') return mean;
+	// Years on both sides of the floor only when one falls below it; with none below, the open
+	// question is whether a year equal to the floor is enough.
+	const below = figures.some(
+		(figure) => figure !== undefined && checkCount(figure, count) === 'fail'
+	);
+	return below ? 'period-unstated' : everyYear;
 }
 
 // The amount, and the model's agreement with it, before any figure of the firm is read.
@@ -319,9 +347,12 @@ function readFigure(
 		// A floor written in a form code cannot read, such as the noun-first "Mindestmitarbeiterzahl
 		// ... mindestens 25", reads no amount anywhere. The prompt gives "" for a clause with no
 		// threshold (token-factory.ts), so a number the model names withholds the clause rather than
-		// let INFO pass a smaller firm as GO.
-		return item.numberText.trim() !== ''
-			? decided('NOT_READ', 'model-number-differs', item)
+		// let INFO pass a smaller firm as GO. A floor with no number at all ("das Zweifache des
+		// geschätzten Auftragswerts") gets "" too, so a quote or a clause stating a floor is not read
+		// either: a quote can leave out the floor its clause goes on to state.
+		if (item.numberText.trim() !== '') return decided('NOT_READ', 'model-number-differs', item);
+		return namesFloor(item.quote) || namesFloor(reading.text)
+			? decided('NOT_READ', 'no-amount', item)
 			: decided('INFO', 'request-without-minimum', item);
 	}
 	const agrees = staff ? requirement.modelNumber.count : requirement.modelNumber.money;
@@ -353,10 +384,14 @@ function decideFigure(
 	const check = turnoverCheck(requirement, money as OneMoney, firm, context, reading.code);
 	if (check === 'fewer-years') return decided('PROFILE_GAP', 'fewer-years', item);
 	// Specific turnover is at most general turnover, so a general figure can prove a shortfall but
-	// never a pass: only the firm can tell which business line fits the buyer's field.
-	if (check === 'pass' && reading.family === 'turnover-specific') {
-		return decided('PROFILE_GAP', 'firm-judges', item);
-	}
+	// never a pass: only the firm can tell which business line fits the buyer's field. A general
+	// code whose quote or clause confines the turnover to a field asks for a specific one too: a
+	// quote can stop before the field its clause goes on to name.
+	const specific =
+		reading.family === 'turnover-specific' ||
+		namesBusinessField(item.quote) ||
+		namesBusinessField(reading.text);
+	if (check === 'pass' && specific) return decided('PROFILE_GAP', 'firm-judges', item);
 	return fromCheck(check, item, context, restricted);
 }
 
@@ -405,21 +440,52 @@ function decideCertificate(
 
 // Families whose state the code alone sets, whatever the model said about the clause.
 function familyOutcome(
-	family: CriterionFamily,
+	reading: CriterionReading,
 	firm: FirmFacts | null
 ): RequirementOutcome | undefined {
-	switch (family) {
+	switch (reading.family) {
 		case 'firm-judges':
 			return decided('PROFILE_GAP', firm === null ? 'no-profile' : 'firm-judges');
 		case 'insurance':
 			return withheld('insurance');
 		case 'not-assessed':
-			return decided('INFO', 'not-assessed');
+			// A registration clause can also state a floor ("Zudem ist ein Mindestjahresumsatz von
+			// 1.000.000 EUR nachzuweisen"), which INFO would let pass unread as GO.
+			return reading.textHasAmount ? withheld('family') : decided('INFO', 'not-assessed');
 		case 'not-compared':
 			return withheld('family');
 		default:
 			return undefined;
 	}
+}
+
+const LOT_ID = /^LOT-(\d+)$/u;
+
+// A clause every lot shares can state one floor per lot ("Los 1: 6 Mio. EUR netto", "Los 2: 2,5
+// Mio. EUR netto"), and a quote naming only other lots states none of this one's. The lot's id
+// gives its number only while its own title names no other: 731406-2026 in the 2026-10-22 capture
+// publishes its "Los 1b" as LOT-0002 and its "Los 2a" as LOT-0003. When the lot's own number
+// cannot be told, a quote naming any lot is not compared either.
+function ownLot(context: LotContext): number | undefined {
+	const id = LOT_ID.exec(context.lot ?? '')?.[1];
+	if (id === undefined) return undefined;
+	const own = Number.parseInt(id, 10);
+	const { lotTitle } = context;
+	const titled = lotTitle === undefined ? [] : lotsTitled(lotTitle.text, lotTitle.lang);
+	return titled?.every((number) => number === own) ? own : undefined;
+}
+
+// A quote naming no lot can still sit under a lot label of its clause ("Los 2: 6 Mio. EUR netto"
+// quoted as "6 Mio. EUR netto"). Which label is not told, so it is compared only while every lot
+// the clause names is this one.
+function forOtherLot(
+	requirement: VerifiedRequirement,
+	clauseLots: readonly number[],
+	own: number | undefined
+): boolean {
+	const named = lotsNamed(requirement.item.quote, requirement.lang);
+	if (named.length === 0) return clauseLots.some((lot) => lot !== own);
+	return own === undefined || !named.includes(own);
 }
 
 function outcomeOf(requirements: readonly RequirementOutcome[]): CriterionOutcome {
@@ -437,13 +503,17 @@ export function decideCriterion(
 	context: LotContext,
 	restricted: boolean
 ): CriterionOutcome {
-	const byFamily = familyOutcome(reading.family, firm);
+	const byFamily = familyOutcome(reading, firm);
 	if (byFamily) return outcomeOf([byFamily]);
+	const own = ownLot(context);
 	const requirements = [
 		...reading.verified.map((requirement) => {
 			// The model marks an item optional, scored or a request for information (the prompt in
 			// token-factory.ts), so such an item is never compared and cannot set a shortfall.
 			if (requirement.item.mandatory !== true) return withheld('optional', requirement.item);
+			if (forOtherLot(requirement, reading.lots, own)) {
+				return withheld('other-lot', requirement.item);
+			}
 			return reading.family === 'certificate'
 				? decideCertificate(requirement, firm, context)
 				: decideFigure(reading, requirement, firm, context, restricted);

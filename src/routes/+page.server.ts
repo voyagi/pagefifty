@@ -15,12 +15,15 @@ async function exampleRecord(origin: string) {
 // module decides a verdict or reaches the profile, so the example card's verdict is decided on the
 // page, as on every tender page. A latest capture the model never read has no figure.
 export const load: PageServerLoad = async ({ url }) => {
-	const [{ capture }, example] = await Promise.all([
+	const [{ capture, rows }, example] = await Promise.all([
 		loadIndex(LATEST_CAPTURE),
 		exampleRecord(url.origin)
 	]);
 	const { capturedOn, firstPublished } = captureFacts(capture);
+	// TED's count also holds the notices the capture left out (closing before the cutoff, failed or
+	// outdated), while the figure and /tenders count the rows served, so both counts are passed.
 	return {
+		served: rows.length,
 		total: capture.total,
 		capturedOn,
 		...(firstPublished && { firstPublished }),

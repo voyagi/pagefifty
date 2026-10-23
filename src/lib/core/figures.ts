@@ -68,7 +68,9 @@ function lastMarkIsDecimal(
 	if (marks.some((each) => each !== mark && each !== ' ')) return true;
 	if (last.length !== 3) return true;
 	if (lang === 'en') return mark === '.';
-	return lang !== undefined && LONE_THOUSANDS.has(lang) ? false : undefined;
+	// The comma is the decimal mark in German, Dutch and French: "1,250 Mio. EUR" is 1.25 million,
+	// and "1,500 EUR" (three decimals of a euro) is then refused by toCents.
+	return lang !== undefined && LONE_THOUSANDS.has(lang) ? mark === ',' : undefined;
 }
 
 function groupedWhole(groups: readonly string[], marks: readonly string[]): string | undefined {
@@ -121,9 +123,11 @@ const MAGNITUDES: Readonly<Record<string, number>> = {
 	millions: 6
 };
 // A floor read without its multiplier would be met by every firm ("2 Mrd. EUR" as 2 euros), so a
-// word that may be a multiplier this parser does not know refuses the amount instead.
+// word that may be a multiplier this parser does not know refuses the amount instead. After a
+// currency that comes first ("EUR 1 Mill.", "€1m", "EUR 2 Md") only this list stands between the
+// word and a reading in euros, so it names the short forms too.
 const UNKNOWN_MAGNITUDE =
-	/^(?:mrd|milliarden?|mia|bn|billions?|milliards?|miljard|k|tsd|tausend|duizend|mille|thousand)\.?$/iu;
+	/^(?:mrd|milliarden?|mia|bn|bln|b|billions?|milliards?|miljard|mld|md|mds|m|mm|mn|mill|mil|k|tsd|tausend|duizend|mille|thousand)\.?$/iu;
 
 type Candidate = { refused: true } | { refused: false; numeral: Numeral; power: number };
 
@@ -142,14 +146,26 @@ function powerWithCurrencyBefore(rest: string): number | 'refused' {
 	return MAGNITUDES[word.toLowerCase()] ?? 0;
 }
 
+// ",-" or ",--" closes a whole amount ("3.000.000,- €"), so the currency after it still counts.
+const ZERO_CENTS = /^,[-\u2013]{1,2}/u;
+
+// Digits held to a number by a mark this reader does not join (an apostrophe, a figure space, two
+// spaces) make it one piece of a longer number, as in "1'250'500 EUR", so the piece is refused
+// rather than read as a smaller amount. One SPACE or a line break still parts two numbers.
+const LOOSE_MARK = String.raw`(?:[^\p{L}\p{N}\s]|(?!${SPACE})[^\S\n]|\s{2,})`;
+const GLUED_BEFORE = new RegExp(String.raw`\p{N}${LOOSE_MARK}$`, 'u');
+const GLUED_AFTER = new RegExp(String.raw`^${LOOSE_MARK}\p{N}`, 'u');
+
 function candidate(text: string, match: RegExpExecArray, lang?: string): Candidate | undefined {
-	const rest = text.slice(match.index + match[0].length);
+	const before = text.slice(0, match.index);
+	const rest = text.slice(match.index + match[0].length).replace(ZERO_CENTS, '');
 	let power = powerAfter(rest);
 	if (power === 'no currency') {
-		if (!CURRENCY_BEFORE.test(text.slice(0, match.index))) return undefined;
+		if (!CURRENCY_BEFORE.test(before)) return undefined;
 		power = powerWithCurrencyBefore(rest);
 	}
-	const numeral = readNumeral(match[0], lang);
+	const glued = GLUED_BEFORE.test(before) || GLUED_AFTER.test(rest);
+	const numeral = glued ? undefined : readNumeral(match[0], lang);
 	return power === 'refused' || numeral === undefined
 		? { refused: true }
 		: { refused: false, numeral, power };
@@ -181,6 +197,7 @@ const NET_WORD = phrases(['net']);
 const AT_LEAST = phrases(
 	[
 		'mindestens',
+		'mind.',
 		'min.',
 		'minimaal',
 		'minimale',
@@ -195,9 +212,14 @@ const AT_LEAST = phrases(
 	],
 	['Mindest']
 );
+// "über" is also the preposition of nearly every German declaration ("Eigenerklärung über den
+// Umsatz"), so it names a comparator only directly before an amount.
+const OVER_AMOUNT = new RegExp(
+	String.raw`(?<![\p{L}\p{N}])über${SPACE}+(?:(?:EUR|€)${SPACE}*)?\d`,
+	'iu'
+);
 const MORE_THAN = phrases([
 	'mehr als',
-	'über',
 	'meer dan',
 	'plus de',
 	'supérieur à',
@@ -217,7 +239,10 @@ function basisOf(text: string, lang?: string): Basis {
 
 function comparatorOf(text: string): Comparator {
 	return oneOf<Comparator>(
-		{ 'at-least': AT_LEAST.test(text), 'more-than': MORE_THAN.test(text) },
+		{
+			'at-least': AT_LEAST.test(text),
+			'more-than': MORE_THAN.test(text) || OVER_AMOUNT.test(text)
+		},
 		'unstated'
 	);
 }
@@ -293,7 +318,9 @@ function countOf(raw: string, lang?: string): number | undefined {
 }
 
 const countsIn = (text: string, lang?: string) =>
-	[...text.matchAll(COUNT)].map((match) => countOf(match[1], lang));
+	[...text.matchAll(COUNT)].map((match) =>
+		GLUED_BEFORE.test(text.slice(0, match.index)) ? undefined : countOf(match[1], lang)
+	);
 
 export function parseCount(text: string, lang?: string): CountReading {
 	const counts = countsIn(text, lang);
@@ -317,10 +344,45 @@ const MODES = {
 		'par année',
 		'per year',
 		'each year',
-		'yearly'
+		'yearly',
+		// "In each of the last three years": anchored on the period word, so "in each of the lots"
+		// names no period.
+		'in each of the last',
+		'each of the last',
+		'in jedem der letzten',
+		'in jedem der vergangenen',
+		'in elk van de laatste',
+		// French puts the count between the two ("pour chacune des trois dernières années"), so "pour
+		// chacune des prestations" names no period.
+		...['', 'deux ', 'trois ', 'cinq ', '2 ', '3 ', '5 '].flatMap((count) => [
+			`chacune des ${count}dernières`,
+			`chacun des ${count}derniers`
+		])
 	]),
-	sum: phrases(['insgesamt', 'kumuliert', 'samen', 'cumulé', 'in total', 'combined']),
-	'any-one': phrases(['in einem der', 'in één van', "au cours d'un des", 'in any one of'])
+	// "Summe" and "au total" as in "(Summe der letzten drei Geschäftsjahre)" and "au total sur les 3
+	// dernières années", both in the 2026-10-22 capture.
+	sum: phrases([
+		'insgesamt',
+		'kumuliert',
+		'Summe',
+		'samen',
+		'in totaal',
+		'cumulé',
+		'au total',
+		'in total',
+		'combined'
+	]),
+	// Anchored on the period word as "each" is: "in einem der folgenden Dokumente" chooses a
+	// document, not a year, and read as any-one it would pass a floor met in one year of three.
+	'any-one': phrases([
+		'in einem der letzten',
+		'in einem der vergangenen',
+		'in één van de laatste',
+		'in één van de afgelopen',
+		"au cours d'un des",
+		'in any one of the last',
+		'in any one of the past'
+	])
 } as const;
 // Plural nouns only ("jahren?" is Jahre or Jahren): a singular follows "pro" or "je", never a count.
 const YEAR_NOUN = String.raw`(?:geschäftsjahren?|kalenderjahren?|jahren?|boekjaren|jaar|exercices|années|years)`;
@@ -445,12 +507,20 @@ export function parsePeriod(text: string, lang?: string): PeriodReading {
 	) as Record<keyof typeof MODES, boolean>;
 	const counted = yearsOf(text, lang);
 	const named = namedYears(text);
+	// A year the text names beside a count it states ("the last three years; for a new firm, from
+	// 2024") would otherwise settle the window on its own, so a count of years the named ones do not
+	// match leaves the years unread rather than compare a three-year floor on one year.
+	const conflict =
+		counted.years !== null &&
+		named !== null &&
+		named.length > 0 &&
+		new Set(named).size !== counted.years;
 	return {
 		mode: oneOf<PeriodReading['mode']>(found, 'unstated'),
 		years: counted.years,
 		// A range code cannot list leaves no named years to settle the window, so it is unread too.
-		yearsUnread: counted.yearsUnread || named === null,
-		named: named ?? []
+		yearsUnread: counted.yearsUnread || named === null || conflict,
+		named: conflict ? [] : (named ?? [])
 	};
 }
 
@@ -482,6 +552,135 @@ export function parseStandards(text: string, lang?: string): StandardsReading {
 	};
 	const join = gaps.length > 0 && gaps.every(alone) ? 'any' : gaps.some(names) ? 'mixed' : 'all';
 	return { standards: matches.map((match) => match[0]), join };
+}
+
+// A turnover the text confines to comparable work or to a field of business ("vergleichbaren
+// Leistungen", "im Tätigkeitsbereich des Auftrags", "similar services") is a specific turnover,
+// whatever code the buyer gave the criterion, so a general figure can never prove it met.
+const BUSINESS_FIELD = phrases(
+	[
+		'im Tätigkeitsbereich',
+		'im Geschäftsbereich',
+		'im Leistungsbereich',
+		'im Bereich',
+		'op het gebied van',
+		'dans le domaine',
+		'in the field of',
+		'in the area of'
+	],
+	[
+		'vergleichbar',
+		'gleichartig',
+		'bereichsspezifisch',
+		'vergelijkba',
+		'soortgelijk',
+		'similaire',
+		'comparable',
+		'similar'
+	]
+);
+
+export const namesBusinessField = (text: string): boolean => BUSINESS_FIELD.test(text);
+
+// A floor set as a multiple of the contract value names no amount ("das Zweifache des geschätzten
+// Auftragswerts"), and neither does one tied to the value itself.
+const MULTIPLE = phrases(
+	[
+		'twice',
+		'two times',
+		'three times',
+		'tweemaal',
+		'twee keer',
+		'deux fois',
+		'trois fois',
+		'le double',
+		'het dubbele'
+	],
+	['zweifach', 'dreifach', 'doppelt']
+);
+
+// Whether a text states a floor, with or without an amount code can read.
+export function namesFloor(text: string): boolean {
+	return [AT_LEAST, MORE_THAN, OVER_AMOUNT, MULTIPLE].some((pattern) => pattern.test(text));
+}
+
+// "Los 1:", "Lot n° 2", "Perceel 3", and grouped as "Lots 1 and 2", "Lose 1 bis 3", "Percelen 1 en
+// 2": the lot numbers a text names. A grouped label read as no label would let one lot's floor
+// stand for every lot. Read only in the languages this version reads, since "Los 3 últimos
+// ejercicios" is Spanish for "the last 3 years". A list needs a space after its comma, so the
+// amount in "Los 1: 2,5 Mio. EUR" never joins the lot numbers.
+const LOT_LIST = String.raw`(?:${SPACE}*[,&/+]${SPACE}+|${SPACE}+(?:und|and|en|et)${SPACE}+)`;
+const LOT_RANGE = String.raw`${SPACE}+(?:bis|to|tot|à)${SPACE}+`;
+const LOT_LABEL = new RegExp(
+	String.raw`(?<![\p{L}\p{N}])(?:Teillosen|Teillose|Teillos|Losen|Lose|Los|Lots|Lot|Percelen|Perceel)(?:${SPACE}*(?:Nr\.|nr\.|n°|no\.|No\.))?${SPACE}*(\d{1,3}(?!\p{N})(?:(?:${LOT_LIST}|${LOT_RANGE})\d{1,3}(?![.,]?\p{N}))*)`,
+	'giu'
+);
+const LOT_RANGE_WORD = /^(?:bis|to|tot|à)$/iu;
+// A wider or backward range keeps its two ends only, so the lots between are held back unread.
+const MAX_LOT_RANGE = 50;
+const LOT_LANGS: ReadonlySet<string> = new Set(['de', 'nl', 'fr', 'en']);
+
+const CURRENCY_THEN_NUMBER = new RegExp(String.raw`^${SPACE}*${CURRENCY}${SPACE}*\p{N}`, 'iu');
+
+// The offsets where a number reads as an amount, by its currency or its multiplier, read or refused.
+// A currency with an amount after it belongs to that amount ("Lose 1 und 2 EUR 6 Mio."), and a
+// one-letter word is a list mark there ("Lots 1 and 2 b)"), never a multiplier.
+function amountStarts(text: string, lang?: string): ReadonlySet<number> {
+	const starts = new Set<number>();
+	for (const match of text.matchAll(NUMBER)) {
+		const rest = text.slice(match.index + match[0].length);
+		if (CURRENCY_THEN_NUMBER.test(rest)) continue;
+		const word = WORD_NEXT.exec(rest)?.[1] ?? '';
+		const multiplied =
+			word.length > 1 &&
+			(Object.hasOwn(MAGNITUDES, word.toLowerCase()) || UNKNOWN_MAGNITUDE.test(word));
+		if (multiplied || candidate(text, match, lang)) starts.add(match.index);
+	}
+	return starts;
+}
+
+// An amount ends a lot list, since its comma reads like one more lot: "Lots 1 and 2, 3 million EUR"
+// names lots 1 and 2, and "je Los 2 Mio. EUR" names none.
+function lotNumbersOf(match: RegExpExecArray, amounts: ReadonlySet<number>): number[] {
+	const [whole, group] = match;
+	const start = match.index + whole.length - group.length;
+	const numbers: number[] = [];
+	let range = false;
+	for (const token of group.matchAll(/(\d+)|\p{L}+/gu)) {
+		const digits = token[1];
+		if (digits === undefined) {
+			range = LOT_RANGE_WORD.test(token[0]);
+			continue;
+		}
+		if (amounts.has(start + token.index)) break;
+		const lot = Number.parseInt(digits, 10);
+		const from = numbers.at(-1);
+		if (range && from !== undefined && lot > from && lot - from <= MAX_LOT_RANGE) {
+			for (let next = from + 1; next <= lot; next += 1) numbers.push(next);
+		} else {
+			numbers.push(lot);
+		}
+		range = false;
+	}
+	return numbers;
+}
+
+export function lotsNamed(text: string, lang?: string): number[] {
+	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
+	const amounts = amountStarts(text, lang);
+	return [...text.matchAll(LOT_LABEL)].flatMap((match) => lotNumbersOf(match, amounts));
+}
+
+// The lot numbers a lot's own title names, or undefined when one has a letter after it ("Los 2b"):
+// a part of lot 2, which a quote naming "Los 2" may not mean.
+export function lotsTitled(title: string, lang?: string): number[] | undefined {
+	if (lang !== undefined && !LOT_LANGS.has(lang)) return [];
+	const matches = [...title.matchAll(LOT_LABEL)];
+	const lettered = matches.some((match) =>
+		/^\p{L}/u.test(title.slice(match.index + match[0].length))
+	);
+	const amounts = amountStarts(title, lang);
+	return lettered ? undefined : matches.flatMap((match) => lotNumbersOf(match, amounts));
 }
 
 // Every amount a text names, as cents or as headcounts, or null when code cannot read one of them,

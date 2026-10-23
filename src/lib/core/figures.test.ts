@@ -77,8 +77,15 @@ describe('parseMoney forms', () => {
 		['100.000€', 'de', one(10_000_000)],
 		['€100.000', 'nl', one(10_000_000)],
 		['1.500 EUR', 'de', one(150_000)],
-		['1,500 EUR', 'fr', one(150_000)],
 		['1,500 EUR', 'en', one(150_000)],
+		['1,250 Mio. EUR', 'de', one(125_000_000)],
+		['1,250 millions d’euros', 'fr', one(125_000_000)],
+		['1,250 miljoen euro', 'nl', one(125_000_000)],
+		['2,154 Mio. € netto', 'de', one(215_400_000, 'net')],
+		// ",-" closes a whole amount in German and Dutch money writing.
+		['3.000.000,- €', 'de', one(300_000_000)],
+		['3.000.000,-- EUR', 'de', one(300_000_000)],
+		['€ 50.000,-', 'nl', one(5_000_000)],
 		['1.500,5 €', 'de', one(150_050)],
 		['250000 EUR', 'de', one(25_000_000)],
 		['0,29 Mio. EUR', 'de', one(29_000_000)],
@@ -101,6 +108,9 @@ describe('parseMoney refusals', () => {
 		['1.500 EUR', 'en', NONE],
 		['1.500 EUR', undefined, NONE],
 		['1,500 EUR', undefined, NONE],
+		// A comma is the decimal mark in German, Dutch and French, so three decimals of a euro refuse.
+		['1,500 EUR', 'fr', NONE],
+		['1,500 EUR', 'de', NONE],
 		['1.50.000 EUR', 'de', NONE],
 		['12345.678.000 EUR', 'de', NONE],
 		['1,5.000 EUR', 'de', NONE],
@@ -167,6 +177,10 @@ describe('parseMoney comparator words', () => {
 		['supérieur à', 'fr', 'more-than'],
 		['more than', 'en', 'more-than'],
 		['exceeding', 'en', 'more-than'],
+		['mind.', 'de', 'at-least'],
+		// "über" before a noun is the preposition of a declaration, not a comparator.
+		['Eigenerklärung über einen Jahresumsatz von mindestens', 'de', 'at-least'],
+		['Erklärung über den Umsatz von', 'de', 'unstated'],
 		['mindestens mehr als', 'de', 'unstated'],
 		['Umsatz von', 'de', 'unstated'],
 		['minimalistisch', 'de', 'unstated']
@@ -297,22 +311,49 @@ describe('parsePeriod', () => {
 		['per year', 'en', 'each'],
 		['each year', 'en', 'each'],
 		['yearly', 'en', 'each'],
+		['in each of the last', 'en', 'each'],
+		['in jedem der letzten', 'de', 'each'],
+		['in elk van de laatste', 'nl', 'each'],
+		['pour chacune des dernières années', 'fr', 'each'],
+		['pour chacun des derniers exercices', 'fr', 'each'],
+		['au cours de chacune des dernières années', 'fr', 'each'],
+		['in each of the lots', 'en', 'unstated'],
+		['pour chacune des prestations', 'fr', 'unstated'],
 		['insgesamt', 'de', 'sum'],
 		['kumuliert', 'de', 'sum'],
 		['samen', 'nl', 'sum'],
+		['in totaal', 'nl', 'sum'],
+		['Summe der Jahresumsätze', 'de', 'sum'],
+		['Bilanzsumme', 'de', 'unstated'],
+		['au total', 'fr', 'sum'],
 		['cumulé', 'fr', 'sum'],
 		['in total', 'en', 'sum'],
 		['combined', 'en', 'sum'],
-		['in einem der', 'de', 'any-one'],
-		['in één van', 'nl', 'any-one'],
+		['in einem der letzten', 'de', 'any-one'],
+		['in einem der vergangenen', 'de', 'any-one'],
+		['in één van de laatste', 'nl', 'any-one'],
+		['in één van de afgelopen', 'nl', 'any-one'],
 		['au cours d’un des', 'fr', 'any-one'],
 		["au cours d'un des", 'fr', 'any-one'],
-		['in any one of', 'en', 'any-one'],
+		['in any one of the last', 'en', 'any-one'],
+		['in any one of the past', 'en', 'any-one'],
+		['in einem der folgenden Dokumente', 'de', 'unstated'],
+		['in één van de volgende documenten', 'nl', 'unstated'],
+		['in any one of the following forms', 'en', 'unstated'],
 		['durchschnittlich und insgesamt', 'de', 'unstated'],
 		['Umsatz', 'de', 'unstated'],
 		['jährlichen', 'de', 'unstated']
 	] as const)('parsePeriod reads the mode in "%s" (%s) as %s', (text, lang, mode) => {
 		expect(parsePeriod(text, lang)).toEqual(period(mode));
+	});
+
+	// French puts the count of years between "chacune des" and the period word.
+	it.each([
+		'pour chacune des trois dernières années',
+		'pour chacun des 3 derniers exercices',
+		'au cours de chacune des deux dernières années'
+	])('reads "%s" as each year across its count', (text) => {
+		expect(parsePeriod(text, 'fr').mode).toBe('each');
 	});
 
 	it.each([
@@ -338,6 +379,20 @@ describe('parsePeriod', () => {
 		['Geschäftsjahre', 'de', null]
 	] as const)('parsePeriod reads the years in "%s" (%s) as %s', (text, lang, years) => {
 		expect(parsePeriod(text, lang)).toMatchObject({ years, yearsUnread: false });
+	});
+
+	it('a named year that disagrees with the stated count of years leaves the years unread', () => {
+		const text = 'in den letzten drei Geschäftsjahren; bei Neugründung ab 2024 genügt der Umsatz';
+		expect(parsePeriod(text, 'de')).toMatchObject({ yearsUnread: true, named: [] });
+	});
+
+	it('named years that match the stated count of years settle the window', () => {
+		const text = 'in den letzten drei Geschäftsjahren (2022, 2023 und 2024)';
+		expect(parsePeriod(text, 'de')).toMatchObject({
+			years: 3,
+			yearsUnread: false,
+			named: [2022, 2023, 2024]
+		});
 	});
 
 	// The window's default of three would silently stand in for a count the text states, so a count

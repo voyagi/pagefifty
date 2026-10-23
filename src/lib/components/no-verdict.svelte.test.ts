@@ -494,6 +494,7 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 		const { container } = render(EntryPage, {
 			props: {
 				data: {
+					served: captured.length,
 					total: captured.length,
 					capturedOn: CAPTURE.capturedOn,
 					figure: null,
@@ -509,7 +510,11 @@ describe('the no-verdict property on the entry and profile pages (SPEC R3)', () 
 	// shows the verdict of one listed lot, inside its own verdict regions. Nowhere else on the page
 	// does one show, and with neither the page shows none at all.
 	it('the entry page shows verdict words only inside the figure or the example card verdict regions', () => {
-		const base = { total: captured.length, capturedOn: CAPTURE.capturedOn };
+		const base = {
+			served: captured.length,
+			total: captured.length,
+			capturedOn: CAPTURE.capturedOn
+		};
 		const without = render(EntryPage, {
 			props: { data: { ...base, figure: null, example: null } }
 		}).container;
