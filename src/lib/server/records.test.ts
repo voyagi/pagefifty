@@ -272,6 +272,27 @@ describe('the search runs and the providers the trust pages name', () => {
 		expect(read).not.toHaveBeenCalled();
 	});
 
+	// The provider fact on /ai and /privacy says the buyer searches the site shows ran on 22 October
+	// 2026, after the query-data setting was switched off on 20 October. A later capture that searches
+	// fails here until that sentence names its day.
+	it('the one served capture that searched ran on 22 October 2026, the day the provider fact names', () => {
+		const searched = [...new Set([LATEST_CAPTURE, EXAMPLE_CAPTURE])].filter(
+			(id) => (searchRunOf(id)?.searches ?? 0) > 0
+		);
+		expect(searched).toEqual([FINAL]);
+		const { startedAt, finishedAt } = JSON.parse(
+			readFileSync(`examples/${FINAL}/run.json`, 'utf8')
+		) as { startedAt: string; finishedAt: string };
+		const day = (instant: string) =>
+			new Date(instant).toLocaleDateString('en-GB', {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+				timeZone: 'Europe/Berlin'
+			});
+		expect([day(startedAt), day(finishedAt)]).toEqual(['22 October 2026', '22 October 2026']);
+	});
+
 	it('loadNoticeSearch reads the German buyer search through read(), and nothing for a notice it does not list', async () => {
 		const german = await loadNoticeSearch(SEPT, '610242-2026');
 		expect(german?.status).toBe('searched');
