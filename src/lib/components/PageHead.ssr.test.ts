@@ -50,4 +50,13 @@ describe('PageHead on the server', () => {
 		expect(content('description')).toBe(DESCRIPTION);
 		expect(decode(head.match(/<title>([^<]*)<\/title>/)?.[1] ?? '')).toBe(TITLE);
 	});
+
+	// The likeliest attack through a buyer's title: close the title element and open a script.
+	it('keeps a title that closes its own tag as text, with no script in the head', () => {
+		const hostile = 'Lot </title><script>alert(1)</script> - Pagefifty';
+		const rendered = render(PageHead, { props: { title: hostile } }).head;
+		expect(rendered.match(/<title>/g)).toHaveLength(1);
+		expect(rendered).not.toContain('<script');
+		expect(decode(rendered.match(/<title>([^<]*)<\/title>/)?.[1] ?? '')).toBe(hostile);
+	});
 });

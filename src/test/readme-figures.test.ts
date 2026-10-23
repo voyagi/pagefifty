@@ -42,7 +42,13 @@ describe('README figures', () => {
 	});
 
 	it("states the run's day, notices, cost and refused quotes as the run recorded them", () => {
-		const day = new Date(`${run.reading.runDate}T12:00:00Z`).toLocaleDateString('en-GB', {
+		const runDay = new Date(`${run.reading.runDate}T12:00:00Z`);
+		const dayMonth = runDay.toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'long',
+			timeZone: 'UTC'
+		});
+		const day = runDay.toLocaleDateString('en-GB', {
 			day: 'numeric',
 			month: 'long',
 			year: 'numeric',
@@ -53,7 +59,7 @@ describe('README figures', () => {
 		expect(README).toContain(
 			`for USD ${cost}, and code refused ${rejected} of the model's ${count(quotes)} quotes`
 		);
-		expect(README).toContain(`That was ${rejected} of ${count(quotes)} on`);
+		expect(README).toContain(`That was ${rejected} of ${count(quotes)} on ${dayMonth}.`);
 	});
 
 	it("gives the run record's tokens, cost and quote counts in the screenshot's description", () => {
