@@ -55,6 +55,7 @@ let SnapshotIndexSchema;
 let NoticeReadingsSchema;
 let ReadingRunSchema;
 let NoticeSearchSchema;
+let isTenderWebPage;
 
 function loadSiteRules() {
 	if (decideLotStatus !== undefined) return;
@@ -77,6 +78,7 @@ function loadSiteRules() {
 		'../src/lib/snapshot/readings.ts'
 	));
 	({ NoticeSearchSchema } = requireFromHarness('../src/lib/snapshot/searches.ts'));
+	({ isTenderWebPage } = requireFromHarness('../src/lib/tenders/tender-web-page.ts'));
 }
 
 export const DEV_BROWSER_TMP = join(homedir(), '.dev-browser', 'tmp');
@@ -938,11 +940,12 @@ function lotFactsOf(record, lot, readings, now, lines) {
 	};
 }
 
-// How many web results the page lists for the notice's buyer: the built count for a notice the
-// capture searched, 0 included, and null for one it did not search or a capture with no search, so
-// the verdict driver checks the links, the none-found line or the absence of the list.
+// How many web results the page lists for the notice's buyer: for a notice the capture searched, the
+// built results the page's own rule keeps as tender pages, 0 included, and null for one it did not
+// search or a capture with no search, so the verdict driver checks the links, the none-found line or
+// the absence of the list.
 function searchResultsOf(search) {
-	return search?.status === 'searched' ? search.results.length : null;
+	return search?.status === 'searched' ? search.results.filter(isTenderWebPage).length : null;
 }
 
 function noticeFacts(record, readings, search, now, lines) {

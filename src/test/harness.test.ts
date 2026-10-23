@@ -726,12 +726,22 @@ describe('the example capture the browser runs follow', () => {
 		});
 		const cases: [string, Record<string, Json> | undefined, number | null][] = [
 			['no searches', undefined, null],
-			['the recorded search', { '610242-2026': septSearch() }, 5],
+			// Three of its five results are tender pages, the ones the page lists.
+			['the recorded search', { '610242-2026': septSearch() }, 3],
 			['searched with no result', { '610242-2026': searched([]) }, 0],
 			[
-				'searched with one result',
-				{ '610242-2026': searched([{ title: 'A', url: 'https://a.example/', score: 0.5 }]) },
+				'searched with one tender page',
+				{
+					'610242-2026': searched([
+						{ title: 'Ausschreibungen', url: 'https://a.example/', score: 0.5 }
+					])
+				},
 				1
+			],
+			[
+				'searched with one page about something else',
+				{ '610242-2026': searched([{ title: 'A', url: 'https://a.example/', score: 0.5 }]) },
+				0
 			],
 			[
 				'not searched',

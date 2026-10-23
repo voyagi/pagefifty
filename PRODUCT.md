@@ -24,7 +24,7 @@ It never gives a verdict the source does not support. Eligibility checkers answe
 
 ## Operating Context
 
-- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE. The notice itself is read; the document packs are not read in this version. One Tavily search per notice that publishes its criteria and names a buyer looks for that buyer's earlier awards, shown as unchecked web results that change no verdict.
+- Tenders come from the official EU TED Search API (anonymous), filtered to IT services and software (CPV 72000000, 48000000) in NL, BE and DE. The notice itself is read; the document packs are not read in this version. One Tavily search per notice that publishes its criteria and names a buyer looks for that buyer's earlier awards; the results that look like tender or award pages are shown as unchecked web results that change no verdict.
 - The national portals the user must eventually bid through (TenderNed, DTVP, e-Vergabe, publicprocurement.be) are plain government interfaces. Pagefifty is used before them.
 - Selection criteria arrive as typed eForms codes with numeric parameters, plus free text in German, Dutch or French.
 - The firm profile (headcount by role, three years of turnover, certificates, reference projects, countries, languages) lives in the browser and is exported as a JSON file the user keeps.

@@ -5,8 +5,9 @@
 	import Label from './Label.svelte';
 	import Panel from './Panel.svelte';
 
-	// What a web search found for the buyer when the snapshot was captured. Pages nobody checked: the
-	// panel says so, sits apart from the tender's own panels, and nothing on it feeds a verdict.
+	// The pages a web search for the buyer found when the snapshot was captured that look like tender or
+	// award pages. Pages nobody checked: the panel says so, sits apart from the tender's own panels, and
+	// nothing on it feeds a verdict.
 	let { search }: { search: BuyerSearchView } = $props();
 
 	// safeLink already kept only http and https; the rule runs again where the address becomes an
@@ -23,15 +24,16 @@
 
 <Panel id="web-search" labelledby="web-search-title" ruled>
 	<div class="search">
-		<h2 class="head" id="web-search-title">Earlier awards of this buyer</h2>
+		<h2 class="head" id="web-search-title">Tender pages from a web search for this buyer</h2>
 		<div class="body" data-web-search>
 			<Label>Web search results, not checked</Label>
 			<p class="note">
-				Found by a web search for the buyer's name when this snapshot was captured. These results
-				were not checked and do not change the verdict.
+				Found by a web search for the buyer's name when this snapshot was captured. The list keeps
+				only pages that look like tender or award pages, and a page may be another buyer's. These
+				results were not checked and do not change the verdict.
 			</p>
 			{#if results.length === 0}
-				<p class="none">No earlier awards found by web search.</p>
+				<p class="none">No tender pages found by a web search for this buyer.</p>
 			{:else}
 				<ol class="results">
 					{#each results as result, index (index)}

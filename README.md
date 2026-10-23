@@ -38,8 +38,8 @@ code found none of its three quotes and the criterion reads "Not read".
 - A number from the model's own fields. Every amount, count and year is parsed by code from a
   verified quote.
 - A Go while part of a lot's criteria sits in documents this version does not read.
-- A web search result as evidence. The buyer's earlier awards are shown apart, unchecked, and change
-  no verdict.
+- A web search result as evidence. Tender pages a web search for the buyer found are shown apart,
+  unchecked, and change no verdict.
 - Legal advice.
 
 ## The record of the run
@@ -56,7 +56,7 @@ flowchart TD
   ted["TED Search API<br/>open IT notices"] --> capture["Capture command<br/>run by hand, 1 request a second"]
   capture -- "each lot's published criteria" --> model["NVIDIA Nemotron 3 Super<br/>on Nebius Token Factory"]
   model -- "requirements, each with a quote" --> check["Code: quote found word for word,<br/>or refused"]
-  capture -- "buyer name" --> tavily["Tavily search<br/>earlier awards"]
+  capture -- "buyer name" --> tavily["Tavily search<br/>tender pages for the buyer's name"]
   check --> folder["examples/2026-10-22/<br/>committed"]
   tavily --> folder
   folder --> site["Site on Cloudflare Workers"]
@@ -96,7 +96,7 @@ site in the light and dark themes, through the
 
 - Open tenders: the EU's TED Search API (Tenders Electronic Daily), public and keyless.
 - Reading free-text criteria: an NVIDIA Nemotron model served by Nebius Token Factory.
-- A buyer's earlier awards: Tavily search, shown as unchecked web results.
+- Tender pages from a web search for the buyer: Tavily search, shown as unchecked web results.
 
 Each capture folder's README gives TED's reuse terms and what was scrubbed. The example run replays
 the newest capture made with `--open-after` at or after the submission cutoff (30 Oct 2026, 18:00

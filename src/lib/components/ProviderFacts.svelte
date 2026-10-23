@@ -38,8 +38,8 @@
 		<p>
 			Since 20 October 2026, the setting "Allow use of query data" is switched off for the Tavily
 			account that runs the search. With it off, Tavily says, query data is not stored or used for
-			improvements. A search made before that day is not covered: the buyer search recorded on 15
-			October 2026 was made while the setting was still on.
+			improvements. One test search, made on 15 October 2026 before the setting was switched off, is
+			not covered. The buyer searches this site shows ran on 22 October 2026, with the setting off.
 		</p>
 		<FactSource
 			href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"

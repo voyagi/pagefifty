@@ -32,7 +32,7 @@ const CHECKS = [
 	`makes no request to any host but ${SITE}, after hydration too`,
 	'lists the buyer search the build holds, each result an http or https link under the unchecked label, or none'
 ];
-const NONE_FOUND = 'No earlier awards found by web search.';
+const NONE_FOUND = 'No tender pages found by a web search for this buyer.';
 const PROBES = ['read', 'readOtherLanguage'];
 
 const VERDICT_WORDS =

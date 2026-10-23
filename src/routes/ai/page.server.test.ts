@@ -133,7 +133,11 @@ describe('/ai copy', () => {
 				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
 			],
 			[
-				'the buyer search recorded on 15 October 2026 was made while the setting was still on',
+				'One test search, made on 15 October 2026 before the setting was switched off, is not covered.',
+				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
+			],
+			[
+				'The buyer searches this site shows ran on 22 October 2026, with the setting off.',
 				'href="https://help.tavily.com/articles/4205958832-understanding-the-allow-use-of-query-data-setting"'
 			]
 		]) {

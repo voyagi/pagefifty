@@ -36,6 +36,7 @@ import { toIndexRow } from '../snapshot/index-row';
 import type { LotEntry, NoticeReadings, ReadingRun } from '../snapshot/readings';
 import type { NoticeSearch } from '../snapshot/searches';
 import { countryName, formatValue, type CaptureFacts } from './list';
+import { isTenderWebPage } from './tender-web-page';
 
 export interface WorkKind {
 	label: 'IT services' | 'Software packages';
@@ -156,8 +157,9 @@ interface LotIndexEntry {
 	closed: boolean;
 }
 
-// What the capture's web search for the buyer's earlier awards found, in Tavily's order. Each address
-// went through safeLink, so only an http or https one carries an href.
+// The pages of the capture's web search for the buyer that look like tender or award pages
+// (isTenderWebPage), in Tavily's order. Each address went through safeLink, so only an http or https
+// one carries an href.
 export type BuyerSearchView = { results: { title: string; link: SafeLink }[] } | { none: true };
 
 export interface TenderPageModel {
@@ -377,11 +379,14 @@ function toLotView(
 	};
 }
 
+// Only the results that look like tender or award pages are listed; a search left with none of them
+// reads as none found, the same as a search that returned nothing.
 function searchView(search: NoticeSearch | undefined): BuyerSearchView | undefined {
 	if (search === undefined || search.status !== 'searched') return undefined;
-	if (search.results.length === 0) return { none: true };
+	const pages = search.results.filter(isTenderWebPage);
+	if (pages.length === 0) return { none: true };
 	return {
-		results: search.results.map(({ title, url }) => ({ title, link: safeLink(url) }))
+		results: pages.map(({ title, url }) => ({ title, link: safeLink(url) }))
 	};
 }
 
