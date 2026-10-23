@@ -89,7 +89,8 @@ the browser against the firm's profile, which never leaves it.
 
 Every page comes in Light, Dark and Device themes, and every answer carries an icon and a word,
 never colour alone. The target is WCAG 2.2 AA; `npm run a11y:live` runs an axe audit of the built
-site in both themes.
+site in the light and dark themes, through the
+[dev-browser](https://www.npmjs.com/package/dev-browser) command line tool, which it needs installed.
 
 ## Data sources
 
@@ -103,7 +104,8 @@ CET).
 
 ## Setup
 
-Node 24.15 or newer, as `.nvmrc` and the `engines` field of `package.json` say.
+Node 24.15 or newer, as the `engines` field of `package.json` says (`.nvmrc` names only the major
+version, 24).
 
 ```sh
 npm install
