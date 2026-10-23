@@ -29,9 +29,11 @@ describe('PageHead', () => {
 // error page set their head through PageHead and nowhere else.
 describe('route heads', () => {
 	const ROUTES = join('src', 'routes');
-	const pages = readdirSync(ROUTES, { recursive: true, encoding: 'utf8' })
-		.filter((file) => /(^|[\\/])\+(page|error)\.svelte$/.test(file))
-		.map((file) => file.replaceAll('\\', '/'));
+	const files = readdirSync(ROUTES, { recursive: true, encoding: 'utf8' }).map((file) =>
+		file.replaceAll('\\', '/')
+	);
+	const pages = files.filter((file) => /(^|\/)\+(page|error)\.svelte$/.test(file));
+	const layouts = files.filter((file) => /(^|\/)\+layout\.svelte$/.test(file));
 
 	it('finds every page, the tender records and the error page among them', () => {
 		expect(pages).toEqual(
@@ -49,5 +51,16 @@ describe('route heads', () => {
 		const source = readFileSync(join(ROUTES, file), 'utf8');
 		expect(source).toMatch(/<PageHead\b/);
 		expect(source).not.toMatch(/<svelte:head>|<title\b/);
+	});
+
+	// A layout's head is added to every page under it, so a title, a description or an Open Graph tag
+	// there would give those pages two. The root layout's head holds the icon and the font preload.
+	it('finds the root layout among the layouts', () => {
+		expect(layouts).toContain('+layout.svelte');
+	});
+
+	it.each(layouts)('%s writes no title, description or Open Graph tag', (file) => {
+		const source = readFileSync(join(ROUTES, file), 'utf8');
+		expect(source).not.toMatch(/<title\b|name="description"|property="og:/);
 	});
 });
