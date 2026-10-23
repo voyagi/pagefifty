@@ -14,6 +14,7 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 // The handler is installed before the record is written, so a signal sent once the record exists
@@ -42,6 +43,7 @@ writeFileSync(record, JSON.stringify({
 		TEMP: process.env.TEMP,
 		TMP: process.env.TMP,
 		TMPDIR: process.env.TMPDIR,
+		NODE_OPTIONS: process.env.NODE_OPTIONS,
 		made: mkdtempSync(join(tmpdir(), 'miniflare-'))
 	}
 }));
@@ -54,7 +56,7 @@ interface Record {
 	cwd: string;
 	pid: number;
 	env: { [name: string]: string | undefined };
-	temp: { TEMP?: string; TMP?: string; TMPDIR?: string; made: string };
+	temp: { TEMP?: string; TMP?: string; TMPDIR?: string; NODE_OPTIONS?: string; made: string };
 }
 
 const roots: string[] = [];
@@ -90,7 +92,7 @@ function repository({ built }: { built: boolean }): string {
 		writeFileSync(join(root, name), content);
 	}
 	mkdirSync(join(root, 'scripts'));
-	for (const name of ['preview.mjs', 'harness.mjs']) {
+	for (const name of ['preview.mjs', 'harness.mjs', 'dev-server-pid.mjs']) {
 		copyFileSync(join('scripts', name), join(root, 'scripts', name));
 	}
 	return root;
@@ -103,14 +105,18 @@ function readRecord(root: string): Record | undefined {
 	return existsSync(path) ? (JSON.parse(readFileSync(path, 'utf8')) as Record) : undefined;
 }
 
-// The shell asks for every variable and for the dotenv files; the script must override both.
+// The shell asks for every variable and for the dotenv files; the script must override both. It
+// also has Node options of its own, which the script must keep.
+const SHELL_NODE_OPTIONS = '--max-old-space-size=256';
+
 function envFor(root: string, fake: string): NodeJS.ProcessEnv {
 	return {
 		...process.env,
 		PREVIEW_RECORD: recordPath(root),
 		PREVIEW_FAKE: fake,
 		CLOUDFLARE_INCLUDE_PROCESS_ENV: 'true',
-		CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: 'true'
+		CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: 'true',
+		NODE_OPTIONS: SHELL_NODE_OPTIONS
 	};
 }
 
@@ -141,11 +147,15 @@ function running(pid: number): boolean {
 	}
 }
 
-// The PID of a process that has just ended: the folder name a run leaves once its process is gone.
-function endedPid(): number {
-	const { pid } = spawnSync(process.execPath, ['--version']);
-	if (running(pid)) throw new Error(`pid ${pid} was taken again at once; run the test again`);
-	return pid;
+// PIDs of processes that have just ended, all different: what a run leaves once its processes are gone.
+function endedPids(count: number): number[] {
+	const pids = new Set<number>();
+	while (pids.size < count) {
+		const { pid } = spawnSync(process.execPath, ['--version']);
+		if (running(pid)) throw new Error(`pid ${pid} was taken again at once; run the test again`);
+		pids.add(pid);
+	}
+	return [...pids];
 }
 
 describe('npm run preview', () => {
@@ -184,31 +194,39 @@ describe('npm run preview', () => {
 		});
 	});
 
-	it('gives wrangler a temp folder of its own in the repository, named by its PID, with the server PID in it', () => {
+	it('gives wrangler a temp folder of its own in the repository, named by its PID, where wrangler records its PID', () => {
 		const root = repository({ built: true });
 		const result = runPreview(root, '0');
 		expect(result.status).toBe(0);
 		const own = join(devTemp(root), String(result.pid));
+		const recorder = pathToFileURL(join(root, 'scripts', 'dev-server-pid.mjs')).href;
 		const record = readRecord(root);
-		expect(record?.temp).toEqual({ TEMP: own, TMP: own, TMPDIR: own, made: expect.any(String) });
+		expect(record?.temp).toEqual({
+			TEMP: own,
+			TMP: own,
+			TMPDIR: own,
+			NODE_OPTIONS: `${SHELL_NODE_OPTIONS} --import=${recorder}`,
+			made: expect.any(String)
+		});
 		// What Miniflare makes under tmpdir() lands there, not in the system temp folder.
 		expect(dirname(record?.temp.made ?? '')).toBe(own);
-		expect(readFileSync(join(own, 'server.pid'), 'utf8')).toBe(String(record?.pid));
+		// The fake loaded the recorder NODE_OPTIONS names, as each Node process of a real server does.
+		expect(readFileSync(join(own, 'server.pids'), 'utf8')).toBe(`${record?.pid}\n`);
 	});
 
 	// Miniflare removes its folder only from an exit hook, which a forced end skips, so a start removes
 	// what earlier runs left once nothing they started still runs.
 	it('removes the folders of ended runs at its next start, and keeps those still in use', () => {
 		const root = repository({ built: true });
-		const ended = endedPid();
-		let outlived = endedPid();
-		while (outlived === ended) outlived = endedPid();
+		const [ended, outlived, allEnded] = endedPids(3);
 		const plants: [string, string][] = [
 			[join(String(ended), 'miniflare-0a1b', 'email-store', 'message.eml'), ''],
-			// A starter ended alone while its server serves on: this test's process stands in for that server.
-			[join(String(outlived), 'server.pid'), String(process.pid)],
+			// A starter and wrangler's launcher ended alone while the CLI below them serves on: this
+			// test's process stands in for that CLI, recorded after the launcher.
+			[join(String(outlived), 'server.pids'), `${ended}\n${process.pid}\n`],
 			[join(String(process.pid), 'miniflare-2c3d', 'd1', 'db.sqlite'), ''],
-			[join('notes', 'keep.txt'), '']
+			[join('notes', 'keep.txt'), ''],
+			[join(String(allEnded), 'server.pids'), `${ended}\n${outlived}\n`]
 		];
 		for (const [name, content] of plants) {
 			mkdirSync(join(devTemp(root), name, '..'), { recursive: true });
@@ -219,9 +237,13 @@ describe('npm run preview', () => {
 			false,
 			true,
 			true,
-			true
+			true,
+			false
 		]);
-		expect(existsSync(join(devTemp(root), String(ended)))).toBe(false);
+		expect([ended, allEnded].map((pid) => existsSync(join(devTemp(root), String(pid))))).toEqual([
+			false,
+			false
+		]);
 	});
 
 	it("passes on wrangler's exit code", () => {

@@ -18,7 +18,7 @@ import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { devServerTemp, recordDevServer, tempVariables, wranglerDevArgs } from './harness.mjs';
+import { devServerEnv, devServerTemp, wranglerDevArgs } from './harness.mjs';
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 process.chdir(repository);
@@ -33,14 +33,13 @@ const temp = devServerTemp(repository);
 const child = spawn(process.execPath, args, {
 	env: {
 		...process.env,
-		...tempVariables(temp),
+		...devServerEnv(temp),
 		WRANGLER_SEND_METRICS: 'false',
 		CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: 'false',
 		CLOUDFLARE_INCLUDE_PROCESS_ENV: 'false'
 	},
 	stdio: 'inherit'
 });
-recordDevServer(temp, child.pid);
 child.on('exit', (code, signal) => process.exit(code ?? (signal ? 1 : 0)));
 // npm passes a SIGINT or a SIGTERM it receives on to this process (npm's run-script signal
 // manager), and a SIGHUP can reach it alone. Ending here would leave wrangler dev serving the port,

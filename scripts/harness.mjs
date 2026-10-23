@@ -464,23 +464,30 @@ export function wranglerDevArgs({ port, configPath, envFile }) {
 // run preview by its process tree. Each such end left its folders there for good. So a dev server
 // gets a temp folder of its own under .wrangler/dev-temp (ignored), named by the PID of the process
 // that starts it, and every start removes the folders whose processes have all ended. A folder stays
-// while its starter or its server runs: the server's PID is recorded in it, because a starter can be
-// ended alone while its server keeps serving.
+// while its starter or any Node process of its server runs. Each of those records its PID in it
+// (dev-server-pid.mjs): wrangler's bin is a launcher that runs its CLI as a second Node process, and
+// off Windows a starter or that launcher can be ended alone while the CLI keeps serving. On Windows
+// Node ends the children it spawned along with it.
 const DEV_TEMP = join('.wrangler', 'dev-temp');
-const SERVER_PID_FILE = 'server.pid';
+// dev-server-pid.mjs writes this file under the same name.
+const SERVER_PIDS_FILE = 'server.pids';
 const PID_NAME = /^[1-9]\d*$/;
+const PID_RECORDER = new URL('./dev-server-pid.mjs', import.meta.url).href;
 
 function devTempInUse(folder, name) {
 	if (pidRuns(Number(name))) return true;
-	let server;
+	let recorded;
 	try {
-		server = readFileSync(join(folder, SERVER_PID_FILE), 'utf8').trim();
+		recorded = readFileSync(join(folder, SERVER_PIDS_FILE), 'utf8');
 	} catch (error) {
-		// No server recorded: its starter ended before spawning one.
+		// No server process recorded: its starter ended before one started.
 		if (error.code === 'ENOENT') return false;
 		throw error;
 	}
-	return PID_NAME.test(server) && pidRuns(Number(server));
+	return recorded.split('\n').some((line) => {
+		const pid = line.trim();
+		return PID_NAME.test(pid) && pidRuns(Number(pid));
+	});
 }
 
 /** @param {string} repository @returns {string} this process's dev-server temp folder */
@@ -502,15 +509,18 @@ export function devServerTemp(repository) {
 	return own;
 }
 
-// os.tmpdir() reads TEMP, then TMP, on Windows and TMPDIR elsewhere.
+// os.tmpdir() reads TEMP, then TMP, on Windows and TMPDIR elsewhere. Every Node process below the
+// starter inherits NODE_OPTIONS, the CLI wrangler's launcher spawns included, so each one loads the
+// PID recorder. A file URL holds no space or backslash for NODE_OPTIONS to split or unescape.
 /** @param {string} folder */
-export function tempVariables(folder) {
-	return { TEMP: folder, TMP: folder, TMPDIR: folder };
-}
-
-/** @param {string} folder @param {number | undefined} pid */
-export function recordDevServer(folder, pid) {
-	if (pid !== undefined) writeFileSync(join(folder, SERVER_PID_FILE), String(pid));
+export function devServerEnv(folder) {
+	const inherited = process.env.NODE_OPTIONS ?? '';
+	return {
+		TEMP: folder,
+		TMP: folder,
+		TMPDIR: folder,
+		NODE_OPTIONS: `${inherited} --import=${PID_RECORDER}`.trim()
+	};
 }
 
 export async function startWorker({ port, configPath, logFile }) {
@@ -532,7 +542,7 @@ export async function startWorker({ port, configPath, logFile }) {
 	const child = spawn(process.execPath, args, {
 		env: {
 			...process.env,
-			...tempVariables(temp),
+			...devServerEnv(temp),
 			WRANGLER_SEND_METRICS: 'false',
 			// Local dev otherwise hands the Worker every key in a dotenv file beside the config (the
 			// main checkout keeps the real provider keys there), or the whole shell environment when
@@ -548,7 +558,6 @@ export async function startWorker({ port, configPath, logFile }) {
 		// A process group of its own, so stopWorker can end the whole tree off Windows.
 		detached: process.platform !== 'win32'
 	});
-	recordDevServer(temp, child.pid);
 	let output = '';
 	for (const stream of [child.stdout, child.stderr]) {
 		stream.on('data', (chunk) => {

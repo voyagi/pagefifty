@@ -18,6 +18,7 @@ import { REASON_LINES } from '../lib/tenders/verdict-view';
 import {
 	closedRowsUnaudited,
 	devBrowserStatus,
+	devServerTemp,
 	exampleFacts,
 	expectedListLayout,
 	marginWarnings,
@@ -217,9 +218,21 @@ describe('the wrangler dev command of the browser runs', () => {
 	});
 });
 
-// A wrangler stand-in that treats the temp folder as Miniflare does: it makes a folder with mkdtemp
-// under tmpdir() and serves until it is ended, and an end by force never removes that folder.
-const SERVING_WRANGLER = `import { mkdtempSync, writeFileSync } from 'node:fs';
+// Stand-ins for wrangler's two Node processes. Its bin is a launcher that runs the CLI as a second
+// Node process, and the CLI treats the temp folder as Miniflare does: it makes a folder with mkdtemp
+// under tmpdir() and serves until it is ended, and an end by force never removes that folder. On
+// Windows Node ends the children it spawned when it is ended itself (measured: a plain child died
+// with its parent killed alone, a detached one ran on), so there the CLI is detached, to stand in for
+// what a kill of the launcher's PID alone leaves running elsewhere.
+const LAUNCHER = `import { spawn } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const detached = process.platform === 'win32';
+const cli = spawn(process.execPath, [fileURLToPath(new URL('./cli.js', import.meta.url)), ...process.argv.slice(2)], { stdio: 'inherit', detached, windowsHide: true });
+writeFileSync('cli.pid', String(cli.pid));
+cli.on('exit', (code) => process.exit(code ?? 0));
+`;
+const SERVING_CLI = `import { mkdtempSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -230,30 +243,39 @@ createServer((request, response) => response.end('ok')).listen(port, '127.0.0.1'
 });
 `;
 
-// startWorker and stopWorker as a browser run calls them, in a child whose home is a throwaway folder
-// (the run lock lives there) and whose working folder is a throwaway repository.
+// startWorker as a browser run calls it, in a child whose home is a throwaway folder (the run lock
+// lives there) and whose working folder is a throwaway repository. 'stop' ends the server with
+// stopWorker; 'launcher-only' ends wrangler's launcher alone, as a kill of one PID does, and leaves
+// the CLI serving. That CLI still holds this run's output pipes, so the run exits by itself.
 const WORKER_SCENARIO = `
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 const harness = await import(process.argv[2]);
+const [port, mode] = [Number(process.argv[3]), process.argv[4]];
 if (!harness.DEV_BROWSER_TMP.startsWith(process.env.USERPROFILE)) throw new Error('not the throwaway home');
 await harness.acquireRunLock();
 try {
 	const logFile = join(process.cwd(), 'logs', 'wrangler.log');
-	const worker = await harness.startWorker({ port: Number(process.argv[3]), logFile });
+	const worker = await harness.startWorker({ port, logFile });
 	const made = readFileSync('made.txt', 'utf8');
-	const stopped = await harness.stopWorker(worker.child);
-	console.log(JSON.stringify({ pid: process.pid, server: worker.pid, made, stopped, left: existsSync(made) }));
+	const cli = Number(readFileSync('cli.pid', 'utf8'));
+	let stopped = null;
+	if (mode === 'stop') stopped = await harness.stopWorker(worker.child);
+	else process.kill(worker.pid, 'SIGKILL');
+	const result = { pid: process.pid, launcher: worker.pid, cli, made, stopped, left: existsSync(made) };
+	writeFileSync('result.json', JSON.stringify(result));
 } finally {
 	harness.releaseRunLock();
 }
+process.exit(0);
 `;
 
 interface WorkerRun {
 	pid: number;
-	server: number;
+	launcher: number;
+	cli: number;
 	made: string;
-	stopped: boolean;
+	stopped: boolean | null;
 	left: boolean;
 }
 
@@ -268,39 +290,87 @@ function freePort(): Promise<number> {
 	});
 }
 
+function running(pid: number): boolean {
+	try {
+		process.kill(pid, 0);
+		return true;
+	} catch (error) {
+		return (error as NodeJS.ErrnoException).code === 'EPERM';
+	}
+}
+
+async function untilEnded(pid: number): Promise<void> {
+	const deadline = Date.now() + 10_000;
+	while (running(pid)) {
+		if (Date.now() > deadline) throw new Error(`pid ${pid} still runs 10 s after it was ended`);
+		await new Promise((resolveWait) => setTimeout(resolveWait, 50));
+	}
+}
+
 // stopWorker ends wrangler's tree by force (taskkill /T /F on Windows), so Miniflare's exit hook never
-// removes its folder. The folder must be inside the repository then, and gone after the next start.
+// removes its folder. The folder must be inside the repository then, and gone after the next start,
+// but only once every Node process of that server has ended.
 describe('the temp folder of wrangler dev in the browser runs', () => {
-	it('holds what a forced end leaves inside the repository, and the next start removes it', async () => {
+	it('holds what a forced end leaves inside the repository, and a start removes it once the whole server has ended', async () => {
 		const home = mkdtempSync(join(tmpdir(), 'pagefifty-worker-home-'));
 		const repo = realpathSync(mkdtempSync(join(tmpdir(), 'pagefifty-worker-')));
+		let serving: number | undefined;
 		try {
-			const wrangler = join(repo, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
-			mkdirSync(dirname(wrangler), { recursive: true });
-			writeFileSync(wrangler, SERVING_WRANGLER);
+			const bin = join(repo, 'node_modules', 'wrangler', 'bin');
+			mkdirSync(bin, { recursive: true });
+			writeFileSync(join(bin, 'wrangler.js'), LAUNCHER);
+			writeFileSync(join(bin, 'cli.js'), SERVING_CLI);
 			writeFileSync(join(repo, 'package.json'), '{ "type": "module" }');
 			const script = join(home, 'scenario.mjs');
 			writeFileSync(script, WORKER_SCENARIO);
 			const harness = pathToFileURL(resolve('scripts/harness.mjs')).href;
-			const runOnce = async (): Promise<WorkerRun> => {
-				const run = spawnSync(process.execPath, [script, harness, String(await freePort())], {
+			const runOnce = async (mode: 'stop' | 'launcher-only'): Promise<WorkerRun> => {
+				const port = String(await freePort());
+				const run = spawnSync(process.execPath, [script, harness, port, mode], {
 					cwd: repo,
 					encoding: 'utf8',
 					env: { ...process.env, USERPROFILE: home, HOME: home },
 					timeout: 60_000
 				});
 				expect(run.status, `${run.stdout}${run.stderr}`).toBe(0);
-				return JSON.parse(run.stdout.trim().split('\n').at(-1) ?? '') as WorkerRun;
+				return JSON.parse(readFileSync(join(repo, 'result.json'), 'utf8')) as WorkerRun;
 			};
 			const tempOf = (run: WorkerRun) => join(repo, '.wrangler', 'dev-temp', String(run.pid));
-			const first = await runOnce();
+			const recorded = (run: WorkerRun) =>
+				readFileSync(join(tempOf(run), 'server.pids'), 'utf8')
+					.trim()
+					.split('\n')
+					.map(Number);
+
+			const first = await runOnce('stop');
 			expect([first.stopped, dirname(first.made), first.left]).toEqual([true, tempOf(first), true]);
-			expect(readFileSync(join(tempOf(first), 'server.pid'), 'utf8')).toBe(String(first.server));
-			const second = await runOnce();
+			// The launcher and the CLI it spawned each recorded their PID.
+			expect(recorded(first)).toEqual([first.launcher, first.cli]);
+
+			const second = await runOnce('launcher-only');
+			serving = second.cli;
 			expect([existsSync(tempOf(first)), dirname(second.made)]).toEqual([false, tempOf(second)]);
+			await untilEnded(second.launcher);
+			expect(running(second.cli)).toBe(true);
+			// Its starter and launcher have ended and its CLI still serves: the next start keeps it.
+			devServerTemp(repo);
+			expect(existsSync(second.made)).toBe(true);
+			process.kill(second.cli, 'SIGKILL');
+			await untilEnded(second.cli);
+			serving = undefined;
+			devServerTemp(repo);
+			expect(existsSync(tempOf(second))).toBe(false);
 		} finally {
-			rmSync(repo, { recursive: true, force: true });
-			rmSync(home, { recursive: true, force: true });
+			if (serving !== undefined) {
+				try {
+					process.kill(serving, 'SIGKILL');
+				} catch {
+					// Already gone.
+				}
+			}
+			// Windows can refuse the folder for a moment while an ended process's handles close.
+			rmSync(repo, { recursive: true, force: true, maxRetries: 5 });
+			rmSync(home, { recursive: true, force: true, maxRetries: 5 });
 		}
 	}, 120_000);
 });
