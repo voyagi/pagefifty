@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -10,7 +10,9 @@ const { EXAMPLE_CAPTURE } = await import('$lib/server/records');
 const { FEATURED_NOTICE } = await import('$lib/server/tenders');
 
 // The README is the judged landing page, and every figure in it is the example capture's own. A new
-// example capture fails these tests until the README, and the screenshots it shows, are redone.
+// example capture fails these tests until the README is rewritten, the screenshots' descriptions
+// included, which is when the screenshots are retaken: no test reads the pictures themselves, only
+// that each one the README shows exists.
 const readJson = (...path: string[]): unknown => JSON.parse(readFileSync(join(...path), 'utf8'));
 const README = readFileSync('README.md', 'utf8').replace(/\s+/g, ' ');
 
@@ -18,6 +20,7 @@ interface Run {
 	notices: { written: number };
 	reading: {
 		runDate: string;
+		lots: { withCriteria: number; read: number; notRead: number };
 		costUsd: string;
 		tokens: { input: number; output: number; reasoning: number };
 		quotes: { verified: number; rejected: number };
@@ -60,6 +63,22 @@ describe('README figures', () => {
 			`for USD ${cost}, and code refused ${rejected} of the model's ${count(quotes)} quotes`
 		);
 		expect(README).toContain(`That was ${rejected} of ${count(quotes)} on ${dayMonth}.`);
+	});
+
+	it('says the model read every published criterion only when the run read every lot that had one', () => {
+		const { withCriteria, read, notRead } = run.reading.lots;
+		expect(README).toContain('read every selection criterion published in them');
+		expect([read, notRead]).toEqual([withCriteria, 0]);
+	});
+
+	it('shows only screenshots that exist', () => {
+		const images = [...README.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((match) => match[1]);
+		expect(images).toEqual([
+			'docs/images/verdict.png',
+			'docs/images/refusal.png',
+			'docs/images/record.png'
+		]);
+		for (const image of images) expect(existsSync(image), image).toBe(true);
 	});
 
 	it("gives the run record's tokens, cost and quote counts in the screenshot's description", () => {
