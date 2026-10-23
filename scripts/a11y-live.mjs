@@ -69,10 +69,17 @@ function reportPage(page) {
 	for (const item of [...page.violations, ...page.incomplete]) {
 		const kind = page.violations.includes(item) ? 'violation' : 'incomplete';
 		console.log(`  ${kind} ${item.id} (${item.impact}): ${item.help}`);
-		for (const node of item.nodes) console.log(`    ${node.target} ${node.message}`);
+		for (const node of item.nodes) {
+			const place = node.place ? ` [${node.place}]` : '';
+			console.log(`    ${node.target}${place} ${node.message}`);
+		}
 	}
-	for (const item of page.acceptedIncomplete)
-		console.log(`  accepted incomplete ${item.id}: ${item.why}`);
+	for (const item of page.acceptedIncomplete) {
+		const places = Object.entries(item.places ?? {})
+			.map(([place, count]) => `${count} ${place}`)
+			.join(', ');
+		console.log(`  accepted incomplete ${item.id} on ${item.nodes} nodes (${places}): ${item.why}`);
+	}
 }
 
 function verdict(result) {

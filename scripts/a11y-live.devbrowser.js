@@ -240,8 +240,22 @@ const WIDTHS = [390, 768, 1440];
 const FULL_PAGE_LIMIT = 16000;
 
 // axe "incomplete" means it could not decide, which is not clean. An entry here accepts one
-// rule's undecided result only when every node's message matches, and says why.
-const ACCEPTED_INCOMPLETE = [];
+// rule's undecided result only when every node's message matches and, where the entry names places,
+// every node sits in one of them (runAxe's place), and says why.
+const SCROLLED_OUT = 'scrolled out of the list column';
+const CUT_BY_EDGE = 'cut by the list column edge';
+const ACCEPTED_INCOMPLETE = [
+	{
+		rule: 'color-contrast',
+		match: 'partially obscured by another element|too short to determine if it is actual text',
+		places: [SCROLLED_OUT, CUT_BY_EDGE],
+		why:
+			'rows the list column has scrolled wholly or partly out of its visible box, where the head ' +
+			'and the band sit over them on the screen, so axe composites the colours of whatever covers ' +
+			'the row; the list alone at 390px draws every row in full, and a row inside the box stays ' +
+			'undecided and fails'
+	}
+];
 
 const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
@@ -387,43 +401,73 @@ async function widthShots(slug, theme) {
 
 async function runAxe() {
 	await page.evaluate(axeSource);
-	return page.evaluate(async () => {
-		const result = await window.axe.run(document, {
-			runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
-			// Named so it runs whether or not this axe version still ships it as experimental.
-			rules: { 'target-size': { enabled: true } }
-		});
-		// A rule reports its failing checks under any, all or none, so every one of them is read.
-		const messages = (node) =>
-			[...node.any, ...node.all, ...node.none]
-				.map((check) => check.message)
-				.filter(Boolean)
-				.join('; ');
-		const shape = (items) =>
-			items.map((item) => ({
-				id: item.id,
-				impact: item.impact,
-				help: item.help,
-				nodes: item.nodes.map((node) => ({
-					target: node.target.join(' '),
-					message: messages(node)
-				}))
-			}));
-		const ran = result.passes.concat(result.violations, result.incomplete, result.inapplicable);
-		return {
-			violations: shape(result.violations),
-			incomplete: shape(result.incomplete),
-			targetSizeRan: ran.some((rule) => rule.id === 'target-size')
-		};
-	});
+	return page.evaluate(
+		async (places) => {
+			const result = await window.axe.run(document, {
+				runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
+				// Named so it runs whether or not this axe version still ships it as experimental.
+				rules: { 'target-size': { enabled: true } },
+				// Each node comes back with its element, so its place on the screen is read below.
+				elementRef: true
+			});
+			// Where a node sits against the list column, which scrolls on its own beside a tender: outside
+			// it, inside its box, cut by the box's edge, or scrolled wholly out of the box, above or below.
+			// A column that does not scroll (the list alone) holds every row inside it.
+			const place = (element) => {
+				const column = element?.closest('.list-col');
+				if (!column) return 'outside the list column';
+				if (getComputedStyle(column).overflowY === 'visible') return 'inside the list column';
+				const view = column.getBoundingClientRect();
+				const box = element.getBoundingClientRect();
+				if (box.bottom <= view.top || box.top >= view.bottom) return places.scrolledOut;
+				if (box.top < view.top || box.bottom > view.bottom) return places.cutByEdge;
+				return 'inside the list column';
+			};
+			// A rule reports its failing checks under any, all or none, so every one of them is read.
+			const messages = (node) =>
+				[...node.any, ...node.all, ...node.none]
+					.map((check) => check.message)
+					.filter(Boolean)
+					.join('; ');
+			const shape = (items) =>
+				items.map((item) => ({
+					id: item.id,
+					impact: item.impact,
+					help: item.help,
+					nodes: item.nodes.map((node) => ({
+						target: node.target.join(' '),
+						message: messages(node),
+						place: place(node.element)
+					}))
+				}));
+			const ran = result.passes.concat(result.violations, result.incomplete, result.inapplicable);
+			return {
+				violations: shape(result.violations),
+				incomplete: shape(result.incomplete),
+				targetSizeRan: ran.some((rule) => rule.id === 'target-size')
+			};
+		},
+		{ scrolledOut: SCROLLED_OUT, cutByEdge: CUT_BY_EDGE }
+	);
 }
 
 function isAccepted(item) {
 	return ACCEPTED_INCOMPLETE.find(
 		(accepted) =>
 			accepted.rule === item.id &&
-			item.nodes.every((node) => new RegExp(accepted.match, 'i').test(node.message))
+			item.nodes.every(
+				(node) =>
+					new RegExp(accepted.match, 'i').test(node.message) &&
+					(!accepted.places || accepted.places.includes(node.place))
+			)
 	);
+}
+
+// How many of an accepted result's nodes sat in each place, so the report shows what was accepted.
+function countPlaces(nodes) {
+	const counts = {};
+	for (const node of nodes) counts[node.place] = (counts[node.place] ?? 0) + 1;
+	return counts;
 }
 
 // The list layout the audited page shows, read from its list column and tender pane: 'split' when
@@ -503,8 +547,14 @@ async function audit({
 	entry.targetSizeRan = result.targetSizeRan;
 	for (const item of result.incomplete) {
 		const accepted = isAccepted(item);
-		if (accepted) entry.acceptedIncomplete.push({ id: item.id, why: accepted.why });
-		else entry.incomplete.push(item);
+		if (accepted) {
+			entry.acceptedIncomplete.push({
+				id: item.id,
+				nodes: item.nodes.length,
+				places: countPlaces(item.nodes),
+				why: accepted.why
+			});
+		} else entry.incomplete.push(item);
 	}
 	if (!entry.shots) {
 		await page.setViewportSize(AUDIT_VIEWPORT);
