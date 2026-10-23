@@ -13,12 +13,14 @@ import {
 	writeFileSync
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 // The handler is installed before the record is written, so a signal sent once the record exists
-// always meets it.
-const FAKE_WRANGLER = `import { writeFileSync } from 'node:fs';
+// always meets it. Miniflare makes its folder with mkdtemp under tmpdir(), as the fake does here.
+const FAKE_WRANGLER = `import { mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 const record = process.env.PREVIEW_RECORD;
 const mode = process.env.PREVIEW_FAKE ?? '0';
 if (mode === 'wait') {
@@ -35,7 +37,13 @@ writeFileSync(record, JSON.stringify({
 	args: process.argv.slice(2),
 	cwd: process.cwd(),
 	pid: process.pid,
-	env: Object.fromEntries(seen.map((name) => [name, process.env[name]]))
+	env: Object.fromEntries(seen.map((name) => [name, process.env[name]])),
+	temp: {
+		TEMP: process.env.TEMP,
+		TMP: process.env.TMP,
+		TMPDIR: process.env.TMPDIR,
+		made: mkdtempSync(join(tmpdir(), 'miniflare-'))
+	}
 }));
 if (mode === 'kill') process.kill(process.pid, 'SIGKILL');
 else if (mode !== 'wait') process.exit(Number(mode));
@@ -46,6 +54,7 @@ interface Record {
 	cwd: string;
 	pid: number;
 	env: { [name: string]: string | undefined };
+	temp: { TEMP?: string; TMP?: string; TMPDIR?: string; made: string };
 }
 
 const roots: string[] = [];
@@ -121,6 +130,24 @@ async function until(done: () => boolean): Promise<void> {
 	}
 }
 
+const devTemp = (root: string) => join(root, '.wrangler', 'dev-temp');
+
+function running(pid: number): boolean {
+	try {
+		process.kill(pid, 0);
+		return true;
+	} catch (error) {
+		return (error as NodeJS.ErrnoException).code === 'EPERM';
+	}
+}
+
+// The PID of a process that has just ended: the folder name a run leaves once its process is gone.
+function endedPid(): number {
+	const { pid } = spawnSync(process.execPath, ['--version']);
+	if (running(pid)) throw new Error(`pid ${pid} was taken again at once; run the test again`);
+	return pid;
+}
+
 describe('npm run preview', () => {
 	it('refuses to start without a build and names the command that makes one', () => {
 		const root = repository({ built: false });
@@ -152,8 +179,49 @@ describe('npm run preview', () => {
 				CLOUDFLARE_INCLUDE_PROCESS_ENV: 'false',
 				CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: 'false',
 				WRANGLER_SEND_METRICS: 'false'
-			}
+			},
+			temp: expect.any(Object)
 		});
+	});
+
+	it('gives wrangler a temp folder of its own in the repository, named by its PID, with the server PID in it', () => {
+		const root = repository({ built: true });
+		const result = runPreview(root, '0');
+		expect(result.status).toBe(0);
+		const own = join(devTemp(root), String(result.pid));
+		const record = readRecord(root);
+		expect(record?.temp).toEqual({ TEMP: own, TMP: own, TMPDIR: own, made: expect.any(String) });
+		// What Miniflare makes under tmpdir() lands there, not in the system temp folder.
+		expect(dirname(record?.temp.made ?? '')).toBe(own);
+		expect(readFileSync(join(own, 'server.pid'), 'utf8')).toBe(String(record?.pid));
+	});
+
+	// Miniflare removes its folder only from an exit hook, which a forced end skips, so a start removes
+	// what earlier runs left once nothing they started still runs.
+	it('removes the folders of ended runs at its next start, and keeps those still in use', () => {
+		const root = repository({ built: true });
+		const ended = endedPid();
+		let outlived = endedPid();
+		while (outlived === ended) outlived = endedPid();
+		const plants: [string, string][] = [
+			[join(String(ended), 'miniflare-0a1b', 'email-store', 'message.eml'), ''],
+			// A starter ended alone while its server serves on: this test's process stands in for that server.
+			[join(String(outlived), 'server.pid'), String(process.pid)],
+			[join(String(process.pid), 'miniflare-2c3d', 'd1', 'db.sqlite'), ''],
+			[join('notes', 'keep.txt'), '']
+		];
+		for (const [name, content] of plants) {
+			mkdirSync(join(devTemp(root), name, '..'), { recursive: true });
+			writeFileSync(join(devTemp(root), name), content);
+		}
+		expect(runPreview(root, '0').status).toBe(0);
+		expect(plants.map(([name]) => existsSync(join(devTemp(root), name)))).toEqual([
+			false,
+			true,
+			true,
+			true
+		]);
+		expect(existsSync(join(devTemp(root), String(ended)))).toBe(false);
 	});
 
 	it("passes on wrangler's exit code", () => {

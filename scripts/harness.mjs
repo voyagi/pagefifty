@@ -18,6 +18,7 @@ import {
 	readdirSync,
 	readFileSync,
 	rmdirSync,
+	rmSync,
 	unlinkSync,
 	statSync,
 	utimesSync,
@@ -458,6 +459,60 @@ export function wranglerDevArgs({ port, configPath, envFile }) {
 	return args;
 }
 
+// Miniflare, inside wrangler dev, makes a miniflare-<hex> folder in the OS temp folder and removes it
+// only from an exit hook, which a forced end skips: stopWorker's taskkill /T /F, or a tool ending npm
+// run preview by its process tree. Each such end left its folders there for good. So a dev server
+// gets a temp folder of its own under .wrangler/dev-temp (ignored), named by the PID of the process
+// that starts it, and every start removes the folders whose processes have all ended. A folder stays
+// while its starter or its server runs: the server's PID is recorded in it, because a starter can be
+// ended alone while its server keeps serving.
+const DEV_TEMP = join('.wrangler', 'dev-temp');
+const SERVER_PID_FILE = 'server.pid';
+const PID_NAME = /^[1-9]\d*$/;
+
+function devTempInUse(folder, name) {
+	if (pidRuns(Number(name))) return true;
+	let server;
+	try {
+		server = readFileSync(join(folder, SERVER_PID_FILE), 'utf8').trim();
+	} catch (error) {
+		// No server recorded: its starter ended before spawning one.
+		if (error.code === 'ENOENT') return false;
+		throw error;
+	}
+	return PID_NAME.test(server) && pidRuns(Number(server));
+}
+
+/** @param {string} repository @returns {string} this process's dev-server temp folder */
+export function devServerTemp(repository) {
+	const root = join(repository, DEV_TEMP);
+	mkdirSync(root, { recursive: true });
+	for (const name of readdirSync(root)) {
+		if (!PID_NAME.test(name)) continue;
+		const folder = join(root, name);
+		try {
+			if (!devTempInUse(folder, name)) rmSync(folder, { recursive: true, force: true });
+		} catch (error) {
+			// Windows refuses to remove a file a stray workerd still holds open; the next start tries again.
+			console.error(`[harness] left ${folder} in place: ${error.message}`);
+		}
+	}
+	const own = join(root, String(process.pid));
+	mkdirSync(own, { recursive: true });
+	return own;
+}
+
+// os.tmpdir() reads TEMP, then TMP, on Windows and TMPDIR elsewhere.
+/** @param {string} folder */
+export function tempVariables(folder) {
+	return { TEMP: folder, TMP: folder, TMPDIR: folder };
+}
+
+/** @param {string} folder @param {number | undefined} pid */
+export function recordDevServer(folder, pid) {
+	if (pid !== undefined) writeFileSync(join(folder, SERVER_PID_FILE), String(pid));
+}
+
 export async function startWorker({ port, configPath, logFile }) {
 	assertRunLock();
 	if (await portAnswers(port)) {
@@ -473,9 +528,11 @@ export async function startWorker({ port, configPath, logFile }) {
 	const envFile = join(dirname(logFile), 'pagefifty-empty.env');
 	writeFileSync(envFile, '');
 	const args = wranglerDevArgs({ port, configPath, envFile });
+	const temp = devServerTemp(process.cwd());
 	const child = spawn(process.execPath, args, {
 		env: {
 			...process.env,
+			...tempVariables(temp),
 			WRANGLER_SEND_METRICS: 'false',
 			// Local dev otherwise hands the Worker every key in a dotenv file beside the config (the
 			// main checkout keeps the real provider keys there), or the whole shell environment when
@@ -491,6 +548,7 @@ export async function startWorker({ port, configPath, logFile }) {
 		// A process group of its own, so stopWorker can end the whole tree off Windows.
 		detached: process.platform !== 'win32'
 	});
+	recordDevServer(temp, child.pid);
 	let output = '';
 	for (const stream of [child.stdout, child.stderr]) {
 		stream.on('data', (chunk) => {

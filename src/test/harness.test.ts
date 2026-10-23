@@ -1,5 +1,14 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readFileSync,
+	realpathSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
+import { createServer, type AddressInfo } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -206,6 +215,94 @@ describe('the wrangler dev command of the browser runs', () => {
 		const args = wranglerDevArgs({ port: 8788, envFile: 'empty.env', configPath: 'copy.json' });
 		expect(args.slice(-2)).toEqual(['--config', 'copy.json']);
 	});
+});
+
+// A wrangler stand-in that treats the temp folder as Miniflare does: it makes a folder with mkdtemp
+// under tmpdir() and serves until it is ended, and an end by force never removes that folder.
+const SERVING_WRANGLER = `import { mkdtempSync, writeFileSync } from 'node:fs';
+import { createServer } from 'node:http';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+const port = Number(process.argv[process.argv.indexOf('--port') + 1]);
+writeFileSync('made.txt', mkdtempSync(join(tmpdir(), 'miniflare-')));
+createServer((request, response) => response.end('ok')).listen(port, '127.0.0.1', () => {
+	console.log('Ready on http://127.0.0.1:' + port);
+});
+`;
+
+// startWorker and stopWorker as a browser run calls them, in a child whose home is a throwaway folder
+// (the run lock lives there) and whose working folder is a throwaway repository.
+const WORKER_SCENARIO = `
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+const harness = await import(process.argv[2]);
+if (!harness.DEV_BROWSER_TMP.startsWith(process.env.USERPROFILE)) throw new Error('not the throwaway home');
+await harness.acquireRunLock();
+try {
+	const logFile = join(process.cwd(), 'logs', 'wrangler.log');
+	const worker = await harness.startWorker({ port: Number(process.argv[3]), logFile });
+	const made = readFileSync('made.txt', 'utf8');
+	const stopped = await harness.stopWorker(worker.child);
+	console.log(JSON.stringify({ pid: process.pid, server: worker.pid, made, stopped, left: existsSync(made) }));
+} finally {
+	harness.releaseRunLock();
+}
+`;
+
+interface WorkerRun {
+	pid: number;
+	server: number;
+	made: string;
+	stopped: boolean;
+	left: boolean;
+}
+
+function freePort(): Promise<number> {
+	return new Promise((resolvePort, reject) => {
+		const server = createServer();
+		server.once('error', reject);
+		server.listen(0, '127.0.0.1', () => {
+			const { port } = server.address() as AddressInfo;
+			server.close(() => resolvePort(port));
+		});
+	});
+}
+
+// stopWorker ends wrangler's tree by force (taskkill /T /F on Windows), so Miniflare's exit hook never
+// removes its folder. The folder must be inside the repository then, and gone after the next start.
+describe('the temp folder of wrangler dev in the browser runs', () => {
+	it('holds what a forced end leaves inside the repository, and the next start removes it', async () => {
+		const home = mkdtempSync(join(tmpdir(), 'pagefifty-worker-home-'));
+		const repo = realpathSync(mkdtempSync(join(tmpdir(), 'pagefifty-worker-')));
+		try {
+			const wrangler = join(repo, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
+			mkdirSync(dirname(wrangler), { recursive: true });
+			writeFileSync(wrangler, SERVING_WRANGLER);
+			writeFileSync(join(repo, 'package.json'), '{ "type": "module" }');
+			const script = join(home, 'scenario.mjs');
+			writeFileSync(script, WORKER_SCENARIO);
+			const harness = pathToFileURL(resolve('scripts/harness.mjs')).href;
+			const runOnce = async (): Promise<WorkerRun> => {
+				const run = spawnSync(process.execPath, [script, harness, String(await freePort())], {
+					cwd: repo,
+					encoding: 'utf8',
+					env: { ...process.env, USERPROFILE: home, HOME: home },
+					timeout: 60_000
+				});
+				expect(run.status, `${run.stdout}${run.stderr}`).toBe(0);
+				return JSON.parse(run.stdout.trim().split('\n').at(-1) ?? '') as WorkerRun;
+			};
+			const tempOf = (run: WorkerRun) => join(repo, '.wrangler', 'dev-temp', String(run.pid));
+			const first = await runOnce();
+			expect([first.stopped, dirname(first.made), first.left]).toEqual([true, tempOf(first), true]);
+			expect(readFileSync(join(tempOf(first), 'server.pid'), 'utf8')).toBe(String(first.server));
+			const second = await runOnce();
+			expect([existsSync(tempOf(first)), dirname(second.made)]).toEqual([false, tempOf(second)]);
+		} finally {
+			rmSync(repo, { recursive: true, force: true });
+			rmSync(home, { recursive: true, force: true });
+		}
+	}, 120_000);
 });
 
 // verify:ship prints only a pass or a fail per step, so a driver's shrinking margin shows only in

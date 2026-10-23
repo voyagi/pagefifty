@@ -7,6 +7,9 @@
 // shell environment when CLOUDFLARE_INCLUDE_PROCESS_ENV is true. Naming the tracked empty env file
 // and setting both variables to false closes all three.
 //
+// Miniflare's temp folders go under .wrangler/dev-temp, not the OS temp folder, because a forced end
+// leaves them behind: devServerTemp in harness.mjs.
+//
 // Usage:  node scripts/preview.mjs   (after npm run build)
 // Exit codes: the exit code of wrangler dev,
 //             1 the built Worker is missing, or wrangler dev ended on a signal.
@@ -15,7 +18,7 @@ import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { wranglerDevArgs } from './harness.mjs';
+import { devServerTemp, recordDevServer, tempVariables, wranglerDevArgs } from './harness.mjs';
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 process.chdir(repository);
@@ -26,15 +29,18 @@ if (!existsSync(join(repository, '.svelte-kit', 'cloudflare', '_worker.js'))) {
 }
 
 const args = wranglerDevArgs({ port: 4173, envFile: join(repository, 'env/no-keys.env') });
+const temp = devServerTemp(repository);
 const child = spawn(process.execPath, args, {
 	env: {
 		...process.env,
+		...tempVariables(temp),
 		WRANGLER_SEND_METRICS: 'false',
 		CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: 'false',
 		CLOUDFLARE_INCLUDE_PROCESS_ENV: 'false'
 	},
 	stdio: 'inherit'
 });
+recordDevServer(temp, child.pid);
 child.on('exit', (code, signal) => process.exit(code ?? (signal ? 1 : 0)));
 // npm passes a SIGINT or a SIGTERM it receives on to this process (npm's run-script signal
 // manager), and a SIGHUP can reach it alone. Ending here would leave wrangler dev serving the port,
