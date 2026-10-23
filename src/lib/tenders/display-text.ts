@@ -130,6 +130,14 @@ export function shownText(text: string): string {
 	return text.trim().replace(SYMBOL_BULLETS, BULLET);
 }
 
+// Finds a quote in a text as drawn. Code verified the quote against the published text, Symbol-font
+// bullets and all, so the quote gets the same stand-in as the text before it is looked for. One
+// UTF-16 unit stands in for one, so every place found is the same in the published text.
+function drawnLocator(text: string): (quote: string) => { start: number; end: number } | undefined {
+	const locate = quoteLocator(text.replace(SYMBOL_BULLETS, BULLET));
+	return (quote) => locate(quote.replace(SYMBOL_BULLETS, BULLET));
+}
+
 // A verified quote to set apart inside its clause: n numbers it against its reading shown beside the
 // clause, and decides marks the words the verdict rests on. at is where in the drawn text the mark
 // sits, given for a piece of a quote that runs on into the next description (criterionMarks).
@@ -160,7 +168,7 @@ export function placeMarks(
 	text: string,
 	marks: readonly QuoteMark[]
 ): { start: number; end: number; indexes: number[] }[] {
-	const locate = quoteLocator(text);
+	const locate = drawnLocator(text);
 	const found = marks.flatMap((mark, index) => {
 		const span = mark.at ?? locate(mark.quote);
 		return span === undefined ? [] : [{ ...span, index }];
@@ -191,8 +199,8 @@ export function criterionMarks(
 	decides: readonly number[]
 ): QuoteMark[][] {
 	const shown = descriptions.map((description) => shownText(description.text));
-	const alone = shown.map((text) => quoteLocator(text));
-	const joined = quoteLocator(shown.join('\n'));
+	const alone = shown.map((text) => drawnLocator(text));
+	const joined = drawnLocator(shown.join('\n'));
 	const marks: QuoteMark[][] = descriptions.map(() => []);
 	requirements.forEach((requirement, index) => {
 		const mark: QuoteMark = {

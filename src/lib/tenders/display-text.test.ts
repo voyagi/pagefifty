@@ -278,6 +278,34 @@ describe('criterionMarks', () => {
 			[{ quote: 'in each of the last two financial years', n: 1, decides: false }]
 		]);
 	});
+
+	// Code verifies a quote against the published text, so a quote may hold the Symbol-font bullet
+	// that the drawn text shows as a bullet (713597-2026 in the 2026-10-22 capture). Written as a code
+	// point so no invisible character sits in this file.
+	const SYMBOL_BULLET = String.fromCodePoint(0xf0a7);
+
+	it('finds a quote holding a Symbol-font bullet whole in the drawn text of its description', () => {
+		const text = `Gefordert:\n${SYMBOL_BULLET}  2 technische Fachkräfte`;
+		const quote = `Gefordert: ${SYMBOL_BULLET} 2 technische Fachkräfte`;
+		const marks = criterionMarks([{ text, lang: 'de' }], [{ quote, lang: 'de' }], []);
+		expect(marks).toEqual([[{ quote, n: 1, decides: false }]]);
+		expect(placeMarks(shownText(text), marks[0])).toEqual([
+			{ start: 0, end: text.length, indexes: [0] }
+		]);
+	});
+
+	it('cuts a quote holding a Symbol-font bullet across two descriptions at their edge', () => {
+		const bulleted = [
+			descriptions[0],
+			{ ...descriptions[1], text: `${SYMBOL_BULLET} in each year.` }
+		];
+		const quote = `netto Umsatz ${SYMBOL_BULLET} in each year`;
+		const marks = criterionMarks(bulleted, [{ quote }], []);
+		expect(marks.map((list) => list.map((mark) => mark.at))).toEqual([
+			[{ start: 34, end: 46 }],
+			[{ start: 0, end: 14 }]
+		]);
+	});
 });
 
 describe('quotePlaces', () => {

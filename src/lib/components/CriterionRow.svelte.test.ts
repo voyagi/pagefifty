@@ -1,13 +1,20 @@
 import { render, screen } from '@testing-library/svelte';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { readFixture } from '../../test/fixtures/node';
 import { FIXTURE_ROLES, type RoleName } from '../../test/fixtures/roles';
 import { readNotice } from '$lib/ingest/read-notice';
 import type { NoticeRecord } from '$lib/ingest/record';
+import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
+import { NoticeReadingsSchema } from '$lib/snapshot/readings';
 import { buildTenderPage, type CriterionView } from '$lib/tenders/tender-page';
 import CriterionRow from './CriterionRow.svelte';
 
 const NOW = new Date('2026-09-20T10:00:00Z');
+// The 2026-10-22 capture as the records build wrote it: globalSetup ran scripts/build-records.mjs.
+const BUILT_1022 = join('src', 'lib', 'snapshot', 'generated', '2026-10-22');
+const readJson = (path: string): unknown => JSON.parse(readFileSync(path, 'utf8'));
 // Word's Symbol-font bullets as published, written as code points so no invisible character sits
 // in this file.
 const SYMBOL_BULLETS = [0xf0a7, 0xf0d8].map((point) => String.fromCodePoint(point));
@@ -120,6 +127,31 @@ describe('CriterionRow', () => {
 		expect(countOf(shown, BULLET) - countOf(published, BULLET)).toBe(marks);
 		expect(marks).toBeGreaterThan(0);
 		expect(criterion.descriptions[0].text).toBe(published);
+	});
+
+	// Code verified this quote against the clause as published, Symbol-font bullet and all, so the
+	// clause drawn with a bullet in its place still marks it under its reading's number.
+	it('numbers a verified quote holding a Symbol-font bullet in its clause (713597-2026, 2026-10-22)', () => {
+		const notice = '713597-2026';
+		const record = NoticeRecordSchema.parse(
+			readJson(join(BUILT_1022, 'records', `${notice}.json`))
+		);
+		const readings = NoticeReadingsSchema.parse(
+			readJson(join(BUILT_1022, 'readings', `${notice}.json`))
+		);
+		const { fetchedAt } = CaptureLineSchema.parse(readJson(join(BUILT_1022, 'capture.json')));
+		const criterion = buildTenderPage(record, new Date(fetchedAt), readings).lots[0].criteria[1];
+		const requirements = criterion.requirements ?? [];
+		const bulleted = requirements.findIndex((each) =>
+			SYMBOL_BULLETS.some((mark) => each.quote.includes(mark))
+		);
+		expect(bulleted).toBeGreaterThanOrEqual(0);
+		const { container } = renderRow(criterion, notice);
+		const numbered = [...container.querySelectorAll('mark[data-n]')].map((mark) =>
+			mark.getAttribute('data-n')
+		);
+		expect(numbered).toContain(`${bulleted + 1}`);
+		expect(new Set(numbered)).toEqual(new Set(requirements.map((_each, at) => `${at + 1}`)));
 	});
 
 	// Code verifies a quote against the descriptions joined, so one can run from the French
