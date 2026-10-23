@@ -373,6 +373,32 @@ describe('the temp folder of wrangler dev in the browser runs', () => {
 			rmSync(home, { recursive: true, force: true, maxRetries: 5 });
 		}
 	}, 120_000);
+
+	// PIDs are given out again, so a start can get the PID an ended starter had and find its folder.
+	it('clears what an ended process with its own PID left in its folder, unless a process recorded there still runs', () => {
+		const repo = realpathSync(mkdtempSync(join(tmpdir(), 'pagefifty-worker-')));
+		try {
+			const own = join(repo, '.wrangler', 'dev-temp', String(process.pid));
+			const left = join(own, 'miniflare-0a1b', 'email-store');
+			const { pid: ended } = spawnSync(process.execPath, ['--version']);
+			expect(running(ended)).toBe(false);
+			mkdirSync(left, { recursive: true });
+			writeFileSync(join(own, 'server.pids'), `${ended}\n`);
+			expect(devServerTemp(repo)).toBe(own);
+			expect([existsSync(own), existsSync(left), existsSync(join(own, 'server.pids'))]).toEqual([
+				true,
+				false,
+				false
+			]);
+			// This test's process stands in for a server process recorded there that still runs.
+			mkdirSync(left, { recursive: true });
+			writeFileSync(join(own, 'server.pids'), `${process.pid}\n`);
+			devServerTemp(repo);
+			expect(existsSync(left)).toBe(true);
+		} finally {
+			rmSync(repo, { recursive: true, force: true, maxRetries: 5 });
+		}
+	});
 });
 
 // verify:ship prints only a pass or a fail per step, so a driver's shrinking margin shows only in

@@ -467,7 +467,11 @@ export function wranglerDevArgs({ port, configPath, envFile }) {
 // while its starter or any Node process of its server runs. Each of those records its PID in it
 // (dev-server-pid.mjs): wrangler's bin is a launcher that runs its CLI as a second Node process, and
 // off Windows a starter or that launcher can be ended alone while the CLI keeps serving. On Windows
-// Node ends the children it spawned along with it.
+// Node ends the children it spawned along with it. A folder already named by the starting process's
+// own PID was left by an ended process given that PID before, or by an earlier start in this one, so
+// only the processes recorded in it keep it. A PID given to another program since keeps a folder
+// until that program ends too: Node tells whether a PID runs, not what runs under it, and keeping a
+// folder a little longer is the safe way to be wrong.
 const DEV_TEMP = join('.wrangler', 'dev-temp');
 // dev-server-pid.mjs writes this file under the same name.
 const SERVER_PIDS_FILE = 'server.pids';
@@ -475,7 +479,7 @@ const PID_NAME = /^[1-9]\d*$/;
 const PID_RECORDER = new URL('./dev-server-pid.mjs', import.meta.url).href;
 
 function devTempInUse(folder, name) {
-	if (pidRuns(Number(name))) return true;
+	if (Number(name) !== process.pid && pidRuns(Number(name))) return true;
 	let recorded;
 	try {
 		recorded = readFileSync(join(folder, SERVER_PIDS_FILE), 'utf8');
