@@ -11,47 +11,51 @@
 const AUDITS = [
 	{ slug: 'root', theme: 'light', url: 'http://127.0.0.1:8788/?theme=light' },
 	{ slug: 'root', theme: 'dark', url: 'http://127.0.0.1:8788/?theme=dark' },
-	// A list is a table only above 1340px and cards at 1280px, so each list is audited in both
-	// layouts in both themes: the cards hide the header row, so only a table entry checks its
-	// contrast in that theme. Each list entry names the width for its layout, and the layout is read
-	// from the page, so a moved switch cannot audit one layout twice. The second entry of a list in
-	// a theme takes no screenshots (shots: false), since its route and theme already have them; the
-	// full-page shots are most of the run's time.
+	// A list page has two layouts: from 721px (45em) the tender the list opens sits in a pane beside
+	// the list ('split'), and up to 720px a phone shows the list alone, its filters folded behind one
+	// button under 640px ('list'). So each list is audited in both layouts in both themes, the split
+	// view at 1440px and the phone view at 390px. Each list entry names the width for its layout, and
+	// the layout is read from the page, so a moved switch cannot audit one layout twice. A list with
+	// no tender open opens none beside it, so the runner then expects its wide entry to show the list
+	// alone (expectedListLayout in scripts/harness.mjs). The phone
+	// entry takes no screenshots (shots: false), since its route and theme already have them, a 390px
+	// width shot among them; the full-page shots are most of the run's time. Retired with the
+	// redesign (PR #79): the table at 1440px and the cards at 1280px, as no width has a table now.
 	{
 		slug: 'tenders',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/tenders?theme=light',
 		width: 1440,
-		layout: 'table'
+		layout: 'split'
 	},
 	{
 		slug: 'tenders',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/tenders?theme=light',
-		width: 1280,
-		layout: 'cards',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{
 		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
-		width: 1280,
-		layout: 'cards'
+		width: 1440,
+		layout: 'split'
 	},
 	{
 		slug: 'tenders',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/tenders?theme=dark',
-		width: 1440,
-		layout: 'table',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{ slug: 'profile', theme: 'light', url: 'http://127.0.0.1:8788/profile?theme=light' },
 	{ slug: 'profile', theme: 'dark', url: 'http://127.0.0.1:8788/profile?theme=dark' },
 	// The tender page twice. The live one serves the newest capture, so it is reached by clicking the
 	// list's first row (follow: 'first-row'), never by a typed notice number. The example capture's
-	// notice with the most lots, which brings the lot index and a leaf tab per lot, is reached by its
+	// notice with the most lots, which brings the lot index and one panel per lot, is reached by its
 	// row on the example list (follow: 'example-probe'; 600457-2026 with 17 lots on 2026-09-15).
 	{
 		slug: 'tender-from-list',
@@ -143,15 +147,15 @@ const AUDITS = [
 		url: 'http://127.0.0.1:8788/example?theme=light',
 		expectText: 'Closed at the capture time',
 		width: 1440,
-		layout: 'table'
+		layout: 'split'
 	},
 	{
 		slug: 'example',
 		theme: 'light',
 		url: 'http://127.0.0.1:8788/example?theme=light',
 		expectText: 'Closed at the capture time',
-		width: 1280,
-		layout: 'cards',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	{
@@ -159,16 +163,16 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
-		width: 1280,
-		layout: 'cards'
+		width: 1440,
+		layout: 'split'
 	},
 	{
 		slug: 'example',
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/example?theme=dark',
 		expectText: 'Closed at the capture time',
-		width: 1440,
-		layout: 'table',
+		width: 390,
+		layout: 'list',
 		shots: false
 	},
 	// A one-lot notice with criteria in the notice (600017-2026 on 2026-09-15), reached by its row.
@@ -238,8 +242,22 @@ const WIDTHS = [390, 768, 1440];
 const FULL_PAGE_LIMIT = 16000;
 
 // axe "incomplete" means it could not decide, which is not clean. An entry here accepts one
-// rule's undecided result only when every node's message matches, and says why.
-const ACCEPTED_INCOMPLETE = [];
+// rule's undecided result only when every node's message matches and, where the entry names places,
+// every node sits in one of them (runAxe's place), and says why.
+const SCROLLED_OUT = 'scrolled out of the list column';
+const CUT_BY_EDGE = 'cut by the list column edge';
+const ACCEPTED_INCOMPLETE = [
+	{
+		rule: 'color-contrast',
+		match: 'partially obscured by another element|too short to determine if it is actual text',
+		places: [SCROLLED_OUT, CUT_BY_EDGE],
+		why:
+			'rows the list column has scrolled wholly or partly out of its visible box, where the head ' +
+			'and the band sit over them on the screen, so axe composites the colours of whatever covers ' +
+			'the row; the list alone at 390px draws every row in full, its closed group unfolded (the ' +
+			'runner stops on one left folded), and a row inside the box stays undecided and fails'
+	}
+];
 
 const config = JSON.parse(await readFile('pagefifty-a11y-run.json'));
 const axeSource = await readFile(config.axeFile);
@@ -276,10 +294,10 @@ const HYDRATED = '[role="group"][aria-label="Theme"] [aria-pressed="true"]';
 async function followFirstRow() {
 	await page.waitForSelector(HYDRATED, { timeout: 10000 });
 	const folded = await page.evaluate(() =>
-		Boolean(document.querySelector('tbody tr[data-notice]')?.closest('details'))
+		Boolean(document.querySelector('ul.rows > li[data-notice]')?.closest('details:not([open])'))
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click('tbody tr[data-notice] a');
+	await page.click('ul.rows > li[data-notice] a.t');
 	await page.waitForFunction(() => /^\/tenders\/\d+-\d{4}$/.test(location.pathname), null, {
 		timeout: 10000
 	});
@@ -299,12 +317,12 @@ async function followExampleProbe(notice) {
 	const folded = await page.evaluate(
 		(number) =>
 			Boolean(
-				document.querySelector(`tr[data-notice="${number}"]`)?.closest('details:not([open])')
+				document.querySelector(`li[data-notice="${number}"]`)?.closest('details:not([open])')
 			),
 		notice
 	);
 	if (folded) await page.click('#closed summary');
-	await page.click(`tr[data-notice="${notice}"] a.t`);
+	await page.click(`li[data-notice="${notice}"] a.t`);
 	await page.waitForFunction((path) => location.pathname === path, `/example/${notice}`, {
 		timeout: 10000
 	});
@@ -385,64 +403,107 @@ async function widthShots(slug, theme) {
 
 async function runAxe() {
 	await page.evaluate(axeSource);
-	return page.evaluate(async () => {
-		const result = await window.axe.run(document, {
-			runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
-			// Named so it runs whether or not this axe version still ships it as experimental.
-			rules: { 'target-size': { enabled: true } }
-		});
-		// A rule reports its failing checks under any, all or none, so every one of them is read.
-		const messages = (node) =>
-			[...node.any, ...node.all, ...node.none]
-				.map((check) => check.message)
-				.filter(Boolean)
-				.join('; ');
-		const shape = (items) =>
-			items.map((item) => ({
-				id: item.id,
-				impact: item.impact,
-				help: item.help,
-				nodes: item.nodes.map((node) => ({
-					target: node.target.join(' '),
-					message: messages(node)
-				}))
-			}));
-		const ran = result.passes.concat(result.violations, result.incomplete, result.inapplicable);
-		return {
-			violations: shape(result.violations),
-			incomplete: shape(result.incomplete),
-			targetSizeRan: ran.some((rule) => rule.id === 'target-size')
-		};
-	});
+	return page.evaluate(
+		async (places) => {
+			const result = await window.axe.run(document, {
+				runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
+				// Named so it runs whether or not this axe version still ships it as experimental.
+				rules: { 'target-size': { enabled: true } },
+				// Each node comes back with its element, so its place on the screen is read below.
+				elementRef: true
+			});
+			// Where a node sits against the list column, which scrolls on its own beside a tender: outside
+			// it, inside its box, cut by the box's edge, or scrolled wholly out of the box, above or below.
+			// A column that does not scroll (the list alone) holds every row inside it.
+			const place = (element) => {
+				const column = element?.closest('.list-col');
+				if (!column) return 'outside the list column';
+				if (getComputedStyle(column).overflowY === 'visible') return 'inside the list column';
+				const view = column.getBoundingClientRect();
+				const box = element.getBoundingClientRect();
+				if (box.bottom <= view.top || box.top >= view.bottom) return places.scrolledOut;
+				if (box.top < view.top || box.bottom > view.bottom) return places.cutByEdge;
+				return 'inside the list column';
+			};
+			// A rule reports its failing checks under any, all or none, so every one of them is read.
+			const messages = (node) =>
+				[...node.any, ...node.all, ...node.none]
+					.map((check) => check.message)
+					.filter(Boolean)
+					.join('; ');
+			const shape = (items) =>
+				items.map((item) => ({
+					id: item.id,
+					impact: item.impact,
+					help: item.help,
+					nodes: item.nodes.map((node) => ({
+						target: node.target.join(' '),
+						message: messages(node),
+						place: place(node.element)
+					}))
+				}));
+			const ran = result.passes.concat(result.violations, result.incomplete, result.inapplicable);
+			return {
+				violations: shape(result.violations),
+				incomplete: shape(result.incomplete),
+				targetSizeRan: ran.some((rule) => rule.id === 'target-size')
+			};
+		},
+		{ scrolledOut: SCROLLED_OUT, cutByEdge: CUT_BY_EDGE }
+	);
 }
 
 function isAccepted(item) {
 	return ACCEPTED_INCOMPLETE.find(
 		(accepted) =>
 			accepted.rule === item.id &&
-			item.nodes.every((node) => new RegExp(accepted.match, 'i').test(node.message))
+			item.nodes.every(
+				(node) =>
+					new RegExp(accepted.match, 'i').test(node.message) &&
+					(!accepted.places || accepted.places.includes(node.place))
+			)
 	);
 }
 
-// The list layout the audited page shows, read from the open table, or from the closed one once no
-// tender is open (after 9 Oct 2027 a note takes the open table's place): 'table' for display table,
-// 'cards' for display block, any other display by its own name, so a hidden or broken table matches
-// neither layout and the runner stops on it. 'none' on a page without a list table. When only the
-// closed group holds rows, it is opened here, so axe audits the named layout and not a folded table.
-function readLayout() {
-	return page.evaluate(() => {
-		const open = document.querySelector('#open table.index');
-		const table = open ?? document.querySelector('#closed table.index');
-		if (!table) return { layout: 'none', group: null };
-		if (!open) {
-			const details = table.closest('details');
-			if (details) details.open = true;
+// How many of an accepted result's nodes sat in each place, so the report shows what was accepted.
+function countPlaces(nodes) {
+	const counts = {};
+	for (const node of nodes) counts[node.place] = (counts[node.place] ?? 0) + 1;
+	return counts;
+}
+
+// The list layout the audited page shows, read from its list column and tender pane: 'split' when
+// the pane is drawn beside the column, 'list' when the column is drawn and the pane is absent or
+// hidden (a phone's bare list), and any other arrangement in its own words, so a pane under the
+// list or a hidden column matches neither layout and the runner stops on it. 'none' on a page
+// without a list column. The group is the one whose rows were audited, the open list, or the closed
+// one once no tender is open (after 9 Oct 2027 a note takes the open list's place); when only the
+// closed group holds rows, it is opened here, so axe audits its rows and not a folded group. A phone
+// entry (unfoldClosed) opens the closed group whatever the open one holds, as a visitor does with its
+// summary, so the run decides every closed row's contrast at least once: the rows the column scrolls
+// out of view beside a tender are accepted undecided on that ground. The closed group is reported as
+// 'unfolded', 'folded' or 'none' for the runner's check.
+function readLayout(unfoldClosed) {
+	return page.evaluate((unfold) => {
+		const split = document.querySelector('.split');
+		const column = split?.querySelector('.list-col');
+		if (!column) return { layout: 'none', group: null, closedGroup: 'none' };
+		const open = column.querySelector('#open ul.rows');
+		const closed = column.querySelector('#closed ul.rows');
+		const details = closed?.closest('details');
+		if (details && (!open || unfold)) details.open = true;
+		let closedGroup = 'none';
+		if (closed) closedGroup = details && !details.open ? 'folded' : 'unfolded';
+		const drawn = (element) => Boolean(element) && getComputedStyle(element).display !== 'none';
+		const pane = split.querySelector('.pane');
+		let layout = 'pane under the list';
+		if (!drawn(column)) layout = 'list column hidden';
+		else if (!drawn(pane)) layout = 'list';
+		else if (pane.getBoundingClientRect().left >= column.getBoundingClientRect().right - 0.5) {
+			layout = 'split';
 		}
-		const display = getComputedStyle(table).display;
-		const layout =
-			display === 'table' ? 'table' : display === 'block' ? 'cards' : `display ${display}`;
-		return { layout, group: open ? 'open' : 'closed' };
-	});
+		return { layout, group: open ? 'open' : closed ? 'closed' : null, closedGroup };
+	}, unfoldClosed);
 }
 
 async function audit({
@@ -480,9 +541,10 @@ async function audit({
 	await page.setViewportSize({ width: entry.width, height: AUDIT_VIEWPORT.height });
 	entry.loadProblem = await loadState(entry);
 	entry.auditedWidth = await page.evaluate(() => innerWidth);
-	const read = await readLayout();
+	const read = await readLayout(layout === 'list');
 	entry.auditedLayout = read.layout;
 	entry.auditedGroup = read.group;
+	entry.auditedClosed = read.closedGroup;
 	if (entry.loadProblem) {
 		await page.setViewportSize(AUDIT_VIEWPORT);
 		return entry;
@@ -492,8 +554,14 @@ async function audit({
 	entry.targetSizeRan = result.targetSizeRan;
 	for (const item of result.incomplete) {
 		const accepted = isAccepted(item);
-		if (accepted) entry.acceptedIncomplete.push({ id: item.id, why: accepted.why });
-		else entry.incomplete.push(item);
+		if (accepted) {
+			entry.acceptedIncomplete.push({
+				id: item.id,
+				nodes: item.nodes.length,
+				places: countPlaces(item.nodes),
+				why: accepted.why
+			});
+		} else entry.incomplete.push(item);
 	}
 	if (!entry.shots) {
 		await page.setViewportSize(AUDIT_VIEWPORT);

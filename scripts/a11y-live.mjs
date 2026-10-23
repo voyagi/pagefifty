@@ -30,7 +30,9 @@ import {
 	buildWorker,
 	checkAllowlist,
 	checkDevBrowser,
+	closedRowsUnaudited,
 	exampleFacts,
+	expectedListLayout,
 	marginWarnings,
 	readResult,
 	releaseRunLock,
@@ -59,7 +61,11 @@ function reportPage(page) {
 	const accepted = page.acceptedIncomplete.length;
 	const status = page.expectStatus ? ` | status ${page.expectStatus} as expected` : '';
 	const group = page.auditedGroup ? ` from the ${page.auditedGroup} group` : '';
-	const layout = page.layout ? ` as ${page.auditedLayout}${group}` : '';
+	const closed =
+		page.auditedClosed && page.auditedClosed !== 'none'
+			? `, closed group ${page.auditedClosed}`
+			: '';
+	const layout = page.layout ? ` as ${page.auditedLayout}${group}${closed}` : '';
 	const shot = page.shots ? page.screenshot : 'no shots, its route and theme have them';
 	const followed = page.followed ? ` | reached ${page.followed} by its row` : '';
 	console.log(
@@ -69,10 +75,17 @@ function reportPage(page) {
 	for (const item of [...page.violations, ...page.incomplete]) {
 		const kind = page.violations.includes(item) ? 'violation' : 'incomplete';
 		console.log(`  ${kind} ${item.id} (${item.impact}): ${item.help}`);
-		for (const node of item.nodes) console.log(`    ${node.target} ${node.message}`);
+		for (const node of item.nodes) {
+			const place = node.place ? ` [${node.place}]` : '';
+			console.log(`    ${node.target}${place} ${node.message}`);
+		}
 	}
-	for (const item of page.acceptedIncomplete)
-		console.log(`  accepted incomplete ${item.id}: ${item.why}`);
+	for (const item of page.acceptedIncomplete) {
+		const places = Object.entries(item.places ?? {})
+			.map(([place, count]) => `${count} ${place}`)
+			.join(', ');
+		console.log(`  accepted incomplete ${item.id} on ${item.nodes} nodes (${places}): ${item.why}`);
+	}
 }
 
 function verdict(result) {
@@ -108,20 +121,33 @@ function verdict(result) {
 		);
 		return 2;
 	}
-	// A list is audited as its table only at the width its entry names, so a page read at any other
-	// width left one layout unaudited.
+	// A list shows each of its layouts only at the widths that bring it, so a page read at any width
+	// other than the one its entry names left one layout unaudited.
 	if (audited.some((page) => page.auditedWidth !== page.width)) {
 		console.error('a11y: a page was not audited at the width its entry names');
 		return 2;
 	}
-	// The width is the means and the layout the claim: a switch that moved past 1440px would leave
-	// both entries of a list on its cards.
-	const misread = audited.filter((page) => page.layout && page.auditedLayout !== page.layout);
+	// The width is the means and the layout the claim: a split switch that moved past 1440px would
+	// leave both entries of a list on the list alone.
+	const misread = audited.filter(
+		(page) => page.layout && page.auditedLayout !== expectedListLayout(page)
+	);
 	if (misread.length > 0) {
 		const named = misread.map(
-			(page) => `${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}`
+			(page) =>
+				`${page.slug} ${page.theme} at ${page.width}px read ${page.auditedLayout}, expected ${expectedListLayout(page)}`
 		);
 		console.error(`a11y: a list page did not show the layout its entry names: ${named.join(', ')}`);
+		return 2;
+	}
+	// The driver accepts undecided contrast on rows the list column scrolled out of view only because
+	// each phone entry decides every row, the closed ones with them.
+	const folded = audited.filter(closedRowsUnaudited);
+	if (folded.length > 0) {
+		const named = folded.map(
+			(page) => `${page.slug} ${page.theme} (closed group ${page.auditedClosed ?? 'not reported'})`
+		);
+		console.error(`a11y: a phone list left its closed rows unaudited: ${named.join(', ')}`);
 		return 2;
 	}
 	if (audited.some((page) => !page.targetSizeRan)) {
@@ -159,7 +185,7 @@ async function main() {
 			const resultName = `pagefifty-a11y-${runId}-${theme}-result.json`;
 			writeRunConfig('pagefifty-a11y-run.json', { runId, resultName, axeFile, theme, example });
 			const started = Date.now();
-			// Eleven routes, each audited and shot at three widths, and each list audited a second time
+			// Fourteen routes, each audited and shot at three widths, and each list audited a second time
 			// in its other layout without shots.
 			const run = runDriver({
 				browserName: `pagefifty-a11y-${runId}`,
