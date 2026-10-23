@@ -6,6 +6,7 @@ import {
 	GUARD_FILES,
 	PROJECT_NAMES,
 	PROJECTS,
+	SETTLE_IMPORTS,
 	modulesTestedOnlyOutsideNode,
 	projectOf
 } from './projects';
@@ -156,5 +157,11 @@ describe('vitest projects', () => {
 
 	it.each(PROJECT_NAMES)('installs an outbound guard in the %s project', (name) => {
 		expect(PROJECTS[name].setupFiles.some((file) => GUARD_FILES.includes(file))).toBe(true);
+	});
+
+	// The components render in jsdom, where a lazy import can outlive its test.
+	it('settles pending imports after each jsdom test, from a file that exists', () => {
+		expect(PROJECTS.jsdom.setupFiles).toContain(SETTLE_IMPORTS);
+		expect(SRC_FILES).toContain(SETTLE_IMPORTS);
 	});
 });

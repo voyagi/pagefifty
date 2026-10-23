@@ -18,6 +18,8 @@ const FETCH_GUARD = 'src/test/outbound-guard.fetch.ts';
 // globals are on, and they are off, so jsdom loads its setup module: events fired through the DOM
 // testing library and user-event then wait for Svelte to flush, and rendered components go.
 const SVELTE_TESTING = '@testing-library/svelte/vitest';
+// Components that import a module lazily on mount must not leave that load running at teardown.
+export const SETTLE_IMPORTS = 'src/test/settle-imports.ts';
 
 export const GUARD_FILES: readonly string[] = [NODE_GUARD, FETCH_GUARD];
 
@@ -30,7 +32,7 @@ export const PROJECTS: Readonly<Record<ProjectName, ProjectFiles>> = {
 	jsdom: {
 		include: DOM_SUFFIXES.map((suffix) => `src/**/*${suffix}`),
 		exclude: [],
-		setupFiles: [NODE_GUARD, SVELTE_TESTING]
+		setupFiles: [NODE_GUARD, SVELTE_TESTING, SETTLE_IMPORTS]
 	},
 	workerd: {
 		include: [`src/**/*${WORKER_SUFFIX}`],
