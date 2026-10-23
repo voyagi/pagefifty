@@ -62,22 +62,66 @@ function pageWith(search: NoticeSearch | undefined): TenderPageData {
 const textOf = (element: Element | null | undefined) =>
 	element?.textContent?.replace(/\s+/g, ' ').trim() ?? '';
 
+// Three of the five pages Tavily returned for the German buyer are tender pages; the other two are
+// the buyer's own home page ("Berlin TXL") and a page about the company.
+const TENDER_PAGES = [
+	{
+		title: 'Ausschreibungen Berlin TXL Management GmbH: 1 offen',
+		href: 'https://ausschreibungen.tenderrepublic.de/auftraggeber/berlin-txl-management-gmbh'
+	},
+	{
+		title: 'RIB Tender - RIB e-Vergabe und Aufträge für Bieter',
+		href: 'https://www.meinauftrag.rib.de/public/publications/614415'
+	},
+	{
+		title: 'Calls for Tenders - Berlin TXL Management GmbH',
+		href: 'https://tegelprojekt.de/en/calls-for-tenders'
+	}
+];
+
+const NONE_FOUND = 'No tender pages of this buyer found by web search.';
+
+function noneShown(search: NoticeSearch) {
+	const { container } = render(TenderPage, {
+		props: { data: pageWith(search), variant: 'example' }
+	});
+	const region = container.querySelector('[data-web-search]');
+	return {
+		container,
+		links: region?.querySelectorAll('a').length,
+		lines: [...(region?.querySelectorAll('p') ?? [])].map((line) => textOf(line))
+	};
+}
+
 describe('the buyer search on the tender page', () => {
-	it('the tender page lists the buyer search results as unchecked web results', () => {
+	it('the tender page lists the tender pages among the results as unchecked web results', () => {
+		expect(recordedResults()).toHaveLength(5);
 		const { container } = render(TenderPage, {
 			props: { data: pageWith(recordedSearch()), variant: 'example' }
 		});
 		const region = container.querySelector('[data-web-search]');
 		expect(region).not.toBeNull();
 		const links = [...(region?.querySelectorAll('a') ?? [])];
-		expect(links.map((link) => textOf(link))).toEqual(recordedResults().map(({ title }) => title));
+		expect(links.map((link) => textOf(link))).toEqual(TENDER_PAGES.map(({ title }) => title));
 		expect(links.map((link) => link.getAttribute('href'))).toEqual(
-			recordedResults().map(({ url }) => new URL(url).href)
+			TENDER_PAGES.map(({ href }) => href)
 		);
 		const words = textOf(region);
 		expect(words).toContain('Web search results');
+		expect(words).toContain('only pages that look like tender or award pages');
 		expect(words).toContain('not checked');
 		expect(words).toContain('do not change the verdict');
+		expect(words).not.toContain('Über die Berlin TXL Management GmbH');
+	});
+
+	it("the panel is headed as this buyer's tenders on the web, never as earlier awards", () => {
+		const { container } = render(TenderPage, {
+			props: { data: pageWith(recordedSearch()), variant: 'example' }
+		});
+		expect(textOf(container.querySelector('#web-search-title'))).toBe(
+			"This buyer's tenders on the web"
+		);
+		expect(textOf(container.querySelector('#web-search'))).not.toMatch(/earlier awards/i);
 	});
 
 	it('the example page lists the built buyer search of the German buyer', () => {
@@ -89,21 +133,35 @@ describe('the buyer search on the tender page', () => {
 			props: { data: pageWith(built), variant: 'example' }
 		});
 		const links = [...container.querySelectorAll('[data-web-search] a')];
-		expect(links.map((link) => textOf(link))).toEqual(recordedResults().map(({ title }) => title));
+		expect(links.map((link) => textOf(link))).toEqual(TENDER_PAGES.map(({ title }) => title));
 	});
 
 	it('zero results read as none found by web search', () => {
-		const none = NoticeSearchSchema.parse({ ...recordedSearch(), results: [] });
-		const { container } = render(TenderPage, {
-			props: { data: pageWith(none), variant: 'example' }
-		});
-		const region = container.querySelector('[data-web-search]');
-		expect(region?.querySelectorAll('a')).toHaveLength(0);
-		const lines = [...(region?.querySelectorAll('p') ?? [])].map((line) => textOf(line));
-		expect(lines).toContain('No earlier awards found by web search.');
+		const { container, links, lines } = noneShown(
+			NoticeSearchSchema.parse({ ...recordedSearch(), results: [] })
+		);
+		expect(links).toBe(0);
+		expect(lines).toContain(NONE_FOUND);
 		expect(textOf(container)).not.toMatch(
 			/\b(has|had|holds) no (earlier )?awards\b|\bnever (won|awarded|been awarded)\b|\bwon nothing\b/i
 		);
+	});
+
+	it('results that are none of them tender pages read as none found too', () => {
+		const offTopic = NoticeSearchSchema.parse({
+			...recordedSearch(),
+			results: [
+				{
+					title: 'Time in Florida - Wikipedia',
+					url: 'https://en.wikipedia.org/wiki/Time_in_Florida',
+					score: 0.014
+				},
+				{ title: 'Berlin TXL', url: 'https://berlintxl.de', score: 0.3 }
+			]
+		});
+		const { links, lines } = noneShown(offTopic);
+		expect(links).toBe(0);
+		expect(lines).toContain(NONE_FOUND);
 	});
 
 	it('the verdict is the same with and without search results', () => {
