@@ -235,6 +235,10 @@
 				{/if}
 				{@render children?.()}
 			</div>
+		{:else}
+			<!-- With no tender open the route's page holds no record, only its head, so it renders
+			     outside a pane: the page keeps its title. -->
+			{@render children?.()}
 		{/if}
 	</div>
 

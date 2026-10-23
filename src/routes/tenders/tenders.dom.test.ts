@@ -12,8 +12,8 @@ import {
 	type TenderListData
 } from '$lib/tenders/list';
 import { CAPTURE_ID } from '../../test/fixtures/roles';
+import ListRouteHarness from '../../test/ListRouteHarness.svelte';
 import Layout from './+layout.svelte';
-import Page from './+page.svelte';
 
 const NO_FILTER: FilterState = { countries: [], cpv: [] };
 // A fixed "now" after some capture deadlines have passed, so both groups hold rows.
@@ -51,6 +51,15 @@ function rowDue(noticeNumber: string, tender: string, title = noticeNumber): Ind
 	};
 }
 
+// Two lists that open no tender beside them: a filter no capture notice meets, and one notice
+// whose only deadline had passed by NOW.
+const NOTHING_MATCHES = dataFor(index.rows, NOW, {
+	countries: ['BE'],
+	cpv: [],
+	from: '2099-01-01'
+});
+const ALL_CLOSED = dataFor([rowDue('609955-2026', '2026-09-01T10:30:00+02:00')]);
+
 const squash = (text: string | null | undefined) => (text ?? '').replace(/\s+/g, ' ').trim();
 
 // The tender the route renders in the pane, standing in for the record so these tests read the
@@ -60,11 +69,17 @@ const RECORD = createRawSnippet(() => ({
 }));
 
 // The list layout as the route renders it: on the bare list (no notice in the address), opening
-// the tender the layout chose, if any; or on a tender's own address.
+// the tender the layout chose, if any; or on a tender's own address. With no tender chosen the
+// route's page reads no record, so the real page renders there, as the layout draws it.
 function renderPage(
 	data: TenderListData,
 	{ notice, defaultNotice = null }: { notice?: string; defaultNotice?: string | null } = {}
 ) {
+	if (notice === undefined && defaultNotice === null) {
+		return render(ListRouteHarness, {
+			props: { variant: 'tenders', data: { ...data, defaultNotice, now: NOW } }
+		});
+	}
 	return render(Layout, {
 		props: {
 			data: { ...data, defaultNotice, now: NOW },
@@ -76,13 +91,32 @@ function renderPage(
 
 describe('tenders list page', () => {
 	it('names the page and the capture day', () => {
-		const data = dataFor(index.rows);
-		const { container } = renderPage(data);
+		const { container } = renderPage(dataFor(index.rows));
 		expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Open IT tenders');
 		const captureLine = container.querySelector('.capture .mono');
 		expect(squash(captureLine?.textContent)).toBe('Snapshot captured from TED on 15 Sep 2026');
-		render(Page, { props: { data: { ...data, defaultNotice: null, now: NOW, record: null } } });
-		expect(document.title).toBe('Open IT tenders in NL, BE and DE - Pagefifty');
+	});
+
+	// The route's page holds the <title>, so a list that opens no tender beside it, with no pane to
+	// put the page in, still renders the page: here the layout draws it, as SvelteKit does.
+	it.each([
+		['tenders', 'a filter that matches nothing', NOTHING_MATCHES],
+		['tenders', 'a list whose every tender has closed', ALL_CLOSED],
+		['example', 'a filter that matches nothing', NOTHING_MATCHES],
+		['example', 'a list whose every tender has closed', ALL_CLOSED]
+	] as const)('names the %s page on %s', (variant, _list, data) => {
+		expect(data.list.open).toEqual([]);
+		// An earlier test's page leaves its title in the document after it unmounts, so the title read
+		// below is this render's own only when it starts empty.
+		document.title = '';
+		render(ListRouteHarness, {
+			props: { variant, data: { ...data, defaultNotice: null, now: NOW } }
+		});
+		expect(document.title).toBe(
+			variant === 'example'
+				? `Example run, ${data.capture.capturedOn} snapshot - Pagefifty`
+				: 'Open IT tenders in NL, BE and DE - Pagefifty'
+		);
 	});
 
 	// The capture holds only notices published from the query's first day to the capture day, so the
