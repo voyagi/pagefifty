@@ -38,8 +38,9 @@ floor is underlined.
 Notice 699142-2026, criterion 6: the model turned the clause's double quotes into single ones, so
 code found none of its three quotes and the criterion reads "Not read".
 
-- A quote that code cannot verify in its clause: one it cannot find word for word, or one shorter
-  than 12 characters. That was 76 of 1,865 on 22 October.
+- A quote that code cannot verify in its clause: one it cannot find word for word (spacing and
+  line-end hyphens aside), one shorter than 12 characters, or one placed under a criterion the lot
+  does not have. That was 76 of 1,865 on 22 October.
 - A number from the model's own fields. Every amount, count and year is parsed by code from a
   verified quote.
 - A "Go" while part of a lot's criteria sits in documents this version does not read.
