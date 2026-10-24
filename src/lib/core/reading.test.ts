@@ -212,6 +212,21 @@ describe('readingStatus', () => {
 		}
 	});
 
+	it('says only that more may sit elsewhere when no lot names the documents, the ESPD or a pointer', () => {
+		for (const sources of [[], [UNKNOWN_SOURCE], [NOTICE, UNKNOWN_SOURCE]]) {
+			expect(readingStatus([lotInput(3, sources)]).text, JSON.stringify(sources)).toBe(
+				'3 criteria in the notice, more may sit elsewhere'
+			);
+		}
+		expect(readingStatus([lotInput(3, []), lotInput(1, [NOTICE, ESPD])]).text).toBe(
+			'4 criteria in the notice, more in the documents'
+		);
+		expect(readingStatus([lotInput(3, []), lotInput(1, [NOTICE], true)]).text).toBe(
+			'4 criteria in the notice, more in the documents'
+		);
+		expect(readingStatus([lotInput(0, [])]).text).toBe(CRITERIA_IN_DOCUMENTS);
+	});
+
 	it('gives the documents tag to criteria in the notice with one pointing criterion', () => {
 		const status = readingStatus([lotInput(3, [NOTICE]), lotInput(4, [NOTICE], true)]);
 		expect(status.tag).toBe('criteria-in-documents');
