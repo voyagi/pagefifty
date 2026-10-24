@@ -1,9 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-// package.json pins undici (CVE-2026-85024, fixed in 7.29.1) and sharp (GHSA-wq5f-xc86-pv6w, fixed
-// in 0.35.5) under one exact miniflare. npm applies an override keyed to a version only while that
-// version is installed and says nothing once it stops matching. The CI scan covers dev dependencies, but it runs only on pushes to main and fails
+// package.json pins undici (CVE-2026-109869, CVE-2026-109841 and CVE-2026-109924, fixed in 7.30.1)
+// and sharp (GHSA-wq5f-xc86-pv6w, fixed in 0.35.5) under one exact miniflare, and points the exact
+// zod pin of @cloudflare/vitest-plugin at the app's own zod (CVE-2023-54404, fixed in 4.6.6). jsdom's
+// undici reaches 8.12.2 through its own range, with no override. npm applies an override keyed to a
+// version only while that version is installed and says nothing once it stops matching. The CI scan covers dev dependencies, but it runs only on pushes to main and fails
 // only on HIGH and CRITICAL. Dependabot reads dev dependencies too (it opened alert 2 for this
 // advisory against main's lockfile at 2026-09-29 20:05 UTC), but only for the default branch and
 // only as an alert after the merge, so a tooling update that lets the pin lapse is caught here
@@ -41,9 +43,18 @@ function sortsBelow(version: string, floor: string): boolean {
 	return dash !== -1;
 }
 
-// The undici advisory covers the 7 line only.
+// The undici advisories (GHSA-xjj6-f33q-929c, GHSA-f72v-6w45-q472, GHSA-4qv8-2p9j-2685) are fixed
+// once per release line; a version on any other line is outside them.
+const undiciFixedByLine: Record<string, string> = { '6': '6.29.1', '7': '7.30.1', '8': '8.12.2' };
+
 function undiciBelowFixed(version: string): boolean {
-	return version.startsWith('7.') && sortsBelow(version, '7.29.1');
+	const floor = undiciFixedByLine[version.split('.')[0]];
+	return floor !== undefined && sortsBelow(version, floor);
+}
+
+// The zod advisory (GHSA-mrhx-c7xc-m3w5) covers every version below 4.6.6.
+function zodBelowFixed(version: string): boolean {
+	return sortsBelow(version, '4.6.6');
 }
 
 // The sharp advisory covers every version below 0.35.5.
@@ -67,12 +78,35 @@ describe('dependency overrides', () => {
 		).toContain(entry.version);
 	});
 
-	it('leaves no undici of the 7 line below 7.29.1 installed (CVE-2026-85024)', () => {
+	it('leaves no undici below the fixed release of its line installed (CVE-2026-109869)', () => {
 		expect(
-			['7.29.0', '7.28.9', '7.29.1-beta.0', '6.21.0', '7.29.1', '8.10.2'].map(undiciBelowFixed)
-		).toEqual([true, true, true, false, false, false]);
+			[
+				'7.30.0',
+				'7.29.1',
+				'7.30.1-beta.0',
+				'8.12.1',
+				'8.10.2',
+				'6.29.0',
+				'7.30.1',
+				'8.12.2',
+				'8.12.3',
+				'6.29.1',
+				'5.28.4',
+				'9.0.0'
+			].map(undiciBelowFixed)
+		).toEqual([true, true, true, true, true, true, false, false, false, false, false, false]);
 		expect(installedVersions('undici').length).toBeGreaterThan(0);
 		expect(installedVersions('undici').filter(undiciBelowFixed)).toEqual([]);
+	});
+
+	it('leaves no zod below 4.6.6 installed (CVE-2023-54404)', () => {
+		expect(
+			['4.6.5', '4.6.2', '4.4.3', '3.25.76', '4.6.6-canary.0', '4.6.6', '4.6.7', '4.7.0'].map(
+				zodBelowFixed
+			)
+		).toEqual([true, true, true, true, true, false, false, false]);
+		expect(installedVersions('zod').length).toBeGreaterThan(0);
+		expect(installedVersions('zod').filter(zodBelowFixed)).toEqual([]);
 	});
 
 	it('leaves no sharp below 0.35.5 installed (GHSA-wq5f-xc86-pv6w)', () => {
