@@ -8,7 +8,11 @@ const state = vi.hoisted(() => ({
 vi.mock('$app/state', () => state);
 
 const { default: Layout } = await import('./+layout.svelte');
-const { default: PrivacyPage, PROFILE_STAYS } = await import('./privacy/+page.svelte');
+const {
+	default: PrivacyPage,
+	PROFILE_STAYS,
+	CONTACT_ADDRESS
+} = await import('./privacy/+page.svelte');
 
 const TRUST_LINKS = [
 	['Privacy', '/privacy'],
@@ -56,11 +60,6 @@ describe('the privacy page', () => {
 			expect(body).toContain(sentence);
 		}
 		expect(document.querySelector('[data-fact="region"]')?.textContent).toBe(RUN.region);
-		expect(
-			screen
-				.getByRole('link', { name: /issue page of the Pagefifty repository/ })
-				.getAttribute('href')
-		).toBe('https://github.com/voyagi/pagefifty/issues');
 		// A visit reaches Cloudflare with its IP address, so a sentence that says no personal data
 		// leaves must be about what is sent to the model or search provider, never about a visit.
 		const noPersonalData = sentencesOf().filter((sentence) =>
@@ -79,6 +78,46 @@ describe('the privacy page', () => {
 			'Your theme choice, and whether the demo firm is shown, are kept in this browser the same way.',
 			'No firm profile, contact or personal data is sent to the model or the search provider.'
 		]);
+	});
+
+	// GDPR Article 13: the controller and its contact, the legal basis, how long data is kept, the
+	// rights a visitor has and the right to complain, each stated where the visitor reads it.
+	it('the privacy page names who is responsible, the legal basis, retention and your rights', () => {
+		const body = renderPrivacy();
+		for (const sentence of [
+			'The maintainer of Pagefifty is the controller of the personal data this site processes, and answers by email.',
+			'The legal basis for the technical data of each request is legitimate interest, under GDPR Article 6(1)(f), and the interest is answering your request for a page.',
+			"The maintainer keeps no log of these requests, because the site's request logging at Cloudflare is switched off.",
+			'A message you send to that address is processed on the same basis, to answer it, and is kept no longer than answering it needs.',
+			'At that address you can ask to see, correct or erase personal data about you, to limit how it is processed, or to object to its processing.',
+			'You can also complain to a data protection authority: the Dutch one, the Autoriteit Persoonsgegevens, or the one in the EU country where you live or work.'
+		]) {
+			expect(body).toContain(sentence);
+		}
+		expect(CONTACT_ADDRESS).toBe('pagefifty@taranity.com');
+		const mail = screen.getByRole('link', { name: CONTACT_ADDRESS });
+		expect(mail.getAttribute('href')).toBe(`mailto:${CONTACT_ADDRESS}`);
+		expect(
+			document.querySelectorAll(`main a[href^="mailto:"]`),
+			'one address for every question'
+		).toHaveLength(1);
+		const authority = screen.getByRole('link', {
+			name: 'Complain to the Autoriteit Persoonsgegevens'
+		});
+		expect(authority.getAttribute('href')).toBe(
+			'https://www.autoriteitpersoonsgegevens.nl/en/submitting-a-tip-off-or-a-complaint-to-the-ap'
+		);
+		// The Dutch name is marked Dutch wherever it stands, so a screen reader says it in Dutch.
+		const dutch = [...document.querySelectorAll('main [lang="nl"]')].map((element) =>
+			squash(element.textContent)
+		);
+		expect(dutch).toEqual(['Autoriteit Persoonsgegevens', 'Autoriteit Persoonsgegevens']);
+		// A question about personal data never goes to a public issue page.
+		expect(document.querySelector('main a[href*="github.com"]')).toBeNull();
+		// The page says once, on its last panel, that it is not legal advice.
+		const legal = [...document.querySelectorAll('main .legal')];
+		expect(legal).toHaveLength(1);
+		expect(legal[0].closest('section')?.id).toBe('contact');
 	});
 
 	it('the privacy page says how the stored profile is removed', () => {

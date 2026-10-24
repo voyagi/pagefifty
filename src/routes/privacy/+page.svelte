@@ -5,6 +5,9 @@
 		'Your theme choice, and whether the demo firm is shown, are kept in this browser the same way.',
 		'No firm profile, contact or personal data is sent to the model or the search provider.'
 	];
+
+	// The one address the page gives for questions and requests about personal data.
+	export const CONTACT_ADDRESS = 'pagefifty@taranity.com';
 </script>
 
 <script lang="ts">
@@ -121,17 +124,52 @@
 		</PanelGrid>
 	</Panel>
 
+	<Panel id="controller" labelledby="controller-title">
+		<PanelGrid legal={false}>
+			{#snippet margin()}
+				<Facts head="Who is responsible" headingId="controller-title" />
+			{/snippet}
+			<p class="statement">
+				The maintainer of Pagefifty is the controller of the personal data this site processes, and
+				answers by email.
+			</p>
+			<p class="contact">
+				<a href="mailto:{CONTACT_ADDRESS}">{CONTACT_ADDRESS}</a>
+			</p>
+			<p class="statement">
+				The legal basis for the technical data of each request is legitimate interest, under GDPR
+				Article 6(1)(f), and the interest is answering your request for a page.
+			</p>
+			<p class="statement">
+				The maintainer keeps no log of these requests, because the site's request logging at
+				Cloudflare is switched off.
+			</p>
+			<p class="statement">
+				A message you send to that address is processed on the same basis, to answer it, and is kept
+				no longer than answering it needs.
+			</p>
+		</PanelGrid>
+	</Panel>
+
 	<Panel id="contact" labelledby="contact-title">
 		<PanelGrid>
 			{#snippet margin()}
-				<Facts head="Questions" headingId="contact-title" />
+				<Facts head="Your rights" headingId="contact-title" />
 			{/snippet}
 			<p class="statement">
-				Questions about this page go to the issue page of the Pagefifty repository.
+				At that address you can ask to see, correct or erase personal data about you, to limit how
+				it is processed, or to object to its processing. Questions about this page go there too.
+			</p>
+			<p class="statement">
+				You can also complain to a data protection authority: the Dutch one, the <span lang="nl"
+					>Autoriteit Persoonsgegevens</span
+				>, or the one in the EU country where you live or work.
 			</p>
 			<p class="contact">
-				<a href="https://github.com/voyagi/pagefifty/issues" rel="external noreferrer"
-					>Open the issue page of the Pagefifty repository<ExternalIcon /></a
+				<a
+					href="https://www.autoriteitpersoonsgegevens.nl/en/submitting-a-tip-off-or-a-complaint-to-the-ap"
+					rel="external noreferrer"
+					>Complain to the <span lang="nl">Autoriteit Persoonsgegevens</span><ExternalIcon /></a
 				>
 			</p>
 		</PanelGrid>
