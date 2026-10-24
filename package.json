@@ -83,15 +83,18 @@
 	},
 	"dependencies": {
 		"fast-xml-parser": "^5.11.1",
-		"zod": "^4.6.2"
+		"zod": "^4.6.6"
 	},
 	"overrides": {
+		"@cloudflare/vitest-plugin": {
+			"zod": "$zod"
+		},
 		"@sveltejs/kit": {
 			"cookie": "^0.7.2"
 		},
 		"miniflare@5.20260911.0-alpha": {
 			"sharp": "0.35.5",
-			"undici": "7.29.1"
+			"undici": "7.30.1"
 		}
 	}
 }
