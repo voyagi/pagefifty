@@ -169,25 +169,25 @@ export function checkDevBrowser() {
 const LOOPBACK = new Set(['127.0.0.1', 'localhost', '[::1]']);
 
 // The allowlist is a policy of the machine this was built on, kept in its home folder. A computer
-// without that folder has no policy to consult, so only a loopback target may pass unchecked there;
-// a computer that has the folder but lost the checker fails, so a moved tool never reads as a pass.
+// without its checker has no policy to consult, so only a loopback target may pass unchecked there,
+// whether or not the folder exists. Any other target still needs the checker: on a computer that
+// has the folder but lost the checker it fails, so a moved tool never reads as a pass for it.
 export function checkAllowlist(url) {
 	const policyHome = join(homedir(), '.claude');
 	const tool = join(policyHome, 'scripts', 'dev-browser-allow.js');
-	if (!existsSync(policyHome)) {
-		if (!LOOPBACK.has(new URL(url).hostname)) {
-			throw new HarnessError(
-				1,
-				`no allowlist on this computer, and ${url} is not a loopback address`
-			);
-		}
-		console.log(
-			`[harness] no allowlist on this computer; ${url} is a loopback address, so it runs`
-		);
-		return;
-	}
 	if (!existsSync(tool)) {
-		throw new HarnessError(1, `allowlist check unavailable: ${tool} is missing`);
+		if (LOOPBACK.has(new URL(url).hostname)) {
+			console.log(
+				`[harness] no allowlist on this computer; ${url} is a loopback address, so it runs`
+			);
+			return;
+		}
+		throw new HarnessError(
+			1,
+			existsSync(policyHome)
+				? `allowlist check unavailable: ${tool} is missing`
+				: `no allowlist on this computer, and ${url} is not a loopback address`
+		);
 	}
 	const run = spawnSync(process.execPath, [tool, 'check', url], {
 		encoding: 'utf8',
