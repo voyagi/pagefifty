@@ -181,6 +181,29 @@ describe('README figures', () => {
 		for (const image of images) expect(existsSync(image), image).toBe(true);
 	});
 
+	it('names the fonts the site and the design mock-ups load, each beside its licence file', () => {
+		const families = (...path: string[]) => [
+			...new Set(
+				[...readFileSync(join(...path), 'utf8').matchAll(/font-family:\s*'([^']+)'/g)].map(
+					(match) => match[1]
+				)
+			)
+		];
+		expect(families('src', 'app.css')).toEqual(['Albert Sans']);
+		const mockups = families('design', 'assets', 'fonts.css');
+		expect(mockups.length).toBeGreaterThan(0);
+		expect(mockups.every((family) => family.startsWith('IBM Plex'))).toBe(true);
+		const licences = ['static/fonts/albert-sans-OFL.txt', 'design/assets/fonts/OFL.txt'];
+		for (const licence of licences) {
+			expect(readFileSync(licence, 'utf8'), licence).toContain(
+				'licensed under the SIL Open Font License, Version 1.1.'
+			);
+		}
+		expect(README).toContain(
+			`Fonts: Albert Sans on the site ([licence](${licences[0]})) and IBM Plex in the design mock-ups under \`design/\` ([licence](${licences[1]})), both under the SIL Open Font License 1.1.`
+		);
+	});
+
 	it("gives the run record's tokens, cost and quote counts in the screenshot's description", () => {
 		const { input, output, reasoning } = run.reading.tokens;
 		expect(README).toContain(
