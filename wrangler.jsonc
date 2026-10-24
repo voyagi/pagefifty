@@ -12,5 +12,7 @@
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": false
+	"preview_urls": false,
+	// Cloudflare turns Workers Logs on for new Workers, and the site keeps no request logs.
+	"observability": { "enabled": false }
 }
