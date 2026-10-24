@@ -33,18 +33,18 @@ const lock = JSON.parse(readFileSync('package-lock.json', 'utf8')) as {
 // Names a package the way the CI scan counts it (gates.yml): by the name its entry carries, else
 // by its folder under node_modules, so an alias such as "undici7": "npm:undici@7" is read as
 // undici. Links carry no version of their own, and the root entry is the app itself.
+function isInstallOf(name: string, path: string, entry: LockEntry): boolean {
+	if (path === '' || entry.link) return false;
+	const at = path.lastIndexOf('node_modules/');
+	return (entry.name ?? (at === -1 ? undefined : path.slice(at + 'node_modules/'.length))) === name;
+}
+
 function installedVersions(
 	name: string,
 	packages: Record<string, LockEntry> = lock.packages
 ): string[] {
 	return Object.entries(packages)
-		.filter(([path, entry]) => {
-			if (path === '' || entry.link) return false;
-			const at = path.lastIndexOf('node_modules/');
-			return (
-				(entry.name ?? (at === -1 ? undefined : path.slice(at + 'node_modules/'.length))) === name
-			);
-		})
+		.filter(([path, entry]) => isInstallOf(name, path, entry))
 		.map(([, entry]) => entry.version ?? '');
 }
 
@@ -91,6 +91,29 @@ function belowFixed(name: keyof typeof fixedReleases, version: string): boolean 
 	const floors: Record<string, string> = fixedReleases[name];
 	const floor = floors[version.split('.')[0]] ?? floors['*'];
 	return floor !== undefined && sortsBelow(version, floor);
+}
+
+// Each installed copy of name below its first patched release, as its lock path and version, so a
+// failure says where the copy sits and which parent pulled it in.
+function unfixedInstalls(
+	name: keyof typeof fixedReleases,
+	packages: Record<string, LockEntry> = lock.packages
+): string[] {
+	return Object.entries(packages)
+		.filter(([path, entry]) => isInstallOf(name, path, entry))
+		.filter(([, entry]) => belowFixed(name, entry.version ?? ''))
+		.map(([path, entry]) => `${path} ${entry.version || '(no version)'}`);
+}
+
+function expectEveryInstallFixed(name: keyof typeof fixedReleases): void {
+	expect(
+		installedVersions(name).length,
+		`${name} is no longer in package-lock.json: drop its floor here and any override for it`
+	).toBeGreaterThan(0);
+	expect(
+		unfixedInstalls(name),
+		`${name} below its first patched release: raise its override in package.json, or the parent named in the path, then run npm install`
+	).toEqual([]);
 }
 
 const undiciBelowFixed = (version: string) => belowFixed('undici', version);
@@ -172,6 +195,10 @@ describe('dependency overrides', () => {
 		).toEqual([true, true, true, true]);
 		expect(['', '4.6'].map(zodBelowFixed)).toEqual([true, true]);
 		expect(['', '0.35'].map(sharpBelowFixed)).toEqual([true, true]);
+		expect(unfixedInstalls('undici', planted)).toEqual([
+			'node_modules/undici7 7.29.1',
+			'node_modules/undici (no version)'
+		]);
 	});
 
 	it('leaves no undici below the fixed release of its line installed (CVE-2026-109869, CVE-2026-109841, CVE-2026-109924)', () => {
@@ -191,8 +218,7 @@ describe('dependency overrides', () => {
 				'9.0.0'
 			].map(undiciBelowFixed)
 		).toEqual([true, true, true, true, true, true, false, false, false, false, false, false]);
-		expect(installedVersions('undici').length).toBeGreaterThan(0);
-		expect(installedVersions('undici').filter(undiciBelowFixed)).toEqual([]);
+		expectEveryInstallFixed('undici');
 	});
 
 	it('leaves no zod below 4.6.6 installed (CVE-2023-54404)', () => {
@@ -201,23 +227,20 @@ describe('dependency overrides', () => {
 				zodBelowFixed
 			)
 		).toEqual([true, true, true, true, true, false, false, false]);
-		expect(installedVersions('zod').length).toBeGreaterThan(0);
-		expect(installedVersions('zod').filter(zodBelowFixed)).toEqual([]);
+		expectEveryInstallFixed('zod');
 	});
 
 	it('leaves no sharp below 0.35.5 installed (GHSA-wq5f-xc86-pv6w)', () => {
 		expect(
 			['0.35.4', '0.34.9', '0.35.5-rc.1', '0.35.5', '0.36.0-rc.1', '1.0.0'].map(sharpBelowFixed)
 		).toEqual([true, true, true, false, false, false]);
-		expect(installedVersions('sharp').length).toBeGreaterThan(0);
-		expect(installedVersions('sharp').filter(sharpBelowFixed)).toEqual([]);
+		expectEveryInstallFixed('sharp');
 	});
 
 	it('leaves no cookie below 0.7.0 installed (CVE-2024-47764)', () => {
 		expect(
 			['0.6.0', '0.5.0', '0.7.0-rc.1', '0.7.0', '0.7.2', '1.1.1'].map(cookieBelowFixed)
 		).toEqual([true, true, true, false, false, false]);
-		expect(installedVersions('cookie').length).toBeGreaterThan(0);
-		expect(installedVersions('cookie').filter(cookieBelowFixed)).toEqual([]);
+		expectEveryInstallFixed('cookie');
 	});
 });
