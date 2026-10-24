@@ -1,8 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
+import { figureOf } from '$lib/core/figure';
 import { DEMO_PROFILE } from '$lib/profile/demo-firm';
-import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
+import {
+	CaptureLineSchema,
+	NoticeRecordSchema,
+	SnapshotIndexSchema
+} from '$lib/snapshot/index-row';
 import { NoticeReadingsSchema, ReadingsFileSchema } from '$lib/snapshot/readings';
 import { SearchesFileSchema } from '$lib/snapshot/searches';
 import { buildTenderPage } from '$lib/tenders/tender-page';
@@ -26,8 +31,14 @@ const README = readFileSync('README.md', 'utf8').replace(/\s+/g, ' ');
 interface Run {
 	notices: { written: number };
 	search: { searches: number };
+	metered: {
+		attempts: number;
+		perProvider: { tokenFactory: number };
+		responses: { provider: string; operation: string }[];
+	};
 	reading: {
 		runDate: string;
+		sends: number;
 		lots: { withCriteria: number; read: number; notRead: number };
 		costUsd: string;
 		tokens: { input: number; output: number; reasoning: number };
@@ -186,5 +197,47 @@ describe('README figures', () => {
 		expect([go, noGo]).toEqual([0, 0]);
 		expect(README).toContain('There is one live model run so far.');
 		expect(figure.runs).toBe(1);
+	});
+
+	// The project story outside this repository says these two about the run, so they are pinned to
+	// the capture here, without a text match.
+	it('finds every "Not met alone" among the notices that publish criteria, so the rest of them ask first', () => {
+		const index = SnapshotIndexSchema.parse(readJson(BUILT, 'index.json'));
+		const now = new Date(index.capture.fetchedAt).toISOString();
+		const read = new Set(withCriteria);
+		const served = index.rows.map(({ noticeNumber }) => {
+			const record = NoticeRecordSchema.parse(readJson(BUILT, 'records', `${noticeNumber}.json`));
+			const path = join(BUILT, 'readings', `${noticeNumber}.json`);
+			return existsSync(path)
+				? { record, readings: NoticeReadingsSchema.parse(readJson(path)) }
+				: { record };
+		});
+		const inNotice = served.filter(({ record }) => read.has(record.noticeNumber));
+		const elsewhere = served.filter(({ record }) => !read.has(record.noticeNumber));
+		expect(inNotice).toHaveLength(withCriteria.length);
+		const { partnerNeeded } = figure.counts;
+		expect(figureOf(inNotice, DEMO_PROFILE, now)).toEqual({
+			population: withCriteria.length,
+			go: 0,
+			partnerNeeded,
+			noGo: 0,
+			askFirst: withCriteria.length - partnerNeeded
+		});
+		expect(figureOf(elsewhere, DEMO_PROFILE, now)).toEqual({
+			population: elsewhere.length,
+			go: 0,
+			partnerNeeded: 0,
+			noGo: 0,
+			askFirst: elsewhere.length
+		});
+	});
+
+	it('answered every Token Factory call on its first attempt, with no repair retry and no lot unread', () => {
+		const calls = run.metered.responses.filter(({ provider }) => provider === 'tokenFactory');
+		expect(calls).toHaveLength(run.reading.sends);
+		expect(run.metered.perProvider.tokenFactory).toBe(run.reading.sends);
+		expect(calls.every(({ operation }) => operation === 'chat')).toBe(true);
+		expect(run.metered.attempts).toBe(run.metered.responses.length);
+		expect(run.reading.lots.notRead).toBe(0);
 	});
 });
