@@ -8,7 +8,7 @@ web
 
 ## Users
 
-The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Belgium or Germany. They sit at a desk late in a busy day, on a laptop, with an open EU public tender in front of them that someone found or forwarded. The job: decide in a few minutes whether the firm meets a tender's published selection criteria, before anyone spends two days writing a bid. They are not procurement lawyers and often do not read the language the tender is written in.
+The owner or bid lead of a small IT firm, 5 to 50 people, in the Netherlands, Belgium or Germany. They sit at a desk late in a busy day, on a laptop, with an open EU public tender in front of them that someone found or forwarded. The job: decide in a few minutes whether the firm meets a tender's published selection criteria, before anyone starts writing a bid. They are not procurement lawyers and often do not read the language the tender is written in.
 
 ## Product Purpose
 
@@ -73,7 +73,7 @@ It never gives a verdict the source does not support. Eligibility checkers answe
 
 1. The source is the verdict. Nothing is shown as ruling a firm out unless the tender's own words, quoted and linked, say so.
 2. Code decides numbers, the model reads language. The split is visible to the user.
-3. Ruled out is as useful as ruled in. A clear NO-GO saves two days and is presented with the same care.
+3. Ruled out is as useful as ruled in. A clear NO-GO saves the work of a bid and is presented with the same care.
 4. Say what was not read. Unread documents and unreadable criteria are stated, never hidden behind a confident verdict.
 5. The firm's data stays with the firm. The profile lives in the browser and leaves only as a file the user exports.
 
