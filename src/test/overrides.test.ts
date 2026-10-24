@@ -1,3 +1,4 @@
+import { fc, test } from '@fast-check/vitest';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
@@ -50,7 +51,7 @@ function installedVersions(
 // A version that is not major.minor.patch (an entry with none, a URL) cannot be compared, so the
 // floor checks count it as below the fix and the test names it instead of passing it.
 function readableRelease(version: string): boolean {
-	return /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/.test(version);
+	return /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$/.test(version);
 }
 
 // "miniflare@5.20260911.0-alpha" names a package and an exact version; "@sveltejs/kit" names a
@@ -61,10 +62,13 @@ function versionKeyed(key: string): { key: string; name: string; version: string
 }
 
 // True when version sorts below floor (a release), comparing major, minor and patch as numbers. A
-// pre-release sorts below its own release, so 0.35.5-rc.1 is below 0.35.5.
+// pre-release sorts below its own release, so 0.35.5-rc.1 is below 0.35.5. Build metadata after a
+// + never changes the order, and a dash inside it does not mark a pre-release.
 function sortsBelow(version: string, floor: string): boolean {
-	const dash = version.indexOf('-');
-	const release = dash === -1 ? version : version.slice(0, dash);
+	const plus = version.indexOf('+');
+	const core = plus === -1 ? version : version.slice(0, plus);
+	const dash = core.indexOf('-');
+	const release = dash === -1 ? core : core.slice(0, dash);
 	const parts = release.split('.').map((part) => Number.parseInt(part, 10));
 	const floorParts = floor.split('.').map((part) => Number.parseInt(part, 10));
 	for (let index = 0; index < 3; index += 1) {
@@ -109,6 +113,47 @@ describe('dependency overrides', () => {
 			`${entry.key} matches nothing installed (${entry.name} ${installed.join(', ') || 'absent'}): check what it pinned, then re-key or drop it`
 		).toContain(entry.version);
 	});
+
+	it('compares versions part by part as numbers, and ignores build metadata', () => {
+		expect(
+			[
+				'7.4.0',
+				'7.3.1',
+				'7.30.0+build',
+				'7.30.1-rc.1+build',
+				'7.100.0',
+				'7.30.10',
+				'7.30.1+build.5',
+				'7.30.1+build-5'
+			].map(undiciBelowFixed)
+		).toEqual([true, true, true, true, false, false, false, false]);
+		expect(versionKeyed('@scope/pkg@1.2.3')).toEqual([
+			{ key: '@scope/pkg@1.2.3', name: '@scope/pkg', version: '1.2.3' }
+		]);
+	});
+
+	const release = fc.tuple(fc.nat({ max: 1000 }), fc.nat({ max: 1000 }), fc.nat({ max: 1000 }));
+
+	// Half the draws compare a version with its own release: two random releases almost never tie,
+	// and the tie is where a pre-release or build metadata decides the answer.
+	test.prop([
+		release,
+		release,
+		fc.boolean(),
+		fc.boolean(),
+		fc.option(fc.stringMatching(/^[0-9A-Za-z.-]{1,8}$/), { nil: undefined })
+	])(
+		'orders any two releases as their numbers do, with a pre-release below its own release',
+		(version, other, tie, pre, build) => {
+			const floor = tie ? version : other;
+			const text =
+				version.join('.') + (pre ? '-rc.1' : '') + (build === undefined ? '' : `+${build}`);
+			const differs = version.findIndex((part, index) => part !== floor[index]);
+			const expected = differs === -1 ? pre : version[differs] < floor[differs];
+			expect(readableRelease(text)).toBe(true);
+			expect(sortsBelow(text, floor.join('.'))).toBe(expected);
+		}
+	);
 
 	it('reads a lock entry by the name it carries, and an unreadable version as below the fix', () => {
 		const planted: Record<string, LockEntry> = {
