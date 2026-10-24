@@ -249,7 +249,9 @@ describe('tenders list page', () => {
 		const row = container.querySelector('li[data-notice="609955-2026"]');
 		expect(row).not.toBeNull();
 		const cells = within(row as HTMLElement);
-		expect(cells.getByText('Criteria in the documents').className).toContain('facedown');
+		expect(cells.getByText('6 criteria in the notice, more in the documents').className).toContain(
+			'facedown'
+		);
 		expect(cells.getByText('EUR 834,550.06').className).toContain('mono');
 		const unvalued = container.querySelector('li[data-notice="615890-2026"]') as HTMLElement;
 		expect(within(unvalued).getByText('Value not published')).toBeTruthy();

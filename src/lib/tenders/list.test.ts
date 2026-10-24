@@ -106,7 +106,7 @@ describe('buildTenderList order and groups', () => {
 	it("gives each row its reading-status tag from the notice alone and the card's value", () => {
 		const list = buildTenderList({ rows: REAL }, NO_FILTER, CAPTURE_NOW);
 		const row = list.open.find((each) => each.noticeNumber === '609955-2026');
-		expect(row?.reading.text).toBe('Criteria in the documents');
+		expect(row?.reading.text).toBe('6 criteria in the notice, more in the documents');
 		expect(row?.value).toBe('EUR 834,550.06');
 		expect(row?.countries).toEqual(['Germany']);
 	});

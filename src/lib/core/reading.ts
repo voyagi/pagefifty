@@ -27,17 +27,34 @@ const NOT_COMPARED: CoverageLine = {
 	text: 'your firm profile. This version shows criteria as published.'
 };
 
-// "Criteria in the documents" wins whenever any lot names the documents or the ESPD, names no
-// source this version can read, or has a criterion pointing there, even beside criteria in the
-// notice (UI-SPEC section 4). That is the SOURCE_UNREAD fact the verdict input carries.
+const inNotice = (count: number) =>
+	count === 1 ? '1 criterion in the notice' : `${count} criteria in the notice`;
+
+// The documents tag wins whenever any lot names the documents or the ESPD, names no source this
+// version can read, or has a criterion pointing there, even beside criteria in the notice (UI-SPEC
+// section 4). That is the SOURCE_UNREAD fact the verdict input carries. Beside criteria in the
+// notice it counts them first, so a notice whose clause the tender page quotes never reads as if
+// it held none. The count says "more in the documents" only where a lot names the documents or the
+// ESPD or a criterion points there: a notice that only names no readable source may hold more, and
+// the tender page says no more than that.
 export function readingStatus(lots: readonly LotCoverageInput[]): ReadingStatus {
 	const facts = lots.map((lot) => coverage(lot));
 	const count = facts.reduce((total, lot) => total + lot.criteriaInNotice, 0);
 	if (facts.some((lot) => lot.facts.includes('SOURCE_UNREAD'))) {
+		const named = facts.some((lot) => lot.namesDocuments || lot.namesEspd || lot.pointsToDocuments);
+		if (count > 0 && !named) {
+			return {
+				tag: 'criteria-in-documents',
+				count,
+				text: `${inNotice(count)}, more may sit elsewhere`,
+				reason:
+					'The notice names no source of criteria this version can read, so more may sit outside it.'
+			};
+		}
 		return {
 			tag: 'criteria-in-documents',
 			count,
-			text: 'Criteria in the documents',
+			text: count === 0 ? 'Criteria in the documents' : `${inNotice(count)}, more in the documents`,
 			reason:
 				'Part of the criteria sit in the procurement documents or the ESPD, which this version does not read yet.'
 		};
@@ -56,7 +73,7 @@ export function readingStatus(lots: readonly LotCoverageInput[]): ReadingStatus 
 	return {
 		tag: 'criteria-not-read',
 		count,
-		text: one ? '1 criterion in the notice' : `${count} criteria in the notice`,
+		text: inNotice(count),
 		reason: one
 			? '1 selection criterion is published in the notice itself. Open the tender to see how it reads.'
 			: `${count} selection criteria are published in the notice itself. Open the tender to see how each one reads.`

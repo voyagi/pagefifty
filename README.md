@@ -200,5 +200,6 @@ and Vitest.
 ## License
 
 Code: MIT ([LICENSE](LICENSE)). The notices under `examples/` are TED's, © European Union, reused
-under the terms each capture folder's README quotes. Fonts: IBM Plex, under the SIL Open Font
-License 1.1.
+under the terms each capture folder's README quotes. Fonts: Albert Sans on the site
+([licence](static/fonts/albert-sans-OFL.txt)) and IBM Plex in the design mock-ups under `design/`
+([licence](design/assets/fonts/OFL.txt)), both under the SIL Open Font License 1.1.

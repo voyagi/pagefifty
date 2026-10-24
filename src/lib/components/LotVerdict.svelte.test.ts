@@ -205,7 +205,7 @@ describe('the lot verdict on the tender page', () => {
 		expect(region).not.toBeNull();
 		expect(textOf(region?.querySelector('[data-verdict-word]'))).toBe('Ask first');
 		expect(textOf(region)).toContain(
-			'Only the firm can judge whether its references, staff or line of business fit what the buyer names.'
+			"Only the firm can judge whether its references and staff fit what the buyer names, or how much of its turnover is in the contract's field."
 		);
 		expect(textOf(region)).toContain('Compared with the demo firm, Brink Data B.V.');
 		expect(nextOf(region)).toBe(`Next: ${NEXT_LINES['profile-field-missing']}`);

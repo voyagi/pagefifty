@@ -421,7 +421,7 @@ Plain, squared, colour on the primary only.
 
 ### Reading Tags
 
-A quiet outlined tag, never a verdict: 24px tall, 1px Strong Rule edge, 6px corners, Tag type in Secondary Ink, with a 14px mark. "Criteria in the documents" carries the document mark and a dashed edge. "N criteria, not read yet" and "No criteria in the notice" carry the lines mark and a solid edge. The list's heading glosses the term once: "Reading status: what Pagefifty read in each notice."
+A quiet outlined tag, never a verdict: 24px tall, 1px Strong Rule edge, 6px corners, Tag type in Secondary Ink, with a 14px mark. "Criteria in the documents", or "N criteria in the notice, more in the documents" when the notice holds some too, carries the document mark and a dashed edge. A notice with criteria that names no source this version can read, and no documents, ESPD or pointer, reads "N criteria in the notice, more may sit elsewhere" with the same mark and edge. "N criteria in the notice" and "No criteria in the notice" carry the lines mark and a solid edge. The list's heading glosses the term once: "Reading status: what Pagefifty read in each notice."
 
 ### Verdict Block
 

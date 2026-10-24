@@ -322,9 +322,10 @@ try {
 	const rowStart = rowMatch ? rowMatch.index : -1;
 	const exampleRow =
 		rowStart < 0 ? '' : exampleList.slice(rowStart, exampleList.indexOf('</li>', rowStart));
+	// The probe holds criteria in the notice as well, so its tag counts them before the documents.
 	check(
-		'the documents probe reads "Criteria in the documents" on the served example list',
-		exampleRow.includes('Criteria in the documents'),
+		'the documents probe reads its criteria in the notice, more in the documents, on the served example list',
+		/\b\d+ criteri(?:on|a) in the notice, more in the documents\b/.test(exampleRow),
 		rowStart < 0
 			? `row ${documents.notice} not found in /example`
 			: `row ${documents.notice} of ${exampleRow.length} characters read`

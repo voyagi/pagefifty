@@ -434,7 +434,7 @@ export function buildTenderPage(
 					}))
 				: [],
 		lots,
-		// The same facts that give the list its "Criteria in the documents" tag.
+		// The same facts that give the list its documents tag.
 		documentsUnread: readingStatus(record.lots.map(summarizeLot)).tag === 'criteria-in-documents',
 		cancelIntent: record.cancelIntent === true,
 		modelRead: readings !== undefined,
