@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 import { fc, test } from '@fast-check/vitest';
 import { resolveModes, resolveTransportMode } from './transport-mode';
@@ -33,11 +34,15 @@ describe('resolveTransportMode', () => {
 		}
 	);
 
+	// wrangler.jsonc may carry comments, which JSON.parse refuses and TypeScript's parser reads.
 	it('resolves to snapshot under the committed Wrangler config', () => {
-		const config = JSON.parse(readFileSync('wrangler.jsonc', 'utf8')) as {
-			vars?: Record<string, unknown>;
-		};
-		expect(resolveTransportMode(config.vars ?? {})).toBe('snapshot');
+		const { config, error } = ts.parseConfigFileTextToJson(
+			'wrangler.jsonc',
+			readFileSync('wrangler.jsonc', 'utf8')
+		);
+		expect(error).toBeUndefined();
+		const vars = (config as { vars?: Record<string, unknown> }).vars;
+		expect(resolveTransportMode(vars ?? {})).toBe('snapshot');
 	});
 });
 
