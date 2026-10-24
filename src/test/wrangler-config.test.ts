@@ -193,6 +193,15 @@ describe('the tracked config scan', () => {
 		expect(paths).toContain('wrangler.jsonc');
 		expect(trackedProblems(paths, (path) => readFileSync(path, 'utf8'))).toEqual([]);
 	});
+
+	// Workers Logs are on by default for a new Worker. The live site has them off, and the config keeps
+	// them off on every deploy, with no logs block that could switch part of them back on.
+	it('turns Workers observability off in the deployed config', () => {
+		const config = readJsonc('wrangler.jsonc', readFileSync('wrangler.jsonc', 'utf8')) as {
+			observability?: unknown;
+		};
+		expect(config.observability).toEqual({ enabled: false });
+	});
 });
 
 const WRANGLER = resolve('node_modules', 'wrangler', 'bin', 'wrangler.js');
