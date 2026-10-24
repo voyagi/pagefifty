@@ -1,6 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
+import { DEMO_PROFILE } from '$lib/profile/demo-firm';
+import { CaptureLineSchema, NoticeRecordSchema } from '$lib/snapshot/index-row';
+import { NoticeReadingsSchema, ReadingsFileSchema } from '$lib/snapshot/readings';
+import { SearchesFileSchema } from '$lib/snapshot/searches';
+import { buildTenderPage } from '$lib/tenders/tender-page';
+import { lotVerdict } from '$lib/tenders/verdict-view';
+import { buyerSearchCounts } from './buyer-search-counts';
 
 // records.ts reads its files through the adapter's read(), which only a built app provides; these
 // tests need only the capture it names as the example.
@@ -18,6 +25,7 @@ const README = readFileSync('README.md', 'utf8').replace(/\s+/g, ' ');
 
 interface Run {
 	notices: { written: number };
+	search: { searches: number };
 	reading: {
 		runDate: string;
 		lots: { withCriteria: number; read: number; notRead: number };
@@ -37,6 +45,29 @@ const figure = readJson('examples', EXAMPLE_CAPTURE, 'figure.json') as Figure;
 const count = (value: number) => value.toLocaleString('en-US');
 const { verified, rejected } = run.reading.quotes;
 const quotes = verified + rejected;
+const runDay = new Date(`${run.reading.runDate}T12:00:00Z`);
+const dayMonth = runDay.toLocaleDateString('en-GB', {
+	day: 'numeric',
+	month: 'long',
+	timeZone: 'UTC'
+});
+
+// The notices whose readings list at least one lot with criteria in the notice.
+const readings = ReadingsFileSchema.parse(readJson('examples', EXAMPLE_CAPTURE, 'readings.json'));
+const withCriteria = readings.notices
+	.filter((notice) => notice.lots.some((lot) => lot.status !== 'no-criteria'))
+	.map(({ notice }) => notice);
+
+// A notice's page as the example serves it: the built capture, its readings, the capture's instant.
+const BUILT = join('src', 'lib', 'snapshot', 'generated', EXAMPLE_CAPTURE);
+function examplePage(notice: string) {
+	const record = NoticeRecordSchema.parse(readJson(BUILT, 'records', `${notice}.json`));
+	const noticeReadings = NoticeReadingsSchema.parse(readJson(BUILT, 'readings', `${notice}.json`));
+	const { fetchedAt } = CaptureLineSchema.parse(readJson(BUILT, 'capture.json'));
+	return buildTenderPage(record, new Date(fetchedAt), noticeReadings);
+}
+
+const NUMBER_WORDS = ['none', 'one', 'two', 'three', 'four', 'five'];
 
 describe('README figures', () => {
 	it('points at the example capture and opens the featured notice', () => {
@@ -45,12 +76,6 @@ describe('README figures', () => {
 	});
 
 	it("states the run's day, notices, cost and refused quotes as the run recorded them", () => {
-		const runDay = new Date(`${run.reading.runDate}T12:00:00Z`);
-		const dayMonth = runDay.toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: 'long',
-			timeZone: 'UTC'
-		});
 		const day = runDay.toLocaleDateString('en-GB', {
 			day: 'numeric',
 			month: 'long',
@@ -69,6 +94,70 @@ describe('README figures', () => {
 		const { withCriteria, read, notRead } = run.reading.lots;
 		expect(README).toContain('read every selection criterion published in them');
 		expect([read, notRead]).toEqual([withCriteria, 0]);
+	});
+
+	it('counts the lots read and the notices with and without criteria in the notice', () => {
+		const { written } = run.notices;
+		expect(readings.notices).toHaveLength(written);
+		expect(README).toContain(
+			`${run.reading.lots.read} lots in the ${withCriteria.length} notices that publish criteria in the notice`
+		);
+		expect(README).toContain(
+			`On ${dayMonth}, ${written - withCriteria.length} of the ${written} notices published no selection criteria in the notice at all.`
+		);
+	});
+
+	it('counts the buyer searches and the pages their panels list as the tender pages show them', () => {
+		const file = SearchesFileSchema.parse(readJson('examples', EXAMPLE_CAPTURE, 'searches.json'));
+		const searched = file.notices
+			.filter((search) => search.status === 'searched')
+			.map(({ notice }) => notice);
+		expect(new Set(searched)).toEqual(new Set(withCriteria));
+		const counts = buyerSearchCounts(EXAMPLE_CAPTURE);
+		expect(counts.searched).toBe(run.search.searches);
+		expect(README).toContain(
+			`For each of the ${counts.searched} notices whose criteria are in the notice, the capture runs one Tavily search`
+		);
+		expect(README).toContain(
+			`(${counts.listed} of ${count(counts.returned)} on ${dayMonth}, ${counts.none} notices left with none)`
+		);
+	});
+
+	it("names the featured lot's floor and the demo firm's turnover as its verdict compares them", () => {
+		const page = examplePage(FEATURED_NOTICE);
+		const view = lotVerdict(page.lots[0], DEMO_PROFILE, page.now, page.documents);
+		expect(view?.decision.verdict).toBe('PARTNER NEEDED');
+		const floors = view?.shortfalls.map(({ floor }) => floor) ?? [];
+		expect(floors).toHaveLength(1);
+		// The page writes the floor with its cents; the README names a whole-euro floor without them.
+		const floor = floors[0]?.match(/^EUR ([\d,]+)\.00$/)?.[1];
+		expect(floor, `floor ${floors[0]}`).toEqual(expect.any(String));
+		const years = DEMO_PROFILE.turnover.map(({ year, specific: [line] }) => {
+			if (line?.net === undefined)
+				throw new Error(`the demo firm's ${year} has no turnover in its field`);
+			return line.net;
+		});
+		const average = years.reduce((sum, year) => sum + year, 0) / years.length;
+		const floorEuros = Number(floor?.replaceAll(',', ''));
+		expect(Math.max(...years)).toBeLessThan(floorEuros);
+		expect(average).toBeLessThan(floorEuros);
+		const [first, second, third] = years.map(count);
+		expect(README).toContain(
+			`Notice ${FEATURED_NOTICE}, lot 1: the buyer asks for EUR ${floor} a year in this field. The demo firm made EUR ${first}, ${second} and ${third}, so its best year and its three-year average of EUR ${count(average)} both fall short, the lot reads "${view?.label}"`
+		);
+	});
+
+	it('shows the refused criterion the README describes, with every quote refused as not found', () => {
+		const criterion = examplePage('699142-2026').lots[0].criteria.find(
+			({ position }) => position === 6
+		);
+		const refused = criterion?.rejected ?? [];
+		expect(refused.length).toBeGreaterThan(0);
+		expect(refused.every(({ reason }) => reason === 'not-found')).toBe(true);
+		expect(criterion?.requirements ?? []).toHaveLength(0);
+		expect(README).toContain(
+			`Notice 699142-2026, criterion 6: the model turned the clause's double quotes into single ones, so code found none of its ${NUMBER_WORDS[refused.length]} quotes and the criterion reads "Not read".`
+		);
 	});
 
 	it('shows only screenshots that exist', () => {
