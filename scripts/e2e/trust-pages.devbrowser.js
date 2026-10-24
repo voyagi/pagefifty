@@ -33,6 +33,7 @@ const PRIVACY_SENTENCES = [
 	'On the firm profile page, Remove the stored profile deletes it from this browser after you confirm.',
 	'The maintainer of Pagefifty is the controller of the personal data this site processes, and answers by email.',
 	"The maintainer keeps no log of these requests, because the site's request logging at Cloudflare is switched off.",
+	"Mail to that address passes through Cloudflare Email Routing to the maintainer's Gmail inbox, so Cloudflare and Google receive the sender's address and the message.",
 	'You can also complain to a data protection authority: the Dutch one, the Autoriteit Persoonsgegevens, or the one in the EU country where you live or work.'
 ];
 const CONTACT = 'mailto:pagefifty@taranity.com';

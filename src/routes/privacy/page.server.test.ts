@@ -1,4 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
+import ts from 'typescript';
 import { describe, expect, it, vi } from 'vitest';
 import { newestReadingRun, searchRunOf } from '$lib/server/records';
 import type { ReadingRun } from '$lib/snapshot/readings';
@@ -113,5 +115,29 @@ describe('/privacy load', () => {
 			expect(blockOf(phrase), phrase).toHaveLength(1);
 			expect(blockOf(phrase)[0], phrase).toContain(href);
 		}
+	});
+
+	it('links the mail route to both services it passes through', async () => {
+		const blocks = pageOf(await loaded(null)).split('class="fact');
+		const route = blocks.filter((block) =>
+			text(block).includes('passes through Cloudflare Email Routing')
+		);
+		expect(route).toHaveLength(1);
+		expect(route[0]).toContain('href="https://developers.cloudflare.com/email-service/"');
+		expect(route[0]).toContain('href="https://policies.google.com/privacy"');
+	});
+
+	// The page says no request log is kept because Workers Logs are off, and wrangler.jsonc is what
+	// keeps them off on each deploy, so the sentence and the setting stand or fall together.
+	it('says no request log is kept only while wrangler.jsonc turns Workers observability off', async () => {
+		const { config, error } = ts.parseConfigFileTextToJson(
+			'wrangler.jsonc',
+			readFileSync('wrangler.jsonc', 'utf8')
+		);
+		expect(error).toBeUndefined();
+		expect((config as { observability?: unknown }).observability).toEqual({ enabled: false });
+		expect(text(pageOf(await loaded(null)))).toContain(
+			"The maintainer keeps no log of these requests, because the site's request logging at Cloudflare is switched off."
+		);
 	});
 });

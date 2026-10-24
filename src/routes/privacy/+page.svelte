@@ -148,6 +148,16 @@
 				A message you send to that address is processed on the same basis, to answer it, and is kept
 				no longer than answering it needs.
 			</p>
+			<div class="fact">
+				<p class="statement">
+					Mail to that address passes through Cloudflare Email Routing to the maintainer's Gmail
+					inbox, so Cloudflare and Google receive the sender's address and the message.
+				</p>
+				<FactSource href="https://developers.cloudflare.com/email-service/"
+					>Cloudflare Email Service</FactSource
+				>
+				<FactSource href="https://policies.google.com/privacy">Google Privacy Policy</FactSource>
+			</div>
 		</PanelGrid>
 	</Panel>
 
