@@ -147,6 +147,60 @@ describe('the run lock', () => {
 	}, 30_000);
 });
 
+// The allowlist checker lives under the home folder too, so each case runs in a child whose home is
+// a throwaway folder, built up one step at a time: no policy folder, the folder without its checker,
+// then a checker that blocks every address and one that allows every address.
+const ALLOWLIST_SCENARIOS = `
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
+const { checkAllowlist } = await import(process.argv[2]);
+if (homedir() !== process.env.USERPROFILE) throw new Error('not the throwaway home');
+const outcome = (url) => {
+	try {
+		checkAllowlist(url);
+		return 'runs';
+	} catch (error) {
+		return error.message.includes('BLOCKED') ? 'blocked' : 'refused';
+	}
+};
+const both = () => [outcome('http://127.0.0.1:4173/'), outcome('https://example.org/')];
+const scripts = join(homedir(), '.claude', 'scripts');
+const checker = (code) => writeFileSync(join(scripts, 'dev-browser-allow.js'), 'process.exit(' + code + ');');
+const results = { noFolder: both() };
+mkdirSync(scripts, { recursive: true });
+results.noChecker = both();
+checker(3);
+results.blocking = both();
+checker(0);
+results.allowing = both();
+console.log(JSON.stringify(results));
+`;
+
+describe('the dev-browser allowlist check', () => {
+	it('lets a loopback address run without the checker, and asks the checker whenever it exists', () => {
+		const home = mkdtempSync(join(tmpdir(), 'pagefifty-allow-'));
+		try {
+			const script = join(home, 'scenarios.mjs');
+			writeFileSync(script, ALLOWLIST_SCENARIOS);
+			const harness = pathToFileURL(resolve('scripts/harness.mjs')).href;
+			const run = spawnSync(process.execPath, [script, harness], {
+				encoding: 'utf8',
+				env: { ...process.env, USERPROFILE: home, HOME: home }
+			});
+			expect(run.status, run.stderr).toBe(0);
+			expect(JSON.parse(run.stdout.trim().split('\n').at(-1) ?? '')).toEqual({
+				noFolder: ['runs', 'refused'],
+				noChecker: ['runs', 'refused'],
+				blocking: ['blocked', 'blocked'],
+				allowing: ['runs', 'runs']
+			});
+		} finally {
+			rmSync(home, { recursive: true, force: true });
+		}
+	}, 30_000);
+});
+
 describe('the npm the build step runs', () => {
 	it('takes the CLI an npm script names, and otherwise finds it beside node or under lib', () => {
 		const prefix = mkdtempSync(join(tmpdir(), 'pagefifty-npm-'));

@@ -231,6 +231,34 @@ const AUDITS = [
 		theme: 'dark',
 		url: 'http://127.0.0.1:8788/privacy?theme=dark',
 		expectText: 'Cloudflare hosts the site'
+	},
+	// The two example pages the README and the story send a reader to: the near miss, and the
+	// criterion whose every quote was refused. Both are pinned to the 2026-10-22 example capture, so
+	// an example capture without them fails here as a page that did not load, which is the cue to
+	// pick the pages again with the story.
+	{
+		slug: 'example-713597',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example/713597-2026?theme=light',
+		expectText: 'Quoted from TED notice 713597-2026'
+	},
+	{
+		slug: 'example-713597',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example/713597-2026?theme=dark',
+		expectText: 'Quoted from TED notice 713597-2026'
+	},
+	{
+		slug: 'example-699142',
+		theme: 'light',
+		url: 'http://127.0.0.1:8788/example/699142-2026?theme=light',
+		expectText: 'Quoted from TED notice 699142-2026'
+	},
+	{
+		slug: 'example-699142',
+		theme: 'dark',
+		url: 'http://127.0.0.1:8788/example/699142-2026?theme=dark',
+		expectText: 'Quoted from TED notice 699142-2026'
 	}
 ];
 

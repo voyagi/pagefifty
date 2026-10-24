@@ -1,9 +1,5 @@
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { CaptureLineSchema, NoticeRecordSchema } from '../snapshot/index-row';
-import { NoticeSearchSchema, SearchesFileSchema } from '../snapshot/searches';
-import { buildTenderPage } from './tender-page';
+import { builtSearch, buyerSearchCounts, shownSearch } from '../../test/buyer-search-counts';
 import { isTenderWebPage } from './tender-web-page';
 
 const titled = (title: string) => ({ title, url: 'https://example.org/page' });
@@ -79,24 +75,12 @@ describe('isTenderWebPage', () => {
 	});
 });
 
-// The 2026-10-22 capture as the records build wrote it: globalSetup ran scripts/build-records.mjs.
 const CAPTURE = '2026-10-22';
-const BUILT = join('src', 'lib', 'snapshot', 'generated', CAPTURE);
-const readJson = (path: string): unknown => JSON.parse(readFileSync(path, 'utf8'));
 
 describe('the buyer search of the 2026-10-22 capture on its tender pages', () => {
-	const now = new Date(CaptureLineSchema.parse(readJson(join(BUILT, 'capture.json'))).fetchedAt);
-	const builtSearch = (notice: string) =>
-		NoticeSearchSchema.parse(readJson(join(BUILT, 'searches', `${notice}.json`)));
-	const shown = (notice: string) =>
-		buildTenderPage(
-			NoticeRecordSchema.parse(readJson(join(BUILT, 'records', `${notice}.json`))),
-			now,
-			undefined,
-			builtSearch(notice)
-		).search;
+	const shown = (notice: string) => shownSearch(CAPTURE, notice);
 	const returnedTitles = (notice: string) => {
-		const search = builtSearch(notice);
+		const search = builtSearch(CAPTURE, notice);
 		return search.status === 'searched' ? search.results.map(({ title }) => title) : [];
 	};
 
@@ -132,17 +116,11 @@ describe('the buyer search of the 2026-10-22 capture on its tender pages', () =>
 
 	// Measured on this capture when the filter was written: every searched notice returned five results.
 	it('of the 200 notices searched, 27 show the empty line and 658 of the 1,000 results are listed', () => {
-		const file = SearchesFileSchema.parse(readJson(join('examples', CAPTURE, 'searches.json')));
-		const counts = { searched: 0, returned: 0, listed: 0, none: 0 };
-		for (const search of file.notices) {
-			if (search.status !== 'searched') continue;
-			counts.searched += 1;
-			counts.returned += search.results.length;
-			const view = shown(search.notice);
-			if (view === undefined) throw new Error(`${search.notice} was searched but shows no panel`);
-			if ('none' in view) counts.none += 1;
-			else counts.listed += view.results.length;
-		}
-		expect(counts).toEqual({ searched: 200, returned: 1000, listed: 658, none: 27 });
+		expect(buyerSearchCounts(CAPTURE)).toEqual({
+			searched: 200,
+			returned: 1000,
+			listed: 658,
+			none: 27
+		});
 	});
 });
