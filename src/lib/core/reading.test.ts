@@ -141,19 +141,40 @@ describe('summarizeLot and coverage', () => {
 });
 
 describe('readingStatus', () => {
-	it('tags 609955-2026 "Criteria in the documents" because its criteria point there', () => {
+	it('tags 609955-2026 with its six criteria in the notice and more in the documents, because they point there', () => {
 		expect(readingStatus(inputsOf(recordOf('one-lot')))).toEqual({
 			tag: 'criteria-in-documents',
 			count: 6,
+			text: '6 criteria in the notice, more in the documents',
+			reason: CRITERIA_IN_DOCUMENTS_REASON
+		});
+	});
+
+	it('says "Criteria in the documents" alone for documents-only 600367-2026, which holds none in the notice', () => {
+		expect(readingStatus(inputsOf(recordOf('documents-only', 0)))).toEqual({
+			tag: 'criteria-in-documents',
+			count: 0,
 			text: CRITERIA_IN_DOCUMENTS,
 			reason: CRITERIA_IN_DOCUMENTS_REASON
 		});
 	});
 
-	it('tags a notice whose lots name the documents or the ESPD "Criteria in the documents"', () => {
+	it('tags a notice whose lots name the documents or the ESPD with the documents tag, its count first', () => {
 		for (const record of [recordOf('documents-only', 1), recordOf('espd-only')]) {
-			expect(readingStatus(inputsOf(record)).text).toBe(CRITERIA_IN_DOCUMENTS);
+			const status = readingStatus(inputsOf(record));
+			expect(status.tag).toBe('criteria-in-documents');
+			expect(status.text).toBe(
+				status.count === 0
+					? CRITERIA_IN_DOCUMENTS
+					: `${status.count === 1 ? ONE_CRITERION : plural(status.count)}, more in the documents`
+			);
 		}
+	});
+
+	it('says "1 criterion in the notice, more in the documents" for exactly one beside the documents', () => {
+		expect(readingStatus([lotInput(1, [NOTICE, DOCUMENTS])]).text).toBe(
+			'1 criterion in the notice, more in the documents'
+		);
 	});
 
 	it('counts criteria across every lot of a notice-only notice without pointers', () => {
@@ -183,7 +204,7 @@ describe('readingStatus', () => {
 		});
 	});
 
-	it('gives "Criteria in the documents" to a lot that names no source or an unknown one', () => {
+	it('gives the documents tag to a lot that names no source or an unknown one', () => {
 		for (const sources of [[], [UNKNOWN_SOURCE]]) {
 			expect(readingStatus([lotInput(3, sources)]).tag, JSON.stringify(sources)).toBe(
 				'criteria-in-documents'
@@ -191,9 +212,10 @@ describe('readingStatus', () => {
 		}
 	});
 
-	it('gives "Criteria in the documents" to criteria in the notice with one pointing criterion', () => {
+	it('gives the documents tag to criteria in the notice with one pointing criterion', () => {
 		const status = readingStatus([lotInput(3, [NOTICE]), lotInput(4, [NOTICE], true)]);
-		expect(status.text).toBe(CRITERIA_IN_DOCUMENTS);
+		expect(status.tag).toBe('criteria-in-documents');
+		expect(status.text).toBe('7 criteria in the notice, more in the documents');
 		expect(status.count).toBe(7);
 	});
 
