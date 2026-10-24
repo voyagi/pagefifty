@@ -581,7 +581,7 @@ const FINAL_RUN = [
 	['Quotes rejected', '76']
 ];
 const FIRM_JUDGES =
-	'Only the firm can judge whether its references, staff or line of business fit what the buyer names.';
+	"Only the firm can judge whether its references and staff fit what the buyer names, or how much of its turnover is in the contract's field.";
 const NOT_NAMED =
 	'The buyer asks for a certificate this version cannot match by name with the profile.';
 

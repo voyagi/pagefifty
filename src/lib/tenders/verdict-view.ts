@@ -95,7 +95,7 @@ export const REASON_LINES = {
 		'The firm falls short on its own, and a clause in this lot limits relying on other firms.',
 	'profile-field-missing': 'A criterion needs a figure the profile does not settle.',
 	'profile-field-missing/firm-judges':
-		'Only the firm can judge whether its references, staff or line of business fit what the buyer names.',
+		"Only the firm can judge whether its references and staff fit what the buyer names, or how much of its turnover is in the contract's field.",
 	'profile-field-missing/empty-field': 'A figure this comparison needs is empty in the profile.',
 	'profile-field-missing/fewer-years':
 		'The profile holds fewer completed financial years than the buyer asks for.',
