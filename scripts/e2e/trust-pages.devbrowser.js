@@ -1,7 +1,7 @@
 // trust-pages.devbrowser.js - the AI and privacy pages on the built Worker: the model, region and
-// providers the build recorded, the two limit sentences, the run record, the processing statement
-// and the footer links on every page, each trust page read at every width of the shared sweep in
-// Light and in Dark with no sideways scroll.
+// providers the build recorded, the two limit sentences, the run record, the processing statement,
+// the contact address and complaint link, and the footer links on every page, each trust page read
+// at every width of the shared sweep in Light and in Dark with no sideways scroll.
 // Runs in the dev-browser QuickJS sandbox under scripts/e2e.mjs; see that file for the protocol.
 //
 // dev-browser-nav-guard: dynamic-ok the loops below only visit the literal URLs listed in PAGES and FOOTER_PAGES
@@ -30,8 +30,15 @@ const PRIVACY_SENTENCES = [
 	'As data processor under its privacy policy, Cloudflare receives the technical data of each request, such as your IP address.',
 	'The firm profile you enter is kept in this browser only, in its local storage, and is never sent to a server.',
 	'No firm profile, contact or personal data is sent to the model or the search provider.',
-	'On the firm profile page, Remove the stored profile deletes it from this browser after you confirm.'
+	'On the firm profile page, Remove the stored profile deletes it from this browser after you confirm.',
+	'The maintainer of Pagefifty is the controller of the personal data this site processes, and answers by email.',
+	"The maintainer keeps no log of these requests, because the site's request logging at Cloudflare is switched off.",
+	"Mail to that address passes through Cloudflare Email Routing to the maintainer's Gmail inbox, so Cloudflare and Google receive the sender's address and the message.",
+	'You can also complain to a data protection authority: the Dutch one, the Autoriteit Persoonsgegevens, or the one in the EU country where you live or work.'
 ];
+const CONTACT = 'mailto:pagefifty@taranity.com';
+const AUTHORITY =
+	'https://www.autoriteitpersoonsgegevens.nl/en/submitting-a-tip-off-or-a-complaint-to-the-ap';
 
 const PAGES = [
 	{
@@ -68,6 +75,9 @@ function readPage() {
 			runRecord: document.querySelectorAll('[data-run-record]').length,
 			example: Array.from(document.querySelectorAll('main a[href]')).some(
 				(link) => new URL(link.href).pathname === '/example'
+			),
+			links: Array.from(document.querySelectorAll('main a[href]')).map((link) =>
+				link.getAttribute('href')
 			),
 			footer: footer
 				? Array.from(footer.querySelectorAll('a[href]')).map((link) => new URL(link.href).pathname)
@@ -158,6 +168,14 @@ try {
 					JSON.stringify(read.facts.region) === JSON.stringify([trust.region]) &&
 					JSON.stringify(read.facts.provider) === JSON.stringify([trust.providers[0]]),
 				`missing ${JSON.stringify(missing)}, region ${JSON.stringify(read.facts.region)}, provider ${JSON.stringify(read.facts.provider)}`
+			);
+			const mail = read.links.filter((href) => href.startsWith('mailto:'));
+			check(
+				'/privacy gives one contact address, links the Dutch authority and no public issue page',
+				JSON.stringify(mail) === JSON.stringify([CONTACT]) &&
+					read.links.includes(AUTHORITY) &&
+					!read.links.some((href) => href.includes('github.com')),
+				`mail ${JSON.stringify(mail)}, links ${JSON.stringify(read.links)}`
 			);
 		}
 		await sweep(target, 'light', target.light);
