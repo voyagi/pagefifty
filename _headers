@@ -1,0 +1,6 @@
+# Static files only. Pages get the same headers from src/lib/server/security-headers.ts, and its
+# test keeps the two lists equal. The adapter appends its own cache rule for /_app/ below this.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
