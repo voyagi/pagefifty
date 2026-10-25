@@ -49,16 +49,17 @@
 {/if}
 
 <style>
-	/* Colour goes on the primary only; every other button is a plain outlined box. */
+	/* Every action is a pill. Colour goes on the primary only; every other button is white with a
+	   hairline. */
 	.btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
 		min-height: 38px;
-		padding: 0.375rem 1rem;
+		padding: 0.375rem 1.125rem;
 		font: 600 var(--step-0) / 1.2 var(--font);
-		border-radius: var(--r);
+		border-radius: var(--r-pill);
 		border: 1px solid var(--line-2);
 		text-decoration: none;
 		cursor: pointer;
@@ -68,8 +69,9 @@
 	}
 
 	.lg {
-		min-height: 44px;
-		padding: 0.5rem 1.25rem;
+		min-height: 48px;
+		padding: 0.5rem 1.5rem;
+		font-size: var(--step-1);
 	}
 
 	.primary {

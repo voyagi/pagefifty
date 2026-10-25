@@ -8,7 +8,7 @@
 	let { path }: { path: string } = $props();
 </script>
 
-<!-- The band is the one place the colour lives at size, on every page. -->
+<!-- A white bar on every page, one hairline under it; the green is in the "50" mark only. -->
 <header class="band">
 	<SkipLink />
 	<a class="wordmark" href={resolve('/')}><span class="logo" aria-hidden="true"></span>Pagefifty</a>
@@ -23,28 +23,29 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		gap: 0.75rem 1.625rem;
-		min-height: var(--band-h);
+		gap: 0.75rem 2rem;
+		min-height: var(--bar-h);
 		padding: 0.5rem var(--gutter);
-		background: var(--band);
-		color: var(--band-ink);
+		border-bottom: 1px solid var(--bar-rule);
+		background: var(--bar);
+		color: var(--bar-ink);
 	}
 
 	.wordmark {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5625rem;
+		gap: 0.625rem;
 		min-height: 44px;
-		font-weight: 750;
-		font-size: 1.1875rem;
-		letter-spacing: -0.025em;
-		color: var(--band-ink);
+		font-weight: 800;
+		font-size: 1.25rem;
+		letter-spacing: -0.035em;
+		color: var(--bar-ink);
 		text-decoration: none;
 		white-space: nowrap;
 	}
 
-	/* The mark is the page number in the band's own colours. The stylesheet draws the number, so the
-	   link's text is the name alone for every reader and every tool, and the mark stays decoration. */
+	/* The mark is the page number on the one green. The stylesheet draws the number, so the link's
+	   text is the name alone for every reader and every tool, and the mark stays decoration. */
 	.logo::before {
 		content: '50';
 	}
@@ -54,9 +55,9 @@
 		place-items: center;
 		width: 28px;
 		height: 28px;
-		border-radius: 7px;
-		background: var(--band-ink);
-		color: var(--band);
+		border-radius: 8px;
+		background: var(--mark);
+		color: var(--mark-ink);
 		font-weight: 800;
 		font-size: 0.78125rem;
 		letter-spacing: -0.04em;

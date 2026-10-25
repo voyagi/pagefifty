@@ -41,37 +41,40 @@
 	}
 
 	/* The pill sits inside a 44px target, so the hit area stays large while the drawn shape stays
-	   the 7px-cornered one the band uses everywhere. */
+	   small. The links read grey and the current one in ink, as a tool's tabs do. */
 	a {
 		display: inline-flex;
 		align-items: center;
 		min-height: 44px;
-		color: var(--band-ink-2);
+		color: var(--bar-ink-2);
 		font-weight: 500;
 		text-decoration: none;
 		white-space: nowrap;
 	}
 
 	span {
-		padding: 0.4375rem 0.6875rem;
-		border-radius: 7px;
-		transition: background-color var(--quick) ease-out;
+		padding: 0.375rem 0.75rem;
+		border-radius: var(--r-pill);
+		transition:
+			background-color var(--quick) ease-out,
+			color var(--quick) ease-out;
 	}
 
 	a:hover {
-		color: var(--band-ink);
+		color: var(--bar-ink);
 	}
 
 	a:hover span {
-		background: var(--band-hover);
+		background: var(--bar-hover);
 	}
 
 	a[aria-current] {
-		color: var(--band-ink);
+		color: var(--bar-ink);
+		font-weight: 600;
 	}
 
 	a[aria-current] span {
-		background: var(--band-hover);
+		background: var(--bar-hover);
 	}
 
 	/* The ring goes round the drawn pill, not the taller hit area around it. */
@@ -80,7 +83,7 @@
 	}
 
 	a:focus-visible span {
-		outline: 2px solid var(--band-ink);
+		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 	}
 

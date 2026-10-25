@@ -124,15 +124,13 @@
 	}
 
 	li:hover {
-		background: var(--bg-2);
+		background: var(--panel);
 	}
 
-	/* The opened tender: a tint of the brand colour inside a 1px brand edge and an underlined title,
-	   no side bar. */
+	/* The opened tender: a deeper grey than the hover and an underlined title, no side bar and no
+	   colour, as a tool marks the selected row of a table. */
 	li.opened {
-		background: color-mix(in srgb, var(--brand) 8%, var(--bg));
-		outline: 1px solid color-mix(in srgb, var(--brand) 45%, var(--bg));
-		outline-offset: -1px;
+		background: var(--bg-2);
 	}
 
 	.tile {
@@ -140,9 +138,8 @@
 		place-items: center;
 		width: 40px;
 		height: 40px;
-		border: 1px solid var(--line);
 		border-radius: var(--r);
-		background: var(--bg-2);
+		background: var(--panel);
 		color: var(--ink-2);
 		font-weight: 700;
 		font-size: var(--step--1);

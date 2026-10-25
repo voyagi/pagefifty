@@ -1,0 +1,14 @@
+The start page picture: library-wide-*.webp and library-tall-*.webp
+
+A generated image made for Pagefifty with ChatGPT from our own prompt (October 2026). It shows an
+imaginary library, not a real building, and it has no people, signs or text in it. The exact prompt
+sits in the .json file beside each image.
+
+How the files were made from the generated picture (1672 x 936 PNG):
+- Upscaled to 3344 x 1872 with waifu2x-ncnn-vulkan release 20250915 (MIT licence), model
+  upconv_7_photo, scale 2, noise level 0.
+  Every part was compared at full size with the original: nothing was added or redrawn.
+- library-wide-*: the whole picture, resized with Lanczos to 1280, 1920, 2560 and 3344 wide.
+- library-tall-*: a portrait crop for phones, 1521 x 1872 from x 940 of the upscaled picture
+  (the staircase and the green seats), resized to 800 and 1200 wide.
+- Encoded with cwebp at quality 80, sharp YUV, no metadata.

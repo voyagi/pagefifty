@@ -32,7 +32,7 @@
 />
 
 <PageMain>
-	<Panel id="processing" labelledby="privacy-title">
+	<Panel id="processing" labelledby="privacy-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="Who processes what">
@@ -90,7 +90,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="browser" labelledby="browser-title">
+	<Panel id="browser" labelledby="browser-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="What stays in your browser" headingId="browser-title" />
@@ -101,7 +101,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="remove" labelledby="remove-title">
+	<Panel id="remove" labelledby="remove-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="Removing the stored profile" headingId="remove-title" />
@@ -124,7 +124,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="controller" labelledby="controller-title">
+	<Panel id="controller" labelledby="controller-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="Who is responsible" headingId="controller-title" />
@@ -161,7 +161,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="contact" labelledby="contact-title">
+	<Panel id="contact" labelledby="contact-title" ruled>
 		<PanelGrid>
 			{#snippet margin()}
 				<Facts head="Your rights" headingId="contact-title" />

@@ -252,10 +252,11 @@ describe('theme controller', () => {
 
 	it('with the head script blocked, the stylesheet still paints Device from the OS scheme', () => {
 		const css = readFileSync('src/app.css', 'utf8');
+		// Runs of whitespace collapse: the formatter wraps a long value differently at each indent.
 		const block = (selector: RegExp) =>
 			(new RegExp(`${selector.source}\\s*\\{([^}]*)\\}`).exec(css)?.[1] ?? '')
 				.split(';')
-				.map((line) => line.trim())
+				.map((line) => line.trim().replace(/\s+/g, ' '))
 				.filter(Boolean);
 		const picked = block(/:root\[data-theme='dark'\]/);
 		expect(picked.length).toBeGreaterThan(10);

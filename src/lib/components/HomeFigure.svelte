@@ -46,8 +46,8 @@
 	}
 
 	.head {
-		font: 700 var(--step-2) / 1.2 var(--font);
-		letter-spacing: -0.02em;
+		font: 750 var(--step-2) / 1.2 var(--font);
+		letter-spacing: -0.025em;
 	}
 
 	.lead {
@@ -59,28 +59,21 @@
 		text-wrap: pretty;
 	}
 
-	/* Four counts side by side on hairlines, each with its label and what it means. */
+	/* A table on hairlines, one verdict to a row: the word, its count in aligned figures, and what
+	   it means. Every row has the same columns, so a sweep down the counts reads the run. */
 	.tally {
-		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		margin: 1.25rem 0 0;
-		border-block: 1px solid var(--line);
+		margin: 1.5rem 0 0;
+		border-top: 1px solid var(--line);
 	}
 
 	.count {
 		display: grid;
-		grid-template-rows: auto auto 1fr;
-		row-gap: 0.25rem;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: baseline;
+		gap: 0.25rem 1.5rem;
 		min-width: 0;
-		padding: 1rem 1.25rem;
-	}
-
-	.count + .count {
-		border-left: 1px solid var(--line);
-	}
-
-	.count:first-child {
-		padding-left: 0;
+		padding: 0.875rem 0;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.label {
@@ -89,9 +82,14 @@
 
 	.number {
 		margin: 0;
-		font: 700 var(--step-4) / 1 var(--font);
-		letter-spacing: -0.03em;
+		font: 650 var(--step-2) / 1.1 var(--font);
+		letter-spacing: -0.02em;
 		font-variant-numeric: tabular-nums;
+		text-align: right;
+	}
+
+	.count .gloss {
+		grid-column: 1 / -1;
 	}
 
 	.gloss {
@@ -129,22 +127,14 @@
 		color: var(--ink);
 	}
 
-	@media (max-width: 45em) {
-		.tally {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+	@media (min-width: 45em) {
+		.count {
+			grid-template-columns: 12rem 5rem minmax(0, 1fr);
 		}
 
-		.count + .count:nth-child(odd) {
-			padding-left: 0;
-			border-left: 0;
-		}
-
-		.count:nth-child(n + 3) {
-			border-top: 1px solid var(--line);
-		}
-
-		.number {
-			font-size: var(--step-3);
+		.count .gloss {
+			grid-column: auto;
+			padding-left: 1.5rem;
 		}
 	}
 </style>

@@ -27,7 +27,7 @@
 />
 
 <PageMain>
-	<Panel id="model" labelledby="ai-title">
+	<Panel id="model" labelledby="ai-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="The model and where it runs">
@@ -66,7 +66,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="code" labelledby="code-title">
+	<Panel id="code" labelledby="code-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="What code decides" headingId="code-title" />
@@ -84,7 +84,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="limits" labelledby="limits-title">
+	<Panel id="limits" labelledby="limits-title" ruled>
 		<PanelGrid legal={false}>
 			{#snippet margin()}
 				<Facts head="What a verdict does not cover" headingId="limits-title" />
@@ -95,7 +95,7 @@
 		</PanelGrid>
 	</Panel>
 
-	<Panel id="run" labelledby="run-title">
+	<Panel id="run" labelledby="run-title" ruled>
 		<PanelGrid>
 			{#snippet margin()}
 				<Facts head="The recorded run" headingId="run-title" />
