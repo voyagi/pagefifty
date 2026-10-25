@@ -65,15 +65,17 @@ type KeyedOverride = ReturnType<typeof versionKeyed>[number];
 
 // Every version-keyed override that picks a parent, at any depth. The pins under
 // "miniflare@5.20260911.0-alpha": { ... } apply only while that miniflare is installed, and npm
-// takes such a key nested under another parent as well as at the top. A version-keyed key whose
-// value is a version string ("undici@7.29.1": "7.30.1") is not one: it replaces the copy it
-// matches, so the keyed version is gone once it works, and the floor checks below cover it.
+// takes such a key nested under another parent as well as at the top. A version-keyed key that
+// replaces the copy it matches is not one, whether its value is a version string
+// ("undici@7.29.1": "7.30.1") or an object with a "." entry ("undici@7.29.1": { ".": "7.30.1" }):
+// the keyed version is gone once it works, and the floor checks below cover it. The pins beside a
+// "." entry are still read.
 function parentSelectors(overrides: Record<string, unknown>): KeyedOverride[] {
-	return Object.entries(overrides).flatMap(([key, value]) =>
-		value !== null && typeof value === 'object'
-			? [...versionKeyed(key), ...parentSelectors(value as Record<string, unknown>)]
-			: []
-	);
+	return Object.entries(overrides).flatMap(([key, value]) => {
+		if (value === null || typeof value !== 'object') return [];
+		const children = value as Record<string, unknown>;
+		return [...('.' in children ? [] : versionKeyed(key)), ...parentSelectors(children)];
+	});
 }
 
 // Why a parent selector's pins would not apply, or null when they do. The installed copy is looked
@@ -169,9 +171,11 @@ describe('dependency overrides', () => {
 				},
 				'@sveltejs/kit': { cookie: '^0.7.2' },
 				'@cloudflare/vitest-plugin': { zod: '$zod' },
-				'undici@7.29.0': '7.30.1'
+				'undici@7.29.0': '7.30.1',
+				'undici@7.29.1': { '.': '7.30.1' },
+				'miniflare@5.1.0': { '.': '5.2.0', 'sharp@0.35.1': { color: '4.2.3' } }
 			}).map((entry) => entry.key)
-		).toEqual(['sharp@0.35.0']);
+		).toEqual(['sharp@0.35.0', 'sharp@0.35.1']);
 	});
 
 	it('reads a parent selector as applying only while its exact version is installed', () => {
