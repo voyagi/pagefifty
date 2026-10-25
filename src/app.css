@@ -29,9 +29,9 @@
 
 /* A white page under a white top bar. Areas of a page are soft grey cards with no edge, and the
    things a reader handles inside them (a record, a quote, a field, a button) are white objects with
-   a hairline. One deep green fills the actions and the "50" mark and underlines the words a verdict
-   rests on; it never colours text. Only a record floating over the start page's picture casts a
-   shadow. */
+   a hairline. One green, deep on the actions and the "50" mark and a lighter step of the same hue
+   under the words a verdict rests on; it never colours text. Only a record floating over the start
+   page's picture casts a shadow. */
 :root {
 	color-scheme: light;
 	--bar: #ffffff;
@@ -61,6 +61,9 @@
 	--brand: #14513b;
 	--brand-hover: #0f4130;
 	--brand-ink: #ffffff;
+	/* The deciding words' underline: the brand's hue, lighter, so a 3px line reads as green and not
+	   as ink, at 4.07:1 on white. */
+	--decides: #1f8f62;
 	--focus: #14513b;
 	--selection: color-mix(in srgb, #14513b 22%, transparent);
 	--float:
@@ -115,6 +118,7 @@
 	--brand: #4fae85;
 	--brand-hover: #63bf96;
 	--brand-ink: #06130d;
+	--decides: #4fae85;
 	--focus: #7fd1ac;
 	--selection: color-mix(in srgb, #4fae85 30%, transparent);
 	--float:
@@ -150,6 +154,7 @@
 		--brand: #4fae85;
 		--brand-hover: #63bf96;
 		--brand-ink: #06130d;
+		--decides: #4fae85;
 		--focus: #7fd1ac;
 		--selection: color-mix(in srgb, #4fae85 30%, transparent);
 		--float:

@@ -493,6 +493,18 @@
 		color: var(--ink-2);
 	}
 
+	/* On a phone the tender record is set a little closer, so the verdict under it reaches the first
+	   screen. */
+	@media (max-width: 40em) {
+		.top {
+			padding-block: 1rem;
+		}
+
+		.who-text {
+			line-height: 1.35;
+		}
+	}
+
 	@media (min-width: 45em) {
 		.example {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
