@@ -109,7 +109,8 @@ function belowFixed(name: keyof typeof fixedReleases, version: string): boolean 
 }
 
 // Each installed copy of name below its first patched release, as its lock path and version, so a
-// failure says where the copy sits and which parent pulled it in.
+// failure says where the copy sits. A nested path also names the parent that pulled the copy in; a
+// hoisted one (node_modules/cookie) does not, and npm explain names it instead.
 function unfixedInstalls(
 	name: keyof typeof fixedReleases,
 	packages: Record<string, LockEntry> = lock.packages
@@ -127,7 +128,7 @@ function expectEveryInstallFixed(name: keyof typeof fixedReleases): void {
 	).toBeGreaterThan(0);
 	expect(
 		unfixedInstalls(name),
-		`${name} below its first patched release: raise its override in package.json, or the parent named in the path, then run npm install`
+		`${name} below its first patched release: raise its override in package.json, or the parent that pulls it in (npm explain ${name} names it), then run npm install`
 	).toEqual([]);
 }
 
