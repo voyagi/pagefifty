@@ -61,19 +61,36 @@ function versionKeyed(key: string): { key: string; name: string; version: string
 	return at > 0 ? [{ key, name: key.slice(0, at), version: key.slice(at + 1) }] : [];
 }
 
-// Every version-keyed selector in the overrides at any depth, since npm takes one nested under a
-// parent ("miniflare": { "undici@7.29.1": "7.30.1" }) as well as one at the top. A nested copy is
-// looked for anywhere in the lockfile, not under its parent's path: npm hoists dependencies to the
-// root node_modules, so a path never reliably names the parent that pulled a copy in.
-function versionKeyedOverrides(
-	overrides: Record<string, unknown>
-): ReturnType<typeof versionKeyed> {
-	return Object.entries(overrides).flatMap(([key, value]) => [
-		...versionKeyed(key),
-		...(value !== null && typeof value === 'object'
-			? versionKeyedOverrides(value as Record<string, unknown>)
-			: [])
-	]);
+type KeyedOverride = ReturnType<typeof versionKeyed>[number];
+
+// Every version-keyed override that picks a parent, at any depth. The pins under
+// "miniflare@5.20260911.0-alpha": { ... } apply only while that miniflare is installed, and npm
+// takes such a key nested under another parent as well as at the top. A version-keyed key whose
+// value is a version string ("undici@7.29.1": "7.30.1") is not one: it replaces the copy it
+// matches, so the keyed version is gone once it works, and the floor checks below cover it.
+function parentSelectors(overrides: Record<string, unknown>): KeyedOverride[] {
+	return Object.entries(overrides).flatMap(([key, value]) =>
+		value !== null && typeof value === 'object'
+			? [...versionKeyed(key), ...parentSelectors(value as Record<string, unknown>)]
+			: []
+	);
+}
+
+// Why a parent selector's pins would not apply, or null when they do. The installed copy is looked
+// for anywhere in the lockfile, not under a parent's path, because npm hoists dependencies to the
+// root node_modules. The check compares exact versions, so a key written as a range is named as one
+// instead of being reported as matching nothing.
+function selectorProblem(
+	entry: KeyedOverride,
+	packages: Record<string, LockEntry> = lock.packages
+): string | null {
+	if (!readableRelease(entry.version)) {
+		return `${entry.key} is keyed by a range, which this check cannot compare: key it by the exact version installed`;
+	}
+	const installed = installedVersions(entry.name, packages);
+	return installed.includes(entry.version)
+		? null
+		: `${entry.key} matches nothing installed (${entry.name} ${installed.join(', ') || 'absent'}): check what it pinned, then re-key or drop it`;
 }
 
 // True when version sorts below floor (a release), comparing major, minor and patch as numbers. A
@@ -138,26 +155,41 @@ const sharpBelowFixed = (version: string) => belowFixed('sharp', version);
 const cookieBelowFixed = (version: string) => belowFixed('cookie', version);
 
 describe('dependency overrides', () => {
-	const keyed = versionKeyedOverrides(pkg.overrides ?? {});
+	const keyed = parentSelectors(pkg.overrides ?? {});
 
-	it('reads the version-keyed override package.json holds, nested ones included', () => {
+	it('reads the parent selector package.json holds, nested ones included', () => {
 		expect(keyed.map((entry) => entry.key)).toEqual(['miniflare@5.20260911.0-alpha']);
 		expect(versionKeyed('@sveltejs/kit')).toEqual([]);
 		expect(
-			versionKeyedOverrides({
-				miniflare: { '.': '5.0.0', 'undici@7.29.1': '7.30.1' },
+			parentSelectors({
+				miniflare: {
+					'.': '5.0.0',
+					'undici@7.29.1': '7.30.1',
+					'sharp@0.35.0': { color: '4.2.3' }
+				},
 				'@sveltejs/kit': { cookie: '^0.7.2' },
-				'@cloudflare/vitest-plugin': { zod: '$zod' }
+				'@cloudflare/vitest-plugin': { zod: '$zod' },
+				'undici@7.29.0': '7.30.1'
 			}).map((entry) => entry.key)
-		).toEqual(['undici@7.29.1']);
+		).toEqual(['sharp@0.35.0']);
+	});
+
+	it('reads a parent selector as applying only while its exact version is installed', () => {
+		const planted: Record<string, LockEntry> = {
+			'node_modules/miniflare': { version: '5.20260911.0-alpha' }
+		};
+		const problems = parentSelectors({
+			'miniflare@5.20260911.0-alpha': { sharp: '0.35.5' },
+			'miniflare@5.20260901.0-alpha': { sharp: '0.35.5' },
+			'miniflare@^5.0.0': { sharp: '0.35.5' }
+		}).map((entry) => selectorProblem(entry, planted));
+		expect(problems[0]).toBeNull();
+		expect(problems[1]).toContain('matches nothing installed (miniflare 5.20260911.0-alpha)');
+		expect(problems[2]).toContain('is keyed by a range');
 	});
 
 	it.each(keyed)('$key still names an installed version, so its pin applies', (entry) => {
-		const installed = installedVersions(entry.name);
-		expect(
-			installed,
-			`${entry.key} matches nothing installed (${entry.name} ${installed.join(', ') || 'absent'}): check what it pinned, then re-key or drop it`
-		).toContain(entry.version);
+		expect(selectorProblem(entry)).toBeNull();
 	});
 
 	it('compares versions part by part as numbers, and ignores build metadata', () => {
