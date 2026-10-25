@@ -61,6 +61,21 @@ function versionKeyed(key: string): { key: string; name: string; version: string
 	return at > 0 ? [{ key, name: key.slice(0, at), version: key.slice(at + 1) }] : [];
 }
 
+// Every version-keyed selector in the overrides at any depth, since npm takes one nested under a
+// parent ("miniflare": { "undici@7.29.1": "7.30.1" }) as well as one at the top. A nested copy is
+// looked for anywhere in the lockfile, not under its parent's path: npm hoists dependencies to the
+// root node_modules, so a path never reliably names the parent that pulled a copy in.
+function versionKeyedOverrides(
+	overrides: Record<string, unknown>
+): ReturnType<typeof versionKeyed> {
+	return Object.entries(overrides).flatMap(([key, value]) => [
+		...versionKeyed(key),
+		...(value !== null && typeof value === 'object'
+			? versionKeyedOverrides(value as Record<string, unknown>)
+			: [])
+	]);
+}
+
 // True when version sorts below floor (a release), comparing major, minor and patch as numbers. A
 // pre-release sorts below its own release, so 0.35.5-rc.1 is below 0.35.5. Build metadata after a
 // + never changes the order, and a dash inside it does not mark a pre-release.
@@ -122,11 +137,18 @@ const sharpBelowFixed = (version: string) => belowFixed('sharp', version);
 const cookieBelowFixed = (version: string) => belowFixed('cookie', version);
 
 describe('dependency overrides', () => {
-	const keyed = Object.keys(pkg.overrides ?? {}).flatMap(versionKeyed);
+	const keyed = versionKeyedOverrides(pkg.overrides ?? {});
 
-	it('reads the version-keyed override package.json holds', () => {
+	it('reads the version-keyed override package.json holds, nested ones included', () => {
 		expect(keyed.map((entry) => entry.key)).toEqual(['miniflare@5.20260911.0-alpha']);
 		expect(versionKeyed('@sveltejs/kit')).toEqual([]);
+		expect(
+			versionKeyedOverrides({
+				miniflare: { '.': '5.0.0', 'undici@7.29.1': '7.30.1' },
+				'@sveltejs/kit': { cookie: '^0.7.2' },
+				'@cloudflare/vitest-plugin': { zod: '$zod' }
+			}).map((entry) => entry.key)
+		).toEqual(['undici@7.29.1']);
 	});
 
 	it.each(keyed)('$key still names an installed version, so its pin applies', (entry) => {
