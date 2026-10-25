@@ -500,6 +500,149 @@ function countPlaces(nodes) {
 	return counts;
 }
 
+// axe leaves a text's contrast undecided when it cannot composite what lies behind it: a picture, a
+// gradient, or one element laid over another (the start page's text over its place picture, and the
+// records floating over it). Those are decided from the painted pixels instead. Every text on the
+// page turns transparent, a background image no taller than 4px is taken off (a drawn underline is
+// one, and no stripe that thin can be the ground a text reads on), the node's box is captured, and
+// each pixel in it is measured against the text's own colour. The worst pixel has to clear WCAG's
+// floor: 3:1 for large text (24px, or 18.66px at weight 700), 4.5:1 for the rest. A colour that is
+// not opaque rgb is left unmeasured, and an unmeasured node stays undecided.
+const PAINT_HIDE = 'pagefifty-paint-hide';
+
+async function measureNode(target) {
+	const locator = page.locator(target).first();
+	const style = await locator.evaluate((element, hideId) => {
+		const css = getComputedStyle(element);
+		const read = {
+			color: css.color,
+			size: parseFloat(css.fontSize),
+			weight: Number(css.fontWeight)
+		};
+		// A constructed sheet, since the site's CSP (style-src 'self' and its nonce) refuses a style
+		// element added by script, and a refused one would leave the text painted into the capture.
+		const sheet = new CSSStyleSheet();
+		sheet.replaceSync(
+			'*, *::before, *::after { color: transparent !important; -webkit-text-fill-color: transparent !important; ' +
+				'text-decoration-color: transparent !important; text-shadow: none !important; ' +
+				'transition: none !important; animation: none !important; }'
+		);
+		document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+		window[hideId] = sheet;
+		for (const each of document.querySelectorAll('*')) {
+			const own = getComputedStyle(each);
+			if (own.backgroundImage === 'none') continue;
+			const height = own.backgroundSize.split(' ')[1] ?? '';
+			if (height.endsWith('px') && parseFloat(height) <= 4) {
+				each.setAttribute('data-paint-hidden', each.style.backgroundImage);
+				each.style.backgroundImage = 'none';
+			}
+		}
+		return read;
+	}, PAINT_HIDE);
+	try {
+		const png = Array.from(await locator.screenshot());
+		const worst = await page.evaluate(
+			async ({ bytes, color }) => {
+				const rgb = /^rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)$/.exec(color);
+				if (!rgb || (rgb[4] !== undefined && Number(rgb[4]) < 1)) return null;
+				const linear = Array.from({ length: 256 }, (_, value) => {
+					const v = value / 255;
+					return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+				});
+				const luminance = (r, g, b) =>
+					0.2126 * linear[Math.round(r)] +
+					0.7152 * linear[Math.round(g)] +
+					0.0722 * linear[Math.round(b)];
+				const text = luminance(Number(rgb[1]), Number(rgb[2]), Number(rgb[3]));
+				const bitmap = await createImageBitmap(
+					new Blob([new Uint8Array(bytes)], { type: 'image/png' })
+				);
+				const canvas = new OffscreenCanvas(bitmap.width, bitmap.height);
+				const context = canvas.getContext('2d');
+				context.drawImage(bitmap, 0, 0);
+				const data = context.getImageData(0, 0, bitmap.width, bitmap.height).data;
+				let lowest = Infinity;
+				for (let i = 0; i < data.length; i += 4) {
+					const back = luminance(data[i], data[i + 1], data[i + 2]);
+					lowest = Math.min(lowest, (Math.max(text, back) + 0.05) / (Math.min(text, back) + 0.05));
+				}
+				return Number.isFinite(lowest) ? lowest : null;
+			},
+			{ bytes: png, color: style.color }
+		);
+		const large = style.size >= 24 || (style.size >= 18.66 && style.weight >= 700);
+		return { target, worst, floor: large ? 3 : 4.5 };
+	} finally {
+		await page.evaluate((hideId) => {
+			const sheet = window[hideId];
+			document.adoptedStyleSheets = document.adoptedStyleSheets.filter((each) => each !== sheet);
+			delete window[hideId];
+			for (const each of document.querySelectorAll('[data-paint-hidden]')) {
+				each.style.backgroundImage = each.getAttribute('data-paint-hidden');
+				each.removeAttribute('data-paint-hidden');
+			}
+		}, PAINT_HIDE);
+	}
+}
+
+// The measure has to be able to fail. Before any route, grey text over a grey picture (about 1.4:1)
+// must measure under its floor and near-black text over a white one (about 19:1) over it; a run
+// whose controls do not split that way accepts nothing by measure. The controls are laid over the
+// start page itself, so they run under the same CSP and stylesheets as every node measured after.
+const PIXEL_CONTROLS = `<div style="position:relative;width:400px">
+<img alt="" style="position:absolute;inset:0;width:100%;height:100%" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23808080'/%3E%3C/svg%3E">
+<p id="pixel-low" style="position:relative;margin:0;padding:8px;color:#999999;font:16px sans-serif">Grey over a grey picture</p></div>
+<div style="position:relative;width:400px">
+<img alt="" style="position:absolute;inset:0;width:100%;height:100%" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23ffffff'/%3E%3C/svg%3E">
+<p id="pixel-high" style="position:relative;margin:0;padding:8px;color:#111111;font:16px sans-serif">Ink over a white picture</p></div>`;
+
+async function provePixelMeasure() {
+	await page.goto('http://127.0.0.1:8788/', { waitUntil: 'networkidle' });
+	await page.evaluate((controls) => {
+		const holder = document.createElement('div');
+		holder.id = 'pixel-controls';
+		holder.style.cssText = 'position:fixed;left:0;top:0;z-index:2147483647;background:#ffffff';
+		holder.innerHTML = controls;
+		document.body.append(holder);
+	}, PIXEL_CONTROLS);
+	await page.waitForFunction(() =>
+		[...document.querySelectorAll('#pixel-controls img')].every((img) => img.complete)
+	);
+	const low = await measureNode('#pixel-low');
+	const high = await measureNode('#pixel-high');
+	await page.evaluate(() => document.getElementById('pixel-controls')?.remove());
+	const proven =
+		low.worst !== null && high.worst !== null && low.worst < low.floor && high.worst >= high.floor;
+	return { proven, low: low.worst, high: high.worst };
+}
+
+const ratio = (value) => (value === null ? 'unmeasured' : `${value.toFixed(2)}:1`);
+
+// An undecided colour-contrast result the allowlist does not cover is accepted only when every node
+// measures at or over its floor, with the readings and the controls in its reason; otherwise each
+// node carries its reading into the report and the result stays undecided.
+async function measuredContrast(item, controls) {
+	if (item.id !== 'color-contrast') return null;
+	const proof = `controls: grey on grey ${ratio(controls.low)}, ink on white ${ratio(controls.high)}`;
+	if (!controls.proven) {
+		for (const node of item.nodes) node.message += `; pixel measure not proven (${proof})`;
+		return null;
+	}
+	const readings = [];
+	for (const node of item.nodes) {
+		const reading = await measureNode(node.target);
+		node.message += `; painted pixels worst ${ratio(reading.worst)}, floor ${reading.floor}:1`;
+		readings.push(reading);
+	}
+	if (!readings.every((reading) => reading.worst !== null && reading.worst >= reading.floor))
+		return null;
+	const list = readings
+		.map((reading) => `${reading.target} ${ratio(reading.worst)} (floor ${reading.floor}:1)`)
+		.join(', ');
+	return `decided from the painted pixels behind each text, worst pixel per node: ${list}; ${proof}`;
+}
+
 // The list layout the audited page shows, read from its list column and tender pane: 'split' when
 // the pane is drawn beside the column, 'list' when the column is drawn and the pane is absent or
 // hidden (a phone's bare list), and any other arrangement in its own words, so a pane under the
@@ -582,12 +725,13 @@ async function audit({
 	entry.targetSizeRan = result.targetSizeRan;
 	for (const item of result.incomplete) {
 		const accepted = isAccepted(item);
-		if (accepted) {
+		const why = accepted ? accepted.why : await measuredContrast(item, pixelControls);
+		if (why) {
 			entry.acceptedIncomplete.push({
 				id: item.id,
 				nodes: item.nodes.length,
 				places: countPlaces(item.nodes),
-				why: accepted.why
+				why
 			});
 		} else entry.incomplete.push(item);
 	}
@@ -602,7 +746,9 @@ async function audit({
 }
 
 const pages = [];
+let pixelControls = { proven: false, low: null, high: null };
 try {
+	pixelControls = await provePixelMeasure();
 	for (const entry of audits) pages.push(await audit(entry));
 } finally {
 	// The runner compares both with its own theme list and with the pages it gets back, so an entry
@@ -610,7 +756,13 @@ try {
 	const listedThemes = [...new Set(AUDITS.map((entry) => entry.theme))];
 	await writeFile(
 		config.resultName,
-		JSON.stringify({ driver: 'a11y-live', pages, entries: audits.length, listedThemes })
+		JSON.stringify({
+			driver: 'a11y-live',
+			pages,
+			entries: audits.length,
+			listedThemes,
+			pixelControls
+		})
 	);
 	await browser.closePage(PAGE);
 }
