@@ -69,7 +69,7 @@
 
 	/* On a phone the band wraps to two rows: the wordmark, the demo label (the firm slot's own rule)
 	   and the theme switch pushed to the right on the first, the nav across the whole second, so the
-	   band grows past its 60px there. */
+	   band grows past its --bar-h there. */
 	@media (max-width: 45em) {
 		.band {
 			flex-wrap: wrap;
