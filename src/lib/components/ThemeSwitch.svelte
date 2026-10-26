@@ -29,25 +29,26 @@
 </div>
 
 <style>
-	/* A segmented control drawn on the band. Each button is 28px tall inside the 32px group, past
-	   the 24px minimum target of WCAG 2.2 (2.5.8); on a phone the first band row is already 44px
+	/* A segmented control drawn on the bar. Each button is 28px tall inside the 32px group, past
+	   the 24px minimum target of WCAG 2.2 (2.5.8); on a phone the first bar row is already 44px
 	   tall for the wordmark, so there the group grows to the full 44px. */
 	.theme {
 		display: inline-flex;
 		flex: none;
 		gap: 2px;
-		padding: 1px;
-		border: 1px solid rgb(255 255 255 / 0.22);
-		border-radius: 7px;
+		padding: 2px;
+		border: 1px solid var(--bar-rule);
+		border-radius: var(--r-pill);
+		background: var(--bar);
 	}
 
 	button {
 		min-height: 28px;
-		padding: 0 0.625rem;
+		padding: 0 0.6875rem;
 		border: 0;
-		border-radius: 6px;
-		background: transparent;
-		color: var(--band-ink-2);
+		border-radius: var(--r-pill);
+		background: var(--bar);
+		color: var(--bar-ink-2);
 		font: 500 var(--step--1) / 1 var(--font);
 		cursor: pointer;
 		transition:
@@ -56,12 +57,12 @@
 	}
 
 	button:hover {
-		color: var(--band-ink);
+		color: var(--bar-ink);
 	}
 
 	button[aria-pressed='true'] {
-		background: var(--band-hover);
-		color: var(--band-ink);
+		background: var(--bar-hover);
+		color: var(--bar-ink);
 	}
 
 	/* Narrower on a phone, so the switch shares the band's first row with the wordmark and the demo

@@ -28,9 +28,11 @@ function headScript(): string {
 function declarations(selector: RegExp): string[] {
 	const match = new RegExp(`${selector.source}\\s*\\{([^}]*)\\}`).exec(APP_CSS);
 	if (!match) throw new Error(`src/app.css has no rule matching ${selector}`);
+	// Whitespace inside a value carries no meaning, and the formatter wraps a long value
+	// differently at each indent depth, so each declaration is compared with its runs collapsed.
 	return match[1]
 		.split(';')
-		.map((line) => line.trim())
+		.map((line) => line.trim().replace(/\s+/g, ' '))
 		.filter(Boolean);
 }
 

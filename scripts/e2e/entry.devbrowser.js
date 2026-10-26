@@ -109,11 +109,12 @@ try {
 	await saveScreenshot(await page.screenshot({ fullPage: true }), 'pagefifty-entry-390-light.png');
 	const phone = await read();
 
-	// The tagline is clamp(step 3, 9vw, step 4), and at 390px the 9vw term is the one in force.
+	// The tagline is clamp(2.375rem, 4.6vw, 3.875rem), and at 390px the 2.375rem floor is the term
+	// in force (4.6vw is 17.9px there).
 	const phoneSize = Number.parseFloat(phone.h1Size);
 	check(
-		'at 390px the tagline is 9vw (35.1px) and nothing scrolls sideways; at 768px nothing does either',
-		Math.abs(phoneSize - 35.1) < 0.05 && phone.overflow <= 0 && tablet.overflow <= 0,
+		'at 390px the tagline is its 2.375rem floor (38px) and nothing scrolls sideways; at 768px nothing does either',
+		Math.abs(phoneSize - 38) < 0.05 && phone.overflow <= 0 && tablet.overflow <= 0,
 		`h1 ${phone.h1Size}, overflow 390 ${phone.overflow}, overflow 768 ${tablet.overflow}`
 	);
 } finally {

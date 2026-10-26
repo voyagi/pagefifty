@@ -30,8 +30,8 @@
 		align-items: center;
 		gap: 0.4375rem;
 		min-height: 30px;
-		padding: 0 0.75rem 0 0.5625rem;
-		border-radius: var(--r);
+		padding: 0 0.8125rem 0 0.5625rem;
+		border-radius: var(--r-pill);
 		background: var(--ink);
 		color: var(--bg);
 		font-weight: 700;

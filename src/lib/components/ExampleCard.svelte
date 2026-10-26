@@ -92,119 +92,146 @@
 	{/if}
 {/snippet}
 
+<!-- Three columns of white records that float over the start page's picture: the tender and its
+     verdict, the clause that decides, then every requirement and how the verdict was decided. The
+     reading order is the record's own. -->
 <article class="example" data-example aria-labelledby="example-title">
-	<div class="top">
-		<div class="who">
-			{#if lead}<span class="tile" aria-hidden="true">{initialsOf(lead.text)}</span>{/if}
-			<p class="who-text">
-				{#if lead}<span class="buyer" lang={lead.lang} data-notice-text>{lead.text}</span>{/if}
-				{#if tender.countries.length > 0}<span class="where">{tender.countries.join(', ')}</span
-					>{/if}
-			</p>
-			<span class="run">Example run</span>
-		</div>
-		<h2 class="title" id="example-title" lang={tender.title.lang} data-notice-text>
-			{tender.title.text}
-		</h2>
-		<p class="facts">
-			<span class="fact"
-				><Icon name="doc" /><a href={tender.tedUrl} rel="external noreferrer"
-					>TED notice <span class="mono">{tender.noticeNumber}</span><ExternalIcon /></a
-				></span
-			>
-			<span class="fact"><Icon name="users" />Checked against {DEMO_FIRM_SHORT}, demo firm</span>
-			<!-- A verdict belongs to one lot, so a notice of several names which lot this is. -->
-			{#if tender.lots.length > 1}
-				<span class="fact lot"
-					><Icon name="lines" />Lot {lot.number}{#if lot.title}: <span
-							lang={lot.title.lang}
-							data-notice-text>{lot.title.text}</span
-						>{/if}</span
+	<div class="col col-a">
+		<div class="top card">
+			<div class="who">
+				{#if lead}<span class="tile" aria-hidden="true">{initialsOf(lead.text)}</span>{/if}
+				<p class="who-text">
+					{#if lead}<span class="buyer" lang={lead.lang} data-notice-text>{lead.text}</span>{/if}
+					{#if tender.countries.length > 0}<span class="where">{tender.countries.join(', ')}</span
+						>{/if}
+				</p>
+				<span class="run">Example run</span>
+			</div>
+			<h2 class="title" id="example-title" lang={tender.title.lang} data-notice-text>
+				{tender.title.text}
+			</h2>
+			<p class="facts">
+				<span class="fact"
+					><Icon name="doc" /><a href={tender.tedUrl} rel="external noreferrer"
+						>TED notice <span class="mono">{tender.noticeNumber}</span><ExternalIcon /></a
+					></span
 				>
-			{/if}
-		</p>
-	</div>
+				<span class="fact"><Icon name="users" />Checked against {DEMO_FIRM_SHORT}, demo firm</span>
+				<!-- A verdict belongs to one lot, so a notice of several names which lot this is. -->
+				{#if tender.lots.length > 1}
+					<span class="fact lot"
+						><Icon name="lines" />Lot {lot.number}{#if lot.title}: <span
+								lang={lot.title.lang}
+								data-notice-text>{lot.title.text}</span
+							>{/if}</span
+					>
+				{/if}
+			</p>
+		</div>
 
-	<div class="verdict" data-verdict>
-		<VerdictHead {view} />
-		<p class="gloss">{view.gloss}</p>
+		<div class="verdict card" data-verdict>
+			<VerdictHead {view} />
+			<p class="gloss">{view.gloss}</p>
+		</div>
 	</div>
 
 	{#if deciding !== undefined && clause !== undefined}
-		<div class="decides">
-			<div class="k">
-				<span>The clause that decides</span>
-				{@render stateMark(deciding.position)}
-			</div>
-			<p class="clause-name">
-				{criterionLabel(deciding.code) ?? deciding.code}, criterion {deciding.position} of {deciding.of}
-			</p>
-			<div class="excerpt">
-				<QuoteBlock
-					quote={clause.excerpt}
-					marks={clause.leadMarks}
-					source="Quoted from TED notice {tender.noticeNumber}"
-					clamp
-				/>
-			</div>
-			{#if clause.cut}
-				<details class="whole">
-					<summary><Icon name="chev" />Show the whole clause</summary>
-					{#each clause.whole as part, index (index)}
-						<QuoteBlock quote={part.quote} marks={part.marks} />
-					{/each}
-				</details>
-			{/if}
-			{#if clause.lead}
-				<p class="reading">
-					<span class="ai-label">AI reading</span>
-					<span data-ai-generated={clause.lead.model}>{clause.lead.reading}</span>
+		<div class="col col-b">
+			<div class="decides card">
+				<div class="k">
+					<span>The clause that decides</span>
+					{@render stateMark(deciding.position)}
+				</div>
+				<p class="clause-name">
+					{criterionLabel(deciding.code) ?? deciding.code}, criterion {deciding.position} of {deciding.of}
 				</p>
-			{/if}
+				<div class="excerpt">
+					<QuoteBlock
+						quote={clause.excerpt}
+						marks={clause.leadMarks}
+						source="Quoted from TED notice {tender.noticeNumber}"
+						clamp
+					/>
+				</div>
+				{#if clause.cut}
+					<details class="whole">
+						<summary><Icon name="chev" />Show the whole clause</summary>
+						{#each clause.whole as part, index (index)}
+							<QuoteBlock quote={part.quote} marks={part.marks} />
+						{/each}
+					</details>
+				{/if}
+				{#if clause.lead}
+					<p class="reading">
+						<span class="ai-label">AI reading</span>
+						<span data-ai-generated={clause.lead.model}>{clause.lead.reading}</span>
+					</p>
+				{/if}
+			</div>
 		</div>
 	{/if}
 
-	<div class="reqs">
-		<div class="k">
-			<span>Requirements in this lot</span>
-			<ul class="summary" aria-label="Requirements by state" data-verdict>
-				{#each summary as line (line)}<li>{line}</li>{/each}
+	<div class="col col-c">
+		<div class="reqs card">
+			<div class="k">
+				<span>Requirements in this lot</span>
+				<ul class="summary" aria-label="Requirements by state" data-verdict>
+					{#each summary as line (line)}<li>{line}</li>{/each}
+				</ul>
+			</div>
+			<ul class="rows">
+				{#each lot.criteria as criterion (criterion.position)}
+					<li class:on={criterion === deciding}>
+						<span class="name">{criterionLabel(criterion.code) ?? criterion.code}</span>
+						{#if criterion.parameters.length > 0}
+							<span class="demand">{demandOf(criterion.parameters)}</span>
+						{/if}
+						{@render stateMark(criterion.position)}
+					</li>
+				{/each}
 			</ul>
 		</div>
-		<ul class="rows">
-			{#each lot.criteria as criterion (criterion.position)}
-				<li class:on={criterion === deciding}>
-					<span class="name">{criterionLabel(criterion.code) ?? criterion.code}</span>
-					{#if criterion.parameters.length > 0}
-						<span class="demand">{demandOf(criterion.parameters)}</span>
-					{/if}
-					{@render stateMark(criterion.position)}
-				</li>
-			{/each}
-		</ul>
-	</div>
 
-	<!-- What this lot's run did, from the verdict itself: a lot no figure was compared on never
+		<!-- What this lot's run did, from the verdict itself: a lot no figure was compared on never
 	     says figures were compared, and a lot the model never read names no model. -->
-	<p class="foot">
-		{#if lot.reading?.status === 'read'}Read with NVIDIA Nemotron on Nebius.{/if}
-		{view.decidedBy}
-	</p>
+		<p class="foot card">
+			{#if lot.reading?.status === 'read'}Read with NVIDIA Nemotron on Nebius.{/if}
+			{view.decidedBy}
+		</p>
+	</div>
 </article>
 
 <style>
-	/* A white box on the ground with a panel's edge: no shadow, nothing lifted. */
+	/* One column on a phone, two from 45em (the requirements under both), three from 68.75em with
+	   the columns set down at different heights, so the records read as objects laid over the
+	   picture rather than a grid of boxes. */
 	.example {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+		align-items: start;
 		min-width: 0;
-		border: 1px solid var(--edge);
-		border-radius: var(--r);
-		background: var(--bg);
 	}
 
-	/* Spaced so the verdict, the deciding clause, its reading, every requirement and the decided-by
-	   line all sit inside a 900px-tall first screen beside the claim. */
+	.col {
+		display: grid;
+		align-content: start;
+		gap: 1rem;
+		min-width: 0;
+	}
+
+	/* A white record with a hairline and the one shadow on the site: it floats over the picture. */
+	.card {
+		min-width: 0;
+		border: 1px solid var(--edge);
+		border-radius: var(--r-obj);
+		background: var(--bg);
+		box-shadow: var(--float);
+		overflow: hidden;
+	}
+
 	.top {
-		padding: 1rem 1.5rem;
+		padding: 1.125rem 1.25rem 1.25rem;
 	}
 
 	.who {
@@ -238,18 +265,21 @@
 		display: block;
 	}
 
+	/* A buyer's name is often one long German compound, so it breaks by its own language's
+	   hyphenation before it breaks anywhere. */
 	.buyer {
 		font-size: 0.875rem;
 		font-weight: 650;
 		color: var(--ink);
-		overflow-wrap: anywhere;
+		overflow-wrap: break-word;
+		hyphens: auto;
 	}
 
 	.run {
 		flex: none;
-		padding: 0.1875rem 0.5625rem;
+		padding: 0.1875rem 0.625rem;
 		border: 1px solid var(--line-2);
-		border-radius: var(--r-sm);
+		border-radius: var(--r-pill);
 		font-weight: 500;
 		font-size: 0.78125rem;
 		color: var(--ink-2);
@@ -308,19 +338,25 @@
 		text-decoration-color: currentColor;
 	}
 
-	/* The verdict row runs edge to edge; the text inside it lines up with the card's own. */
+	/* The verdict row runs edge to edge across the top of its record; the text inside it lines up
+	   with the record's own. */
+	.verdict {
+		padding-bottom: 1.125rem;
+	}
+
 	.verdict :global(.verdict-head) {
-		padding-inline: 1.5rem;
+		padding-inline: 1.25rem;
+		border-top: 0;
 	}
 
 	.gloss {
-		padding: 0.625rem 1.5rem 0;
+		padding: 0.75rem 1.25rem 0;
 		font-weight: 600;
 		font-size: 0.875rem;
 	}
 
 	.decides {
-		padding: 0.75rem 1.5rem 0;
+		padding: 1.125rem 1.25rem 1.25rem;
 	}
 
 	.k {
@@ -396,12 +432,12 @@
 	}
 
 	.reqs {
-		padding: 0.5rem 1.5rem;
+		padding: 0.875rem 1.25rem 0.75rem;
 	}
 
 	.reqs .k {
-		padding: 0.5rem 0 0.25rem;
-		border-top: 1px solid var(--line);
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.summary {
@@ -451,8 +487,50 @@
 	}
 
 	.foot {
-		padding: 0.25rem 1.5rem 0.875rem;
-		font-size: 0.78125rem;
+		padding: 0.75rem 1.25rem 0.8125rem;
+		font-size: var(--step--1);
+		line-height: 1.45;
 		color: var(--ink-2);
+	}
+
+	/* On a phone the tender record is set a little closer, so the verdict under it reaches the first
+	   screen. */
+	@media (max-width: 40em) {
+		.top {
+			padding-block: 1rem;
+		}
+
+		.who-text {
+			line-height: 1.35;
+		}
+	}
+
+	@media (min-width: 45em) {
+		.example {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.col-c {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (min-width: 68.75em) {
+		.example {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+			gap: 1.5rem;
+		}
+
+		.col-c {
+			grid-column: auto;
+		}
+
+		.col-b {
+			margin-top: 3rem;
+		}
+
+		.col-c {
+			margin-top: 1.5rem;
+		}
 	}
 </style>

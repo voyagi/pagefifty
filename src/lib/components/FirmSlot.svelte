@@ -87,25 +87,26 @@
 {/if}
 
 <style>
-	/* The same height whether filled or not, so filling it never moves the band. */
+	/* The same height whether filled or not, so filling it never moves the bar. */
 	.firm {
 		display: flex;
 		align-items: center;
 		gap: 0.5625rem;
 		min-height: 38px;
-		color: var(--band-ink);
+		color: var(--bar-ink);
 		text-decoration: none;
 	}
 
 	a.firm {
-		padding: 0 0.75rem 0 0.3125rem;
-		border: 1px solid rgb(255 255 255 / 0.22);
-		border-radius: var(--r);
+		padding: 0 0.875rem 0 0.3125rem;
+		border: 1px solid var(--bar-rule);
+		border-radius: var(--r-pill);
+		background: var(--bar);
 		transition: background-color var(--quick) ease-out;
 	}
 
 	a.firm:hover {
-		background: var(--band-hover);
+		background: var(--bar-hover);
 	}
 
 	.tile {
@@ -114,9 +115,9 @@
 		flex: none;
 		width: 28px;
 		height: 28px;
-		border-radius: var(--r-sm);
-		background: var(--band-ink);
-		color: var(--band);
+		border-radius: var(--r-pill);
+		background: var(--bar-hover);
+		color: var(--bar-ink);
 		font-weight: 750;
 		font-size: 0.71875rem;
 		letter-spacing: -0.02em;
@@ -142,13 +143,13 @@
 	.tag {
 		padding: 1px 7px;
 		border-radius: var(--r-sm);
-		background: rgb(255 255 255 / 0.16);
+		background: var(--bar-hover);
 		font-weight: 600;
 		font-size: 0.71875rem;
 	}
 
 	.second {
-		color: var(--band-ink-2);
+		color: var(--bar-ink-2);
 		font-size: 0.75rem;
 	}
 

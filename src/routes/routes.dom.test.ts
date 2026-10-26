@@ -254,12 +254,12 @@ describe('root layout', () => {
 		expect(document.head.querySelector('link[rel="icon"]')?.getAttribute('href')).toBeTruthy();
 	});
 
-	// The tab shows the top band's "50" square, filled with the band's own green, not a template logo.
-	it('draws the tab icon as the top band mark in the band colour', () => {
+	// The tab shows the top bar's "50" square, filled with the mark's own green, not a template logo.
+	it('draws the tab icon as the top bar mark in the mark colour', () => {
 		const icon = readFileSync(join('src', 'lib', 'assets', 'favicon.svg'), 'utf8');
-		const band = /--band:\s*(#[0-9a-f]{6});/i.exec(readFileSync(join('src', 'app.css'), 'utf8'));
-		expect(band?.[1]).toEqual(expect.any(String));
-		expect(icon).toContain(`<rect width="32" height="32" rx="8" fill="${band?.[1]}"/>`);
+		const mark = /--mark:\s*(#[0-9a-f]{6});/i.exec(readFileSync(join('src', 'app.css'), 'utf8'));
+		expect(mark?.[1]).toEqual(expect.any(String));
+		expect(icon).toContain(`<rect width="32" height="32" rx="8" fill="${mark?.[1]}"/>`);
 		expect(icon).toContain('<title>Pagefifty</title>');
 	});
 

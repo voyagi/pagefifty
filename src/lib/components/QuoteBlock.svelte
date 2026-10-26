@@ -131,11 +131,12 @@
 		text-underline-offset: 4px;
 	}
 
-	/* The words the verdict rests on: a solid underline in the brand green, never a highlighter wash.
-	   No added weight: a deciding quote can run most of a clause, and bold over all of it reads as
-	   noise rather than as the words that decide. */
+	/* The words the verdict rests on: a solid 3px underline in the deciding green, the same line the
+	   start page draws under the same words, never a highlighter wash. No added weight: a deciding
+	   quote can run most of a clause, and bold over all of it reads as noise rather than as the
+	   words that decide. */
 	mark.decides {
-		text-decoration: underline 2px var(--brand);
+		text-decoration: underline 3px var(--decides);
 	}
 
 	/* The number its reading carries beside the clause, drawn by the stylesheet so the quote's text

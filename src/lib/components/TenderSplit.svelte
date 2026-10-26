@@ -287,19 +287,23 @@
 		white-space: nowrap;
 	}
 
-	/* The filters in one row under the head, so the list starts high on the first screen. The filters,
-	   the list and the opened tender are three areas, each its own white box on the ground. */
-	.filter-row,
-	.list-col,
-	.pane {
-		border: 1px solid var(--edge);
-		border-radius: var(--r);
-		background: var(--bg);
+	/* The filters in one row under the head, so the list starts high on the first screen: a grey card
+	   with white chips in it. The list and the opened tender stand on the white page beside each
+	   other, a hairline between them, as a table and its record do in a tool. */
+	.filter-row {
+		margin-top: 1rem;
+		padding: 0.875rem 1.25rem 1rem;
+		border-radius: var(--r-card);
+		background: var(--panel);
 	}
 
-	.filter-row {
-		margin-top: 0.875rem;
-		padding: 0.75rem 1rem 0.875rem;
+	.list-col,
+	.pane {
+		background: var(--ground);
+	}
+
+	.split {
+		border-top: 1px solid var(--line);
 	}
 
 	/* The order is stated, not offered: the list has one order and no control changes it. */
@@ -338,11 +342,14 @@
 	   its scrollbar's place that leaves a row's facts room for one line. */
 	.split.with-pane {
 		grid-template-columns: min(480px, 42%) minmax(0, 1fr);
-		gap: 1rem;
 	}
 
 	.list-col {
 		min-width: 0;
+	}
+
+	.with-pane .list-col {
+		border-right: 1px solid var(--line);
 	}
 
 	/* Beside a tender the list scrolls on its own, as the tender does, and both end just above the
@@ -403,7 +410,7 @@
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-gutter: stable;
-		padding: 1.5rem 1.25rem 2.5rem 1.75rem;
+		padding: 1.75rem 1.25rem 2.5rem 2.25rem;
 	}
 
 	.back {
@@ -430,13 +437,14 @@
 			grid-template-columns: minmax(0, 1fr);
 		}
 
-		/* The list and the tender run to both edges of a phone, white bands on the ground, so a row's
-		   tint reads as the row. */
+		/* The list and the tender run to both edges of a phone, so a row's tint reads as the row. */
 		.list-col,
 		.pane {
 			margin-inline: calc(-1 * var(--gutter));
-			border-inline: 0;
-			border-radius: 0;
+		}
+
+		.with-pane .list-col {
+			border-right: 0;
 		}
 
 		.with-pane .list-col {

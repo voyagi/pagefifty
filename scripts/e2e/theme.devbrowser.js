@@ -73,7 +73,7 @@ try {
 	const darkDesk = await deskColour();
 	check(
 		'Device under an emulated dark scheme paints dark with the dark ground',
-		darkTheme === 'dark' && darkDesk === 'rgb(8, 10, 9)',
+		darkTheme === 'dark' && darkDesk === 'rgb(13, 16, 15)',
 		`data-theme "${darkTheme}", body background ${darkDesk}`
 	);
 
@@ -83,7 +83,7 @@ try {
 	const lightDesk = await deskColour();
 	check(
 		'Device under an emulated light scheme paints light with the light ground',
-		lightTheme === 'light' && lightDesk === 'rgb(238, 241, 239)',
+		lightTheme === 'light' && lightDesk === 'rgb(255, 255, 255)',
 		`data-theme "${lightTheme}", body background ${lightDesk}`
 	);
 

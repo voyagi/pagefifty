@@ -3,6 +3,7 @@
 	import { EU_EEA_COUNTRIES, EU_LANGUAGES, type CodeName } from '$lib/profile/codes';
 	import { DEMO_FIRM_NAME, DEMO_PROFILE } from '$lib/profile/demo-firm';
 	import { averageTurnover } from '$lib/profile/derive';
+	import { wholeEuros as euros } from '$lib/profile/euros';
 	import Button from './Button.svelte';
 	import Facts from './Facts.svelte';
 	import ProfilePanel from './ProfilePanel.svelte';
@@ -16,7 +17,6 @@
 		detail: string;
 	}
 
-	const euros = (value: number) => `EUR ${Math.round(value).toLocaleString('en-GB')}`;
 	const namesOf = (codes: readonly string[], list: readonly CodeName[]) =>
 		codes.map((code) => list.find((entry) => entry.code === code)?.name ?? code).join(', ');
 

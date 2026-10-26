@@ -5,6 +5,7 @@
 	let { figure }: { figure: FigureFile } = $props();
 
 	const { rows, lotRule } = figureWords();
+	const words = $derived(figure.command?.split(' ') ?? []);
 </script>
 
 <!-- Every number here is read from the committed figure file; none is computed on the page. The
@@ -29,7 +30,13 @@
 		From one run over the {figure.capturedOn} snapshot, at a model cost of
 		<span class="mono">USD {figure.costUsd}</span>.
 		{#if figure.command !== null}
-			Run with <code class="command" data-command>{figure.command}</code>
+			<!-- One piece per word, so a narrow screen breaks the command at its spaces and never inside a
+			     flag such as --open-after; the spaces stay text, so a copy is the command itself. -->
+			Run with
+			<code class="command" data-command
+				>{#each words as word, index (index)}{index > 0 ? ' ' : ''}<span class="word">{word}</span
+					>{/each}</code
+			>
 		{:else}
 			The model read was a one-off, so no command line is recorded for it.
 		{/if}
@@ -46,8 +53,8 @@
 	}
 
 	.head {
-		font: 700 var(--step-2) / 1.2 var(--font);
-		letter-spacing: -0.02em;
+		font: 750 var(--step-2) / 1.2 var(--font);
+		letter-spacing: -0.025em;
 	}
 
 	.lead {
@@ -59,28 +66,21 @@
 		text-wrap: pretty;
 	}
 
-	/* Four counts side by side on hairlines, each with its label and what it means. */
+	/* A table on hairlines, one verdict to a row: the word, its count in aligned figures, and what
+	   it means. Every row has the same columns, so a sweep down the counts reads the run. */
 	.tally {
-		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		margin: 1.25rem 0 0;
-		border-block: 1px solid var(--line);
+		margin: 1.5rem 0 0;
+		border-top: 1px solid var(--line);
 	}
 
 	.count {
 		display: grid;
-		grid-template-rows: auto auto 1fr;
-		row-gap: 0.25rem;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: baseline;
+		gap: 0.25rem 1.5rem;
 		min-width: 0;
-		padding: 1rem 1.25rem;
-	}
-
-	.count + .count {
-		border-left: 1px solid var(--line);
-	}
-
-	.count:first-child {
-		padding-left: 0;
+		padding: 0.875rem 0;
+		border-bottom: 1px solid var(--line);
 	}
 
 	.label {
@@ -89,9 +89,14 @@
 
 	.number {
 		margin: 0;
-		font: 700 var(--step-4) / 1 var(--font);
-		letter-spacing: -0.03em;
+		font: 650 var(--step-2) / 1.1 var(--font);
+		letter-spacing: -0.02em;
 		font-variant-numeric: tabular-nums;
+		text-align: right;
+	}
+
+	.count .gloss {
+		grid-column: 1 / -1;
 	}
 
 	.gloss {
@@ -121,30 +126,39 @@
 		text-wrap: pretty;
 	}
 
-	/* The command is set in the page's one face, as every figure is, not in a code face. */
+	/* A command a reader can copy and run, so it reads as code: the system's own monospace (no font
+	   file to fetch) on a small white object with a hairline, cut cleanly where it wraps. */
 	.command {
-		font: inherit;
-		font-weight: 500;
-		overflow-wrap: anywhere;
+		padding: 0.0625rem 0.375rem;
+		border: 1px solid var(--edge);
+		border-radius: var(--r-sm);
+		background: var(--bg);
+		font:
+			400 0.92em / 1.5 ui-monospace,
+			'SF Mono',
+			Menlo,
+			Consolas,
+			monospace;
 		color: var(--ink);
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
 	}
 
-	@media (max-width: 45em) {
-		.tally {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+	/* A word moves to the next line whole; only a word wider than the line itself breaks inside. */
+	.word {
+		display: inline-block;
+		max-width: 100%;
+		overflow-wrap: anywhere;
+	}
+
+	@media (min-width: 45em) {
+		.count {
+			grid-template-columns: 12rem 5rem minmax(0, 1fr);
 		}
 
-		.count + .count:nth-child(odd) {
-			padding-left: 0;
-			border-left: 0;
-		}
-
-		.count:nth-child(n + 3) {
-			border-top: 1px solid var(--line);
-		}
-
-		.number {
-			font-size: var(--step-3);
+		.count .gloss {
+			grid-column: auto;
+			padding-left: 1.5rem;
 		}
 	}
 </style>

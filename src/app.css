@@ -27,33 +27,48 @@
 		U+A720-A7FF;
 }
 
-/* The colour lives at size in the top band only; reading happens on white panels laid on a pale
-   neutral ground, so each area of a page reads as its own, and the brand green marks the primary
-   action and the focus ring. Nothing casts a shadow. */
+/* A white page under a white top bar. Areas of a page are soft grey cards with no edge, and the
+   things a reader handles inside them (a record, a quote, a field, a button) are white objects with
+   a hairline. One green, deep on the actions and the "50" mark and a lighter step of the same hue
+   under the words a verdict rests on; it never colours text. Only a record floating over the start
+   page's picture casts a shadow. */
 :root {
 	color-scheme: light;
-	--band: #14513b;
-	--band-ink: #ffffff;
-	--band-ink-2: #cde2d8;
-	--band-hover: rgb(255 255 255 / 0.12);
-	--ground: #eef1ef;
+	--bar: #ffffff;
+	--bar-ink: #0f1311;
+	--bar-ink-2: #59615d;
+	--bar-hover: #f0f2ef;
+	--bar-rule: #e3e6e2;
+	--mark: #14513b;
+	--mark-ink: #ffffff;
+	--ground: #ffffff;
+	/* A card: an area of a page, told apart from the white page by its fill alone. */
+	--panel: #f4f5f3;
 	--bg: #ffffff;
-	--bg-2: #f4f6f5;
-	--bg-3: #e8ecea;
-	--line: #d5dbd8;
-	--line-2: #b9c1bd;
-	/* The edge of a panel on the ground. */
-	--edge: #c9d0cc;
+	--bg-2: #eef0ed;
+	--bg-3: #e3e6e2;
+	--line: #dfe3df;
+	--line-2: #c3c9c5;
+	/* The hairline round a white object. */
+	--edge: #e3e6e2;
 	/* The edge of a box to type in or choose from is how a reader finds it, so it holds 3:1 against
 	   every ground a field sits on, where the rules above stay quieter. */
 	--line-field: #7d8681;
-	--ink: #111513;
-	--ink-2: #535c57;
+	--ink: #0f1311;
+	--ink-2: #59615d;
+	/* The second tone of a large heading only: 3.2:1 on white, never body text. */
+	--ink-3: #8a908c;
 	--brand: #14513b;
 	--brand-hover: #0f4130;
 	--brand-ink: #ffffff;
+	/* The deciding words' underline: the brand's hue, lighter, so a 3px line reads as green and not
+	   as ink, at 4.07:1 on white. */
+	--decides: #1f8f62;
 	--focus: #14513b;
 	--selection: color-mix(in srgb, #14513b 22%, transparent);
+	--float:
+		0 1px 2px rgb(15 19 17 / 0.06), 0 6px 16px -6px rgb(15 19 17 / 0.12),
+		0 22px 44px -18px rgb(15 19 17 / 0.28);
 
 	--font: 'Albert Sans', ui-sans-serif, system-ui, sans-serif;
 
@@ -64,38 +79,50 @@
 	--step-3: 1.75rem;
 	--step-4: 2.75rem;
 
-	/* Tags take the small radius, everything else that has a box the larger one. */
+	/* Tags take the small radius, controls and fields the middle one, white objects the next and
+	   cards the largest; actions are pills. */
 	--r-sm: 6px;
-	--r: 8px;
+	--r: 10px;
+	--r-obj: 12px;
+	--r-card: 16px;
+	--r-pill: 999px;
 
 	--gutter: clamp(1rem, 3vw, 2rem);
-	--band-h: 60px;
+	--bar-h: 64px;
 	--quick: 140ms;
 }
 
-/* Dark is its own palette: a deeper band, a near-black ground with its panels lifted a step above
-   it, and a lighter green so the primary action and the ring still read against it. */
+/* Dark is its own palette: a near-black page, cards a step above it and objects a step above the
+   cards, and a lighter green so the actions and the ring still read against it. */
 :root[data-theme='dark'] {
 	color-scheme: dark;
-	--band: #124834;
-	--band-ink: #ffffff;
-	--band-ink-2: #b7d3c6;
-	--band-hover: rgb(255 255 255 / 0.1);
-	--ground: #080a09;
-	--bg: #121614;
-	--bg-2: #191e1c;
-	--bg-3: #222826;
-	--line: #2c3330;
-	--line-2: #444e49;
-	--edge: #333c38;
+	--bar: #0d100f;
+	--bar-ink: #eceeed;
+	--bar-ink-2: #a3aca7;
+	--bar-hover: #1a1f1d;
+	--bar-rule: #232927;
+	--mark: #4fae85;
+	--mark-ink: #06130d;
+	--ground: #0d100f;
+	--panel: #161a18;
+	--bg: #1c211f;
+	--bg-2: #232926;
+	--bg-3: #2c332f;
+	--line: #29302d;
+	--line-2: #3f4743;
+	--edge: #2c3330;
 	--line-field: #6e7873;
-	--ink: #e9edeb;
-	--ink-2: #a3aea8;
+	--ink: #eceeed;
+	--ink-2: #a3aca7;
+	--ink-3: #7f8883;
 	--brand: #4fae85;
 	--brand-hover: #63bf96;
 	--brand-ink: #06130d;
+	--decides: #4fae85;
 	--focus: #7fd1ac;
 	--selection: color-mix(in srgb, #4fae85 30%, transparent);
+	--float:
+		0 1px 2px rgb(0 0 0 / 0.4), 0 8px 20px -8px rgb(0 0 0 / 0.5), 0 24px 48px -20px rgb(0 0 0 / 0.7);
 }
 
 /* With the head script blocked no theme is set, and Device, the default, still has to follow the
@@ -105,25 +132,34 @@
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme]) {
 		color-scheme: dark;
-		--band: #124834;
-		--band-ink: #ffffff;
-		--band-ink-2: #b7d3c6;
-		--band-hover: rgb(255 255 255 / 0.1);
-		--ground: #080a09;
-		--bg: #121614;
-		--bg-2: #191e1c;
-		--bg-3: #222826;
-		--line: #2c3330;
-		--line-2: #444e49;
-		--edge: #333c38;
+		--bar: #0d100f;
+		--bar-ink: #eceeed;
+		--bar-ink-2: #a3aca7;
+		--bar-hover: #1a1f1d;
+		--bar-rule: #232927;
+		--mark: #4fae85;
+		--mark-ink: #06130d;
+		--ground: #0d100f;
+		--panel: #161a18;
+		--bg: #1c211f;
+		--bg-2: #232926;
+		--bg-3: #2c332f;
+		--line: #29302d;
+		--line-2: #3f4743;
+		--edge: #2c3330;
 		--line-field: #6e7873;
-		--ink: #e9edeb;
-		--ink-2: #a3aea8;
+		--ink: #eceeed;
+		--ink-2: #a3aca7;
+		--ink-3: #7f8883;
 		--brand: #4fae85;
 		--brand-hover: #63bf96;
 		--brand-ink: #06130d;
+		--decides: #4fae85;
 		--focus: #7fd1ac;
 		--selection: color-mix(in srgb, #4fae85 30%, transparent);
+		--float:
+			0 1px 2px rgb(0 0 0 / 0.4), 0 8px 20px -8px rgb(0 0 0 / 0.5),
+			0 24px 48px -20px rgb(0 0 0 / 0.7);
 	}
 }
 /* jscpd:ignore-end */
@@ -175,11 +211,6 @@ a:hover {
 :focus-visible {
 	outline: 2px solid var(--focus);
 	outline-offset: 2px;
-}
-
-/* Inside the band the ring takes the band's ink, or it would vanish green on green. */
-.band :focus-visible {
-	outline-color: var(--band-ink);
 }
 
 h1,
