@@ -64,3 +64,40 @@ describe('route heads', () => {
 		expect(source).not.toMatch(/<title\b|name="description"|property="og:/);
 	});
 });
+
+// The link preview picture is the same on every page, so src/app.html carries its tags and no
+// component does: PageHead writing them as well would give every page two of each.
+describe('the link preview picture', () => {
+	const APP_HTML = readFileSync(join('src', 'app.html'), 'utf8');
+	const tags = new Map(
+		[...APP_HTML.matchAll(/<meta\s+(?:property|name)="([^"]+)"\s+content="([^"]*)"/g)].map(
+			([, key, value]) => [key, value]
+		)
+	);
+
+	it('names the picture by its full address on the live site, its size and what it shows, as a large card', () => {
+		expect(tags.get('og:image')).toBe('https://pagefifty.atfyigtaran.workers.dev/link-preview.png');
+		expect(tags.get('og:image:width')).toBe('1200');
+		expect(tags.get('og:image:height')).toBe('630');
+		expect(tags.get('og:image:alt')).toContain('713597-2026');
+		expect(tags.get('twitter:card')).toBe('summary_large_image');
+	});
+
+	// The tags promise a picture of a given size, so the file the site serves at that path must exist
+	// and be that size. A PNG states its width and height in its first chunk, bytes 16 to 23.
+	it('serves a PNG of the stated size at the stated path', () => {
+		const path = new URL(tags.get('og:image') ?? 'https://invalid/').pathname;
+		const png = readFileSync(join('static', path));
+		expect(png.subarray(1, 4).toString('latin1')).toBe('PNG');
+		expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([
+			Number(tags.get('og:image:width')),
+			Number(tags.get('og:image:height'))
+		]);
+	});
+
+	it('is left out of PageHead, so no page carries it twice', () => {
+		render(PageHead, { props: { title: 'Pagefifty' } });
+		expect(document.head.querySelectorAll('meta[property^="og:image"]')).toHaveLength(0);
+		expect(document.head.querySelectorAll('meta[name^="twitter:"]')).toHaveLength(0);
+	});
+});
