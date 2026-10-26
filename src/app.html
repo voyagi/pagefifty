@@ -4,6 +4,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
+		<!-- The link preview picture, the same on every page, so it lives here and adds nothing to the
+			 client bundle. A chat or social site fetches it on its own, so the address is the live
+			 site's in full. X reads the picture from og:image; twitter:card asks for the large card. -->
+		<meta
+			property="og:image"
+			content="https://pagefifty.atfyigtaran.workers.dev/link-preview.png"
+		/>
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta
+			property="og:image:alt"
+			content="Pagefifty: the rule your firm can't meet alone is on page fifty. Notice 713597-2026, a framework contract for DOMEA services from ITZBund in Germany, reads Not met alone, with its German turnover clause underlined."
+		/>
+		<meta name="twitter:card" content="summary_large_image" />
 		<script nonce="%sveltekit.nonce%">
 			(function () {
 				var known = ['light', 'dark', 'device'];
