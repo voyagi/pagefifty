@@ -1,6 +1,6 @@
 # Pagefifty
 
-The rule your firm can't meet alone is on page fifty. Read it first.
+![The rule your firm can't meet alone is on page fifty. Read it first. Below it, a framework contract from ITZBund in Germany reads Not met alone, beside the German turnover clause that decides it, underlined and quoted from TED notice 713597-2026](docs/images/card.png)
 
 **See it run:** [pagefifty.atfyigtaran.workers.dev](https://pagefifty.atfyigtaran.workers.dev), no
 account and no upload. The home page opens on
@@ -10,6 +10,11 @@ invented demo firm.
 **The recorded run:** [examples/2026-10-22/](examples/2026-10-22/) holds every notice, model
 reading and search the site replays. Replay it on your machine with no key and Node 24.15 or newer:
 `npm ci`, then `npm run dev`, and open the local address it prints.
+
+![Eight seconds of the demo video: lot 1 of notice 713597-2026 reads Not met alone, then the page scrolls to the German sentence that sets the turnover floor, underlined](docs/images/payoff.gif)
+
+**Watch it:** eight seconds of the [demo video](https://youtu.be/NZ8mjAI7mMo) (2:30, subtitled,
+[transcript](examples/demo-transcript.md)), the answer and then the sentence that decides it.
 
 Pagefifty tells a small IT firm in the Netherlands, Belgium or Germany whether it meets an open EU
 tender's published selection criteria, before anyone starts work on a bid. It quotes the clause
