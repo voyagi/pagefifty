@@ -174,6 +174,8 @@ describe('README figures', () => {
 	it('shows only screenshots that exist', () => {
 		const images = [...README.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((match) => match[1]);
 		expect(images).toEqual([
+			'docs/images/card.png',
+			'docs/images/payoff.gif',
 			'docs/images/verdict.png',
 			'docs/images/refusal.png',
 			'docs/images/record.png'
@@ -262,5 +264,61 @@ describe('README figures', () => {
 		expect(calls.every(({ operation }) => operation === 'chat')).toBe(true);
 		expect(run.metered.attempts).toBe(run.metered.responses.length);
 		expect(run.reading.lots.notRead).toBe(0);
+	});
+});
+
+// The video's transcript speaks some figures as words, so those are pinned as values: a new example
+// capture fails here until the transcript, and the video it transcribes, are redone.
+describe('demo transcript figures', () => {
+	const TRANSCRIPT = readFileSync(join('examples', 'demo-transcript.md'), 'utf8').replace(
+		/\s+/g,
+		' '
+	);
+	const { population, counts } = figure;
+
+	it('points at the example capture the video recorded', () => {
+		expect(TRANSCRIPT).toContain(`[${EXAMPLE_CAPTURE}/](${EXAMPLE_CAPTURE}/)`);
+	});
+
+	it("names the demo firm's size and the featured lot's floor as the verdict compares them", () => {
+		expect(TRANSCRIPT).toContain(`You run a ${DEMO_PROFILE.staff.total}-person IT firm.`);
+		const page = examplePage(FEATURED_NOTICE);
+		const view = lotVerdict(page.lots[0], DEMO_PROFILE, page.now, page.documents);
+		expect(view?.shortfalls.map(({ floor }) => floor)).toEqual(['EUR 1,400,000.00']);
+		expect(TRANSCRIPT).toContain('one point four million euros a year in this field');
+	});
+
+	it("states the run's day, notices, cost and thinking as the run recorded them", () => {
+		expect(run.reading.runDate).toBe('2026-10-22');
+		expect(Number(run.reading.costUsd).toFixed(2)).toBe('0.28');
+		expect(run.reading.tokens.reasoning).toBe(0);
+		expect([run.reading.lots.read, run.reading.lots.notRead]).toEqual([
+			run.reading.lots.withCriteria,
+			0
+		]);
+		expect(TRANSCRIPT).toContain(
+			`On October 22nd it went through ${run.notices.written} open notices and read every criterion printed in them, for twenty-eight US cents, with thinking off.`
+		);
+		expect(population).toBe(run.notices.written);
+		expect(TRANSCRIPT).toContain(
+			`${population} open notices, each with its own answer for the same demo firm.`
+		);
+	});
+
+	it('counts the refused quotes on the shown criterion and on the whole run', () => {
+		const criterion = examplePage('699142-2026').lots[0].criteria.find(
+			({ position }) => position === 6
+		);
+		const refused = criterion?.rejected ?? [];
+		expect(TRANSCRIPT).toContain(
+			`All ${NUMBER_WORDS[refused.length]} quotes are refused, and the criterion says Not read.`
+		);
+		expect(TRANSCRIPT).toContain(`code refused ${rejected} of ${count(quotes)} quotes`);
+	});
+
+	it('gives the Ask first count the start page gives for the demo firm', () => {
+		expect(TRANSCRIPT).toContain(
+			`Most answers are Ask first: ${counts.askFirst} of ${population} for this firm.`
+		);
 	});
 });
